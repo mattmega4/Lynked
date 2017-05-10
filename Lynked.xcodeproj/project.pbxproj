@@ -29,6 +29,7 @@
 		1DD7D2561E384DFD00AF1299 /* Currency+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7D2551E384DFD00AF1299 /* Currency+Extension.swift */; };
 		1DD7D2591E393C0700AF1299 /* CardClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7D2581E393C0700AF1299 /* CardClass.swift */; };
 		1DD7D25C1E393C2300AF1299 /* ServiceClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7D25B1E393C2300AF1299 /* ServiceClass.swift */; };
+		29773CDD1EC3B6730023F277 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29773CDC1EC3B6730023F277 /* LoginViewController.swift */; };
 		FE255734139BB8197894689C /* Pods_Lynked.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 267A4AE157A5C3F5E4C71A91 /* Pods_Lynked.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		1DD7D2581E393C0700AF1299 /* CardClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardClass.swift; sourceTree = "<group>"; };
 		1DD7D25B1E393C2300AF1299 /* ServiceClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceClass.swift; sourceTree = "<group>"; };
 		267A4AE157A5C3F5E4C71A91 /* Pods_Lynked.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lynked.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		29773CDC1EC3B6730023F277 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		332153A02078D17E6D55BF0C /* Pods-Lynked.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lynked.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lynked/Pods-Lynked.release.xcconfig"; sourceTree = "<group>"; };
 		61C5BAFDC0F62D6BA28B7B7A /* Pods-Lynked.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lynked.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lynked/Pods-Lynked.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -184,9 +186,8 @@
 			children = (
 				1DC0D8C21DFE518F0039B8F6 /* Model */,
 				1DC0D8C11DFE518C0039B8F6 /* View */,
-				1DC0D8C01DFE51840039B8F6 /* Controller */,
-				1DD7D2571E393BEB00AF1299 /* Custom Classes */,
-				1D435D841E1454760033DB59 /* Extensions */,
+				29773CDB1EC3B6230023F277 /* Controller */,
+				29773CDA1EC3B5FC0023F277 /* Old */,
 				1DC0D8BF1DFE51790039B8F6 /* Additional Files */,
 			);
 			path = Lynked;
@@ -199,6 +200,7 @@
 				1DC0D8B41DFE516A0039B8F6 /* Assets.xcassets */,
 				1DC0D8B91DFE516A0039B8F6 /* Info.plist */,
 				1D01B26F1E03A27500098A9A /* GoogleService-Info.plist */,
+				1DC0D8B61DFE516A0039B8F6 /* LaunchScreen.storyboard */,
 			);
 			name = "Additional Files";
 			sourceTree = "<group>";
@@ -219,8 +221,6 @@
 			isa = PBXGroup;
 			children = (
 				1DC0D8AE1DFE516A0039B8F6 /* Main.storyboard */,
-				1DC0D8B61DFE516A0039B8F6 /* LaunchScreen.storyboard */,
-				1D2D41EE1E01436F00745588 /* View Extensions */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -240,6 +240,25 @@
 				1DD7D25B1E393C2300AF1299 /* ServiceClass.swift */,
 			);
 			name = "Custom Classes";
+			sourceTree = "<group>";
+		};
+		29773CDA1EC3B5FC0023F277 /* Old */ = {
+			isa = PBXGroup;
+			children = (
+				1D2D41EE1E01436F00745588 /* View Extensions */,
+				1DC0D8C01DFE51840039B8F6 /* Controller */,
+				1DD7D2571E393BEB00AF1299 /* Custom Classes */,
+				1D435D841E1454760033DB59 /* Extensions */,
+			);
+			name = Old;
+			sourceTree = "<group>";
+		};
+		29773CDB1EC3B6230023F277 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				29773CDC1EC3B6730023F277 /* LoginViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		5992905EFC84512369FCFBED /* Frameworks */ = {
@@ -402,6 +421,7 @@
 				1DC0D8DD1DFE5F200039B8F6 /* CardDetailsViewController.swift in Sources */,
 				1D2D41F01E01439300745588 /* ShadowForTableViewCell.swift in Sources */,
 				1DD7D25C1E393C2300AF1299 /* ServiceClass.swift in Sources */,
+				29773CDD1EC3B6730023F277 /* LoginViewController.swift in Sources */,
 				1DC0D8DF1DFE5F910039B8F6 /* EditCardViewController.swift in Sources */,
 				1DC0D8B31DFE516A0039B8F6 /* Lynked.xcdatamodeld in Sources */,
 				1DD7D2561E384DFD00AF1299 /* Currency+Extension.swift in Sources */,
