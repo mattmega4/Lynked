@@ -1,0 +1,6 @@
+framework module Pods_Lynked {
+  umbrella header "Pods-Lynked-umbrella.h"
+
+  export *
+  module * { export * }
+}
