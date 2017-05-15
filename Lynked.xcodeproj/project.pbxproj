@@ -30,6 +30,8 @@
 		1DD7D2591E393C0700AF1299 /* CardClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7D2581E393C0700AF1299 /* CardClass.swift */; };
 		1DD7D25C1E393C2300AF1299 /* ServiceClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7D25B1E393C2300AF1299 /* ServiceClass.swift */; };
 		29773CDD1EC3B6730023F277 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29773CDC1EC3B6730023F277 /* LoginViewController.swift */; };
+		29EE32411EC9754E00C2FFB6 /* CardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EE32401EC9754E00C2FFB6 /* CardDetailViewController.swift */; };
+		29EE32441EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EE32431EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift */; };
 		FE255734139BB8197894689C /* Pods_Lynked.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 267A4AE157A5C3F5E4C71A91 /* Pods_Lynked.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +62,8 @@
 		1DD7D25B1E393C2300AF1299 /* ServiceClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceClass.swift; sourceTree = "<group>"; };
 		267A4AE157A5C3F5E4C71A91 /* Pods_Lynked.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lynked.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		29773CDC1EC3B6730023F277 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		29EE32401EC9754E00C2FFB6 /* CardDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
+		29EE32431EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceCollectionViewCell.swift; sourceTree = "<group>"; };
 		332153A02078D17E6D55BF0C /* Pods-Lynked.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lynked.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lynked/Pods-Lynked.release.xcconfig"; sourceTree = "<group>"; };
 		61C5BAFDC0F62D6BA28B7B7A /* Pods-Lynked.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lynked.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lynked/Pods-Lynked.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -257,8 +261,18 @@
 			isa = PBXGroup;
 			children = (
 				29773CDC1EC3B6730023F277 /* LoginViewController.swift */,
+				29EE32401EC9754E00C2FFB6 /* CardDetailViewController.swift */,
+				29EE32421EC975C200C2FFB6 /* CollectionViewCells */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		29EE32421EC975C200C2FFB6 /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				29EE32431EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift */,
+			);
+			name = CollectionViewCells;
 			sourceTree = "<group>";
 		};
 		5992905EFC84512369FCFBED /* Frameworks */ = {
@@ -422,6 +436,7 @@
 				1D2D41F01E01439300745588 /* ShadowForTableViewCell.swift in Sources */,
 				1DD7D25C1E393C2300AF1299 /* ServiceClass.swift in Sources */,
 				29773CDD1EC3B6730023F277 /* LoginViewController.swift in Sources */,
+				29EE32411EC9754E00C2FFB6 /* CardDetailViewController.swift in Sources */,
 				1DC0D8DF1DFE5F910039B8F6 /* EditCardViewController.swift in Sources */,
 				1DC0D8B31DFE516A0039B8F6 /* Lynked.xcdatamodeld in Sources */,
 				1DD7D2561E384DFD00AF1299 /* Currency+Extension.swift in Sources */,
@@ -435,6 +450,7 @@
 				1D1712791E01F0870087F299 /* PreferencesViewController.swift in Sources */,
 				1D2D41F51E01475000745588 /* ServiceTableViewCell.swift in Sources */,
 				1D81111E1E05423C004C5F87 /* EntryViewController.swift in Sources */,
+				29EE32441EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift in Sources */,
 				1DBC68041E132C7B00B200C3 /* NewUserViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
