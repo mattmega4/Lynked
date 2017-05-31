@@ -612,7 +612,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w14-Sf-ZuW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6711.594202898551" y="641.57608695652175"/>
+            <point key="canvasLocation" x="8500" y="-185"/>
         </scene>
         <!--Item-->
         <scene sceneID="Pyg-YC-iak">
@@ -628,7 +628,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5g6-SV-kQ5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1388" y="-2302"/>
+            <point key="canvasLocation" x="2629" y="-410"/>
         </scene>
         <!--Preferences View Controller-->
         <scene sceneID="2hb-5X-d2q">
@@ -851,7 +851,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wnB-e5-Kwd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5696" y="643"/>
+            <point key="canvasLocation" x="7609" y="-185"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="B0S-dw-0Xd">
@@ -1111,6 +1111,8 @@
                         <outlet property="textFieldOne" destination="HHo-OZ-F2x" id="LmN-Bn-4tI"/>
                         <outlet property="textFieldTwo" destination="834-WK-Amg" id="fG0-eK-PaT"/>
                         <outlet property="topContainerView" destination="IIl-4r-bYm" id="oV8-Ez-QDF"/>
+                        <segue destination="caH-uy-CDu" kind="show" id="Hre-HP-qjK"/>
+                        <segue destination="xat-PU-1jy" kind="show" id="WzQ-wX-jms"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YCc-6P-K7a" sceneMemberID="firstResponder"/>
@@ -1319,6 +1321,7 @@
                         <outlet property="secondContainerView" destination="h6c-8f-hAC" id="2B1-vP-cBN"/>
                         <outlet property="secondDividerView" destination="rDj-p7-XQf" id="d5h-Ul-c8V"/>
                         <outlet property="thirdDividerView" destination="8LY-kh-0Ty" id="eXS-z9-pE3"/>
+                        <segue destination="2mM-cS-BFo" kind="show" id="imw-Eq-Ibj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZDo-k5-dbf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1479,6 +1482,7 @@
                         <outlet property="leftNavBarButton" destination="gtU-iX-pPa" id="Hup-jj-m4I"/>
                         <outlet property="rightNavBarButton" destination="rcg-7j-geY" id="Ph3-ep-k0N"/>
                         <outlet property="tableView" destination="OYk-Pi-PQY" id="DEM-Zm-IsW"/>
+                        <segue destination="2mM-cS-BFo" kind="show" id="skE-Kn-UBI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DhR-hl-TeL" sceneMemberID="firstResponder"/>
@@ -1683,11 +1687,12 @@
                         <outlet property="containerView" destination="PRR-en-j2l" id="Ieg-lu-gfH"/>
                         <outlet property="noteLabel" destination="wrr-6E-saW" id="H3G-mk-N2I"/>
                         <outlet property="topDividerView" destination="n0D-HM-Uig" id="EfL-WC-nuG"/>
+                        <segue destination="uNw-EG-A6J" kind="show" id="IhZ-M1-eSe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5U5-xl-Zvh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6711.594202898551" y="-185.05434782608697"/>
+            <point key="canvasLocation" x="6713" y="-185"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iMZ-29-LZj">
@@ -1736,4 +1741,7 @@
         <image name="preferencesNavIcon" width="22" height="22"/>
         <image name="whiteLy" width="1024" height="1024"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="skE-Kn-UBI"/>
+    </inferredMetricsTieBreakers>
 </document>
