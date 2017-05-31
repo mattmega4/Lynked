@@ -158,15 +158,6 @@
 			name = "Custom Cells";
 			sourceTree = "<group>";
 		};
-		1D435D841E1454760033DB59 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				1D435D851E14548C0033DB59 /* General+Extensions.swift */,
-				1DD7D2551E384DFD00AF1299 /* Currency+Extension.swift */,
-			);
-			name = Extensions;
-			sourceTree = "<group>";
-		};
 		1DC0D89E1DFE516A0039B8F6 = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +183,7 @@
 				1DC0D8C11DFE518C0039B8F6 /* View */,
 				29773CDB1EC3B6230023F277 /* Controller */,
 				29773CDA1EC3B5FC0023F277 /* Old */,
+				29CCE7261EDF8F0000995139 /* Extensions */,
 				1DC0D8BF1DFE51790039B8F6 /* Additional Files */,
 			);
 			path = Lynked;
@@ -252,7 +244,6 @@
 				1D2D41EE1E01436F00745588 /* View Extensions */,
 				1DC0D8C01DFE51840039B8F6 /* Controller */,
 				1DD7D2571E393BEB00AF1299 /* Custom Classes */,
-				1D435D841E1454760033DB59 /* Extensions */,
 			);
 			name = Old;
 			sourceTree = "<group>";
@@ -265,6 +256,15 @@
 				29EE32421EC975C200C2FFB6 /* CollectionViewCells */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		29CCE7261EDF8F0000995139 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1D435D851E14548C0033DB59 /* General+Extensions.swift */,
+				1DD7D2551E384DFD00AF1299 /* Currency+Extension.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		29EE32421EC975C200C2FFB6 /* CollectionViewCells */ = {
