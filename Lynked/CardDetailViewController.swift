@@ -9,10 +9,15 @@
 import UIKit
 
 class CardDetailViewController: UIViewController {
+    
+    @IBOutlet weak var topDividerView: UIView!
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var bottomDividerView: UIView!
 
+    @IBOutlet weak var noteLabel: UILabel!
+    
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
