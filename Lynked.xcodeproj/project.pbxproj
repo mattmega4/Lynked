@@ -26,6 +26,7 @@
 		1DD7D2591E393C0700AF1299 /* CardClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7D2581E393C0700AF1299 /* CardClass.swift */; };
 		1DD7D25C1E393C2300AF1299 /* ServiceClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7D25B1E393C2300AF1299 /* ServiceClass.swift */; };
 		292764931EDFA3160096AE1E /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292764921EDFA3160096AE1E /* WalletViewController.swift */; };
+		292764951EDFC8350096AE1E /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292764941EDFC8350096AE1E /* CardTableViewCell.swift */; };
 		29773CDD1EC3B6730023F277 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29773CDC1EC3B6730023F277 /* LoginViewController.swift */; };
 		29EE32411EC9754E00C2FFB6 /* CardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EE32401EC9754E00C2FFB6 /* CardDetailViewController.swift */; };
 		29EE32441EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EE32431EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift */; };
@@ -55,6 +56,7 @@
 		1DD7D25B1E393C2300AF1299 /* ServiceClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceClass.swift; sourceTree = "<group>"; };
 		267A4AE157A5C3F5E4C71A91 /* Pods_Lynked.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lynked.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		292764921EDFA3160096AE1E /* WalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
+		292764941EDFC8350096AE1E /* CardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
 		29773CDC1EC3B6730023F277 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		29EE32401EC9754E00C2FFB6 /* CardDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
 		29EE32431EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -74,14 +76,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1D15F07B1E029298006B7773 /* Preferences View Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				1D1712781E01F0870087F299 /* PreferencesViewController.swift */,
-			);
-			name = "Preferences View Controllers";
-			sourceTree = "<group>";
-		};
 		1D15F0871E029C4A006B7773 /* Specific Card */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,7 +158,6 @@
 		1DC0D8C01DFE51840039B8F6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1D15F07B1E029298006B7773 /* Preferences View Controllers */,
 				1D15F0871E029C4A006B7773 /* Specific Card */,
 			);
 			name = Controller;
@@ -195,6 +188,15 @@
 			name = "Custom Classes";
 			sourceTree = "<group>";
 		};
+		292764961EDFC8480096AE1E /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				29EE32431EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift */,
+				292764941EDFC8350096AE1E /* CardTableViewCell.swift */,
+			);
+			name = "Custom Cells";
+			sourceTree = "<group>";
+		};
 		29773CDA1EC3B5FC0023F277 /* Old */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,8 +213,9 @@
 				1DC0D8D81DFE59360039B8F6 /* AddCardViewController.swift */,
 				292764921EDFA3160096AE1E /* WalletViewController.swift */,
 				29EE32401EC9754E00C2FFB6 /* CardDetailViewController.swift */,
+				1D1712781E01F0870087F299 /* PreferencesViewController.swift */,
+				292764961EDFC8480096AE1E /* Custom Cells */,
 				1D2D41EE1E01436F00745588 /* View Extensions */,
-				29EE32421EC975C200C2FFB6 /* CollectionViewCells */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -224,14 +227,6 @@
 				1DD7D2551E384DFD00AF1299 /* Currency+Extension.swift */,
 			);
 			name = Extensions;
-			sourceTree = "<group>";
-		};
-		29EE32421EC975C200C2FFB6 /* CollectionViewCells */ = {
-			isa = PBXGroup;
-			children = (
-				29EE32431EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift */,
-			);
-			name = CollectionViewCells;
 			sourceTree = "<group>";
 		};
 		5992905EFC84512369FCFBED /* Frameworks */ = {
@@ -396,6 +391,7 @@
 				1D2D41F01E01439300745588 /* ShadowForTableViewCell.swift in Sources */,
 				1DD7D25C1E393C2300AF1299 /* ServiceClass.swift in Sources */,
 				29773CDD1EC3B6730023F277 /* LoginViewController.swift in Sources */,
+				292764951EDFC8350096AE1E /* CardTableViewCell.swift in Sources */,
 				29EE32411EC9754E00C2FFB6 /* CardDetailViewController.swift in Sources */,
 				1DC0D8DF1DFE5F910039B8F6 /* EditCardViewController.swift in Sources */,
 				1DC0D8B31DFE516A0039B8F6 /* Lynked.xcdatamodeld in Sources */,
