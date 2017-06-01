@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import FirebaseDatabase
 
 class WalletViewController: UIViewController {
     
@@ -113,7 +112,7 @@ class WalletViewController: UIViewController {
     // MARK: Prepare for Segue Methods
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "fromLandingPageToCardDetails" {
+        if segue.identifier == "fromWalletToCardDetails" {
             if let controller = segue.destination as? UINavigationController {
                 if let destinationVC = controller.topViewController as? CardDetailViewController {
                     destinationVC.cardID = selectedCard!

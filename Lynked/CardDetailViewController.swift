@@ -13,7 +13,6 @@ class CardDetailViewController: UIViewController {
     
     @IBOutlet weak var leftNavButton: UIBarButtonItem!
     @IBOutlet weak var rightNavButton: UIBarButtonItem!
-    @IBOutlet weak var topDividerView: UIView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var serviceLabel: UILabel!
     @IBOutlet weak var serviceNameTextField: UITextField!
@@ -98,8 +97,10 @@ class CardDetailViewController: UIViewController {
             self.ref.observeSingleEvent(of: .value, with: { snapshot in
                 if snapshot.hasChild("services") {
                     self.pullCardData()
+                    print("has data")
                 } else {
                     self.collectionView.reloadData()
+                    print("no data")
                 }
             })
         }
@@ -183,7 +184,6 @@ class CardDetailViewController: UIViewController {
                                                 self.collectionView.reloadData()
                                             }
                                         })
-                                        
                                     })
                                 }
                             }
@@ -330,10 +330,10 @@ class CardDetailViewController: UIViewController {
     }
     
     
-    // TODO: IB Actions
+    // MARK: IB Actions
     
     @IBAction func leftNavBarButtonTapped(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "fromCardDetailsToLandingPage", sender: self)
+        performSegue(withIdentifier: "fromCardDetailToWallet", sender: self)
     }
     
     @IBAction func rightNavBarButtonTapped(_ sender: UIBarButtonItem) {
@@ -407,21 +407,26 @@ extension CardDetailViewController: UITextFieldDelegate {
 extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         let padding: CGFloat = 25
         let collectionCellSize = collectionView.frame.size.width - padding
-        
         return CGSize(width: collectionCellSize/2, height: collectionCellSize/2)
-        
+    }
+    
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return serviceArray.count
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "serviceCell", for: indexPath as IndexPath) as! ServiceCollectionViewCell
         let row = indexPath.row
+        cell.whiteBackgroundView.createRoundView()
         cell.colorStatusView.createRoundView()
         if serviceArray[row].serviceStatus == true {
             cell.colorStatusView.backgroundColor = .green
@@ -445,6 +450,18 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         }
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        DispatchQueue.main.async {
+            let row = indexPath.row
+            self.selectedService = self.serviceArray[row].serviceID as String
+            if self.selectedService != "" {
+                self.performSegue(withIdentifier: "fromCardDetailToEditService", sender: self)
+            }
+            collectionView.isUserInteractionEnabled = false
+        }
+    }
+
 }
 
 

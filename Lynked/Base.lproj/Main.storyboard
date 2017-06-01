@@ -1404,15 +1404,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n0D-HM-Uig">
-                                <rect key="frame" x="0.0" y="65" width="414" height="1"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="fuK-TR-U0d"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PRR-en-j2l">
-                                <rect key="frame" x="0.0" y="67" width="414" height="52"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="52"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVY-M0-ohN">
                                         <rect key="frame" x="15" y="17.666666666666671" width="50" height="17.333333333333329"/>
@@ -1424,24 +1417,27 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Amazon" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ggi-OL-5L3">
-                                        <rect key="frame" x="80" y="0.0" width="258" height="52"/>
+                                        <rect key="frame" x="80" y="0.0" width="233" height="52"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R89-JM-1BN">
-                                        <rect key="frame" x="338" y="0.0" width="1" height="52"/>
+                                        <rect key="frame" x="313" y="0.0" width="1" height="52"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="1" id="o2M-Ri-vds"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GJF-Mc-4Zc">
-                                        <rect key="frame" x="339" y="0.0" width="75" height="52"/>
+                                        <rect key="frame" x="314" y="0.0" width="100" height="52"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="75" id="jkH-gG-YIN"/>
+                                            <constraint firstAttribute="width" constant="100" id="jkH-gG-YIN"/>
                                         </constraints>
-                                        <state key="normal" title="ADD"/>
+                                        <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="20"/>
+                                        <state key="normal" title="ADD">
+                                            <color key="titleColor" red="0.36078431372549019" green="0.62745098039215685" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
                                         <connections>
                                             <action selector="addServiceButtonTapped:" destination="OeG-fv-z1g" eventType="touchUpInside" id="s2H-QO-TlO"/>
                                         </connections>
@@ -1465,14 +1461,14 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="drB-u7-Js1">
-                                <rect key="frame" x="0.0" y="120" width="414" height="1"/>
+                                <rect key="frame" x="0.0" y="117" width="414" height="1"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="C6A-cT-aaR"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="g42-tz-HU7">
-                                <rect key="frame" x="25" y="206" width="364" height="395"/>
+                                <rect key="frame" x="25" y="203" width="364" height="398"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oKp-22-cpY">
                                     <size key="itemSize" width="147" height="147"/>
@@ -1497,8 +1493,7 @@
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dyc-Np-cry">
                                                                     <rect key="frame" x="44.333333333333329" y="43.666666666666671" width="49.999999999999986" height="50.000000000000014"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="50" id="9hJ-t0-enX"/>
-                                                                        <constraint firstAttribute="width" constant="50" id="S4p-VE-wSY"/>
+                                                                        <constraint firstAttribute="width" secondItem="Dyc-Np-cry" secondAttribute="height" multiplier="1:1" id="1tF-9j-ipT"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pbI-Y8-2kq">
@@ -1553,7 +1548,7 @@
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To add further information tap on created service name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wrr-6E-saW">
-                                <rect key="frame" x="132" y="146" width="150" height="35"/>
+                                <rect key="frame" x="132" y="143" width="150" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="K84-R4-zvR"/>
                                     <constraint firstAttribute="width" constant="150" id="Mgo-Mb-gDZ"/>
@@ -1580,13 +1575,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="drB-u7-Js1" secondAttribute="trailing" id="0AA-ur-A2t"/>
-                            <constraint firstItem="PRR-en-j2l" firstAttribute="top" secondItem="n0D-HM-Uig" secondAttribute="bottom" constant="1" id="1OS-nE-EBe"/>
                             <constraint firstItem="tnI-2H-JkJ" firstAttribute="top" secondItem="g42-tz-HU7" secondAttribute="bottom" constant="45" id="4mX-wj-9Ug"/>
-                            <constraint firstItem="n0D-HM-Uig" firstAttribute="top" secondItem="C1U-4P-cSQ" secondAttribute="bottom" constant="1" id="Ap5-TQ-2oz"/>
                             <constraint firstItem="wrr-6E-saW" firstAttribute="centerX" secondItem="Z6j-Y0-JCy" secondAttribute="centerX" id="B54-rK-r51"/>
-                            <constraint firstAttribute="trailing" secondItem="n0D-HM-Uig" secondAttribute="trailing" id="BSe-ad-Ad1"/>
+                            <constraint firstItem="PRR-en-j2l" firstAttribute="top" secondItem="C1U-4P-cSQ" secondAttribute="bottom" id="Csj-gD-VtI"/>
                             <constraint firstAttribute="trailing" secondItem="g42-tz-HU7" secondAttribute="trailing" constant="25" id="Eh8-B0-s5I"/>
-                            <constraint firstItem="n0D-HM-Uig" firstAttribute="leading" secondItem="Z6j-Y0-JCy" secondAttribute="leading" id="KQg-Au-XY3"/>
                             <constraint firstItem="gpf-hU-ts1" firstAttribute="top" secondItem="tnI-2H-JkJ" secondAttribute="bottom" constant="45" id="NQH-14-LIe"/>
                             <constraint firstItem="PRR-en-j2l" firstAttribute="leading" secondItem="Z6j-Y0-JCy" secondAttribute="leading" id="NQI-3N-4tF"/>
                             <constraint firstItem="wrr-6E-saW" firstAttribute="top" secondItem="drB-u7-Js1" secondAttribute="bottom" constant="25" id="U3B-BA-V2E"/>
@@ -1624,9 +1616,9 @@
                         <outlet property="rightNavButton" destination="gjO-ta-jDx" id="XOV-Kq-gqJ"/>
                         <outlet property="serviceLabel" destination="SVY-M0-ohN" id="INE-Yj-Pma"/>
                         <outlet property="serviceNameTextField" destination="ggi-OL-5L3" id="fvR-oH-mbx"/>
-                        <outlet property="topDividerView" destination="n0D-HM-Uig" id="EfL-WC-nuG"/>
                         <segue destination="ipX-hN-34t" kind="show" identifier="fromCardDetailToEditCard" id="Zul-x2-yUc"/>
                         <segue destination="s5Z-68-gGr" kind="show" identifier="fromCardDetailToEditService" id="O9b-tZ-SyM"/>
+                        <segue destination="xat-PU-1jy" kind="show" identifier="fromCardDetailToWallet" id="HlL-vf-LJf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5U5-xl-Zvh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1681,6 +1673,7 @@
         <image name="whiteLy" width="1024" height="1024"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="HlL-vf-LJf"/>
         <segue reference="skE-Kn-UBI"/>
         <segue reference="Qip-JR-BNo"/>
     </inferredMetricsTieBreakers>
