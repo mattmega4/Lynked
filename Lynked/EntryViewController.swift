@@ -81,9 +81,9 @@ class EntryViewController: UIViewController {
     let email = firstContainerTextField.text ?? ""
     let password = secondContainerTextField.text ?? ""
     
-    FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
-      let ref = FIRDatabase.database().reference()
-      let user = FIRAuth.auth()?.currentUser
+    Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
+      let ref = Database.database().reference()
+      let user = Auth.auth().currentUser
       if error == nil {
         ref.child("users").child((user?.uid)!).child("cards")
           .observe(.value, with: { snapshot in

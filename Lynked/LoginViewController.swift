@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
@@ -294,25 +295,31 @@ class LoginViewController: UIViewController {
     }
     
     
-    // MARK: Sign In
+    // TO DO: Sign In
     
     func signUserIn() {
         let currentEmail = textFieldOne.text ?? ""
         let currentPassword = textFieldTwo.text ?? ""
         
-        FIRAuth.auth()?.signIn(withEmail: currentEmail, password: currentPassword, completion: { (user, error) in
+        Auth.auth().signIn(withEmail: currentEmail, password: currentPassword, completion: { (user, error) in
             
             var errMessage = ""
             if (error != nil) {
-                if let errCode = FIRAuthErrorCode(rawValue: (error?._code)!) {
+                
+             
+                
+                if let errCode = AuthErrorCode(rawValue: (error?._code)!) {
                     switch errCode {
-                    case .errorCodeInvalidEmail:
+                        
+                
+                        
+                    case .invalidEmail:
                         errMessage = "The entered email does not meet requirements."
-                    case .errorCodeEmailAlreadyInUse:
+                    case .emailAlreadyInUse:
                         errMessage = "The entered email has already been registered."
-                    case .errorCodeWeakPassword:
+                    case .weakPassword:
                         errMessage = "The entered password does not meet minimum requirements."
-                    case .errorCodeWrongPassword:
+                    case .wrongPassword:
                         errMessage = "The entered password is not correct."
                     default:
                         errMessage = "Please try again."
@@ -330,22 +337,25 @@ class LoginViewController: UIViewController {
     }
     
     
-    // MARK: Register User
+    // TO DO: Register User
     
     func registerNewUser() {
         
         if textFieldOne.text == textFieldTwo.text {
             newUserPassword = textFieldTwo.text ?? ""
-            FIRAuth.auth()?.createUser(withEmail: newUserEmail!, password: newUserPassword!, completion: { (user, error) in
+            Auth.auth().createUser(withEmail: newUserEmail!, password: newUserPassword!, completion: { (user, error) in
                 var errMessage = ""
                 if (error != nil) {
-                    if let errCode = FIRAuthErrorCode(rawValue: (error?._code)!) {
+                    if let errCode = AuthErrorCode(rawValue: (error?._code)!) {
                         switch errCode {
-                        case .errorCodeInvalidEmail:
+                            
+               
+            
+                        case .invalidEmail:
                             errMessage = "The entered email does not meet requirements."
-                        case .errorCodeEmailAlreadyInUse:
+                        case .emailAlreadyInUse:
                             errMessage = "The entered email has already been registered."
-                        case .errorCodeWeakPassword:
+                        case .weakPassword:
                             errMessage = "The entered password does not meet minimum requirements."
                         default:
                             errMessage = "Please try again."
@@ -357,7 +367,7 @@ class LoginViewController: UIViewController {
                     }
                     alertController.addAction(OKAction)
                 } else {
-                    FIRAuth.auth()!.signIn(withEmail: self.newUserEmail!,
+                    Auth.auth().signIn(withEmail: self.newUserEmail!,
                                            password: self.newUserPassword!)
                     self.performSegue(withIdentifier: "fromEntryToLandingPage", sender: self)
                 }
@@ -439,7 +449,7 @@ extension LoginViewController: UITextFieldDelegate {
     
     func bottomTextFieldDelegateAndAutoCorrectAndPlaceholderColorSetup() {
         var bottomTextFields: [UITextField] = []
-        bottomTextFields+=[textFieldOne, textFieldTwo]
+        bottomTextFields+=[self.textFieldOne, textFieldTwo]
         let placeHolderLightColor = UIColor.lightText
         for fields in bottomTextFields {
             fields.autocorrectionType = .no
@@ -452,27 +462,27 @@ extension LoginViewController: UITextFieldDelegate {
     // MARK: Text Field Targets
     
     func checkIfTopTextFIeldIsSatisfied(textField: UITextField) {
-        if textField == textFieldOne {
-            if leftOn == true && rightOn == false {
+        if textField == self.textFieldOne {
+            if self.leftOn == true && rightOn == false {
                 if textField.text?.validateEmail() == true {
-                    topFieldIsSatisfied = true
+                    self.topFieldIsSatisfied = true
                 } else {
-                    topFieldIsSatisfied = false
+                    self.topFieldIsSatisfied = false
                 }
                 checkIfBothSignInRequirementsAreMet()
-            } else if leftOn == false && rightOn == true {
-                if createUserStepOneFinished == true {
+            } else if leftOn == false && self.rightOn == true {
+                if self.createUserStepOneFinished == true {
                     if textField.text?.validateEmail() == true {
-                        topFieldIsSatisfied = true
+                        self.topFieldIsSatisfied = true
                     } else {
-                        topFieldIsSatisfied = false
+                        self.topFieldIsSatisfied = false
                     }
                     checkIfTopContinueRequirementIsMet()
                 } else {
                     if textField.text?.isEmpty == true {
-                        topFieldIsSatisfied = false
+                        self.topFieldIsSatisfied = false
                     } else {
-                        topFieldIsSatisfied = true
+                        self.topFieldIsSatisfied = true
                     }
                     checkIfBothRegisterRequirementsAreMet()
                 }
@@ -482,19 +492,19 @@ extension LoginViewController: UITextFieldDelegate {
     
     
     func checkIfBottomTextFieldIsSatisfied(textField: UITextField) {
-        if textField == textFieldTwo {
-            if leftOn == true && rightOn == false {
+        if textField == self.textFieldTwo {
+            if self.leftOn == true && rightOn == false {
                 if textField.text?.isEmpty == true {
-                    bottomFieldIsSatisfied = false
+                    self.bottomFieldIsSatisfied = false
                 } else {
-                    bottomFieldIsSatisfied = true
+                    self.bottomFieldIsSatisfied = true
                 }
                 checkIfBothSignInRequirementsAreMet()
-            } else if leftOn == false && rightOn == false {
+            } else if self.leftOn == false && rightOn == false {
                 if textField.text?.isEmpty == true {
-                    bottomFieldIsSatisfied = false
+                    self.bottomFieldIsSatisfied = false
                 } else {
-                    bottomFieldIsSatisfied = true
+                    self.bottomFieldIsSatisfied = true
                 }
                 checkIfBothRegisterRequirementsAreMet()
             }

@@ -39,8 +39,8 @@ class CardDetailsViewController: UIViewController {
   var serviceFixedBool: Bool?
   var serviceFixedAmount: String?
   var serviceArray: [ServiceClass] = []
-  let ref = FIRDatabase.database().reference()
-  let user = FIRAuth.auth()?.currentUser
+  let ref = Database.database().reference()
+  let user = Auth.auth().currentUser
   let selectedCard = CardClass()
   var totalArr: [String] = []
   var doubleArray: [Double] = []
@@ -116,7 +116,7 @@ class CardDetailsViewController: UIViewController {
         if allCardIDs == self.cardID {
           let thisCardLocation = cardRef.child(self.cardID)
           thisCardLocation.observeSingleEvent(of: .value, with: { snapshot in
-            let thisCardDetails = snapshot as FIRDataSnapshot
+            let thisCardDetails = snapshot as DataSnapshot
             let cardDict = thisCardDetails.value as! [String: AnyObject]
             self.selectedCard.cardID = thisCardDetails.key
             self.selectedCard.nickname = cardDict["nickname"] as! String
@@ -143,7 +143,7 @@ class CardDetailsViewController: UIViewController {
                 let thisServiceLocationInServiceNode = self.ref.child("services").child(serviceID)
                 if serviceID == allServs {
                   thisServiceLocationInServiceNode.observeSingleEvent(of: .value, with: {thisSnap in
-                    let serv = thisSnap as FIRDataSnapshot
+                    let serv = thisSnap as DataSnapshot
                     let serviceDict = serv.value as! [String: AnyObject]
                     let aService = ServiceClass()
                     self.serviceCurrent = serviceDict["serviceStatus"] as? Bool

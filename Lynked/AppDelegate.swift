@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     UIApplication.shared.statusBarStyle = .lightContent
     
-    FIRApp.configure()
+    FirebaseApp.configure()
     
     // This code is for Firebase Crash testing, don't uncomment it or it will crash the app
 //    fatalError()

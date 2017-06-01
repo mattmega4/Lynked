@@ -30,7 +30,7 @@ class AddCardViewController: UIViewController {
   @IBOutlet weak var secondContainerTextField: UITextField!
   @IBOutlet weak var finalNoteLabel: UILabel!
   
-  let ref = FIRDatabase.database().reference()
+  let ref = Database.database().reference()
   var nickNameTextFieldIsEmpty = true
   var cardTypeTextFieldIsEmpty = true
   var finalNickname: String?
@@ -85,7 +85,7 @@ class AddCardViewController: UIViewController {
     let typeWithoutWhiteSpaces = typeToAdd
     finalNickname = nicknameWithoutWhiteSpaces.capitalized
     finalType = typeWithoutWhiteSpaces.capitalized
-    let user = FIRAuth.auth()?.currentUser
+    let user = Auth.auth().currentUser
     let card = ref.child("cards").childByAutoId()
     if let tempNick = finalNickname, let tempType = finalType {
       card.setValue(["nickname": tempNick, "type": tempType, "cardStatus": true])
