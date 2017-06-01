@@ -11,7 +11,6 @@
 		1D1712791E01F0870087F299 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1712781E01F0870087F299 /* PreferencesViewController.swift */; };
 		1D2D41F01E01439300745588 /* ShadowForTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2D41EF1E01439300745588 /* ShadowForTableViewCell.swift */; };
 		1D2D41F21E0146BE00745588 /* RoundIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2D41F11E0146BE00745588 /* RoundIndicatorView.swift */; };
-		1D2D41F51E01475000745588 /* ServiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2D41F41E01475000745588 /* ServiceTableViewCell.swift */; };
 		1D435D861E14548C0033DB59 /* General+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D435D851E14548C0033DB59 /* General+Extensions.swift */; };
 		1DC0D8AB1DFE516A0039B8F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC0D8AA1DFE516A0039B8F6 /* AppDelegate.swift */; };
 		1DC0D8B01DFE516A0039B8F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DC0D8AE1DFE516A0039B8F6 /* Main.storyboard */; };
@@ -19,7 +18,6 @@
 		1DC0D8B51DFE516A0039B8F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DC0D8B41DFE516A0039B8F6 /* Assets.xcassets */; };
 		1DC0D8B81DFE516A0039B8F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DC0D8B61DFE516A0039B8F6 /* LaunchScreen.storyboard */; };
 		1DC0D8D91DFE59360039B8F6 /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC0D8D81DFE59360039B8F6 /* AddCardViewController.swift */; };
-		1DC0D8DD1DFE5F200039B8F6 /* CardDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC0D8DC1DFE5F200039B8F6 /* CardDetailsViewController.swift */; };
 		1DC0D8DF1DFE5F910039B8F6 /* EditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC0D8DE1DFE5F910039B8F6 /* EditCardViewController.swift */; };
 		1DC0D8E11DFE5FBB0039B8F6 /* EditServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC0D8E01DFE5FBB0039B8F6 /* EditServiceViewController.swift */; };
 		1DD7D2561E384DFD00AF1299 /* Currency+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7D2551E384DFD00AF1299 /* Currency+Extension.swift */; };
@@ -38,7 +36,6 @@
 		1D1712781E01F0870087F299 /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		1D2D41EF1E01439300745588 /* ShadowForTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowForTableViewCell.swift; sourceTree = "<group>"; };
 		1D2D41F11E0146BE00745588 /* RoundIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundIndicatorView.swift; sourceTree = "<group>"; };
-		1D2D41F41E01475000745588 /* ServiceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTableViewCell.swift; sourceTree = "<group>"; };
 		1D435D851E14548C0033DB59 /* General+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "General+Extensions.swift"; sourceTree = "<group>"; };
 		1DC0D8A71DFE516A0039B8F6 /* Lynked.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lynked.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DC0D8AA1DFE516A0039B8F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -48,7 +45,6 @@
 		1DC0D8B71DFE516A0039B8F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1DC0D8B91DFE516A0039B8F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1DC0D8D81DFE59360039B8F6 /* AddCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
-		1DC0D8DC1DFE5F200039B8F6 /* CardDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailsViewController.swift; sourceTree = "<group>"; };
 		1DC0D8DE1DFE5F910039B8F6 /* EditCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCardViewController.swift; sourceTree = "<group>"; };
 		1DC0D8E01DFE5FBB0039B8F6 /* EditServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditServiceViewController.swift; sourceTree = "<group>"; };
 		1DD7D2551E384DFD00AF1299 /* Currency+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Currency+Extension.swift"; sourceTree = "<group>"; };
@@ -76,25 +72,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1D15F0871E029C4A006B7773 /* Specific Card */ = {
-			isa = PBXGroup;
-			children = (
-				1DC0D8DC1DFE5F200039B8F6 /* CardDetailsViewController.swift */,
-				1D2549E51E39993B00EF6A19 /* Edit */,
-				1D2D41F31E01472300745588 /* Custom Cells */,
-			);
-			name = "Specific Card";
-			sourceTree = "<group>";
-		};
-		1D2549E51E39993B00EF6A19 /* Edit */ = {
-			isa = PBXGroup;
-			children = (
-				1DC0D8DE1DFE5F910039B8F6 /* EditCardViewController.swift */,
-				1DC0D8E01DFE5FBB0039B8F6 /* EditServiceViewController.swift */,
-			);
-			name = Edit;
-			sourceTree = "<group>";
-		};
 		1D2D41EE1E01436F00745588 /* View Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -102,14 +79,6 @@
 				1D2D41F11E0146BE00745588 /* RoundIndicatorView.swift */,
 			);
 			name = "View Extensions";
-			sourceTree = "<group>";
-		};
-		1D2D41F31E01472300745588 /* Custom Cells */ = {
-			isa = PBXGroup;
-			children = (
-				1D2D41F41E01475000745588 /* ServiceTableViewCell.swift */,
-			);
-			name = "Custom Cells";
 			sourceTree = "<group>";
 		};
 		1DC0D89E1DFE516A0039B8F6 = {
@@ -136,7 +105,6 @@
 				1DC0D8C21DFE518F0039B8F6 /* Model */,
 				1DC0D8C11DFE518C0039B8F6 /* View */,
 				29773CDB1EC3B6230023F277 /* Controller */,
-				29773CDA1EC3B5FC0023F277 /* Old */,
 				29CCE7261EDF8F0000995139 /* Extensions */,
 				1DC0D8BF1DFE51790039B8F6 /* Additional Files */,
 			);
@@ -153,14 +121,6 @@
 				1DC0D8B61DFE516A0039B8F6 /* LaunchScreen.storyboard */,
 			);
 			name = "Additional Files";
-			sourceTree = "<group>";
-		};
-		1DC0D8C01DFE51840039B8F6 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				1D15F0871E029C4A006B7773 /* Specific Card */,
-			);
-			name = Controller;
 			sourceTree = "<group>";
 		};
 		1DC0D8C11DFE518C0039B8F6 /* View */ = {
@@ -197,15 +157,6 @@
 			name = "Custom Cells";
 			sourceTree = "<group>";
 		};
-		29773CDA1EC3B5FC0023F277 /* Old */ = {
-			isa = PBXGroup;
-			children = (
-				1DC0D8C01DFE51840039B8F6 /* Controller */,
-				1DD7D2571E393BEB00AF1299 /* Custom Classes */,
-			);
-			name = Old;
-			sourceTree = "<group>";
-		};
 		29773CDB1EC3B6230023F277 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,7 +165,10 @@
 				292764921EDFA3160096AE1E /* WalletViewController.swift */,
 				29EE32401EC9754E00C2FFB6 /* CardDetailViewController.swift */,
 				1D1712781E01F0870087F299 /* PreferencesViewController.swift */,
+				1DC0D8DE1DFE5F910039B8F6 /* EditCardViewController.swift */,
+				1DC0D8E01DFE5FBB0039B8F6 /* EditServiceViewController.swift */,
 				292764961EDFC8480096AE1E /* Custom Cells */,
+				1DD7D2571E393BEB00AF1299 /* Custom Classes */,
 				1D2D41EE1E01436F00745588 /* View Extensions */,
 			);
 			name = Controller;
@@ -387,7 +341,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DC0D8D91DFE59360039B8F6 /* AddCardViewController.swift in Sources */,
-				1DC0D8DD1DFE5F200039B8F6 /* CardDetailsViewController.swift in Sources */,
 				1D2D41F01E01439300745588 /* ShadowForTableViewCell.swift in Sources */,
 				1DD7D25C1E393C2300AF1299 /* ServiceClass.swift in Sources */,
 				29773CDD1EC3B6730023F277 /* LoginViewController.swift in Sources */,
@@ -403,7 +356,6 @@
 				292764931EDFA3160096AE1E /* WalletViewController.swift in Sources */,
 				1DC0D8E11DFE5FBB0039B8F6 /* EditServiceViewController.swift in Sources */,
 				1D1712791E01F0870087F299 /* PreferencesViewController.swift in Sources */,
-				1D2D41F51E01475000745588 /* ServiceTableViewCell.swift in Sources */,
 				29EE32441EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

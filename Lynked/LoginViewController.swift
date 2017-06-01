@@ -48,7 +48,6 @@ class LoginViewController: UIViewController {
     var newUserEmail: String?
     var newUserPassword: String?
     
-    let ref = Database.database().reference()
     var tempUID = ""
     
     override func viewDidLoad() {
@@ -361,6 +360,8 @@ class LoginViewController: UIViewController {
     
     func registerNewUser() {
         
+        let ref = Database.database().reference()
+        
         if textFieldOne.text == textFieldTwo.text {
             newUserPassword = textFieldTwo.text ?? ""
             Auth.auth().createUser(withEmail: newUserEmail!, password: newUserPassword!, completion: { (user, error) in
@@ -387,7 +388,7 @@ class LoginViewController: UIViewController {
                     }
                     alertController.addAction(OKAction)
                 } else {
-                    self.ref.child("users").child((user?.uid)!).child("cards").setValue(true)
+                    ref.child("users").child((user?.uid)!).child("cards").setValue(true)
                     Auth.auth().signIn(withEmail: self.newUserEmail!, password: self.newUserPassword!)
                     self.tempUID = (user?.uid)!
                     self.performSegue(withIdentifier: "fromEntryToAddCard", sender: self)
@@ -421,7 +422,7 @@ class LoginViewController: UIViewController {
         var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
         var contentInset: UIEdgeInsets = self.scrollView.contentInset
-        contentInset.bottom = keyboardFrame.size.height + 30
+        contentInset.bottom = keyboardFrame.size.height + 50
         self.scrollView.contentInset = contentInset
         
         hideLeftContainerViewContents()

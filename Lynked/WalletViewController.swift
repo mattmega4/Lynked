@@ -115,7 +115,7 @@ class WalletViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "fromLandingPageToCardDetails" {
             if let controller = segue.destination as? UINavigationController {
-                if let destinationVC = controller.topViewController as? CardDetailsViewController {
+                if let destinationVC = controller.topViewController as? CardDetailViewController {
                     destinationVC.cardID = selectedCard!
                 }
             }
@@ -125,13 +125,13 @@ class WalletViewController: UIViewController {
     
     // MARK: IB Actions
     
-    //    @IBAction func leftBarButtonTapped(_ sender: UIBarButtonItem) {
-    //        performSegue(withIdentifier: "fromLandingPageToPref", sender: self)
-    //    }
-    //
-    //    @IBAction func rightBarButtonTapped(_ sender: UIBarButtonItem) {
-    //        performSegue(withIdentifier: "fromLandingPageToAddCard", sender: self)
-    //    }
+    @IBAction func leftBarButtonTapped(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "fromWalletToPref", sender: self)
+    }
+    
+    @IBAction func rightBarButtonTapped(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "fromWalletToAddCard", sender: self)
+    }
     
     
 }
