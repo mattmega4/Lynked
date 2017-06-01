@@ -12,8 +12,9 @@ class ServiceCollectionViewCell: UICollectionViewCell {
     
     
     @IBOutlet weak var backgroundViewContainer: UIView!
-    @IBOutlet weak var serviceNameLabel: UILabel!
     @IBOutlet weak var serviceLogoImage: UIImageView!
+    @IBOutlet weak var serviceNameLabel: UILabel!
+    @IBOutlet weak var serviceFixedAmountLabel: UILabel!
     
     
     override func layoutSubviews() {
