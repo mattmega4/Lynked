@@ -312,7 +312,7 @@ class LoginViewController: UIViewController {
                 ref.child("users").child((user?.uid)!).child("cards")
                     .observe(.value, with: { snapshot in
                         if (snapshot.hasChildren()) {
-                            self.performSegue(withIdentifier: "fromEntryToLandingPage", sender: self)
+                            self.performSegue(withIdentifier: "fromEntryToWallet", sender: self)
                         } else {
                             self.performSegue(withIdentifier: "fromEntryToAddCard", sender: self)
                         }
