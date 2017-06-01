@@ -49,8 +49,8 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
   var serviceURLTransfered: String?
   var serviceFixedTransfered: Bool?
   var serviceAmountTransfered: String?
-  let ref = FIRDatabase.database().reference()
-  let user = FIRAuth.auth()?.currentUser
+  let ref = Database.database().reference()
+  let user = Auth.auth().currentUser
   var stateOfService: Bool?
   var stateOfFixed: Bool?
   var toStatus: Bool?
@@ -156,7 +156,7 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
         if allServiceID == self.thisServiceTransfered {
           let thisServiceLocation = serviceRef.child(self.thisServiceTransfered)
           thisServiceLocation.observeSingleEvent(of: .value, with: { snap in
-            let thisServiceDetails = snap as FIRDataSnapshot
+            let thisServiceDetails = snap as DataSnapshot
             let serviceDict = thisServiceDetails.value as! [String: AnyObject]
             if serviceDict["serviceStatus"] as! Bool == true {
               self.serviceStateToggleSwtich.setOn(true, animated: true)

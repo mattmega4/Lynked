@@ -19,8 +19,8 @@ class LandingPageViewController: UIViewController {
   var selectedCard: String?
   var cardNicknameToTransfer = ""
   var cardtypeToTransfer = ""
-  let ref = FIRDatabase.database().reference()
-  let user = FIRAuth.auth()?.currentUser
+  let ref = Database.database().reference()
+  let user = Auth.auth().currentUser
   var cardArray: [CardClass] = []
   
   
@@ -81,7 +81,7 @@ class LandingPageViewController: UIViewController {
         let cardID = (userscard as AnyObject).key as String
         let cardRef = self.ref.child("cards").child(cardID)
         cardRef.observeSingleEvent(of: .value, with: { cardSnapShot in
-          let cardSnap = cardSnapShot as FIRDataSnapshot
+          let cardSnap = cardSnapShot as DataSnapshot
           let cardDict = cardSnap.value as! [String: AnyObject]
           let cardNickname = cardDict["nickname"]
           let cardType = cardDict["type"]

@@ -39,8 +39,8 @@ class EditCardViewController: UIViewController {
   var typeFieldSatisfied: Bool?
   var thisCardIDTransfered = ""
   var serviceToDelete: [String] = []
-  let ref = FIRDatabase.database().reference()
-  let user = FIRAuth.auth()?.currentUser
+  let ref = Database.database().reference()
+  let user = Auth.auth().currentUser
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -94,7 +94,7 @@ class EditCardViewController: UIViewController {
         if allCardID == self.thisCardIDTransfered {
           let thisCardLocation = cardRef.child(self.thisCardIDTransfered)
           thisCardLocation.observeSingleEvent(of: .value, with: {snap in
-            let thisCardDetails = snap as FIRDataSnapshot
+            let thisCardDetails = snap as DataSnapshot
             let cardDict = thisCardDetails.value as! [String: AnyObject]
             //            if cardDict["cardStatus"] as! Bool == true {
             //              self.cardStatus = true

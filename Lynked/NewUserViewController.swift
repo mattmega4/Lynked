@@ -41,7 +41,7 @@ class NewUserViewController: UIViewController {
   
   @IBOutlet weak var bottomButton: UIButton!
   
-  let ref = FIRDatabase.database().reference()
+  let ref = Database.database().reference()
   
   var emailIsSatisfied = false
   var passwordsAreSatisfied = false
@@ -106,16 +106,16 @@ class NewUserViewController: UIViewController {
     
     if topPassword == bottomPassword {
       let password = topPassword
-      FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+      Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
         var errMessage = ""
         if (error != nil) {
-          if let errCode = FIRAuthErrorCode(rawValue: (error?._code)!) {
+          if let errCode = AuthErrorCode(rawValue: (error?._code)!) {
             switch errCode {
-            case .errorCodeInvalidEmail:
+            case .invalidEmail:
               errMessage = "The entered email does not meet requirements."
-            case .errorCodeEmailAlreadyInUse:
+            case .emailAlreadyInUse:
               errMessage = "The entered email has already been registered."
-            case .errorCodeWeakPassword:
+            case .weakPassword:
               errMessage = "The entered password does not meet minimum requirements."
             default:
               errMessage = "Please try again."
@@ -128,7 +128,7 @@ class NewUserViewController: UIViewController {
           alertController.addAction(OKAction)
         } else {
           self.ref.child("users").child((user?.uid)!).child("cards").setValue(true)
-          FIRAuth.auth()!.signIn(withEmail: email,
+          Auth.auth().signIn(withEmail: email,
                                  password: password)
           self.tempUID = (user?.uid)!
           self.performSegue(withIdentifier: "fromNewUserToAddCard", sender: self)

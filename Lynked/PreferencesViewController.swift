@@ -33,8 +33,8 @@ class PreferencesViewController: UIViewController {
   
   @IBOutlet weak var versionLabel: UILabel!
   
-  let ref = FIRDatabase.database().reference()
-  let user = FIRAuth.auth()?.currentUser
+  let ref = Database.database().reference()
+  let user = Auth.auth().currentUser
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -66,7 +66,7 @@ class PreferencesViewController: UIViewController {
     let alertController = UIAlertController(title: "Wait!", message: "This deletes everying tied to your account! All your cards, service, and total fixed monthly expenses You will need to register a new free account!", preferredStyle: UIAlertControllerStyle.alert)
     let cancelAction = UIAlertAction(title: "Never Mind!", style: UIAlertActionStyle.cancel, handler: nil)
     let okAction = UIAlertAction(title: "I Understand!", style: UIAlertActionStyle.default) { (result: UIAlertAction) in
-      FIRAuth.auth()?.currentUser?.delete(completion: { (error) in
+      Auth.auth().currentUser?.delete(completion: { (error) in
         if error == nil {
           // TODO: In V2 actually remove the data from Firebase
           self.performSegue(withIdentifier: "fromPrefToSignIn", sender: self)
