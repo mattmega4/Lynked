@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1D01B2701E03A27500098A9A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1D01B26F1E03A27500098A9A /* GoogleService-Info.plist */; };
-		1D0B24421E35BD7D00C97C30 /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0B24411E35BD7D00C97C30 /* CardTableViewCell.swift */; };
 		1D1712791E01F0870087F299 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1712781E01F0870087F299 /* PreferencesViewController.swift */; };
 		1D2D41F01E01439300745588 /* ShadowForTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2D41EF1E01439300745588 /* ShadowForTableViewCell.swift */; };
 		1D2D41F21E0146BE00745588 /* RoundIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2D41F11E0146BE00745588 /* RoundIndicatorView.swift */; };
@@ -35,7 +34,6 @@
 
 /* Begin PBXFileReference section */
 		1D01B26F1E03A27500098A9A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		1D0B24411E35BD7D00C97C30 /* CardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
 		1D1712781E01F0870087F299 /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		1D2D41EF1E01439300745588 /* ShadowForTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowForTableViewCell.swift; sourceTree = "<group>"; };
 		1D2D41F11E0146BE00745588 /* RoundIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundIndicatorView.swift; sourceTree = "<group>"; };
@@ -76,28 +74,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1D0B243E1E35BC9F00C97C30 /* Landing Page Card Cell */ = {
-			isa = PBXGroup;
-			children = (
-				1D0B24411E35BD7D00C97C30 /* CardTableViewCell.swift */,
-			);
-			name = "Landing Page Card Cell";
-			sourceTree = "<group>";
-		};
 		1D15F07B1E029298006B7773 /* Preferences View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				1D1712781E01F0870087F299 /* PreferencesViewController.swift */,
 			);
 			name = "Preferences View Controllers";
-			sourceTree = "<group>";
-		};
-		1D15F0831E029B33006B7773 /* Landing Page */ = {
-			isa = PBXGroup;
-			children = (
-				1D0B243E1E35BC9F00C97C30 /* Landing Page Card Cell */,
-			);
-			name = "Landing Page";
 			sourceTree = "<group>";
 		};
 		1D15F0871E029C4A006B7773 /* Specific Card */ = {
@@ -183,7 +165,6 @@
 			isa = PBXGroup;
 			children = (
 				1D15F07B1E029298006B7773 /* Preferences View Controllers */,
-				1D15F0831E029B33006B7773 /* Landing Page */,
 				1D15F0871E029C4A006B7773 /* Specific Card */,
 			);
 			name = Controller;
@@ -421,7 +402,6 @@
 				1DD7D2561E384DFD00AF1299 /* Currency+Extension.swift in Sources */,
 				1DD7D2591E393C0700AF1299 /* CardClass.swift in Sources */,
 				1D435D861E14548C0033DB59 /* General+Extensions.swift in Sources */,
-				1D0B24421E35BD7D00C97C30 /* CardTableViewCell.swift in Sources */,
 				1D2D41F21E0146BE00745588 /* RoundIndicatorView.swift in Sources */,
 				1DC0D8AB1DFE516A0039B8F6 /* AppDelegate.swift in Sources */,
 				292764931EDFA3160096AE1E /* WalletViewController.swift in Sources */,
