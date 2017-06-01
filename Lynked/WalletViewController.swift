@@ -125,42 +125,21 @@ class WalletViewController: UIViewController {
     
     // MARK: IB Actions
     
-//    @IBAction func leftBarButtonTapped(_ sender: UIBarButtonItem) {
-//        performSegue(withIdentifier: "fromLandingPageToPref", sender: self)
-//    }
-//    
-//    @IBAction func rightBarButtonTapped(_ sender: UIBarButtonItem) {
-//        performSegue(withIdentifier: "fromLandingPageToAddCard", sender: self)
-//    }
+    //    @IBAction func leftBarButtonTapped(_ sender: UIBarButtonItem) {
+    //        performSegue(withIdentifier: "fromLandingPageToPref", sender: self)
+    //    }
+    //
+    //    @IBAction func rightBarButtonTapped(_ sender: UIBarButtonItem) {
+    //        performSegue(withIdentifier: "fromLandingPageToAddCard", sender: self)
+    //    }
     
     
 }
 
 
-// MARK: TableView Data Source Methods
+// MARK: TableView Delegate & Data Source Methods
 
-extension WalletViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! CardTableViewCell
-        let row = indexPath.row
-        cell.cardNicknameLabel.text = cardArray[row].nickname
-        cell.cardTypeLabel.text = cardArray[row].type
-        return cell
-    }
-    
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cardArray.count
-    }
-    
-    
-}
-
-
-// MARK: TableView Delegate Methods
-
-extension WalletViewController: UITableViewDelegate {
+extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 125.0
@@ -179,6 +158,22 @@ extension WalletViewController: UITableViewDelegate {
         }
     }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! CardTableViewCell
+        let row = indexPath.row
+        cell.cardNicknameLabel.text = cardArray[row].nickname
+        cell.cardTypeLabel.text = cardArray[row].type
+        return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cardArray.count
+    }
+    
     
 }
+
+
+
 
