@@ -10,9 +10,19 @@ import UIKit
 
 class ServiceCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var colorStatusView: UIView!
-    @IBOutlet weak var whiteBackgroundView: UIView!
+    
+    @IBOutlet weak var backgroundViewContainer: UIView!
     @IBOutlet weak var serviceNameLabel: UILabel!
     @IBOutlet weak var serviceLogoImage: UIImageView!
+    
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.backgroundViewContainer.layoutIfNeeded()       // add this
+        self.backgroundViewContainer.layer.cornerRadius = min(backgroundViewContainer.frame.size.width, backgroundViewContainer.frame.size.height)/2
+        self.backgroundViewContainer.clipsToBounds = true
+        
+    }
     
 }

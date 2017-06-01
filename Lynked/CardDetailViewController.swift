@@ -408,11 +408,10 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let padding: CGFloat = 25
-        let collectionCellSize = collectionView.frame.size.width - padding
+        let collectionCellSize = collectionView.frame.size.height - padding
         return CGSize(width: collectionCellSize/2, height: collectionCellSize/2)
     }
-    
-    
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -426,12 +425,13 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "serviceCell", for: indexPath as IndexPath) as! ServiceCollectionViewCell
         let row = indexPath.row
-        cell.whiteBackgroundView.createRoundView()
-        cell.colorStatusView.createRoundView()
+        cell.backgroundViewContainer.backgroundColor = .white
+        
+        cell.backgroundViewContainer.layer.borderWidth = 5
         if serviceArray[row].serviceStatus == true {
-            cell.colorStatusView.backgroundColor = .green
+            cell.backgroundViewContainer.layer.borderColor = UIColor.green.cgColor
         } else {
-            cell.colorStatusView.backgroundColor = .red
+            cell.backgroundViewContainer.layer.borderColor = UIColor.red.cgColor
         }
         cell.serviceNameLabel.text = serviceArray[row].serviceName
         
