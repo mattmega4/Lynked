@@ -14,14 +14,11 @@
 		1D2D41F21E0146BE00745588 /* RoundIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2D41F11E0146BE00745588 /* RoundIndicatorView.swift */; };
 		1D2D41F51E01475000745588 /* ServiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2D41F41E01475000745588 /* ServiceTableViewCell.swift */; };
 		1D435D861E14548C0033DB59 /* General+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D435D851E14548C0033DB59 /* General+Extensions.swift */; };
-		1D81111E1E05423C004C5F87 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D81111D1E05423C004C5F87 /* EntryViewController.swift */; };
-		1DBC68041E132C7B00B200C3 /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBC68031E132C7B00B200C3 /* NewUserViewController.swift */; };
 		1DC0D8AB1DFE516A0039B8F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC0D8AA1DFE516A0039B8F6 /* AppDelegate.swift */; };
 		1DC0D8B01DFE516A0039B8F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DC0D8AE1DFE516A0039B8F6 /* Main.storyboard */; };
 		1DC0D8B31DFE516A0039B8F6 /* Lynked.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1DC0D8B11DFE516A0039B8F6 /* Lynked.xcdatamodeld */; };
 		1DC0D8B51DFE516A0039B8F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DC0D8B41DFE516A0039B8F6 /* Assets.xcassets */; };
 		1DC0D8B81DFE516A0039B8F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DC0D8B61DFE516A0039B8F6 /* LaunchScreen.storyboard */; };
-		1DC0D8C51DFE520E0039B8F6 /* LandingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC0D8C41DFE520E0039B8F6 /* LandingPageViewController.swift */; };
 		1DC0D8D91DFE59360039B8F6 /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC0D8D81DFE59360039B8F6 /* AddCardViewController.swift */; };
 		1DC0D8DD1DFE5F200039B8F6 /* CardDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC0D8DC1DFE5F200039B8F6 /* CardDetailsViewController.swift */; };
 		1DC0D8DF1DFE5F910039B8F6 /* EditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC0D8DE1DFE5F910039B8F6 /* EditCardViewController.swift */; };
@@ -29,6 +26,7 @@
 		1DD7D2561E384DFD00AF1299 /* Currency+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7D2551E384DFD00AF1299 /* Currency+Extension.swift */; };
 		1DD7D2591E393C0700AF1299 /* CardClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7D2581E393C0700AF1299 /* CardClass.swift */; };
 		1DD7D25C1E393C2300AF1299 /* ServiceClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7D25B1E393C2300AF1299 /* ServiceClass.swift */; };
+		292764931EDFA3160096AE1E /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292764921EDFA3160096AE1E /* WalletViewController.swift */; };
 		29773CDD1EC3B6730023F277 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29773CDC1EC3B6730023F277 /* LoginViewController.swift */; };
 		29EE32411EC9754E00C2FFB6 /* CardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EE32401EC9754E00C2FFB6 /* CardDetailViewController.swift */; };
 		29EE32441EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EE32431EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift */; };
@@ -43,8 +41,6 @@
 		1D2D41F11E0146BE00745588 /* RoundIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundIndicatorView.swift; sourceTree = "<group>"; };
 		1D2D41F41E01475000745588 /* ServiceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTableViewCell.swift; sourceTree = "<group>"; };
 		1D435D851E14548C0033DB59 /* General+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "General+Extensions.swift"; sourceTree = "<group>"; };
-		1D81111D1E05423C004C5F87 /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
-		1DBC68031E132C7B00B200C3 /* NewUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserViewController.swift; sourceTree = "<group>"; };
 		1DC0D8A71DFE516A0039B8F6 /* Lynked.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lynked.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DC0D8AA1DFE516A0039B8F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1DC0D8AF1DFE516A0039B8F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -52,7 +48,6 @@
 		1DC0D8B41DFE516A0039B8F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1DC0D8B71DFE516A0039B8F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1DC0D8B91DFE516A0039B8F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1DC0D8C41DFE520E0039B8F6 /* LandingPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingPageViewController.swift; sourceTree = "<group>"; };
 		1DC0D8D81DFE59360039B8F6 /* AddCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
 		1DC0D8DC1DFE5F200039B8F6 /* CardDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailsViewController.swift; sourceTree = "<group>"; };
 		1DC0D8DE1DFE5F910039B8F6 /* EditCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCardViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +56,7 @@
 		1DD7D2581E393C0700AF1299 /* CardClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardClass.swift; sourceTree = "<group>"; };
 		1DD7D25B1E393C2300AF1299 /* ServiceClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceClass.swift; sourceTree = "<group>"; };
 		267A4AE157A5C3F5E4C71A91 /* Pods_Lynked.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lynked.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		292764921EDFA3160096AE1E /* WalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		29773CDC1EC3B6730023F277 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		29EE32401EC9754E00C2FFB6 /* CardDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
 		29EE32431EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -88,15 +84,6 @@
 			name = "Landing Page Card Cell";
 			sourceTree = "<group>";
 		};
-		1D15F0761E02862A006B7773 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				1D81111D1E05423C004C5F87 /* EntryViewController.swift */,
-				1DBC68031E132C7B00B200C3 /* NewUserViewController.swift */,
-			);
-			name = Login;
-			sourceTree = "<group>";
-		};
 		1D15F07B1E029298006B7773 /* Preferences View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,17 +96,8 @@
 			isa = PBXGroup;
 			children = (
 				1D0B243E1E35BC9F00C97C30 /* Landing Page Card Cell */,
-				1DC0D8C41DFE520E0039B8F6 /* LandingPageViewController.swift */,
 			);
 			name = "Landing Page";
-			sourceTree = "<group>";
-		};
-		1D15F0861E029BF2006B7773 /* Add New Card */ = {
-			isa = PBXGroup;
-			children = (
-				1DC0D8D81DFE59360039B8F6 /* AddCardViewController.swift */,
-			);
-			name = "Add New Card";
 			sourceTree = "<group>";
 		};
 		1D15F0871E029C4A006B7773 /* Specific Card */ = {
@@ -204,10 +182,8 @@
 		1DC0D8C01DFE51840039B8F6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1D15F0761E02862A006B7773 /* Login */,
 				1D15F07B1E029298006B7773 /* Preferences View Controllers */,
 				1D15F0831E029B33006B7773 /* Landing Page */,
-				1D15F0861E029BF2006B7773 /* Add New Card */,
 				1D15F0871E029C4A006B7773 /* Specific Card */,
 			);
 			name = Controller;
@@ -241,7 +217,6 @@
 		29773CDA1EC3B5FC0023F277 /* Old */ = {
 			isa = PBXGroup;
 			children = (
-				1D2D41EE1E01436F00745588 /* View Extensions */,
 				1DC0D8C01DFE51840039B8F6 /* Controller */,
 				1DD7D2571E393BEB00AF1299 /* Custom Classes */,
 			);
@@ -252,7 +227,10 @@
 			isa = PBXGroup;
 			children = (
 				29773CDC1EC3B6730023F277 /* LoginViewController.swift */,
+				1DC0D8D81DFE59360039B8F6 /* AddCardViewController.swift */,
+				292764921EDFA3160096AE1E /* WalletViewController.swift */,
 				29EE32401EC9754E00C2FFB6 /* CardDetailViewController.swift */,
+				1D2D41EE1E01436F00745588 /* View Extensions */,
 				29EE32421EC975C200C2FFB6 /* CollectionViewCells */,
 			);
 			name = Controller;
@@ -443,16 +421,14 @@
 				1DD7D2561E384DFD00AF1299 /* Currency+Extension.swift in Sources */,
 				1DD7D2591E393C0700AF1299 /* CardClass.swift in Sources */,
 				1D435D861E14548C0033DB59 /* General+Extensions.swift in Sources */,
-				1DC0D8C51DFE520E0039B8F6 /* LandingPageViewController.swift in Sources */,
 				1D0B24421E35BD7D00C97C30 /* CardTableViewCell.swift in Sources */,
 				1D2D41F21E0146BE00745588 /* RoundIndicatorView.swift in Sources */,
 				1DC0D8AB1DFE516A0039B8F6 /* AppDelegate.swift in Sources */,
+				292764931EDFA3160096AE1E /* WalletViewController.swift in Sources */,
 				1DC0D8E11DFE5FBB0039B8F6 /* EditServiceViewController.swift in Sources */,
 				1D1712791E01F0870087F299 /* PreferencesViewController.swift in Sources */,
 				1D2D41F51E01475000745588 /* ServiceTableViewCell.swift in Sources */,
-				1D81111E1E05423C004C5F87 /* EntryViewController.swift in Sources */,
 				29EE32441EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift in Sources */,
-				1DBC68041E132C7B00B200C3 /* NewUserViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

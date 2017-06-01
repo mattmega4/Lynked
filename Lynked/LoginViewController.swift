@@ -48,9 +48,12 @@ class LoginViewController: UIViewController {
     var newUserEmail: String?
     var newUserPassword: String?
     
+    let ref = Database.database().reference()
+    var tempUID = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         bottomTextFieldDelegateAndAutoCorrectAndPlaceholderColorSetup()
         addTextFieldTargets()
         keyboardMethods()
@@ -295,28 +298,35 @@ class LoginViewController: UIViewController {
     }
     
     
-    // TO DO: Sign In
+    // MARK: Sign In
     
     func signUserIn() {
-        let currentEmail = textFieldOne.text ?? ""
-        let currentPassword = textFieldTwo.text ?? ""
         
-        Auth.auth().signIn(withEmail: currentEmail, password: currentPassword, completion: { (user, error) in
-            
-            var errMessage = ""
-            if (error != nil) {
+        let email = textFieldOne.text ?? ""
+        let password = textFieldTwo.text ?? ""
+        
+        Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
+            let ref = Database.database().reference()
+            let user = Auth.auth().currentUser
+            if error == nil {
+                ref.child("users").child((user?.uid)!).child("cards")
+                    .observe(.value, with: { snapshot in
+                        if (snapshot.hasChildren()) {
+                            self.performSegue(withIdentifier: "fromEntryToLandingPage", sender: self)
+                        } else {
+                            self.performSegue(withIdentifier: "fromEntryToAddCard", sender: self)
+                        }
+                    })
                 
-             
+            } else {
+                
+                var errMessage = ""
                 
                 if let errCode = AuthErrorCode(rawValue: (error?._code)!) {
                     switch errCode {
                         
-                
-                        
                     case .invalidEmail:
                         errMessage = "The entered email does not meet requirements."
-                    case .emailAlreadyInUse:
-                        errMessage = "The entered email has already been registered."
                     case .weakPassword:
                         errMessage = "The entered password does not meet minimum requirements."
                     case .wrongPassword:
@@ -324,20 +334,30 @@ class LoginViewController: UIViewController {
                     default:
                         errMessage = "Please try again."
                     }
+                    
+                    let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errMessage)", preferredStyle: .alert)
+                    self.present(alertController, animated: true, completion:nil)
+                    let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
+                    }
+                    alertController.addAction(OKAction)
+                    
                 }
-                let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errMessage)", preferredStyle: .alert)
-                self.present(alertController, animated: true, completion:nil)
-                let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
-                }
-                alertController.addAction(OKAction)
-            } else {
-                self.performSegue(withIdentifier: "fromEntryToLandingPage", sender: self)
+                
+                
+                
+                
+                self.textFieldOne.text = ""
+                self.textFieldTwo.text = ""
+                self.topFieldIsSatisfied = false
+                self.bottomFieldIsSatisfied = false
             }
         })
     }
     
     
-    // TO DO: Register User
+    
+    
+    // TODO: Register User
     
     func registerNewUser() {
         
@@ -349,8 +369,8 @@ class LoginViewController: UIViewController {
                     if let errCode = AuthErrorCode(rawValue: (error?._code)!) {
                         switch errCode {
                             
-               
-            
+                            
+                            
                         case .invalidEmail:
                             errMessage = "The entered email does not meet requirements."
                         case .emailAlreadyInUse:
@@ -367,20 +387,18 @@ class LoginViewController: UIViewController {
                     }
                     alertController.addAction(OKAction)
                 } else {
-                    Auth.auth().signIn(withEmail: self.newUserEmail!,
-                                           password: self.newUserPassword!)
-                    self.performSegue(withIdentifier: "fromEntryToLandingPage", sender: self)
+                    self.ref.child("users").child((user?.uid)!).child("cards").setValue(true)
+                    Auth.auth().signIn(withEmail: self.newUserEmail!, password: self.newUserPassword!)
+                    self.tempUID = (user?.uid)!
+                    self.performSegue(withIdentifier: "fromEntryToAddCard", sender: self)
                 }
             })
         }
     }
     
     
-    // MARK: IB Actions
     
-    @IBAction func questionMarkButtonTapped(_ sender: UIButton) {
-        // TODO: Lost Password
-    }
+    // MARK: IB Actions
     
     @IBAction func leftContainerButtonTapped(_ sender: UIButton) {
         leftButtonWasTappedWhichIsDefault()
