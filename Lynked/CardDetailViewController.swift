@@ -155,6 +155,7 @@ class CardDetailViewController: UIViewController {
                                         
                                         aService.serviceUrl = serviceDict["serviceURL"] as! String
                                         aService.serviceName = serviceDict["serviceName"] as! String
+                                        aService.serviceAmount = serviceDict["serviceAmount"] as! String
                                         aService.serviceStatus = serviceDict["serviceStatus"] as? Bool
                                         aService.serviceAttention = serviceDict["attentionInt"] as! Int
                                         
@@ -207,7 +208,7 @@ class CardDetailViewController: UIViewController {
         addServiceButton.alpha = 0.4
         addServiceButton.isEnabled = false
     }
-
+    
     
     // MARK: Set Letter/Number Image For NO URL
     
@@ -408,9 +409,10 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let padding: CGFloat = 25
-        let collectionCellSize = collectionView.frame.size.height - padding
+        let collectionCellSize = collectionView.frame.size.width - padding
         return CGSize(width: collectionCellSize/2, height: collectionCellSize/2)
     }
+    
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -434,6 +436,7 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
             cell.backgroundViewContainer.layer.borderColor = UIColor.red.cgColor
         }
         cell.serviceNameLabel.text = serviceArray[row].serviceName
+        cell.serviceFixedAmountLabel.text = serviceArray[row].serviceAmount
         
         cell.serviceLogoImage.image = UIImage.init(named: "\(self.getLetterOrNumberAndChooseImage(text: self.serviceArray[row].serviceName))")
         
@@ -461,7 +464,7 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
             collectionView.isUserInteractionEnabled = false
         }
     }
-
+    
 }
 
 
