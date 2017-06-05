@@ -94,10 +94,13 @@ class CardDetailViewController: UIViewController {
             self.serviceArray.removeAll()
             self.totalArr.removeAll()
             self.doubleArray.removeAll()
-            self.ref.observeSingleEvent(of: .value, with: { snapshot in
+            
+            
+            self.ref.observe(DataEventType.value, with: { (snapshot) in
+
                 if snapshot.hasChild("services") {
                     self.pullCardData()
-                    print("has data")
+                    self.collectionView.reloadData()
                 } else {
                     self.collectionView.reloadData()
                     print("no data")
@@ -110,16 +113,23 @@ class CardDetailViewController: UIViewController {
     func pullCardData() {
         serviceArray.removeAll()
         let cardRef = ref.child("cards")
-        cardRef.observeSingleEvent(of: .value, with: { snapshot in
+        
+        
+        cardRef.observe(DataEventType.value, with: { (snapshot) in
+        
+
             for cards in snapshot.children {
                 let allCardIDs = (cards as AnyObject).key as String
                 if allCardIDs == self.cardID {
                     let thisCardLocation = cardRef.child(self.cardID)
-                    thisCardLocation.observeSingleEvent(of: .value, with: { snapshot in
+                    
+                    thisCardLocation.observe(DataEventType.value, with: { (snapshot) in
+                    
                         let thisCardDetails = snapshot as DataSnapshot
                         let cardDict = thisCardDetails.value as! [String: AnyObject]
                         self.selectedCard.cardID = thisCardDetails.key
                         self.selectedCard.nickname = cardDict["nickname"] as! String
+                        print("Hello \(self.selectedCard.nickname)")
                         self.selectedCard.type = cardDict["type"] as! String
                         self.pullServicesForCard()
                     })
@@ -132,17 +142,26 @@ class CardDetailViewController: UIViewController {
     func pullServicesForCard() {
         let thisCardServices = self.ref.child("cards").child(self.cardID).child("services")
         let serviceRefLoc = self.ref.child("services")
-        thisCardServices.observeSingleEvent(of: .value, with: {serviceSnap in
+        
+        
+        thisCardServices.observe(DataEventType.value, with: { (serviceSnap) in
+        
             if serviceSnap.hasChildren() {
                 for serviceChild in serviceSnap.children {
                     let serviceID = (serviceChild as AnyObject).key as String
-                    serviceRefLoc.observeSingleEvent(of: .value, with: {allServiceSnap in
+                    
+                    
+                    serviceRefLoc.observe(DataEventType.value, with: { (allServiceSnap) in
+                    
                         if allServiceSnap.hasChildren() {
                             for all in allServiceSnap.children {
                                 let allServs = (all as AnyObject).key as String
                                 let thisServiceLocationInServiceNode = self.ref.child("services").child(serviceID)
                                 if serviceID == allServs {
-                                    thisServiceLocationInServiceNode.observeSingleEvent(of: .value, with: {thisSnap in
+                                    
+                                    
+                                    thisServiceLocationInServiceNode.observe(DataEventType.value, with: { (thisSnap) in
+
                                         let serv = thisSnap as DataSnapshot
                                         let serviceDict = serv.value as! [String: AnyObject]
                                         let aService = ServiceClass()

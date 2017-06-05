@@ -67,9 +67,14 @@ class WalletViewController: UIViewController {
     func checkIfDataExits() {
         DispatchQueue.main.async {
             self.cardArray.removeAll()
-            self.ref.observeSingleEvent(of: .value, with: { snapshot in
+            
+             self.ref.observe(DataEventType.value, with: { (snapshot) in
+            
+            
+//            self.ref.observeSingleEvent(of: .value, with: { snapshot in
                 if snapshot.hasChild("cards") {
-                    self.pullAllUsersCards()
+//                    self.pullAllUsersCards()
+                    self.newIdea()
                 } else {
                     self.tableView.reloadData()
                 }
@@ -78,10 +83,13 @@ class WalletViewController: UIViewController {
     }
     
     
-    func pullAllUsersCards() {
+    
+    func newIdea() {
         cardArray.removeAll()
         let userRef = ref.child("users").child((user?.uid)!).child("cards")
-        userRef.observeSingleEvent(of: .value, with: { snapshot in
+        
+        userRef.observe(DataEventType.value, with: { (snapshot) in
+            
             for userscard in snapshot.children {
                 let cardID = (userscard as AnyObject).key as String
                 let cardRef = self.ref.child("cards").child(cardID)
@@ -105,7 +113,40 @@ class WalletViewController: UIViewController {
                 })
             }
         })
+        
+        
     }
+    
+//    func pullAllUsersCards() {
+//        cardArray.removeAll()
+//        let userRef = ref.child("users").child((user?.uid)!).child("cards")
+//        
+//        userRef.observeSingleEvent(of: .value, with: { snapshot in
+//            
+//            for userscard in snapshot.children {
+//                let cardID = (userscard as AnyObject).key as String
+//                let cardRef = self.ref.child("cards").child(cardID)
+//                cardRef.observeSingleEvent(of: .value, with: { cardSnapShot in
+//                    let cardSnap = cardSnapShot as DataSnapshot
+//                    let cardDict = cardSnap.value as! [String: AnyObject]
+//                    let cardNickname = cardDict["nickname"]
+//                    let cardType = cardDict["type"]
+//                    let cardStatus = cardDict["cardStatus"]
+//                    self.cardNicknameToTransfer = cardNickname as! String
+//                    self.cardtypeToTransfer = cardType as! String
+//                    let aCard = CardClass()
+//                    aCard.cardID = cardID
+//                    aCard.nickname = cardNickname as! String
+//                    aCard.type = cardType as! String
+//                    aCard.cStatus = cardStatus as! Bool
+//                    self.cardArray.append(aCard)
+//                    DispatchQueue.main.async {
+//                        self.tableView.reloadData()
+//                    }
+//                })
+//            }
+//        })
+//    }
     
     
     
