@@ -40,6 +40,13 @@ class CardDetailViewController: UIViewController {
     var totalArr: [String] = []
     var doubleArray: [Double] = []
     
+    //
+    
+    let margin: CGFloat = 10
+    let cellsPerC = 3
+    
+    //
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +63,12 @@ class CardDetailViewController: UIViewController {
         tap.cancelsTouchesInView = false
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        
+        guard let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        flowLayout.minimumInteritemSpacing = margin
+        flowLayout.minimumLineSpacing = margin
+        flowLayout.sectionInset = UIEdgeInsets(top: margin, left: margin, bottom: margin, right: margin)
         
     }
     
@@ -426,11 +439,34 @@ extension CardDetailViewController: UITextFieldDelegate {
 
 extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        let screenRect: CGRect = UIScreen.main.bounds
+//        let screenWidth: CGFloat = screenRect.size.width
+//        let screenHeight: CGFloat = screenRect.size.height
+//        let cellWidth: Float = Float(screenWidth / 3.0)
+//        let cellHeight: Float = Float(screenHeight / 3.0)
+//        let size = CGSize(width: CGFloat(cellWidth), height: CGFloat(cellHeight))
+//        return size
+//    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let padding: CGFloat = 25
-        let collectionCellSize = collectionView.frame.size.width - padding
-        return CGSize(width: collectionCellSize/2, height: collectionCellSize/2)
+        let flowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        let marginsAndInsets = flowLayout.sectionInset.left + flowLayout.sectionInset.right + flowLayout.minimumInteritemSpacing * CGFloat(cellsPerC - 1)
+        let itemWidth = ((collectionView.bounds.size.width - marginsAndInsets) / CGFloat(cellsPerC)).rounded(.down)
+        return CGSize(width: itemWidth, height: itemWidth)
     }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        collectionView?.collectionViewLayout.invalidateLayout()
+        super.viewWillTransition(to: size, with: coordinator)
+    }
+    
+    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        let padding: CGFloat = 25
+//        let collectionCellSize = collectionView.frame.size.width - padding
+//        return CGSize(width: collectionCellSize/2, height: collectionCellSize/2)
+//    }
     
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -446,13 +482,13 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "serviceCell", for: indexPath as IndexPath) as! ServiceCollectionViewCell
         let row = indexPath.row
-        cell.backgroundViewContainer.backgroundColor = .white
+        cell.colorStatusView.backgroundColor = .white
         
-        cell.backgroundViewContainer.layer.borderWidth = 5
+//        cell.colorStatusView.layer.borderWidth = 5
         if serviceArray[row].serviceStatus == true {
-            cell.backgroundViewContainer.layer.borderColor = UIColor.green.cgColor
+            cell.colorStatusView.backgroundColor = .green
         } else {
-            cell.backgroundViewContainer.layer.borderColor = UIColor.red.cgColor
+            cell.colorStatusView.backgroundColor = .red
         }
         cell.serviceNameLabel.text = serviceArray[row].serviceName
         cell.serviceFixedAmountLabel.text = serviceArray[row].serviceAmount
