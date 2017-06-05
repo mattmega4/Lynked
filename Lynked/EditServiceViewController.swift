@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import FirebaseDatabase
 
 class EditServiceViewController: UIViewController, UITextFieldDelegate {
   
@@ -37,7 +36,6 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
   @IBOutlet weak var fixedAmountLabel: UILabel!
   @IBOutlet weak var fixedAmountTextField: UITextField!
   @IBOutlet weak var fifthDividerView: UIView!
-  @IBOutlet weak var disclaimerLabel: UILabel!
   @IBOutlet weak var deleteServiceButton: UIButton!
   
   var thisServiceTransfered = ""
@@ -158,13 +156,18 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
           thisServiceLocation.observeSingleEvent(of: .value, with: { snap in
             let thisServiceDetails = snap as DataSnapshot
             let serviceDict = thisServiceDetails.value as! [String: AnyObject]
+            
+            
             if serviceDict["serviceStatus"] as! Bool == true {
               self.serviceStateToggleSwtich.setOn(true, animated: true)
             } else {
               self.serviceStateToggleSwtich.setOn(false, animated: true)
             }
+            
             self.serviceNameTextField.text = serviceDict["serviceName"] as? String
+            
             self.urlTextField.text = serviceDict["serviceURL"] as? String
+            
             if serviceDict["serviceFixed"] as! Bool == true {
               self.fixedExpenseToggleSwitch.setOn(true, animated: true)
               self.fixedAmountLabel.alpha = 1.0
