@@ -110,7 +110,7 @@ class CardDetailViewController: UIViewController {
             
             
             self.ref.observe(DataEventType.value, with: { (snapshot) in
-
+                
                 if snapshot.hasChild("services") {
                     self.pullCardData()
                     self.collectionView.reloadData()
@@ -129,15 +129,15 @@ class CardDetailViewController: UIViewController {
         
         
         cardRef.observe(DataEventType.value, with: { (snapshot) in
-        
-
+            
+            
             for cards in snapshot.children {
                 let allCardIDs = (cards as AnyObject).key as String
                 if allCardIDs == self.cardID {
                     let thisCardLocation = cardRef.child(self.cardID)
                     
                     thisCardLocation.observe(DataEventType.value, with: { (snapshot) in
-                    
+                        
                         let thisCardDetails = snapshot as DataSnapshot
                         let cardDict = thisCardDetails.value as! [String: AnyObject]
                         self.selectedCard.cardID = thisCardDetails.key
@@ -153,19 +153,20 @@ class CardDetailViewController: UIViewController {
     
     
     func pullServicesForCard() {
+        serviceArray.removeAll()
         let thisCardServices = self.ref.child("cards").child(self.cardID).child("services")
         let serviceRefLoc = self.ref.child("services")
         
         
         thisCardServices.observe(DataEventType.value, with: { (serviceSnap) in
-        
+            
             if serviceSnap.hasChildren() {
                 for serviceChild in serviceSnap.children {
                     let serviceID = (serviceChild as AnyObject).key as String
                     
                     
                     serviceRefLoc.observe(DataEventType.value, with: { (allServiceSnap) in
-                    
+                        
                         if allServiceSnap.hasChildren() {
                             for all in allServiceSnap.children {
                                 let allServs = (all as AnyObject).key as String
@@ -174,7 +175,7 @@ class CardDetailViewController: UIViewController {
                                     
                                     
                                     thisServiceLocationInServiceNode.observe(DataEventType.value, with: { (thisSnap) in
-
+                                        
                                         let serv = thisSnap as DataSnapshot
                                         let serviceDict = serv.value as! [String: AnyObject]
                                         let aService = ServiceClass()
@@ -212,11 +213,10 @@ class CardDetailViewController: UIViewController {
                                             if $0.serviceAttention == $1.serviceAttention { return $0.serviceName < $1.serviceName }
                                             return $0.serviceAttention > $1.serviceAttention
                                         }
-                                        self.delay(0.3, closure: {
-                                            DispatchQueue.main.async {
-                                                self.collectionView.reloadData()
-                                            }
-                                        })
+                                        
+                                        DispatchQueue.main.async {
+                                            self.collectionView.reloadData()
+                                        }
                                     })
                                 }
                             }
@@ -439,15 +439,15 @@ extension CardDetailViewController: UITextFieldDelegate {
 
 extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let screenRect: CGRect = UIScreen.main.bounds
-//        let screenWidth: CGFloat = screenRect.size.width
-//        let screenHeight: CGFloat = screenRect.size.height
-//        let cellWidth: Float = Float(screenWidth / 3.0)
-//        let cellHeight: Float = Float(screenHeight / 3.0)
-//        let size = CGSize(width: CGFloat(cellWidth), height: CGFloat(cellHeight))
-//        return size
-//    }
+    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    //        let screenRect: CGRect = UIScreen.main.bounds
+    //        let screenWidth: CGFloat = screenRect.size.width
+    //        let screenHeight: CGFloat = screenRect.size.height
+    //        let cellWidth: Float = Float(screenWidth / 3.0)
+    //        let cellHeight: Float = Float(screenHeight / 3.0)
+    //        let size = CGSize(width: CGFloat(cellWidth), height: CGFloat(cellHeight))
+    //        return size
+    //    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let flowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
@@ -462,13 +462,13 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let padding: CGFloat = 25
-//        let collectionCellSize = collectionView.frame.size.width - padding
-//        return CGSize(width: collectionCellSize/2, height: collectionCellSize/2)
-//    }
+    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    //        let padding: CGFloat = 25
+    //        let collectionCellSize = collectionView.frame.size.width - padding
+    //        return CGSize(width: collectionCellSize/2, height: collectionCellSize/2)
+    //    }
     
-
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -484,7 +484,7 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         let row = indexPath.row
         cell.colorStatusView.backgroundColor = .white
         
-//        cell.colorStatusView.layer.borderWidth = 5
+        //        cell.colorStatusView.layer.borderWidth = 5
         if serviceArray[row].serviceStatus == true {
             cell.colorStatusView.backgroundColor = .green
         } else {

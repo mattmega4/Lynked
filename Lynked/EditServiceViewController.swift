@@ -75,7 +75,7 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     leftNavBarButton.isEnabled = true
     rightNavBarButton.isEnabled = true
     pullServiceData()
-    optionalFunc()
+//    optionalFunc()
     alertUserIfURLTextFieldIsNotValid(textField: urlTextField)
   }
   
@@ -108,15 +108,15 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
   
   // MARK: Optional State Setter
   
-  func optionalFunc() {
-    if let tempState = serviceUpToDateTransfered {
-      stateOfService = tempState
-    }
-    
-    if let tempFixed = serviceFixedTransfered {
-      stateOfFixed = tempFixed
-    }
-  }
+//  func optionalFunc() {
+//    if let tempState = serviceUpToDateTransfered {
+//      stateOfService = tempState
+//    }
+//    
+//    if let tempFixed = serviceFixedTransfered {
+//      stateOfFixed = tempFixed
+//    }
+//  }
   
   
   // MARK: Switch Functions
@@ -143,21 +143,47 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     }
   }
   
+    
+    
   
   // MARK: Firebase Methods
   
   func pullServiceData() {
     let serviceRef = ref.child("services")
-    serviceRef.observeSingleEvent(of: .value, with: { snapshot in
+    
+    
+    serviceRef.observe(DataEventType.value, with: { (snapshot) in
+    
+    
       for childs in snapshot.children {
         let allServiceID = (childs as AnyObject).key as String
         if allServiceID == self.thisServiceTransfered {
           let thisServiceLocation = serviceRef.child(self.thisServiceTransfered)
-          thisServiceLocation.observeSingleEvent(of: .value, with: { snap in
+            
+            
+            
+            thisServiceLocation.observe(DataEventType.value, with: { (snap) in
+            
+            
+            
+            
             let thisServiceDetails = snap as DataSnapshot
             let serviceDict = thisServiceDetails.value as! [String: AnyObject]
             
             
+                
+//                //
+                if let tempState = self.serviceUpToDateTransfered {
+                    self.stateOfService = tempState
+                }
+                
+                if let tempFixed = self.serviceFixedTransfered {
+                    self.stateOfFixed = tempFixed
+                }
+                //
+                
+                
+                
             if serviceDict["serviceStatus"] as! Bool == true {
               self.serviceStateToggleSwtich.setOn(true, animated: true)
             } else {
@@ -210,11 +236,12 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
       thisService.setValue(["serviceURL": urlWhitepacesRemoved, "serviceName": nameWhiteSpacesRemoved, "serviceStatus": false, "serviceFixed": stateOfFixed!, "serviceAmount": amountWhiteSpacesRemoved, "attentionInt": 1])
     }
     
+    ////////
+    self.dismiss(animated: true, completion: nil)
+
     
-    
-    delay(1.5) {
-      self.dismiss(animated: true, completion: nil)
-    }
+//    delay(1.5) {
+//          }
   }
   
   
