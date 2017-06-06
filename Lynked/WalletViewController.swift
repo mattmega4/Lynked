@@ -67,7 +67,7 @@ class WalletViewController: UIViewController {
     func checkIfDataExits() {
         DispatchQueue.main.async {
             self.cardArray.removeAll()
-             self.ref.observe(DataEventType.value, with: { (snapshot) in
+            self.ref.observe(DataEventType.value, with: { (snapshot) in
                 if snapshot.hasChild("cards") {
                     self.pullAllUsersCards()
                 } else {
@@ -108,7 +108,7 @@ class WalletViewController: UIViewController {
         })
     }
     
-
+    
     
     
     
