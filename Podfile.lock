@@ -1,13 +1,13 @@
 PODS:
+  - Crashlytics (3.8.4):
+    - Fabric (~> 1.6.3)
+  - Fabric (1.6.11)
   - Firebase/Auth (4.0.0):
     - Firebase/Core
     - FirebaseAuth (= 4.0.0)
   - Firebase/Core (4.0.0):
     - FirebaseAnalytics (= 4.0.0)
     - FirebaseCore (= 4.0.0)
-  - Firebase/Crash (4.0.0):
-    - Firebase/Core
-    - FirebaseCrash (= 2.0.0)
   - Firebase/Database (4.0.0):
     - Firebase/Core
     - FirebaseDatabase (= 4.0.0)
@@ -24,12 +24,6 @@ PODS:
     - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseCore (4.0.0):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseCrash (2.0.0):
-    - FirebaseAnalytics (~> 4.0)
-    - FirebaseInstanceID (~> 2.0)
-    - GoogleToolboxForMac/Logger (~> 2.1)
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-    - Protobuf (~> 3.1)
   - FirebaseDatabase (4.0.0):
     - FirebaseAnalytics (~> 4.0)
   - FirebaseInstanceID (2.0.0):
@@ -57,18 +51,20 @@ PODS:
   - Protobuf (3.3.0)
 
 DEPENDENCIES:
+  - Crashlytics
+  - Fabric
   - Firebase/Auth
   - Firebase/Core
-  - Firebase/Crash
   - Firebase/Database
   - Firebase/Performance
 
 SPEC CHECKSUMS:
+  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   Firebase: 284eea779b73fdff309791817da7c68bff8dd572
   FirebaseAnalytics: 6f08e746f7d66f5452931bc2e822b5df9c66b64a
   FirebaseAuth: ebb6abcbabae00fc47446d690c19ce68d8484fde
   FirebaseCore: 85ad466044c2f013cdb167f85d426d15b128114a
-  FirebaseCrash: 600ec2cbd8e10c3064a42de2c6ee7687bd02a076
   FirebaseDatabase: d829b3a8c3e2ac7a16773c5df226966b0805dfc2
   FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
   FirebasePerformance: 77cff325f2adfb20fc03fec32b9811870c1d5130
@@ -76,6 +72,6 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
   Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
 
-PODFILE CHECKSUM: 28d2a4784f0e1997e6a885349a82411500f0a407
+PODFILE CHECKSUM: a20a5a4f476ddd623ba807615fa3f2cd9489a56e
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.2.0
