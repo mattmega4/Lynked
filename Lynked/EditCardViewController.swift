@@ -88,12 +88,18 @@ class EditCardViewController: UIViewController {
   
   func pullCardData() {
     let cardRef = ref.child("cards")
-    cardRef.observeSingleEvent(of: .value, with: { snapshot in
+    
+    
+    cardRef.observe(DataEventType.value, with: { (snapshot) in
+
       for childs in snapshot.children {
         let allCardID = (childs as AnyObject).key as String
         if allCardID == self.thisCardIDTransfered {
           let thisCardLocation = cardRef.child(self.thisCardIDTransfered)
-          thisCardLocation.observeSingleEvent(of: .value, with: {snap in
+            
+            thisCardLocation.observe(DataEventType.value, with: { (snap) in
+            
+
             let thisCardDetails = snap as DataSnapshot
             let cardDict = thisCardDetails.value as! [String: AnyObject]
             //            if cardDict["cardStatus"] as! Bool == true {
@@ -124,14 +130,20 @@ class EditCardViewController: UIViewController {
       
       var servicesArr: [String] = []
       let thisCard = self.ref.child("cards").child(self.thisCardIDTransfered).child("services")
-      thisCard.observeSingleEvent(of: .value, with: { snapshot in
+        
+        
+        thisCard.observe(DataEventType.value, with: { (snapshot) in
+        
+
         for services in snapshot.children {
           let theseServiceID = (services as AnyObject).key as String
           servicesArr.append(theseServiceID)
         }
         for each in servicesArr {
           let servicesToChange = self.ref.child("services")
-          servicesToChange.observeSingleEvent(of: .value, with: { snapshot in
+            
+            servicesToChange.observe(DataEventType.value, with: { (snapshot) in
+            
             for services in snapshot.children {
               let allServiceID = (services as AnyObject).key as String
               if allServiceID == each {
