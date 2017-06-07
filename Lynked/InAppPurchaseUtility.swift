@@ -14,7 +14,7 @@ class InAppPurchaseUtility: NSObject, SKProductsRequestDelegate, SKPaymentTransa
     static let shared = InAppPurchaseUtility()
     private var product: SKProduct?
     private var productRequest: SKProductsRequest!
-    private var purchaseCompletion: ((_ transaction: SKPaymentTransaction?) -> Void)?
+    private var purchaseCompletion: ((_ success: Bool, _ error: Error?) -> Void)?
     var isPurchased = false
     
     override init() {
@@ -34,21 +34,37 @@ class InAppPurchaseUtility: NSObject, SKProductsRequestDelegate, SKPaymentTransa
     // MARK: Transaction oserver
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         if let transaction = transactions.first {
-            purchaseCompletion?(transaction)
+            
             if transaction.transactionState == .purchased {
                 UserDefaults.standard.set(true, forKey: "com.Lynked.card")
                 self.isPurchased = true
+                purchaseCompletion?(true, nil)
+            }
+            else if transaction.transactionState == .failed {
+                purchaseCompletion?(false, transaction.error)
+            }
+            else if transaction.transactionState == .restored {
+                purchaseCompletion?(true, nil)
             }
         }
         else {
-            purchaseCompletion?(nil)
+            purchaseCompletion?(false, nil)
         }
     }
     
+    func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
+        purchaseCompletion?(true, nil)
+    }
+    
+    func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
+        purchaseCompletion?(false, error)
+    }
+    
 
-    func purchaseProduct(completion: ((_ transaction: SKPaymentTransaction?) -> Void)?) {
+    func purchaseProduct(completion: ((_ success: Bool, _ error: Error?) -> Void)?) {
+        purchaseCompletion = completion
         guard let theProduct = product else {
-            completion?(nil)
+            completion?(false, nil)
             return
         }
         let payment = SKPayment(product: theProduct)
@@ -56,7 +72,8 @@ class InAppPurchaseUtility: NSObject, SKProductsRequestDelegate, SKPaymentTransa
         SKPaymentQueue.default().add(payment)
     }
     
-    func restorePurchase(completion: ((_ transaction: SKPaymentTransaction?) -> Void)?) {
+    func restorePurchase(completion: ((_ success: Bool, _ error: Error?) -> Void)?) {
+        purchaseCompletion = completion
         SKPaymentQueue.default().add(self)
         SKPaymentQueue.default().restoreCompletedTransactions()
     }
