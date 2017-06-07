@@ -119,40 +119,28 @@ class PreferencesViewController: UIViewController {
     
     //
     @IBAction func purchaseCardButtonTapped(_ sender: UIButton) {
-        InAppPurchaseUtility.shared.purchaseProduct { (transaction) in
-            if let theTransaction = transaction {
-                switch theTransaction.transactionState {
-                case .failed:
-                    self.showAlertWith(title: "Purchase Failed!", message: theTransaction.error?.localizedDescription)
-                case .purchased:
-                    self.showAlertWith(title: "Success!", message: "Your purchase was successful")
-                default:
-                    print("Other things")
-                }
+        
+        InAppPurchaseUtility.shared.purchaseProduct { (success, error) in
+            if success {
+                self.showAlertWith(title: "Success!", message: "Your purchase was successful")
             }
-            else {
-                self.showAlertWith(title: "Error", message: "There was an error completing the purchase. Please try later")
+            else  {
+                self.showAlertWith(title: "Purchase Failed!", message: error?.localizedDescription)
             }
         }
+        
     }
     
     
     
     //
     @IBAction func redeemPurchaseButtonTapped(_ sender: UIButton) {
-        InAppPurchaseUtility.shared.restorePurchase { (transaction) in
-            if let theTransaction = transaction {
-                switch theTransaction.transactionState {
-                case .failed:
-                    self.showAlertWith(title: "Restore Failed!", message: theTransaction.error?.localizedDescription)
-                case .restored:
-                    self.showAlertWith(title: "Success!", message: "This item was successfully restored")
-                default:
-                    print("Other things")
-                }
+        InAppPurchaseUtility.shared.restorePurchase { (success, error) in
+            if success {
+                self.showAlertWith(title: "Success!", message: "Your purchase was successful")
             }
-            else {
-                self.showAlertWith(title: "Error", message: "There was an error completing the purchase. Please try later")
+            else  {
+                self.showAlertWith(title: "Purchase Failed!", message: error?.localizedDescription)
             }
         }
     }
