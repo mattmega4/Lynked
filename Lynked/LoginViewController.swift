@@ -38,9 +38,9 @@ class LoginViewController: UIViewController {
     var leftOn: Bool?
     var rightOn: Bool?
     
-    var topFieldIsSatisfied: Bool?
-    var bottomFieldIsSatisfied: Bool?
-    var nextButtonRequirementsHaveBeenMet: Bool?
+    var topFieldIsSatisfied = false
+    var bottomFieldIsSatisfied = false
+    var nextButtonRequirementsHaveBeenMet = false
     
     var userStateIsOnSignIn: Bool?
     var createUserStepOneFinished: Bool?
@@ -236,9 +236,9 @@ class LoginViewController: UIViewController {
     func rightButtonWasTapped() {
         leftOn = false
         rightOn = true
+        resetTextFieldText()
         showLeftContainerViewContents()
         hideRightContainerViewContents()
-        resetTextFieldText()
         resetRegisterRequirementsForStageOne()
         checkIfBothRegisterRequirementsAreMet() // ?
         setupRegisterTextFieldsForStageOne()
@@ -285,10 +285,11 @@ class LoginViewController: UIViewController {
     
     
     func checkIfBothRegisterRequirementsAreMet() {
-        if topFieldIsSatisfied == true && bottomFieldIsSatisfied == true && textFieldOne.text == textFieldTwo.text {
+        if textFieldOne.text == textFieldTwo.text { 
             signInOrUpButton.isEnabled = true
             signInOrUpButton.isHidden = false
             signInOrUpButtonContainerView.isHidden = false
+            
         } else {
             signInOrUpButton.isEnabled = false
             signInOrUpButton.isHidden = true
@@ -300,10 +301,8 @@ class LoginViewController: UIViewController {
     // MARK: Sign In
     
     func signUserIn() {
-        
         let email = textFieldOne.text ?? ""
         let password = textFieldTwo.text ?? ""
-        
         Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
             let ref = Database.database().reference()
             let user = Auth.auth().currentUser
@@ -316,14 +315,10 @@ class LoginViewController: UIViewController {
                             self.performSegue(withIdentifier: "fromEntryToAddCard", sender: self)
                         }
                     })
-                
             } else {
-                
                 var errMessage = ""
-                
                 if let errCode = AuthErrorCode(rawValue: (error?._code)!) {
                     switch errCode {
-                        
                     case .invalidEmail:
                         errMessage = "The entered email does not meet requirements."
                     case .weakPassword:
@@ -333,18 +328,12 @@ class LoginViewController: UIViewController {
                     default:
                         errMessage = "Please try again."
                     }
-                    
                     let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errMessage)", preferredStyle: .alert)
                     self.present(alertController, animated: true, completion:nil)
                     let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
                     }
                     alertController.addAction(OKAction)
-                    
                 }
-                
-                
-                
-                
                 self.textFieldOne.text = ""
                 self.textFieldTwo.text = ""
                 self.topFieldIsSatisfied = false
@@ -354,14 +343,10 @@ class LoginViewController: UIViewController {
     }
     
     
-    
-    
     // TODO: Register User
     
     func registerNewUser() {
-        
         let ref = Database.database().reference()
-        
         if textFieldOne.text == textFieldTwo.text {
             newUserPassword = textFieldTwo.text ?? ""
             Auth.auth().createUser(withEmail: newUserEmail!, password: newUserPassword!, completion: { (user, error) in
@@ -369,9 +354,6 @@ class LoginViewController: UIViewController {
                 if (error != nil) {
                     if let errCode = AuthErrorCode(rawValue: (error?._code)!) {
                         switch errCode {
-                            
-                            
-                            
                         case .invalidEmail:
                             errMessage = "The entered email does not meet requirements."
                         case .emailAlreadyInUse:
@@ -396,7 +378,6 @@ class LoginViewController: UIViewController {
             })
         }
     }
-    
     
     
     // MARK: IB Actions
@@ -482,14 +463,14 @@ extension LoginViewController: UITextFieldDelegate {
     
     func checkIfTopTextFIeldIsSatisfied(textField: UITextField) {
         if textField == self.textFieldOne {
-            if self.leftOn == true && rightOn == false {
+            if self.leftOn == true && self.rightOn == false {
                 if textField.text?.validateEmail() == true {
                     self.topFieldIsSatisfied = true
                 } else {
                     self.topFieldIsSatisfied = false
                 }
                 checkIfBothSignInRequirementsAreMet()
-            } else if leftOn == false && self.rightOn == true {
+            } else if self.leftOn == false && self.rightOn == true {
                 if self.createUserStepOneFinished == true {
                     if textField.text?.validateEmail() == true {
                         self.topFieldIsSatisfied = true
@@ -497,7 +478,15 @@ extension LoginViewController: UITextFieldDelegate {
                         self.topFieldIsSatisfied = false
                     }
                     checkIfTopContinueRequirementIsMet()
-                } else {
+                } else if self.createUserStepOneFinished == false {
+                    if textField.text?.validateEmail() == true {
+                        self.topFieldIsSatisfied = true
+                    } else {
+                        self.topFieldIsSatisfied = false
+                    }
+                    checkIfTopContinueRequirementIsMet()
+                }
+                else {
                     if textField.text?.isEmpty == true {
                         self.topFieldIsSatisfied = false
                     } else {
@@ -512,14 +501,14 @@ extension LoginViewController: UITextFieldDelegate {
     
     func checkIfBottomTextFieldIsSatisfied(textField: UITextField) {
         if textField == self.textFieldTwo {
-            if self.leftOn == true && rightOn == false {
+            if self.leftOn == true && self.rightOn == false {
                 if textField.text?.isEmpty == true {
                     self.bottomFieldIsSatisfied = false
                 } else {
                     self.bottomFieldIsSatisfied = true
                 }
                 checkIfBothSignInRequirementsAreMet()
-            } else if self.leftOn == false && rightOn == false {
+            } else if self.leftOn == false && self.rightOn == true {
                 if textField.text?.isEmpty == true {
                     self.bottomFieldIsSatisfied = false
                 } else {
