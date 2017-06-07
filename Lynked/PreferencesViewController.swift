@@ -18,17 +18,23 @@ class PreferencesViewController: UIViewController {
     
     @IBOutlet weak var rightNavBarButton: UIBarButtonItem!
     
-    @IBOutlet weak var cardCountTitleLabel: UILabel!
-    @IBOutlet weak var cardCountLabel: UILabel!
-    @IBOutlet weak var purchaseCardButton: UIButton!
-    
-    
     @IBOutlet weak var firstDividerView: UIView!
     @IBOutlet weak var secondDividerView: UIView!
     @IBOutlet weak var thirdDividerView: UIView!
     
-    @IBOutlet weak var firstContainerView: UIView!
-    @IBOutlet weak var secondContainerView: UIView!
+    @IBOutlet weak var fourthDividerView: UIView!
+    
+    @IBOutlet weak var fifthDividerView: UIView!
+    
+    
+
+    
+    
+    
+    @IBOutlet weak var purchaseCardButton: UIButton!
+    
+    
+    
     
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var deleteAccountButton: UIButton!
@@ -39,7 +45,6 @@ class PreferencesViewController: UIViewController {
     let user = Auth.auth().currentUser
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,18 +52,6 @@ class PreferencesViewController: UIViewController {
         getVersionInfo()
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     // MARK: Nav Bar & View Design
     
@@ -111,13 +104,11 @@ class PreferencesViewController: UIViewController {
     
     
     // MARK: IB Actions
-    
-    
+
     @IBAction func rightNavBarButtonTapped(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
     
-    //
     @IBAction func purchaseCardButtonTapped(_ sender: UIButton) {
         
         InAppPurchaseUtility.shared.purchaseProduct { (success, error) in
@@ -131,9 +122,6 @@ class PreferencesViewController: UIViewController {
         
     }
     
-    
-    
-    //
     @IBAction func redeemPurchaseButtonTapped(_ sender: UIButton) {
         InAppPurchaseUtility.shared.restorePurchase { (success, error) in
             if success {
@@ -146,7 +134,7 @@ class PreferencesViewController: UIViewController {
     }
     
     @IBAction func logoutButtonTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "fromPrefToSignIn", sender: self)
+        performSegue(withIdentifier: "fromPreferencesToLogin", sender: self)
     }
     
     @IBAction func deleteAccountTapped(_ sender: UIButton) {

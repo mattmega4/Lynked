@@ -107,7 +107,7 @@ class AddCardViewController: UIViewController {
     // MARK: IB Actions
     
     @IBAction func navBarCancelButtonTapped(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "fromAddCardToCardDetails", sender: self)
+        performSegue(withIdentifier: "fromAddCardToWallet", sender: self)
     }
     
     @IBAction func navBarNextButtonTapped(_ sender: UIBarButtonItem) {

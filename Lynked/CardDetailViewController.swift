@@ -370,7 +370,7 @@ class CardDetailViewController: UIViewController {
     }
     
     @IBAction func rightNavBarButtonTapped(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "fromCardDetailsToPreferences", sender: self)
+        performSegue(withIdentifier: "fromCardDetailToPreferences", sender: self)
     }
     
     @IBAction func editCardButtonTapped(_ sender: UIButton) {
@@ -438,16 +438,6 @@ extension CardDetailViewController: UITextFieldDelegate {
 
 
 extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
-    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    //        let screenRect: CGRect = UIScreen.main.bounds
-    //        let screenWidth: CGFloat = screenRect.size.width
-    //        let screenHeight: CGFloat = screenRect.size.height
-    //        let cellWidth: Float = Float(screenWidth / 3.0)
-    //        let cellHeight: Float = Float(screenHeight / 3.0)
-    //        let size = CGSize(width: CGFloat(cellWidth), height: CGFloat(cellHeight))
-    //        return size
-    //    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let flowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
