@@ -343,7 +343,7 @@ class LoginViewController: UIViewController {
     }
     
     
-    // TODO: Register User
+    // MARK: Register User
     
     func registerNewUser() {
         let ref = Database.database().reference()
