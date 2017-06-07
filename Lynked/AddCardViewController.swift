@@ -70,7 +70,7 @@ class AddCardViewController: UIViewController {
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white,
                                                                    NSFontAttributeName: UIFont(name: "GillSans-Bold",
-                                                                                               size: 20)!]
+                                                                                               size: 18)!]
     }
     
     

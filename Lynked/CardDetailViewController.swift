@@ -94,7 +94,7 @@ class CardDetailViewController: UIViewController {
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white,
                                                                    NSFontAttributeName: UIFont(name: "GillSans-Bold",
-                                                                                               size: 20)!]
+                                                                                               size: 18)!]
     }
     
     
@@ -194,11 +194,12 @@ class CardDetailViewController: UIViewController {
                                         
                                         DispatchQueue.main.async {
                                             self.totalArr.append((serviceDict["serviceAmount"] as? String)!)
+                                            self.doubleArray = self.totalArr.flatMap{ Double($0) }
+                                            let arraySum = self.doubleArray.reduce(0, +)
+                                            
+                                            self.title = "\(self.selectedCard.nickname): \(arraySum)"
                                         }
-                                        self.doubleArray = self.totalArr.flatMap{ Double($0) }
-                                        let arraySum = self.doubleArray.reduce(0, +)
                                         
-                                        self.title = "\(self.selectedCard.nickname): \(arraySum)"
                                         
                                         aService.serviceID = serviceID
                                         if serviceDict["serviceStatus"] as? Bool == true {
@@ -209,10 +210,10 @@ class CardDetailViewController: UIViewController {
                                         DispatchQueue.main.async {
                                             self.serviceArray.append(aService)
                                         }
-                                        self.serviceArray.sort {
-                                            if $0.serviceAttention == $1.serviceAttention { return $0.serviceName < $1.serviceName }
-                                            return $0.serviceAttention > $1.serviceAttention
+                                        DispatchQueue.main.async {
+                                            self.serviceArray.sort {$1.serviceAttention < $0.serviceAttention}
                                         }
+                                        
                                         
                                         DispatchQueue.main.async {
                                             self.collectionView.reloadData()
@@ -374,7 +375,7 @@ class CardDetailViewController: UIViewController {
     }
     
     @IBAction func editCardButtonTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "fromCardDetailsToEditCard", sender: self)
+        performSegue(withIdentifier: "fromCardDetailToEditCard", sender: self)
     }
     
     @IBAction func addServiceButtonTapped(_ sender: UIButton) {

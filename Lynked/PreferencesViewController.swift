@@ -65,7 +65,7 @@ class PreferencesViewController: UIViewController {
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white,
                                                                    NSFontAttributeName: UIFont(name: "GillSans-Bold",
-                                                                                               size: 20)!]
+                                                                                               size: 18)!]
     }
     
     
@@ -77,8 +77,8 @@ class PreferencesViewController: UIViewController {
         let okAction = UIAlertAction(title: "I Understand!", style: UIAlertActionStyle.default) { (result: UIAlertAction) in
             Auth.auth().currentUser?.delete(completion: { (error) in
                 if error == nil {
-                    // TODO: In V2 actually remove the data from Firebase
-                    self.performSegue(withIdentifier: "fromPrefToSignIn", sender: self)
+                    // TODO: In V3 actually remove the data from Firebase
+                    self.performSegue(withIdentifier: "fromPreferencesToLogin", sender: self)
                 } else {
                     let failedAlert = UIAlertController(title: "Something Went Wrong", message: "We were unable to delete your account. Please try again!", preferredStyle: UIAlertControllerStyle.alert)
                     let okAction = UIAlertAction(title: "OKAY!", style: UIAlertActionStyle.default, handler: nil)
@@ -86,7 +86,7 @@ class PreferencesViewController: UIViewController {
                     print((error?.localizedDescription)! as String)
                 }
             })
-            self.performSegue(withIdentifier: "fromPrefToSignIn", sender: self)
+            self.performSegue(withIdentifier: "fromPreferencesToLogin", sender: self)
         }
         alertController.addAction(cancelAction)
         alertController.addAction(okAction)

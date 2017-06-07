@@ -80,7 +80,7 @@ class EditCardViewController: UIViewController {
     UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
     navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white,
                                                                NSFontAttributeName: UIFont(name: "GillSans-Bold",
-                                                                                           size: 20)!]
+                                                                                           size: 18)!]
   }
   
   
@@ -184,7 +184,7 @@ class EditCardViewController: UIViewController {
       thisCard.removeValue()
       let thisCardInUsers = self.ref.child("users").child((self.user?.uid)!).child("cards").child(self.thisCardIDTransfered)
       thisCardInUsers.removeValue()
-      self.performSegue(withIdentifier: "fromEditCardToLandingPage", sender: self)
+      self.performSegue(withIdentifier: "fromEditCardToWallet", sender: self)
       
     }
     
