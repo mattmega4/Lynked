@@ -60,7 +60,7 @@ class InAppPurchaseUtility: NSObject, SKProductsRequestDelegate, SKPaymentTransa
         purchaseCompletion?(false, error)
     }
     
-
+    
     func purchaseProduct(completion: ((_ success: Bool, _ error: Error?) -> Void)?) {
         purchaseCompletion = completion
         guard let theProduct = product else {
@@ -79,11 +79,11 @@ class InAppPurchaseUtility: NSObject, SKProductsRequestDelegate, SKPaymentTransa
     }
     
     
-
     
     
-
     
     
-
+    
+    
+    
 }
