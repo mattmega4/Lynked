@@ -491,7 +491,7 @@
 				DEVELOPMENT_TEAM = K8YZSQZRNW;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Lynked/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.matthewhsingleton.Lynked;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -507,7 +507,7 @@
 				DEVELOPMENT_TEAM = K8YZSQZRNW;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Lynked/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.matthewhsingleton.Lynked;
 				PRODUCT_NAME = "$(TARGET_NAME)";
