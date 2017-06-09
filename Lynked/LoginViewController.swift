@@ -382,7 +382,10 @@ class LoginViewController: UIViewController {
                     ref.child("users").child((user?.uid)!).child("cards").setValue(true)
                     Auth.auth().signIn(withEmail: self.newUserEmail!, password: self.newUserPassword!)
                     self.tempUID = (user?.uid)!
-                    self.performSegue(withIdentifier: "fromEntryToAddCard", sender: self)
+                    
+                    if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
+                        self.navigationController?.pushViewController(addVC, animated: true)
+                    }
                 }
             })
         }
