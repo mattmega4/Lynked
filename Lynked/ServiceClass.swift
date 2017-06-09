@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ServiceClass {
+class ServiceClass {
   
 //  var serviceID = ""
 //  var serviceName = ""
@@ -19,6 +19,8 @@ struct ServiceClass {
 //  var serviceAttention: Int = 0
     
     
+    
+    
     var serviceID: String?
     var serviceName: String?
     
@@ -27,6 +29,16 @@ struct ServiceClass {
     var serviceFixed: Bool?
     var serviceAmount: String?
     var serviceAttention: Int = 0
+    
+    
+    init(serviceDict: [String : Any]) {
+        
+        serviceUrl = serviceDict["serviceURL"] as? String
+        serviceName = serviceDict["serviceName"] as? String
+        serviceAmount = serviceDict["serviceAmount"] as? String
+        serviceStatus = serviceDict["serviceStatus"] as? Bool
+        serviceAttention = (serviceDict["attentionInt"] as? Int)!
+    }
   
 }
 
