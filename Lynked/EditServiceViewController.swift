@@ -75,7 +75,6 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
         leftNavBarButton.isEnabled = true
         rightNavBarButton.isEnabled = true
         pullServiceData()
-        //    optionalFunc()
         alertUserIfURLTextFieldIsNotValid(textField: urlTextField)
     }
     
@@ -83,6 +82,7 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     // MARK: Nav Bar & View Design
     
     func setNavBar() {
+        self.navigationController?.isNavigationBarHidden = false
         title = "Edit Service"
         navigationController?.navigationBar.barTintColor = UIColor(red: 108.0/255.0,
                                                                    green: 158.0/255.0,
@@ -162,8 +162,10 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
                             }
                             
                             if serviceDict["serviceStatus"] as! Bool == true {
+                                self.stateOfService = true
                                 self.serviceStateToggleSwtich.setOn(true, animated: true)
                             } else {
+                                self.stateOfService = false
                                 self.serviceStateToggleSwtich.setOn(false, animated: true)
                             }
                             
@@ -204,17 +206,16 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
         let thisService = ref.child("services").child(thisServiceTransfered)
         
         
-        if stateOfService == true {
-
-            thisService.setValue(["serviceURL": urlWhitepacesRemoved, "serviceName": nameWhiteSpacesRemoved, "serviceStatus": true, "serviceFixed": stateOfFixed!, "serviceAmount": amountWhiteSpacesRemoved, "attentionInt": 0])
-        } else {
-            thisService.setValue(["serviceURL": urlWhitepacesRemoved, "serviceName": nameWhiteSpacesRemoved, "serviceStatus": false, "serviceFixed": stateOfFixed!, "serviceAmount": amountWhiteSpacesRemoved, "attentionInt": 1])
+        
+        
+        
+        if let state = stateOfService {
+            thisService.setValue(["serviceURL": urlWhitepacesRemoved, "serviceName": nameWhiteSpacesRemoved, "serviceStatus": state, "serviceFixed": stateOfFixed!, "serviceAmount": amountWhiteSpacesRemoved, "attentionInt": 0])
         }
         
+        
         if let detailVC = storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
-            
             detailVC.cardID = thisCardTransfered
-            
             navigationController?.pushViewController(detailVC, animated: true)
         }
     }
@@ -232,11 +233,15 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
             
             let theServiceOnThisCard = self.ref.child("cards").child(self.thisCardTransfered).child("services").child(self.thisServiceTransfered)
             
-            self.dismiss(animated: true, completion: {
-                thisService.removeValue()
-                theServiceOnThisCard.removeValue()
-
-            })
+            
+            thisService.removeValue()
+            theServiceOnThisCard.removeValue()
+            
+            
+            if let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
+                detailVC.cardID = self.thisCardTransfered
+                self.navigationController?.pushViewController(detailVC, animated: true)
+            }
             
         }
         

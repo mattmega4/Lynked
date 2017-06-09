@@ -65,13 +65,13 @@ class EditCardViewController: UIViewController {
         leftNavBarButton.isEnabled = true
         rightNavBarButton.isEnabled = true
         pullCardData()
-        print(self.thisCardIDTransfered)
     }
     
     
     // MARK: Nav Bar & View Design
     
     func setNavBar() {
+        self.navigationController?.isNavigationBarHidden = false
         title = "Edit Card"
         navigationController?.navigationBar.barTintColor = UIColor(red: 108.0/255.0,
                                                                    green: 158.0/255.0,
@@ -89,8 +89,6 @@ class EditCardViewController: UIViewController {
     
     func pullCardData() {
         let cardRef = ref.child("cards")
-        
-        
         cardRef.observe(DataEventType.value, with: { (snapshot) in
             
             for childs in snapshot.children {
@@ -155,7 +153,6 @@ class EditCardViewController: UIViewController {
             
             let card = self.ref.child("cards").child(self.thisCardIDTransfered)
             card.updateChildValues(["cardStatus": false])
-//            self.dismiss(animated: true, completion: nil)
             if let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
                 detailVC.cardID = self.thisCardIDTransfered
                 self.navigationController?.pushViewController(detailVC, animated: true)
@@ -191,9 +188,6 @@ class EditCardViewController: UIViewController {
                 self.navigationController?.pushViewController(walletVC, animated: true)
             }
             
-            
-            //        self.performSegue(withIdentifier: "fromEditCardToWallet", sender: self)
-            
         }
         
         alertController.addAction(cancelAction)
@@ -211,8 +205,6 @@ class EditCardViewController: UIViewController {
         let tCardType = typeTextField.text ?? ""
         let thisCard = ref.child("cards").child(thisCardIDTransfered)
         thisCard.updateChildValues(["nickname": tCardName, "type": tCardType, "cardStatus": true])
-//        self.dismiss(animated: true, completion: nil)
-        
         if let detailVC = storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
             detailVC.cardID = thisCardIDTransfered
             navigationController?.pushViewController(detailVC, animated: true)
@@ -227,7 +219,6 @@ class EditCardViewController: UIViewController {
     
     @IBAction func leftBarButtonTapped(_ sender: UIBarButtonItem) {
         leftNavBarButton.isEnabled = false
-//        dismiss(animated: true, completion: nil)
         if let detailVC = storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
             detailVC.cardID = thisCardIDTransfered
             navigationController?.pushViewController(detailVC, animated: true)

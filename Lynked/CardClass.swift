@@ -10,14 +10,7 @@ import Foundation
 
 
 class CardClass {
-  
-//  var cardID = ""
-//  var nickname = ""
-//  var type = ""
-//  var cStatus = true
 
-    
-    
     var cardID: String?
     var nickname: String?
     var type: String?
