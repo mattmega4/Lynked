@@ -34,6 +34,8 @@ class AddCardViewController: UIViewController {
     var finalNickname: String?
     var finalType: String?
     
+    //var selectedCardId =
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,9 +86,9 @@ class AddCardViewController: UIViewController {
         finalNickname = nicknameWithoutWhiteSpaces.capitalized
         finalType = typeWithoutWhiteSpaces.capitalized
         let user = Auth.auth().currentUser
+        
+       
         let card = ref.child("cards").childByAutoId()
-        
-        
         
         
         if let tempNick = finalNickname, let tempType = finalType {
@@ -99,9 +101,12 @@ class AddCardViewController: UIViewController {
         }
         ref.child("users").child((user?.uid)!).child("cards").child(card.key).setValue(true)
         
+        if let detailVC = storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
+            detailVC.cardID = card.key
+            navigationController?.pushViewController(detailVC, animated: true)
+        }
         
-        
-        performSegue(withIdentifier: "fromAddCardToCardDetails", sender: self)
+        //performSegue(withIdentifier: "fromAddCardToCardDetails", sender: self)
     }
     
     
@@ -115,6 +120,19 @@ class AddCardViewController: UIViewController {
         }
     }
     
+    
+    // Prepare for Segue
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // fromAddCardToWallet
+//        if segue.identifier == "fromAddCardToCardDetail" {
+//            if let controller = segue.destination as? UINavigationController {
+//                if let destinationVC = controller.topViewController as? CardDetailViewController {
+//                    destinationVC.cardID = selectedCard!
+//                }
+//            }
+//        }
+    }
     
     // MARK: IB Actions
     
