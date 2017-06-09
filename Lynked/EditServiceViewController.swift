@@ -105,19 +105,8 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     fixedAmountTextField.addTarget(self, action: #selector(currencyRightToLeftFormatter(textField:)), for: .editingChanged)
   }
   
-  
-  // MARK: Optional State Setter
-  
-//  func optionalFunc() {
-//    if let tempState = serviceUpToDateTransfered {
-//      stateOfService = tempState
-//    }
-//    
-//    if let tempFixed = serviceFixedTransfered {
-//      stateOfFixed = tempFixed
-//    }
-//  }
-  
+
+
   
   // MARK: Switch Functions
   
