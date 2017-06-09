@@ -123,8 +123,6 @@ class CardDetailViewController: UIViewController {
     
     
     func pullCardData() {
-        
-        serviceArray.removeAll()
         let cardRef = self.ref.child("cards")
         cardRef.observe(DataEventType.value, with: { (snapshot) in
             for cards in snapshot.children {
@@ -136,7 +134,7 @@ class CardDetailViewController: UIViewController {
                         if let cardDict = thisCardDetails.value as? [String: AnyObject] {
                             self.selectedCard.cardID = thisCardDetails.key
                             self.selectedCard.nickname = cardDict["nickname"] as? String
-//                            print("Hello \(String(describing: self.selectedCard.nickname))")
+                            //                            print("Hello \(String(describing: self.selectedCard.nickname))")
                             self.selectedCard.type = cardDict["type"] as? String
                             self.pullServicesForCard()
                         }
@@ -148,15 +146,12 @@ class CardDetailViewController: UIViewController {
     
     
     func pullServicesForCard() {
-        serviceArray.removeAll()
         let thisCardServices = self.ref.child("cards").child(self.cardID).child("services")
         let serviceRefLoc = self.ref.child("services")
         thisCardServices.observe(DataEventType.value, with: { (serviceSnap) in
             if serviceSnap.hasChildren() {
                 for serviceChild in serviceSnap.children {
                     let serviceID = (serviceChild as AnyObject).key as String
-                    
-                    
                     serviceRefLoc.observe(DataEventType.value, with: { (allServiceSnap) in
                         
                         if allServiceSnap.hasChildren() {
@@ -164,12 +159,8 @@ class CardDetailViewController: UIViewController {
                                 let allServs = (all as AnyObject).key as String
                                 let thisServiceLocationInServiceNode = self.ref.child("services").child(serviceID)
                                 if serviceID == allServs {
-                                    
-                                    
                                     thisServiceLocationInServiceNode.observe(DataEventType.value, with: { (thisSnap) in
-                                        
                                         let serv = thisSnap as DataSnapshot
-                     
                                         
                                         if let serviceDict = serv.value as? [String: AnyObject] {
                                             
@@ -191,10 +182,6 @@ class CardDetailViewController: UIViewController {
                                             self.totalArr.append((serviceDict["serviceAmount"] as? String)!)
                                             self.doubleArray = self.totalArr.flatMap{ Double($0) }
                                             let arraySum = self.doubleArray.reduce(0, +)
-                                            
-                                            
-                                            //                                        }
-                                            
                                             
                                             aService.serviceID = serviceID
                                             if serviceDict["serviceStatus"] as? Bool == true {
@@ -239,7 +226,7 @@ class CardDetailViewController: UIViewController {
             service.setValue(["serviceURL": "", "serviceName": tempName, "serviceStatus": true, "serviceFixed": false, "serviceAmount": "", "attentionInt": 0])
         }
         ref.child("cards").child(cardID).child("services").child(service.key).setValue(true)
-        //                pullCardData()
+        pullCardData()
         
         serviceNameTextField.text = ""
         addServiceButton.alpha = 0.4
