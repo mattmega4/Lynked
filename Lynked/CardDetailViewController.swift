@@ -39,7 +39,7 @@ class CardDetailViewController: UIViewController {
     var selectedCard: CardClass?
     var totalArr: [String] = []
     var doubleArray: [Double] = []
-
+    
     let margin: CGFloat = 10
     let cellsPerC = 3
     
@@ -138,7 +138,7 @@ class CardDetailViewController: UIViewController {
     func pullServicesForCard() {
         if let theId = self.cardID {
             let thisCardServices = self.ref.child("cards").child(theId).child("services")
-//            let serviceRefLoc = self.ref.child("services")
+            //            let serviceRefLoc = self.ref.child("services")
             thisCardServices.observe(DataEventType.value, with: { (serviceSnap) in
                 if self.serviceArray.count != Int(serviceSnap.childrenCount) {
                     self.serviceArray.removeAll()
@@ -328,48 +328,44 @@ class CardDetailViewController: UIViewController {
     }
     
     
-    // MARK: Prepare For Segue
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "fromCardDetailToEditService" {
-            if let controller = segue.destination as? UINavigationController {
-                if let destinationVC = controller.topViewController as? EditServiceViewController {
-                    destinationVC.thisCardTransfered = cardID ?? ""
-                    destinationVC.thisCardNicknameTransfered = cardNicknameTransfered
-                    destinationVC.thisCardTypeTransfered = cardTypeTransfered
-                    destinationVC.thisServiceTransfered = selectedService!
-                    destinationVC.serviceUpToDateTransfered = serviceCurrent
-                    destinationVC.serviceNameTransfered = serviceName
-                    destinationVC.serviceURLTransfered = serviceURL
-                    destinationVC.serviceFixedTransfered = serviceFixedBool
-                    destinationVC.serviceAmountTransfered = serviceFixedAmount
-                }
-            }
-        } else if segue.identifier == "fromCardDetailToEditCard" {
-            if let controller = segue.destination as? UINavigationController {
-                if let destinationVC = controller.topViewController as? EditCardViewController {
-                    if let theId = cardID {
-                        destinationVC.thisCardIDTransfered = theId
-                    }
-                }
-            }
-        }
-    }
-    
     
     // MARK: IB Actions
     
     @IBAction func leftNavBarButtonTapped(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "fromCardDetailToWallet", sender: self)
+        
+        
+        if let walletVC = storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
+            
+            navigationController?.pushViewController(walletVC, animated: true)
+        }
+        
     }
     
     @IBAction func rightNavBarButtonTapped(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "fromCardDetailToPreferences", sender: self)
+        
+        
+        if let prefVC = storyboard?.instantiateViewController(withIdentifier: "PrefVC") as? PreferencesViewController {
+            
+            navigationController?.pushViewController(prefVC, animated: true)
+        }
     }
     
     @IBAction func editCardButtonTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "fromCardDetailToEditCard", sender: self)
+        
+        
+        if let editCardVC = storyboard?.instantiateViewController(withIdentifier: "EditCardVC") as? EditCardViewController {
+            
+            if let theId = cardID {
+                editCardVC.thisCardIDTransfered = theId
+            }
+            
+            navigationController?.pushViewController(editCardVC, animated: true)
+        }
+        
+        
+        
+        
+        //        performSegue(withIdentifier: "fromCardDetailToEditCard", sender: self)
     }
     
     @IBAction func addServiceButtonTapped(_ sender: UIButton) {
@@ -484,7 +480,27 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
             let row = indexPath.row
             self.selectedService = self.serviceArray[row].serviceID!
             if self.selectedService != "" {
-                self.performSegue(withIdentifier: "fromCardDetailToEditService", sender: self)
+                
+                if let editServiceVC = self.storyboard?.instantiateViewController(withIdentifier: "EditServiceVC") as? EditServiceViewController {
+                    
+                    
+                    editServiceVC.thisCardTransfered = self.cardID ?? ""
+                    editServiceVC.thisCardNicknameTransfered = self.cardNicknameTransfered
+                    editServiceVC.thisCardTypeTransfered = self.cardTypeTransfered
+                    editServiceVC.thisServiceTransfered = self.selectedService!
+                    editServiceVC.serviceUpToDateTransfered = self.serviceCurrent
+                    editServiceVC.serviceNameTransfered = self.serviceName
+                    editServiceVC.serviceURLTransfered = self.serviceURL
+                    editServiceVC.serviceFixedTransfered = self.serviceFixedBool
+                    editServiceVC.serviceAmountTransfered = self.serviceFixedAmount
+                    
+                    self.navigationController?.pushViewController(editServiceVC, animated: true)
+                    
+                }
+                
+                
+                
+                //                self.performSegue(withIdentifier: "fromCardDetailToEditService", sender: self)
             }
             collectionView.isUserInteractionEnabled = false
         }

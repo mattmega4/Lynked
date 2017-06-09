@@ -16,8 +16,6 @@ class PreferencesViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     
-    @IBOutlet weak var rightNavBarButton: UIBarButtonItem!
-    
     @IBOutlet weak var firstDividerView: UIView!
     @IBOutlet weak var secondDividerView: UIView!
     @IBOutlet weak var thirdDividerView: UIView!
@@ -25,7 +23,7 @@ class PreferencesViewController: UIViewController {
     @IBOutlet weak var fourthDividerView: UIView!
     
     @IBOutlet weak var fifthDividerView: UIView!
-
+    
     
     @IBOutlet weak var purchaseCardButton: UIButton!
     
@@ -71,7 +69,13 @@ class PreferencesViewController: UIViewController {
             Auth.auth().currentUser?.delete(completion: { (error) in
                 if error == nil {
                     // TODO: In V3 actually remove the data from Firebase
-                    self.performSegue(withIdentifier: "fromPreferencesToLogin", sender: self)
+                    if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? LoginViewController {
+                        self.navigationController?.pushViewController(loginVC, animated: true)
+                    }
+                    
+                    
+                    
+                    //                    self.performSegue(withIdentifier: "fromPreferencesToLogin", sender: self)
                 } else {
                     let failedAlert = UIAlertController(title: "Something Went Wrong", message: "We were unable to delete your account. Please try again!", preferredStyle: UIAlertControllerStyle.alert)
                     let okAction = UIAlertAction(title: "OKAY!", style: UIAlertActionStyle.default, handler: nil)
@@ -79,7 +83,10 @@ class PreferencesViewController: UIViewController {
                     print((error?.localizedDescription)! as String)
                 }
             })
-            self.performSegue(withIdentifier: "fromPreferencesToLogin", sender: self)
+            if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? LoginViewController {
+                self.navigationController?.pushViewController(loginVC, animated: true)
+            }
+            //            self.performSegue(withIdentifier: "fromPreferencesToLogin", sender: self)
         }
         alertController.addAction(cancelAction)
         alertController.addAction(okAction)
@@ -97,10 +104,7 @@ class PreferencesViewController: UIViewController {
     
     
     // MARK: IB Actions
-
-    @IBAction func rightNavBarButtonTapped(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
-    }
+    
     
     @IBAction func purchaseCardButtonTapped(_ sender: UIButton) {
         
@@ -127,7 +131,10 @@ class PreferencesViewController: UIViewController {
     }
     
     @IBAction func logoutButtonTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "fromPreferencesToLogin", sender: self)
+        if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? LoginViewController {
+            self.navigationController?.pushViewController(loginVC, animated: true)
+        }
+        //        performSegue(withIdentifier: "fromPreferencesToLogin", sender: self)
     }
     
     @IBAction func deleteAccountTapped(_ sender: UIButton) {

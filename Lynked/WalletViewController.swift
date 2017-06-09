@@ -38,16 +38,9 @@ class WalletViewController: UIViewController {  // SKProductsRequestDelegate, SK
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        checkIfDataExits()
         checkFirst()
         tableView.isUserInteractionEnabled = true
     }
-    
-    
-    
-    
-    
-    
     
     // MARK: Nav Bar & View Design
     
@@ -70,11 +63,15 @@ class WalletViewController: UIViewController {  // SKProductsRequestDelegate, SK
                 if (snapshot.hasChildren()) {
                     self.checkIfDataExits()
                 } else {
-                    self.performSegue(withIdentifier: "fromWalletToAddCard", sender: self)
+                    //                    self.performSegue(withIdentifier: "fromWalletToAddCard", sender: self)
+                    
+                    if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
+                        self.navigationController?.pushViewController(addVC, animated: true)
+                    }
                 }
             })
     }
-
+    
     
     // MARK: Firebase Methods
     
@@ -85,7 +82,14 @@ class WalletViewController: UIViewController {  // SKProductsRequestDelegate, SK
                 if snapshot.hasChild("cards") {
                     self.pullAllUsersCards()
                 } else {
-                    self.performSegue(withIdentifier: "fromWalletToAddCard", sender: self)
+                    
+                    
+                    if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
+                        self.navigationController?.pushViewController(addVC, animated: true)
+                    }
+                    
+                    
+                    //                    self.performSegue(withIdentifier: "fromWalletToAddCard", sender: self)
                 }
             })
         }
@@ -126,26 +130,33 @@ class WalletViewController: UIViewController {  // SKProductsRequestDelegate, SK
     
     // MARK: Prepare for Segue Methods
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "fromWalletToCardDetails" {
-            if let controller = segue.destination as? UINavigationController {
-                if let destinationVC = controller.topViewController as? CardDetailViewController {
-                    destinationVC.cardID = selectedCard!
-                }
-            }
-        }
-    }
+    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //        if segue.identifier == "fromWalletToCardDetails" {
+    //            if let controller = segue.destination as? UINavigationController {
+    //                if let destinationVC = controller.topViewController as? CardDetailViewController {
+    //                    destinationVC.cardID = selectedCard!
+    //                }
+    //            }
+    //        }
+    //    }
     
     
     // MARK: IB Actions
     
     @IBAction func leftBarButtonTapped(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "fromWalletToPref", sender: self)
+        //        performSegue(withIdentifier: "fromWalletToPref", sender: self)
+        
+        if let prefVC = self.storyboard?.instantiateViewController(withIdentifier: "PrefVC") as? PreferencesViewController {
+            self.navigationController?.pushViewController(prefVC, animated: true)
+        }
     }
     
     @IBAction func rightBarButtonTapped(_ sender: UIBarButtonItem) {
         if InAppPurchaseUtility.shared.isPurchased {
-            performSegue(withIdentifier: "fromWalletToAddCard", sender: self)
+            if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
+                self.navigationController?.pushViewController(addCardVC, animated: true)
+            }
+            //            performSegue(withIdentifier: "fromWalletToAddCard", sender: self)
         }
         else {
             let actionSheet = UIAlertController(title: nil, message: "You will need to purchase this to add more than 1 card", preferredStyle: .actionSheet)
@@ -166,7 +177,10 @@ class WalletViewController: UIViewController {  // SKProductsRequestDelegate, SK
     func purchaseProduct() {
         InAppPurchaseUtility.shared.purchaseProduct { (success, error) in
             if success {
-                self.performSegue(withIdentifier: "fromWalletToAddCard", sender: self)
+                if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
+                    self.navigationController?.pushViewController(addCardVC, animated: true)
+                }
+                //                self.performSegue(withIdentifier: "fromWalletToAddCard", sender: self)
                 //self.showAlertWith(title: "Success!", message: "Your purchase was successful")
             }
             else  {
@@ -178,7 +192,13 @@ class WalletViewController: UIViewController {  // SKProductsRequestDelegate, SK
     func restorePurchase() {
         InAppPurchaseUtility.shared.restorePurchase { (success, error) in
             if success {
-                self.performSegue(withIdentifier: "fromWalletToAddCard", sender: self)
+                //                self.performSegue(withIdentifier: "fromWalletToAddCard", sender: self)
+                
+                if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
+                    self.navigationController?.pushViewController(addCardVC, animated: true)
+                }
+                
+                
                 //self.showAlertWith(title: "Success!", message: "Your purchase was successful")
             }
             else  {
@@ -205,7 +225,17 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
             let row = indexPath.row
             self.selectedCard = self.cardArray[row].cardID
             if self.selectedCard != "" {
-                self.performSegue(withIdentifier: "fromWalletToCardDetails", sender: self)
+                
+                
+                if let cardDVC = self.storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
+                    cardDVC.cardID = self.selectedCard!
+                    self.navigationController?.pushViewController(cardDVC, animated: true)
+                }
+                
+                
+                
+                
+                //                self.performSegue(withIdentifier: "fromWalletToCardDetails", sender: self)
             }
             tableView.isUserInteractionEnabled = false
             
@@ -228,9 +258,7 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
-//extension WalletViewController: SKProductsRequestDelegate, SKPaymentTransactionObserver {
-//
-//}
+
 
 
 
