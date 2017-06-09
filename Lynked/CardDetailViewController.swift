@@ -103,20 +103,13 @@ class CardDetailViewController: UIViewController {
     // MARK: Firebase Methods
     
     func checkIfDataExits() {
-        self.serviceArray.removeAll()
-        self.totalArr.removeAll()
-        self.doubleArray.removeAll()
-        
         self.ref.observe(DataEventType.value, with: { (snapshot) in
             if snapshot.hasChild("services") {
                 self.pullCardData()
-                //                DispatchQueue.main.async {
-                self.collectionView.reloadData()
-                //                }
             } else {
-                //                DispatchQueue.main.async {
-                self.collectionView.reloadData()
-                //                }
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
             }
         })
     }
@@ -134,7 +127,6 @@ class CardDetailViewController: UIViewController {
                         if let cardDict = thisCardDetails.value as? [String: AnyObject] {
                             self.selectedCard.cardID = thisCardDetails.key
                             self.selectedCard.nickname = cardDict["nickname"] as? String
-                            //                            print("Hello \(String(describing: self.selectedCard.nickname))")
                             self.selectedCard.type = cardDict["type"] as? String
                             self.pullServicesForCard()
                         }
@@ -145,6 +137,14 @@ class CardDetailViewController: UIViewController {
     }
     
     
+    
+    
+    
+    
+    
+    
+    
+    
     func pullServicesForCard() {
         let thisCardServices = self.ref.child("cards").child(self.cardID).child("services")
         let serviceRefLoc = self.ref.child("services")
@@ -153,7 +153,6 @@ class CardDetailViewController: UIViewController {
                 for serviceChild in serviceSnap.children {
                     let serviceID = (serviceChild as AnyObject).key as String
                     serviceRefLoc.observe(DataEventType.value, with: { (allServiceSnap) in
-                        
                         if allServiceSnap.hasChildren() {
                             for all in allServiceSnap.children {
                                 let allServs = (all as AnyObject).key as String
@@ -202,11 +201,6 @@ class CardDetailViewController: UIViewController {
                                             }
                                             
                                         }
-                                        
-                                        
-                                        
-                                        
-                                        
                                     })
                                 }
                             }
@@ -222,11 +216,13 @@ class CardDetailViewController: UIViewController {
     func addServiceToCard() {
         let service = ref.child("services").childByAutoId()
         let whiteSpacesRemoved = serviceNameTextField.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).capitalized
+        serviceArray.removeAll()
         if let tempName = whiteSpacesRemoved {
             service.setValue(["serviceURL": "", "serviceName": tempName, "serviceStatus": true, "serviceFixed": false, "serviceAmount": "", "attentionInt": 0])
         }
         ref.child("cards").child(cardID).child("services").child(service.key).setValue(true)
-        pullCardData()
+        //        pullCardData()
+        
         
         serviceNameTextField.text = ""
         addServiceButton.alpha = 0.4
