@@ -48,7 +48,8 @@ class LoginViewController: UIViewController {
     var newUserEmail: String?
     var newUserPassword: String?
     
-    var tempUID = ""
+//    var tempUID = ""
+    var tempUID: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -85,10 +85,22 @@ class AddCardViewController: UIViewController {
         finalType = typeWithoutWhiteSpaces.capitalized
         let user = Auth.auth().currentUser
         let card = ref.child("cards").childByAutoId()
+        
+        
+        
+        
         if let tempNick = finalNickname, let tempType = finalType {
+//            print("foo")
+//            print(tempNick)
+//            print("bar")
+//            print(tempType)
+//            print("ok")
             card.setValue(["nickname": tempNick, "type": tempType, "cardStatus": true])
         }
         ref.child("users").child((user?.uid)!).child("cards").child(card.key).setValue(true)
+        
+        
+        
         performSegue(withIdentifier: "fromAddCardToCardDetails", sender: self)
     }
     

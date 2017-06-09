@@ -65,6 +65,7 @@ class EditCardViewController: UIViewController {
     leftNavBarButton.isEnabled = true
     rightNavBarButton.isEnabled = true
     pullCardData()
+    print(self.thisCardIDTransfered)
   }
   
   
@@ -101,16 +102,16 @@ class EditCardViewController: UIViewController {
             
 
             let thisCardDetails = snap as DataSnapshot
-            let cardDict = thisCardDetails.value as! [String: AnyObject]
-            //            if cardDict["cardStatus"] as! Bool == true {
-            //              self.cardStatus = true
-            //              self.cardStatusImageView.image = UIImage.init(named: "greenCheck.png")
-            //            } else {
-            //              self.cardStatus = false
-            //              self.cardStatusImageView.image = UIImage.init(named: "redEx.png")
-            //            }
-            self.nicknameTextField.text = cardDict["nickname"] as? String
-            self.typeTextField.text = cardDict["type"] as? String
+
+                
+                if let cardDict = thisCardDetails.value as? [String: AnyObject] {
+                    self.nicknameTextField.text = cardDict["nickname"] as? String
+                    self.typeTextField.text = cardDict["type"] as? String
+                }
+                
+                
+
+           
           })
         }
       }
@@ -181,11 +182,12 @@ class EditCardViewController: UIViewController {
     let okAction = UIAlertAction(title: "I Understand!", style: UIAlertActionStyle.default) { (result: UIAlertAction) in
       
       let thisCard = self.ref.child("cards").child(self.thisCardIDTransfered)
-      thisCard.removeValue()
       let thisCardInUsers = self.ref.child("users").child((self.user?.uid)!).child("cards").child(self.thisCardIDTransfered)
-      thisCardInUsers.removeValue()
-      self.performSegue(withIdentifier: "fromEditCardToWallet", sender: self)
       
+        thisCard.removeValue()
+        thisCardInUsers.removeValue()
+        self.performSegue(withIdentifier: "fromEditCardToWallet", sender: self)
+  
     }
     
     alertController.addAction(cancelAction)

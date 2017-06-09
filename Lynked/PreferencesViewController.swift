@@ -25,16 +25,9 @@ class PreferencesViewController: UIViewController {
     @IBOutlet weak var fourthDividerView: UIView!
     
     @IBOutlet weak var fifthDividerView: UIView!
-    
-    
 
     
-    
-    
     @IBOutlet weak var purchaseCardButton: UIButton!
-    
-    
-    
     
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var deleteAccountButton: UIButton!
