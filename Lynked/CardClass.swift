@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct CardClass {
+class CardClass {
   
 //  var cardID = ""
 //  var nickname = ""
@@ -17,9 +17,24 @@ struct CardClass {
 //  var cStatus = true
 
     
+    
     var cardID: String?
     var nickname: String?
     var type: String?
     var cStatus = true
+    
+    init(cardDict: [String: Any]) {
+        
+        let cardNickname = cardDict["nickname"]
+        let cardType = cardDict["type"]
+        if let cardStatus = cardDict["cardStatus"] as? Bool {
+            cStatus = cardStatus
+        }
+        
+        //cardID = cardID
+        nickname = cardNickname as? String
+        type = cardType as? String
+        
+    }
     
 }

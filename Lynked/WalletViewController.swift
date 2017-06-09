@@ -106,14 +106,10 @@ class WalletViewController: UIViewController {  // SKProductsRequestDelegate, SK
                     if let cardDict = cardSnap.value as? [String: AnyObject] {
                         let cardNickname = cardDict["nickname"]
                         let cardType = cardDict["type"]
-                        let cardStatus = cardDict["cardStatus"]
                         self.cardNicknameToTransfer = (cardNickname as? String)!
                         self.cardtypeToTransfer = (cardType as? String)!
-                        var aCard = CardClass()
+                        let aCard = CardClass(cardDict: cardDict)
                         aCard.cardID = cardID
-                        aCard.nickname = cardNickname as? String
-                        aCard.type = cardType as? String
-                        aCard.cStatus = (cardStatus as? Bool)!
                         self.cardArray.append(aCard)
                         DispatchQueue.main.async {
                             self.tableView.reloadData()

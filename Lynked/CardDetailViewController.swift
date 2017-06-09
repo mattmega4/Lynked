@@ -36,7 +36,7 @@ class CardDetailViewController: UIViewController {
     var serviceArray: [ServiceClass] = []
     let ref = Database.database().reference()
     let user = Auth.auth().currentUser
-    var selectedCard = CardClass()
+    var selectedCard: CardClass?
     var totalArr: [String] = []
     var doubleArray: [Double] = []
     
@@ -125,9 +125,9 @@ class CardDetailViewController: UIViewController {
                     thisCardLocation.observe(DataEventType.value, with: { (snapshot) in
                         let thisCardDetails = snapshot as DataSnapshot
                         if let cardDict = thisCardDetails.value as? [String: AnyObject] {
-                            self.selectedCard.cardID = thisCardDetails.key
-                            self.selectedCard.nickname = cardDict["nickname"] as? String
-                            self.selectedCard.type = cardDict["type"] as? String
+                            self.selectedCard?.cardID = thisCardDetails.key
+                            self.selectedCard?.nickname = cardDict["nickname"] as? String
+                            self.selectedCard?.type = cardDict["type"] as? String
                             self.pullServicesForCard()
                         }
                     })
@@ -135,15 +135,6 @@ class CardDetailViewController: UIViewController {
             }
         })
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     func pullServicesForCard() {
         let thisCardServices = self.ref.child("cards").child(self.cardID).child("services")
@@ -154,16 +145,19 @@ class CardDetailViewController: UIViewController {
                     let serviceID = (serviceChild as AnyObject).key as String
                     serviceRefLoc.observe(DataEventType.value, with: { (allServiceSnap) in
                         if allServiceSnap.hasChildren() {
+                            if self.serviceArray.count != Int(allServiceSnap.childrenCount) {
+                            self.serviceArray.removeAll()
+                            print("removed all")
                             for all in allServiceSnap.children {
                                 let allServs = (all as AnyObject).key as String
                                 let thisServiceLocationInServiceNode = self.ref.child("services").child(serviceID)
                                 if serviceID == allServs {
                                     thisServiceLocationInServiceNode.observe(DataEventType.value, with: { (thisSnap) in
                                         let serv = thisSnap as DataSnapshot
-                                        
+                                        debugPrint(thisSnap)
                                         if let serviceDict = serv.value as? [String: AnyObject] {
                                             
-                                            var aService = ServiceClass()
+                                            let aService = ServiceClass(serviceDict: serviceDict)
                                             self.serviceCurrent = serviceDict["serviceStatus"] as? Bool
                                             self.serviceName = serviceDict["serviceName"] as? String
                                             self.serviceURL = serviceDict["serviceURL"] as? String
@@ -171,11 +165,7 @@ class CardDetailViewController: UIViewController {
                                             self.serviceFixedAmount = serviceDict["serviceAmount"] as? String
                                             self.attentionInt = serviceDict["attentionInt"] as? Int
                                             
-                                            aService.serviceUrl = serviceDict["serviceURL"] as? String
-                                            aService.serviceName = serviceDict["serviceName"] as? String
-                                            aService.serviceAmount = serviceDict["serviceAmount"] as? String
-                                            aService.serviceStatus = serviceDict["serviceStatus"] as? Bool
-                                            aService.serviceAttention = (serviceDict["attentionInt"] as? Int)!
+                                            
                                             
                                             //                                        DispatchQueue.main.async {
                                             self.totalArr.append((serviceDict["serviceAmount"] as? String)!)
@@ -184,25 +174,32 @@ class CardDetailViewController: UIViewController {
                                             
                                             aService.serviceID = serviceID
                                             if serviceDict["serviceStatus"] as? Bool == true {
-                                                self.selectedCard.cStatus = true
+                                                self.selectedCard?.cStatus = true
                                             } else {
-                                                self.selectedCard.cStatus = false
+                                                self.selectedCard?.cStatus = false
                                             }
                                             
                                             //
                                             self.serviceArray.append(aService)
+                                            print("added a service \(String(describing: self.serviceName))")
                                             self.serviceArray.sort {$1.serviceAttention < $0.serviceAttention}
                                             
                                             DispatchQueue.main.async {
-                                                if let titleName = self.selectedCard.nickname {
+                                                if let titleName = self.selectedCard?.nickname {
                                                     self.title = "\(titleName): \(arraySum)"
                                                 }
-                                                self.collectionView.reloadData()
+                                                //self.collectionView.reloadData()
                                             }
                                             
                                         }
                                     })
                                 }
+                            }
+                            }
+                            
+                            DispatchQueue.main.async {
+                               
+                                self.collectionView.reloadData()
                             }
                         }
                     })
@@ -221,9 +218,7 @@ class CardDetailViewController: UIViewController {
             service.setValue(["serviceURL": "", "serviceName": tempName, "serviceStatus": true, "serviceFixed": false, "serviceAmount": "", "attentionInt": 0])
         }
         ref.child("cards").child(cardID).child("services").child(service.key).setValue(true)
-        //        pullCardData()
-        
-        
+//                pullCardData()
         serviceNameTextField.text = ""
         addServiceButton.alpha = 0.4
         addServiceButton.isEnabled = false
@@ -452,10 +447,6 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        
-        
-        
         return serviceArray.count
     }
     
@@ -476,18 +467,19 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         cell.serviceFixedAmountLabel.text = serviceArray[row].serviceAmount
         
         cell.serviceLogoImage.image = UIImage.init(named: "\(self.getLetterOrNumberAndChooseImage(text: self.serviceArray[row].serviceName!))")
+        let myURLString: String = "http://www.google.com/s2/favicons?domain=\(String(describing: self.serviceArray[row].serviceUrl))"
+        //DispatchQueue.global(qos: .background).async {
         
-        DispatchQueue.global(qos: .background).async {
-            let myURLString: String = "http://www.google.com/s2/favicons?domain=\(String(describing: self.serviceArray[row].serviceUrl))"
-            DispatchQueue.main.async {
-                if let myURL = URL(string: myURLString), let myData = try? Data(contentsOf: myURL), let image = UIImage(data: myData) {
-                    cell.serviceLogoImage.image = image
-                } else {
-                    cell.serviceLogoImage.image = UIImage.init(named: "\(self.getLetterOrNumberAndChooseImage(text: self.serviceArray[row].serviceName!))")
-                }
-                
+        //DispatchQueue.main.async {
+            if let myURL = URL(string: myURLString), let myData = try? Data(contentsOf: myURL), let image = UIImage(data: myData) {
+                cell.serviceLogoImage.image = image
             }
-        }
+//            else {
+//                cell.serviceLogoImage.image = UIImage.init(named: "\(self.getLetterOrNumberAndChooseImage(text: self.serviceArray[row].serviceName!))")
+//            }
+        
+            //}
+        //}
         return cell
     }
     
