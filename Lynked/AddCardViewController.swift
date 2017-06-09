@@ -61,6 +61,7 @@ class AddCardViewController: UIViewController {
     // MARK: Nav Bar & View Design
     
     func setNavBar() {
+        self.navigationController?.isNavigationBarHidden = false
         title = "Add Card"
         navigationController?.navigationBar.barTintColor = UIColor(red: 108.0/255.0,
                                                                    green: 158.0/255.0,

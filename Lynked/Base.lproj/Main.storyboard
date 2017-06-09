@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bd4-Vx-Rjw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="QZx-kT-1cO">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -276,13 +276,11 @@
                         <outlet property="typeLabel" destination="DpL-Vf-K90" id="KnN-M9-RUF"/>
                         <outlet property="typeTextField" destination="46T-bB-ptm" id="JL5-Fz-843"/>
                         <outlet property="warningLabel" destination="NRY-Ch-b1w" id="nQ9-Pb-ZUq"/>
-                        <segue destination="caH-uy-CDu" kind="show" identifier="fromEditCardToAddCard" id="q42-tk-e3P"/>
-                        <segue destination="xat-PU-1jy" kind="show" identifier="fromEditCardToWallet" id="mhp-5D-0go"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EeP-Ab-79l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7667" y="412"/>
+            <point key="canvasLocation" x="10215" y="-1276"/>
         </scene>
         <!--Edit Service View Controller-->
         <scene sceneID="0R7-Zc-YcD">
@@ -621,12 +619,11 @@
                         <outlet property="thirdDividerView" destination="ksN-BX-La6" id="8q9-8C-Sel"/>
                         <outlet property="urlLabel" destination="mWj-NQ-4Gy" id="pJc-1J-dfe"/>
                         <outlet property="urlTextField" destination="HIW-Dv-q9H" id="VXN-cJ-YXS"/>
-                        <segue destination="xat-PU-1jy" kind="show" identifier="fromEditCardToWallet" id="0IK-Ad-AUJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w14-Sf-ZuW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8670" y="-489.08450704225351"/>
+            <point key="canvasLocation" x="9351" y="-1296"/>
         </scene>
         <!--Preferences View Controller-->
         <scene sceneID="2hb-5X-d2q">
@@ -806,12 +803,11 @@
                         <outlet property="secondDividerView" destination="34g-E8-1P8" id="OxT-D2-CoC"/>
                         <outlet property="thirdDividerView" destination="AG8-em-V3t" id="cBE-Tt-oY7"/>
                         <outlet property="versionLabel" destination="pnU-wT-0qb" id="0pf-P1-RzS"/>
-                        <segue destination="bd4-Vx-Rjw" kind="show" identifier="fromPreferencesToLogin" id="P1E-YV-WHz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wnK-Sd-Rdp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8557.5" y="-1321.4788732394366"/>
+            <point key="canvasLocation" x="8558" y="-1276"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="BWO-Sg-5XA">
@@ -1034,6 +1030,7 @@
                             <constraint firstAttribute="trailing" secondItem="Xqw-3l-lWA" secondAttribute="trailing" id="veu-Ea-zDL"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Zv2-bh-mq2"/>
                     <connections>
                         <outlet property="bottomContainerView" destination="8bL-wv-Pl7" id="qD7-kS-iz4"/>
                         <outlet property="contentView" destination="Xhp-fJ-cJY" id="a5Z-Cd-CUG"/>
@@ -1052,13 +1049,11 @@
                         <outlet property="textFieldOne" destination="HHo-OZ-F2x" id="LmN-Bn-4tI"/>
                         <outlet property="textFieldTwo" destination="834-WK-Amg" id="fG0-eK-PaT"/>
                         <outlet property="topContainerView" destination="IIl-4r-bYm" id="oV8-Ez-QDF"/>
-                        <segue destination="caH-uy-CDu" kind="show" identifier="fromEntryToAddCard" id="Hre-HP-qjK"/>
-                        <segue destination="xat-PU-1jy" kind="show" identifier="fromEntryToWallet" id="WzQ-wX-jms"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YCc-6P-K7a" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6207" y="-2863"/>
+            <point key="canvasLocation" x="4573" y="-1296"/>
         </scene>
         <!--Add Card View Controller-->
         <scene sceneID="JLE-Iv-qsb">
@@ -1262,13 +1257,11 @@
                         <outlet property="secondContainerView" destination="h6c-8f-hAC" id="2B1-vP-cBN"/>
                         <outlet property="secondDividerView" destination="rDj-p7-XQf" id="d5h-Ul-c8V"/>
                         <outlet property="thirdDividerView" destination="8LY-kh-0Ty" id="eXS-z9-pE3"/>
-                        <segue destination="2mM-cS-BFo" kind="show" identifier="fromAddCardToCardDetail" id="imw-Eq-Ibj"/>
-                        <segue destination="xat-PU-1jy" kind="show" identifier="fromAddCardToWallet" id="11n-oh-fMj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZDo-k5-dbf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5696" y="-1320"/>
+            <point key="canvasLocation" x="5694" y="-1296"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="t2Y-03-h3X">
@@ -1399,14 +1392,11 @@
                         <outlet property="leftNavButton" destination="gtU-iX-pPa" id="6BE-tk-JRP"/>
                         <outlet property="rightNavButton" destination="rcg-7j-geY" id="wpg-O3-fg6"/>
                         <outlet property="tableView" destination="OYk-Pi-PQY" id="5Ah-fO-7Ov"/>
-                        <segue destination="2mM-cS-BFo" kind="show" identifier="fromWalletToCardDetails" id="skE-Kn-UBI"/>
-                        <segue destination="Urt-yX-5zJ" kind="show" identifier="fromWalletToPref" id="Szy-gT-B5N"/>
-                        <segue destination="caH-uy-CDu" kind="show" identifier="fromWalletToAddCard" id="Qip-JR-BNo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DhR-hl-TeL" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6651" y="-1178"/>
+            <point key="canvasLocation" x="6714" y="-1296"/>
         </scene>
         <!--Card Detail View Controller-->
         <scene sceneID="rxJ-Y3-RWo">
@@ -1641,15 +1631,11 @@
                         <outlet property="rightNavButton" destination="gjO-ta-jDx" id="XOV-Kq-gqJ"/>
                         <outlet property="serviceLabel" destination="SVY-M0-ohN" id="INE-Yj-Pma"/>
                         <outlet property="serviceNameTextField" destination="ggi-OL-5L3" id="fvR-oH-mbx"/>
-                        <segue destination="xbq-S5-vO9" kind="show" identifier="fromCardDetailToEditCard" id="Zul-x2-yUc"/>
-                        <segue destination="2nB-hx-kA6" kind="show" identifier="fromCardDetailToEditService" id="O9b-tZ-SyM"/>
-                        <segue destination="xat-PU-1jy" kind="show" identifier="fromCardDetailToWallet" id="HlL-vf-LJf"/>
-                        <segue destination="Urt-yX-5zJ" kind="show" identifier="fromCardDetailToPreferences" id="BiZ-aw-4bh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5U5-xl-Zvh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6626" y="-390"/>
+            <point key="canvasLocation" x="7673" y="-1276"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iMZ-29-LZj">
@@ -1685,7 +1671,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LbN-Yw-siW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5696" y="-489"/>
+            <point key="canvasLocation" x="7674" y="-2049"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nZP-sX-C5h">
@@ -1703,7 +1689,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NEw-34-OXi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7667" y="-391"/>
+            <point key="canvasLocation" x="9351" y="-2049"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IpV-PD-NK4">
@@ -1721,7 +1707,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2yO-53-ICK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6444" y="413"/>
+            <point key="canvasLocation" x="10215" y="-2049"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="m6B-YI-Xp3">
@@ -1739,7 +1725,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9sR-El-9uF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7650" y="-1321.4788732394366"/>
+            <point key="canvasLocation" x="8558" y="-2049"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Tzq-kp-hoz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QZx-kT-1cO" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HjZ-mU-92A">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bd4-Vx-Rjw" kind="relationship" relationship="rootViewController" id="dCM-tn-Tdw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sa9-bC-sO8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4573" y="-2049"/>
         </scene>
     </scenes>
     <resources>
@@ -1750,10 +1754,4 @@
         <image name="emptyBlue" width="53" height="53"/>
         <image name="whiteLy" width="1024" height="1024"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="BiZ-aw-4bh"/>
-        <segue reference="imw-Eq-Ibj"/>
-        <segue reference="Hre-HP-qjK"/>
-        <segue reference="WzQ-wX-jms"/>
-    </inferredMetricsTieBreakers>
 </document>

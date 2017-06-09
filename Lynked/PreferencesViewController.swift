@@ -47,6 +47,7 @@ class PreferencesViewController: UIViewController {
     // MARK: Nav Bar & View Design
     
     func setNavBar() {
+        self.navigationController?.isNavigationBarHidden = false
         title = "Preferences"
         navigationController?.navigationBar.barTintColor = UIColor(red: 108.0/255.0,
                                                                    green: 158.0/255.0,
@@ -72,10 +73,6 @@ class PreferencesViewController: UIViewController {
                     if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? LoginViewController {
                         self.navigationController?.pushViewController(loginVC, animated: true)
                     }
-                    
-                    
-                    
-                    //                    self.performSegue(withIdentifier: "fromPreferencesToLogin", sender: self)
                 } else {
                     let failedAlert = UIAlertController(title: "Something Went Wrong", message: "We were unable to delete your account. Please try again!", preferredStyle: UIAlertControllerStyle.alert)
                     let okAction = UIAlertAction(title: "OKAY!", style: UIAlertActionStyle.default, handler: nil)
@@ -86,7 +83,6 @@ class PreferencesViewController: UIViewController {
             if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? LoginViewController {
                 self.navigationController?.pushViewController(loginVC, animated: true)
             }
-            //            self.performSegue(withIdentifier: "fromPreferencesToLogin", sender: self)
         }
         alertController.addAction(cancelAction)
         alertController.addAction(okAction)
@@ -134,7 +130,6 @@ class PreferencesViewController: UIViewController {
         if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? LoginViewController {
             self.navigationController?.pushViewController(loginVC, animated: true)
         }
-        //        performSegue(withIdentifier: "fromPreferencesToLogin", sender: self)
     }
     
     @IBAction func deleteAccountTapped(_ sender: UIButton) {

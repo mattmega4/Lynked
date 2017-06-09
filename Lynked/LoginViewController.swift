@@ -48,12 +48,12 @@ class LoginViewController: UIViewController {
     var newUserEmail: String?
     var newUserPassword: String?
     
-    //    var tempUID = ""
     var tempUID: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.isNavigationBarHidden = true
         bottomTextFieldDelegateAndAutoCorrectAndPlaceholderColorSetup()
         addTextFieldTargets()
         keyboardMethods()
@@ -312,23 +312,16 @@ class LoginViewController: UIViewController {
                     .observe(.value, with: { snapshot in
                         if (snapshot.hasChildren()) {
                             
-                            
-                            
-                            
-                            
-                            self.performSegue(withIdentifier: "fromEntryToWallet", sender: self)
-                            
-                            
+                            if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
+                                self.navigationController?.pushViewController(walletVC, animated: true)
+                            }
                             
                         } else {
                             
                             
-                            
-                            
-                            
-                            self.performSegue(withIdentifier: "fromEntryToAddCard", sender: self)
-                            
-                            
+                            if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
+                                self.navigationController?.pushViewController(addVC, animated: true)
+                            }
                         }
                     })
             } else {
