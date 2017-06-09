@@ -19,8 +19,8 @@ class WalletViewController: UIViewController {  // SKProductsRequestDelegate, SK
     @IBOutlet weak var tableView: UITableView!
     
     var selectedCard: String?
-    var cardNicknameToTransfer = ""
-    var cardtypeToTransfer = ""
+    var cardNicknameToTransfer: String?
+    var cardtypeToTransfer: String?
     let ref = Database.database().reference()
     let user = Auth.auth().currentUser
     var cardArray: [CardClass] = []
@@ -38,9 +38,15 @@ class WalletViewController: UIViewController {  // SKProductsRequestDelegate, SK
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        checkIfDataExits()
+//        checkIfDataExits()
+        checkFirst()
         tableView.isUserInteractionEnabled = true
     }
+    
+    
+    
+    
+    
     
     
     // MARK: Nav Bar & View Design
@@ -58,6 +64,18 @@ class WalletViewController: UIViewController {  // SKProductsRequestDelegate, SK
                                                                                                size: 18)!]
     }
     
+    func checkFirst() {
+        self.ref.child("users").child((self.user?.uid)!).child("cards")
+            .observe(.value, with: { snapshot in
+                if (snapshot.hasChildren()) {
+                    self.checkIfDataExits()
+                } else {
+                    self.performSegue(withIdentifier: "fromWalletToAddCard", sender: self)
+                }
+            })
+    }
+
+    
     // MARK: Firebase Methods
     
     func checkIfDataExits() {
@@ -67,7 +85,7 @@ class WalletViewController: UIViewController {  // SKProductsRequestDelegate, SK
                 if snapshot.hasChild("cards") {
                     self.pullAllUsersCards()
                 } else {
-                    self.tableView.reloadData()
+                    self.performSegue(withIdentifier: "fromWalletToAddCard", sender: self)
                 }
             })
         }
@@ -83,21 +101,27 @@ class WalletViewController: UIViewController {  // SKProductsRequestDelegate, SK
                 let cardRef = self.ref.child("cards").child(cardID)
                 cardRef.observe(DataEventType.value, with: { (cardSnapShot) in
                     let cardSnap = cardSnapShot as DataSnapshot
-                    let cardDict = cardSnap.value as! [String: AnyObject]
-                    let cardNickname = cardDict["nickname"]
-                    let cardType = cardDict["type"]
-                    let cardStatus = cardDict["cardStatus"]
-                    self.cardNicknameToTransfer = cardNickname as! String
-                    self.cardtypeToTransfer = cardType as! String
-                    let aCard = CardClass()
-                    aCard.cardID = cardID
-                    aCard.nickname = cardNickname as! String
-                    aCard.type = cardType as! String
-                    aCard.cStatus = cardStatus as! Bool
-                    self.cardArray.append(aCard)
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
+                    //
+                    
+                    if let cardDict = cardSnap.value as? [String: AnyObject] {
+                        let cardNickname = cardDict["nickname"]
+                        let cardType = cardDict["type"]
+                        let cardStatus = cardDict["cardStatus"]
+                        self.cardNicknameToTransfer = (cardNickname as? String)!
+                        self.cardtypeToTransfer = (cardType as? String)!
+                        var aCard = CardClass()
+                        aCard.cardID = cardID
+                        aCard.nickname = cardNickname as? String
+                        aCard.type = cardType as? String
+                        aCard.cStatus = (cardStatus as? Bool)!
+                        self.cardArray.append(aCard)
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
                     }
+                    
+                    
+                    
                 })
             }
         })
@@ -183,7 +207,7 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         DispatchQueue.main.async {
             let row = indexPath.row
-            self.selectedCard = self.cardArray[row].cardID as String
+            self.selectedCard = self.cardArray[row].cardID
             if self.selectedCard != "" {
                 self.performSegue(withIdentifier: "fromWalletToCardDetails", sender: self)
             }

@@ -168,44 +168,45 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
             
             
             let thisServiceDetails = snap as DataSnapshot
-            let serviceDict = thisServiceDetails.value as! [String: AnyObject]
-            
-            
+//          
+
                 
-//                //
-                if let tempState = self.serviceUpToDateTransfered {
-                    self.stateOfService = tempState
+                if let serviceDict = thisServiceDetails.value as? [String: AnyObject] {
+                    
+                    if let tempState = self.serviceUpToDateTransfered {
+                        self.stateOfService = tempState
+                    }
+                    
+                    if let tempFixed = self.serviceFixedTransfered {
+                        self.stateOfFixed = tempFixed
+                    }
+                    //
+                    
+                    
+                    
+                    if serviceDict["serviceStatus"] as! Bool == true {
+                        self.serviceStateToggleSwtich.setOn(true, animated: true)
+                    } else {
+                        self.serviceStateToggleSwtich.setOn(false, animated: true)
+                    }
+                    
+                    self.serviceNameTextField.text = serviceDict["serviceName"] as? String
+                    
+                    self.urlTextField.text = serviceDict["serviceURL"] as? String
+                    
+                    if serviceDict["serviceFixed"] as! Bool == true {
+                        self.fixedExpenseToggleSwitch.setOn(true, animated: true)
+                        self.fixedAmountLabel.alpha = 1.0
+                        self.fixedAmountTextField.isEnabled = true
+                        self.fixedAmountTextField.text = serviceDict["serviceAmount"] as? String
+                    } else {
+                        self.fixedExpenseToggleSwitch.setOn(false, animated: true)
+                        self.fixedAmountLabel.alpha = 0.4
+                        self.fixedAmountTextField.isEnabled = false
+                        self.fixedAmountTextField.text = ""
+                        self.fixedAmountTextField.text = serviceDict["serviceAmount"] as? String
+                    }
                 }
-                
-                if let tempFixed = self.serviceFixedTransfered {
-                    self.stateOfFixed = tempFixed
-                }
-                //
-                
-                
-                
-            if serviceDict["serviceStatus"] as! Bool == true {
-              self.serviceStateToggleSwtich.setOn(true, animated: true)
-            } else {
-              self.serviceStateToggleSwtich.setOn(false, animated: true)
-            }
-            
-            self.serviceNameTextField.text = serviceDict["serviceName"] as? String
-            
-            self.urlTextField.text = serviceDict["serviceURL"] as? String
-            
-            if serviceDict["serviceFixed"] as! Bool == true {
-              self.fixedExpenseToggleSwitch.setOn(true, animated: true)
-              self.fixedAmountLabel.alpha = 1.0
-              self.fixedAmountTextField.isEnabled = true
-              self.fixedAmountTextField.text = serviceDict["serviceAmount"] as? String
-            } else {
-              self.fixedExpenseToggleSwitch.setOn(false, animated: true)
-              self.fixedAmountLabel.alpha = 0.4
-              self.fixedAmountTextField.isEnabled = false
-              self.fixedAmountTextField.text = ""
-              self.fixedAmountTextField.text = serviceDict["serviceAmount"] as? String
-            }
           })
         }
       }
@@ -236,12 +237,8 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
       thisService.setValue(["serviceURL": urlWhitepacesRemoved, "serviceName": nameWhiteSpacesRemoved, "serviceStatus": false, "serviceFixed": stateOfFixed!, "serviceAmount": amountWhiteSpacesRemoved, "attentionInt": 1])
     }
     
-    ////////
     self.dismiss(animated: true, completion: nil)
 
-    
-//    delay(1.5) {
-//          }
   }
   
   
@@ -254,10 +251,15 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     let okAction = UIAlertAction(title: "I Understand!", style: UIAlertActionStyle.default) { (result: UIAlertAction) in
       
       let thisService = self.ref.child("services").child(self.thisServiceTransfered)
-      thisService.removeValue()
+
       let theServiceOnThisCard = self.ref.child("cards").child(self.thisCardTransfered).child("services").child(self.thisServiceTransfered)
-      theServiceOnThisCard.removeValue()
-      self.dismiss(animated: true, completion: nil)
+
+        self.dismiss(animated: true, completion: {
+            thisService.removeValue()
+            theServiceOnThisCard.removeValue()
+            
+            
+        })
       
     }
     

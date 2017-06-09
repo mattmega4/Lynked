@@ -8,15 +8,25 @@
 
 import Foundation
 
-class ServiceClass {
+struct ServiceClass {
   
-  var serviceID = ""
-  var serviceName = ""
-  var serviceUrl = ""
-  var serviceStatus: Bool?
-  var serviceFixed: Bool?
-  var serviceAmount = ""
-  var serviceAttention: Int = 0
+//  var serviceID = ""
+//  var serviceName = ""
+//  var serviceUrl = ""
+//  var serviceStatus: Bool?
+//  var serviceFixed: Bool?
+//  var serviceAmount = ""
+//  var serviceAttention: Int = 0
+    
+    
+    var serviceID: String?
+    var serviceName: String?
+    
+    var serviceUrl: String?
+    var serviceStatus: Bool?
+    var serviceFixed: Bool?
+    var serviceAmount: String?
+    var serviceAttention: Int = 0
   
 }
 
