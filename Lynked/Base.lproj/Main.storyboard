@@ -26,7 +26,7 @@
         <!--Edit Card View Controller-->
         <scene sceneID="tyL-yx-c4O">
             <objects>
-                <viewController id="ipX-hN-34t" customClass="EditCardViewController" customModule="Lynked" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditCardVC" id="ipX-hN-34t" customClass="EditCardViewController" customModule="Lynked" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cCM-ve-Exd"/>
                         <viewControllerLayoutGuide type="bottom" id="Hfk-q8-2iX"/>
@@ -287,7 +287,7 @@
         <!--Edit Service View Controller-->
         <scene sceneID="0R7-Zc-YcD">
             <objects>
-                <viewController id="s5Z-68-gGr" customClass="EditServiceViewController" customModule="Lynked" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditServiceVC" id="s5Z-68-gGr" customClass="EditServiceViewController" customModule="Lynked" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gnB-IT-Rv1"/>
                         <viewControllerLayoutGuide type="bottom" id="TKn-dt-bnK"/>
@@ -631,7 +631,7 @@
         <!--Preferences View Controller-->
         <scene sceneID="2hb-5X-d2q">
             <objects>
-                <viewController id="SSP-SX-O4l" customClass="PreferencesViewController" customModule="Lynked" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PrefVC" id="SSP-SX-O4l" customClass="PreferencesViewController" customModule="Lynked" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zdf-X3-N5U"/>
                         <viewControllerLayoutGuide type="bottom" id="Ef1-RQ-1ou"/>
@@ -793,14 +793,7 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" id="RpP-5S-6US">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="fJH-Gt-roc">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="rightNavBarButtonTapped:" destination="SSP-SX-O4l" id="tL6-2q-c5g"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="RpP-5S-6US"/>
                     <connections>
                         <outlet property="contentView" destination="l7P-TF-W64" id="4x1-m9-Agr"/>
                         <outlet property="deleteAccountButton" destination="VTP-bx-FO3" id="maF-vw-gAb"/>
@@ -809,7 +802,6 @@
                         <outlet property="fourthDividerView" destination="0ra-N5-XFr" id="TJw-QV-TLG"/>
                         <outlet property="logoutButton" destination="4cq-f0-8aQ" id="vV9-YE-FHe"/>
                         <outlet property="purchaseCardButton" destination="5af-VN-XMV" id="b95-LH-mbH"/>
-                        <outlet property="rightNavBarButton" destination="fJH-Gt-roc" id="GRq-IO-9n3"/>
                         <outlet property="scrollView" destination="PRf-0J-TtG" id="TDN-io-7bo"/>
                         <outlet property="secondDividerView" destination="34g-E8-1P8" id="OxT-D2-CoC"/>
                         <outlet property="thirdDividerView" destination="AG8-em-V3t" id="cBE-Tt-oY7"/>
@@ -824,7 +816,7 @@
         <!--Login View Controller-->
         <scene sceneID="BWO-Sg-5XA">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="bd4-Vx-Rjw" customClass="LoginViewController" customModule="Lynked" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" automaticallyAdjustsScrollViewInsets="NO" id="bd4-Vx-Rjw" customClass="LoginViewController" customModule="Lynked" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="f9P-iw-KCa"/>
                         <viewControllerLayoutGuide type="bottom" id="8j8-AS-INj"/>
@@ -1071,7 +1063,7 @@
         <!--Add Card View Controller-->
         <scene sceneID="JLE-Iv-qsb">
             <objects>
-                <viewController id="3Bb-Fc-xXk" customClass="AddCardViewController" customModule="Lynked" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddCardVC" id="3Bb-Fc-xXk" customClass="AddCardViewController" customModule="Lynked" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="A9Q-61-Qo1"/>
                         <viewControllerLayoutGuide type="bottom" id="Cad-mA-5XM"/>
@@ -1762,6 +1754,6 @@
         <segue reference="BiZ-aw-4bh"/>
         <segue reference="imw-Eq-Ibj"/>
         <segue reference="Hre-HP-qjK"/>
-        <segue reference="11n-oh-fMj"/>
+        <segue reference="WzQ-wX-jms"/>
     </inferredMetricsTieBreakers>
 </document>

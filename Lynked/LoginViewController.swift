@@ -48,7 +48,7 @@ class LoginViewController: UIViewController {
     var newUserEmail: String?
     var newUserPassword: String?
     
-//    var tempUID = ""
+    //    var tempUID = ""
     var tempUID: String?
     
     override func viewDidLoad() {
@@ -286,7 +286,7 @@ class LoginViewController: UIViewController {
     
     
     func checkIfBothRegisterRequirementsAreMet() {
-        if textFieldOne.text == textFieldTwo.text { 
+        if textFieldOne.text == textFieldTwo.text {
             signInOrUpButton.isEnabled = true
             signInOrUpButton.isHidden = false
             signInOrUpButtonContainerView.isHidden = false
@@ -311,9 +311,24 @@ class LoginViewController: UIViewController {
                 ref.child("users").child((user?.uid)!).child("cards")
                     .observe(.value, with: { snapshot in
                         if (snapshot.hasChildren()) {
+                            
+                            
+                            
+                            
+                            
                             self.performSegue(withIdentifier: "fromEntryToWallet", sender: self)
+                            
+                            
+                            
                         } else {
+                            
+                            
+                            
+                            
+                            
                             self.performSegue(withIdentifier: "fromEntryToAddCard", sender: self)
+                            
+                            
                         }
                     })
             } else {
