@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import StoreKit
 
-class WalletViewController: UIViewController {  // SKProductsRequestDelegate, SKPaymentTransactionObserver
+class CardWalletViewController: UIViewController {
     
     
     @IBOutlet weak var leftNavButton: UIBarButtonItem!
@@ -182,7 +182,7 @@ class WalletViewController: UIViewController {  // SKProductsRequestDelegate, SK
 
 // MARK: TableView Delegate & Data Source Methods
 
-extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
+extension CardWalletViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 125.0

@@ -1,5 +1,5 @@
 //
-//  LoginViewController.swift
+//  EntryViewController.swift
 //  Lynked
 //
 //  Created by Matthew Howes Singleton on 5/10/17.
@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class LoginViewController: UIViewController {
+class EntryViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
@@ -70,7 +70,7 @@ class LoginViewController: UIViewController {
     // MARK: Add Keyboard Targets
     
     func keyboardMethods() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EntryViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -312,7 +312,7 @@ class LoginViewController: UIViewController {
                     .observe(.value, with: { snapshot in
                         if (snapshot.hasChildren()) {
                             
-                            if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
+                            if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? CardWalletViewController {
                                 self.navigationController?.pushViewController(walletVC, animated: true)
                             }
                             
@@ -455,7 +455,7 @@ class LoginViewController: UIViewController {
     
 } // End of EntryPageViewController
 
-extension LoginViewController: UITextFieldDelegate {
+extension EntryViewController: UITextFieldDelegate {
     
     // MARK: Add Delegate, Remove AutoCorrect, and Placeholder Color to Bottom TextFields
     

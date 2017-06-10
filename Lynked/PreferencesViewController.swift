@@ -70,7 +70,7 @@ class PreferencesViewController: UIViewController {
             Auth.auth().currentUser?.delete(completion: { (error) in
                 if error == nil {
                     // TODO: In V3 actually remove the data from Firebase
-                    if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? LoginViewController {
+                    if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? EntryViewController {
                         self.navigationController?.pushViewController(loginVC, animated: true)
                     }
                 } else {
@@ -80,7 +80,7 @@ class PreferencesViewController: UIViewController {
                     print((error?.localizedDescription)! as String)
                 }
             })
-            if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? LoginViewController {
+            if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? EntryViewController {
                 self.navigationController?.pushViewController(loginVC, animated: true)
             }
         }
@@ -93,6 +93,10 @@ class PreferencesViewController: UIViewController {
     // MARK: App Version Info
     
     func getVersionInfo() {
+        
+        
+       
+    
         if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
             versionLabel.text = "Lynked Version: \(version)"
         }
@@ -127,7 +131,7 @@ class PreferencesViewController: UIViewController {
     }
     
     @IBAction func logoutButtonTapped(_ sender: UIButton) {
-        if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? LoginViewController {
+        if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? EntryViewController {
             self.navigationController?.pushViewController(loginVC, animated: true)
         }
     }

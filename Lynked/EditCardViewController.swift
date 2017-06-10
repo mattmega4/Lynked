@@ -184,10 +184,59 @@ class EditCardViewController: UIViewController {
             thisCard.removeValue()
             thisCardInUsers.removeValue()
             
-            if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
-                self.navigationController?.pushViewController(walletVC, animated: true)
-            }
+            let cardNode = self.ref.child("users").child((self.user?.uid)!).child("cards")
             
+            cardNode.observeSingleEvent(of: .value, with: { (snapshot) in
+                if snapshot.hasChildren() {
+                    
+                    
+                    
+                    var shouldPush = true
+                    
+                    
+                    if let navigationController = self.navigationController {
+                        for viewController in navigationController.viewControllers {
+                            if viewController is CardWalletViewController {
+                                shouldPush = false
+                            }
+                        }
+                    }
+                    
+                    if shouldPush {
+                        
+                        let crdWllt = CardWalletViewController(nibName: nil, bundle: nil)
+                        self.navigationController?.pushViewController(crdWllt, animated: true)
+                    }
+
+//                    if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? CardWalletViewController {
+//                        self.navigationController?.pushViewController(walletVC, animated: true)
+//                    }
+                } else {
+                    
+                    var shouldPush = true
+                    
+                    
+                    if let navigationController = self.navigationController {
+                        for viewController in navigationController.viewControllers {
+                            if viewController is AddCardViewController {
+                                shouldPush = false
+                            }
+                        }
+                    }
+                    
+                    if shouldPush {
+                        
+                        let addCrd = AddCardViewController(nibName: nil, bundle: nil)
+                        self.navigationController?.pushViewController(addCrd, animated: true)
+                    }
+                    
+//                    if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
+//                        self.navigationController?.pushViewController(addVC, animated: true)
+//                        print("foo")
+//                        
+//                    }
+                }
+            })
         }
         
         alertController.addAction(cancelAction)

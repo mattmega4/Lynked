@@ -809,10 +809,10 @@
             </objects>
             <point key="canvasLocation" x="8558" y="-1276"/>
         </scene>
-        <!--Login View Controller-->
+        <!--Entry View Controller-->
         <scene sceneID="BWO-Sg-5XA">
             <objects>
-                <viewController storyboardIdentifier="LoginVC" automaticallyAdjustsScrollViewInsets="NO" id="bd4-Vx-Rjw" customClass="LoginViewController" customModule="Lynked" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" automaticallyAdjustsScrollViewInsets="NO" id="bd4-Vx-Rjw" customClass="EntryViewController" customModule="Lynked" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="f9P-iw-KCa"/>
                         <viewControllerLayoutGuide type="bottom" id="8j8-AS-INj"/>
@@ -1281,10 +1281,10 @@
             </objects>
             <point key="canvasLocation" x="5696" y="-2081"/>
         </scene>
-        <!--Wallet View Controller-->
+        <!--Card Wallet View Controller-->
         <scene sceneID="fgT-yJ-iSe">
             <objects>
-                <viewController storyboardIdentifier="WalletVC" id="Vol-Kx-v0s" customClass="WalletViewController" customModule="Lynked" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WalletVC" id="Vol-Kx-v0s" customClass="CardWalletViewController" customModule="Lynked" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MP9-Ts-jkY"/>
                         <viewControllerLayoutGuide type="bottom" id="OeT-nm-mcF"/>
