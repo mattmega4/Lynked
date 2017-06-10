@@ -8,6 +8,7 @@
 
 import UIKit
 import StoreKit
+import Crashlytics
 
 class InAppPurchaseUtility: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     
@@ -39,6 +40,17 @@ class InAppPurchaseUtility: NSObject, SKProductsRequestDelegate, SKPaymentTransa
                 UserDefaults.standard.set(true, forKey: "com.Lynked.card")
                 self.isPurchased = true
                 purchaseCompletion?(true, nil)
+                
+                // MARK: Track the user action that is important for you.
+                Answers.logPurchase(withPrice: 00.99,
+                                    currency: "USD",
+                                    success: true,
+                                    itemName: "Add Card",
+                                    itemType: "Card",
+                                    itemId: "sku-1",
+                                    customAttributes: nil)
+
+                
             }
             else if transaction.transactionState == .failed {
                 purchaseCompletion?(false, transaction.error)
