@@ -52,6 +52,7 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     var stateOfService: Bool?
     var stateOfFixed: Bool?
     var toStatus: Bool?
+    var oneOrZero: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -154,7 +155,16 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
                         if let serviceDict = thisServiceDetails.value as? [String: AnyObject] {
                             
                             if let tempState = self.serviceUpToDateTransfered {
+                                
                                 self.stateOfService = tempState
+                                
+                                if tempState == true {
+                                    self.oneOrZero = 0
+                                } else {
+                                    self.oneOrZero = 1
+                                }
+                                
+
                             }
                             
                             if let tempFixed = self.serviceFixedTransfered {
@@ -205,12 +215,18 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
         }
         let thisService = ref.child("services").child(thisServiceTransfered)
         
-        
-        
-        
-        
         if let state = stateOfService {
-            thisService.setValue(["serviceURL": urlWhitepacesRemoved, "serviceName": nameWhiteSpacesRemoved, "serviceStatus": state, "serviceFixed": stateOfFixed!, "serviceAmount": amountWhiteSpacesRemoved, "attentionInt": 0])
+            
+            if state == true {
+                thisService.setValue(["serviceURL": urlWhitepacesRemoved, "serviceName": nameWhiteSpacesRemoved, "serviceStatus": state, "serviceFixed": stateOfFixed!, "serviceAmount": amountWhiteSpacesRemoved, "attentionInt": 0])
+            } else {
+                thisService.setValue(["serviceURL": urlWhitepacesRemoved, "serviceName": nameWhiteSpacesRemoved, "serviceStatus": state, "serviceFixed": stateOfFixed!, "serviceAmount": amountWhiteSpacesRemoved, "attentionInt": 1])
+            }
+            
+            
+            
+            
+//            thisService.setValue(["serviceURL": urlWhitepacesRemoved, "serviceName": nameWhiteSpacesRemoved, "serviceStatus": state, "serviceFixed": stateOfFixed!, "serviceAmount": amountWhiteSpacesRemoved, "attentionInt": 0])
         }
         
         
