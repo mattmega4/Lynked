@@ -173,9 +173,9 @@ class CardDetailViewController: UIViewController {
                         self.attentionInt = serviceDict["attentionInt"] as? Int
                         
                         self.totalArr.append((serviceDict["serviceAmount"] as? String)!)
-                        self.doubleArray = self.totalArr.flatMap{ Double($0) }
-                        let arraySum = self.doubleArray.reduce(0, +)
-                        self.title = self.selectedCard?.nickname ?? ""
+                        //                        self.doubleArray = self.totalArr.flatMap{ Double($0) }
+                        //                        let arraySum = self.doubleArray.reduce(0, +)
+                        //                        self.title = self.selectedCard?.nickname ?? ""
                         
                         //                        if let titleName = self.selectedCard?.nickname {
                         //                            self.title = "\(titleName): \(arraySum)"
@@ -329,7 +329,7 @@ class CardDetailViewController: UIViewController {
     @IBAction func leftNavBarButtonTapped(_ sender: UIBarButtonItem) {
         
         
-        if let walletVC = storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
+        if let walletVC = storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? CardWalletViewController {
             
             navigationController?.pushViewController(walletVC, animated: true)
         }

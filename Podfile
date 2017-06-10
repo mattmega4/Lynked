@@ -6,11 +6,14 @@ target 'Lynked' do
   use_frameworks!
 
   # Pods for Lynked
+
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Performance'
   pod 'Fabric'
   pod 'Crashlytics'
+
+
 
 end

@@ -55,6 +55,7 @@ class AddCardViewController: UIViewController {
         super.viewWillAppear(animated)
         
         checkIfAllConditionsAreMet()
+        print("bar")
     }
     
     
@@ -115,7 +116,7 @@ class AddCardViewController: UIViewController {
     // MARK: IB Actions
     
     @IBAction func navBarCancelButtonTapped(_ sender: UIBarButtonItem) {
-        if let walletVC = storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
+        if let walletVC = storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? CardWalletViewController {
             navigationController?.pushViewController(walletVC, animated: true)
         }
     }
