@@ -195,7 +195,12 @@ class CardDetailViewController: UIViewController {
                         }) {
                             self.serviceArray.append(aService)
                             
-                            self.serviceArray.sort {$1.serviceAttention < $0.serviceAttention}
+                            self.serviceArray.sort {
+                                if $0.serviceAttention == $1.serviceAttention { return $0.serviceName ?? "" < $1.serviceName ?? "" }
+                                return $0.serviceAttention > $1.serviceAttention
+                            }
+                            
+//                            self.serviceArray.sort {$1.serviceAttention < $0.serviceAttention}
                             
                         }
                     }
