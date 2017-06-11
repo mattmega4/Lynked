@@ -20,19 +20,27 @@ class AddCardViewController: UIViewController {
     @IBOutlet weak var firstDividerView: UIView!
     @IBOutlet weak var secondDividerView: UIView!
     @IBOutlet weak var thirdDividerView: UIView!
-    @IBOutlet weak var firstContainerView: UIView!
-    @IBOutlet weak var secondContainerView: UIView!
-    @IBOutlet weak var firstContainerLabel: UILabel!
-    @IBOutlet weak var secondContainerLabel: UILabel!
+
+
     @IBOutlet weak var firstContainerTextField: UITextField!
     @IBOutlet weak var secondContainerTextField: UITextField!
-    @IBOutlet weak var finalNoteLabel: UILabel!
+    
+    @IBOutlet weak var firstContainerView: UIView!
+    @IBOutlet weak var secondContainerView: UIView!
+    @IBOutlet weak var thirdContainerView: UIView!
+    @IBOutlet weak var fourthContainerView: UIView!
+
+    @IBOutlet weak var thirdContainerButton: UIButton!
+ 
+    @IBOutlet weak var cardTypePickerView: UIPickerView!
+    
+
     
     let ref = Database.database().reference()
     var nickNameTextFieldIsEmpty = true
     var cardTypeTextFieldIsEmpty = true
     var finalNickname: String?
-    var finalType: String?
+    var final4: String?
     
     
     override func viewDidLoad() {
@@ -81,17 +89,22 @@ class AddCardViewController: UIViewController {
     func addDataToFirebase() {
         let nicknameToAdd = firstContainerTextField.text ?? ""
         let nicknameWithoutWhiteSpaces = nicknameToAdd.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        let typeToAdd = secondContainerTextField.text ?? ""
-        let typeWithoutWhiteSpaces = typeToAdd
         finalNickname = nicknameWithoutWhiteSpaces.capitalized
-        finalType = typeWithoutWhiteSpaces.capitalized
+        
+        
+        let last4 = secondContainerTextField.text ?? ""
+        let last4WithoutWhiteSpaces = last4
+        final4 = last4WithoutWhiteSpaces.capitalized
+
+        
+        
         let user = Auth.auth().currentUser
         
         
         let card = ref.child("cards").childByAutoId()
         
-        if let tempNick = finalNickname, let tempType = finalType {
-            card.setValue(["nickname": tempNick, "type": tempType, "cardStatus": true])
+        if let tempNick = finalNickname, let temp4 = final4 {
+            card.setValue(["nickname": tempNick, "last4": temp4, "cardStatus": true]) // add type
         }
         ref.child("users").child((user?.uid)!).child("cards").child(card.key).setValue(true)
         
@@ -125,6 +138,9 @@ class AddCardViewController: UIViewController {
         addDataToFirebase()
     }
     
+    @IBAction func thirdContainerButtonTapped(_ sender: UIButton) {
+        //
+    }
     
     // MARK: Keyboard Methods
     
