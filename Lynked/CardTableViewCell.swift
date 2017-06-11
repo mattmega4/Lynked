@@ -15,7 +15,7 @@ class CardTableViewCell: UITableViewCell {
   @IBOutlet weak var cardBackgroundView: UIView!
   
   @IBOutlet weak var cardNicknameLabel: UILabel!
-  @IBOutlet weak var cardTypeLabel: UILabel!
+  @IBOutlet weak var cardDetailsLabel: UILabel!
 
   
     override func awakeFromNib() {

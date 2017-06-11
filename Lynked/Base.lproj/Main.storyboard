@@ -121,7 +121,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dps-3m-yxE">
                                                 <rect key="frame" x="0.0" y="226" width="320" height="49"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="DpL-Vf-K90">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last 4 Digits" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="DpL-Vf-K90">
                                                         <rect key="frame" x="15" y="16.5" width="80" height="16.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="80" id="Qxe-GN-i64"/>
@@ -134,7 +134,7 @@
                                                         <rect key="frame" x="110" y="0.0" width="210" height="49"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="ipX-hN-34t" id="3U8-Il-SCS"/>
                                                         </connections>
@@ -260,6 +260,8 @@
                         <outlet property="alteredButton" destination="wWQ-wp-olC" id="cj1-d7-4ww"/>
                         <outlet property="contentView" destination="fyc-UN-kY0" id="2Ui-zM-WzP"/>
                         <outlet property="deleteButton" destination="bNk-lk-azb" id="K6F-Sb-jtm"/>
+                        <outlet property="digitsLabel" destination="DpL-Vf-K90" id="f8E-oo-xgZ"/>
+                        <outlet property="digitsTextField" destination="46T-bB-ptm" id="PeB-u3-GDY"/>
                         <outlet property="firstContainerView" destination="Xaf-bF-oMl" id="RIs-e6-610"/>
                         <outlet property="firstDividerView" destination="Q1S-m8-Hsb" id="Mfs-R7-6rL"/>
                         <outlet property="fourthDividerView" destination="aic-9R-NJ8" id="57U-ta-QlM"/>
@@ -273,8 +275,6 @@
                         <outlet property="secondDividerView" destination="z91-uV-y5r" id="WtV-Qf-UQV"/>
                         <outlet property="thirdContainerView" destination="dps-3m-yxE" id="HRm-Gt-1gi"/>
                         <outlet property="thirdDividerView" destination="PZU-7p-cQU" id="kFx-i1-LY0"/>
-                        <outlet property="typeLabel" destination="DpL-Vf-K90" id="KnN-M9-RUF"/>
-                        <outlet property="typeTextField" destination="46T-bB-ptm" id="JL5-Fz-843"/>
                         <outlet property="warningLabel" destination="NRY-Ch-b1w" id="nQ9-Pb-ZUq"/>
                     </connections>
                 </viewController>
@@ -1153,6 +1153,10 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="176"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="3Bb-Fc-xXk" id="BLe-6y-i4A"/>
+                                                            <outlet property="delegate" destination="3Bb-Fc-xXk" id="qKM-lV-ZmI"/>
+                                                        </connections>
                                                     </pickerView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1365,8 +1369,8 @@
                                         <connections>
                                             <outlet property="cardBackgroundView" destination="Qpz-U3-Y3W" id="Enl-Mb-jLN"/>
                                             <outlet property="cardBorderView" destination="MLd-gp-zf3" id="xvS-Ha-iLg"/>
+                                            <outlet property="cardDetailsLabel" destination="Tcr-n4-3hx" id="jpr-hO-WTI"/>
                                             <outlet property="cardNicknameLabel" destination="mO6-AV-yXx" id="Ock-Ba-IJK"/>
-                                            <outlet property="cardTypeLabel" destination="Tcr-n4-3hx" id="1rP-V1-2aA"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

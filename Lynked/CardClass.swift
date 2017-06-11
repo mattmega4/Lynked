@@ -13,19 +13,20 @@ class CardClass {
 
     var cardID: String?
     var nickname: String?
+    var fourDigits: String?
     var type: String?
-    var cStatus = true
+
     
     init(cardDict: [String: Any]) {
         
         let cardNickname = cardDict["nickname"]
+        let cardFourDigits = cardDict["last4"]
         let cardType = cardDict["type"]
-        if let cardStatus = cardDict["cardStatus"] as? Bool {
-            cStatus = cardStatus
-        }
         
-        //cardID = cardID
+
+
         nickname = cardNickname as? String
+        fourDigits = cardFourDigits as? String
         type = cardType as? String
         
     }

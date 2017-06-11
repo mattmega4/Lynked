@@ -20,6 +20,7 @@ class CardWalletViewController: UIViewController {
     
     var selectedCard: String?
     var cardNicknameToTransfer: String?
+    var card4ToTransfer: String?
     var cardtypeToTransfer: String?
     let ref = Database.database().reference()
     let user = Auth.auth().currentUser
@@ -99,12 +100,13 @@ class CardWalletViewController: UIViewController {
                 let cardRef = self.ref.child("cards").child(cardID)
                 cardRef.observe(DataEventType.value, with: { (cardSnapShot) in
                     let cardSnap = cardSnapShot as DataSnapshot
-                    //
-                    
+
                     if let cardDict = cardSnap.value as? [String: AnyObject] {
                         let cardNickname = cardDict["nickname"]
+                        let card4D = cardDict["last4"]
                         let cardType = cardDict["type"]
                         self.cardNicknameToTransfer = (cardNickname as? String)!
+                        self.card4ToTransfer = (card4D as? String)!
                         self.cardtypeToTransfer = (cardType as? String)!
                         let aCard = CardClass(cardDict: cardDict)
                         aCard.cardID = cardID
@@ -194,11 +196,8 @@ extension CardWalletViewController: UITableViewDelegate, UITableViewDataSource {
             let row = indexPath.row
             self.selectedCard = self.cardArray[row].cardID
             if self.selectedCard != "" {
-                
-                
                 if let cardDVC = self.storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
                     cardDVC.cardID = self.selectedCard ?? ""
-                    print(self.selectedCard!)
                     self.navigationController?.pushViewController(cardDVC, animated: true)
                 }
             }
@@ -211,7 +210,8 @@ extension CardWalletViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! CardTableViewCell
         let row = indexPath.row
         cell.cardNicknameLabel.text = cardArray[row].nickname
-        cell.cardTypeLabel.text = cardArray[row].type
+        cell.cardDetailsLabel.text = "\(String(describing: cardArray[row].type ?? "")) \(String(describing: cardArray[row].fourDigits ?? ""))"
+//        cell.cardDe.text = cardArray[row].type
         return cell
     }
     

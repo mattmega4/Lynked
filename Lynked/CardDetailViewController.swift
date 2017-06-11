@@ -25,6 +25,7 @@ class CardDetailViewController: UIViewController {
     
     var cardID: String?
     var cardNicknameTransfered = ""
+    var cardLast4Transfered = ""
     var cardTypeTransfered = ""
     var selectedService: String?
     var serviceCurrent: Bool?
@@ -123,6 +124,7 @@ class CardDetailViewController: UIViewController {
                             if let cardDict = thisCardDetails.value as? [String: AnyObject] {
                                 self.selectedCard?.cardID = thisCardDetails.key
                                 self.selectedCard?.nickname = cardDict["nickname"] as? String ?? ""
+                                self.selectedCard?.fourDigits = cardDict["last4"] as? String ?? ""
                                 self.selectedCard?.type = cardDict["type"] as? String ?? ""
                                 self.pullServicesForCard()
                             }
@@ -182,14 +184,8 @@ class CardDetailViewController: UIViewController {
                         //                        }
                         
                         aService.serviceID = serviceID
-                        if serviceDict["serviceStatus"] as? Bool == true {
-                            self.selectedCard?.cStatus = true
-                        } else {
-                            self.selectedCard?.cStatus = false
-                        }
                         
-                        
-                        
+
                         if !self.serviceArray.contains(where: { (service) -> Bool in
                             return service.serviceID == aService.serviceID
                         }) {
@@ -199,8 +195,7 @@ class CardDetailViewController: UIViewController {
                                 if $0.serviceAttention == $1.serviceAttention { return $0.serviceName ?? "" < $1.serviceName ?? "" }
                                 return $0.serviceAttention > $1.serviceAttention
                             }
-                            
-//                            self.serviceArray.sort {$1.serviceAttention < $0.serviceAttention}
+                        
                             
                         }
                     }

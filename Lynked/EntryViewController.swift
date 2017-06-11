@@ -53,6 +53,9 @@ class EntryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        textFieldOne.delegate = self
+        textFieldTwo.delegate = self
+        
         self.navigationController?.isNavigationBarHidden = true
         bottomTextFieldDelegateAndAutoCorrectAndPlaceholderColorSetup()
         addTextFieldTargets()
@@ -415,7 +418,7 @@ class EntryViewController: UIViewController {
         var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
         var contentInset: UIEdgeInsets = self.scrollView.contentInset
-        contentInset.bottom = keyboardFrame.size.height + 50
+        contentInset.bottom = keyboardFrame.size.height + 60
         self.scrollView.contentInset = contentInset
         
         hideLeftContainerViewContents()
