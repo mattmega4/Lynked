@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import Fabric
+import Crashlytics
 
 class EntryViewController: UIViewController {
     
@@ -311,6 +313,11 @@ class EntryViewController: UIViewController {
             let ref = Database.database().reference()
             let user = Auth.auth().currentUser
             if error == nil {
+                
+                Answers.logLogin(withMethod: "Email",
+                                           success: true,
+                                           customAttributes: nil)
+                
                 ref.child("users").child((user?.uid)!).child("cards")
                     .observe(.value, with: { snapshot in
                         if (snapshot.hasChildren()) {
@@ -385,7 +392,9 @@ class EntryViewController: UIViewController {
                     ref.child("users").child((user?.uid)!).child("cards").setValue(true)
                     Auth.auth().signIn(withEmail: self.newUserEmail!, password: self.newUserPassword!)
                     self.tempUID = (user?.uid)!
-                    
+                    Answers.logSignUp(withMethod: "Email",
+                                                success: true,
+                                                customAttributes: [:])
                     if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
                         self.navigationController?.pushViewController(addVC, animated: true)
                     }

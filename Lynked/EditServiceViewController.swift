@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import Fabric
+import Crashlytics
 
 class EditServiceViewController: UIViewController, UITextFieldDelegate {
     
@@ -224,7 +226,8 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
             }
 
         }
-        
+        Answers.logCustomEvent(withName: "Details Added To Service",
+                              customAttributes: nil)
         
         if let detailVC = storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
             detailVC.cardID = thisCardTransfered

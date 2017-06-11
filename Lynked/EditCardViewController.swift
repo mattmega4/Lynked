@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import Fabric
+import Crashlytics
 
 class EditCardViewController: UIViewController {
     
@@ -130,6 +132,8 @@ class EditCardViewController: UIViewController {
             var servicesArr: [String] = []
             let thisCard = self.ref.child("cards").child(self.thisCardIDTransfered).child("services")
             
+            Answers.logCustomEvent(withName: "Card was Altered",
+                                   customAttributes: nil)
             
             thisCard.observe(DataEventType.value, with: { (snapshot) in
                 
@@ -192,6 +196,9 @@ class EditCardViewController: UIViewController {
             
             thisCard.removeValue()
             thisCardInUsers.removeValue()
+            
+            Answers.logCustomEvent(withName: "Card Deleted",
+                                  customAttributes: nil)
             
             let cardNode = self.ref.child("users").child((self.user?.uid)!).child("cards")
             

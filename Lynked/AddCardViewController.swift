@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import Fabric
+import Crashlytics
 
 class AddCardViewController: UIViewController {
     
@@ -20,8 +22,8 @@ class AddCardViewController: UIViewController {
     @IBOutlet weak var firstDividerView: UIView!
     @IBOutlet weak var secondDividerView: UIView!
     @IBOutlet weak var thirdDividerView: UIView!
-
-
+    
+    
     @IBOutlet weak var firstContainerTextField: UITextField!
     @IBOutlet weak var secondContainerTextField: UITextField!
     
@@ -29,12 +31,12 @@ class AddCardViewController: UIViewController {
     @IBOutlet weak var secondContainerView: UIView!
     @IBOutlet weak var thirdContainerView: UIView!
     @IBOutlet weak var fourthContainerView: UIView!
-
+    
     @IBOutlet weak var thirdContainerButton: UIButton!
- 
+    
     @IBOutlet weak var cardTypePickerView: UIPickerView!
     
-
+    
     
     let ref = Database.database().reference()
     var nickNameTextFieldIsEmpty = true
@@ -111,6 +113,9 @@ class AddCardViewController: UIViewController {
             card.setValue(["nickname": tempNick, "last4": temp4, "type": finalType])
         }
         ref.child("users").child((user?.uid)!).child("cards").child(card.key).setValue(true)
+        
+        Answers.logCustomEvent(withName: "New Card Added",
+                              customAttributes: nil)
         
         if let detailVC = storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
             detailVC.cardID = card.key
@@ -239,7 +244,7 @@ extension AddCardViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-         return allCardTypes.count
+        return allCardTypes.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {

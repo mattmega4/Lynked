@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import StoreKit
+import Fabric
+import Crashlytics
 
 
 class PreferencesViewController: UIViewController {
@@ -67,6 +69,10 @@ class PreferencesViewController: UIViewController {
         let alertController = UIAlertController(title: "Wait!", message: "This deletes everying tied to your account! All your cards, service, and total fixed monthly expenses You will need to register a new free account!", preferredStyle: UIAlertControllerStyle.alert)
         let cancelAction = UIAlertAction(title: "Never Mind!", style: UIAlertActionStyle.cancel, handler: nil)
         let okAction = UIAlertAction(title: "I Understand!", style: UIAlertActionStyle.default) { (result: UIAlertAction) in
+            
+            Answers.logCustomEvent(withName: "User Deleted Account",
+                                   customAttributes: nil)
+            
             Auth.auth().currentUser?.delete(completion: { (error) in
                 if error == nil {
                     // TODO: In V3 actually remove the data from Firebase

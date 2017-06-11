@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import Fabric
+import Crashlytics
 
 class CardDetailViewController: UIViewController {
     
@@ -227,6 +229,10 @@ class CardDetailViewController: UIViewController {
         serviceNameTextField.text = ""
         addServiceButton.alpha = 0.4
         addServiceButton.isEnabled = false
+        
+        Answers.logCustomEvent(withName: "Service Quick Added",
+                               customAttributes: nil)
+        
     }
     
     
