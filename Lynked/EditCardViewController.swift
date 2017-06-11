@@ -28,17 +28,21 @@ class EditCardViewController: UIViewController {
     @IBOutlet weak var thirdContainerView: UIView!
     @IBOutlet weak var warningLabel: UILabel!
     @IBOutlet weak var nicknameLabel: UILabel!
-    @IBOutlet weak var typeLabel: UILabel!
+    @IBOutlet weak var digitsLabel: UILabel!
     @IBOutlet weak var alteredButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var nicknameTextField: UITextField!
-    @IBOutlet weak var typeTextField: UITextField!
+    @IBOutlet weak var digitsTextField: UITextField!
     
-    var cardStatus: Bool?
+    
+    
     var nicknameFieldSatisfied: Bool?
     var typeFieldSatisfied: Bool?
     var thisCardIDTransfered = ""
+    var last4Pulled: String?
     var serviceToDelete: [String] = []
+    var stateOfCard: Bool?
+    
     let ref = Database.database().reference()
     let user = Auth.auth().currentUser
     
@@ -46,7 +50,7 @@ class EditCardViewController: UIViewController {
         super.viewDidLoad()
         
         self.nicknameTextField.delegate = self
-        self.typeTextField.delegate = self
+        self.digitsTextField.delegate = self
         
         lyLogo.createRoundView()
         
@@ -104,7 +108,7 @@ class EditCardViewController: UIViewController {
                         
                         if let cardDict = thisCardDetails.value as? [String: AnyObject] {
                             self.nicknameTextField.text = cardDict["nickname"] as? String
-                            self.typeTextField.text = cardDict["type"] as? String
+                            self.digitsTextField.text = cardDict["last4"] as? String
                         }
                     })
                 }
@@ -151,8 +155,7 @@ class EditCardViewController: UIViewController {
                 }
             })
             
-            let card = self.ref.child("cards").child(self.thisCardIDTransfered)
-            card.updateChildValues(["cardStatus": false])
+            
             if let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
                 detailVC.cardID = self.thisCardIDTransfered
                 self.navigationController?.pushViewController(detailVC, animated: true)
@@ -220,16 +223,24 @@ class EditCardViewController: UIViewController {
     
     
     
-
+    
     
     
     // MARK: Update Card
     
     func updateCard() {
         let tCardName = nicknameTextField.text ?? ""
-        let tCardType = typeTextField.text ?? ""
+        let tLast4 = last4Pulled ?? ""
+        let tCardType = digitsTextField.text ?? ""
         let thisCard = ref.child("cards").child(thisCardIDTransfered)
-        thisCard.updateChildValues(["nickname": tCardName, "type": tCardType, "cardStatus": true])
+        
+        
+        
+        
+        thisCard.updateChildValues(["nickname": tCardName, "last4": tLast4, "type": tCardType])
+        
+        
+        
         if let detailVC = storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
             detailVC.cardID = thisCardIDTransfered
             navigationController?.pushViewController(detailVC, animated: true)
@@ -303,5 +314,23 @@ class EditCardViewController: UIViewController {
 
 
 extension EditCardViewController: UITextFieldDelegate {
-    //
+    
+    
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField == digitsTextField {
+            
+            guard let text = textField.text else { return true }
+            
+            let allowedCharacters = CharacterSet.decimalDigits
+            let characterSet = CharacterSet(charactersIn: string)
+            
+            let newLength = text.characters.count + string.characters.count - range.length
+            return  allowedCharacters.isSuperset(of: characterSet) && newLength <= 4 // Bool
+        }
+        
+        return true
+    }
+    
 }
