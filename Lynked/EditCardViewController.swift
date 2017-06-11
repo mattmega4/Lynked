@@ -168,15 +168,21 @@ class EditCardViewController: UIViewController {
     }
     
     
+    
+    
+    
     // MARK: Delete Card with UIAlert
     
     func deleteCard() {
         
         let alertController = UIAlertController(title: "Wait!", message: "This will completely remove this card from your account. All the services linked to this card will be removed. Your total fixed monthly expenses will also be erased!", preferredStyle: UIAlertControllerStyle.alert)
         
-        let cancelAction = UIAlertAction(title: "Never Mind!", style: UIAlertActionStyle.cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "Never Mind!", style: .cancel, handler: nil)
         
-        let okAction = UIAlertAction(title: "I Understand!", style: UIAlertActionStyle.default) { (result: UIAlertAction) in
+        
+        
+        
+        let okAction = UIAlertAction(title: "I Understand!", style: .destructive) { (result: UIAlertAction) in
             
             let thisCard = self.ref.child("cards").child(self.thisCardIDTransfered)
             let thisCardInUsers = self.ref.child("users").child((self.user?.uid)!).child("cards").child(self.thisCardIDTransfered)
@@ -189,54 +195,19 @@ class EditCardViewController: UIViewController {
             cardNode.observeSingleEvent(of: .value, with: { (snapshot) in
                 if snapshot.hasChildren() {
                     
-                    
-                    
-                    var shouldPush = true
-                    
-                    
-                    if let navigationController = self.navigationController {
-                        for viewController in navigationController.viewControllers {
-                            if viewController is CardWalletViewController {
-                                shouldPush = false
-                            }
-                        }
+                    if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? CardWalletViewController {
+                        self.navigationController?.pushViewController(walletVC, animated: true)
                     }
                     
-                    if shouldPush {
-                        
-                        let crdWllt = CardWalletViewController(nibName: nil, bundle: nil)
-                        self.navigationController?.pushViewController(crdWllt, animated: true)
-                    }
-
-//                    if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? CardWalletViewController {
-//                        self.navigationController?.pushViewController(walletVC, animated: true)
-//                    }
                 } else {
                     
-                    var shouldPush = true
-                    
-                    
-                    if let navigationController = self.navigationController {
-                        for viewController in navigationController.viewControllers {
-                            if viewController is AddCardViewController {
-                                shouldPush = false
-                            }
-                        }
+                    if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
+                        self.navigationController?.pushViewController(addVC, animated: true)
+                        print("foo")
                     }
-                    
-                    if shouldPush {
-                        
-                        let addCrd = AddCardViewController(nibName: nil, bundle: nil)
-                        self.navigationController?.pushViewController(addCrd, animated: true)
-                    }
-                    
-//                    if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
-//                        self.navigationController?.pushViewController(addVC, animated: true)
-//                        print("foo")
-//                        
-//                    }
                 }
             })
+            
         }
         
         alertController.addAction(cancelAction)
@@ -244,7 +215,12 @@ class EditCardViewController: UIViewController {
         
         self.present(alertController, animated: true, completion: nil)
         
+        
     }
+    
+    
+    
+
     
     
     // MARK: Update Card
