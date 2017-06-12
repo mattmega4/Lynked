@@ -13,6 +13,7 @@ target 'Lynked' do
   pod 'Firebase/Performance'
   pod 'Fabric'
   pod 'Crashlytics'
+  pod 'SDWebImage'
 
 
 

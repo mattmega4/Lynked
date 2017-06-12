@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import Fabric
 import Crashlytics
+import SDWebImage
 
 class CardDetailViewController: UIViewController {
     
@@ -85,7 +86,7 @@ class CardDetailViewController: UIViewController {
     
     func setNavBar() {
         self.navigationController?.isNavigationBarHidden = false
-        title = "Your Card"
+//        title = "Your Card"
         navigationController?.navigationBar.barTintColor = UIColor(red: 108.0/255.0,
                                                                    green: 158.0/255.0,
                                                                    blue: 236.0/255.0,
@@ -124,10 +125,15 @@ class CardDetailViewController: UIViewController {
                         thisCardLocation.observe(DataEventType.value, with: { (snapshot) in
                             let thisCardDetails = snapshot as DataSnapshot
                             if let cardDict = thisCardDetails.value as? [String: AnyObject] {
-                                self.selectedCard?.cardID = thisCardDetails.key
-                                self.selectedCard?.nickname = cardDict["nickname"] as? String ?? ""
-                                self.selectedCard?.fourDigits = cardDict["last4"] as? String ?? ""
-                                self.selectedCard?.type = cardDict["type"] as? String ?? ""
+                                self.selectedCard = CardClass(cardDict: cardDict)
+//                                self.selectedCard?.cardID = thisCardDetails.key
+//                                self.selectedCard?.nickname = cardDict["nickname"] as? String
+//                                self.selectedCard?.fourDigits = cardDict["last4"] as? String
+//                                self.selectedCard?.type = cardDict["type"] as? String
+                                
+                                if let titleName = self.selectedCard?.nickname {
+                                    self.title = "\(titleName): 0.0"
+                                }
                                 self.pullServicesForCard()
                             }
                         })
@@ -177,13 +183,13 @@ class CardDetailViewController: UIViewController {
                         self.attentionInt = serviceDict["attentionInt"] as? Int
                         
                         self.totalArr.append((serviceDict["serviceAmount"] as? String)!)
-                        //                        self.doubleArray = self.totalArr.flatMap{ Double($0) }
-                        //                        let arraySum = self.doubleArray.reduce(0, +)
-                        //                        self.title = self.selectedCard?.nickname ?? ""
+                                                self.doubleArray = self.totalArr.flatMap{ Double($0) }
+                                                let arraySum = self.doubleArray.reduce(0, +)
+                                                self.title = self.selectedCard?.nickname ?? ""
                         
-                        //                        if let titleName = self.selectedCard?.nickname {
-                        //                            self.title = "\(titleName): \(arraySum)"
-                        //                        }
+                                                if let titleName = self.selectedCard?.nickname {
+                                                    self.title = "\(titleName): \(arraySum)"
+                                                }
                         
                         aService.serviceID = serviceID
                         
@@ -458,19 +464,16 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         }
         cell.serviceNameLabel.text = serviceArray[row].serviceName
         cell.serviceFixedAmountLabel.text = serviceArray[row].serviceAmount
-        
-        
-        DispatchQueue.global(qos: .background).async {
-            let myURLString: String = "http://www.google.com/s2/favicons?domain=\(self.serviceArray[row].serviceUrl ?? "")"
-            DispatchQueue.main.async {
-                if let myURL = URL(string: myURLString), let myData = try? Data(contentsOf: myURL), let image = UIImage(data: myData) {
-                    cell.serviceLogoImage.image = image
-                } else {
-                    cell.serviceLogoImage.image = UIImage.init(named: "\(self.getLetterOrNumberAndChooseImage(text: self.serviceArray[row].serviceName!))")
-                }
+        if let seviceURLString = self.serviceArray[row].serviceUrl, self.serviceArray[row].serviceUrl?.isEmpty == false {
+            let myURLString: String = "http://www.google.com/s2/favicons?domain=\(seviceURLString)"
+            if let myURL = URL(string: myURLString) {
+                cell.serviceLogoImage.sd_setImage(with: myURL)
             }
         }
         
+        else {
+            cell.serviceLogoImage.image = UIImage.init(named: "\(self.getLetterOrNumberAndChooseImage(text: self.serviceArray[row].serviceName!))")
+        }        
         return cell
     }
     
