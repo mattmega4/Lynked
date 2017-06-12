@@ -52,6 +52,7 @@ class EntryViewController: UIViewController {
     
     var tempUID: String?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -322,7 +323,7 @@ class EntryViewController: UIViewController {
                                            customAttributes: nil)
                 
                 ref.child("users").child((user?.uid)!).child("cards")
-                    .observe(.value, with: { snapshot in
+                    .observeSingleEvent(of: .value, with: { snapshot in
                         if (snapshot.hasChildren()) {
                             
                             if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? CardWalletViewController {
@@ -459,6 +460,12 @@ class EntryViewController: UIViewController {
     }
     
     
+    
+} // End of EntryPageViewController
+
+extension EntryViewController: UITextFieldDelegate {
+    
+    
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
@@ -466,15 +473,17 @@ class EntryViewController: UIViewController {
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        textField.resignFirstResponder()
+        //self.view.endEditing(true)
+        if textField == textFieldOne {
+            textFieldTwo.becomeFirstResponder()
+        }
+        else {
+            signUserIn()
+        }
+        //textField.resignFirstResponder()
         return false
     }
-    
-    
-} // End of EntryPageViewController
 
-extension EntryViewController: UITextFieldDelegate {
     
     // MARK: Add Delegate, Remove AutoCorrect, and Placeholder Color to Bottom TextFields
     

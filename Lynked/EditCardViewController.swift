@@ -45,6 +45,8 @@ class EditCardViewController: UIViewController {
     var serviceToDelete: [String] = []
     var stateOfCard: Bool?
     
+    var cardDeleted = false
+    
     let ref = Database.database().reference()
     let user = Auth.auth().currentUser
     
@@ -196,31 +198,50 @@ class EditCardViewController: UIViewController {
             let thisCard = self.ref.child("cards").child(self.thisCardIDTransfered)
             let thisCardInUsers = self.ref.child("users").child((self.user?.uid)!).child("cards").child(self.thisCardIDTransfered)
             
-            thisCard.removeValue()
-            thisCardInUsers.removeValue()
-            
-            Analytics.logEvent("Card Deleted", parameters: ["success" : true])
-            
-            Answers.logCustomEvent(withName: "Card Deleted",
-                                  customAttributes: nil)
-            
-            let cardNode = self.ref.child("users").child((self.user?.uid)!).child("cards")
-            
-            cardNode.observeSingleEvent(of: .value, with: { (snapshot) in
-                if snapshot.hasChildren() {
-                    
-                    if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? CardWalletViewController {
-                        self.navigationController?.pushViewController(walletVC, animated: true)
-                    }
-                    
-                } else {
-                    
-                    if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
-                        self.navigationController?.pushViewController(addVC, animated: true)
-                        print("foo")
-                    }
+            //            thisCard.removeValue()
+            //            thisCardInUsers.removeValue()
+            thisCard.removeValue(completionBlock: { (error, reference) in
+                if error == nil {
+                    thisCardInUsers.removeValue(completionBlock: { (error2, ref2) in
+                        let cardNode = self.ref.child("users").child((self.user?.uid)!).child("cards")
+                        
+                        cardNode.observeSingleEvent(of: .value, with: { (snapshot) in
+                            
+                            
+                            
+                            
+                            if snapshot.hasChildren() {
+                                //
+                                DispatchQueue.main.async {
+                                    if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? CardWalletViewController {
+                                        self.navigationController?.pushViewController(walletVC, animated: true)
+                                    }
+                                    print("zzz")
+                                }
+                                
+                                
+                            } else {
+                                DispatchQueue.main.async {
+                                    print("hello")
+                                    if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
+                                        self.navigationController?.pushViewController(addVC, animated: true)
+                                        print("foo")
+                                    }
+                                    
+                                }
+                            }
+                            
+                        })
+                        
+                    })
                 }
             })
+            
+            //            Analytics.logEvent("Card Deleted", parameters: ["success" : true])
+            //
+            //            Answers.logCustomEvent(withName: "Card Deleted",
+            //                                  customAttributes: nil)
+            
             
         }
         
@@ -232,11 +253,7 @@ class EditCardViewController: UIViewController {
         
     }
     
-    
-    
-    
-    
-    
+
     // MARK: Update Card
     
     func updateCard() {
@@ -244,10 +261,7 @@ class EditCardViewController: UIViewController {
         let tLast4 = last4Pulled ?? ""
         let tCardType = digitsTextField.text ?? ""
         let thisCard = ref.child("cards").child(thisCardIDTransfered)
-        
-        
-        
-        
+
         thisCard.updateChildValues(["nickname": tCardName, "last4": tLast4, "type": tCardType])
         
         

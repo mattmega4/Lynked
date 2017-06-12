@@ -39,6 +39,7 @@ class CardWalletViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        print("pzza")
         checkFirst()
         tableView.isUserInteractionEnabled = true
     }
@@ -61,7 +62,7 @@ class CardWalletViewController: UIViewController {
     
     func checkFirst() {
         self.ref.child("users").child((self.user?.uid)!).child("cards")
-            .observe(.value, with: { snapshot in
+            .observeSingleEvent(of: .value, with: { snapshot in
                 if (snapshot.hasChildren()) {
                     self.checkIfDataExits()
                 } else {
@@ -106,7 +107,7 @@ class CardWalletViewController: UIViewController {
                         let card4D = cardDict["last4"]
                         let cardType = cardDict["type"]
                         self.cardNicknameToTransfer = (cardNickname as? String)!
-                        self.card4ToTransfer = (card4D as? String)!
+                        self.card4ToTransfer = card4D as? String
                         self.cardtypeToTransfer = (cardType as? String)!
                         let aCard = CardClass(cardDict: cardDict)
                         aCard.cardID = cardID
