@@ -114,6 +114,8 @@ class AddCardViewController: UIViewController {
         }
         ref.child("users").child((user?.uid)!).child("cards").child(card.key).setValue(true)
         
+        Analytics.logEvent("New Card Added", parameters: ["success" : true])
+        
         Answers.logCustomEvent(withName: "New Card Added",
                               customAttributes: nil)
         
