@@ -4,10 +4,15 @@ Lynked is a payment keychain for all your subscription services, so you never ha
 
 
 • Keeps each subscription sorted by nameable credit cards for easy organizing
+
 • App does not need full credit card information
+
 • Allows you to keep track of your monthly subscription services so you can make informed financial decisions on which services you do or do not want to keep
+
 • Lynked is free and ad free
+
 • Allows for fixed (Netflix) or variable (Amazon) costs
+
 • Easy to use: Simply add the web address to your service for quick linking
 
 
