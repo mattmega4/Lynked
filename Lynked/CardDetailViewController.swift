@@ -236,7 +236,7 @@ class CardDetailViewController: UIViewController {
         addServiceButton.alpha = 0.4
         addServiceButton.isEnabled = false
         
-        Analytics.logEvent("Service Quick Add", parameters: ["success" : true])
+        Analytics.logEvent("Service_Quick_Add", parameters: ["success" : true])
         
         Answers.logCustomEvent(withName: "Service Quick Add",
                                customAttributes: nil)

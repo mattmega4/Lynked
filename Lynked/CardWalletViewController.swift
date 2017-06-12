@@ -39,7 +39,7 @@ class CardWalletViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        print("pzza")
+
         checkFirst()
         tableView.isUserInteractionEnabled = true
     }

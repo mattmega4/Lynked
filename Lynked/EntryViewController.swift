@@ -316,7 +316,7 @@ class EntryViewController: UIViewController {
             if error == nil {
                 
                 
-                Analytics.logEvent("Email Login", parameters: ["success" : true])
+                Analytics.logEvent("Email_Login", parameters: ["success" : true])
                 
                 Answers.logLogin(withMethod: "Email Login",
                                            success: true,
@@ -398,7 +398,7 @@ class EntryViewController: UIViewController {
                     self.tempUID = (user?.uid)!
                     
                     
-                    Analytics.logEvent("Email Register", parameters: ["success" : true])
+                    Analytics.logEvent("Email_Register", parameters: ["success" : true])
                     
                     Answers.logSignUp(withMethod: "Email Register",
                                                 success: true,

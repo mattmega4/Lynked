@@ -70,7 +70,7 @@ class PreferencesViewController: UIViewController {
         let cancelAction = UIAlertAction(title: "Never Mind!", style: UIAlertActionStyle.cancel, handler: nil)
         let okAction = UIAlertAction(title: "I Understand!", style: UIAlertActionStyle.default) { (result: UIAlertAction) in
             
-            Analytics.logEvent("User Deleted Account", parameters: ["success" : true])
+            Analytics.logEvent("User_Deleted_Account", parameters: ["success" : true])
             
             Answers.logCustomEvent(withName: "User Deleted Account",
                                    customAttributes: nil)
