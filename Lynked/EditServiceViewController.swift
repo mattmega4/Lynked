@@ -248,6 +248,8 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
             
             let theServiceOnThisCard = self.ref.child("cards").child(self.thisCardTransfered).child("services").child(self.thisServiceTransfered)
             
+            Answers.logCustomEvent(withName: "Service Deleted",
+                                   customAttributes: nil)
             
             thisService.removeValue()
             theServiceOnThisCard.removeValue()
