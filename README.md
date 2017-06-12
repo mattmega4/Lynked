@@ -16,10 +16,6 @@ Visit http://www.matthewhsingleton.com/lynked OR https://itunes.apple.com/us/app
 
 iOS 10.0 +
 
-```
-Give examples
-```
-
 ### Installing
 
 After downloading from Apple Store for free. Tap on Register Account and enter you email and password.
