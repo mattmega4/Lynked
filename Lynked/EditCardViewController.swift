@@ -149,7 +149,7 @@ class EditCardViewController: UIViewController {
                 for each in servicesArr {
                     let servicesToChange = self.ref.child("services")
                     
-                    servicesToChange.observe(DataEventType.value, with: { (snapshot) in
+                    servicesToChange.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
                         
                         for services in snapshot.children {
                             let allServiceID = (services as AnyObject).key as String

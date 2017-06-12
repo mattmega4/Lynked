@@ -175,17 +175,7 @@ class AddCardViewController: UIViewController {
     }
     
     
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return true
-    }
-    
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        textField.resignFirstResponder()
-        return false
-    }
+
     
     
 } // End of AddCardViewController Class
@@ -194,6 +184,31 @@ class AddCardViewController: UIViewController {
 // MARK: UITextField Methods
 
 extension AddCardViewController: UITextFieldDelegate {
+    
+     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == firstContainerTextField {
+            
+            firstContainerTextField.returnKeyType = .next
+            secondContainerTextField.becomeFirstResponder()
+            
+        } else {
+            
+            secondContainerTextField.returnKeyType = .next
+            self.view.endEditing(true)
+            cardTypePickerView.isHidden = false
+            
+        }
+
+        return false
+    }
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
+    
+
     
     func checkNicknameTextField(textField: UITextField) {
         if textField == firstContainerTextField {

@@ -143,7 +143,7 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     func pullServiceData() {
         let serviceRef = ref.child("services")
         
-        serviceRef.observe(DataEventType.value, with: { (snapshot) in
+        serviceRef.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
             
             for childs in snapshot.children {
                 let allServiceID = (childs as AnyObject).key as String
@@ -220,9 +220,9 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
         if let state = stateOfService {
             
             if state == true {
-                thisService.setValue(["serviceURL": urlWhitepacesRemoved, "serviceName": nameWhiteSpacesRemoved, "serviceStatus": state, "serviceFixed": stateOfFixed!, "serviceAmount": amountWhiteSpacesRemoved, "attentionInt": 0])
+                thisService.setValue(["serviceURL": urlWhitepacesRemoved, "serviceName": nameWhiteSpacesRemoved, "serviceStatus": true, "serviceFixed": stateOfFixed!, "serviceAmount": amountWhiteSpacesRemoved, "attentionInt": 0])
             } else {
-                thisService.setValue(["serviceURL": urlWhitepacesRemoved, "serviceName": nameWhiteSpacesRemoved, "serviceStatus": state, "serviceFixed": stateOfFixed!, "serviceAmount": amountWhiteSpacesRemoved, "attentionInt": 1])
+                thisService.setValue(["serviceURL": urlWhitepacesRemoved, "serviceName": nameWhiteSpacesRemoved, "serviceStatus": false, "serviceFixed": stateOfFixed!, "serviceAmount": amountWhiteSpacesRemoved, "attentionInt": 1])
             }
 
         }

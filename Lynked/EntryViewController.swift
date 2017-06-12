@@ -40,6 +40,8 @@ class EntryViewController: UIViewController {
     var leftOn: Bool?
     var rightOn: Bool?
     
+    
+    
     var topFieldIsSatisfied = false
     var bottomFieldIsSatisfied = false
     var nextButtonRequirementsHaveBeenMet = false
@@ -61,8 +63,12 @@ class EntryViewController: UIViewController {
         
         self.navigationController?.isNavigationBarHidden = true
         bottomTextFieldDelegateAndAutoCorrectAndPlaceholderColorSetup()
-        addTextFieldTargets()
-        keyboardMethods()
+        textFieldOne.addTarget(self, action: #selector(checkIfTopTextFIeldIsSatisfied(textField:)), for: .editingChanged)
+        textFieldTwo.addTarget(self, action: #selector(checkIfBottomTextFieldIsSatisfied(textField:)), for: .editingChanged)
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EntryViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,25 +77,6 @@ class EntryViewController: UIViewController {
         checkIfBothSignInRequirementsAreMet()
         leftButtonWasTappedWhichIsDefault()
     }
-    
-    
-    // MARK: Add Keyboard Targets
-    
-    func keyboardMethods() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EntryViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
-    }
-    
-    
-    // MARK: Add TextField Targets
-    
-    func addTextFieldTargets() {
-        textFieldOne.addTarget(self, action: #selector(checkIfTopTextFIeldIsSatisfied(textField:)), for: .editingChanged)
-        textFieldTwo.addTarget(self, action: #selector(checkIfBottomTextFieldIsSatisfied(textField:)), for: .editingChanged)
-    }
-    
     
     // MARK: Switch Logic For Sign In or Create Button in Bottom Container View
     
@@ -319,8 +306,8 @@ class EntryViewController: UIViewController {
                 Analytics.logEvent("Email_Login", parameters: ["success" : true])
                 
                 Answers.logLogin(withMethod: "Email Login",
-                                           success: true,
-                                           customAttributes: nil)
+                                 success: true,
+                                 customAttributes: nil)
                 
                 ref.child("users").child((user?.uid)!).child("cards")
                     .observeSingleEvent(of: .value, with: { snapshot in
@@ -401,8 +388,8 @@ class EntryViewController: UIViewController {
                     Analytics.logEvent("Email_Register", parameters: ["success" : true])
                     
                     Answers.logSignUp(withMethod: "Email Register",
-                                                success: true,
-                                                customAttributes: [:])
+                                      success: true,
+                                      customAttributes: [:])
                     if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
                         self.navigationController?.pushViewController(addVC, animated: true)
                     }
@@ -473,17 +460,45 @@ extension EntryViewController: UITextFieldDelegate {
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        //self.view.endEditing(true)
-        if textField == textFieldOne {
-            textFieldTwo.becomeFirstResponder()
+        
+        if leftOn == true && rightOn == false {
+            
+            if textField == textFieldOne {
+                textFieldOne.returnKeyType = .next
+                textFieldTwo.becomeFirstResponder()
+            }
+            else {
+                textFieldTwo.returnKeyType = .done
+                bottomContainerStateSwitcher()
+            }
+            
+            
+        } else if leftOn == false && rightOn == true {
+            
+            if createUserStepOneFinished == false {
+                
+                if textField == textFieldOne {
+                    textFieldOne.returnKeyType = .continue
+                    bottomContainerStateSwitcher()
+                }
+                
+            } else {
+                
+                if textField == textFieldOne {
+                    textFieldOne.returnKeyType = .next
+                    textFieldTwo.becomeFirstResponder()
+                } else {
+                    textFieldTwo.returnKeyType = .done
+                    bottomContainerStateSwitcher()
+                }
+                
+                
+            }
         }
-        else {
-            signUserIn()
-        }
-        //textField.resignFirstResponder()
+        
         return false
     }
-
+    
     
     // MARK: Add Delegate, Remove AutoCorrect, and Placeholder Color to Bottom TextFields
     
