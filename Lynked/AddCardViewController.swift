@@ -257,6 +257,12 @@ extension AddCardViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         cardTypePickerView.isHidden = true
         finalType = allCardTypes[row]
     }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let titleData = allCardTypes[row]
+        let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont(name: "GillSans", size: 15.0)!,NSForegroundColorAttributeName:UIColor.white])
+        return myTitle
+    }
 }
 
 
