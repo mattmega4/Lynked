@@ -134,7 +134,7 @@ class EditCardViewController: UIViewController {
             var servicesArr: [String] = []
             let thisCard = self.ref.child("cards").child(self.thisCardIDTransfered).child("services")
             
-            Analytics.logEvent("Card Altered", parameters: ["success" : true])
+            Analytics.logEvent("Card_Altered", parameters: ["success" : true])
             
             Answers.logCustomEvent(withName: "Card was Altered",
                                    customAttributes: nil)
@@ -197,9 +197,7 @@ class EditCardViewController: UIViewController {
             
             let thisCard = self.ref.child("cards").child(self.thisCardIDTransfered)
             let thisCardInUsers = self.ref.child("users").child((self.user?.uid)!).child("cards").child(self.thisCardIDTransfered)
-            
-            //            thisCard.removeValue()
-            //            thisCardInUsers.removeValue()
+
             thisCard.removeValue(completionBlock: { (error, reference) in
                 if error == nil {
                     thisCardInUsers.removeValue(completionBlock: { (error2, ref2) in
@@ -216,16 +214,16 @@ class EditCardViewController: UIViewController {
                                     if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? CardWalletViewController {
                                         self.navigationController?.pushViewController(walletVC, animated: true)
                                     }
-                                    print("zzz")
+                                    
                                 }
                                 
                                 
                             } else {
                                 DispatchQueue.main.async {
-                                    print("hello")
+                                    
                                     if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
                                         self.navigationController?.pushViewController(addVC, animated: true)
-                                        print("foo")
+                                        
                                     }
                                     
                                 }
@@ -237,10 +235,10 @@ class EditCardViewController: UIViewController {
                 }
             })
             
-            //            Analytics.logEvent("Card Deleted", parameters: ["success" : true])
-            //
-            //            Answers.logCustomEvent(withName: "Card Deleted",
-            //                                  customAttributes: nil)
+                        Analytics.logEvent("Card_Deleted", parameters: ["success" : true])
+            
+                        Answers.logCustomEvent(withName: "Card Deleted",
+                                              customAttributes: nil)
             
             
         }

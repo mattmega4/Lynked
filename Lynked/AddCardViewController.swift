@@ -71,7 +71,6 @@ class AddCardViewController: UIViewController {
         
         checkIfAllConditionsAreMet()
         allCardTypes+=["Visa", "MasterCard", "American Express", "Discover", "Capital One", "China UnionPay", "RuPay", "Diner's Club", "JCB", "Other" ]
-        print("bar")
     }
     
     
@@ -114,7 +113,7 @@ class AddCardViewController: UIViewController {
         }
         ref.child("users").child((user?.uid)!).child("cards").child(card.key).setValue(true)
         
-        Analytics.logEvent("New Card Added", parameters: ["success" : true])
+        Analytics.logEvent("New_Card_Added", parameters: ["success" : true])
         
         Answers.logCustomEvent(withName: "New Card Added",
                               customAttributes: nil)

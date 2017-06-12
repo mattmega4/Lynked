@@ -45,7 +45,7 @@ class InAppPurchaseUtility: NSObject, SKProductsRequestDelegate, SKPaymentTransa
                 
                 // MARK: Track the user action that is important for you.
                 
-                Analytics.logEvent("Add Card Purchase", parameters: ["success" : true])
+                Analytics.logEvent("Add_Card_Purchase", parameters: ["success" : true])
                 
                 Answers.logPurchase(withPrice: 00.99,
                                     currency: "USD",
