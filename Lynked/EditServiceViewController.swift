@@ -226,6 +226,9 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
             }
 
         }
+        
+        Analytics.logEvent("Details Added To Service", parameters: ["success" : true])
+        
         Answers.logCustomEvent(withName: "Details Added To Service",
                               customAttributes: nil)
         
@@ -247,6 +250,8 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
             let thisService = self.ref.child("services").child(self.thisServiceTransfered)
             
             let theServiceOnThisCard = self.ref.child("cards").child(self.thisCardTransfered).child("services").child(self.thisServiceTransfered)
+            
+            Analytics.logEvent("Service Deleted", parameters: ["success" : true])
             
             Answers.logCustomEvent(withName: "Service Deleted",
                                    customAttributes: nil)

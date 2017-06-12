@@ -8,6 +8,8 @@
 
 import UIKit
 import StoreKit
+import Firebase
+import Fabric
 import Crashlytics
 
 class InAppPurchaseUtility: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
@@ -42,6 +44,9 @@ class InAppPurchaseUtility: NSObject, SKProductsRequestDelegate, SKPaymentTransa
                 purchaseCompletion?(true, nil)
                 
                 // MARK: Track the user action that is important for you.
+                
+                Analytics.logEvent("Add Card Purchase", parameters: ["success" : true])
+                
                 Answers.logPurchase(withPrice: 00.99,
                                     currency: "USD",
                                     success: true,

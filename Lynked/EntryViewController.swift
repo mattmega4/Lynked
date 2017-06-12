@@ -314,7 +314,10 @@ class EntryViewController: UIViewController {
             let user = Auth.auth().currentUser
             if error == nil {
                 
-                Answers.logLogin(withMethod: "Email",
+                
+                Analytics.logEvent("Email Login", parameters: ["success" : true])
+                
+                Answers.logLogin(withMethod: "Email Login",
                                            success: true,
                                            customAttributes: nil)
                 
@@ -392,7 +395,11 @@ class EntryViewController: UIViewController {
                     ref.child("users").child((user?.uid)!).child("cards").setValue(true)
                     Auth.auth().signIn(withEmail: self.newUserEmail!, password: self.newUserPassword!)
                     self.tempUID = (user?.uid)!
-                    Answers.logSignUp(withMethod: "Email",
+                    
+                    
+                    Analytics.logEvent("Email Register", parameters: ["success" : true])
+                    
+                    Answers.logSignUp(withMethod: "Email Register",
                                                 success: true,
                                                 customAttributes: [:])
                     if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {

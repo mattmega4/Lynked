@@ -132,6 +132,8 @@ class EditCardViewController: UIViewController {
             var servicesArr: [String] = []
             let thisCard = self.ref.child("cards").child(self.thisCardIDTransfered).child("services")
             
+            Analytics.logEvent("Card Altered", parameters: ["success" : true])
+            
             Answers.logCustomEvent(withName: "Card was Altered",
                                    customAttributes: nil)
             
@@ -196,6 +198,8 @@ class EditCardViewController: UIViewController {
             
             thisCard.removeValue()
             thisCardInUsers.removeValue()
+            
+            Analytics.logEvent("Card Deleted", parameters: ["success" : true])
             
             Answers.logCustomEvent(withName: "Card Deleted",
                                   customAttributes: nil)
