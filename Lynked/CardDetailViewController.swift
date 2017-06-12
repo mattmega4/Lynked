@@ -86,7 +86,7 @@ class CardDetailViewController: UIViewController {
     
     func setNavBar() {
         self.navigationController?.isNavigationBarHidden = false
-//        title = "Your Card"
+        //        title = "Your Card"
         navigationController?.navigationBar.barTintColor = UIColor(red: 108.0/255.0,
                                                                    green: 158.0/255.0,
                                                                    blue: 236.0/255.0,
@@ -126,13 +126,8 @@ class CardDetailViewController: UIViewController {
                             let thisCardDetails = snapshot as DataSnapshot
                             if let cardDict = thisCardDetails.value as? [String: AnyObject] {
                                 self.selectedCard = CardClass(cardDict: cardDict)
-//                                self.selectedCard?.cardID = thisCardDetails.key
-//                                self.selectedCard?.nickname = cardDict["nickname"] as? String
-//                                self.selectedCard?.fourDigits = cardDict["last4"] as? String
-//                                self.selectedCard?.type = cardDict["type"] as? String
-                                
                                 if let titleName = self.selectedCard?.nickname {
-                                    self.title = "\(titleName): 0.0"
+                                    self.title = "\(titleName)"
                                 }
                                 self.pullServicesForCard()
                             }
@@ -149,6 +144,8 @@ class CardDetailViewController: UIViewController {
             thisCardServices.observe(DataEventType.value, with: { (serviceSnap) in
                 if self.serviceArray.count != Int(serviceSnap.childrenCount) {
                     self.serviceArray.removeAll()
+                    self.doubleArray.removeAll()
+                    
                     self.fetchAndAddAllServices(serviceSnap: serviceSnap, index: 0, completion: { (success) in
                         if success {
                             DispatchQueue.main.async {
@@ -181,19 +178,20 @@ class CardDetailViewController: UIViewController {
                         self.serviceFixedBool = serviceDict["serviceFixed"] as? Bool
                         self.serviceFixedAmount = serviceDict["serviceAmount"] as? String ?? ""
                         self.attentionInt = serviceDict["attentionInt"] as? Int
-                        
                         self.totalArr.append((serviceDict["serviceAmount"] as? String)!)
-                                                self.doubleArray = self.totalArr.flatMap{ Double($0) }
-                                                let arraySum = self.doubleArray.reduce(0, +)
-                                                self.title = self.selectedCard?.nickname ?? ""
                         
-                                                if let titleName = self.selectedCard?.nickname {
-                                                    self.title = "\(titleName): \(arraySum)"
-                                                }
+                        
+                        self.doubleArray = self.totalArr.flatMap{ Double($0) }
+                        let arraySum = self.doubleArray.reduce(0, +)
+                        self.title = self.selectedCard?.nickname ?? ""
+                        
+                        if let titleName = self.selectedCard?.nickname {
+                            self.title = "\(titleName)"
+                        }
                         
                         aService.serviceID = serviceID
                         
-
+                        
                         if !self.serviceArray.contains(where: { (service) -> Bool in
                             return service.serviceID == aService.serviceID
                         }) {
@@ -203,7 +201,7 @@ class CardDetailViewController: UIViewController {
                                 if $0.serviceAttention == $1.serviceAttention { return $0.serviceName ?? "" < $1.serviceName ?? "" }
                                 return $0.serviceAttention > $1.serviceAttention
                             }
-                        
+                            
                             
                         }
                     }
@@ -396,17 +394,10 @@ class CardDetailViewController: UIViewController {
     }
     
     
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return true
-    }
+
     
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        textField.resignFirstResponder()
-        return false
-    }
+
     
     
 }
@@ -415,6 +406,24 @@ class CardDetailViewController: UIViewController {
 // MARK: UITextField Delegate
 
 extension CardDetailViewController: UITextFieldDelegate {
+    
+    
+     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == serviceNameTextField {
+            
+            serviceNameTextField.returnKeyType = .go
+            addServiceToCard()
+            view.endEditing(true)
+        }
+        
+        return false
+    }
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
     
     func enableAddButton(textField: UITextField) {
         if (textField.text?.isEmpty)! {
@@ -470,10 +479,10 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
                 cell.serviceLogoImage.sd_setImage(with: myURL)
             }
         }
-        
+            
         else {
             cell.serviceLogoImage.image = UIImage.init(named: "\(self.getLetterOrNumberAndChooseImage(text: self.serviceArray[row].serviceName!))")
-        }        
+        }
         return cell
     }
     
