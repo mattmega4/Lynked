@@ -17,28 +17,38 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var rightNavBarButton: UIBarButtonItem!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
+    
     @IBOutlet weak var serviceStateToggleSwtich: UISwitch!
     @IBOutlet weak var servieLabelTop: UILabel!
-    @IBOutlet weak var serviceLabelBottom: UILabel!
-    @IBOutlet weak var firstDividerView: UIView!
+    @IBOutlet weak var updateServiceOnlineButton: UIButton!
+    
     @IBOutlet weak var firstContainerView: UIView!
     @IBOutlet weak var serviceNameLabel: UILabel!
     @IBOutlet weak var serviceNameTextField: UITextField!
-    @IBOutlet weak var secondDividerView: UIView!
+    
     @IBOutlet weak var secondContainerView: UIView!
     @IBOutlet weak var urlLabel: UILabel!
     @IBOutlet weak var urlTextField: UITextField!
     @IBOutlet weak var secondContainerURLIndicatorButton: UIButton!
-    @IBOutlet weak var thirdDividerView: UIView!
+    
     @IBOutlet weak var thirdContainerView: UIView!
     @IBOutlet weak var fixedEpenseLabel: UILabel!
     @IBOutlet weak var fixedExpenseToggleSwitch: UISwitch!
-    @IBOutlet weak var fourthDividerView: UIView!
+    
     @IBOutlet weak var fourthContainerView: UIView!
     @IBOutlet weak var fixedAmountLabel: UILabel!
     @IBOutlet weak var fixedAmountTextField: UITextField!
+    
+    @IBOutlet weak var firstDividerView: UIView!
+    @IBOutlet weak var secondDividerView: UIView!
+    @IBOutlet weak var thirdDividerView: UIView!
+    @IBOutlet weak var fourthDividerView: UIView!
     @IBOutlet weak var fifthDividerView: UIView!
+
+    @IBOutlet weak var fifthContainerView: UIView!
+    
     @IBOutlet weak var deleteServiceButton: UIButton!
+    
     
     var thisServiceTransfered = ""
     var thisCardTransfered = ""
@@ -141,6 +151,7 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     // MARK: Firebase Methods
     
     func pullServiceData() {
+        
         let serviceRef = ref.child("services")
         
         serviceRef.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
@@ -166,7 +177,7 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
                                     self.oneOrZero = 1
                                 }
                                 
-
+                                
                             }
                             
                             if let tempFixed = self.serviceFixedTransfered {
@@ -183,6 +194,12 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
                             
                             self.serviceNameTextField.text = serviceDict["serviceName"] as? String
                             
+                            
+                            
+                            if let btnText = serviceDict["serviceName"] as? String {
+                            self.updateServiceOnlineButton.setTitle("Go To \(btnText)'s Website to Update Payment", for: .normal)
+                            }
+                           
                             self.urlTextField.text = serviceDict["serviceURL"] as? String
                             
                             if serviceDict["serviceFixed"] as! Bool == true {
@@ -224,13 +241,13 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
             } else {
                 thisService.setValue(["serviceURL": urlWhitepacesRemoved, "serviceName": nameWhiteSpacesRemoved, "serviceStatus": false, "serviceFixed": stateOfFixed!, "serviceAmount": amountWhiteSpacesRemoved, "attentionInt": 1])
             }
-
+            
         }
         
         Analytics.logEvent("Details_Added_To_Service", parameters: ["success" : true])
         
         Answers.logCustomEvent(withName: "Details Added To Service",
-                              customAttributes: nil)
+                               customAttributes: nil)
         
         if let detailVC = storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
             detailVC.cardID = thisCardTransfered
@@ -354,14 +371,15 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    @IBAction func urlIndicatorButtonTapped(_ sender: UIButton) {
-        //
-    }
-    
     @IBAction func rightNavBarButtonTapped(_ sender: UIBarButtonItem) {
         saveServiceToFirebase()
         rightNavBarButton.isEnabled = false
     }
+    
+    @IBAction func updateServiceOnlineButtonTapped(_ sender: UIButton) {
+        //
+    }
+    
     
     @IBAction func deleteButtonTapped(_ sender: UIButton) {
         deleteThisService()

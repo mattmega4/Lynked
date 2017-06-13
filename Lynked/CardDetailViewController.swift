@@ -225,8 +225,13 @@ class CardDetailViewController: UIViewController {
         let service = ref.child("services").childByAutoId()
         let whiteSpacesRemoved = serviceNameTextField.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).capitalized
         if let tempName = whiteSpacesRemoved {
-            service.setValue(["serviceURL": "", "serviceName": tempName, "serviceStatus": true, "serviceFixed": false, "serviceAmount": "", "attentionInt": 0])
+            
+            service.setValue(["serviceURL": "\(tempName).com", "serviceName": tempName, "serviceStatus": true, "serviceFixed": false, "serviceAmount": "", "attentionInt": 0])
         }
+        
+        
+        
+        
         if let theId = cardID {
             ref.child("cards").child(theId).child("services").child(service.key).setValue(true)
         }
@@ -240,6 +245,12 @@ class CardDetailViewController: UIViewController {
                                customAttributes: nil)
         
     }
+    
+    
+
+    
+    
+    
     
     
     // MARK: Set Letter/Number Image For NO URL
@@ -473,6 +484,8 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         }
         cell.serviceNameLabel.text = serviceArray[row].serviceName
         cell.serviceFixedAmountLabel.text = serviceArray[row].serviceAmount
+        
+        
         if let seviceURLString = self.serviceArray[row].serviceUrl, self.serviceArray[row].serviceUrl?.isEmpty == false {
             let myURLString: String = "http://www.google.com/s2/favicons?domain=\(seviceURLString)"
             if let myURL = URL(string: myURLString) {
