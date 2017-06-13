@@ -44,7 +44,7 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var thirdDividerView: UIView!
     @IBOutlet weak var fourthDividerView: UIView!
     @IBOutlet weak var fifthDividerView: UIView!
-
+    
     @IBOutlet weak var fifthContainerView: UIView!
     
     @IBOutlet weak var deleteServiceButton: UIButton!
@@ -65,6 +65,9 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     var stateOfFixed: Bool?
     var toStatus: Bool?
     var oneOrZero: Int?
+    
+    var nameForSite: String?
+    var URLForSite: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -176,8 +179,6 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
                                 } else {
                                     self.oneOrZero = 1
                                 }
-                                
-                                
                             }
                             
                             if let tempFixed = self.serviceFixedTransfered {
@@ -196,11 +197,18 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
                             
                             
                             
-                            if let btnText = serviceDict["serviceName"] as? String {
-                            self.updateServiceOnlineButton.setTitle("Go To \(btnText)'s Website to Update Payment", for: .normal)
+                            if let temp = serviceDict["serviceName"] as? String {
+                                self.updateServiceOnlineButton.setTitle("Go To \(temp)'s Website to Update Payment", for: .normal)
+                                self.nameForSite = temp
                             }
-                           
+                            
                             self.urlTextField.text = serviceDict["serviceURL"] as? String
+                            
+                            if let tUrl = serviceDict["serviceURL"] as? String {
+                                self.URLForSite = tUrl
+                            }
+                            
+                            
                             
                             if serviceDict["serviceFixed"] as! Bool == true {
                                 self.fixedExpenseToggleSwitch.setOn(true, animated: true)
@@ -377,7 +385,26 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func updateServiceOnlineButtonTapped(_ sender: UIButton) {
-        //
+        if let sendURL = URLForSite {
+            if let url = URL(string: sendURL) {
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                } else {
+                    UIApplication.shared.openURL(url)
+                }
+            }
+        } else {
+            // google search with the service titles name
+            if let tName = nameForSite {
+                if let url = URL(string: "www.google.com/#q=\(tName)") {
+                    if #available(iOS 10.0, *) {
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    } else {
+                        UIApplication.shared.openURL(url)
+                    }
+                }
+            }
+        }
     }
     
     

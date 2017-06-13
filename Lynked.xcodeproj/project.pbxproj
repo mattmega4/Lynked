@@ -27,6 +27,7 @@
 		29773CDD1EC3B6730023F277 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29773CDC1EC3B6730023F277 /* EntryViewController.swift */; };
 		299F85221EE78DB1001A819D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299F85211EE78DB1001A819D /* StoreKit.framework */; };
 		29AA67E21EE7B4BA000EDE42 /* InAppPurchaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA67E11EE7B4BA000EDE42 /* InAppPurchaseUtility.swift */; };
+		29B563DA1EEFCF270028B0EB /* UpdateServiceWebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B563D91EEFCF270028B0EB /* UpdateServiceWebViewViewController.swift */; };
 		29EE32411EC9754E00C2FFB6 /* CardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EE32401EC9754E00C2FFB6 /* CardDetailViewController.swift */; };
 		29EE32441EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EE32431EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift */; };
 		FE255734139BB8197894689C /* Pods_Lynked.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 267A4AE157A5C3F5E4C71A91 /* Pods_Lynked.framework */; };
@@ -56,6 +57,7 @@
 		29773CDC1EC3B6730023F277 /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		299F85211EE78DB1001A819D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		29AA67E11EE7B4BA000EDE42 /* InAppPurchaseUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseUtility.swift; sourceTree = "<group>"; };
+		29B563D91EEFCF270028B0EB /* UpdateServiceWebViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateServiceWebViewViewController.swift; sourceTree = "<group>"; };
 		29EE32401EC9754E00C2FFB6 /* CardDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
 		29EE32431EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceCollectionViewCell.swift; sourceTree = "<group>"; };
 		29F778D71EEE291300B6AA6E /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -171,6 +173,7 @@
 				1D1712781E01F0870087F299 /* PreferencesViewController.swift */,
 				1DC0D8DE1DFE5F910039B8F6 /* EditCardViewController.swift */,
 				1DC0D8E01DFE5FBB0039B8F6 /* EditServiceViewController.swift */,
+				29B563D91EEFCF270028B0EB /* UpdateServiceWebViewViewController.swift */,
 				292764961EDFC8480096AE1E /* Custom Cells */,
 				1DD7D2571E393BEB00AF1299 /* Custom Classes */,
 				1D2D41EE1E01436F00745588 /* View Extensions */,
@@ -364,6 +367,7 @@
 				1D435D861E14548C0033DB59 /* General+Extensions.swift in Sources */,
 				1DC0D8AB1DFE516A0039B8F6 /* AppDelegate.swift in Sources */,
 				292764931EDFA3160096AE1E /* CardWalletViewController.swift in Sources */,
+				29B563DA1EEFCF270028B0EB /* UpdateServiceWebViewViewController.swift in Sources */,
 				1DC0D8E11DFE5FBB0039B8F6 /* EditServiceViewController.swift in Sources */,
 				1D1712791E01F0870087F299 /* PreferencesViewController.swift in Sources */,
 				29EE32441EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift in Sources */,
