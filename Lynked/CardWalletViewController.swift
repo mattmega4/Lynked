@@ -66,24 +66,13 @@ class CardWalletViewController: UIViewController {
                                                                                                size: 18)!]
     }
     
-//    func checkFirst() {
-//        self.ref.child("users").child((self.user?.uid)!).child("cards")
-//            .observeSingleEvent(of: .value, with: { snapshot in
-//                if (snapshot.hasChildren()) {
-//                    self.checkIfDataExits()
-//                } else {
-//                    if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
-//                        self.navigationController?.pushViewController(addVC, animated: true)
-//                    }
-//                }
-//            })
-//    }
+
     
     
     // MARK: Firebase Methods
     
     func checkIfDataExits() {
-//        DispatchQueue.main.async {
+        DispatchQueue.main.async {
             self.cardArray.removeAll()
             self.ref.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
                 if snapshot.hasChild("cards") {
@@ -95,7 +84,7 @@ class CardWalletViewController: UIViewController {
                     }
                 }
             })
-//        }
+        }
     }
     
     
