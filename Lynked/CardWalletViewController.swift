@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import StoreKit
+import FirebasePerformance
 
 class CardWalletViewController: UIViewController {
     
@@ -40,8 +41,13 @@ class CardWalletViewController: UIViewController {
         super.viewWillAppear(animated)
         
 
-        checkFirst()
+//        checkFirst()
+        checkIfDataExits()
         tableView.isUserInteractionEnabled = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        ref.removeAllObservers()
     }
     
     // MARK: Nav Bar & View Design
@@ -60,42 +66,49 @@ class CardWalletViewController: UIViewController {
                                                                                                size: 18)!]
     }
     
-    func checkFirst() {
-        self.ref.child("users").child((self.user?.uid)!).child("cards")
-            .observeSingleEvent(of: .value, with: { snapshot in
-                if (snapshot.hasChildren()) {
-                    self.checkIfDataExits()
-                } else {
-                    if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
-                        self.navigationController?.pushViewController(addVC, animated: true)
-                    }
-                }
-            })
-    }
+//    func checkFirst() {
+//        self.ref.child("users").child((self.user?.uid)!).child("cards")
+//            .observeSingleEvent(of: .value, with: { snapshot in
+//                if (snapshot.hasChildren()) {
+//                    self.checkIfDataExits()
+//                } else {
+//                    if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
+//                        self.navigationController?.pushViewController(addVC, animated: true)
+//                    }
+//                }
+//            })
+//    }
     
     
     // MARK: Firebase Methods
     
     func checkIfDataExits() {
-        DispatchQueue.main.async {
+//        DispatchQueue.main.async {
             self.cardArray.removeAll()
             self.ref.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
                 if snapshot.hasChild("cards") {
                     self.pullAllUsersCards()
+                    
                 } else {
                     if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
                         self.navigationController?.pushViewController(addVC, animated: true)
                     }
                 }
             })
-        }
+//        }
     }
+    
+    
+    
+    
+    
     
     
     func pullAllUsersCards() {
         cardArray.removeAll()
         let userRef = ref.child("users").child((user?.uid)!).child("cards")
         userRef.observe(DataEventType.value, with: { (snapshot) in
+            let cardTrace = Performance.startTrace(name: "PullCardTrace")
             for userscard in snapshot.children {
                 let cardID = (userscard as AnyObject).key as String
                 let cardRef = self.ref.child("cards").child(cardID)
@@ -114,6 +127,7 @@ class CardWalletViewController: UIViewController {
                         self.cardArray.append(aCard)
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
+                            cardTrace?.stop()
                         }
                     }
                 })
