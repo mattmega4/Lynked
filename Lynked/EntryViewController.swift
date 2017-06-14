@@ -40,8 +40,6 @@ class EntryViewController: UIViewController {
     var leftOn: Bool?
     var rightOn: Bool?
     
-    
-    
     var topFieldIsSatisfied = false
     var bottomFieldIsSatisfied = false
     var nextButtonRequirementsHaveBeenMet = false

@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebasePerformance
 import Fabric
 import Crashlytics
 import SDWebImage
@@ -81,6 +82,10 @@ class CardDetailViewController: UIViewController {
         collectionView.isUserInteractionEnabled = true
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        ref.removeAllObservers()
+    }
+    
     
     // MARK: Nav Bar & View Design
     
@@ -143,6 +148,7 @@ class CardDetailViewController: UIViewController {
             let thisCardServices = self.ref.child("cards").child(theId).child("services")
             thisCardServices.observe(DataEventType.value, with: { (serviceSnap) in
                 if self.serviceArray.count != Int(serviceSnap.childrenCount) {
+                    let servicesTrace = Performance.startTrace(name: "PullServicesTrace")
                     self.serviceArray.removeAll()
                     self.doubleArray.removeAll()
                     
@@ -150,6 +156,8 @@ class CardDetailViewController: UIViewController {
                         if success {
                             DispatchQueue.main.async {
                                 self.collectionView.reloadData()
+                                servicesTrace?.stop()
+                                
                             }
                         }
                     })
@@ -228,10 +236,7 @@ class CardDetailViewController: UIViewController {
             
             service.setValue(["serviceURL": "\(tempName).com", "serviceName": tempName, "serviceStatus": true, "serviceFixed": false, "serviceAmount": "", "attentionInt": 0])
         }
-        
-        
-        
-        
+
         if let theId = cardID {
             ref.child("cards").child(theId).child("services").child(service.key).setValue(true)
         }
@@ -245,13 +250,7 @@ class CardDetailViewController: UIViewController {
                                customAttributes: nil)
         
     }
-    
-    
 
-    
-    
-    
-    
     
     // MARK: Set Letter/Number Image For NO URL
     

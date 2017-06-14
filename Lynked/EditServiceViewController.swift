@@ -170,6 +170,7 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
                         
                         if let serviceDict = thisServiceDetails.value as? [String: AnyObject] {
                             
+                            
                             if let tempState = self.serviceUpToDateTransfered {
                                 
                                 self.stateOfService = tempState
@@ -179,10 +180,6 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
                                 } else {
                                     self.oneOrZero = 1
                                 }
-                            }
-                            
-                            if let tempFixed = self.serviceFixedTransfered {
-                                self.stateOfFixed = tempFixed
                             }
                             
                             if serviceDict["serviceStatus"] as! Bool == true {
@@ -208,6 +205,10 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
                                 self.URLForSite = tUrl
                             }
                             
+                            
+                            if let tempFixed = self.serviceFixedTransfered {
+                                self.stateOfFixed = tempFixed
+                            }
                             
                             
                             if serviceDict["serviceFixed"] as! Bool == true {
