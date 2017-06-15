@@ -17,10 +17,6 @@ extension UIViewController {
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
     }
-    
-    
-    
-    
 }
 
 extension String {
@@ -34,8 +30,12 @@ extension String {
         let urlRegEx = "((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+"
         return NSPredicate(format: "SELF MATCHES %@", urlRegEx).evaluate(with: self)
     }
+    
+    func removingWhitespaces() -> String {
+        return components(separatedBy: .whitespaces).joined()
+    }
+    
 }
-
 
 extension UIView {
     func createRoundView() {
@@ -48,5 +48,15 @@ extension NSObject {
     func delay(_ delay:Double, closure:@escaping ()->()) {
         let when = DispatchTime.now() + delay
         DispatchQueue.main.asyncAfter(deadline: when, execute: closure)
+    }
+}
+
+extension Array where Element: Hashable {
+    func countForElements() -> [(Element, Int)] {
+        let countedSet = NSCountedSet(array: self)
+        let res = countedSet.objectEnumerator().map { (object: Any) -> (Element, Int) in
+            return (object as! Element, countedSet.count(for: object))
+        }
+        return res
     }
 }

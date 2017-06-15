@@ -43,8 +43,11 @@ class EditCardViewController: UIViewController {
     var typeFieldSatisfied: Bool?
     var thisCardIDTransfered = ""
     var last4Pulled: String?
+    var cardType: String?
     var serviceToDelete: [String] = []
     var stateOfCard: Bool?
+    
+    var colorInt: Int?
     
     var cardDeleted = false
     
@@ -113,6 +116,14 @@ class EditCardViewController: UIViewController {
                         if let cardDict = thisCardDetails.value as? [String: AnyObject] {
                             self.nicknameTextField.text = cardDict["nickname"] as? String
                             self.digitsTextField.text = cardDict["last4"] as? String
+                            self.cardType = cardDict["type"] as? String
+                            
+                            self.colorInt = cardDict["color"] as? Int
+                            
+                            if let indx = self.colorInt {
+                                self.segControl.selectedSegmentIndex = indx
+                            }
+                            
                         }
                     })
                 }
@@ -256,11 +267,14 @@ class EditCardViewController: UIViewController {
     
     func updateCard() {
         let tCardName = nicknameTextField.text ?? ""
-        let tLast4 = last4Pulled ?? ""
-        let tCardType = digitsTextField.text ?? ""
+        let tLast4 = digitsTextField.text ?? ""
+        let tCardType = cardType ?? ""
+        
+        let color = segControl.selectedSegmentIndex
+        
         let thisCard = ref.child("cards").child(thisCardIDTransfered)
 
-        thisCard.updateChildValues(["nickname": tCardName, "last4": tLast4, "type": tCardType])
+        thisCard.updateChildValues(["nickname": tCardName, "last4": tLast4, "type": tCardType, "color": color])
         
         
         

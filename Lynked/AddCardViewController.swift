@@ -111,8 +111,11 @@ class AddCardViewController: UIViewController {
         let typeToAdd = finalType
         finalType = typeToAdd?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
-        if let tempNick = finalNickname, let temp4 = last4 {
-            card.setValue(["nickname": tempNick, "last4": temp4, "type": finalType])
+        
+        let color: Int? = segControl.selectedSegmentIndex
+        
+        if let tempNick = finalNickname, let temp4 = last4, let fynal = finalType, let clrInt = color {
+            card.setValue(["nickname": tempNick, "last4": temp4, "type": fynal, "color": clrInt])
         }
         ref.child("users").child((user?.uid)!).child("cards").child(card.key).setValue(true)
         
@@ -282,6 +285,8 @@ extension AddCardViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         return myTitle
     }
 }
+
+
 
 
 

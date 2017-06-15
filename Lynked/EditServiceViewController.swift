@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import Fabric
 import Crashlytics
+import SafariServices
 
 class EditServiceViewController: UIViewController, UITextFieldDelegate {
     
@@ -199,7 +200,7 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
                                 self.nameForSite = temp
                             }
                             
-                            self.urlTextField.text = serviceDict["serviceURL"] as? String
+                            self.urlTextField.text = (serviceDict["serviceURL"] as? String)?.trimmingCharacters(in: .whitespaces)
                             
                             if let tUrl = serviceDict["serviceURL"] as? String {
                                 self.URLForSite = tUrl
@@ -236,8 +237,11 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
         let sURL = urlTextField.text ?? ""
         let sAmount = fixedAmountTextField.text ?? ""
         let nameWhiteSpacesRemoved = sName.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        let urlWhitepacesRemoved = sURL.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let urlOuterWhitepacesRemoved = sURL.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let urlFullTrim = urlOuterWhitepacesRemoved.removingWhitespaces()
+        
         var amountWhiteSpacesRemoved = sAmount.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        
         if amountWhiteSpacesRemoved.hasPrefix("$") && amountWhiteSpacesRemoved.characters.count > 1 {
             amountWhiteSpacesRemoved.remove(at: amountWhiteSpacesRemoved.startIndex)
         }
@@ -246,9 +250,9 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
         if let state = stateOfService {
             
             if state == true {
-                thisService.setValue(["serviceURL": urlWhitepacesRemoved, "serviceName": nameWhiteSpacesRemoved, "serviceStatus": true, "serviceFixed": stateOfFixed!, "serviceAmount": amountWhiteSpacesRemoved, "attentionInt": 0])
+                thisService.setValue(["serviceURL": urlFullTrim, "serviceName": nameWhiteSpacesRemoved, "serviceStatus": true, "serviceFixed": stateOfFixed!, "serviceAmount": amountWhiteSpacesRemoved, "attentionInt": 0])
             } else {
-                thisService.setValue(["serviceURL": urlWhitepacesRemoved, "serviceName": nameWhiteSpacesRemoved, "serviceStatus": false, "serviceFixed": stateOfFixed!, "serviceAmount": amountWhiteSpacesRemoved, "attentionInt": 1])
+                thisService.setValue(["serviceURL": urlFullTrim, "serviceName": nameWhiteSpacesRemoved, "serviceStatus": false, "serviceFixed": stateOfFixed!, "serviceAmount": amountWhiteSpacesRemoved, "attentionInt": 1])
             }
             
         }
@@ -387,22 +391,15 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func updateServiceOnlineButtonTapped(_ sender: UIButton) {
         if let sendURL = URLForSite {
-            if let url = URL(string: sendURL) {
-                if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                } else {
-                    UIApplication.shared.openURL(url)
-                }
+            if let url = URL(string: "https://" + sendURL) {
+                let svc = SFSafariViewController(url: url)
+                self.present(svc, animated: true, completion: nil)
             }
         } else {
-            // google search with the service titles name
             if let tName = nameForSite {
-                if let url = URL(string: "www.google.com/#q=\(tName)") {
-                    if #available(iOS 10.0, *) {
-                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                    } else {
-                        UIApplication.shared.openURL(url)
-                    }
+                if let url = URL(string: "https://www.google.com/#q=\(tName)") {
+                    let svc = SFSafariViewController(url: url)
+                    self.present(svc, animated: true, completion: nil)
                 }
             }
         }
