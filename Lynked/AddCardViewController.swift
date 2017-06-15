@@ -57,6 +57,12 @@ class AddCardViewController: UIViewController {
         secondContainerTextField.delegate = self
         cardTypePickerView.delegate = self
         cardTypePickerView.dataSource = self
+
+        
+//        segControl.selectedSegmentIndex = SegmentColorManager.shared.colorAtIndex(index: )
+        
+        
+        
         
         setNavBar()
         nextNavBarButton.isEnabled = false
