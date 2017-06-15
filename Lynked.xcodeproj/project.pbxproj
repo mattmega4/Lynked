@@ -22,6 +22,7 @@
 		1DD7D2561E384DFD00AF1299 /* Currency+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7D2551E384DFD00AF1299 /* Currency+Extension.swift */; };
 		1DD7D2591E393C0700AF1299 /* CardClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7D2581E393C0700AF1299 /* CardClass.swift */; };
 		1DD7D25C1E393C2300AF1299 /* ServiceClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7D25B1E393C2300AF1299 /* ServiceClass.swift */; };
+		2924F9B81EF214DE0014C284 /* SegmentedControlColorLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F9B71EF214DE0014C284 /* SegmentedControlColorLogic.swift */; };
 		292764931EDFA3160096AE1E /* CardWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292764921EDFA3160096AE1E /* CardWalletViewController.swift */; };
 		292764951EDFC8350096AE1E /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292764941EDFC8350096AE1E /* CardTableViewCell.swift */; };
 		29773CDD1EC3B6730023F277 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29773CDC1EC3B6730023F277 /* EntryViewController.swift */; };
@@ -52,6 +53,7 @@
 		1DD7D2581E393C0700AF1299 /* CardClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardClass.swift; sourceTree = "<group>"; };
 		1DD7D25B1E393C2300AF1299 /* ServiceClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceClass.swift; sourceTree = "<group>"; };
 		267A4AE157A5C3F5E4C71A91 /* Pods_Lynked.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lynked.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2924F9B71EF214DE0014C284 /* SegmentedControlColorLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControlColorLogic.swift; sourceTree = "<group>"; };
 		292764921EDFA3160096AE1E /* CardWalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardWalletViewController.swift; sourceTree = "<group>"; };
 		292764941EDFC8350096AE1E /* CardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
 		29773CDC1EC3B6730023F277 /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			children = (
 				29AA67E11EE7B4BA000EDE42 /* InAppPurchaseUtility.swift */,
 				1DC0D8B11DFE516A0039B8F6 /* Lynked.xcdatamodeld */,
+				2924F9B71EF214DE0014C284 /* SegmentedControlColorLogic.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DC0D8D91DFE59360039B8F6 /* AddCardViewController.swift in Sources */,
+				2924F9B81EF214DE0014C284 /* SegmentedControlColorLogic.swift in Sources */,
 				1D2D41F01E01439300745588 /* ShadowForTableViewCell.swift in Sources */,
 				1DD7D25C1E393C2300AF1299 /* ServiceClass.swift in Sources */,
 				29773CDD1EC3B6730023F277 /* EntryViewController.swift in Sources */,
