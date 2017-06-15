@@ -6,7 +6,7 @@
 //  Copyright © 2017 Matthew Singleton. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 
 class CardClass {
@@ -15,6 +15,8 @@ class CardClass {
     var nickname: String?
     var fourDigits: String?
     var type: String?
+    var color: UIColor?
+    var textColor: UIColor?
 
     
     init(cardDict: [String: Any]) {
@@ -22,7 +24,10 @@ class CardClass {
         let cardNickname = cardDict["nickname"]
         let cardFourDigits = cardDict["last4"]
         let cardType = cardDict["type"]
-        
+        if let colorIndex = cardDict["color"] as? Int {
+            color = SegmentColorManager.shared.colorAtIndex(index: colorIndex)
+            textColor = SegmentColorManager.shared.textColorAtIndex(index: colorIndex)
+        }
 
 
         nickname = cardNickname as? String

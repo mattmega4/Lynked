@@ -23,6 +23,9 @@ class CardDetailViewController: UIViewController {
     @IBOutlet weak var innerDividerView: UIView!
     @IBOutlet weak var addServiceButton: UIButton!
     @IBOutlet weak var bottomDividerView: UIView!
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     @IBOutlet weak var noteLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var editCardButton: UIButton!
@@ -39,11 +42,13 @@ class CardDetailViewController: UIViewController {
     var serviceFixedBool: Bool?
     var serviceFixedAmount: String?
     var serviceArray: [ServiceClass] = []
+    var tempServiceArray = [ServiceClass]()
     let ref = Database.database().reference()
     let user = Auth.auth().currentUser
     var selectedCard: CardClass?
     var totalArr: [String] = []
     var doubleArray: [Double] = []
+    var tempDoubleArray = [Double]()
     
     let margin: CGFloat = 10
     let cellsPerC = 3
@@ -52,10 +57,15 @@ class CardDetailViewController: UIViewController {
     var autoCompletePossibilities: [String] = []
     var autoComplete: [String] = []
     
+    var countedSet: NSCountedSet?
+    var dataArray = [String]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.serviceNameTextField.delegate = self
@@ -80,7 +90,10 @@ class CardDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        tableView.isHidden = true
+        collectionView.isUserInteractionEnabled = true
         checkIfDataExits()
+        getListOfAllServicesFromFirebase()
         addServiceButton.alpha = 0.4
         addServiceButton.isEnabled = false
         collectionView.isUserInteractionEnabled = true
@@ -95,7 +108,6 @@ class CardDetailViewController: UIViewController {
     
     func setNavBar() {
         self.navigationController?.isNavigationBarHidden = false
-        //        title = "Your Card"
         navigationController?.navigationBar.barTintColor = UIColor(red: 108.0/255.0,
                                                                    green: 158.0/255.0,
                                                                    blue: 236.0/255.0,
@@ -108,58 +120,60 @@ class CardDetailViewController: UIViewController {
     }
     
     
+    // MARK: Predictive Text FOr TableView Logic
     
-    //    // TODO: Predictive Text
-    //
-    //    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-    //        if textField == serviceNameTextField {
-    //        let substring = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-    //        searchAutocompleteEntriesWithSubstring(substring)
-    //        }
-    //        return true
-    //    }
-    //
-    //
-    //    func searchAutocompleteEntriesWithSubstring(_ substring: String) {
-    //        autoComplete.removeAll(keepingCapacity: false)
-    //        for key in autoCompletePossibilities {
-    //
-    //            let myString: NSString! = key as NSString
-    //
-    //            let subStringRange: NSRange! = myString.range(of: substring)
-    //
-    //            if (subStringRange.location  == 0) {
-    //                autoComplete.append(key)
-    //            }
-    //        }
-    //
-    ////        tableView.reloadData() //// but for textfield
-    //    }
-    //
-    //
-    //////    cell.textLabel!.text = autoComplete[index] //// but for textfield
-    //
-    //
-    //    func addToArray(textField: UITextField) {
-    //
-    //        if textField == textField {
-    //            let textToAdd = textField.text ?? ""
-    //
-    //            autoCompletePossibilities.append(textToAdd)
-    //            print("it worked")
-    //        }
-    //
-    //    }
-    //
+    func getListOfAllServicesFromFirebase() {
+        DispatchQueue.global().async {
+            let servicesRef = self.ref.child("services")
+            servicesRef.observe( .value, with: { (snapshot) in
+                for services in snapshot.children {
+                    let allServiceIDs = (services as AnyObject).key as String
+                    let serviceDrilled = servicesRef.child(allServiceIDs)
+                    serviceDrilled.observeSingleEvent(of: .value, with: { (snap) in
+                        let sD = snap as DataSnapshot
+                        if let serviceDict = sD.value as? [String: AnyObject] {
+                            let aService = ServiceClass(serviceDict: serviceDict)
+                            self.serviceArray.append(aService)
+                            if let sName = serviceDict["serviceName"] as? String {
+                                self.autoCompletePossibilities.append(sName.lowercased())
+                            }
+                        }
+                    })
+                }
+            })
+        }
+    }
     
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == serviceNameTextField {
+            let substring = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+            searchAutocompleteEntriesWithSubstring(substring)
+        }
+        return true
+    }
     
     
+    func searchAutocompleteEntriesWithSubstring(_ substring: String) {
+        autoComplete.removeAll(keepingCapacity: false)
+        for key in autoCompletePossibilities {
+            let myString:NSString! = key as NSString
+            let substringRange :NSRange! = myString.range(of: substring)
+            if (substringRange.location  == 0) {
+                
+                autoComplete.append(key)
+                self.countedSet = NSCountedSet(array: self.autoComplete)
+                self.dataArray = self.countedSet?.allObjects as! [String]
+            }
+            
+        }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
     
     
-    
-    
-    // MARK: Firebase Methods
+    // MARK: Firebase Methods For CollectionView
     
     func checkIfDataExits() {
         self.ref.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -204,8 +218,10 @@ class CardDetailViewController: UIViewController {
             thisCardServices.observeSingleEvent(of: .value, with: { (serviceSnap) in
                 if self.serviceArray.count != Int(serviceSnap.childrenCount) {
                     //let servicesTrace = Performance.startTrace(name: "PullServicesTrace")
-                    self.serviceArray.removeAll()
-                    self.doubleArray.removeAll()
+                    //                    self.serviceArray.removeAll()
+                    //                    self.doubleArray.removeAll()
+                    self.tempServiceArray.removeAll()
+                    self.tempDoubleArray.removeAll()
                     
                     self.fetchAndAddAllServices(serviceSnap: serviceSnap, index: 0, completion: { (success) in
                         if success {
@@ -256,12 +272,12 @@ class CardDetailViewController: UIViewController {
                             aService.serviceID = serviceID
                             
                             
-                            if !self.serviceArray.contains(where: { (service) -> Bool in
+                            if !self.tempServiceArray.contains(where: { (service) -> Bool in
                                 return service.serviceID == aService.serviceID
                             }) {
-                                self.serviceArray.append(aService)
+                                self.tempServiceArray.append(aService)
                                 
-                                self.serviceArray.sort {
+                                self.tempServiceArray.sort {
                                     if $0.serviceAttention == $1.serviceAttention { return $0.serviceName ?? "" < $1.serviceName ?? "" }
                                     return $0.serviceAttention > $1.serviceAttention
                                 }
@@ -274,6 +290,7 @@ class CardDetailViewController: UIViewController {
                     
                 }
                 else {
+                    self.serviceArray = self.tempServiceArray
                     completion(true)
                 }
             }
@@ -282,219 +299,207 @@ class CardDetailViewController: UIViewController {
             }
             
         }
-    
+        
     }
-
-
-func addServiceToCard() {
-    collectionView.isUserInteractionEnabled = false
-    let service = ref.child("services").childByAutoId()
-    let whiteSpacesRemoved = serviceNameTextField.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).capitalized
     
     
-    if let tempName = whiteSpacesRemoved {
-        DispatchQueue.global().async {
-            service.setValue(["serviceURL": "\(tempName).com", "serviceName": tempName, "serviceStatus": true, "serviceFixed": false, "serviceAmount": "", "attentionInt": 0], withCompletionBlock: { (error, DatabaseReference) in
+    func addServiceToCard() {
+        collectionView.isUserInteractionEnabled = false
+        let service = ref.child("services").childByAutoId()
+        let whiteSpacesRemoved = serviceNameTextField.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).capitalized
+        
+        
+        if let tempName = whiteSpacesRemoved {
+            
+            DispatchQueue.global().async {
                 
-                if error == nil {
+                let outerTrim = tempName.trimmingCharacters(in: .whitespaces)
+                let fullTrim = outerTrim.removingWhitespaces()
+                let urlForFirebase = "\(fullTrim).com"
+                print(urlForFirebase)
+                print("foo")
+                
+                service.setValue(["serviceURL": urlForFirebase, "serviceName": tempName, "serviceStatus": true, "serviceFixed": false, "serviceAmount": "", "attentionInt": 0], withCompletionBlock: { (error, DatabaseReference) in
                     
-                    if let theId = self.cardID {
-                        self.ref.child("cards").child(theId).child("services").child(service.key).setValue(true)
+                    if error == nil {
+                        
+                        if let theId = self.cardID {
+                            self.ref.child("cards").child(theId).child("services").child(service.key).setValue(true)
+                        }
+                        
+                        self.tableView.isHidden = true
+                        self.collectionView.isUserInteractionEnabled = true
+                        self.collectionView.reloadData()
+                        self.checkIfDataExits()
                     }
-                    
-                    self.collectionView.isUserInteractionEnabled = true
-                    self.collectionView.reloadData()
-                    self.checkIfDataExits()
-                }
-            })
+                })
+            }
         }
-    }
-    
-    
-    
-//    if let tempName = whiteSpacesRemoved {
-//        DispatchQueue.global().async {
-//            service.setValue(["serviceURL": "\(tempName).com", "serviceName": tempName, "serviceStatus": true, "serviceFixed": false, "serviceAmount": "", "attentionInt": 0])
-//        }
-//        
-//    }
-    
-//    if let theId = cardID {
-//        DispatchQueue.global().async {
-//            self.ref.child("cards").child(theId).child("services").child(service.key).setValue(true)
-//        }
-//    }
-    
-    serviceNameTextField.text = ""
-    addServiceButton.alpha = 0.4
-    addServiceButton.isEnabled = false
-    
-    Analytics.logEvent("Service_Quick_Add", parameters: ["success" : true])
-    
-    Answers.logCustomEvent(withName: "Service Quick Add",
-                           customAttributes: nil)
-    
-}
-
-
-// MARK: Set Letter/Number Image For NO URL
-
-func getLetterOrNumberAndChooseImage(text: String) -> String {
-    
-    if text == " " || text == "" {
-        return "*"
-    }
-    
-    let index = text.index(text.startIndex, offsetBy: 0)
-    let letterImageToLoad = text[index]
-    let letter = String(letterImageToLoad).lowercased()
-    let imageName = { () -> String in
-        switch letter {
-        case "a":
-            return "A.png"
-        case "b":
-            return "B.png"
-        case "c":
-            return "C.png"
-        case "d":
-            return "D.png"
-        case "e":
-            return "E.png"
-        case "f":
-            return "F.png"
-        case "g":
-            return "G.png"
-        case "h":
-            return "H.png"
-        case "i":
-            return "I.png"
-        case "j":
-            return "J.png"
-        case "k":
-            return "K.png"
-        case "l":
-            return "L.png"
-        case "m":
-            return "M.png"
-        case "n":
-            return "N.png"
-        case "o":
-            return "O.png"
-        case "p":
-            return "P.png"
-        case "q":
-            return "Q.png"
-        case "r":
-            return "R.png"
-        case "s":
-            return "S.png"
-        case "t":
-            return "T.png"
-        case "u":
-            return "U.png"
-        case "v":
-            return "V.png"
-        case "w":
-            return "W.png"
-        case "x":
-            return "X.png"
-        case "y":
-            return "Y.png"
-        case "z":
-            return "Z.png"
-        case "0":
-            return "Zero.png"
-        case "1":
-            return "One.png"
-        case "2":
-            return "Two.png"
-        case "3":
-            return "Three.png"
-        case "4":
-            return "Four.png"
-        case "5":
-            return "Five.png"
-        case "6":
-            return "Six.png"
-        case "7":
-            return "Seven.png"
-        case "8":
-            return "Eight.png"
-        case "9":
-            return "Nine.png"
-        default:
-            return "Star.png"
-        }
-    }()
-    return imageName
-}
-
-
-
-// MARK: IB Actions
-
-@IBAction func leftNavBarButtonTapped(_ sender: UIBarButtonItem) {
-    
-    
-    if let walletVC = storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? CardWalletViewController {
         
-        navigationController?.pushViewController(walletVC, animated: true)
-    }
-    
-}
-
-@IBAction func rightNavBarButtonTapped(_ sender: UIBarButtonItem) {
-    
-    
-    if let prefVC = storyboard?.instantiateViewController(withIdentifier: "PrefVC") as? PreferencesViewController {
         
-        navigationController?.pushViewController(prefVC, animated: true)
+        serviceNameTextField.text = ""
+        addServiceButton.alpha = 0.4
+        addServiceButton.isEnabled = false
+        
+        Analytics.logEvent("Service_Quick_Add", parameters: ["success" : true])
+        
+        Answers.logCustomEvent(withName: "Service Quick Add",
+                               customAttributes: nil)
+        
     }
-}
-
-@IBAction func editCardButtonTapped(_ sender: UIButton) {
-    if let editCardVC = storyboard?.instantiateViewController(withIdentifier: "EditCardVC") as? EditCardViewController {
-        if let theId = cardID {
-            editCardVC.thisCardIDTransfered = theId
+    
+    
+    // MARK: Set Letter/Number Image For NO URL
+    
+    func getLetterOrNumberAndChooseImage(text: String) -> String {
+        
+        if text == " " || text == "" {
+            return "*"
         }
-        navigationController?.pushViewController(editCardVC, animated: true)
+        
+        let index = text.index(text.startIndex, offsetBy: 0)
+        let letterImageToLoad = text[index]
+        let letter = String(letterImageToLoad).lowercased()
+        let imageName = { () -> String in
+            switch letter {
+            case "a":
+                return "A.png"
+            case "b":
+                return "B.png"
+            case "c":
+                return "C.png"
+            case "d":
+                return "D.png"
+            case "e":
+                return "E.png"
+            case "f":
+                return "F.png"
+            case "g":
+                return "G.png"
+            case "h":
+                return "H.png"
+            case "i":
+                return "I.png"
+            case "j":
+                return "J.png"
+            case "k":
+                return "K.png"
+            case "l":
+                return "L.png"
+            case "m":
+                return "M.png"
+            case "n":
+                return "N.png"
+            case "o":
+                return "O.png"
+            case "p":
+                return "P.png"
+            case "q":
+                return "Q.png"
+            case "r":
+                return "R.png"
+            case "s":
+                return "S.png"
+            case "t":
+                return "T.png"
+            case "u":
+                return "U.png"
+            case "v":
+                return "V.png"
+            case "w":
+                return "W.png"
+            case "x":
+                return "X.png"
+            case "y":
+                return "Y.png"
+            case "z":
+                return "Z.png"
+            case "0":
+                return "Zero.png"
+            case "1":
+                return "One.png"
+            case "2":
+                return "Two.png"
+            case "3":
+                return "Three.png"
+            case "4":
+                return "Four.png"
+            case "5":
+                return "Five.png"
+            case "6":
+                return "Six.png"
+            case "7":
+                return "Seven.png"
+            case "8":
+                return "Eight.png"
+            case "9":
+                return "Nine.png"
+            default:
+                return "Star.png"
+            }
+        }()
+        return imageName
     }
-}
-
-@IBAction func addServiceButtonTapped(_ sender: UIButton) {
-    addServiceToCard()
-}
-
-
-// MARK: Keyboard Methods
-
-func keyboardWillShow(notification:NSNotification) {
-    var userInfo = notification.userInfo!
-    var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-    keyboardFrame = self.view.convert(keyboardFrame, from: nil)
-    var contentInset: UIEdgeInsets = self.collectionView.contentInset
-    contentInset.bottom = keyboardFrame.size.height
-    self.collectionView.contentInset = contentInset
-}
-
-
-func keyboardWillHide(notification:NSNotification) {
-    let contentInset:UIEdgeInsets = UIEdgeInsets.zero
-    self.collectionView.contentInset = contentInset
-}
-
-
-func dismissKeyboard() {
-    view.endEditing(true)
-}
-
-
-
-
-
-
-
-
+    
+    
+    
+    // MARK: IB Actions
+    
+    @IBAction func leftNavBarButtonTapped(_ sender: UIBarButtonItem) {
+        
+        
+        if let walletVC = storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? CardWalletViewController {
+            
+            navigationController?.pushViewController(walletVC, animated: true)
+        }
+        
+    }
+    
+    @IBAction func rightNavBarButtonTapped(_ sender: UIBarButtonItem) {
+        
+        
+        if let prefVC = storyboard?.instantiateViewController(withIdentifier: "PrefVC") as? PreferencesViewController {
+            
+            navigationController?.pushViewController(prefVC, animated: true)
+        }
+    }
+    
+    @IBAction func editCardButtonTapped(_ sender: UIButton) {
+        if let editCardVC = storyboard?.instantiateViewController(withIdentifier: "EditCardVC") as? EditCardViewController {
+            if let theId = cardID {
+                editCardVC.thisCardIDTransfered = theId
+            }
+            navigationController?.pushViewController(editCardVC, animated: true)
+        }
+    }
+    
+    @IBAction func addServiceButtonTapped(_ sender: UIButton) {
+        addServiceToCard()
+    }
+    
+    
+    // MARK: Keyboard Methods
+    
+    func keyboardWillShow(notification:NSNotification) {
+        var userInfo = notification.userInfo!
+        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        var contentInset: UIEdgeInsets = self.collectionView.contentInset
+        contentInset.bottom = keyboardFrame.size.height
+        self.collectionView.contentInset = contentInset
+    }
+    
+    
+    func keyboardWillHide(notification:NSNotification) {
+        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+        self.collectionView.contentInset = contentInset
+    }
+    
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
 }
 
 
@@ -510,6 +515,8 @@ extension CardDetailViewController: UITextFieldDelegate {
             serviceNameTextField.returnKeyType = .go
             addServiceToCard()
             view.endEditing(true)
+            tableView.isHidden = true
+            collectionView.isUserInteractionEnabled = true
         }
         
         return false
@@ -524,9 +531,13 @@ extension CardDetailViewController: UITextFieldDelegate {
         if (textField.text?.isEmpty)! {
             addServiceButton.isEnabled = false
             addServiceButton.alpha = 0.4
+            tableView.isHidden = true
+            collectionView.isUserInteractionEnabled = true
         } else if !(textField.text?.isEmpty)! {
             addServiceButton.isEnabled = true
             addServiceButton.alpha = 1.0
+            tableView.isHidden = false
+            collectionView.isUserInteractionEnabled = false
         }
     }
 }
@@ -569,48 +580,89 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         cell.serviceNameLabel.text = serviceArray[row].serviceName
         cell.serviceFixedAmountLabel.text = serviceArray[row].serviceAmount
         
-        
+        let placeholderImage = UIImage.init(named: "\(self.getLetterOrNumberAndChooseImage(text: self.serviceArray[row].serviceName!))")
         if let seviceURLString = self.serviceArray[row].serviceUrl, self.serviceArray[row].serviceUrl?.isEmpty == false {
             let myURLString: String = "http://www.google.com/s2/favicons?domain=\(seviceURLString)"
+            
             if let myURL = URL(string: myURLString) {
-                cell.serviceLogoImage.sd_setImage(with: myURL)
+                cell.serviceLogoImage.sd_setImage(with: myURL, placeholderImage: placeholderImage)
             }
         }
             
         else {
-            cell.serviceLogoImage.image = UIImage.init(named: "\(self.getLetterOrNumberAndChooseImage(text: self.serviceArray[row].serviceName!))")
+            cell.serviceLogoImage.image = placeholderImage
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            let row = indexPath.row
-            self.selectedService = self.serviceArray[row].serviceID!
-            if self.selectedService != "" {
+        let row = indexPath.row
+        self.selectedService = self.serviceArray[row].serviceID!
+        if self.selectedService != "" {
+            
+            if let editServiceVC = self.storyboard?.instantiateViewController(withIdentifier: "EditServiceVC") as? EditServiceViewController {
                 
-                if let editServiceVC = self.storyboard?.instantiateViewController(withIdentifier: "EditServiceVC") as? EditServiceViewController {
-                    
-                    
-                    editServiceVC.thisCardTransfered = self.cardID ?? ""
-                    editServiceVC.thisCardNicknameTransfered = self.cardNicknameTransfered
-                    editServiceVC.thisCardTypeTransfered = self.cardTypeTransfered
-                    editServiceVC.thisServiceTransfered = self.selectedService!
-                    editServiceVC.serviceUpToDateTransfered = self.serviceCurrent
-                    editServiceVC.serviceNameTransfered = self.serviceName
-                    editServiceVC.serviceURLTransfered = self.serviceURL
-                    editServiceVC.serviceFixedTransfered = self.serviceFixedBool
-                    editServiceVC.serviceAmountTransfered = self.serviceFixedAmount
-                    
-                    self.navigationController?.pushViewController(editServiceVC, animated: true)
-                    
-                }
+                
+                editServiceVC.thisCardTransfered = self.cardID ?? ""
+                editServiceVC.thisCardNicknameTransfered = self.cardNicknameTransfered
+                editServiceVC.thisCardTypeTransfered = self.cardTypeTransfered
+                editServiceVC.thisServiceTransfered = self.selectedService!
+                editServiceVC.serviceUpToDateTransfered = self.serviceCurrent
+                editServiceVC.serviceNameTransfered = self.serviceName
+                editServiceVC.serviceURLTransfered = self.serviceURL
+                editServiceVC.serviceFixedTransfered = self.serviceFixedBool
+                editServiceVC.serviceAmountTransfered = self.serviceFixedAmount
+                
+                self.navigationController?.pushViewController(editServiceVC, animated: true)
+                
             }
-            collectionView.isUserInteractionEnabled = false
         }
+        collectionView.isUserInteractionEnabled = false
+    }
     
 }
 
 
+extension CardDetailViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "autoComCell", for: indexPath) as! AutoCompleteTableViewCell
+        let item = dataArray[indexPath.row]
+        
+        cell.previewNameLabel.text = item
+        
+        let myURLString: String = "http://www.google.com/s2/favicons?domain=www.\(item).com"
+        if let myURL = URL(string: myURLString) {
+            cell.previewImageView.sd_setImage(with: myURL, placeholderImage: #imageLiteral(resourceName: "Ly"))
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let selectedCell: AutoCompleteTableViewCell = tableView.cellForRow(at: indexPath)! as! AutoCompleteTableViewCell
+        
+        serviceNameTextField.text = selectedCell.previewNameLabel.text
+        
+        tableView.isHidden = true
+        collectionView.isUserInteractionEnabled = true
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 34.0
+    }
+    
+}
 
 
 

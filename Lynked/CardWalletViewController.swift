@@ -213,8 +213,11 @@ extension CardWalletViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! CardTableViewCell
         let row = indexPath.row
+        cell.cardBackgroundView.backgroundColor = cardArray[row].color
         cell.cardNicknameLabel.text = cardArray[row].nickname
+        cell.cardNicknameLabel.textColor = cardArray[row].textColor
         cell.cardDetailsLabel.text = "\(String(describing: cardArray[row].type ?? "")) \(String(describing: cardArray[row].fourDigits ?? ""))"
+        cell.cardDetailsLabel.textColor = cardArray[row].textColor
 //        cell.cardDe.text = cardArray[row].type
         return cell
     }
