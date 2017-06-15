@@ -49,6 +49,10 @@ class CardDetailViewController: UIViewController {
     let cellsPerC = 3
     
     
+    var autoCompletePossibilities: [String] = []
+    var autoComplete: [String] = []
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -104,10 +108,61 @@ class CardDetailViewController: UIViewController {
     }
     
     
+    
+    //    // TODO: Predictive Text
+    //
+    //    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    //        if textField == serviceNameTextField {
+    //        let substring = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+    //        searchAutocompleteEntriesWithSubstring(substring)
+    //        }
+    //        return true
+    //    }
+    //
+    //
+    //    func searchAutocompleteEntriesWithSubstring(_ substring: String) {
+    //        autoComplete.removeAll(keepingCapacity: false)
+    //        for key in autoCompletePossibilities {
+    //
+    //            let myString: NSString! = key as NSString
+    //
+    //            let subStringRange: NSRange! = myString.range(of: substring)
+    //
+    //            if (subStringRange.location  == 0) {
+    //                autoComplete.append(key)
+    //            }
+    //        }
+    //
+    ////        tableView.reloadData() //// but for textfield
+    //    }
+    //
+    //
+    //////    cell.textLabel!.text = autoComplete[index] //// but for textfield
+    //
+    //
+    //    func addToArray(textField: UITextField) {
+    //
+    //        if textField == textField {
+    //            let textToAdd = textField.text ?? ""
+    //
+    //            autoCompletePossibilities.append(textToAdd)
+    //            print("it worked")
+    //        }
+    //
+    //    }
+    //
+    
+    
+    
+    
+    
+    
+    
+    
     // MARK: Firebase Methods
     
     func checkIfDataExits() {
-        self.ref.observe(DataEventType.value, with: { (snapshot) in
+        self.ref.observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.hasChild("services") {
                 self.pullCardData()
             } else {
@@ -121,7 +176,7 @@ class CardDetailViewController: UIViewController {
     
     func pullCardData() {
         let cardRef = self.ref.child("cards")
-        cardRef.observe(DataEventType.value, with: { (snapshot) in
+        cardRef.observeSingleEvent(of: .value, with: { (snapshot) in
             for cards in snapshot.children {
                 let allCardIDs = (cards as AnyObject).key as String
                 if allCardIDs == self.cardID {
@@ -146,9 +201,9 @@ class CardDetailViewController: UIViewController {
     func pullServicesForCard() {
         if let theId = self.cardID {
             let thisCardServices = self.ref.child("cards").child(theId).child("services")
-            thisCardServices.observe(DataEventType.value, with: { (serviceSnap) in
+            thisCardServices.observeSingleEvent(of: .value, with: { (serviceSnap) in
                 if self.serviceArray.count != Int(serviceSnap.childrenCount) {
-                    let servicesTrace = Performance.startTrace(name: "PullServicesTrace")
+                    //let servicesTrace = Performance.startTrace(name: "PullServicesTrace")
                     self.serviceArray.removeAll()
                     self.doubleArray.removeAll()
                     
@@ -156,7 +211,7 @@ class CardDetailViewController: UIViewController {
                         if success {
                             DispatchQueue.main.async {
                                 self.collectionView.reloadData()
-                                servicesTrace?.stop()
+                                //servicesTrace?.stop()
                                 
                             }
                         }
@@ -167,249 +222,279 @@ class CardDetailViewController: UIViewController {
     }
     
     func fetchAndAddAllServices(serviceSnap: DataSnapshot, index: Int, completion: @escaping (_ success: Bool) -> Void) {
-        if serviceSnap.hasChildren() {
-            if index < serviceSnap.children.allObjects.count {
-                let serviceChild = serviceSnap.children.allObjects[index]
-                let serviceID = (serviceChild as AnyObject).key as String
-                
-                let thisServiceLocationInServiceNode = self.ref.child("services").child(serviceID)
-                
-                thisServiceLocationInServiceNode.observeSingleEvent(of: DataEventType.value, with: { (thisSnap) in
-                    let serv = thisSnap as DataSnapshot
+        DispatchQueue.global().async {
+            if serviceSnap.hasChildren() {
+                if index < serviceSnap.children.allObjects.count {
+                    let serviceChild = serviceSnap.children.allObjects[index]
+                    let serviceID = (serviceChild as AnyObject).key as String
                     
-                    if let serviceDict = serv.value as? [String: AnyObject] {
+                    let thisServiceLocationInServiceNode = self.ref.child("services").child(serviceID)
+                    
+                    thisServiceLocationInServiceNode.observeSingleEvent(of: DataEventType.value, with: { (thisSnap) in
+                        let serv = thisSnap as DataSnapshot
                         
-                        let aService = ServiceClass(serviceDict: serviceDict)
-                        self.serviceCurrent = serviceDict["serviceStatus"] as? Bool
-                        self.serviceName = serviceDict["serviceName"] as? String ?? ""
-                        self.serviceURL = serviceDict["serviceURL"] as? String ?? ""
-                        self.serviceFixedBool = serviceDict["serviceFixed"] as? Bool
-                        self.serviceFixedAmount = serviceDict["serviceAmount"] as? String ?? ""
-                        self.attentionInt = serviceDict["attentionInt"] as? Int
-                        self.totalArr.append((serviceDict["serviceAmount"] as? String)!)
-                        
-                        
-                        self.doubleArray = self.totalArr.flatMap{ Double($0) }
-                        let arraySum = self.doubleArray.reduce(0, +)
-                        self.title = self.selectedCard?.nickname ?? ""
-                        
-                        if let titleName = self.selectedCard?.nickname {
-                            self.title = "\(titleName)"
-                        }
-                        
-                        aService.serviceID = serviceID
-                        
-                        
-                        if !self.serviceArray.contains(where: { (service) -> Bool in
-                            return service.serviceID == aService.serviceID
-                        }) {
-                            self.serviceArray.append(aService)
+                        if let serviceDict = serv.value as? [String: AnyObject] {
                             
-                            self.serviceArray.sort {
-                                if $0.serviceAttention == $1.serviceAttention { return $0.serviceName ?? "" < $1.serviceName ?? "" }
-                                return $0.serviceAttention > $1.serviceAttention
+                            let aService = ServiceClass(serviceDict: serviceDict)
+                            self.serviceCurrent = serviceDict["serviceStatus"] as? Bool
+                            self.serviceName = serviceDict["serviceName"] as? String ?? ""
+                            self.serviceURL = serviceDict["serviceURL"] as? String ?? ""
+                            self.serviceFixedBool = serviceDict["serviceFixed"] as? Bool
+                            self.serviceFixedAmount = serviceDict["serviceAmount"] as? String ?? ""
+                            self.attentionInt = serviceDict["attentionInt"] as? Int
+                            self.totalArr.append((serviceDict["serviceAmount"] as? String)!)
+                            
+                            
+                            //                        self.doubleArray = self.totalArr.flatMap{ Double($0) }
+                            //                        let arraySum = self.doubleArray.reduce(0, +)
+                            //                        self.title = self.selectedCard?.nickname ?? ""
+                            
+                            if let titleName = self.selectedCard?.nickname {
+                                self.title = "\(titleName)"
                             }
                             
+                            aService.serviceID = serviceID
                             
+                            
+                            if !self.serviceArray.contains(where: { (service) -> Bool in
+                                return service.serviceID == aService.serviceID
+                            }) {
+                                self.serviceArray.append(aService)
+                                
+                                self.serviceArray.sort {
+                                    if $0.serviceAttention == $1.serviceAttention { return $0.serviceName ?? "" < $1.serviceName ?? "" }
+                                    return $0.serviceAttention > $1.serviceAttention
+                                }
+                                
+                                
+                            }
                         }
-                    }
-                    self.fetchAndAddAllServices(serviceSnap: serviceSnap, index: index + 1, completion: completion)
-                })
-                
+                        self.fetchAndAddAllServices(serviceSnap: serviceSnap, index: index + 1, completion: completion)
+                    })
+                    
+                }
+                else {
+                    completion(true)
+                }
             }
             else {
-                completion(true)
+                completion(false)
             }
+            
         }
-        else {
-            completion(false)
+    
+    }
+
+
+func addServiceToCard() {
+    collectionView.isUserInteractionEnabled = false
+    let service = ref.child("services").childByAutoId()
+    let whiteSpacesRemoved = serviceNameTextField.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).capitalized
+    
+    
+    if let tempName = whiteSpacesRemoved {
+        DispatchQueue.global().async {
+            service.setValue(["serviceURL": "\(tempName).com", "serviceName": tempName, "serviceStatus": true, "serviceFixed": false, "serviceAmount": "", "attentionInt": 0], withCompletionBlock: { (error, DatabaseReference) in
+                
+                if error == nil {
+                    
+                    if let theId = self.cardID {
+                        self.ref.child("cards").child(theId).child("services").child(service.key).setValue(true)
+                    }
+                    
+                    self.collectionView.isUserInteractionEnabled = true
+                    self.collectionView.reloadData()
+                    self.checkIfDataExits()
+                }
+            })
         }
-        
     }
     
     
     
-    func addServiceToCard() {
-        let service = ref.child("services").childByAutoId()
-        let whiteSpacesRemoved = serviceNameTextField.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).capitalized
-        if let tempName = whiteSpacesRemoved {
-            
-            service.setValue(["serviceURL": "\(tempName).com", "serviceName": tempName, "serviceStatus": true, "serviceFixed": false, "serviceAmount": "", "attentionInt": 0])
-        }
+//    if let tempName = whiteSpacesRemoved {
+//        DispatchQueue.global().async {
+//            service.setValue(["serviceURL": "\(tempName).com", "serviceName": tempName, "serviceStatus": true, "serviceFixed": false, "serviceAmount": "", "attentionInt": 0])
+//        }
+//        
+//    }
+    
+//    if let theId = cardID {
+//        DispatchQueue.global().async {
+//            self.ref.child("cards").child(theId).child("services").child(service.key).setValue(true)
+//        }
+//    }
+    
+    serviceNameTextField.text = ""
+    addServiceButton.alpha = 0.4
+    addServiceButton.isEnabled = false
+    
+    Analytics.logEvent("Service_Quick_Add", parameters: ["success" : true])
+    
+    Answers.logCustomEvent(withName: "Service Quick Add",
+                           customAttributes: nil)
+    
+}
 
+
+// MARK: Set Letter/Number Image For NO URL
+
+func getLetterOrNumberAndChooseImage(text: String) -> String {
+    
+    if text == " " || text == "" {
+        return "*"
+    }
+    
+    let index = text.index(text.startIndex, offsetBy: 0)
+    let letterImageToLoad = text[index]
+    let letter = String(letterImageToLoad).lowercased()
+    let imageName = { () -> String in
+        switch letter {
+        case "a":
+            return "A.png"
+        case "b":
+            return "B.png"
+        case "c":
+            return "C.png"
+        case "d":
+            return "D.png"
+        case "e":
+            return "E.png"
+        case "f":
+            return "F.png"
+        case "g":
+            return "G.png"
+        case "h":
+            return "H.png"
+        case "i":
+            return "I.png"
+        case "j":
+            return "J.png"
+        case "k":
+            return "K.png"
+        case "l":
+            return "L.png"
+        case "m":
+            return "M.png"
+        case "n":
+            return "N.png"
+        case "o":
+            return "O.png"
+        case "p":
+            return "P.png"
+        case "q":
+            return "Q.png"
+        case "r":
+            return "R.png"
+        case "s":
+            return "S.png"
+        case "t":
+            return "T.png"
+        case "u":
+            return "U.png"
+        case "v":
+            return "V.png"
+        case "w":
+            return "W.png"
+        case "x":
+            return "X.png"
+        case "y":
+            return "Y.png"
+        case "z":
+            return "Z.png"
+        case "0":
+            return "Zero.png"
+        case "1":
+            return "One.png"
+        case "2":
+            return "Two.png"
+        case "3":
+            return "Three.png"
+        case "4":
+            return "Four.png"
+        case "5":
+            return "Five.png"
+        case "6":
+            return "Six.png"
+        case "7":
+            return "Seven.png"
+        case "8":
+            return "Eight.png"
+        case "9":
+            return "Nine.png"
+        default:
+            return "Star.png"
+        }
+    }()
+    return imageName
+}
+
+
+
+// MARK: IB Actions
+
+@IBAction func leftNavBarButtonTapped(_ sender: UIBarButtonItem) {
+    
+    
+    if let walletVC = storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? CardWalletViewController {
+        
+        navigationController?.pushViewController(walletVC, animated: true)
+    }
+    
+}
+
+@IBAction func rightNavBarButtonTapped(_ sender: UIBarButtonItem) {
+    
+    
+    if let prefVC = storyboard?.instantiateViewController(withIdentifier: "PrefVC") as? PreferencesViewController {
+        
+        navigationController?.pushViewController(prefVC, animated: true)
+    }
+}
+
+@IBAction func editCardButtonTapped(_ sender: UIButton) {
+    if let editCardVC = storyboard?.instantiateViewController(withIdentifier: "EditCardVC") as? EditCardViewController {
         if let theId = cardID {
-            ref.child("cards").child(theId).child("services").child(service.key).setValue(true)
+            editCardVC.thisCardIDTransfered = theId
         }
-        serviceNameTextField.text = ""
-        addServiceButton.alpha = 0.4
-        addServiceButton.isEnabled = false
-        
-        Analytics.logEvent("Service_Quick_Add", parameters: ["success" : true])
-        
-        Answers.logCustomEvent(withName: "Service Quick Add",
-                               customAttributes: nil)
-        
+        navigationController?.pushViewController(editCardVC, animated: true)
     }
+}
 
-    
-    // MARK: Set Letter/Number Image For NO URL
-    
-    func getLetterOrNumberAndChooseImage(text: String) -> String {
-        
-        if text == " " || text == "" {
-            return "*"
-        }
-        
-        let index = text.index(text.startIndex, offsetBy: 0)
-        let letterImageToLoad = text[index]
-        let letter = String(letterImageToLoad).lowercased()
-        let imageName = { () -> String in
-            switch letter {
-            case "a":
-                return "A.png"
-            case "b":
-                return "B.png"
-            case "c":
-                return "C.png"
-            case "d":
-                return "D.png"
-            case "e":
-                return "E.png"
-            case "f":
-                return "F.png"
-            case "g":
-                return "G.png"
-            case "h":
-                return "H.png"
-            case "i":
-                return "I.png"
-            case "j":
-                return "J.png"
-            case "k":
-                return "K.png"
-            case "l":
-                return "L.png"
-            case "m":
-                return "M.png"
-            case "n":
-                return "N.png"
-            case "o":
-                return "O.png"
-            case "p":
-                return "P.png"
-            case "q":
-                return "Q.png"
-            case "r":
-                return "R.png"
-            case "s":
-                return "S.png"
-            case "t":
-                return "T.png"
-            case "u":
-                return "U.png"
-            case "v":
-                return "V.png"
-            case "w":
-                return "W.png"
-            case "x":
-                return "X.png"
-            case "y":
-                return "Y.png"
-            case "z":
-                return "Z.png"
-            case "0":
-                return "Zero.png"
-            case "1":
-                return "One.png"
-            case "2":
-                return "Two.png"
-            case "3":
-                return "Three.png"
-            case "4":
-                return "Four.png"
-            case "5":
-                return "Five.png"
-            case "6":
-                return "Six.png"
-            case "7":
-                return "Seven.png"
-            case "8":
-                return "Eight.png"
-            case "9":
-                return "Nine.png"
-            default:
-                return "Star.png"
-            }
-        }()
-        return imageName
-    }
-    
-    
-    
-    // MARK: IB Actions
-    
-    @IBAction func leftNavBarButtonTapped(_ sender: UIBarButtonItem) {
-        
-        
-        if let walletVC = storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? CardWalletViewController {
-            
-            navigationController?.pushViewController(walletVC, animated: true)
-        }
-        
-    }
-    
-    @IBAction func rightNavBarButtonTapped(_ sender: UIBarButtonItem) {
-        
-        
-        if let prefVC = storyboard?.instantiateViewController(withIdentifier: "PrefVC") as? PreferencesViewController {
-            
-            navigationController?.pushViewController(prefVC, animated: true)
-        }
-    }
-    
-    @IBAction func editCardButtonTapped(_ sender: UIButton) {
-        if let editCardVC = storyboard?.instantiateViewController(withIdentifier: "EditCardVC") as? EditCardViewController {
-            if let theId = cardID {
-                editCardVC.thisCardIDTransfered = theId
-            }
-            navigationController?.pushViewController(editCardVC, animated: true)
-        }
-    }
-    
-    @IBAction func addServiceButtonTapped(_ sender: UIButton) {
-        addServiceToCard()
-    }
-    
-    
-    // MARK: Keyboard Methods
-    
-    func keyboardWillShow(notification:NSNotification) {
-        var userInfo = notification.userInfo!
-        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
-        var contentInset: UIEdgeInsets = self.collectionView.contentInset
-        contentInset.bottom = keyboardFrame.size.height
-        self.collectionView.contentInset = contentInset
-    }
-    
-    
-    func keyboardWillHide(notification:NSNotification) {
-        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
-        self.collectionView.contentInset = contentInset
-    }
-    
-    
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-    
+@IBAction func addServiceButtonTapped(_ sender: UIButton) {
+    addServiceToCard()
+}
 
-    
-    
 
-    
-    
+// MARK: Keyboard Methods
+
+func keyboardWillShow(notification:NSNotification) {
+    var userInfo = notification.userInfo!
+    var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+    keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+    var contentInset: UIEdgeInsets = self.collectionView.contentInset
+    contentInset.bottom = keyboardFrame.size.height
+    self.collectionView.contentInset = contentInset
+}
+
+
+func keyboardWillHide(notification:NSNotification) {
+    let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+    self.collectionView.contentInset = contentInset
+}
+
+
+func dismissKeyboard() {
+    view.endEditing(true)
+}
+
+
+
+
+
+
+
+
 }
 
 
@@ -418,7 +503,7 @@ class CardDetailViewController: UIViewController {
 extension CardDetailViewController: UITextFieldDelegate {
     
     
-     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if textField == serviceNameTextField {
             
@@ -499,7 +584,6 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        DispatchQueue.main.async {
             let row = indexPath.row
             self.selectedService = self.serviceArray[row].serviceID!
             if self.selectedService != "" {
@@ -523,7 +607,6 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
             }
             collectionView.isUserInteractionEnabled = false
         }
-    }
     
 }
 

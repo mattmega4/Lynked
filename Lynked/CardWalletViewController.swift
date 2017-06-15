@@ -97,7 +97,7 @@ class CardWalletViewController: UIViewController {
         cardArray.removeAll()
         let userRef = ref.child("users").child((user?.uid)!).child("cards")
         userRef.observe(DataEventType.value, with: { (snapshot) in
-            let cardTrace = Performance.startTrace(name: "PullCardTrace")
+//            let cardTrace = Performance.startTrace(name: "PullCardTrace")
             for userscard in snapshot.children {
                 let cardID = (userscard as AnyObject).key as String
                 let cardRef = self.ref.child("cards").child(cardID)
@@ -116,7 +116,7 @@ class CardWalletViewController: UIViewController {
                         self.cardArray.append(aCard)
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
-                            cardTrace?.stop()
+//                            cardTrace?.stop()
                         }
                     }
                 })
