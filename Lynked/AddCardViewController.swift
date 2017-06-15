@@ -18,7 +18,10 @@ class AddCardViewController: UIViewController {
     @IBOutlet weak var nextNavBarButton: UIBarButtonItem!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
+    
     @IBOutlet weak var mainImageView: UIImageView!
+    @IBOutlet weak var segControl: UISegmentedControl!
+    
     @IBOutlet weak var firstDividerView: UIView!
     @IBOutlet weak var secondDividerView: UIView!
     @IBOutlet weak var thirdDividerView: UIView!
