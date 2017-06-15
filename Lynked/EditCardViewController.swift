@@ -14,21 +14,22 @@ import Crashlytics
 
 class EditCardViewController: UIViewController {
     
+    @IBOutlet weak var leftNavBarButton: UIBarButtonItem!
+    @IBOutlet weak var rightNavBarButton: UIBarButtonItem!
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     
     @IBOutlet weak var lyLogo: UIImageView!
-    
-    @IBOutlet weak var leftNavBarButton: UIBarButtonItem!
-    @IBOutlet weak var rightNavBarButton: UIBarButtonItem!
+    @IBOutlet weak var segControl: UISegmentedControl!
+
     @IBOutlet weak var firstDividerView: UIView!
     @IBOutlet weak var secondDividerView: UIView!
     @IBOutlet weak var thirdDividerView: UIView!
-    @IBOutlet weak var fourthDividerView: UIView!
+
     @IBOutlet weak var firstContainerView: UIView!
     @IBOutlet weak var secondContainerView: UIView!
     @IBOutlet weak var thirdContainerView: UIView!
-    @IBOutlet weak var warningLabel: UILabel!
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var digitsLabel: UILabel!
     @IBOutlet weak var alteredButton: UIButton!
