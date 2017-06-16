@@ -311,7 +311,7 @@ class EntryViewController: UIViewController {
                     .observeSingleEvent(of: .value, with: { snapshot in
                         if (snapshot.hasChildren()) {
                             
-                            if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? CardWalletViewController {
+                            if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
                                 self.navigationController?.pushViewController(walletVC, animated: true)
                             }
                             
