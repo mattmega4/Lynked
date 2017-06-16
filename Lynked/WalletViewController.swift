@@ -11,7 +11,7 @@ import Firebase
 import StoreKit
 import FirebasePerformance
 
-class CardWalletViewController: UIViewController {
+class WalletViewController: UIViewController {
     
     
     @IBOutlet weak var leftNavButton: UIBarButtonItem!
@@ -108,9 +108,9 @@ class CardWalletViewController: UIViewController {
                         let cardNickname = cardDict["nickname"]
                         let card4D = cardDict["last4"]
                         let cardType = cardDict["type"]
-                        self.cardNicknameToTransfer = (cardNickname as? String)!
+                        self.cardNicknameToTransfer = cardNickname as? String
                         self.card4ToTransfer = card4D as? String
-                        self.cardtypeToTransfer = (cardType as? String)!
+                        self.cardtypeToTransfer = cardType as? String
                         let aCard = CardClass(cardDict: cardDict)
                         aCard.cardID = cardID
                         self.cardArray.append(aCard)
@@ -188,7 +188,7 @@ class CardWalletViewController: UIViewController {
 
 // MARK: TableView Delegate & Data Source Methods
 
-extension CardWalletViewController: UITableViewDelegate, UITableViewDataSource {
+extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 125.0

@@ -150,7 +150,7 @@ class AddCardViewController: UIViewController {
     // MARK: IB Actions
     
     @IBAction func navBarCancelButtonTapped(_ sender: UIBarButtonItem) {
-        if let walletVC = storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? CardWalletViewController {
+        if let walletVC = storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
             navigationController?.pushViewController(walletVC, animated: true)
         }
     }

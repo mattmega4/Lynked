@@ -258,7 +258,7 @@ class CardDetailViewController: UIViewController {
                             self.serviceFixedBool = serviceDict["serviceFixed"] as? Bool
                             self.serviceFixedAmount = serviceDict["serviceAmount"] as? String ?? ""
                             self.attentionInt = serviceDict["attentionInt"] as? Int
-                            self.totalArr.append((serviceDict["serviceAmount"] as? String)!)
+//                            self.totalArr.append((serviceDict["serviceAmount"] as? String)!)
                             
                             
                             //                        self.doubleArray = self.totalArr.flatMap{ Double($0) }
@@ -448,7 +448,7 @@ class CardDetailViewController: UIViewController {
     @IBAction func leftNavBarButtonTapped(_ sender: UIBarButtonItem) {
         
         
-        if let walletVC = storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? CardWalletViewController {
+        if let walletVC = storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
             
             navigationController?.pushViewController(walletVC, animated: true)
         }

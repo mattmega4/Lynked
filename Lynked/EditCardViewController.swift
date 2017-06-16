@@ -222,7 +222,7 @@ class EditCardViewController: UIViewController {
                             if snapshot.hasChildren() {
                                 //
                                 DispatchQueue.main.async {
-                                    if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? CardWalletViewController {
+                                    if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
                                         self.navigationController?.pushViewController(walletVC, animated: true)
                                     }
                                     
