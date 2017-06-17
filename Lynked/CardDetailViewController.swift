@@ -258,7 +258,7 @@ class CardDetailViewController: UIViewController {
                             self.serviceFixedBool = serviceDict["serviceFixed"] as? Bool
                             self.serviceFixedAmount = serviceDict["serviceAmount"] as? String ?? ""
                             self.attentionInt = serviceDict["attentionInt"] as? Int
-//                            self.totalArr.append((serviceDict["serviceAmount"] as? String)!)
+                            //                            self.totalArr.append((serviceDict["serviceAmount"] as? String)!)
                             
                             
                             //                        self.doubleArray = self.totalArr.flatMap{ Double($0) }
@@ -545,13 +545,6 @@ extension CardDetailViewController: UITextFieldDelegate {
 
 extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let flowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        let marginsAndInsets = flowLayout.sectionInset.left + flowLayout.sectionInset.right + flowLayout.minimumInteritemSpacing * CGFloat(cellsPerC - 1)
-        let itemWidth = ((collectionView.bounds.size.width - marginsAndInsets) / CGFloat(cellsPerC)).rounded(.down)
-        return CGSize(width: itemWidth, height: itemWidth)
-    }
-    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         collectionView?.collectionViewLayout.invalidateLayout()
         super.viewWillTransition(to: size, with: coordinator)
@@ -565,6 +558,12 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         return serviceArray.count
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let flowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        let marginsAndInsets = flowLayout.sectionInset.left + flowLayout.sectionInset.right + flowLayout.minimumInteritemSpacing * CGFloat(cellsPerC - 1)
+        let itemWidth = ((collectionView.bounds.size.width - marginsAndInsets) / CGFloat(cellsPerC)).rounded(.down)
+        return CGSize(width: itemWidth, height: itemWidth)
+    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -640,7 +639,7 @@ extension CardDetailViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.previewNameLabel.text = item
         
-        let myURLString: String = "http://www.google.com/s2/favicons?domain=www.\(item).com"
+        let myURLString: String = "http://www.google.com/s2/favicons?domain=www.\(item.removingWhitespaces()).com"
         if let myURL = URL(string: myURLString) {
             cell.previewImageView.sd_setImage(with: myURL, placeholderImage: #imageLiteral(resourceName: "Ly"))
         }
