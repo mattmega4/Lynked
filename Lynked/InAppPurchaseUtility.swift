@@ -54,7 +54,7 @@ class InAppPurchaseUtility: NSObject, SKProductsRequestDelegate, SKPaymentTransa
                                     itemType: "Card",
                                     itemId: "sku-1",
                                     customAttributes: nil)
-
+                
                 
             }
             else if transaction.transactionState == .failed {
