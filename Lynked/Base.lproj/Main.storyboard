@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -274,7 +273,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EeP-Ab-79l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="12163" y="-1223"/>
+            <point key="canvasLocation" x="13158.75" y="-1223.75"/>
         </scene>
         <!--Edit Service View Controller-->
         <scene sceneID="0R7-Zc-YcD">
@@ -618,40 +617,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w14-Sf-ZuW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9916.875" y="-1222.5"/>
-        </scene>
-        <!--Update Service Web View View Controller-->
-        <scene sceneID="NcB-9e-epW">
-            <objects>
-                <viewController storyboardIdentifier="UpdateWebVC" id="p9W-hv-146" customClass="UpdateServiceWebViewViewController" customModule="Lynked" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ndJ-9i-cX8"/>
-                        <viewControllerLayoutGuide type="bottom" id="7Xx-xj-4jj"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="fn4-sy-HpW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NID-hQ-twR">
-                                <rect key="frame" x="0.0" y="20" width="320" height="460"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="NID-hQ-twR" firstAttribute="leading" secondItem="fn4-sy-HpW" secondAttribute="leading" id="542-gj-svu"/>
-                            <constraint firstItem="NID-hQ-twR" firstAttribute="top" secondItem="ndJ-9i-cX8" secondAttribute="bottom" id="CEO-qi-G6I"/>
-                            <constraint firstItem="7Xx-xj-4jj" firstAttribute="top" secondItem="NID-hQ-twR" secondAttribute="bottom" id="EaR-Xi-wfu"/>
-                            <constraint firstAttribute="trailing" secondItem="NID-hQ-twR" secondAttribute="trailing" id="JWf-7A-cmQ"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="webView" destination="NID-hQ-twR" id="843-2s-4a3"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xlC-ji-YJ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="11051" y="-1783"/>
+            <point key="canvasLocation" x="10914.375" y="-1222.5"/>
         </scene>
         <!--Preferences View Controller-->
         <scene sceneID="2hb-5X-d2q">
@@ -835,7 +801,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wnK-Sd-Rdp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8816" y="-1222"/>
+            <point key="canvasLocation" x="9811.875" y="-1222.5"/>
         </scene>
         <!--Entry View Controller-->
         <scene sceneID="BWO-Sg-5XA">
@@ -1324,20 +1290,20 @@
             </objects>
             <point key="canvasLocation" x="5550" y="-1436"/>
         </scene>
-        <!--Card Wallet View Controller-->
+        <!--Wallet View Controller-->
         <scene sceneID="fgT-yJ-iSe">
             <objects>
-                <viewController storyboardIdentifier="WalletVC" id="Vol-Kx-v0s" customClass="CardWalletViewController" customModule="Lynked" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WalletVC" id="Vol-Kx-v0s" customClass="WalletViewController" customModule="Lynked" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MP9-Ts-jkY"/>
                         <viewControllerLayoutGuide type="bottom" id="OeT-nm-mcF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gNy-ir-fk8">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="139" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OYk-Pi-PQY">
-                                <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="139" id="JN5-3M-AHP" customClass="CardTableViewCell" customModule="Lynked" customModuleProvider="target">
@@ -1423,26 +1389,20 @@
                     <navigationItem key="navigationItem" id="F5R-GZ-ZTH">
                         <barButtonItem key="leftBarButtonItem" title="Settings" id="gtU-iX-pPa">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="leftBarButtonTapped:" destination="Vol-Kx-v0s" id="jQJ-u0-aHi"/>
-                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="rcg-7j-geY">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="rightBarButtonTapped:" destination="Vol-Kx-v0s" id="DhU-W4-Ld3"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="leftNavButton" destination="gtU-iX-pPa" id="6BE-tk-JRP"/>
-                        <outlet property="rightNavButton" destination="rcg-7j-geY" id="wpg-O3-fg6"/>
-                        <outlet property="tableView" destination="OYk-Pi-PQY" id="5Ah-fO-7Ov"/>
+                        <outlet property="leftNavButton" destination="gtU-iX-pPa" id="cud-qf-kXq"/>
+                        <outlet property="rightNavButton" destination="rcg-7j-geY" id="wCG-gQ-FMv"/>
+                        <outlet property="tableView" destination="OYk-Pi-PQY" id="Vqx-UR-dd7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DhR-hl-TeL" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6714" y="-1276"/>
+            <point key="canvasLocation" x="7710" y="-1276.25"/>
         </scene>
         <!--Card Detail View Controller-->
         <scene sceneID="rxJ-Y3-RWo">
@@ -1737,7 +1697,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5U5-xl-Zvh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7672.5" y="-1261.25"/>
+            <point key="canvasLocation" x="8670" y="-1261.25"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Tzq-kp-hoz">
@@ -1756,6 +1716,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sa9-bC-sO8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4573" y="-2049"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Nbc-1U-tcN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2Zo-aY-b1T" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9JY-KB-wev">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Vol-Kx-v0s" kind="relationship" relationship="rootViewController" id="hW1-YX-MB6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kmg-Rl-19I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6712.5" y="-1276.25"/>
         </scene>
     </scenes>
     <resources>
