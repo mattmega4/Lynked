@@ -18,21 +18,7 @@ class PreferencesViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     
-    @IBOutlet weak var firstDividerView: UIView!
-    @IBOutlet weak var secondDividerView: UIView!
-    @IBOutlet weak var thirdDividerView: UIView!
     
-    @IBOutlet weak var fourthDividerView: UIView!
-    
-    @IBOutlet weak var fifthDividerView: UIView!
-    
-    
-    @IBOutlet weak var purchaseCardButton: UIButton!
-    
-    @IBOutlet weak var logoutButton: UIButton!
-    @IBOutlet weak var deleteAccountButton: UIButton!
-    
-    @IBOutlet weak var versionLabel: UILabel!
     
     let ref = Database.database().reference()
     let user = Auth.auth().currentUser
@@ -42,8 +28,7 @@ class PreferencesViewController: UIViewController {
         super.viewDidLoad()
         
         setNavBar()
-        getVersionInfo()
-        
+        showReview()
     }
     
     // MARK: Nav Bar & View Design
@@ -63,6 +48,21 @@ class PreferencesViewController: UIViewController {
     }
     
     
+    
+    
+    
+    // MARK: App Version Info
+    
+    //    func getVersionInfo() {
+    //
+    //        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+    //            versionLabel.text = "Lynked Version: \(version)"
+    //        }
+    //    }
+    
+    
+    
+    
     // MARK:  Delete User Method & Remove All Users Data
     
     func deleteUser() {
@@ -77,7 +77,6 @@ class PreferencesViewController: UIViewController {
             
             Auth.auth().currentUser?.delete(completion: { (error) in
                 if error == nil {
-                    // TODO: In V3 actually remove the data from Firebase
                     if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? EntryViewController {
                         self.navigationController?.pushViewController(loginVC, animated: true)
                     }
@@ -98,55 +97,13 @@ class PreferencesViewController: UIViewController {
     }
     
     
-    // MARK: App Version Info
-    
-    func getVersionInfo() {
-        
-        
-       
-    
-        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-            versionLabel.text = "Lynked Version: \(version)"
-        }
-    }
-    
     
     // MARK: IB Actions
     
     
-    @IBAction func purchaseCardButtonTapped(_ sender: UIButton) {
-        
-        InAppPurchaseUtility.shared.purchaseProduct { (success, error) in
-            if success {
-                self.showAlertWith(title: "Success!", message: "Your purchase was successful")
-            }
-            else  {
-                self.showAlertWith(title: "Purchase Failed!", message: error?.localizedDescription)
-            }
-        }
-        
-    }
-    
-    @IBAction func redeemPurchaseButtonTapped(_ sender: UIButton) {
-        InAppPurchaseUtility.shared.restorePurchase { (success, error) in
-            if success {
-                self.showAlertWith(title: "Success!", message: "Your purchase was successful")
-            }
-            else  {
-                self.showAlertWith(title: "Purchase Failed!", message: error?.localizedDescription)
-            }
-        }
-    }
-    
-    @IBAction func logoutButtonTapped(_ sender: UIButton) {
-        if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? EntryViewController {
-            self.navigationController?.pushViewController(loginVC, animated: true)
-        }
-    }
-    
-    @IBAction func deleteAccountTapped(_ sender: UIButton) {
-        deleteUser()
-    }
+    //    @IBAction func deleteAccountTapped(_ sender: UIButton) {
+    //        deleteUser()
+    //    }
     
 }
 

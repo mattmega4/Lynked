@@ -21,8 +21,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         UIApplication.shared.statusBarStyle = .lightContent
+        
+        // App Run Counter for Review
+        incrementAppRuns()
+        
+        // Firebase/Fabric
         FirebaseApp.configure()
-        // This code is for New Firebase/Fabric Crashlytics
         Fabric.with([Crashlytics.self])
         
         

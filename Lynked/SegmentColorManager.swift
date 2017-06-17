@@ -37,5 +37,5 @@ class SegmentColorManager: NSObject {
         }
         return UIColor.black
     }
-
+    
 }
