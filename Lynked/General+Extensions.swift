@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 
 extension UIViewController {
@@ -34,7 +35,6 @@ extension UIViewController {
     func dismissKeyboard() {
         view.endEditing(true)
     }
-    
 }
 
 extension String {

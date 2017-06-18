@@ -34,16 +34,9 @@ class PreferencesViewController: UIViewController {
     
 
     
+
     
-    
-    // MARK: App Version Info
-    
-    //    func getVersionInfo() {
-    //
-    //        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-    //            versionLabel.text = "Lynked Version: \(version)"
-    //        }
-    //    }
+
     
     
     
@@ -90,8 +83,16 @@ class PreferencesViewController: UIViewController {
     //        deleteUser()
     //    }
     
-}
-
-// End of PreferencesViewController Class
+    
+    func tempModalPresent() {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let ackVC = storyboard.instantiateViewController(withIdentifier: "ackVC")
+        self.present(ackVC, animated: true, completion: nil)
+        
+        
+    }
+    
+} // End of PreferencesViewController Class
 
 

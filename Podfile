@@ -15,7 +15,5 @@ target 'Lynked' do
   pod 'Crashlytics'
   pod 'SDWebImage'
 
-  
-
 end
 
