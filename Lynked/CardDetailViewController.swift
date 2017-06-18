@@ -120,57 +120,7 @@ class CardDetailViewController: UIViewController {
     }
     
     
-    // MARK: Predictive Text FOr TableView Logic
-    
-    func getListOfAllServicesFromFirebase() {
-        DispatchQueue.global().async {
-            let servicesRef = self.ref.child("services")
-            servicesRef.observe( .value, with: { (snapshot) in
-                for services in snapshot.children {
-                    let allServiceIDs = (services as AnyObject).key as String
-                    let serviceDrilled = servicesRef.child(allServiceIDs)
-                    serviceDrilled.observeSingleEvent(of: .value, with: { (snap) in
-                        let sD = snap as DataSnapshot
-                        if let serviceDict = sD.value as? [String: AnyObject] {
-                            let aService = ServiceClass(serviceDict: serviceDict)
-                            self.serviceArray.append(aService)
-                            if let sName = serviceDict["serviceName"] as? String {
-                                self.autoCompletePossibilities.append(sName.lowercased())
-                            }
-                        }
-                    })
-                }
-            })
-        }
-    }
-    
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField == serviceNameTextField {
-            let substring = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-            searchAutocompleteEntriesWithSubstring(substring)
-        }
-        return true
-    }
-    
-    
-    func searchAutocompleteEntriesWithSubstring(_ substring: String) {
-        autoComplete.removeAll(keepingCapacity: false)
-        for key in autoCompletePossibilities {
-            let myString:NSString! = key as NSString
-            let substringRange :NSRange! = myString.range(of: substring)
-            if (substringRange.location  == 0) {
-                
-                autoComplete.append(key)
-                self.countedSet = NSCountedSet(array: self.autoComplete)
-                self.dataArray = self.countedSet?.allObjects as! [String]
-            }
-            
-        }
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
+
     
     
     // MARK: Firebase Methods For CollectionView
@@ -212,14 +162,13 @@ class CardDetailViewController: UIViewController {
         })
     }
     
+    
     func pullServicesForCard() {
         if let theId = self.cardID {
             let thisCardServices = self.ref.child("cards").child(theId).child("services")
             thisCardServices.observeSingleEvent(of: .value, with: { (serviceSnap) in
                 if self.serviceArray.count != Int(serviceSnap.childrenCount) {
-                    //let servicesTrace = Performance.startTrace(name: "PullServicesTrace")
-                    //                    self.serviceArray.removeAll()
-                    //                    self.doubleArray.removeAll()
+                    let servicesTrace = Performance.startTrace(name: "PullServicesTrace")
                     self.tempServiceArray.removeAll()
                     self.tempDoubleArray.removeAll()
                     
@@ -227,8 +176,7 @@ class CardDetailViewController: UIViewController {
                         if success {
                             DispatchQueue.main.async {
                                 self.collectionView.reloadData()
-                                //servicesTrace?.stop()
-                                
+                                servicesTrace?.stop()
                             }
                         }
                     })
@@ -236,6 +184,7 @@ class CardDetailViewController: UIViewController {
             })
         }
     }
+    
     
     func fetchAndAddAllServices(serviceSnap: DataSnapshot, index: Int, completion: @escaping (_ success: Bool) -> Void) {
         DispatchQueue.global().async {
@@ -258,12 +207,8 @@ class CardDetailViewController: UIViewController {
                             self.serviceFixedBool = serviceDict["serviceFixed"] as? Bool
                             self.serviceFixedAmount = serviceDict["serviceAmount"] as? String ?? ""
                             self.attentionInt = serviceDict["attentionInt"] as? Int
-                            //                            self.totalArr.append((serviceDict["serviceAmount"] as? String)!)
                             
                             
-                            //                        self.doubleArray = self.totalArr.flatMap{ Double($0) }
-                            //                        let arraySum = self.doubleArray.reduce(0, +)
-                            //                        self.title = self.selectedCard?.nickname ?? ""
                             
                             if let titleName = self.selectedCard?.nickname {
                                 self.title = "\(titleName)"
@@ -346,6 +291,59 @@ class CardDetailViewController: UIViewController {
         Answers.logCustomEvent(withName: "Service Quick Add",
                                customAttributes: nil)
         
+    }
+    
+    
+    // MARK: Predictive Text FOr TableView Logic
+    
+    func getListOfAllServicesFromFirebase() {
+        DispatchQueue.global().async {
+            let servicesRef = self.ref.child("services")
+            servicesRef.observe( .value, with: { (snapshot) in
+                for services in snapshot.children {
+                    let allServiceIDs = (services as AnyObject).key as String
+                    let serviceDrilled = servicesRef.child(allServiceIDs)
+                    serviceDrilled.observeSingleEvent(of: .value, with: { (snap) in
+                        let sD = snap as DataSnapshot
+                        if let serviceDict = sD.value as? [String: AnyObject] {
+                            let aService = ServiceClass(serviceDict: serviceDict)
+                            self.serviceArray.append(aService)
+                            if let sName = serviceDict["serviceName"] as? String {
+                                self.autoCompletePossibilities.append(sName.lowercased())
+                            }
+                        }
+                    })
+                }
+            })
+        }
+    }
+    
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == serviceNameTextField {
+            let substring = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+            searchAutocompleteEntriesWithSubstring(substring)
+        }
+        return true
+    }
+    
+    
+    func searchAutocompleteEntriesWithSubstring(_ substring: String) {
+        autoComplete.removeAll(keepingCapacity: false)
+        for key in autoCompletePossibilities {
+            let myString:NSString! = key as NSString
+            let substringRange :NSRange! = myString.range(of: substring)
+            if (substringRange.location  == 0) {
+                
+                autoComplete.append(key)
+                self.countedSet = NSCountedSet(array: self.autoComplete)
+                self.dataArray = self.countedSet?.allObjects as! [String]
+            }
+            
+        }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     
@@ -670,8 +668,11 @@ extension CardDetailViewController: UITableViewDelegate, UITableViewDataSource {
 
 
 
+// TODO: Fixed Expense Sum
 
-
-
+//  self.totalArr.append((serviceDict["serviceAmount"] as? String)!)
+//  self.doubleArray = self.totalArr.flatMap{ Double($0) }
+//  let arraySum = self.doubleArray.reduce(0, +)
+//  self.title = self.selectedCard?.nickname ?? ""
 
 

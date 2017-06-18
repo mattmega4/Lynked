@@ -1,5 +1,5 @@
 //
-//  AcknowledgementManager.swift
+//  FirebaseUtility.swift
 //  Lynked
 //
 //  Created by Matthew Howes Singleton on 6/17/17.
@@ -8,7 +8,14 @@
 
 import UIKit
 
-var pods = [[String: String]]()
+class FirebaseUtility: NSObject {
+    
+    static let shared = FirebaseUtility()
+    
+    
+    
+    
+    
+    
 
-
-
+}

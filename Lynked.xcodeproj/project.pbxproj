@@ -26,6 +26,7 @@
 		2924F9C01EF24F280014C284 /* AutoCompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F9BF1EF24F280014C284 /* AutoCompleteTableViewCell.swift */; };
 		292764931EDFA3160096AE1E /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292764921EDFA3160096AE1E /* WalletViewController.swift */; };
 		292764951EDFC8350096AE1E /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292764941EDFC8350096AE1E /* CardTableViewCell.swift */; };
+		2943B48B1EF624D600A0E8DD /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */; };
 		296DF54C1EF5D3DA00D5874D /* AcknowledgementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DF54B1EF5D3DA00D5874D /* AcknowledgementViewController.swift */; };
 		296DF54E1EF5D43900D5874D /* AcknowledgementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DF54D1EF5D43900D5874D /* AcknowledgementManager.swift */; };
 		29773CDD1EC3B6730023F277 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29773CDC1EC3B6730023F277 /* EntryViewController.swift */; };
@@ -61,6 +62,7 @@
 		2924F9BF1EF24F280014C284 /* AutoCompleteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoCompleteTableViewCell.swift; sourceTree = "<group>"; };
 		292764921EDFA3160096AE1E /* WalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		292764941EDFC8350096AE1E /* CardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
+		2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseUtility.swift; sourceTree = "<group>"; };
 		296DF54B1EF5D3DA00D5874D /* AcknowledgementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcknowledgementViewController.swift; sourceTree = "<group>"; };
 		296DF54D1EF5D43900D5874D /* AcknowledgementManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcknowledgementManager.swift; sourceTree = "<group>"; };
 		29773CDC1EC3B6730023F277 /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
@@ -153,18 +155,12 @@
 				2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */,
 				29D5906A1EF5AE5600CA66D6 /* RequestReview.swift */,
 				296DF54D1EF5D43900D5874D /* AcknowledgementManager.swift */,
-				1DC0D8B11DFE516A0039B8F6 /* Lynked.xcdatamodeld */,
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
-		1DD7D2571E393BEB00AF1299 /* Custom Classes */ = {
-			isa = PBXGroup;
-			children = (
 				1DD7D2581E393C0700AF1299 /* CardClass.swift */,
 				1DD7D25B1E393C2300AF1299 /* ServiceClass.swift */,
+				1DC0D8B11DFE516A0039B8F6 /* Lynked.xcdatamodeld */,
+				2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */,
 			);
-			name = "Custom Classes";
+			name = Model;
 			sourceTree = "<group>";
 		};
 		292764961EDFC8480096AE1E /* Custom Cells */ = {
@@ -198,7 +194,6 @@
 				1D1712781E01F0870087F299 /* PreferencesViewController.swift */,
 				296DF54A1EF5D3A700D5874D /* Modally */,
 				292764961EDFC8480096AE1E /* Custom Cells */,
-				1DD7D2571E393BEB00AF1299 /* Custom Classes */,
 				1D2D41EE1E01436F00745588 /* View Extensions */,
 			);
 			name = Controller;
@@ -382,6 +377,7 @@
 				1D2D41F01E01439300745588 /* ShadowForTableViewCell.swift in Sources */,
 				1DD7D25C1E393C2300AF1299 /* ServiceClass.swift in Sources */,
 				29773CDD1EC3B6730023F277 /* EntryViewController.swift in Sources */,
+				2943B48B1EF624D600A0E8DD /* FirebaseUtility.swift in Sources */,
 				296DF54E1EF5D43900D5874D /* AcknowledgementManager.swift in Sources */,
 				292764951EDFC8350096AE1E /* CardTableViewCell.swift in Sources */,
 				2924F9BE1EF22F090014C284 /* SegmentColorManager.swift in Sources */,
