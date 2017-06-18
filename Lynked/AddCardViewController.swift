@@ -58,12 +58,8 @@ class AddCardViewController: UIViewController {
         cardTypePickerView.delegate = self
         cardTypePickerView.dataSource = self
 
-        
-//        segControl.selectedSegmentIndex = SegmentColorManager.shared.colorAtIndex(index: )
-        
-        
-        
-        
+        title = "Add Card"
+       
         setNavBar()
         nextNavBarButton.isEnabled = false
         firstContainerTextField.addTarget(self, action: #selector(checkNicknameTextField(textField:)), for: .editingChanged)
@@ -82,22 +78,6 @@ class AddCardViewController: UIViewController {
         allCardTypes+=["Visa", "MasterCard", "American Express", "Discover", "Capital One", "China UnionPay", "RuPay", "Diner's Club", "JCB", "Other" ]
     }
     
-    
-    // MARK: Nav Bar & View Design
-    
-    func setNavBar() {
-        self.navigationController?.isNavigationBarHidden = false
-        title = "Add Card"
-        navigationController?.navigationBar.barTintColor = UIColor(red: 108.0/255.0,
-                                                                   green: 158.0/255.0,
-                                                                   blue: 236.0/255.0,
-                                                                   alpha: 1.0)
-        UINavigationBar.appearance().tintColor = .white
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white,
-                                                                   NSFontAttributeName: UIFont(name: "GillSans-Bold",
-                                                                                               size: 18)!]
-    }
     
     
     
@@ -180,15 +160,7 @@ class AddCardViewController: UIViewController {
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         self.scrollView.contentInset = contentInset
     }
-    
-    
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-    
-
-    
+     
     
 } // End of AddCardViewController Class
 
@@ -200,18 +172,13 @@ extension AddCardViewController: UITextFieldDelegate {
      func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if textField == firstContainerTextField {
-            
             firstContainerTextField.returnKeyType = .next
             secondContainerTextField.becomeFirstResponder()
-            
         } else {
-            
             secondContainerTextField.returnKeyType = .next
             self.view.endEditing(true)
             cardTypePickerView.isHidden = false
-            
         }
-
         return false
     }
     

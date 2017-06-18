@@ -34,6 +34,7 @@ class WalletViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
+        title = "Wallet"
         setNavBar()
     }
     
@@ -49,22 +50,7 @@ class WalletViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         ref.removeAllObservers()
     }
-    
-    // MARK: Nav Bar & View Design
-    
-    func setNavBar() {
-        self.navigationController?.isNavigationBarHidden = false
-        title = "Wallet"
-        navigationController?.navigationBar.barTintColor = UIColor(red: 108.0/255.0,
-                                                                   green: 158.0/255.0,
-                                                                   blue: 236.0/255.0,
-                                                                   alpha: 1.0)
-        UINavigationBar.appearance().tintColor = .white
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white,
-                                                                   NSFontAttributeName: UIFont(name: "GillSans-Bold",
-                                                                                               size: 18)!]
-    }
+
     
 
     

@@ -440,11 +440,6 @@ class EntryViewController: UIViewController {
     }
     
     
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-    
     
 } // End of EntryPageViewController
 

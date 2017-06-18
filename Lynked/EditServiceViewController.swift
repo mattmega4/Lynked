@@ -76,8 +76,11 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
         self.serviceNameTextField.delegate = self
         self.urlTextField.delegate = self
         self.fixedAmountTextField.delegate = self
+        
+        title = "Edit Service"
         setNavBar()
         addTargets()
+        
         urlTextField.autocorrectionType = .no
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EditServiceViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -93,23 +96,6 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
         rightNavBarButton.isEnabled = true
         pullServiceData()
         alertUserIfURLTextFieldIsNotValid(textField: urlTextField)
-    }
-    
-    
-    // MARK: Nav Bar & View Design
-    
-    func setNavBar() {
-        self.navigationController?.isNavigationBarHidden = false
-        title = "Edit Service"
-        navigationController?.navigationBar.barTintColor = UIColor(red: 108.0/255.0,
-                                                                   green: 158.0/255.0,
-                                                                   blue: 236.0/255.0,
-                                                                   alpha: 1.0)
-        UINavigationBar.appearance().tintColor = .white
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white,
-                                                                   NSFontAttributeName: UIFont(name: "GillSans-Bold",
-                                                                                               size: 18)!]
     }
     
     
@@ -355,17 +341,10 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
         deleteServiceButton.isHidden = false
     }
     
-    
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-    
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return true
     }
-    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)

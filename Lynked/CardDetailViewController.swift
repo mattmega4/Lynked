@@ -104,25 +104,6 @@ class CardDetailViewController: UIViewController {
     }
     
     
-    // MARK: Nav Bar & View Design
-    
-    func setNavBar() {
-        self.navigationController?.isNavigationBarHidden = false
-        navigationController?.navigationBar.barTintColor = UIColor(red: 108.0/255.0,
-                                                                   green: 158.0/255.0,
-                                                                   blue: 236.0/255.0,
-                                                                   alpha: 1.0)
-        UINavigationBar.appearance().tintColor = .white
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white,
-                                                                   NSFontAttributeName: UIFont(name: "GillSans-Bold",
-                                                                                               size: 18)!]
-    }
-    
-    
-
-    
-    
     // MARK: Firebase Methods For CollectionView
     
     func checkIfDataExits() {
@@ -207,8 +188,6 @@ class CardDetailViewController: UIViewController {
                             self.serviceFixedBool = serviceDict["serviceFixed"] as? Bool
                             self.serviceFixedAmount = serviceDict["serviceAmount"] as? String ?? ""
                             self.attentionInt = serviceDict["attentionInt"] as? Int
-                            
-                            
                             
                             if let titleName = self.selectedCard?.nickname {
                                 self.title = "\(titleName)"
@@ -492,11 +471,7 @@ class CardDetailViewController: UIViewController {
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         self.collectionView.contentInset = contentInset
     }
-    
-    
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
+
     
 }
 
