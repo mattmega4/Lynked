@@ -13,7 +13,6 @@ class ServiceClass {
     
     var serviceID: String?
     var serviceName: String?
-    
     var serviceUrl: String?
     var serviceStatus: Bool?
     var serviceFixed: Bool?
@@ -23,11 +22,16 @@ class ServiceClass {
     
     init(serviceDict: [String : Any]) {
         
-        serviceUrl = serviceDict["serviceURL"] as? String
         serviceName = serviceDict["serviceName"] as? String
-        serviceAmount = serviceDict["serviceAmount"] as? String
+        serviceUrl = serviceDict["serviceURL"] as? String
         serviceStatus = serviceDict["serviceStatus"] as? Bool
-        serviceAttention = (serviceDict["attentionInt"] as? Int)!
+        
+        serviceFixed = serviceDict["serviceFixed"] as? Bool
+        
+        serviceAmount = serviceDict["serviceAmount"] as? String
+        if let tempAtten = serviceDict["attentionInt"] as? Int {
+            serviceAttention = tempAtten
+        }
     }
   
 }
