@@ -62,7 +62,9 @@ class EditCardViewController: UIViewController {
         
         lyLogo.createRoundView()
         
+        title = "Edit Card"
         setNavBar()
+        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EditCardViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -77,24 +79,7 @@ class EditCardViewController: UIViewController {
         rightNavBarButton.isEnabled = true
         pullCardData()
     }
-    
-    
-    // MARK: Nav Bar & View Design
-    
-    func setNavBar() {
-        self.navigationController?.isNavigationBarHidden = false
-        title = "Edit Card"
-        navigationController?.navigationBar.barTintColor = UIColor(red: 108.0/255.0,
-                                                                   green: 158.0/255.0,
-                                                                   blue: 236.0/255.0,
-                                                                   alpha: 1.0)
-        UINavigationBar.appearance().tintColor = .white
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white,
-                                                                   NSFontAttributeName: UIFont(name: "GillSans-Bold",
-                                                                                               size: 18)!]
-    }
-    
+
     
     // MARK: Firebase Methods
     
@@ -327,12 +312,6 @@ class EditCardViewController: UIViewController {
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         self.scrollView.contentInset = contentInset
     }
-    
-    
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)

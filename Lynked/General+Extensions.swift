@@ -17,6 +17,24 @@ extension UIViewController {
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
     }
+    
+    func setNavBar() {
+        self.navigationController?.isNavigationBarHidden = false
+        navigationController?.navigationBar.barTintColor = UIColor(red: 108.0/255.0,
+                                                                   green: 158.0/255.0,
+                                                                   blue: 236.0/255.0,
+                                                                   alpha: 1.0)
+        UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white,
+                                                                   NSFontAttributeName: UIFont(name: "GillSans-Bold",
+                                                                                               size: 18)!]
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
 }
 
 extension String {
