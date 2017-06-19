@@ -36,16 +36,14 @@ func getRunCounts () -> Int {
 
 func showReview() {
     let runs = getRunCounts()
-    print("Show Review")
     if (runs > minimumRunCount) {
         if #available(iOS 10.3, *) {
-            print("Review Requested")
             SKStoreReviewController.requestReview()
         } else {
             // Fallback on earlier versions
         }
     } else {
-        print("Runs are not enough to request review!")
+        // Runs are not enough to request review
     }
 }
 
