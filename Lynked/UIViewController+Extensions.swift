@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 extension UIViewController {
+    
     func showAlertWith(title: String?, message: String?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
