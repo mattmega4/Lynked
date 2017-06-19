@@ -123,6 +123,7 @@ class EditCardViewController: UIViewController {
         let cancelAction = UIAlertAction(title: "Never Mind!", style: .cancel, handler: nil)
         
         let okAction = UIAlertAction(title: "I Understand!", style: .destructive) { (result: UIAlertAction) in
+            
             guard let theCard = self.card else {
                 return
             }

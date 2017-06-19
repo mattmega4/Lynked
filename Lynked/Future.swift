@@ -62,7 +62,7 @@ import Foundation
 
 
 
-//extension CardDetailViewController: UITableViewDelegate, UITableViewDataSource {
+//  extension : UITableViewDelegate, UITableViewDataSource {
 //    
 //    func numberOfSections(in tableView: UITableView) -> Int {
 //        return 1
@@ -111,4 +111,16 @@ import Foundation
 //  let arraySum = self.doubleArray.reduce(0, +)
 //  self.title = self.selectedCard?.nickname ?? ""
 
+
+//let connectedRef = Database.database().reference(withPath: ".info/connected")
+//
+//func checkFirebaseConnection() {
+//    connectedRef.observe(.value, with: { snapshot in
+//        if snapshot.value as? Bool ?? false {
+//            print("Connected")
+//        } else {
+//            print("Not connected")
+//        }
+//    })
+//}
 

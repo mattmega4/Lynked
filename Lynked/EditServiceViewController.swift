@@ -168,33 +168,41 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
         
         let alertController = UIAlertController(title: "Wait!", message: "This will completely remove this service from your card. It will also be reflected in your total fixed monthly expenses if it was a fixed expense.", preferredStyle: UIAlertControllerStyle.alert)
         let cancelAction = UIAlertAction(title: "Never Mind!", style: UIAlertActionStyle.cancel, handler: nil)
+        
         let okAction = UIAlertAction(title: "I Understand!", style: UIAlertActionStyle.default) { (result: UIAlertAction) in
             
-            let thisService = self.ref.child("services").child(self.thisServiceTransfered)
-            
-            let theServiceOnThisCard = self.ref.child("cards").child(self.thisCardTransfered).child("services").child(self.thisServiceTransfered)
-            
-            Analytics.logEvent("Service_Deleted", parameters: ["success" : true])
-            
-            Answers.logCustomEvent(withName: "Service Deleted",
-                                   customAttributes: nil)
-            
-            thisService.removeValue()
-            theServiceOnThisCard.removeValue()
-            
-            
-            if let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
-                //detailVC.cardID = self.thisCardTransfered
-                self.navigationController?.pushViewController(detailVC, animated: true)
+            guard let theService = self.service else {
+                return
             }
             
+            FirebaseUtility.shared.delete(service: theService, completion: { (success, error) in
+                if let errorMessage = error {
+                    print(errorMessage)
+                } else if success {
+                    var didGoBack = false
+                    if let viewControllers = self.navigationController?.viewControllers {
+                        for aController in viewControllers {
+                            if aController is CardDetailViewController {
+                                didGoBack = true
+                                self.navigationController?.popToViewController(aController, animated: true)
+                                break
+                            }
+                        }
+                        
+                    }
+                    if !didGoBack {
+                        if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
+                            self.navigationController?.pushViewController(walletVC, animated: true)
+                        }
+                    }
+                }
+            })
         }
         
         alertController.addAction(cancelAction)
         alertController.addAction(okAction)
         
         self.present(alertController, animated: true, completion: nil)
-        
     }
     
     

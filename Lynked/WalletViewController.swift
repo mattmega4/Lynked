@@ -40,7 +40,7 @@ class WalletViewController: UIViewController {
         pullAllUsersCards()
         tableView.isUserInteractionEnabled = true
     }
-
+    
     func pullAllUsersCards() {
         MBProgressHUD.showAdded(to: view, animated: true)
         FirebaseUtility.shared.getCards { (cards, errMessage) in
@@ -57,70 +57,69 @@ class WalletViewController: UIViewController {
                 }
             }
             else {
-                // TOTO Display error
+                // TODO: - Display error
             }
         }
     }
-
-
-// MARK: - IB Actions
-
-@IBAction func leftBarButtonTapped(_ sender: UIBarButtonItem) {
-    if let prefVC = self.storyboard?.instantiateViewController(withIdentifier: "PrefVC") as? PreferencesViewController {
-        self.navigationController?.pushViewController(prefVC, animated: true)
-    }
-}
-
-@IBAction func rightBarButtonTapped(_ sender: UIBarButtonItem) {
-    if InAppPurchaseUtility.shared.isPurchased {
-        if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
-            self.navigationController?.pushViewController(addCardVC, animated: true)
+    
+    
+    // MARK: - IB Actions
+    
+    @IBAction func leftBarButtonTapped(_ sender: UIBarButtonItem) {
+        if let prefVC = self.storyboard?.instantiateViewController(withIdentifier: "PrefVC") as? PreferencesViewController {
+            self.navigationController?.pushViewController(prefVC, animated: true)
         }
+    }
+    
+    
+    @IBAction func rightBarButtonTapped(_ sender: UIBarButtonItem) {
         
-    }
-    else {
-        let actionSheet = UIAlertController(title: nil, message: "You will need to purchase this to add more than 1 card", preferredStyle: .actionSheet)
-        let purchaseAction = UIAlertAction(title: "Purchase", style: .default, handler: { (action) in
-            self.purchaseProduct()
-        })
-        let restoreAction = UIAlertAction(title: "Restore", style: .default, handler: { (action) in
-            self.restorePurchase()
-        })
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        actionSheet.addAction(purchaseAction)
-        actionSheet.addAction(restoreAction)
-        actionSheet.addAction(cancelAction)
-        present(actionSheet, animated: true, completion: nil)
-    }
-}
-
-func purchaseProduct() {
-    InAppPurchaseUtility.shared.purchaseProduct { (success, error) in
-        if success {
+        if InAppPurchaseUtility.shared.isPurchased {
             if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
                 self.navigationController?.pushViewController(addCardVC, animated: true)
             }
-        }
-        else  {
-            self.showAlertWith(title: "Purchase Failed!", message: error?.localizedDescription)
+            
+        } else {
+            let actionSheet = UIAlertController(title: nil, message: "You will need to purchase this to add more than 1 card", preferredStyle: .actionSheet)
+            let purchaseAction = UIAlertAction(title: "Purchase", style: .default, handler: { (action) in
+                self.purchaseProduct()
+            })
+            let restoreAction = UIAlertAction(title: "Restore", style: .default, handler: { (action) in
+                self.restorePurchase()
+            })
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            actionSheet.addAction(purchaseAction)
+            actionSheet.addAction(restoreAction)
+            actionSheet.addAction(cancelAction)
+            present(actionSheet, animated: true, completion: nil)
         }
     }
-}
-
-func restorePurchase() {
-    InAppPurchaseUtility.shared.restorePurchase { (success, error) in
-        if success {
-            if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
-                self.navigationController?.pushViewController(addCardVC, animated: true)
+    
+    func purchaseProduct() {
+        InAppPurchaseUtility.shared.purchaseProduct { (success, error) in
+            if success {
+                if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
+                    self.navigationController?.pushViewController(addCardVC, animated: true)
+                }
+            }
+            else  {
+                self.showAlertWith(title: "Purchase Failed!", message: error?.localizedDescription)
             }
         }
-        else  {
-            self.showAlertWith(title: "Purchase Failed!", message: error?.localizedDescription)
+    }
+    
+    func restorePurchase() {
+        InAppPurchaseUtility.shared.restorePurchase { (success, error) in
+            if success {
+                if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
+                    self.navigationController?.pushViewController(addCardVC, animated: true)
+                }
+            }
+            else  {
+                self.showAlertWith(title: "Purchase Failed!", message: error?.localizedDescription)
+            }
         }
     }
-}
-
-
 }
 
 
@@ -131,7 +130,6 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 125.0
     }
-    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         DispatchQueue.main.async {
@@ -144,35 +142,25 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
             tableView.isUserInteractionEnabled = false
-            
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! CardTableViewCell
         let row = indexPath.row
+        
         cell.cardBackgroundView.backgroundColor = cardArray[row].color
         cell.cardNicknameLabel.text = cardArray[row].nickname
         cell.cardNicknameLabel.textColor = cardArray[row].textColor
         cell.cardDetailsLabel.text = "\(String(describing: cardArray[row].type ?? "")) \(String(describing: cardArray[row].fourDigits ?? ""))"
         cell.cardDetailsLabel.textColor = cardArray[row].textColor
+        
         return cell
     }
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cardArray.count
     }
     
-    
 }
-
-
-
-
-
-
-
-
-
-
