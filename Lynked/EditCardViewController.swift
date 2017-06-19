@@ -93,11 +93,11 @@ class EditCardViewController: UIViewController {
     }
 
     
-    // MARK: Firebase Methods
+    // MARK: - Firebase Methods
     
         
     
-    // MARK: Card Was Altered with Alert
+    // MARK: - Card Was Altered with Alert
     
     func changeStatusOfCardAndServices() { // reset all services to needs attention
         
@@ -123,7 +123,7 @@ class EditCardViewController: UIViewController {
     
     
     
-    // MARK: Delete Card with UIAlert
+    // MARK: - Delete Card with UIAlert
     
     func deleteCard() {
         
@@ -171,7 +171,7 @@ class EditCardViewController: UIViewController {
     }
     
 
-    // MARK: Update Card
+    // MARK: - Update Card
     
     func updateCard() {
         guard let theCard = card else {
@@ -186,7 +186,7 @@ class EditCardViewController: UIViewController {
     }
     
     
-    // MARK: IB Actions
+    // MARK: - IB Actions
     
     @IBAction func leftBarButtonTapped(_ sender: UIBarButtonItem) {
         leftNavBarButton.isEnabled = false
@@ -209,7 +209,7 @@ class EditCardViewController: UIViewController {
         deleteCard()
     }
     
-    // MARK: Keyboard Methods
+    // MARK: - Keyboard Methods
     
     func keyboardWillShow(notification:NSNotification) {
         var userInfo = notification.userInfo!

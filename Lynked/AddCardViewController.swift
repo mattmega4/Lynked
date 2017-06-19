@@ -75,7 +75,7 @@ class AddCardViewController: UIViewController {
     
     
     
-    // MARK: Write to Firebase
+    // MARK: - Write to Firebase
     
     func addDataToFirebase() {
         
@@ -109,7 +109,7 @@ class AddCardViewController: UIViewController {
     }
     
     
-    // MARK: Enable Next Button
+    // MARK: - Enable Next Button
     
     func checkIfAllConditionsAreMet() {
         if nickNameTextFieldIsEmpty == false && cardTypeTextFieldIsEmpty == false {
@@ -119,7 +119,7 @@ class AddCardViewController: UIViewController {
         }
     }
     
-    // MARK: IB Actions
+    // MARK: - IB Actions
     
     @IBAction func navBarCancelButtonTapped(_ sender: UIBarButtonItem) {
         if let walletVC = storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
@@ -136,7 +136,7 @@ class AddCardViewController: UIViewController {
         cardTypePickerView.isHidden = false
     }
     
-    // MARK: Keyboard Methods
+    // MARK: - Keyboard Methods
     
     func keyboardWillShow(notification:NSNotification) {
         var userInfo = notification.userInfo!
@@ -157,7 +157,7 @@ class AddCardViewController: UIViewController {
 } // End of AddCardViewController Class
 
 
-// MARK: UITextField Methods
+// MARK: - UITextField Methods
 
 extension AddCardViewController: UITextFieldDelegate {
     
@@ -222,7 +222,7 @@ extension AddCardViewController: UITextFieldDelegate {
     
 }
 
-// MARK: UIPickerView Methods
+// MARK: - UIPickerView Methods
 
 extension AddCardViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     

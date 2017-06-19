@@ -18,6 +18,13 @@ class PreferencesViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     
+    @IBOutlet weak var logoImgView: UIImageView!
+    
+    @IBOutlet weak var nightModeButton: UIButton!
+    @IBOutlet weak var useTouchIDButton: UIButton!
+    @IBOutlet weak var feedbackButton: UIButton!
+    @IBOutlet weak var acknowledgementsButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
     
     
     let ref = Database.database().reference()
@@ -33,15 +40,7 @@ class PreferencesViewController: UIViewController {
     }
     
 
-    
-
-    
-
-    
-    
-    
-    
-    // MARK:  Delete User Method & Remove All Users Data
+    // MARK: -  Delete User Method & Remove All Users Data
     
     func deleteUser() {
         let alertController = UIAlertController(title: "Wait!", message: "This deletes everying tied to your account! All your cards, service, and total fixed monthly expenses You will need to register a new free account!", preferredStyle: UIAlertControllerStyle.alert)
@@ -76,22 +75,27 @@ class PreferencesViewController: UIViewController {
     
     
     
-    // MARK: IB Actions
+    // MARK: - IB Actions
     
+    @IBAction func nightModeButtonTapped(_ sender: UIButton) {
+    }
+
+    @IBAction func useTouchIDButtonTapped(_ sender: UIButton) {
+    }
     
-    //    @IBAction func deleteAccountTapped(_ sender: UIButton) {
-    //        deleteUser()
-    //    }
+    @IBAction func feedbackButtonTapped(_ sender: UIButton) {
+    }
     
-    
-    func tempModalPresent() {
-        
+    @IBAction func acknowledgementsButtonTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let ackVC = storyboard.instantiateViewController(withIdentifier: "ackVC")
         self.present(ackVC, animated: true, completion: nil)
-        
-        
+
     }
+    
+    @IBAction func deleteButtonTapped(_ sender: UIButton) {
+    }
+    
     
 } // End of PreferencesViewController Class
 

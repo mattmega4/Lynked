@@ -15,10 +15,10 @@ class ServiceClass {
     var cardID: String
     var serviceName: String?
     var serviceUrl: String?
-    var serviceStatus: Bool? // up to date biillin info D: true
-    var serviceFixed: Bool? // hulu vs amazon D: false ***
-    var serviceAmount: Double = 0 // what u pay a month D:0
-    var serviceAttention: Int = 0 // sort for up to date
+    var serviceStatus: Bool?
+    var serviceFixed: Bool?
+    var serviceAmount: Double = 0
+    var serviceAttention: Int = 0 
     
     
     init(id: String, cardId: String, serviceDict: [String : Any]) {

@@ -54,7 +54,7 @@ class WalletViewController: UIViewController {
     
     
     
-    // MARK: Firebase Methods
+    // MARK: - Firebase Methods
     
     //    func checkIfDataExits() {
     //        DispatchQueue.main.async {
@@ -101,7 +101,7 @@ class WalletViewController: UIViewController {
     }
 
 
-// MARK: IB Actions
+// MARK: - IB Actions
 
 @IBAction func leftBarButtonTapped(_ sender: UIBarButtonItem) {
     if let prefVC = self.storyboard?.instantiateViewController(withIdentifier: "PrefVC") as? PreferencesViewController {
@@ -162,7 +162,7 @@ func restorePurchase() {
 }
 
 
-// MARK: TableView Delegate & Data Source Methods
+// MARK: - TableView Delegate & Data Source Methods
 
 extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
     

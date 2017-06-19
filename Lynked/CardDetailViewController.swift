@@ -105,7 +105,7 @@ class CardDetailViewController: UIViewController {
     
     
     
-    // MARK: Firebase Methods For CollectionView
+    // MARK: - Firebase Methods For CollectionView
     
     func addServiceToCard() {
         MBProgressHUD.showAdded(to: self.view, animated: true)
@@ -124,7 +124,7 @@ class CardDetailViewController: UIViewController {
         }
     }
     
-    // MARK: Set Letter/Number Image For NO URL
+    // MARK: - Set Letter/Number Image For NO URL
     
     func getLetterOrNumberAndChooseImage(text: String) -> String {
         
@@ -218,7 +218,7 @@ class CardDetailViewController: UIViewController {
     
     
     
-    // MARK: IB Actions
+    // MARK: - IB Actions
     
     @IBAction func leftNavBarButtonTapped(_ sender: UIBarButtonItem) {
         
@@ -256,7 +256,7 @@ class CardDetailViewController: UIViewController {
     }
     
     
-    // MARK: Keyboard Methods
+    // MARK: - Keyboard Methods
     
     func keyboardWillShow(notification:NSNotification) {
         var userInfo = notification.userInfo!
@@ -277,7 +277,7 @@ class CardDetailViewController: UIViewController {
 }
 
 
-// MARK: UITextField Delegate
+// MARK: - UITextField Delegate
 
 extension CardDetailViewController: UITextFieldDelegate {
     

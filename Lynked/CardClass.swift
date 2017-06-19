@@ -18,10 +18,7 @@ class CardClass {
     var colorIndex = 0
     var color: UIColor?
     var textColor: UIColor?
-    
-//    init(cardRef: FirebaseDa)
-    
-    
+
     init(id: String, cardDict: [String: Any]) {
         cardID = id
         nickname = cardDict["nickname"] as? String

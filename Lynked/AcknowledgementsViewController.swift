@@ -33,7 +33,7 @@ class AcknowledgementsViewController: UIViewController {
         
     }
     
-    // MARK: IBActions
+    // MARK: - IBActions
     
     @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)

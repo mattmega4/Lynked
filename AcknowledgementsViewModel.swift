@@ -10,7 +10,6 @@ import UIKit
 
 class AcknowledgementsViewModel: NSObject {
 
-    
     func getAcknowlwdgements() -> [Library] {
         if let path = Bundle.main.path(forResource: "Pods-Lynked-acknowledgements", ofType: "plist") {
             if let ackDic = NSDictionary(contentsOfFile: path) as? [String : Any] {

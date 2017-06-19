@@ -102,7 +102,7 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    // MARK: ADD Targets
+    // MARK: - ADD Targets
     
     func addTargets() {
         serviceStateToggleSwtich.addTarget(self, action: #selector(stateSwitch(firstSwitch:)), for: .valueChanged)
@@ -114,7 +114,7 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     
     
     
-    // MARK: Switch Functions
+    // MARK: - Switch Functions
     
     func stateSwitch(firstSwitch: UISwitch) {
         if firstSwitch.isOn {
@@ -152,7 +152,7 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     
     
     
-    // MARK: Firebase Methods
+    // MARK: - Firebase Methods
     
     func updateServiceToFirebase() { // updateService
         
@@ -164,7 +164,7 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    // MARK: Delete Service with UIAlert
+    // MARK: - Delete Service with UIAlert
     
     func deleteThisService() {
         
@@ -200,7 +200,7 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    // MARK: URL Validator
+    // MARK: - URL Validator
     
     func alertUserIfURLTextFieldIsNotValid(textField: UITextField) {
         if textField == urlTextField {
@@ -218,7 +218,7 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    // MARK: Money Input Method
+    // MARK: - Money Input Method
     
     func currencyRightToLeftFormatter(textField: UITextField) {
         if textField == fixedAmountTextField {
@@ -229,7 +229,7 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    // MARK: Keyboard Methods
+    // MARK: - Keyboard Methods
     
     func keyboardWillShow(notification:NSNotification) {
         var userInfo = notification.userInfo!
@@ -262,7 +262,7 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    // MARK: IB Actions
+    // MARK: - IB Actions
     
     @IBAction func leftNavBarButtonTapped(_ sender: UIBarButtonItem) {
         leftNavBarButton.isEnabled = false
