@@ -19,7 +19,6 @@ class EntryViewController: UIViewController {
     
     @IBOutlet weak var topContainerView: UIView!
     @IBOutlet weak var mainLogoImageView: UIImageView!
-    @IBOutlet weak var questionMarkButton: UIButton!
     
     @IBOutlet weak var leftContainerView: UIView!
     @IBOutlet weak var leftContainerButton: UIButton!
@@ -288,66 +287,26 @@ class EntryViewController: UIViewController {
             signInOrUpButtonContainerView.isHidden = true
         }
     }
+
     
-    
-    // MARK: - Sign In
+    // MARK: - Sign User In
     
     func signUserIn() {
-        let email = textFieldOne.text ?? ""
-        let password = textFieldTwo.text ?? ""
-        Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
-            let ref = Database.database().reference()
-            let user = Auth.auth().currentUser
-            if error == nil {
-                
-                
-                Analytics.logEvent("Email_Login", parameters: ["success" : true])
-                
-                Answers.logLogin(withMethod: "Email Login",
-                                 success: true,
-                                 customAttributes: nil)
-                
-                ref.child("users").child((user?.uid)!).child("cards")
-                    .observeSingleEvent(of: .value, with: { snapshot in
-                        if (snapshot.hasChildren()) {
-                            
-                            if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
-                                self.navigationController?.pushViewController(walletVC, animated: true)
-                            }
-                            
-                        } else {
-                            
-                            
-                            if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
-                                self.navigationController?.pushViewController(addVC, animated: true)
-                            }
-                        }
-                    })
-            } else {
-                var errMessage = ""
-                if let errCode = AuthErrorCode(rawValue: (error?._code)!) {
-                    switch errCode {
-                    case .invalidEmail:
-                        errMessage = "The entered email does not meet requirements."
-                    case .weakPassword:
-                        errMessage = "The entered password does not meet minimum requirements."
-                    case .wrongPassword:
-                        errMessage = "The entered password is not correct."
-                    default:
-                        errMessage = "Please try again."
-                    }
-                    let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errMessage)", preferredStyle: .alert)
-                    self.present(alertController, animated: true, completion:nil)
-                    let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
-                    }
-                    alertController.addAction(OKAction)
+        FirebaseUtility.shared.signUserInWith(email: textFieldOne.text, password: textFieldTwo.text) { (user, errMessage) in
+            
+            if let errorMessage = errMessage {
+                let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errorMessage)", preferredStyle: .alert)
+                self.present(alertController, animated: true, completion:nil)
+                let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
                 }
-                self.textFieldOne.text = ""
-                self.textFieldTwo.text = ""
-                self.topFieldIsSatisfied = false
-                self.bottomFieldIsSatisfied = false
+                alertController.addAction(OKAction)
             }
-        })
+            else {
+                if let WalletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
+                    self.navigationController?.pushViewController(WalletVC, animated: true)
+                }
+            }
+        }
     }
     
     
@@ -355,6 +314,7 @@ class EntryViewController: UIViewController {
     
     func registerNewUser() {
         FirebaseUtility.shared.registerUserWith(email: newUserEmail, password: textFieldOne.text, confirmPassword: textFieldTwo.text) { (user, errMessage) in
+            
             if let errorMessage = errMessage {
                 let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errorMessage)", preferredStyle: .alert)
                 self.present(alertController, animated: true, completion:nil)
@@ -368,47 +328,6 @@ class EntryViewController: UIViewController {
                 }
             }
         }
-        
-//        let ref = Database.database().reference()
-//        if textFieldOne.text == textFieldTwo.text {
-//            newUserPassword = textFieldTwo.text ?? ""
-//            Auth.auth().createUser(withEmail: newUserEmail!, password: newUserPassword!, completion: { (user, error) in
-//                var errMessage = ""
-//                if (error != nil) {
-//                    if let errCode = AuthErrorCode(rawValue: (error?._code)!) {
-//                        switch errCode {
-//                        case .invalidEmail:
-//                            errMessage = "The entered email does not meet requirements."
-//                        case .emailAlreadyInUse:
-//                            errMessage = "The entered email has already been registered."
-//                        case .weakPassword:
-//                            errMessage = "The entered password does not meet minimum requirements."
-//                        default:
-//                            errMessage = "Please try again."
-//                        }
-//                    }
-//                    let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errMessage)", preferredStyle: .alert)
-//                    self.present(alertController, animated: true, completion:nil)
-//                    let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
-//                    }
-//                    alertController.addAction(OKAction)
-//                } else {
-//                    ref.child("users").child((user?.uid)!).child("cards").setValue(true)
-//                    Auth.auth().signIn(withEmail: self.newUserEmail!, password: self.newUserPassword!)
-//                    self.tempUID = (user?.uid)!
-//                    
-//                    
-//                    Analytics.logEvent("Email_Register", parameters: ["success" : true])
-//                    
-//                    Answers.logSignUp(withMethod: "Email Register",
-//                                      success: true,
-//                                      customAttributes: [:])
-//                    if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
-//                        self.navigationController?.pushViewController(addVC, animated: true)
-//                    }
-//                }
-//            })
-//        }
     }
     
     
@@ -416,7 +335,6 @@ class EntryViewController: UIViewController {
     
     @IBAction func leftContainerButtonTapped(_ sender: UIButton) {
         leftButtonWasTappedWhichIsDefault()
-        
     }
     
     @IBAction func rightContainerButtonTapped(_ sender: UIButton) {
@@ -454,12 +372,9 @@ class EntryViewController: UIViewController {
         hideShowKeyboardLogicLeftVsRight()
     }
     
-    
-    
 } // End of EntryPageViewController
 
 extension EntryViewController: UITextFieldDelegate {
-    
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)

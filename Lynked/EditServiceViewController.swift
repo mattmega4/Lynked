@@ -154,13 +154,11 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Firebase Methods
     
-    func updateServiceToFirebase() { // updateService
+    func updateServiceToFirebase() {
         
-        FirebaseUtility.shared.update(service: service,
-                                      name: serviceNameTextField.text,
-                                      url: urlTextField.text, amount: fixedAmountTextField.text, isFixed: fixedExpenseToggleSwitch.isOn, state: serviceStateToggleSwtich.isOn) { (updatedService, errMessage) in
-                                        self.navigationController?.popViewController(animated: true)
-        }    
+        FirebaseUtility.shared.update(service: service, name: serviceNameTextField.text, url: urlTextField.text, amount: fixedAmountTextField.text, isFixed: fixedExpenseToggleSwitch.isOn, state: serviceStateToggleSwtich.isOn) { (updatedService, errMessage) in
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     
@@ -267,10 +265,10 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     @IBAction func leftNavBarButtonTapped(_ sender: UIBarButtonItem) {
         leftNavBarButton.isEnabled = false
         navigationController?.popViewController(animated: true)
-//        if let detailVC = storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
-//            //detailVC.cardID = thisCardTransfered
-//            navigationController?.pushViewController(detailVC, animated: true)
-//        }
+        //        if let detailVC = storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
+        //            //detailVC.cardID = thisCardTransfered
+        //            navigationController?.pushViewController(detailVC, animated: true)
+        //        }
     }
     
     @IBAction func rightNavBarButtonTapped(_ sender: UIBarButtonItem) {
