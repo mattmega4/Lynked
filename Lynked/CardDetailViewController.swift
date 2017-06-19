@@ -21,50 +21,30 @@ class CardDetailViewController: UIViewController {
     @IBOutlet weak var addServiceButton: UIButton!
     @IBOutlet weak var bottomDividerView: UIView!
     
-    @IBOutlet weak var tableView: UITableView!
+    //    @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var noteLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var editCardButton: UIButton!
     
-    //var cardID: String?
-//    var cardNicknameTransfered = ""
-//    var cardLast4Transfered = ""
-//    var cardTypeTransfered = ""
-//    var selectedService: String?
-//    var serviceCurrent: Bool?
-//    var serviceName: String?
-//    var serviceURL: String?
-//    var attentionInt: Int?
-//    var serviceFixedBool: Bool?
-//    var serviceFixedAmount: String?
     var serviceArray: [ServiceClass] = []
-    //var tempServiceArray = [ServiceClass]()
-    //let ref = Database.database().reference()
-    //let user = Auth.auth().currentUser
-    //var selectedCard: CardClass?
-//    var totalArr: [String] = []
-//    var doubleArray: [Double] = []
-//    var tempDoubleArray = [Double]()
-    
     var card: CardClass?
     
     let margin: CGFloat = 10
     let cellsPerC = 3
     
-    
-    var autoCompletePossibilities: [String] = []
-    var autoComplete: [String] = []
-    
-    var countedSet: NSCountedSet?
-    var dataArray = [String]()
+    //    var autoCompletePossibilities: [String] = []
+    //    var autoComplete: [String] = []
+    //
+    //    var countedSet: NSCountedSet?
+    //    var dataArray = [String]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
+        //        self.tableView.delegate = self
+        //        self.tableView.dataSource = self
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.serviceNameTextField.delegate = self
@@ -91,13 +71,9 @@ class CardDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tableView.isHidden = true
-        //collectionView.isUserInteractionEnabled = true
-        //checkIfDataExits()
-        getListOfAllServicesFromFirebase()
+//        tableView.isHidden = true
         addServiceButton.alpha = 0.4
         addServiceButton.isEnabled = false
-        //collectionView.isUserInteractionEnabled = true
         getServices()
     }
     
@@ -126,16 +102,16 @@ class CardDetailViewController: UIViewController {
         }
     }
     
-
+    
     
     
     // MARK: Firebase Methods For CollectionView
-
+    
     func addServiceToCard() {
         MBProgressHUD.showAdded(to: self.view, animated: true)
         FirebaseUtility.shared.addService(name: serviceNameTextField.text, forCard: card) { (service, errMessage) in
             MBProgressHUD.hide(for: self.view, animated: true)
-            self.tableView.isHidden = true
+//            self.tableView.isHidden = true
             if let theService = service {
                 self.addService(service: theService)
                 
@@ -147,60 +123,6 @@ class CardDetailViewController: UIViewController {
             }
         }
     }
-    
-    
-    // MARK: Predictive Text FOr TableView Logic
-    
-//    func getListOfAllServicesFromFirebase() {
-//        DispatchQueue.global().async {
-//            let servicesRef = self.ref.child("services")
-//            servicesRef.observe( .value, with: { (snapshot) in
-//                for services in snapshot.children {
-//                    let allServiceIDs = (services as AnyObject).key as String
-//                    let serviceDrilled = servicesRef.child(allServiceIDs)
-//                    serviceDrilled.observeSingleEvent(of: .value, with: { (snap) in
-//                        let sD = snap as DataSnapshot
-//                        if let serviceDict = sD.value as? [String: AnyObject] {
-//                            let aService = ServiceClass(id: sD.key, serviceDict: serviceDict)
-//                            self.serviceArray.append(aService)
-//                            if let sName = serviceDict["serviceName"] as? String {
-//                                self.autoCompletePossibilities.append(sName.lowercased())
-//                            }
-//                        }
-//                    })
-//                }
-//            })
-//        }
-//    }
-    
-    
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        if textField == serviceNameTextField {
-//            let substring = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-//            searchAutocompleteEntriesWithSubstring(substring)
-//        }
-//        return true
-//    }
-//    
-//    
-//    func searchAutocompleteEntriesWithSubstring(_ substring: String) {
-//        autoComplete.removeAll(keepingCapacity: false)
-//        for key in autoCompletePossibilities {
-//            let myString:NSString! = key as NSString
-//            let substringRange :NSRange! = myString.range(of: substring)
-//            if (substringRange.location  == 0) {
-//                
-//                autoComplete.append(key)
-//                self.countedSet = NSCountedSet(array: self.autoComplete)
-//                self.dataArray = self.countedSet?.allObjects as! [String]
-//            }
-//            
-//        }
-//        DispatchQueue.main.async {
-//            self.tableView.reloadData()
-//        }
-//    }
-    
     
     // MARK: Set Letter/Number Image For NO URL
     
@@ -350,7 +272,7 @@ class CardDetailViewController: UIViewController {
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         self.collectionView.contentInset = contentInset
     }
-
+    
     
 }
 
@@ -367,8 +289,8 @@ extension CardDetailViewController: UITextFieldDelegate {
             serviceNameTextField.returnKeyType = .go
             addServiceToCard()
             view.endEditing(true)
-            tableView.isHidden = true
-            collectionView.isUserInteractionEnabled = true
+//            tableView.isHidden = true
+//            collectionView.isUserInteractionEnabled = true
         }
         
         return false
@@ -383,12 +305,12 @@ extension CardDetailViewController: UITextFieldDelegate {
         if (textField.text?.isEmpty)! {
             addServiceButton.isEnabled = false
             addServiceButton.alpha = 0.4
-            tableView.isHidden = true
-            collectionView.isUserInteractionEnabled = true
+//            tableView.isHidden = true
+//            collectionView.isUserInteractionEnabled = true
         } else if !(textField.text?.isEmpty)! {
             addServiceButton.isEnabled = true
             addServiceButton.alpha = 1.0
-            tableView.isHidden = false
+//            tableView.isHidden = false
             //collectionView.isUserInteractionEnabled = false
         }
     }
@@ -459,46 +381,6 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
 }
 
 
-extension CardDetailViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataArray.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "autoComCell", for: indexPath) as! AutoCompleteTableViewCell
-        let item = dataArray[indexPath.row]
-        
-        cell.previewNameLabel.text = item
-        
-        let myURLString: String = "http://www.google.com/s2/favicons?domain=www.\(item.removingWhitespaces()).com"
-        if let myURL = URL(string: myURLString) {
-            cell.previewImageView.sd_setImage(with: myURL, placeholderImage: #imageLiteral(resourceName: "Ly"))
-        }
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let selectedCell: AutoCompleteTableViewCell = tableView.cellForRow(at: indexPath)! as! AutoCompleteTableViewCell
-        
-        serviceNameTextField.text = selectedCell.previewNameLabel.text
-        
-        tableView.isHidden = true
-        collectionView.isUserInteractionEnabled = true
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 34.0
-    }
-    
-}
 
 
 
@@ -507,11 +389,5 @@ extension CardDetailViewController: UITableViewDelegate, UITableViewDataSource {
 
 
 
-// TODO: Fixed Expense Sum
-
-//  self.totalArr.append((serviceDict["serviceAmount"] as? String)!)
-//  self.doubleArray = self.totalArr.flatMap{ Double($0) }
-//  let arraySum = self.doubleArray.reduce(0, +)
-//  self.title = self.selectedCard?.nickname ?? ""
 
 

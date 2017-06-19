@@ -160,10 +160,7 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
                                       name: serviceNameTextField.text,
                                       url: urlTextField.text, amount: fixedAmountTextField.text, isFixed: fixedExpenseToggleSwitch.isOn, state: serviceStateToggleSwtich.isOn) { (updatedService, errMessage) in
                                         self.navigationController?.popViewController(animated: true)
-        }
-
-        
-        
+        }    
     }
     
     

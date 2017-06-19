@@ -1791,7 +1791,6 @@
                         <outlet property="rightNavButton" destination="gjO-ta-jDx" id="XOV-Kq-gqJ"/>
                         <outlet property="serviceLabel" destination="SVY-M0-ohN" id="INE-Yj-Pma"/>
                         <outlet property="serviceNameTextField" destination="ggi-OL-5L3" id="fvR-oH-mbx"/>
-                        <outlet property="tableView" destination="2wF-ru-SwV" id="8B4-Sl-XW6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5U5-xl-Zvh" userLabel="First Responder" sceneMemberID="firstResponder"/>
