@@ -19,7 +19,7 @@ class AcknowledgementsViewModel: NSObject {
                     })
                     libraries.remove(at: 0)
                     return libraries
-                
+            
                 }
             }
         }

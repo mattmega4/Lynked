@@ -66,7 +66,7 @@
 		292764941EDFC8350096AE1E /* CardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
 		2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseUtility.swift; sourceTree = "<group>"; };
 		29773CDC1EC3B6730023F277 /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
-		297BE9FB1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Pods-Lynked-acknowledgements.plist"; path = "Pods/Target Support Files/Pods-Lynked/Pods-Lynked-acknowledgements.plist"; sourceTree = "<group>"; };
+		297BE9FB1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Pods-Lynked-acknowledgements.plist"; path = "../Pods/Target Support Files/Pods-Lynked/Pods-Lynked-acknowledgements.plist"; sourceTree = "<group>"; };
 		297BE9FD1EF707EA0035D4DA /* AcknowledgementsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AcknowledgementsViewModel.swift; path = ../AcknowledgementsViewModel.swift; sourceTree = "<group>"; };
 		297BE9FF1EF708640035D4DA /* Library.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		297BEA021EF766500035D4DA /* Future.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Future.swift; sourceTree = "<group>"; };
@@ -103,7 +103,6 @@
 		1DC0D89E1DFE516A0039B8F6 = {
 			isa = PBXGroup;
 			children = (
-				297BE9FB1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist */,
 				1DC0D8A91DFE516A0039B8F6 /* Lynked */,
 				1DC0D8A81DFE516A0039B8F6 /* Products */,
 				7C6C21144E94777124CC2B96 /* Pods */,
@@ -135,6 +134,7 @@
 		1DC0D8BF1DFE51790039B8F6 /* Additional Files */ = {
 			isa = PBXGroup;
 			children = (
+				297BE9FB1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist */,
 				1DC0D8AA1DFE516A0039B8F6 /* AppDelegate.swift */,
 				1DC0D8B41DFE516A0039B8F6 /* Assets.xcassets */,
 				1DC0D8B91DFE516A0039B8F6 /* Info.plist */,
