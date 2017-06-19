@@ -30,10 +30,12 @@ class EditCardViewController: UIViewController {
     @IBOutlet weak var firstContainerView: UIView!
     @IBOutlet weak var secondContainerView: UIView!
     @IBOutlet weak var thirdContainerView: UIView!
+    
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var digitsLabel: UILabel!
     @IBOutlet weak var alteredButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
+    
     @IBOutlet weak var nicknameTextField: UITextField!
     @IBOutlet weak var digitsTextField: UITextField!
     
@@ -48,8 +50,11 @@ class EditCardViewController: UIViewController {
     var stateOfCard: Bool?
     
     var colorInt: Int?
-    
+    var cardID: String?
     var cardDeleted = false
+    
+    var card: CardClass?
+    var serviceArray = [ServiceClass]()
     
     let ref = Database.database().reference()
     let user = Auth.auth().currentUser
@@ -77,99 +82,39 @@ class EditCardViewController: UIViewController {
         
         leftNavBarButton.isEnabled = true
         rightNavBarButton.isEnabled = true
-        pullCardData()
+        //pullCardData()
+        populateCardInfo()
+    }
+    
+    func populateCardInfo() {
+        segControl.selectedSegmentIndex = card?.colorIndex ?? 0
+        nicknameTextField.text = card?.nickname
+        digitsTextField.text = card?.fourDigits
     }
 
     
     // MARK: Firebase Methods
     
-    func pullCardData() {
-        let cardRef = ref.child("cards")
-        cardRef.observe(DataEventType.value, with: { (snapshot) in
-            
-            for childs in snapshot.children {
-                let allCardID = (childs as AnyObject).key as String
-                if allCardID == self.thisCardIDTransfered {
-                    let thisCardLocation = cardRef.child(self.thisCardIDTransfered)
-                    
-                    thisCardLocation.observe(DataEventType.value, with: { (snap) in
-                        
-                        
-                        let thisCardDetails = snap as DataSnapshot
-                        
-                        
-                        if let cardDict = thisCardDetails.value as? [String: AnyObject] {
-                            self.nicknameTextField.text = cardDict["nickname"] as? String
-                            self.digitsTextField.text = cardDict["last4"] as? String
-                            self.cardType = cardDict["type"] as? String
-                            
-                            self.colorInt = cardDict["color"] as? Int
-                            
-                            if let indx = self.colorInt {
-                                self.segControl.selectedSegmentIndex = indx
-                            }
-                            
-                        }
-                    })
-                }
-            }
-        })
-    }
-    
+        
     
     // MARK: Card Was Altered with Alert
     
-    func changeStatusOfCardAndServices() {
+    func changeStatusOfCardAndServices() { // reset all services to needs attention
+        
+        
         
         let alertController = UIAlertController(title: "Something went wrong!", message: "This will mark all linked services as 'needs attention.' You will have to update each service one at a time!", preferredStyle: UIAlertControllerStyle.alert)
         
         let cancelAction = UIAlertAction(title: "Never Mind!", style: UIAlertActionStyle.cancel, handler: nil)
         
         let okAction = UIAlertAction(title: "I Understand!", style: UIAlertActionStyle.default) { (result: UIAlertAction) in
-            
-            var servicesArr: [String] = []
-            let thisCard = self.ref.child("cards").child(self.thisCardIDTransfered).child("services")
-            
-            Analytics.logEvent("Card_Altered", parameters: ["success" : true])
-            
-            Answers.logCustomEvent(withName: "Card was Altered",
-                                   customAttributes: nil)
-            
-            thisCard.observe(DataEventType.value, with: { (snapshot) in
-                
-                
-                for services in snapshot.children {
-                    let theseServiceID = (services as AnyObject).key as String
-                    servicesArr.append(theseServiceID)
-                }
-                for each in servicesArr {
-                    let servicesToChange = self.ref.child("services")
-                    
-                    servicesToChange.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
-                        
-                        for services in snapshot.children {
-                            let allServiceID = (services as AnyObject).key as String
-                            if allServiceID == each {
-                                let serviceToMark = servicesToChange.child(each)
-                                serviceToMark.updateChildValues(["serviceStatus": false])
-                                serviceToMark.updateChildValues(["attentionInt": 1])
-                            }
-                        }
-                    })
-                }
-            })
-            
-            
-            if let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
-                detailVC.cardID = self.thisCardIDTransfered
-                self.navigationController?.pushViewController(detailVC, animated: true)
+            FirebaseUtility.shared.resetServices(services: self.serviceArray) { (services) in
+                self.navigationController?.popViewController(animated: true)
             }
-            
         }
         
         alertController.addAction(cancelAction)
         alertController.addAction(okAction)
-        
         self.present(alertController, animated: true, completion: nil)
         
     }
@@ -185,56 +130,34 @@ class EditCardViewController: UIViewController {
         let alertController = UIAlertController(title: "Wait!", message: "This will completely remove this card from your account. All the services linked to this card will be removed. Your total fixed monthly expenses will also be erased!", preferredStyle: UIAlertControllerStyle.alert)
         
         let cancelAction = UIAlertAction(title: "Never Mind!", style: .cancel, handler: nil)
-        
-        
-        
-        
-        let okAction = UIAlertAction(title: "I Understand!", style: .destructive) { (result: UIAlertAction) in
-            
-            let thisCard = self.ref.child("cards").child(self.thisCardIDTransfered)
-            let thisCardInUsers = self.ref.child("users").child((self.user?.uid)!).child("cards").child(self.thisCardIDTransfered)
 
-            thisCard.removeValue(completionBlock: { (error, reference) in
-                if error == nil {
-                    thisCardInUsers.removeValue(completionBlock: { (error2, ref2) in
-                        let cardNode = self.ref.child("users").child((self.user?.uid)!).child("cards")
-                        
-                        cardNode.observeSingleEvent(of: .value, with: { (snapshot) in
-                            
-                            
-                            
-                            
-                            if snapshot.hasChildren() {
-                                //
-                                DispatchQueue.main.async {
-                                    if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
-                                        self.navigationController?.pushViewController(walletVC, animated: true)
-                                    }
-                                    
-                                }
-                                
-                                
-                            } else {
-                                DispatchQueue.main.async {
-                                    
-                                    if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
-                                        self.navigationController?.pushViewController(addVC, animated: true)
-                                        
-                                    }
-                                    
-                                }
+        let okAction = UIAlertAction(title: "I Understand!", style: .destructive) { (result: UIAlertAction) in
+            guard let theCard = self.card else {
+                return
+            }
+            FirebaseUtility.shared.delete(card: theCard, completion: { (success, error) in
+                if let errorMessage = error {
+                    
+                }
+                else if success {
+                    var didGoBack = false
+                    if let viewControllers = self.navigationController?.viewControllers {
+                        for aController in viewControllers {
+                            if aController is WalletViewController {
+                                didGoBack = true
+                                self.navigationController?.popToViewController(aController, animated: true)
+                                break
                             }
-                            
-                        })
+                        }
                         
-                    })
+                    }
+                    if !didGoBack {
+                        if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
+                            self.navigationController?.pushViewController(walletVC, animated: true)
+                        }
+                    }
                 }
             })
-            
-                        Analytics.logEvent("Card_Deleted", parameters: ["success" : true])
-            
-                        Answers.logCustomEvent(withName: "Card Deleted",
-                                              customAttributes: nil)
             
             
         }
@@ -251,21 +174,11 @@ class EditCardViewController: UIViewController {
     // MARK: Update Card
     
     func updateCard() {
-        let tCardName = nicknameTextField.text ?? ""
-        let tLast4 = digitsTextField.text ?? ""
-        let tCardType = cardType ?? ""
-        
-        let color = segControl.selectedSegmentIndex
-        
-        let thisCard = ref.child("cards").child(thisCardIDTransfered)
-
-        thisCard.updateChildValues(["nickname": tCardName, "last4": tLast4, "type": tCardType, "color": color])
-        
-        
-        
-        if let detailVC = storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
-            detailVC.cardID = thisCardIDTransfered
-            navigationController?.pushViewController(detailVC, animated: true)
+        guard let theCard = card else {
+            return
+        }
+        FirebaseUtility.shared.update(card: theCard, nickName: nicknameTextField.text, last4: digitsTextField.text, color: segControl.selectedSegmentIndex) { (updatedCard, error) in
+            self.navigationController?.popViewController(animated: true)
         }
         
         
@@ -278,8 +191,8 @@ class EditCardViewController: UIViewController {
     @IBAction func leftBarButtonTapped(_ sender: UIBarButtonItem) {
         leftNavBarButton.isEnabled = false
         if let detailVC = storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
-            detailVC.cardID = thisCardIDTransfered
-            navigationController?.pushViewController(detailVC, animated: true)
+            detailVC.card = card
+            navigationController?.popViewController(animated: true)
         }
     }
     

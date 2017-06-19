@@ -7,10 +7,7 @@
 //
 
 import UIKit
-import Firebase
-import FirebaseDatabase
-import Fabric
-import Crashlytics
+import MBProgressHUD
 
 class AddCardViewController: UIViewController {
     
@@ -39,9 +36,6 @@ class AddCardViewController: UIViewController {
     
     @IBOutlet weak var cardTypePickerView: UIPickerView!
     
-    
-    
-    let ref = Database.database().reference()
     var nickNameTextFieldIsEmpty = true
     var cardTypeTextFieldIsEmpty = true
     var allCardTypes: [String] = []
@@ -85,8 +79,7 @@ class AddCardViewController: UIViewController {
     
     func addDataToFirebase() {
         
-        let user = Auth.auth().currentUser
-        let card = ref.child("cards").childByAutoId()
+        
         
         let nicknameToAdd = firstContainerTextField.text ?? ""
         let nicknameWithoutWhiteSpaces = nicknameToAdd.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
@@ -98,21 +91,20 @@ class AddCardViewController: UIViewController {
         finalType = typeToAdd?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
         
-        let color: Int? = segControl.selectedSegmentIndex
-        
-        if let tempNick = finalNickname, let temp4 = last4, let fynal = finalType, let clrInt = color {
-            card.setValue(["nickname": tempNick, "last4": temp4, "type": fynal, "color": clrInt])
-        }
-        ref.child("users").child((user?.uid)!).child("cards").child(card.key).setValue(true)
-        
-        Analytics.logEvent("New_Card_Added", parameters: ["success" : true])
-        
-        Answers.logCustomEvent(withName: "New Card Added",
-                              customAttributes: nil)
-        
-        if let detailVC = storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
-            detailVC.cardID = card.key
-            navigationController?.pushViewController(detailVC, animated: true)
+        let color: Int = segControl.selectedSegmentIndex
+        MBProgressHUD.showAdded(to: view, animated: true)
+        FirebaseUtility.shared.addCard(name: finalNickname, type: finalType, color: color, last4: last4) { (card, errorMessage) in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            if let theCard = card {
+                if let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
+                    detailVC.card = theCard
+                    self.navigationController?.pushViewController(detailVC, animated: true)
+                }
+
+            }
+            else {
+                // Display error
+            }
         }
     }
     

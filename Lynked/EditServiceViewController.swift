@@ -70,6 +70,8 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     var nameForSite: String?
     var URLForSite: String?
     
+    var service: ServiceClass?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -94,8 +96,9 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
         
         leftNavBarButton.isEnabled = true
         rightNavBarButton.isEnabled = true
-        pullServiceData()
+        //pullServiceData()
         alertUserIfURLTextFieldIsNotValid(textField: urlTextField)
+        updateViewBasedOnService()
     }
     
     
@@ -136,122 +139,31 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     }
     
     
+    func updateViewBasedOnService() {
+        serviceStateToggleSwtich.isOn = service?.serviceStatus == true
+        serviceNameTextField.text = service?.serviceName
+        if let name = service?.serviceName {
+            updateServiceOnlineButton.setTitle("Go To \(name)'s Website to Update Payment", for: .normal)
+        }
+        urlTextField.text = service?.serviceUrl
+        fixedExpenseToggleSwitch.isOn = service?.serviceFixed == true
+        fixedAmountTextField.text = "$\(service?.serviceAmount ?? 0.0)"
+    }
+    
     
     
     // MARK: Firebase Methods
     
-    func pullServiceData() {
+    func updateServiceToFirebase() { // updateService
         
-        let serviceRef = ref.child("services")
-        
-        serviceRef.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
-            
-            for childs in snapshot.children {
-                let allServiceID = (childs as AnyObject).key as String
-                if allServiceID == self.thisServiceTransfered {
-                    let thisServiceLocation = serviceRef.child(self.thisServiceTransfered)
-                    
-                    thisServiceLocation.observe(DataEventType.value, with: { (snap) in
-                        
-                        let thisServiceDetails = snap as DataSnapshot
-                        
-                        if let serviceDict = thisServiceDetails.value as? [String: AnyObject] {
-                            
-                            
-                            if let tempState = self.serviceUpToDateTransfered {
-                                
-                                self.stateOfService = tempState
-                                
-                                if tempState == true {
-                                    self.oneOrZero = 0
-                                } else {
-                                    self.oneOrZero = 1
-                                }
-                            }
-                            
-                            if serviceDict["serviceStatus"] as! Bool == true {
-                                self.stateOfService = true
-                                self.serviceStateToggleSwtich.setOn(true, animated: true)
-                            } else {
-                                self.stateOfService = false
-                                self.serviceStateToggleSwtich.setOn(false, animated: true)
-                            }
-                            
-                            self.serviceNameTextField.text = serviceDict["serviceName"] as? String
-                            
-                            
-                            
-                            if let temp = serviceDict["serviceName"] as? String {
-                                self.updateServiceOnlineButton.setTitle("Go To \(temp)'s Website to Update Payment", for: .normal)
-                                self.nameForSite = temp
-                            }
-                            
-                            self.urlTextField.text = (serviceDict["serviceURL"] as? String)?.trimmingCharacters(in: .whitespaces)
-                            
-                            if let tUrl = serviceDict["serviceURL"] as? String {
-                                self.URLForSite = tUrl
-                            }
-                            
-                            
-                            if let tempFixed = self.serviceFixedTransfered {
-                                self.stateOfFixed = tempFixed
-                            }
-                            
-                            
-                            if serviceDict["serviceFixed"] as! Bool == true {
-                                self.fixedExpenseToggleSwitch.setOn(true, animated: true)
-                                self.fixedAmountLabel.alpha = 1.0
-                                self.fixedAmountTextField.isEnabled = true
-                                self.fixedAmountTextField.text = serviceDict["serviceAmount"] as? String
-                            } else {
-                                self.fixedExpenseToggleSwitch.setOn(false, animated: true)
-                                self.fixedAmountLabel.alpha = 0.4
-                                self.fixedAmountTextField.isEnabled = false
-                                self.fixedAmountTextField.text = ""
-                                self.fixedAmountTextField.text = serviceDict["serviceAmount"] as? String
-                            }
-                        }
-                    })
-                }
-            }
-        })
-    }
-    
-    
-    func saveServiceToFirebase() {
-        let sName = serviceNameTextField.text ?? ""
-        let sURL = urlTextField.text ?? ""
-        let sAmount = fixedAmountTextField.text ?? ""
-        let nameWhiteSpacesRemoved = sName.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        let urlOuterWhitepacesRemoved = sURL.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        let urlFullTrim = urlOuterWhitepacesRemoved.removingWhitespaces()
-        
-        var amountWhiteSpacesRemoved = sAmount.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        
-        if amountWhiteSpacesRemoved.hasPrefix("$") && amountWhiteSpacesRemoved.characters.count > 1 {
-            amountWhiteSpacesRemoved.remove(at: amountWhiteSpacesRemoved.startIndex)
+        FirebaseUtility.shared.update(service: service,
+                                      name: serviceNameTextField.text,
+                                      url: urlTextField.text, amount: fixedAmountTextField.text, isFixed: fixedExpenseToggleSwitch.isOn, state: serviceStateToggleSwtich.isOn) { (updatedService, errMessage) in
+                                        self.navigationController?.popViewController(animated: true)
         }
-        let thisService = ref.child("services").child(thisServiceTransfered)
+
         
-        if let state = stateOfService {
-            
-            if state == true {
-                thisService.setValue(["serviceURL": urlFullTrim, "serviceName": nameWhiteSpacesRemoved, "serviceStatus": true, "serviceFixed": stateOfFixed!, "serviceAmount": amountWhiteSpacesRemoved, "attentionInt": 0])
-            } else {
-                thisService.setValue(["serviceURL": urlFullTrim, "serviceName": nameWhiteSpacesRemoved, "serviceStatus": false, "serviceFixed": stateOfFixed!, "serviceAmount": amountWhiteSpacesRemoved, "attentionInt": 1])
-            }
-            
-        }
         
-        Analytics.logEvent("Details_Added_To_Service", parameters: ["success" : true])
-        
-        Answers.logCustomEvent(withName: "Details Added To Service",
-                               customAttributes: nil)
-        
-        if let detailVC = storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
-            detailVC.cardID = thisCardTransfered
-            navigationController?.pushViewController(detailVC, animated: true)
-        }
     }
     
     
@@ -277,7 +189,7 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
             
             
             if let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
-                detailVC.cardID = self.thisCardTransfered
+                //detailVC.cardID = self.thisCardTransfered
                 self.navigationController?.pushViewController(detailVC, animated: true)
             }
             
@@ -357,14 +269,15 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func leftNavBarButtonTapped(_ sender: UIBarButtonItem) {
         leftNavBarButton.isEnabled = false
-        if let detailVC = storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
-            detailVC.cardID = thisCardTransfered
-            navigationController?.pushViewController(detailVC, animated: true)
-        }
+        navigationController?.popViewController(animated: true)
+//        if let detailVC = storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
+//            //detailVC.cardID = thisCardTransfered
+//            navigationController?.pushViewController(detailVC, animated: true)
+//        }
     }
     
     @IBAction func rightNavBarButtonTapped(_ sender: UIBarButtonItem) {
-        saveServiceToFirebase()
+        updateServiceToFirebase()
         rightNavBarButton.isEnabled = false
     }
     
