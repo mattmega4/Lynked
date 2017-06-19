@@ -20,6 +20,7 @@ class FirebaseUtility: NSObject {
     let ref = Database.database().reference()
     var user = Auth.auth().currentUser
     
+    
     // MARK: - Get Card
     
     func getCards(completion: @escaping (_ cards: [CardClass]?, _ errorMessage: String?) -> Void) {
@@ -73,30 +74,12 @@ class FirebaseUtility: NSObject {
             let cardRef = ref.child("newCards").child(userId).childByAutoId()
             let cardDict: [String : Any] = ["nickname": theName, "last4": theLast4, "type": theType, "color": color]
             cardRef.setValue(cardDict, withCompletionBlock: { (error, ref) in
-                if let theError = error {
-                    // TODO
-                    // Go thought error codes and generate custom error messages just like in the signup function
-                    let errorMessage = "Something went wrong"
+                
+                if let theError = error?.localizedDescription {
+                    let errorMessage = theError
                     completion(nil, errorMessage)
                     
-                    //                    if let theError = error {
-                    //                        var errMessage = "An unknown error occured."
-                    //                        if let errCode = AuthErrorCode(rawValue: (theError._code)) {
-                    //                            switch errCode {
-                    //                            case .invalidEmail:
-                    //                                errMessage = "The entered email does not meet requirements."
-                    //                            case .emailAlreadyInUse:
-                    //                                errMessage = "The entered email has already been registered."
-                    //                            case .weakPassword:
-                    //                                errMessage = "The entered password does not meet minimum requirements."
-                    //                            default:
-                    //                                errMessage = "Please try again."
-                    //                            }
-                    //                        }
-                    //                        completion(nil, errMessage)
-                    //                    }
-                }
-                else {
+                } else {
                     Analytics.logEvent("New_Card_Added", parameters: ["success" : true])
                     
                     Answers.logCustomEvent(withName: "New Card Added",
@@ -106,6 +89,72 @@ class FirebaseUtility: NSObject {
                 }
             })
         }
+    }
+    
+    
+    // MARK: - Delete Card
+    
+    func delete(card: CardClass, completion: @escaping (_ success: Bool, _ error: String?) -> Void) {
+        guard let userId = user?.uid else {
+            let errMessage = "Something went wrong"
+            completion(false, errMessage)
+            return
+        }
+        let cardRef = ref.child("newCards").child(userId).child(card.cardID)
+        cardRef.removeValue { (error, ref) in
+            
+            if let theError = error?.localizedDescription {
+                let errMessage = theError
+                completion(false, errMessage)
+            } else {
+                let serviceRef = self.ref.child("newServices").child(card.cardID)
+                serviceRef.removeValue()
+                
+                Analytics.logEvent("Card_Deleted", parameters: ["success" : true])
+                
+                Answers.logCustomEvent(withName: "Card Deleted",
+                                       customAttributes: nil)
+                
+                completion(true, nil)
+            }
+        }
+    }
+    
+    
+    // MARK: - Update Card
+    
+    func update(card: CardClass, nickName: String?, last4: String?, color: Int, completion: @escaping (_ card: CardClass?, _ error: String?) -> Void) {
+        guard let userId = user?.uid else {
+            let errMessage = "Something went wrong"
+            completion(nil, errMessage)
+            return
+        }
+        guard let name = nickName else {
+            let errMessage = "Something went wrong"
+            completion(nil, errMessage)
+            return
+        }
+        guard let last4Digits = last4 else {
+            let errMessage = "Something went wrong"
+            completion(nil, errMessage)
+            return
+        }
+        let cardDict: [String : Any] = ["nickname": name, "last4": last4Digits, "type": card.type ?? "", "color": color]
+        let cardRef = ref.child("newCards").child(userId).child(card.cardID)
+        cardRef.setValue(cardDict, withCompletionBlock: { (error, ref) in
+            if let theError = error?.localizedDescription {
+                let errorMessage = theError
+                completion(nil, errorMessage)
+            } else {
+                Analytics.logEvent("Update_Card", parameters: ["success" : true])
+                
+                Answers.logCustomEvent(withName: "Update Card",
+                                       customAttributes: nil)
+                
+                let card = CardClass(id: ref.key, cardDict: cardDict)
+                completion(card, nil)
+            }
+        })
     }
     
     
@@ -127,14 +176,12 @@ class FirebaseUtility: NSObject {
         let serviceRef = ref.child("newServices").child(theCard.cardID).childByAutoId()
         let serviceDict: [String : Any] = ["serviceName": theName, "serviceURL": theName.createServiceURL(), "serviceStatus": true, "serviceFixed": false, "serviceAmount" : 0, "attentionInt" : 0]
         serviceRef.setValue(serviceDict, withCompletionBlock: { (error, ref) in
-            if let theError = error {
-                // TODO
-                // Go thought error codes and generate custom error messages just like in the signup function
-                let errorMessage = "Something went wrong"
+            
+            if let theError = error?.localizedDescription {
+                let errorMessage = theError
                 completion(nil, errorMessage)
                 
-            }
-            else {
+            } else {
                 Analytics.logEvent("New_Service_Added", parameters: ["success" : true])
                 
                 Answers.logCustomEvent(withName: "New Service Added",
@@ -177,6 +224,7 @@ class FirebaseUtility: NSObject {
     // MARK: - Update Service
     
     func update(service: ServiceClass?, name: String?, url: String?, amount: String?, isFixed: Bool, state: Bool, completion: @escaping (_ service: ServiceClass?, _ errMessage: String?) -> Void) {
+        
         guard let service = service else {
             let errorMessage = "Something went wrong"
             completion(nil, errorMessage)
@@ -210,14 +258,12 @@ class FirebaseUtility: NSObject {
         let serviceRef = ref.child("newServices").child(service.cardID).child(service.serviceID)
         let serviceDict: [String : Any] = ["serviceName": theName, "serviceURL": theURL, "serviceStatus": state, "serviceFixed": isFixed, "serviceAmount" : serviceAmount, "attentionInt" : attention]
         serviceRef.setValue(serviceDict, withCompletionBlock: { (error, ref) in
-            if let theError = error {
-                // TODO
-                // Go thought error codes and generate custom error messages just like in the signup function
-                let errorMessage = "Something went wrong"
+            
+            if let theError = error?.localizedDescription {
+                let errorMessage = theError
                 completion(nil, errorMessage)
                 
-            }
-            else {
+            } else {
                 
                 Analytics.logEvent("Service_Details_Updated", parameters: ["success" : true])
                 
@@ -234,8 +280,51 @@ class FirebaseUtility: NSObject {
     
     // MARK: - Sign User In
     
-    func signUserIn(completion: (_ success: Bool, _ error: Error?) -> Void) {
+    func signUserInWith(email: String?, password: String?, completion: @escaping (_ user: User?, _ errorMessage: String?) -> Void) {
         
+        guard let theEmail = email else {
+            let errMessage = "Please enter an email"
+            completion(nil, errMessage)
+            return
+        }
+        
+        guard let thePassword = password else {
+            let errMessage = "Please enter a password"
+            completion(nil, errMessage)
+            return
+        }
+        
+        
+        Auth.auth().signIn(withEmail: theEmail, password: thePassword, completion: { (user, error) in
+            if let theError = error {
+                
+                var errMessage = "An unknown error occured."
+                if let errCode = AuthErrorCode(rawValue: (theError._code)) {
+                    switch errCode {
+                        
+                    case .invalidEmail:
+                        errMessage = "The entered email does not meet requirements."
+                    case .weakPassword:
+                        errMessage = "The entered password does not meet minimum requirements."
+                    case .wrongPassword:
+                        errMessage = "The entered password is not correct."
+                    default:
+                        errMessage = "Please try again."
+                    }
+                }
+                completion(nil, errMessage)
+            } else {
+                
+                Analytics.logEvent("Email_Login", parameters: ["success" : true])
+                
+                Answers.logLogin(withMethod: "Email Login",
+                                 success: true,
+                                 customAttributes: [:])
+                
+                self.user = user
+                completion(user, nil)
+            }
+        })
     }
     
     
@@ -263,9 +352,11 @@ class FirebaseUtility: NSObject {
         
         Auth.auth().createUser(withEmail: theEmail, password: thePassword, completion: { (user, error) in
             if let theError = error {
+                
                 var errMessage = "An unknown error occured."
                 if let errCode = AuthErrorCode(rawValue: (theError._code)) {
                     switch errCode {
+                        
                     case .invalidEmail:
                         errMessage = "The entered email does not meet requirements."
                     case .emailAlreadyInUse:
@@ -277,8 +368,7 @@ class FirebaseUtility: NSObject {
                     }
                 }
                 completion(nil, errMessage)
-            }
-            else {
+            } else {
                 Analytics.logEvent("Email_Register", parameters: ["success" : true])
                 
                 Answers.logSignUp(withMethod: "Email Register",
@@ -288,8 +378,6 @@ class FirebaseUtility: NSObject {
                 completion(user, nil)
             }
         })
-        
-        
     }
     
     
@@ -314,120 +402,18 @@ class FirebaseUtility: NSObject {
     }
     
     
-    // MARK: - Delete Service
+    // TODO: - Delete Service
     
     func delete(service: ServiceClass, completion: (_ success: Bool, _ error: Error?) -> Void) {
         
     }
     
     
-    // MARK: - Update Card
-    
-    func update(service: ServiceClass, completion: (_ success: Bool, _ error: Error?) -> Void) {
-        
-    }
-    
-    
-    // MARK: - Delete Card
-    
-    func delete(card: CardClass, completion: @escaping (_ success: Bool, _ error: String?) -> Void) {
-        guard let userId = user?.uid else {
-            let errMessage = "Something went wrong"
-            completion(false, errMessage)
-            return
-        }
-        let cardRef = ref.child("newCards").child(userId).child(card.cardID)
-        cardRef.removeValue { (error, ref) in
-            if let theError = error {
-                let errMessage = "Something went wrong"
-                completion(false, errMessage)
-                
-                //// errors
-            }
-            else {
-                let serviceRef = self.ref.child("newServices").child(card.cardID)
-                serviceRef.removeValue()
-                
-                Analytics.logEvent("Card_Deleted", parameters: ["success" : true])
-                
-                Answers.logCustomEvent(withName: "Card Deleted",
-                                       customAttributes: nil)
-                
-                completion(true, nil)
-            }
-            
-            
-        }
-        
-    }
-    
-    
-    // MARK: - Update Card
-    
-    func update(card: CardClass, nickName: String?, last4: String?, color: Int, completion: @escaping (_ card: CardClass?, _ error: String?) -> Void) {
-        guard let userId = user?.uid else {
-            let errMessage = "Something went wrong"
-            completion(nil, errMessage)
-            return
-        }
-        guard let name = nickName else {
-            let errMessage = "Something went wrong"
-            completion(nil, errMessage)
-            return
-        }
-        guard let last4Digits = last4 else {
-            let errMessage = "Something went wrong"
-            completion(nil, errMessage)
-            return
-        }
-        let cardDict: [String : Any] = ["nickname": name, "last4": last4Digits, "type": card.type ?? "", "color": color]
-        let cardRef = ref.child("newCards").child(userId).child(card.cardID)
-        cardRef.setValue(cardDict, withCompletionBlock: { (error, ref) in
-            if let theError = error {
-                // TODO
-                // Go thought error codes and generate custom error messages just like in the signup function
-                let errorMessage = "Something went wrong"
-                completion(nil, errorMessage)
-                
-                //                    if let theError = error {
-                //                        var errMessage = "An unknown error occured."
-                //                        if let errCode = AuthErrorCode(rawValue: (theError._code)) {
-                //                            switch errCode {
-                //                            case .invalidEmail:
-                //                                errMessage = "The entered email does not meet requirements."
-                //                            case .emailAlreadyInUse:
-                //                                errMessage = "The entered email has already been registered."
-                //                            case .weakPassword:
-                //                                errMessage = "The entered password does not meet minimum requirements."
-                //                            default:
-                //                                errMessage = "Please try again."
-                //                            }
-                //                        }
-                //                        completion(nil, errMessage)
-                //                    }
-            }
-            else {
-                //                Analytics.logEvent("New_Card_Added", parameters: ["success" : true])
-                
-                //                Answers.logCustomEvent(withName: "New Card Added",
-                //                                       customAttributes: nil)
-                
-                let card = CardClass(id: ref.key, cardDict: cardDict)
-                completion(card, nil)
-            }
-        })
-    }
-    
-    
-    // MARK: - Delete Account
+    // TODO: - Delete Account
     
     func deleteAccount(completion: (_ success: Bool, _ error: Error?) -> Void) {
         
     }
-    
-    
-    
-    
     
 }
 

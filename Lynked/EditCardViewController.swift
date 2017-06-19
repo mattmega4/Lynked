@@ -22,11 +22,11 @@ class EditCardViewController: UIViewController {
     
     @IBOutlet weak var lyLogo: UIImageView!
     @IBOutlet weak var segControl: UISegmentedControl!
-
+    
     @IBOutlet weak var firstDividerView: UIView!
     @IBOutlet weak var secondDividerView: UIView!
     @IBOutlet weak var thirdDividerView: UIView!
-
+    
     @IBOutlet weak var firstContainerView: UIView!
     @IBOutlet weak var secondContainerView: UIView!
     @IBOutlet weak var thirdContainerView: UIView!
@@ -91,17 +91,11 @@ class EditCardViewController: UIViewController {
         nicknameTextField.text = card?.nickname
         digitsTextField.text = card?.fourDigits
     }
-
     
-    // MARK: - Firebase Methods
-    
-        
     
     // MARK: - Card Was Altered with Alert
     
     func changeStatusOfCardAndServices() { // reset all services to needs attention
-        
-        
         
         let alertController = UIAlertController(title: "Something went wrong!", message: "This will mark all linked services as 'needs attention.' You will have to update each service one at a time!", preferredStyle: UIAlertControllerStyle.alert)
         
@@ -118,10 +112,7 @@ class EditCardViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
         
     }
-    
-    
-    
-    
+
     
     // MARK: - Delete Card with UIAlert
     
@@ -130,16 +121,15 @@ class EditCardViewController: UIViewController {
         let alertController = UIAlertController(title: "Wait!", message: "This will completely remove this card from your account. All the services linked to this card will be removed. Your total fixed monthly expenses will also be erased!", preferredStyle: UIAlertControllerStyle.alert)
         
         let cancelAction = UIAlertAction(title: "Never Mind!", style: .cancel, handler: nil)
-
+        
         let okAction = UIAlertAction(title: "I Understand!", style: .destructive) { (result: UIAlertAction) in
             guard let theCard = self.card else {
                 return
             }
             FirebaseUtility.shared.delete(card: theCard, completion: { (success, error) in
                 if let errorMessage = error {
-                    
-                }
-                else if success {
+                    print(errorMessage)
+                } else if success {
                     var didGoBack = false
                     if let viewControllers = self.navigationController?.viewControllers {
                         for aController in viewControllers {
@@ -158,31 +148,26 @@ class EditCardViewController: UIViewController {
                     }
                 }
             })
-            
-            
         }
         
         alertController.addAction(cancelAction)
         alertController.addAction(okAction)
         
         self.present(alertController, animated: true, completion: nil)
-        
-        
+  
     }
     
-
+    
     // MARK: - Update Card
     
     func updateCard() {
         guard let theCard = card else {
             return
         }
+        
         FirebaseUtility.shared.update(card: theCard, nickName: nicknameTextField.text, last4: digitsTextField.text, color: segControl.selectedSegmentIndex) { (updatedCard, error) in
             self.navigationController?.popViewController(animated: true)
         }
-        
-        
-        
     }
     
     

@@ -7,9 +7,7 @@
 //
 
 import UIKit
-import Firebase
 import StoreKit
-import FirebasePerformance
 import MBProgressHUD
 
 class WalletViewController: UIViewController {
@@ -17,15 +15,12 @@ class WalletViewController: UIViewController {
     
     @IBOutlet weak var leftNavButton: UIBarButtonItem!
     @IBOutlet weak var rightNavButton: UIBarButtonItem!
-    
     @IBOutlet weak var tableView: UITableView!
     
     var selectedCard: String?
     var cardNicknameToTransfer: String?
     var card4ToTransfer: String?
     var cardtypeToTransfer: String?
-    let ref = Database.database().reference()
-    let user = Auth.auth().currentUser
     var cardArray: [CardClass] = []
     
     
@@ -43,43 +38,10 @@ class WalletViewController: UIViewController {
         super.viewWillAppear(animated)
         
         pullAllUsersCards()
-        //        checkFirst()
-        // checkIfDataExits()
         tableView.isUserInteractionEnabled = true
     }
-    
-    
-    
-    
-    
-    
-    
-    // MARK: - Firebase Methods
-    
-    //    func checkIfDataExits() {
-    //        DispatchQueue.main.async {
-    //            self.cardArray.removeAll()
-    //            self.ref.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
-    //                if snapshot.hasChild("cards") {
-    //                    self.pullAllUsersCards()
-    //
-    //                } else {
-    //                    if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
-    //                        self.navigationController?.pushViewController(addVC, animated: true)
-    //                    }
-    //                }
-    //            })
-    //        }
-    //    }
-    //
-    
-    
-    
-    
-    
-    
+
     func pullAllUsersCards() {
-        //cardArray.removeAll()
         MBProgressHUD.showAdded(to: view, animated: true)
         FirebaseUtility.shared.getCards { (cards, errMessage) in
             MBProgressHUD.hide(for: self.view, animated: true)

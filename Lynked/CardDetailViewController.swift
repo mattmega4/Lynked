@@ -78,18 +78,20 @@ class CardDetailViewController: UIViewController {
     }
     
     func getServices() {
+        
         if let theCard = card {
             FirebaseUtility.shared.getServicesFor(card: theCard, completion: { (services, error) in
                 if let theServices = services {
                     self.serviceArray = theServices
                     self.collectionView.reloadData()
-                }
-                else {
-                    // TODO display Error
+                } else {
+                    if let theError = error?.localizedDescription {
+                        let errorMessage = theError
+                        print(errorMessage)
+                    }
                 }
             })
-        }
-        else {
+        } else {
             navigationController?.popViewController(animated: true)
         }
     }
@@ -101,9 +103,7 @@ class CardDetailViewController: UIViewController {
             return $0.serviceAttention > $1.serviceAttention
         }
     }
-    
-    
-    
+
     
     // MARK: - Firebase Methods For CollectionView
     
@@ -215,7 +215,6 @@ class CardDetailViewController: UIViewController {
         }()
         return imageName
     }
-    
     
     
     // MARK: - IB Actions

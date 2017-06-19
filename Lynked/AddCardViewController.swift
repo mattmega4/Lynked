@@ -73,26 +73,20 @@ class AddCardViewController: UIViewController {
     }
     
     
-    
-    
     // MARK: - Write to Firebase
     
     func addDataToFirebase() {
-        
-        
-        
+
         let nicknameToAdd = firstContainerTextField.text ?? ""
         let nicknameWithoutWhiteSpaces = nicknameToAdd.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         finalNickname = nicknameWithoutWhiteSpaces.capitalized
-        
         let last4 = secondContainerTextField.text
-        
         let typeToAdd = finalType
         finalType = typeToAdd?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
-        
         let color: Int = segControl.selectedSegmentIndex
         MBProgressHUD.showAdded(to: view, animated: true)
+        
         FirebaseUtility.shared.addCard(name: finalNickname, type: finalType, color: color, last4: last4) { (card, errorMessage) in
             MBProgressHUD.hide(for: self.view, animated: true)
             if let theCard = card {
@@ -100,10 +94,9 @@ class AddCardViewController: UIViewController {
                     detailVC.card = theCard
                     self.navigationController?.pushViewController(detailVC, animated: true)
                 }
-
             }
             else {
-                // Display error
+                // Display error?
             }
         }
     }
