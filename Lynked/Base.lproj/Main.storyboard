@@ -669,7 +669,7 @@
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="18"/>
                                                 <state key="normal" title="FEEDBACK">
-                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="deleteButtonTapped:" destination="s5Z-68-gGr" eventType="touchUpInside" id="WTR-Od-DnH"/>
@@ -678,10 +678,10 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pGl-VI-LuE">
                                                 <rect key="frame" x="25" y="450" width="364" height="60.666666666666686"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="0.42646154761314392" green="0.61634743213653564" blue="0.92164194583892822" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="20"/>
                                                 <state key="normal" title="ACKNOWLEDGMENTS">
-                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="acknowledgementsButtonTapped:" destination="SSP-SX-O4l" eventType="touchUpInside" id="Vto-sY-ceN"/>
@@ -804,19 +804,19 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="132" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rNU-zV-A5g">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="yE4-q8-enb">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="202"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8o0-ss-tgj">
-                                            <rect key="frame" x="186" y="40.666666666666664" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lynked" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8o0-ss-tgj">
+                                            <rect key="frame" x="94.333333333333314" y="20.333333333333329" width="226.33333333333337" height="62.333333333333343"/>
+                                            <fontDescription key="fontDescription" name="GillSans-UltraBold" family="Gill Sans" pointSize="50"/>
+                                            <color key="textColor" red="0.42302241921424866" green="0.62027919292449951" blue="0.92556333541870117" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPa-uj-XB3">
-                                            <rect key="frame" x="186" y="69.666666666666671" width="42" height="21"/>
+                                            <rect key="frame" x="186" y="90.666666666666671" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -849,37 +849,41 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AcknowledgeCell" rowHeight="132" id="UYt-zM-r6J" customClass="AcknowledgementsTableViewCell" customModule="Lynked" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AcknowledgeCell" rowHeight="132" id="UYt-zM-r6J" customClass="AcknowledgementsTableViewCell" customModule="Lynked" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="230" width="414" height="132"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UYt-zM-r6J" id="j12-XC-UB3">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="131.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="131.66666666666666"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUT-Kj-Mvj">
-                                                    <rect key="frame" x="10" y="10" width="394" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUT-Kj-Mvj">
+                                                    <rect key="frame" x="10" y="20" width="394" height="20"/>
+                                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="17"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BIn-ah-ijJ">
-                                                    <rect key="frame" x="10" y="41" width="394" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BIn-ah-ijJ">
+                                                    <rect key="frame" x="10" y="50" width="394" height="17.333333333333329"/>
+                                                    <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="dUT-Kj-Mvj" firstAttribute="leading" secondItem="j12-XC-UB3" secondAttribute="leading" constant="10" id="86V-5Q-Vvf"/>
-                                                <constraint firstItem="dUT-Kj-Mvj" firstAttribute="top" secondItem="j12-XC-UB3" secondAttribute="top" constant="10" id="8TT-eg-Wcp"/>
+                                                <constraint firstItem="dUT-Kj-Mvj" firstAttribute="top" secondItem="j12-XC-UB3" secondAttribute="top" constant="20" id="8TT-eg-Wcp"/>
                                                 <constraint firstItem="BIn-ah-ijJ" firstAttribute="top" secondItem="dUT-Kj-Mvj" secondAttribute="bottom" constant="10" id="LEF-lz-a2Q"/>
                                                 <constraint firstItem="BIn-ah-ijJ" firstAttribute="leading" secondItem="j12-XC-UB3" secondAttribute="leading" constant="10" id="LV0-m1-ZSF"/>
                                                 <constraint firstItem="BIn-ah-ijJ" firstAttribute="top" secondItem="dUT-Kj-Mvj" secondAttribute="bottom" constant="10" id="Xj1-G1-kLI"/>
                                                 <constraint firstAttribute="trailing" secondItem="BIn-ah-ijJ" secondAttribute="trailing" constant="10" id="erT-Oo-Lcl"/>
                                                 <constraint firstAttribute="trailing" secondItem="dUT-Kj-Mvj" secondAttribute="trailing" constant="10" id="v4s-oV-FN5"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="BIn-ah-ijJ" secondAttribute="bottom" constant="10" id="wwf-Q7-RsX"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="BIn-ah-ijJ" secondAttribute="bottom" constant="20" id="wwf-Q7-RsX"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="cellDesign" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="descriptionLabel" destination="BIn-ah-ijJ" id="gRb-45-FXf"/>
                                             <outlet property="nameLabel" destination="dUT-Kj-Mvj" id="wt1-7D-ywY"/>
@@ -899,12 +903,12 @@
                     <navigationItem key="navigationItem" id="bUo-Dc-yz7">
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="s7d-oF-x5Y">
                             <connections>
-                                <action selector="doneButtonTapped:" destination="yXD-Dp-unn" id="FWW-1s-Bhp"/>
+                                <action selector="doneButtonTapped:" destination="yXD-Dp-unn" id="K4K-SW-C2v"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="doneButton" destination="s7d-oF-x5Y" id="TyV-U2-6R9"/>
+                        <outlet property="doneButton" destination="s7d-oF-x5Y" id="ccJ-2Q-u8m"/>
                         <outlet property="tableView" destination="rNU-zV-A5g" id="IeA-P7-bbv"/>
                         <outlet property="titleLabel" destination="8o0-ss-tgj" id="gpk-IL-nLb"/>
                         <outlet property="versionLabel" destination="lPa-uj-XB3" id="Pgm-mo-dCu"/>

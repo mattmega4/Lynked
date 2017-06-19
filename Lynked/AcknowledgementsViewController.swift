@@ -10,10 +10,11 @@ import UIKit
 
 class AcknowledgementsViewController: UIViewController {
     
+    @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var doneButton: UIBarButtonItem!
+    
     
     let viewModel = AcknowledgementsViewModel()
     
@@ -30,15 +31,15 @@ class AcknowledgementsViewController: UIViewController {
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 500
-        
+        setNavBar()
+        title = "Acknowledgements"
     }
     
     // MARK: - IBActions
-    
+ 
     @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
-    
     
 }
 

@@ -38,6 +38,7 @@ class PreferencesViewController: UIViewController {
         
         nightModeButton.isHidden = true
         useTouchIDButton.isHidden = true
+        feedbackButton.isHidden = true
         
         setNavBar()
         showReview()
@@ -83,9 +84,10 @@ class PreferencesViewController: UIViewController {
         }
         
         @IBAction func acknowledgementsButtonTapped(_ sender: UIButton) {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let ackVC = storyboard.instantiateViewController(withIdentifier: "ackVC")
-            self.present(ackVC, animated: true, completion: nil)
+            
+            if let ackVC = self.storyboard?.instantiateViewController(withIdentifier: "ackVC") as? AcknowledgementsViewController {
+                self.navigationController?.pushViewController(ackVC, animated: true)
+            }
             
         }
         
