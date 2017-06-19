@@ -20,6 +20,8 @@ class FirebaseUtility: NSObject {
     let ref = Database.database().reference()
     var user = Auth.auth().currentUser
     
+    // MARK: - Get Card
+    
     func getCards(completion: @escaping (_ cards: [CardClass]?, _ errorMessage: String?) -> Void) {
         
         guard let userID = user?.uid else {
@@ -44,6 +46,9 @@ class FirebaseUtility: NSObject {
             cardTrace?.stop()
         })
     }
+    
+    
+    // MARK: - Add Card
     
     func addCard(name: String?, type: String?, color: Int, last4: String?, completion: @escaping (_ card: CardClass?, _ errMessage: String?) -> Void) {
         guard let theName = name else {
@@ -103,6 +108,9 @@ class FirebaseUtility: NSObject {
         }
     }
     
+    
+    // MARK: - Add Service
+    
     func addService(name: String?, forCard card: CardClass?, completion: @escaping (_ service: ServiceClass?, _ errMessage: String?) -> Void) {
         guard let theName = name else {
             let errorMessage = "Please enter the service name"
@@ -138,6 +146,8 @@ class FirebaseUtility: NSObject {
     }
     
     
+    // MARK: - Reset Services
+    
     func resetServices(services: [ServiceClass], completion: @escaping (_ services: [ServiceClass]) -> Void) {
         resetServices(services: services, updatedServices: [ServiceClass](), index: 0, completion: completion)
     }
@@ -164,6 +174,7 @@ class FirebaseUtility: NSObject {
     }
     
     
+    // MARK: - Update Service
     
     func update(service: ServiceClass?, name: String?, url: String?, amount: String?, isFixed: Bool, state: Bool, completion: @escaping (_ service: ServiceClass?, _ errMessage: String?) -> Void) {
         guard let service = service else {
@@ -212,7 +223,7 @@ class FirebaseUtility: NSObject {
                 
                 Answers.logCustomEvent(withName: "Service Details Updated",
                                        customAttributes: nil)
-
+                
                 
                 let service = ServiceClass(id: ref.key, cardId: service.cardID, serviceDict: serviceDict)
                 completion(service, nil)
@@ -221,9 +232,14 @@ class FirebaseUtility: NSObject {
     }
     
     
+    // MARK: - Sign User In
+    
     func signUserIn(completion: (_ success: Bool, _ error: Error?) -> Void) {
         
     }
+    
+    
+    // MARK: - Register User
     
     func registerUserWith(email: String?, password: String?, confirmPassword: String?, completion: @escaping (_ user: User?, _ errorMessage: String?) -> Void) {
         
@@ -276,6 +292,9 @@ class FirebaseUtility: NSObject {
         
     }
     
+    
+    // MARK: - Get Services
+    
     func getServicesFor(card: CardClass, completion: @escaping (_ services: [ServiceClass]?, _ error: Error?) -> Void) {
         let servicesRef = ref.child("newServices").child(card.cardID)
         servicesRef.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -294,13 +313,22 @@ class FirebaseUtility: NSObject {
         })
     }
     
+    
+    // MARK: - Delete Service
+    
     func delete(service: ServiceClass, completion: (_ success: Bool, _ error: Error?) -> Void) {
         
     }
     
+    
+    // MARK: - Update Card
+    
     func update(service: ServiceClass, completion: (_ success: Bool, _ error: Error?) -> Void) {
         
     }
+    
+    
+    // MARK: - Delete Card
     
     func delete(card: CardClass, completion: @escaping (_ success: Bool, _ error: String?) -> Void) {
         guard let userId = user?.uid else {
@@ -330,8 +358,11 @@ class FirebaseUtility: NSObject {
             
             
         }
-
+        
     }
+    
+    
+    // MARK: - Update Card
     
     func update(card: CardClass, nickName: String?, last4: String?, color: Int, completion: @escaping (_ card: CardClass?, _ error: String?) -> Void) {
         guard let userId = user?.uid else {
@@ -376,10 +407,10 @@ class FirebaseUtility: NSObject {
                 //                    }
             }
             else {
-//                Analytics.logEvent("New_Card_Added", parameters: ["success" : true])
+                //                Analytics.logEvent("New_Card_Added", parameters: ["success" : true])
                 
-//                Answers.logCustomEvent(withName: "New Card Added",
-//                                       customAttributes: nil)
+                //                Answers.logCustomEvent(withName: "New Card Added",
+                //                                       customAttributes: nil)
                 
                 let card = CardClass(id: ref.key, cardDict: cardDict)
                 completion(card, nil)
@@ -387,21 +418,15 @@ class FirebaseUtility: NSObject {
         })
     }
     
+    
+    // MARK: - Delete Account
+    
     func deleteAccount(completion: (_ success: Bool, _ error: Error?) -> Void) {
         
     }
     
     
     
-    
-    
-    // Cards
-    
-    
-    // get all card ids for a user
-    // in a for loop go through all ids and download load all card info
-    // for each card get all the service ids
-    // in a for loop get all the service ifo for a service id
     
     
 }
