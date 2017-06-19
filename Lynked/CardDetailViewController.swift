@@ -20,9 +20,6 @@ class CardDetailViewController: UIViewController {
     @IBOutlet weak var innerDividerView: UIView!
     @IBOutlet weak var addServiceButton: UIButton!
     @IBOutlet weak var bottomDividerView: UIView!
-    
-    //    @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var noteLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var editCardButton: UIButton!
@@ -42,9 +39,7 @@ class CardDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //        self.tableView.delegate = self
-        //        self.tableView.dataSource = self
+
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.serviceNameTextField.delegate = self
@@ -70,15 +65,13 @@ class CardDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-//        tableView.isHidden = true
+
         addServiceButton.alpha = 0.4
         addServiceButton.isEnabled = false
         getServices()
     }
     
     func getServices() {
-        
         if let theCard = card {
             FirebaseUtility.shared.getServicesFor(card: theCard, completion: { (services, error) in
                 if let theServices = services {
@@ -111,7 +104,6 @@ class CardDetailViewController: UIViewController {
         MBProgressHUD.showAdded(to: self.view, animated: true)
         FirebaseUtility.shared.addService(name: serviceNameTextField.text, forCard: card) { (service, errMessage) in
             MBProgressHUD.hide(for: self.view, animated: true)
-//            self.tableView.isHidden = true
             if let theService = service {
                 self.addService(service: theService)
                 
@@ -220,20 +212,13 @@ class CardDetailViewController: UIViewController {
     // MARK: - IB Actions
     
     @IBAction func leftNavBarButtonTapped(_ sender: UIBarButtonItem) {
-        
-        
         if let walletVC = storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
-            
             navigationController?.pushViewController(walletVC, animated: true)
         }
-        
     }
     
     @IBAction func rightNavBarButtonTapped(_ sender: UIBarButtonItem) {
-        
-        
         if let prefVC = storyboard?.instantiateViewController(withIdentifier: "PrefVC") as? PreferencesViewController {
-            
             navigationController?.pushViewController(prefVC, animated: true)
         }
     }
@@ -265,31 +250,24 @@ class CardDetailViewController: UIViewController {
         contentInset.bottom = keyboardFrame.size.height
         self.collectionView.contentInset = contentInset
     }
-    
-    
+
     func keyboardWillHide(notification:NSNotification) {
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         self.collectionView.contentInset = contentInset
     }
-    
-    
 }
 
 
 // MARK: - UITextField Delegate
 
 extension CardDetailViewController: UITextFieldDelegate {
-    
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         if textField == serviceNameTextField {
             
             serviceNameTextField.returnKeyType = .go
             addServiceToCard()
             view.endEditing(true)
-//            tableView.isHidden = true
-//            collectionView.isUserInteractionEnabled = true
         }
         
         return false
@@ -304,13 +282,9 @@ extension CardDetailViewController: UITextFieldDelegate {
         if (textField.text?.isEmpty)! {
             addServiceButton.isEnabled = false
             addServiceButton.alpha = 0.4
-//            tableView.isHidden = true
-//            collectionView.isUserInteractionEnabled = true
         } else if !(textField.text?.isEmpty)! {
             addServiceButton.isEnabled = true
             addServiceButton.alpha = 1.0
-//            tableView.isHidden = false
-            //collectionView.isUserInteractionEnabled = false
         }
     }
 }
@@ -342,6 +316,7 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "serviceCell", for: indexPath as IndexPath) as! ServiceCollectionViewCell
         let row = indexPath.row
+
         cell.colorStatusView.backgroundColor = .white
         
         if serviceArray[row].serviceStatus == true {
@@ -349,6 +324,7 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         } else {
             cell.colorStatusView.backgroundColor = .red
         }
+        
         cell.serviceNameLabel.text = serviceArray[row].serviceName
         cell.serviceFixedAmountLabel.text = "\(serviceArray[row].serviceAmount)"
         
@@ -366,6 +342,7 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         }
         return cell
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let row = indexPath.row

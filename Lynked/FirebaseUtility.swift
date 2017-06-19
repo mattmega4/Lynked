@@ -95,11 +95,13 @@ class FirebaseUtility: NSObject {
     // MARK: - Delete Card
     
     func delete(card: CardClass, completion: @escaping (_ success: Bool, _ error: String?) -> Void) {
+        
         guard let userId = user?.uid else {
             let errMessage = "Something went wrong"
             completion(false, errMessage)
             return
         }
+        
         let cardRef = ref.child("newCards").child(userId).child(card.cardID)
         cardRef.removeValue { (error, ref) in
             
@@ -256,6 +258,7 @@ class FirebaseUtility: NSObject {
         serviceAmount = isFixed ? serviceAmount : 0
         
         let serviceRef = ref.child("newServices").child(service.cardID).child(service.serviceID)
+        
         let serviceDict: [String : Any] = ["serviceName": theName, "serviceURL": theURL, "serviceStatus": state, "serviceFixed": isFixed, "serviceAmount" : serviceAmount, "attentionInt" : attention]
         serviceRef.setValue(serviceDict, withCompletionBlock: { (error, ref) in
             
@@ -402,34 +405,50 @@ class FirebaseUtility: NSObject {
     }
     
     
-    // TODO: - Delete Service
+    // MARK: - Delete Service
     
-    func delete(service: ServiceClass, completion: (_ success: Bool, _ error: Error?) -> Void) {
+    func delete(service: ServiceClass?, completion: @escaping (_ success: Bool, _ error: String?) -> Void) {
         
+        guard let service = service else {
+            let errorMessage = "Something went wrong"
+            completion(false, errorMessage)
+            return
+        }
+        
+        let serviceRef = ref.child("newServices").child(service.cardID).child(service.serviceID)
+        serviceRef.removeValue { (error, ref) in
+            
+            if let theError = error?.localizedDescription {
+                let errMessage = theError
+                completion(false, errMessage)
+                
+            } else {
+                
+                let serviceRef = self.ref.child("newServices").child(service.cardID).child(service.serviceID)
+                serviceRef.removeValue()
+                
+                Analytics.logEvent("Service_Deleted", parameters: ["success" : true])
+                
+                Answers.logCustomEvent(withName: "Service Deleted",
+                                       customAttributes: nil)
+                
+                completion(true, nil)
+            }
+        }
     }
     
     
-    // TODO: - Delete Account
+    // MARK: - Delete Account
     
     func deleteAccount(completion: (_ success: Bool, _ error: Error?) -> Void) {
         
+        user?.delete(completion: { (error) in
+            Analytics.logEvent("User_Deleted", parameters: ["success" : true])
+            
+                            Answers.logCustomEvent(withName: "User Deleted",
+                                                   customAttributes: nil)
+        })
     }
     
+    
 }
-
-
-
-
-// use this somehow
-
-//let connectedRef = Database.database().reference(withPath: ".info/connected")
-//
-//func checkFirebaseConnection() {
-//    connectedRef.observe(.value, with: { snapshot in
-//        if snapshot.value as? Bool ?? false {
-//            print("Connected")
-//        } else {
-//            print("Not connected")
-//        }
-//    })
-//}

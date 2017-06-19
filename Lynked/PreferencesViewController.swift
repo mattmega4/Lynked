@@ -35,68 +35,65 @@ class PreferencesViewController: UIViewController {
         super.viewDidLoad()
         
         title = "Preferences"
+        
+        nightModeButton.isHidden = true
+        useTouchIDButton.isHidden = true
+        
         setNavBar()
         showReview()
     }
     
-
+    
     // MARK: -  Delete User Method & Remove All Users Data
     
     func deleteUser() {
+        
         let alertController = UIAlertController(title: "Wait!", message: "This deletes everying tied to your account! All your cards, service, and total fixed monthly expenses You will need to register a new free account!", preferredStyle: UIAlertControllerStyle.alert)
+        
         let cancelAction = UIAlertAction(title: "Never Mind!", style: UIAlertActionStyle.cancel, handler: nil)
+        
         let okAction = UIAlertAction(title: "I Understand!", style: UIAlertActionStyle.default) { (result: UIAlertAction) in
             
-            Analytics.logEvent("User_Deleted_Account", parameters: ["success" : true])
-            
-            Answers.logCustomEvent(withName: "User Deleted Account",
-                                   customAttributes: nil)
-            
-            Auth.auth().currentUser?.delete(completion: { (error) in
-                if error == nil {
+            self.user?.delete { error in
+                if let error = error {
+                    // An error happened.
+                } else {
                     if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? EntryViewController {
                         self.navigationController?.pushViewController(loginVC, animated: true)
                     }
-                } else {
-                    let failedAlert = UIAlertController(title: "Something Went Wrong", message: "We were unable to delete your account. Please try again!", preferredStyle: UIAlertControllerStyle.alert)
-                    let okAction = UIAlertAction(title: "OKAY!", style: UIAlertActionStyle.default, handler: nil)
-                    failedAlert.addAction(okAction)
-                    print((error?.localizedDescription)! as String)
                 }
-            })
-            if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? EntryViewController {
-                self.navigationController?.pushViewController(loginVC, animated: true)
             }
         }
-        alertController.addAction(cancelAction)
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
-    
-    
-    // MARK: - IB Actions
-    
-    @IBAction func nightModeButtonTapped(_ sender: UIButton) {
-    }
-
-    @IBAction func useTouchIDButtonTapped(_ sender: UIButton) {
-    }
-    
-    @IBAction func feedbackButtonTapped(_ sender: UIButton) {
-    }
-    
-    @IBAction func acknowledgementsButtonTapped(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let ackVC = storyboard.instantiateViewController(withIdentifier: "ackVC")
-        self.present(ackVC, animated: true, completion: nil)
-
-    }
-    
-    @IBAction func deleteButtonTapped(_ sender: UIButton) {
-    }
-    
-    
+        
+            alertController.addAction(cancelAction)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        
+        
+        // MARK: - IB Actions
+        
+        @IBAction func nightModeButtonTapped(_ sender: UIButton) {
+        }
+        
+        @IBAction func useTouchIDButtonTapped(_ sender: UIButton) {
+        }
+        
+        @IBAction func feedbackButtonTapped(_ sender: UIButton) {
+        }
+        
+        @IBAction func acknowledgementsButtonTapped(_ sender: UIButton) {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let ackVC = storyboard.instantiateViewController(withIdentifier: "ackVC")
+            self.present(ackVC, animated: true, completion: nil)
+            
+        }
+        
+        @IBAction func deleteButtonTapped(_ sender: UIButton) {
+            deleteUser()
+        }
+        
+        
 } // End of PreferencesViewController Class
 
 
