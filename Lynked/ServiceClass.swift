@@ -18,7 +18,8 @@ class ServiceClass {
     var serviceStatus: Bool?
     var serviceFixed: Bool?
     var serviceAmount: Double = 0
-    var serviceAttention: Int = 0 
+    var serviceAttention: Int = 0
+    var servicePayRateIndex = 0
     
     
     init(id: String, cardId: String, serviceDict: [String : Any]) {
@@ -35,6 +36,10 @@ class ServiceClass {
         }
         if let tempAtten = serviceDict["attentionInt"] as? Int {
             serviceAttention = tempAtten
+        }
+        
+        if let theIndex = serviceDict["servicePaymentRate"] as? Int {
+            servicePayRateIndex = theIndex
         }
     }
   

@@ -44,6 +44,7 @@ class WalletViewController: UIViewController {
     func pullAllUsersCards() {
         MBProgressHUD.showAdded(to: view, animated: true)
         FirebaseUtility.shared.getCards { (cards, errMessage) in
+            
             MBProgressHUD.hide(for: self.view, animated: true)
             if let theCards = cards {
                 if theCards.count < 1 {

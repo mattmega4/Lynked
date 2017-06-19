@@ -166,7 +166,11 @@ class EditCardViewController: UIViewController {
             return
         }
         
-        FirebaseUtility.shared.update(card: theCard, nickName: nicknameTextField.text, last4: digitsTextField.text, color: segControl.selectedSegmentIndex) { (updatedCard, error) in
+        FirebaseUtility.shared.update(card: theCard,
+                                      nickName: nicknameTextField.text,
+                                      last4: digitsTextField.text,
+                                      color: segControl.selectedSegmentIndex) { (updatedCard, error) in
+                                        
             self.navigationController?.popViewController(animated: true)
         }
     }

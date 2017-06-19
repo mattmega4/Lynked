@@ -12,7 +12,7 @@ import Fabric
 import Crashlytics
 import SafariServices
 
-class EditServiceViewController: UIViewController, UITextFieldDelegate {
+class EditServiceViewController: UIViewController {
     
     @IBOutlet weak var leftNavBarButton: UIBarButtonItem!
     @IBOutlet weak var rightNavBarButton: UIBarButtonItem!
@@ -39,6 +39,7 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var fourthContainerView: UIView!
     @IBOutlet weak var fixedAmountLabel: UILabel!
     @IBOutlet weak var fixedAmountTextField: UITextField!
+    @IBOutlet weak var fixedAmountPickerView: UIPickerView!
     
     @IBOutlet weak var firstDividerView: UIView!
     @IBOutlet weak var secondDividerView: UIView!
@@ -51,26 +52,29 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var deleteServiceButton: UIButton!
     
     
-    var thisServiceTransfered = ""
-    var thisCardTransfered = ""
-    var thisCardNicknameTransfered = ""
-    var thisCardTypeTransfered = ""
+    //    var thisServiceTransfered = ""
+    //    var thisCardTransfered = ""
+    //    var thisCardNicknameTransfered = ""
+    //    var thisCardTypeTransfered = ""
+    
+    
     var serviceUpToDateTransfered: Bool?
     var serviceNameTransfered: String?
     var serviceURLTransfered: String?
     var serviceFixedTransfered: Bool?
     var serviceAmountTransfered: String?
-    let ref = Database.database().reference()
-    let user = Auth.auth().currentUser
+    
     var stateOfService: Bool?
     var stateOfFixed: Bool?
-    var toStatus: Bool?
-    var oneOrZero: Int?
+    //    var toStatus: Bool?
+    //    var oneOrZero: Int?
     
     var nameForSite: String?
     var URLForSite: String?
     
     var service: ServiceClass?
+    var paymentTimeFrame: [String] = []
+    var timeFrame = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,10 +82,13 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
         self.serviceNameTextField.delegate = self
         self.urlTextField.delegate = self
         self.fixedAmountTextField.delegate = self
+        self.fixedAmountPickerView.delegate = self
+        self.fixedAmountPickerView.dataSource = self
         
         title = "Edit Service"
         setNavBar()
         addTargets()
+        addToPaymentTimeFrameArray()
         
         urlTextField.autocorrectionType = .no
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EditServiceViewController.dismissKeyboard))
@@ -96,9 +103,16 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
         
         leftNavBarButton.isEnabled = true
         rightNavBarButton.isEnabled = true
-        //pullServiceData()
         alertUserIfURLTextFieldIsNotValid(textField: urlTextField)
         updateViewBasedOnService()
+    }
+    
+    
+    
+    // MARK: - Payment Time Frame
+    
+    func addToPaymentTimeFrameArray() {
+        paymentTimeFrame+=["Weekly", "Biweekly", "Monthly", "Quarterly", "Annually"]
     }
     
     
@@ -156,7 +170,14 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     
     func updateServiceToFirebase() {
         
-        FirebaseUtility.shared.update(service: service, name: serviceNameTextField.text, url: urlTextField.text, amount: fixedAmountTextField.text, isFixed: fixedExpenseToggleSwitch.isOn, state: serviceStateToggleSwtich.isOn) { (updatedService, errMessage) in
+        FirebaseUtility.shared.update(service: service,
+                                      name: serviceNameTextField.text,
+                                      url: urlTextField.text,
+                                      amount: fixedAmountTextField.text,
+                                      isFixed: fixedExpenseToggleSwitch.isOn,
+                                      state: serviceStateToggleSwtich.isOn,
+                                      rate: timeFrame ) { (updatedService, errMessage) in
+                                        
             self.navigationController?.popViewController(animated: true)
         }
     }
@@ -175,7 +196,9 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
                 return
             }
             
-            FirebaseUtility.shared.delete(service: theService, completion: { (success, error) in
+            FirebaseUtility.shared.delete(service: theService,
+                                          completion: { (success, error) in
+                                            
                 if let errorMessage = error {
                     print(errorMessage)
                 } else if success {
@@ -203,35 +226,6 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
         alertController.addAction(okAction)
         
         self.present(alertController, animated: true, completion: nil)
-    }
-    
-    
-    // MARK: - URL Validator
-    
-    func alertUserIfURLTextFieldIsNotValid(textField: UITextField) {
-        if textField == urlTextField {
-            if (textField.text?.isEmpty)! {
-                secondContainerURLIndicatorButton.setImage(UIImage.init(named: "emptyBlue.png"), for: UIControlState())
-                rightNavBarButton.isEnabled = true
-            }  else if textField.text?.validateUrl() == false {
-                secondContainerURLIndicatorButton.setImage(UIImage.init(named: "yellowCaution.png"), for: UIControlState())
-                rightNavBarButton.isEnabled = false
-            } else if textField.text?.validateUrl() == true {
-                secondContainerURLIndicatorButton.setImage(UIImage.init(named: "greenCheck.png"), for: UIControlState())
-                rightNavBarButton.isEnabled = true
-            }
-        }
-    }
-    
-    
-    // MARK: - Money Input Method
-    
-    func currencyRightToLeftFormatter(textField: UITextField) {
-        if textField == fixedAmountTextField {
-            if let amountString = textField.text?.currencyInputFormatting() {
-                textField.text = amountString
-            }
-        }
     }
     
     
@@ -273,10 +267,6 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     @IBAction func leftNavBarButtonTapped(_ sender: UIBarButtonItem) {
         leftNavBarButton.isEnabled = false
         navigationController?.popViewController(animated: true)
-        //        if let detailVC = storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
-        //            //detailVC.cardID = thisCardTransfered
-        //            navigationController?.pushViewController(detailVC, animated: true)
-        //        }
     }
     
     @IBAction func rightNavBarButtonTapped(_ sender: UIBarButtonItem) {
@@ -303,6 +293,75 @@ class EditServiceViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func deleteButtonTapped(_ sender: UIButton) {
         deleteThisService()
+    }
+    
+}
+
+
+// MARK: - UITextFieldDelegate Methods
+
+extension EditServiceViewController: UITextFieldDelegate {
+    
+    // MARK: - URL Validator
+    
+    func alertUserIfURLTextFieldIsNotValid(textField: UITextField) {
+        if textField == urlTextField {
+            if (textField.text?.isEmpty)! {
+                secondContainerURLIndicatorButton.setImage(UIImage.init(named: "emptyBlue.png"), for: UIControlState())
+                rightNavBarButton.isEnabled = true
+            }  else if textField.text?.validateUrl() == false {
+                secondContainerURLIndicatorButton.setImage(UIImage.init(named: "yellowCaution.png"), for: UIControlState())
+                rightNavBarButton.isEnabled = false
+            } else if textField.text?.validateUrl() == true {
+                secondContainerURLIndicatorButton.setImage(UIImage.init(named: "greenCheck.png"), for: UIControlState())
+                rightNavBarButton.isEnabled = true
+            }
+        }
+    }
+    
+    
+    // MARK: - Money Input Method
+    
+    func currencyRightToLeftFormatter(textField: UITextField) {
+        if textField == fixedAmountTextField {
+            if let amountString = textField.text?.currencyInputFormatting() {
+                textField.text = amountString
+            }
+        }
+    }
+}
+
+
+// MARK: - UITextFieldDelegate Methods
+
+extension EditServiceViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return paymentTimeFrame.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return paymentTimeFrame[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//        timeFrame = (paymentTimeFrame[row]
+        
+//        timeFrame = fixedAmountPickerView.selectedRow(inComponent: row)
+//        timeFrame = fix
+        
+        print(timeFrame)
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        
+        let titleData = paymentTimeFrame[row]
+        let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont(name: "GillSans", size: 15.0)!,NSForegroundColorAttributeName:UIColor.darkGray])
+        return myTitle
     }
     
     
