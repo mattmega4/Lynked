@@ -98,35 +98,7 @@ class WalletViewController: UIViewController {
                 // TOTO Display error
             }
         }
-    
-    //        let userRef = ref.child("users").child((user?.uid)!).child("cards")
-    //        userRef.observe(DataEventType.value, with: { (snapshot) in
-    ////            let cardTrace = Performance.startTrace(name: "PullCardTrace")
-    //            for userscard in snapshot.children {
-    //                let cardID = (userscard as AnyObject).key as String
-    //                let cardRef = self.ref.child("cards").child(cardID)
-    //                cardRef.observe(DataEventType.value, with: { (cardSnapShot) in
-    //                    let cardSnap = cardSnapShot as DataSnapshot
-    //
-    //                    if let cardDict = cardSnap.value as? [String: AnyObject] {
-    //                        let cardNickname = cardDict["nickname"]
-    //                        let card4D = cardDict["last4"]
-    //                        let cardType = cardDict["type"]
-    //                        self.cardNicknameToTransfer = cardNickname as? String
-    //                        self.card4ToTransfer = card4D as? String
-    //                        self.cardtypeToTransfer = cardType as? String
-    //                        let aCard = CardClass(id: "klfdja", cardDict: cardDict)
-    //                        aCard.cardID = cardID
-    //                        self.cardArray.append(aCard)
-    //                        DispatchQueue.main.async {
-    //                            self.tableView.reloadData()
-    ////                            cardTrace?.stop()
-    //                        }
-    //                    }
-    //                })
-    //            }
-    //        })
-}
+    }
 
 
 // MARK: IB Actions
@@ -222,7 +194,6 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
         cell.cardNicknameLabel.textColor = cardArray[row].textColor
         cell.cardDetailsLabel.text = "\(String(describing: cardArray[row].type ?? "")) \(String(describing: cardArray[row].fourDigits ?? ""))"
         cell.cardDetailsLabel.textColor = cardArray[row].textColor
-        //        cell.cardDe.text = cardArray[row].type
         return cell
     }
     
