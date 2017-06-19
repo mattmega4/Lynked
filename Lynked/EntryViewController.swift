@@ -351,49 +351,64 @@ class EntryViewController: UIViewController {
     }
     
     
-    // MARK: Register User
+    // MARK: - Register User
     
     func registerNewUser() {
-        let ref = Database.database().reference()
-        if textFieldOne.text == textFieldTwo.text {
-            newUserPassword = textFieldTwo.text ?? ""
-            Auth.auth().createUser(withEmail: newUserEmail!, password: newUserPassword!, completion: { (user, error) in
-                var errMessage = ""
-                if (error != nil) {
-                    if let errCode = AuthErrorCode(rawValue: (error?._code)!) {
-                        switch errCode {
-                        case .invalidEmail:
-                            errMessage = "The entered email does not meet requirements."
-                        case .emailAlreadyInUse:
-                            errMessage = "The entered email has already been registered."
-                        case .weakPassword:
-                            errMessage = "The entered password does not meet minimum requirements."
-                        default:
-                            errMessage = "Please try again."
-                        }
-                    }
-                    let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errMessage)", preferredStyle: .alert)
-                    self.present(alertController, animated: true, completion:nil)
-                    let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
-                    }
-                    alertController.addAction(OKAction)
-                } else {
-                    ref.child("users").child((user?.uid)!).child("cards").setValue(true)
-                    Auth.auth().signIn(withEmail: self.newUserEmail!, password: self.newUserPassword!)
-                    self.tempUID = (user?.uid)!
-                    
-                    
-                    Analytics.logEvent("Email_Register", parameters: ["success" : true])
-                    
-                    Answers.logSignUp(withMethod: "Email Register",
-                                      success: true,
-                                      customAttributes: [:])
-                    if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
-                        self.navigationController?.pushViewController(addVC, animated: true)
-                    }
+        FirebaseUtility.shared.registerUserWith(email: newUserEmail, password: textFieldOne.text, confirmPassword: textFieldTwo.text) { (user, errMessage) in
+            if let errorMessage = errMessage {
+                let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errorMessage)", preferredStyle: .alert)
+                self.present(alertController, animated: true, completion:nil)
+                let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
                 }
-            })
+                alertController.addAction(OKAction)
+            }
+            else {
+                if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
+                    self.navigationController?.pushViewController(addVC, animated: true)
+                }
+            }
         }
+        
+//        let ref = Database.database().reference()
+//        if textFieldOne.text == textFieldTwo.text {
+//            newUserPassword = textFieldTwo.text ?? ""
+//            Auth.auth().createUser(withEmail: newUserEmail!, password: newUserPassword!, completion: { (user, error) in
+//                var errMessage = ""
+//                if (error != nil) {
+//                    if let errCode = AuthErrorCode(rawValue: (error?._code)!) {
+//                        switch errCode {
+//                        case .invalidEmail:
+//                            errMessage = "The entered email does not meet requirements."
+//                        case .emailAlreadyInUse:
+//                            errMessage = "The entered email has already been registered."
+//                        case .weakPassword:
+//                            errMessage = "The entered password does not meet minimum requirements."
+//                        default:
+//                            errMessage = "Please try again."
+//                        }
+//                    }
+//                    let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errMessage)", preferredStyle: .alert)
+//                    self.present(alertController, animated: true, completion:nil)
+//                    let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
+//                    }
+//                    alertController.addAction(OKAction)
+//                } else {
+//                    ref.child("users").child((user?.uid)!).child("cards").setValue(true)
+//                    Auth.auth().signIn(withEmail: self.newUserEmail!, password: self.newUserPassword!)
+//                    self.tempUID = (user?.uid)!
+//                    
+//                    
+//                    Analytics.logEvent("Email_Register", parameters: ["success" : true])
+//                    
+//                    Answers.logSignUp(withMethod: "Email Register",
+//                                      success: true,
+//                                      customAttributes: [:])
+//                    if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
+//                        self.navigationController?.pushViewController(addVC, animated: true)
+//                    }
+//                }
+//            })
+//        }
     }
     
     

@@ -53,6 +53,14 @@ extension String {
         return components(separatedBy: .whitespaces).joined()
     }
     
+    func createServiceURL() -> String {
+        let outerTrim = self.trimmingCharacters(in: .whitespaces)
+        let fullTrim = outerTrim.removingWhitespaces()
+        let urlForFirebase = "\(fullTrim).com"
+        return urlForFirebase
+        
+    }
+    
 }
 
 extension UIView {

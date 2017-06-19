@@ -14,6 +14,7 @@ target 'Lynked' do
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'SDWebImage'
+  pod 'MBProgressHUD'
 
 end
 

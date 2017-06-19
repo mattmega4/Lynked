@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import StoreKit
 import FirebasePerformance
+import MBProgressHUD
 
 class WalletViewController: UIViewController {
     
@@ -41,38 +42,36 @@ class WalletViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-
-//        checkFirst()
-        checkIfDataExits()
+        pullAllUsersCards()
+        //        checkFirst()
+        // checkIfDataExits()
         tableView.isUserInteractionEnabled = true
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        ref.removeAllObservers()
-    }
-
     
-
+    
+    
+    
     
     
     // MARK: Firebase Methods
     
-    func checkIfDataExits() {
-        DispatchQueue.main.async {
-            self.cardArray.removeAll()
-            self.ref.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
-                if snapshot.hasChild("cards") {
-                    self.pullAllUsersCards()
-                    
-                } else {
-                    if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
-                        self.navigationController?.pushViewController(addVC, animated: true)
-                    }
-                }
-            })
-        }
-    }
-    
+    //    func checkIfDataExits() {
+    //        DispatchQueue.main.async {
+    //            self.cardArray.removeAll()
+    //            self.ref.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+    //                if snapshot.hasChild("cards") {
+    //                    self.pullAllUsersCards()
+    //
+    //                } else {
+    //                    if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
+    //                        self.navigationController?.pushViewController(addVC, animated: true)
+    //                    }
+    //                }
+    //            })
+    //        }
+    //    }
+    //
     
     
     
@@ -80,95 +79,114 @@ class WalletViewController: UIViewController {
     
     
     func pullAllUsersCards() {
-        cardArray.removeAll()
-        let userRef = ref.child("users").child((user?.uid)!).child("cards")
-        userRef.observe(DataEventType.value, with: { (snapshot) in
-//            let cardTrace = Performance.startTrace(name: "PullCardTrace")
-            for userscard in snapshot.children {
-                let cardID = (userscard as AnyObject).key as String
-                let cardRef = self.ref.child("cards").child(cardID)
-                cardRef.observe(DataEventType.value, with: { (cardSnapShot) in
-                    let cardSnap = cardSnapShot as DataSnapshot
-
-                    if let cardDict = cardSnap.value as? [String: AnyObject] {
-                        let cardNickname = cardDict["nickname"]
-                        let card4D = cardDict["last4"]
-                        let cardType = cardDict["type"]
-                        self.cardNicknameToTransfer = cardNickname as? String
-                        self.card4ToTransfer = card4D as? String
-                        self.cardtypeToTransfer = cardType as? String
-                        let aCard = CardClass(cardDict: cardDict)
-                        aCard.cardID = cardID
-                        self.cardArray.append(aCard)
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-//                            cardTrace?.stop()
-                        }
+        //cardArray.removeAll()
+        MBProgressHUD.showAdded(to: view, animated: true)
+        FirebaseUtility.shared.getCards { (cards, errMessage) in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            if let theCards = cards {
+                if theCards.count < 1 {
+                    if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
+                        self.navigationController?.pushViewController(addVC, animated: true)
                     }
-                })
+                }
+                else {
+                    self.cardArray = theCards
+                    self.tableView.reloadData()
+                }
             }
-        })
-    }
-    
-    
-    // MARK: IB Actions
-    
-    @IBAction func leftBarButtonTapped(_ sender: UIBarButtonItem) {
-        if let prefVC = self.storyboard?.instantiateViewController(withIdentifier: "PrefVC") as? PreferencesViewController {
-            self.navigationController?.pushViewController(prefVC, animated: true)
+            else {
+                // TOTO Display error
+            }
         }
-    }
     
-    @IBAction func rightBarButtonTapped(_ sender: UIBarButtonItem) {
-        if InAppPurchaseUtility.shared.isPurchased {
+    //        let userRef = ref.child("users").child((user?.uid)!).child("cards")
+    //        userRef.observe(DataEventType.value, with: { (snapshot) in
+    ////            let cardTrace = Performance.startTrace(name: "PullCardTrace")
+    //            for userscard in snapshot.children {
+    //                let cardID = (userscard as AnyObject).key as String
+    //                let cardRef = self.ref.child("cards").child(cardID)
+    //                cardRef.observe(DataEventType.value, with: { (cardSnapShot) in
+    //                    let cardSnap = cardSnapShot as DataSnapshot
+    //
+    //                    if let cardDict = cardSnap.value as? [String: AnyObject] {
+    //                        let cardNickname = cardDict["nickname"]
+    //                        let card4D = cardDict["last4"]
+    //                        let cardType = cardDict["type"]
+    //                        self.cardNicknameToTransfer = cardNickname as? String
+    //                        self.card4ToTransfer = card4D as? String
+    //                        self.cardtypeToTransfer = cardType as? String
+    //                        let aCard = CardClass(id: "klfdja", cardDict: cardDict)
+    //                        aCard.cardID = cardID
+    //                        self.cardArray.append(aCard)
+    //                        DispatchQueue.main.async {
+    //                            self.tableView.reloadData()
+    ////                            cardTrace?.stop()
+    //                        }
+    //                    }
+    //                })
+    //            }
+    //        })
+}
+
+
+// MARK: IB Actions
+
+@IBAction func leftBarButtonTapped(_ sender: UIBarButtonItem) {
+    if let prefVC = self.storyboard?.instantiateViewController(withIdentifier: "PrefVC") as? PreferencesViewController {
+        self.navigationController?.pushViewController(prefVC, animated: true)
+    }
+}
+
+@IBAction func rightBarButtonTapped(_ sender: UIBarButtonItem) {
+    if InAppPurchaseUtility.shared.isPurchased {
+        if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
+            self.navigationController?.pushViewController(addCardVC, animated: true)
+        }
+        
+    }
+    else {
+        let actionSheet = UIAlertController(title: nil, message: "You will need to purchase this to add more than 1 card", preferredStyle: .actionSheet)
+        let purchaseAction = UIAlertAction(title: "Purchase", style: .default, handler: { (action) in
+            self.purchaseProduct()
+        })
+        let restoreAction = UIAlertAction(title: "Restore", style: .default, handler: { (action) in
+            self.restorePurchase()
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        actionSheet.addAction(purchaseAction)
+        actionSheet.addAction(restoreAction)
+        actionSheet.addAction(cancelAction)
+        present(actionSheet, animated: true, completion: nil)
+    }
+}
+
+func purchaseProduct() {
+    InAppPurchaseUtility.shared.purchaseProduct { (success, error) in
+        if success {
             if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
                 self.navigationController?.pushViewController(addCardVC, animated: true)
             }
-            
         }
-        else {
-            let actionSheet = UIAlertController(title: nil, message: "You will need to purchase this to add more than 1 card", preferredStyle: .actionSheet)
-            let purchaseAction = UIAlertAction(title: "Purchase", style: .default, handler: { (action) in
-                self.purchaseProduct()
-            })
-            let restoreAction = UIAlertAction(title: "Restore", style: .default, handler: { (action) in
-                self.restorePurchase()
-            })
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            actionSheet.addAction(purchaseAction)
-            actionSheet.addAction(restoreAction)
-            actionSheet.addAction(cancelAction)
-            present(actionSheet, animated: true, completion: nil)
+        else  {
+            self.showAlertWith(title: "Purchase Failed!", message: error?.localizedDescription)
         }
     }
-    
-    func purchaseProduct() {
-        InAppPurchaseUtility.shared.purchaseProduct { (success, error) in
-            if success {
-                if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
-                    self.navigationController?.pushViewController(addCardVC, animated: true)
-                }
-            }
-            else  {
-                self.showAlertWith(title: "Purchase Failed!", message: error?.localizedDescription)
+}
+
+func restorePurchase() {
+    InAppPurchaseUtility.shared.restorePurchase { (success, error) in
+        if success {
+            if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
+                self.navigationController?.pushViewController(addCardVC, animated: true)
             }
         }
-    }
-    
-    func restorePurchase() {
-        InAppPurchaseUtility.shared.restorePurchase { (success, error) in
-            if success {
-                if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
-                    self.navigationController?.pushViewController(addCardVC, animated: true)
-                }
-            }
-            else  {
-                self.showAlertWith(title: "Purchase Failed!", message: error?.localizedDescription)
-            }
+        else  {
+            self.showAlertWith(title: "Purchase Failed!", message: error?.localizedDescription)
         }
     }
-    
-    
+}
+
+
 }
 
 
@@ -187,7 +205,7 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
             self.selectedCard = self.cardArray[row].cardID
             if self.selectedCard != "" {
                 if let cardDVC = self.storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
-                    cardDVC.cardID = self.selectedCard ?? ""
+                    cardDVC.card = self.cardArray[indexPath.row]
                     self.navigationController?.pushViewController(cardDVC, animated: true)
                 }
             }
@@ -204,7 +222,7 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
         cell.cardNicknameLabel.textColor = cardArray[row].textColor
         cell.cardDetailsLabel.text = "\(String(describing: cardArray[row].type ?? "")) \(String(describing: cardArray[row].fourDigits ?? ""))"
         cell.cardDetailsLabel.textColor = cardArray[row].textColor
-//        cell.cardDe.text = cardArray[row].type
+        //        cell.cardDe.text = cardArray[row].type
         return cell
     }
     

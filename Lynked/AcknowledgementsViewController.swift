@@ -13,13 +13,11 @@ class AcknowledgementsViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var doneButton: UIBarButtonItem!
     
-    var pods = [
-        "Firebase" : "Authentication, Performance & Analytics, Database Storage, Crash Reporting",
-        "Fabric" : "Performance & Analytics, Crash Reporting",
-        "SDWebImage" : "Asynchronous image downloader with cache support as a UIImageView category"
-    ]
+    let viewModel = AcknowledgementsViewModel()
+    
+    var pods = [Library]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,24 +25,18 @@ class AcknowledgementsViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        getVersionInfo()
-    }
-    
-    
-    // MARK: App Version Info
-    
-    func getVersionInfo() {
+        pods = viewModel.getAcknowlwdgements()
+        versionLabel.text = viewModel.getVersionInfo()
         
-        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-            versionLabel.text = "Lynked Version: \(version)"
-        }
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 500
+        
     }
-    
-    
     
     // MARK: IBActions
     
-    @IBAction func doneButtonTapped(_ sender: UIButton) {
+    @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
     
     
@@ -61,26 +53,10 @@ extension AcknowledgementsViewController: UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! AcknowledgementsTableViewCell
-        let row = indexPath.row
-        
-        var names: [String] {
-            get{
-                return Array(pods.keys)
-            }
-        }
-        
-        cell.nameLabel.text = names[row]
-        
-        var descriptions: [String] {
-            get{
-                return Array(pods.values)
-            }
-        }
-        
-        cell.descriptionLabel.text = descriptions[row]
-        
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AcknowledgeCell", for: indexPath as IndexPath) as! AcknowledgementsTableViewCell
+        let pod = pods[indexPath.row]
+        cell.nameLabel.text = pod.name
+        cell.descriptionLabel.text = pod.legalDescription
         return cell
         
     }
