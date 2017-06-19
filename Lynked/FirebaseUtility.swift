@@ -176,7 +176,14 @@ class FirebaseUtility: NSObject {
         }
         
         let serviceRef = ref.child("newServices").child(theCard.cardID).childByAutoId()
-        let serviceDict: [String : Any] = ["serviceName": theName, "serviceURL": theName.createServiceURL(), "serviceStatus": true, "serviceFixed": false, "serviceAmount" : 0, "attentionInt" : 0]
+        
+        let serviceDict: [String : Any] = ["serviceName": theName,
+                                           "serviceURL": theName.createServiceURL(), "serviceStatus": true,
+                                           "serviceFixed": false,
+                                           "serviceAmount" : 0,
+                                           "attentionInt" : 0,
+                                           "servicePaymentRate": 2]
+        
         serviceRef.setValue(serviceDict, withCompletionBlock: { (error, ref) in
             
             if let theError = error?.localizedDescription {
@@ -206,7 +213,15 @@ class FirebaseUtility: NSObject {
         var theServices = updatedServices
         if index < services.count {
             let service = services[index]
-            update(service: service, name: service.serviceName, url: service.serviceUrl, amount: String(service.serviceAmount), isFixed: service.serviceFixed ?? false, state: false,  completion: { (service, errMessage) in
+            update(service: service,
+                   name: service.serviceName,
+                   url: service.serviceUrl,
+                   amount: String(service.serviceAmount),
+                   isFixed: service.serviceFixed ?? false,
+                   state: false,
+                   rate: service.servicePayRateIndex,
+                   completion: { (service, errMessage) in
+                    
                 if let theService = service {
                     theServices.append(theService)
                 }
@@ -225,7 +240,14 @@ class FirebaseUtility: NSObject {
     
     // MARK: - Update Service
     
-    func update(service: ServiceClass?, name: String?, url: String?, amount: String?, isFixed: Bool, state: Bool, completion: @escaping (_ service: ServiceClass?, _ errMessage: String?) -> Void) {
+    func update(service: ServiceClass?,
+                name: String?,
+                url: String?,
+                amount: String?,
+                isFixed: Bool,
+                state: Bool,
+                rate: Int?,
+                completion: @escaping (_ service: ServiceClass?, _ errMessage: String?) -> Void) {
         
         guard let service = service else {
             let errorMessage = "Something went wrong"
@@ -245,7 +267,14 @@ class FirebaseUtility: NSObject {
             return
         }
         
+        guard let theRate = rate else {
+            let errorMessage = "Please enter the pay rate"
+            completion(nil, errorMessage)
+            return
+        }
+        
         var serviceAmount: Double = 0
+        
         if let theAmount = amount {
             var amountWhiteSpacesRemoved = theAmount.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             if amountWhiteSpacesRemoved.hasPrefix("$") && amountWhiteSpacesRemoved.characters.count > 1 {
@@ -259,7 +288,14 @@ class FirebaseUtility: NSObject {
         
         let serviceRef = ref.child("newServices").child(service.cardID).child(service.serviceID)
         
-        let serviceDict: [String : Any] = ["serviceName": theName, "serviceURL": theURL, "serviceStatus": state, "serviceFixed": isFixed, "serviceAmount" : serviceAmount, "attentionInt" : attention]
+        let serviceDict: [String : Any] = ["serviceName": theName,
+                                           "serviceURL": theURL,
+                                           "serviceStatus": state,
+                                           "serviceFixed": isFixed,
+                                           "serviceAmount" : serviceAmount,
+                                           "attentionInt" : attention,
+                                           "servicePaymentRate": theRate]
+        
         serviceRef.setValue(serviceDict, withCompletionBlock: { (error, ref) in
             
             if let theError = error?.localizedDescription {
@@ -387,6 +423,7 @@ class FirebaseUtility: NSObject {
     // MARK: - Get Services
     
     func getServicesFor(card: CardClass, completion: @escaping (_ services: [ServiceClass]?, _ error: Error?) -> Void) {
+        
         let servicesRef = ref.child("newServices").child(card.cardID)
         servicesRef.observeSingleEvent(of: .value, with: { (snapshot) in
             let enumerator = snapshot.children

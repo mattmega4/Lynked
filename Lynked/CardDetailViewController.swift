@@ -73,8 +73,10 @@ class CardDetailViewController: UIViewController {
     
     func getServices() {
         if let theCard = card {
-            FirebaseUtility.shared.getServicesFor(card: theCard, completion: { (services, error) in
+            FirebaseUtility.shared.getServicesFor(card: theCard,
+                                                  completion: { (services, error) in
                 if let theServices = services {
+                    
                     self.serviceArray = theServices
                     self.collectionView.reloadData()
                 } else {
@@ -102,7 +104,8 @@ class CardDetailViewController: UIViewController {
     
     func addServiceToCard() {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        FirebaseUtility.shared.addService(name: serviceNameTextField.text, forCard: card) { (service, errMessage) in
+        FirebaseUtility.shared.addService(name: serviceNameTextField.text,
+                                          forCard: card) { (service, errMessage) in
             MBProgressHUD.hide(for: self.view, animated: true)
             if let theService = service {
                 self.addService(service: theService)

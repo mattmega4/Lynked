@@ -85,9 +85,14 @@ class AddCardViewController: UIViewController {
         finalType = typeToAdd?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
         let color: Int = segControl.selectedSegmentIndex
+        
         MBProgressHUD.showAdded(to: view, animated: true)
         
-        FirebaseUtility.shared.addCard(name: finalNickname, type: finalType, color: color, last4: last4) { (card, errorMessage) in
+        FirebaseUtility.shared.addCard(name: finalNickname,
+                                       type: finalType,
+                                       color: color,
+                                       last4: last4) { (card, errorMessage) in
+            
             MBProgressHUD.hide(for: self.view, animated: true)
             if let theCard = card {
                 if let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {

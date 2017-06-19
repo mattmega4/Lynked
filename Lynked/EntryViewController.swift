@@ -292,7 +292,8 @@ class EntryViewController: UIViewController {
     // MARK: - Sign User In
     
     func signUserIn() {
-        FirebaseUtility.shared.signUserInWith(email: textFieldOne.text, password: textFieldTwo.text) { (user, errMessage) in
+        FirebaseUtility.shared.signUserInWith(email: textFieldOne.text,
+                                              password: textFieldTwo.text) { (user, errMessage) in
             
             if let errorMessage = errMessage {
                 let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errorMessage)", preferredStyle: .alert)
@@ -313,7 +314,9 @@ class EntryViewController: UIViewController {
     // MARK: - Register User
     
     func registerNewUser() {
-        FirebaseUtility.shared.registerUserWith(email: newUserEmail, password: textFieldOne.text, confirmPassword: textFieldTwo.text) { (user, errMessage) in
+        FirebaseUtility.shared.registerUserWith(email: newUserEmail,
+                                                password: textFieldOne.text,
+                                                confirmPassword: textFieldTwo.text) { (user, errMessage) in
             
             if let errorMessage = errMessage {
                 let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errorMessage)", preferredStyle: .alert)
