@@ -34,7 +34,7 @@ class InAppPurchaseUtility: NSObject, SKProductsRequestDelegate, SKPaymentTransa
         product = response.products.first
     }
     
-    // MARK: Transaction oserver
+    // MARK: - Transaction oserver
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         if let transaction = transactions.first {
             
@@ -43,7 +43,7 @@ class InAppPurchaseUtility: NSObject, SKProductsRequestDelegate, SKPaymentTransa
                 self.isPurchased = true
                 purchaseCompletion?(true, nil)
                 
-                // MARK: Track the user action that is important for you.
+                // MARK: - Track the user action that is important for you.
                 
                 Analytics.logEvent("Add_Card_Purchase", parameters: ["success" : true])
                 
@@ -94,13 +94,5 @@ class InAppPurchaseUtility: NSObject, SKProductsRequestDelegate, SKPaymentTransa
         SKPaymentQueue.default().add(self)
         SKPaymentQueue.default().restoreCompletedTransactions()
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
+   
 }

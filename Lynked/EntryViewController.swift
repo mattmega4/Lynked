@@ -76,7 +76,7 @@ class EntryViewController: UIViewController {
         leftButtonWasTappedWhichIsDefault()
     }
     
-    // MARK: Switch Logic For Sign In or Create Button in Bottom Container View
+    // MARK: - Switch Logic For Sign In or Create Button in Bottom Container View
     
     func bottomContainerStateSwitcher() {
         if userStateIsOnSignIn == true {
@@ -90,7 +90,7 @@ class EntryViewController: UIViewController {
     }
     
     
-    // MARK: Hide and Show Left and Right Container View Contents
+    // MARK: - Hide and Show Left and Right Container View Contents
     
     func hideLeftContainerViewContents() {
         leftContainerButton.alpha = 0.3
@@ -124,7 +124,7 @@ class EntryViewController: UIViewController {
     }
     
     
-    // MARK: Keyboard Show Logic
+    // MARK: - Keyboard Show Logic
     
     func hideShowKeyboardLogicLeftVsRight() {
         if leftOn == true && rightOn == false {
@@ -135,7 +135,7 @@ class EntryViewController: UIViewController {
     }
     
     
-    // MARK: Reset Text Fields
+    // MARK: - Reset Text Fields
     
     func resetTextFieldText() {
         textFieldOne.text = ""
@@ -143,7 +143,7 @@ class EntryViewController: UIViewController {
     }
     
     
-    // MARK: Reset Requirements
+    // MARK: - Reset Requirements
     
     func resetLoginRequirements() {
         createUserStepOneFinished = false
@@ -173,7 +173,7 @@ class EntryViewController: UIViewController {
     }
     
     
-    // MARK: Login TextField Details
+    // MARK: - Login TextField Details
     
     func setupLoginTextFields() {
         textFieldTwo.isHidden = false
@@ -211,7 +211,7 @@ class EntryViewController: UIViewController {
     }
     
     
-    // MARK: Logic For State Switching
+    // MARK: - Logic For State Switching
     
     func leftButtonWasTappedWhichIsDefault() {
         leftOn = true
@@ -248,7 +248,7 @@ class EntryViewController: UIViewController {
     }
     
     
-    // MARK: Continue Condition Checking Logic
+    // MARK: - Continue Condition Checking Logic
     
     func checkIfBothSignInRequirementsAreMet() {
         if topFieldIsSatisfied == true && bottomFieldIsSatisfied == true {
@@ -290,7 +290,7 @@ class EntryViewController: UIViewController {
     }
     
     
-    // MARK: Sign In
+    // MARK: - Sign In
     
     func signUserIn() {
         let email = textFieldOne.text ?? ""
@@ -412,7 +412,7 @@ class EntryViewController: UIViewController {
     }
     
     
-    // MARK: IB Actions
+    // MARK: - IB Actions
     
     @IBAction func leftContainerButtonTapped(_ sender: UIButton) {
         leftButtonWasTappedWhichIsDefault()
@@ -428,7 +428,7 @@ class EntryViewController: UIViewController {
     }
     
     
-    // MARK: Keyboard Methods
+    // MARK: - Keyboard Methods
     
     func keyboardWillShow(notification:NSNotification) {
         var userInfo = notification.userInfo!
@@ -508,7 +508,7 @@ extension EntryViewController: UITextFieldDelegate {
     }
     
     
-    // MARK: Add Delegate, Remove AutoCorrect, and Placeholder Color to Bottom TextFields
+    // MARK: - Add Delegate, Remove AutoCorrect, and Placeholder Color to Bottom TextFields
     
     func bottomTextFieldDelegateAndAutoCorrectAndPlaceholderColorSetup() {
         var bottomTextFields: [UITextField] = []
@@ -522,7 +522,7 @@ extension EntryViewController: UITextFieldDelegate {
     }
     
     
-    // MARK: Text Field Targets
+    // MARK: - Text Field Targets
     
     func checkIfTopTextFIeldIsSatisfied(textField: UITextField) {
         if textField == self.textFieldOne {
