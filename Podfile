@@ -15,6 +15,7 @@ target 'Lynked' do
   pod 'Crashlytics'
   pod 'SDWebImage'
   pod 'MBProgressHUD'
+  pod 'Instabug'
 
 end
 
