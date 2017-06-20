@@ -36,6 +36,7 @@
 		298FA4EC1EF78F5C009B5A36 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FA4EB1EF78F5C009B5A36 /* Array+Extensions.swift */; };
 		299F85221EE78DB1001A819D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299F85211EE78DB1001A819D /* StoreKit.framework */; };
 		29AA67E21EE7B4BA000EDE42 /* InAppPurchaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA67E11EE7B4BA000EDE42 /* InAppPurchaseUtility.swift */; };
+		29BDD8BB1EF9024300F6A2DF /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BDD8BA1EF9024300F6A2DF /* ServicesViewController.swift */; };
 		29CB33121EF65EFA009CEE3B /* AcknowledgementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CB33111EF65EFA009CEE3B /* AcknowledgementsViewController.swift */; };
 		29CB33141EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CB33131EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift */; };
 		29D5906B1EF5AE5600CA66D6 /* RequestReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D5906A1EF5AE5600CA66D6 /* RequestReview.swift */; };
@@ -77,6 +78,7 @@
 		298FA4EB1EF78F5C009B5A36 /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		299F85211EE78DB1001A819D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		29AA67E11EE7B4BA000EDE42 /* InAppPurchaseUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseUtility.swift; sourceTree = "<group>"; };
+		29BDD8BA1EF9024300F6A2DF /* ServicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
 		29CB33111EF65EFA009CEE3B /* AcknowledgementsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcknowledgementsViewController.swift; sourceTree = "<group>"; };
 		29CB33131EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcknowledgementsTableViewCell.swift; sourceTree = "<group>"; };
 		29D5906A1EF5AE5600CA66D6 /* RequestReview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestReview.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 		29773CDB1EC3B6230023F277 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				29BDD8B91EF9022100F6A2DF /* New Idea */,
 				29773CDC1EC3B6730023F277 /* EntryViewController.swift */,
 				1DC0D8D81DFE59360039B8F6 /* AddCardViewController.swift */,
 				292764921EDFA3160096AE1E /* WalletViewController.swift */,
@@ -209,6 +212,14 @@
 				297BEA021EF766500035D4DA /* Future.swift */,
 			);
 			name = Future;
+			sourceTree = "<group>";
+		};
+		29BDD8B91EF9022100F6A2DF /* New Idea */ = {
+			isa = PBXGroup;
+			children = (
+				29BDD8BA1EF9024300F6A2DF /* ServicesViewController.swift */,
+			);
+			name = "New Idea";
 			sourceTree = "<group>";
 		};
 		29CCE7261EDF8F0000995139 /* Extensions */ = {
@@ -409,6 +420,7 @@
 				1DD7D2591E393C0700AF1299 /* CardClass.swift in Sources */,
 				29CB33121EF65EFA009CEE3B /* AcknowledgementsViewController.swift in Sources */,
 				1DC0D8AB1DFE516A0039B8F6 /* AppDelegate.swift in Sources */,
+				29BDD8BB1EF9024300F6A2DF /* ServicesViewController.swift in Sources */,
 				292764931EDFA3160096AE1E /* WalletViewController.swift in Sources */,
 				1DC0D8E11DFE5FBB0039B8F6 /* EditServiceViewController.swift in Sources */,
 				298FA4E41EF78EA4009B5A36 /* UIViewController+Extensions.swift in Sources */,
