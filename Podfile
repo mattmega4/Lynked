@@ -1,5 +1,5 @@
 
-platform :ios, '10.0’
+platform :ios, ‘9.0’
 
 target 'Lynked' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -14,7 +14,7 @@ target 'Lynked' do
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'SDWebImage'
-
-
+  pod 'MBProgressHUD'
 
 end
+

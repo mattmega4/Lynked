@@ -7,10 +7,7 @@
 //
 
 import UIKit
-import Firebase
-import FirebaseDatabase
-import Fabric
-import Crashlytics
+import MBProgressHUD
 
 class AddCardViewController: UIViewController {
     
@@ -18,7 +15,10 @@ class AddCardViewController: UIViewController {
     @IBOutlet weak var nextNavBarButton: UIBarButtonItem!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
+    
     @IBOutlet weak var mainImageView: UIImageView!
+    @IBOutlet weak var segControl: UISegmentedControl!
+    
     @IBOutlet weak var firstDividerView: UIView!
     @IBOutlet weak var secondDividerView: UIView!
     @IBOutlet weak var thirdDividerView: UIView!
@@ -36,9 +36,6 @@ class AddCardViewController: UIViewController {
     
     @IBOutlet weak var cardTypePickerView: UIPickerView!
     
-    
-    
-    let ref = Database.database().reference()
     var nickNameTextFieldIsEmpty = true
     var cardTypeTextFieldIsEmpty = true
     var allCardTypes: [String] = []
@@ -54,7 +51,9 @@ class AddCardViewController: UIViewController {
         secondContainerTextField.delegate = self
         cardTypePickerView.delegate = self
         cardTypePickerView.dataSource = self
-        
+
+        title = "Add Card"
+       
         setNavBar()
         nextNavBarButton.isEnabled = false
         firstContainerTextField.addTarget(self, action: #selector(checkNicknameTextField(textField:)), for: .editingChanged)
@@ -74,58 +73,41 @@ class AddCardViewController: UIViewController {
     }
     
     
-    // MARK: Nav Bar & View Design
-    
-    func setNavBar() {
-        self.navigationController?.isNavigationBarHidden = false
-        title = "Add Card"
-        navigationController?.navigationBar.barTintColor = UIColor(red: 108.0/255.0,
-                                                                   green: 158.0/255.0,
-                                                                   blue: 236.0/255.0,
-                                                                   alpha: 1.0)
-        UINavigationBar.appearance().tintColor = .white
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white,
-                                                                   NSFontAttributeName: UIFont(name: "GillSans-Bold",
-                                                                                               size: 18)!]
-    }
-    
-    
-    
-    // MARK: Write to Firebase
+    // MARK: - Write to Firebase
     
     func addDataToFirebase() {
-        
-        let user = Auth.auth().currentUser
-        let card = ref.child("cards").childByAutoId()
-        
+
         let nicknameToAdd = firstContainerTextField.text ?? ""
         let nicknameWithoutWhiteSpaces = nicknameToAdd.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         finalNickname = nicknameWithoutWhiteSpaces.capitalized
-        
         let last4 = secondContainerTextField.text
-        
         let typeToAdd = finalType
         finalType = typeToAdd?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
-        if let tempNick = finalNickname, let temp4 = last4 {
-            card.setValue(["nickname": tempNick, "last4": temp4, "type": finalType])
-        }
-        ref.child("users").child((user?.uid)!).child("cards").child(card.key).setValue(true)
+        let color: Int = segControl.selectedSegmentIndex
         
-        Analytics.logEvent("New_Card_Added", parameters: ["success" : true])
+        MBProgressHUD.showAdded(to: view, animated: true)
         
-        Answers.logCustomEvent(withName: "New Card Added",
-                              customAttributes: nil)
-        
-        if let detailVC = storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
-            detailVC.cardID = card.key
-            navigationController?.pushViewController(detailVC, animated: true)
+        FirebaseUtility.shared.addCard(name: finalNickname,
+                                       type: finalType,
+                                       color: color,
+                                       last4: last4) { (card, errorMessage) in
+            
+            MBProgressHUD.hide(for: self.view, animated: true)
+            if let theCard = card {
+                if let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
+                    detailVC.card = theCard
+                    self.navigationController?.pushViewController(detailVC, animated: true)
+                }
+            }
+            else {
+                // Display error?
+            }
         }
     }
     
     
-    // MARK: Enable Next Button
+    // MARK: - Enable Next Button
     
     func checkIfAllConditionsAreMet() {
         if nickNameTextFieldIsEmpty == false && cardTypeTextFieldIsEmpty == false {
@@ -135,10 +117,10 @@ class AddCardViewController: UIViewController {
         }
     }
     
-    // MARK: IB Actions
+    // MARK: - IB Actions
     
     @IBAction func navBarCancelButtonTapped(_ sender: UIBarButtonItem) {
-        if let walletVC = storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? CardWalletViewController {
+        if let walletVC = storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
             navigationController?.pushViewController(walletVC, animated: true)
         }
     }
@@ -152,7 +134,7 @@ class AddCardViewController: UIViewController {
         cardTypePickerView.isHidden = false
     }
     
-    // MARK: Keyboard Methods
+    // MARK: - Keyboard Methods
     
     func keyboardWillShow(notification:NSNotification) {
         var userInfo = notification.userInfo!
@@ -168,38 +150,25 @@ class AddCardViewController: UIViewController {
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         self.scrollView.contentInset = contentInset
     }
-    
-    
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-    
-
-    
+     
     
 } // End of AddCardViewController Class
 
 
-// MARK: UITextField Methods
+// MARK: - UITextField Methods
 
 extension AddCardViewController: UITextFieldDelegate {
     
      func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if textField == firstContainerTextField {
-            
             firstContainerTextField.returnKeyType = .next
             secondContainerTextField.becomeFirstResponder()
-            
         } else {
-            
             secondContainerTextField.returnKeyType = .next
             self.view.endEditing(true)
             cardTypePickerView.isHidden = false
-            
         }
-
         return false
     }
     
@@ -251,7 +220,7 @@ extension AddCardViewController: UITextFieldDelegate {
     
 }
 
-// MARK: UIPickerView Methods
+// MARK: - UIPickerView Methods
 
 extension AddCardViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -279,6 +248,8 @@ extension AddCardViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         return myTitle
     }
 }
+
+
 
 
 

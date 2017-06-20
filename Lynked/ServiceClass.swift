@@ -11,23 +11,36 @@ import Foundation
 class ServiceClass {
 
     
-    var serviceID: String?
+    var serviceID: String
+    var cardID: String
     var serviceName: String?
-    
     var serviceUrl: String?
     var serviceStatus: Bool?
     var serviceFixed: Bool?
-    var serviceAmount: String?
+    var serviceAmount: Double = 0
     var serviceAttention: Int = 0
+    var servicePayRateIndex = 0
     
     
-    init(serviceDict: [String : Any]) {
-        
-        serviceUrl = serviceDict["serviceURL"] as? String
+    init(id: String, cardId: String, serviceDict: [String : Any]) {
+        serviceID = id
+        self.cardID = cardId
         serviceName = serviceDict["serviceName"] as? String
-        serviceAmount = serviceDict["serviceAmount"] as? String
+        serviceUrl = serviceDict["serviceURL"] as? String
         serviceStatus = serviceDict["serviceStatus"] as? Bool
-        serviceAttention = (serviceDict["attentionInt"] as? Int)!
+        
+        serviceFixed = serviceDict["serviceFixed"] as? Bool
+        
+        if let amount = serviceDict["serviceAmount"] as? Double {
+            serviceAmount = amount
+        }
+        if let tempAtten = serviceDict["attentionInt"] as? Int {
+            serviceAttention = tempAtten
+        }
+        
+        if let theIndex = serviceDict["servicePaymentRate"] as? Int {
+            servicePayRateIndex = theIndex
+        }
     }
   
 }
