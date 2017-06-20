@@ -23,6 +23,7 @@
 		2924F9C01EF24F280014C284 /* AutoCompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F9BF1EF24F280014C284 /* AutoCompleteTableViewCell.swift */; };
 		292764931EDFA3160096AE1E /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292764921EDFA3160096AE1E /* WalletViewController.swift */; };
 		292764951EDFC8350096AE1E /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292764941EDFC8350096AE1E /* CardTableViewCell.swift */; };
+		292B45D41EF90D3F0003B9D9 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292B45D31EF90D3F0003B9D9 /* Keys.swift */; };
 		2943B48B1EF624D600A0E8DD /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */; };
 		29773CDD1EC3B6730023F277 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29773CDC1EC3B6730023F277 /* EntryViewController.swift */; };
 		297BE9FC1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 297BE9FB1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist */; };
@@ -65,6 +66,7 @@
 		2924F9BF1EF24F280014C284 /* AutoCompleteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoCompleteTableViewCell.swift; sourceTree = "<group>"; };
 		292764921EDFA3160096AE1E /* WalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		292764941EDFC8350096AE1E /* CardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
+		292B45D31EF90D3F0003B9D9 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseUtility.swift; sourceTree = "<group>"; };
 		29773CDC1EC3B6730023F277 /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		297BE9FB1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Pods-Lynked-acknowledgements.plist"; path = "../Pods/Target Support Files/Pods-Lynked/Pods-Lynked-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				1DC0D8B91DFE516A0039B8F6 /* Info.plist */,
 				1D01B26F1E03A27500098A9A /* GoogleService-Info.plist */,
 				1DC0D8B61DFE516A0039B8F6 /* LaunchScreen.storyboard */,
+				292B45D31EF90D3F0003B9D9 /* Keys.swift */,
 			);
 			name = "Additional Files";
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				1DC0D8B31DFE516A0039B8F6 /* Lynked.xcdatamodeld in Sources */,
 				297BEA031EF766500035D4DA /* Future.swift in Sources */,
 				1DD7D2591E393C0700AF1299 /* CardClass.swift in Sources */,
+				292B45D41EF90D3F0003B9D9 /* Keys.swift in Sources */,
 				29CB33121EF65EFA009CEE3B /* AcknowledgementsViewController.swift in Sources */,
 				1DC0D8AB1DFE516A0039B8F6 /* AppDelegate.swift in Sources */,
 				29BDD8BB1EF9024300F6A2DF /* ServicesViewController.swift in Sources */,
