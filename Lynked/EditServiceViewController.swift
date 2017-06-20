@@ -74,7 +74,7 @@ class EditServiceViewController: UIViewController {
     
     var service: ServiceClass?
     var paymentTimeFrame: [String] = []
-    var timeFrame = 0
+    var timeFrame: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,7 +108,6 @@ class EditServiceViewController: UIViewController {
     }
     
     
-    
     // MARK: - Payment Time Frame
     
     func addToPaymentTimeFrameArray() {
@@ -124,8 +123,6 @@ class EditServiceViewController: UIViewController {
         urlTextField.addTarget(self, action: #selector(alertUserIfURLTextFieldIsNotValid(textField:)), for: .editingChanged)
         fixedAmountTextField.addTarget(self, action: #selector(currencyRightToLeftFormatter(textField:)), for: .editingChanged)
     }
-    
-    
     
     
     // MARK: - Switch Functions
@@ -162,8 +159,13 @@ class EditServiceViewController: UIViewController {
         urlTextField.text = service?.serviceUrl
         fixedExpenseToggleSwitch.isOn = service?.serviceFixed == true
         fixedAmountTextField.text = "$\(service?.serviceAmount ?? 0.0)"
+        
+        if let row = service?.servicePayRateIndex {
+            fixedAmountPickerView.selectRow(row,
+                                            inComponent: 0,
+                                            animated: true)
+        }
     }
-    
     
     
     // MARK: - Firebase Methods
@@ -242,7 +244,6 @@ class EditServiceViewController: UIViewController {
         deleteServiceButton.isHidden = true
     }
     
-    
     func keyboardWillHide(notification:NSNotification) {
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         self.scrollView.contentInset = contentInset
@@ -294,7 +295,6 @@ class EditServiceViewController: UIViewController {
     @IBAction func deleteButtonTapped(_ sender: UIButton) {
         deleteThisService()
     }
-    
 }
 
 
@@ -349,12 +349,7 @@ extension EditServiceViewController: UIPickerViewDelegate, UIPickerViewDataSourc
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        timeFrame = (paymentTimeFrame[row]
-        
-//        timeFrame = fixedAmountPickerView.selectedRow(inComponent: row)
-//        timeFrame = fix
-        
-        print(timeFrame)
+        timeFrame = fixedAmountPickerView.selectedRow(inComponent: 0)
     }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
