@@ -11,6 +11,7 @@ import CoreData
 import Firebase
 import Fabric
 import Crashlytics
+import Instabug
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,12 +21,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // MARK: - NavBar Light Color
+        
         UIApplication.shared.statusBarStyle = .lightContent
         
-        // App Run Counter for Review
+        
+        // MARK: - Instabug
+        
+        Instabug.start(withToken: "00d55a71024bdc372829af51adeff601", invocationEvent: .shake)
+        
+        
+        // MARK: - App Run Counter for Review
         incrementAppRuns()
         
-        // Firebase/Fabric
+        
+        // MARK: - Firebase/Fabric
         FirebaseApp.configure()
         Fabric.with([Crashlytics.self])
         
