@@ -41,7 +41,6 @@ class PreferencesViewController: UIViewController {
         feedbackButton.isHidden = true
         
         setNavBar()
-        showReview()
     }
     
     

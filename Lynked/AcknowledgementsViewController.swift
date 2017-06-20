@@ -33,10 +33,11 @@ class AcknowledgementsViewController: UIViewController {
         tableView.estimatedRowHeight = 500
         setNavBar()
         title = "Acknowledgements"
+        showReview()
     }
     
     // MARK: - IBActions
- 
+    
     @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
         navigationController?.popViewController(animated: true)
     }
