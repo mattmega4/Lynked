@@ -64,6 +64,6 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 
-
+Lynked/AppDelegate.swift
 
 CrashReportingKey/ServiceAccount.json
