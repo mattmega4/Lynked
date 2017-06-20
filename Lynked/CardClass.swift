@@ -6,29 +6,29 @@
 //  Copyright © 2017 Matthew Singleton. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 
 class CardClass {
-
-    var cardID: String?
+    
+    var cardID: String
     var nickname: String?
     var fourDigits: String?
     var type: String?
+    var colorIndex = 0
+    var color: UIColor?
+    var textColor: UIColor?
 
-    
-    init(cardDict: [String: Any]) {
-        
-        let cardNickname = cardDict["nickname"]
-        let cardFourDigits = cardDict["last4"]
-        let cardType = cardDict["type"]
-        
-
-
-        nickname = cardNickname as? String
-        fourDigits = cardFourDigits as? String
-        type = cardType as? String
-        
+    init(id: String, cardDict: [String: Any]) {
+        cardID = id
+        nickname = cardDict["nickname"] as? String
+        fourDigits = cardDict["last4"] as? String
+        type = cardDict["type"] as? String
+        if let theIndex = cardDict["color"] as? Int {
+            colorIndex = theIndex
+            color = SegmentColorManager.shared.colorAtIndex(index: theIndex)
+            textColor = SegmentColorManager.shared.textColorAtIndex(index: theIndex)
+        }
     }
     
 }

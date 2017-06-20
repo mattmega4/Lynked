@@ -19,7 +19,6 @@ class EntryViewController: UIViewController {
     
     @IBOutlet weak var topContainerView: UIView!
     @IBOutlet weak var mainLogoImageView: UIImageView!
-    @IBOutlet weak var questionMarkButton: UIButton!
     
     @IBOutlet weak var leftContainerView: UIView!
     @IBOutlet weak var leftContainerButton: UIButton!
@@ -39,8 +38,6 @@ class EntryViewController: UIViewController {
     
     var leftOn: Bool?
     var rightOn: Bool?
-    
-    
     
     var topFieldIsSatisfied = false
     var bottomFieldIsSatisfied = false
@@ -78,7 +75,7 @@ class EntryViewController: UIViewController {
         leftButtonWasTappedWhichIsDefault()
     }
     
-    // MARK: Switch Logic For Sign In or Create Button in Bottom Container View
+    // MARK: - Switch Logic For Sign In or Create Button in Bottom Container View
     
     func bottomContainerStateSwitcher() {
         if userStateIsOnSignIn == true {
@@ -92,7 +89,7 @@ class EntryViewController: UIViewController {
     }
     
     
-    // MARK: Hide and Show Left and Right Container View Contents
+    // MARK: - Hide and Show Left and Right Container View Contents
     
     func hideLeftContainerViewContents() {
         leftContainerButton.alpha = 0.3
@@ -126,7 +123,7 @@ class EntryViewController: UIViewController {
     }
     
     
-    // MARK: Keyboard Show Logic
+    // MARK: - Keyboard Show Logic
     
     func hideShowKeyboardLogicLeftVsRight() {
         if leftOn == true && rightOn == false {
@@ -137,7 +134,7 @@ class EntryViewController: UIViewController {
     }
     
     
-    // MARK: Reset Text Fields
+    // MARK: - Reset Text Fields
     
     func resetTextFieldText() {
         textFieldOne.text = ""
@@ -145,7 +142,7 @@ class EntryViewController: UIViewController {
     }
     
     
-    // MARK: Reset Requirements
+    // MARK: - Reset Requirements
     
     func resetLoginRequirements() {
         createUserStepOneFinished = false
@@ -175,7 +172,7 @@ class EntryViewController: UIViewController {
     }
     
     
-    // MARK: Login TextField Details
+    // MARK: - Login TextField Details
     
     func setupLoginTextFields() {
         textFieldTwo.isHidden = false
@@ -213,7 +210,7 @@ class EntryViewController: UIViewController {
     }
     
     
-    // MARK: Logic For State Switching
+    // MARK: - Logic For State Switching
     
     func leftButtonWasTappedWhichIsDefault() {
         leftOn = true
@@ -250,7 +247,7 @@ class EntryViewController: UIViewController {
     }
     
     
-    // MARK: Continue Condition Checking Logic
+    // MARK: - Continue Condition Checking Logic
     
     func checkIfBothSignInRequirementsAreMet() {
         if topFieldIsSatisfied == true && bottomFieldIsSatisfied == true {
@@ -290,120 +287,57 @@ class EntryViewController: UIViewController {
             signInOrUpButtonContainerView.isHidden = true
         }
     }
+
     
-    
-    // MARK: Sign In
+    // MARK: - Sign User In
     
     func signUserIn() {
-        let email = textFieldOne.text ?? ""
-        let password = textFieldTwo.text ?? ""
-        Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
-            let ref = Database.database().reference()
-            let user = Auth.auth().currentUser
-            if error == nil {
-                
-                
-                Analytics.logEvent("Email_Login", parameters: ["success" : true])
-                
-                Answers.logLogin(withMethod: "Email Login",
-                                 success: true,
-                                 customAttributes: nil)
-                
-                ref.child("users").child((user?.uid)!).child("cards")
-                    .observeSingleEvent(of: .value, with: { snapshot in
-                        if (snapshot.hasChildren()) {
-                            
-                            if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? CardWalletViewController {
-                                self.navigationController?.pushViewController(walletVC, animated: true)
-                            }
-                            
-                        } else {
-                            
-                            
-                            if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
-                                self.navigationController?.pushViewController(addVC, animated: true)
-                            }
-                        }
-                    })
-            } else {
-                var errMessage = ""
-                if let errCode = AuthErrorCode(rawValue: (error?._code)!) {
-                    switch errCode {
-                    case .invalidEmail:
-                        errMessage = "The entered email does not meet requirements."
-                    case .weakPassword:
-                        errMessage = "The entered password does not meet minimum requirements."
-                    case .wrongPassword:
-                        errMessage = "The entered password is not correct."
-                    default:
-                        errMessage = "Please try again."
-                    }
-                    let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errMessage)", preferredStyle: .alert)
-                    self.present(alertController, animated: true, completion:nil)
-                    let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
-                    }
-                    alertController.addAction(OKAction)
+        FirebaseUtility.shared.signUserInWith(email: textFieldOne.text,
+                                              password: textFieldTwo.text) { (user, errMessage) in
+            
+            if let errorMessage = errMessage {
+                let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errorMessage)", preferredStyle: .alert)
+                self.present(alertController, animated: true, completion:nil)
+                let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
                 }
-                self.textFieldOne.text = ""
-                self.textFieldTwo.text = ""
-                self.topFieldIsSatisfied = false
-                self.bottomFieldIsSatisfied = false
+                alertController.addAction(OKAction)
             }
-        })
-    }
-    
-    
-    // MARK: Register User
-    
-    func registerNewUser() {
-        let ref = Database.database().reference()
-        if textFieldOne.text == textFieldTwo.text {
-            newUserPassword = textFieldTwo.text ?? ""
-            Auth.auth().createUser(withEmail: newUserEmail!, password: newUserPassword!, completion: { (user, error) in
-                var errMessage = ""
-                if (error != nil) {
-                    if let errCode = AuthErrorCode(rawValue: (error?._code)!) {
-                        switch errCode {
-                        case .invalidEmail:
-                            errMessage = "The entered email does not meet requirements."
-                        case .emailAlreadyInUse:
-                            errMessage = "The entered email has already been registered."
-                        case .weakPassword:
-                            errMessage = "The entered password does not meet minimum requirements."
-                        default:
-                            errMessage = "Please try again."
-                        }
-                    }
-                    let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errMessage)", preferredStyle: .alert)
-                    self.present(alertController, animated: true, completion:nil)
-                    let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
-                    }
-                    alertController.addAction(OKAction)
-                } else {
-                    ref.child("users").child((user?.uid)!).child("cards").setValue(true)
-                    Auth.auth().signIn(withEmail: self.newUserEmail!, password: self.newUserPassword!)
-                    self.tempUID = (user?.uid)!
-                    
-                    
-                    Analytics.logEvent("Email_Register", parameters: ["success" : true])
-                    
-                    Answers.logSignUp(withMethod: "Email Register",
-                                      success: true,
-                                      customAttributes: [:])
-                    if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
-                        self.navigationController?.pushViewController(addVC, animated: true)
-                    }
+            else {
+                if let WalletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
+                    self.navigationController?.pushViewController(WalletVC, animated: true)
                 }
-            })
+            }
         }
     }
     
     
-    // MARK: IB Actions
+    // MARK: - Register User
+    
+    func registerNewUser() {
+        FirebaseUtility.shared.registerUserWith(email: newUserEmail,
+                                                password: textFieldOne.text,
+                                                confirmPassword: textFieldTwo.text) { (user, errMessage) in
+            
+            if let errorMessage = errMessage {
+                let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errorMessage)", preferredStyle: .alert)
+                self.present(alertController, animated: true, completion:nil)
+                let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
+                }
+                alertController.addAction(OKAction)
+            }
+            else {
+                if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
+                    self.navigationController?.pushViewController(addVC, animated: true)
+                }
+            }
+        }
+    }
+    
+    
+    // MARK: - IB Actions
     
     @IBAction func leftContainerButtonTapped(_ sender: UIButton) {
         leftButtonWasTappedWhichIsDefault()
-        
     }
     
     @IBAction func rightContainerButtonTapped(_ sender: UIButton) {
@@ -415,7 +349,7 @@ class EntryViewController: UIViewController {
     }
     
     
-    // MARK: Keyboard Methods
+    // MARK: - Keyboard Methods
     
     func keyboardWillShow(notification:NSNotification) {
         var userInfo = notification.userInfo!
@@ -441,17 +375,9 @@ class EntryViewController: UIViewController {
         hideShowKeyboardLogicLeftVsRight()
     }
     
-    
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-    
-    
 } // End of EntryPageViewController
 
 extension EntryViewController: UITextFieldDelegate {
-    
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
@@ -500,7 +426,7 @@ extension EntryViewController: UITextFieldDelegate {
     }
     
     
-    // MARK: Add Delegate, Remove AutoCorrect, and Placeholder Color to Bottom TextFields
+    // MARK: - Add Delegate, Remove AutoCorrect, and Placeholder Color to Bottom TextFields
     
     func bottomTextFieldDelegateAndAutoCorrectAndPlaceholderColorSetup() {
         var bottomTextFields: [UITextField] = []
@@ -514,7 +440,7 @@ extension EntryViewController: UITextFieldDelegate {
     }
     
     
-    // MARK: Text Field Targets
+    // MARK: - Text Field Targets
     
     func checkIfTopTextFIeldIsSatisfied(textField: UITextField) {
         if textField == self.textFieldOne {
