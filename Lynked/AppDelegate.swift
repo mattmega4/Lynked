@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // MARK: - Instabug
         
-        Instabug.start(withToken: instaBugKey, invocationEvent: .shake)
+        Instabug.start(withToken: IBK, invocationEvent: .shake)
         
         
         // MARK: - App Run Counter for Review
