@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.statusBarStyle = .lightContent
         
         
-        // MARK: - Instabug
+        // MARK: - Instabug Test
         
         Instabug.start(withToken: IBK, invocationEvent: .shake)
         
