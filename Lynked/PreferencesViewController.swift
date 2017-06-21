@@ -7,10 +7,8 @@
 //
 
 import UIKit
+import Instabug
 import Firebase
-import StoreKit
-import Fabric
-import Crashlytics
 
 
 class PreferencesViewController: UIViewController {
@@ -80,6 +78,7 @@ class PreferencesViewController: UIViewController {
         }
         
         @IBAction func feedbackButtonTapped(_ sender: UIButton) {
+            Instabug.invoke()
         }
         
         @IBAction func acknowledgementsButtonTapped(_ sender: UIButton) {
