@@ -7,15 +7,20 @@ target 'Lynked' do
 
   # Pods for Lynked
 
+
+  # pod 'Onboard'
+  pod 'MBProgressHUD'
+  pod 'Instabug'
+  pod 'Fabric'
+  pod 'Crashlytics'
+  pod 'SDWebImage'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Performance'
-  pod 'Fabric'
-  pod 'Crashlytics'
-  pod 'SDWebImage'
-  pod 'MBProgressHUD'
-  pod 'Instabug'
+ 
+
+
 
 end
 
