@@ -51,9 +51,9 @@ class AddCardViewController: UIViewController {
         secondContainerTextField.delegate = self
         cardTypePickerView.delegate = self
         cardTypePickerView.dataSource = self
-
+        
         title = "Add Card"
-       
+        
         setNavBar()
         nextNavBarButton.isEnabled = false
         firstContainerTextField.addTarget(self, action: #selector(checkNicknameTextField(textField:)), for: .editingChanged)
@@ -76,7 +76,7 @@ class AddCardViewController: UIViewController {
     // MARK: - Write to Firebase
     
     func addDataToFirebase() {
-
+        
         let nicknameToAdd = firstContainerTextField.text ?? ""
         let nicknameWithoutWhiteSpaces = nicknameToAdd.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         finalNickname = nicknameWithoutWhiteSpaces.capitalized
@@ -92,17 +92,17 @@ class AddCardViewController: UIViewController {
                                        type: finalType,
                                        color: color,
                                        last4: last4) { (card, errorMessage) in
-            
-            MBProgressHUD.hide(for: self.view, animated: true)
-            if let theCard = card {
-                if let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
-                    detailVC.card = theCard
-                    self.navigationController?.pushViewController(detailVC, animated: true)
-                }
-            }
-            else {
-                // Display error?
-            }
+                                        
+                                        MBProgressHUD.hide(for: self.view, animated: true)
+                                        if let theCard = card {
+                                            if let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
+                                                detailVC.card = theCard
+                                                self.navigationController?.pushViewController(detailVC, animated: true)
+                                            }
+                                        }
+                                        else {
+                                            // Display error?
+                                        }
         }
     }
     
@@ -150,16 +150,16 @@ class AddCardViewController: UIViewController {
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         self.scrollView.contentInset = contentInset
     }
-     
     
-} // End of AddCardViewController Class
+    
+} // MARK: - End of AddCardViewController
 
 
 // MARK: - UITextField Methods
 
 extension AddCardViewController: UITextFieldDelegate {
     
-     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if textField == firstContainerTextField {
             firstContainerTextField.returnKeyType = .next
@@ -177,7 +177,7 @@ extension AddCardViewController: UITextFieldDelegate {
         return true
     }
     
-
+    
     
     func checkNicknameTextField(textField: UITextField) {
         if textField == firstContainerTextField {

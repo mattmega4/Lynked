@@ -180,7 +180,7 @@ class EditServiceViewController: UIViewController {
                                       state: serviceStateToggleSwtich.isOn,
                                       rate: timeFrame ) { (updatedService, errMessage) in
                                         
-            self.navigationController?.popViewController(animated: true)
+                                        self.navigationController?.popViewController(animated: true)
         }
     }
     
@@ -201,26 +201,26 @@ class EditServiceViewController: UIViewController {
             FirebaseUtility.shared.delete(service: theService,
                                           completion: { (success, error) in
                                             
-                if let errorMessage = error {
-                    print(errorMessage)
-                } else if success {
-                    var didGoBack = false
-                    if let viewControllers = self.navigationController?.viewControllers {
-                        for aController in viewControllers {
-                            if aController is CardDetailViewController {
-                                didGoBack = true
-                                self.navigationController?.popToViewController(aController, animated: true)
-                                break
-                            }
-                        }
-                        
-                    }
-                    if !didGoBack {
-                        if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
-                            self.navigationController?.pushViewController(walletVC, animated: true)
-                        }
-                    }
-                }
+                                            if let errorMessage = error {
+                                                print(errorMessage)
+                                            } else if success {
+                                                var didGoBack = false
+                                                if let viewControllers = self.navigationController?.viewControllers {
+                                                    for aController in viewControllers {
+                                                        if aController is CardDetailViewController {
+                                                            didGoBack = true
+                                                            self.navigationController?.popToViewController(aController, animated: true)
+                                                            break
+                                                        }
+                                                    }
+                                                    
+                                                }
+                                                if !didGoBack {
+                                                    if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
+                                                        self.navigationController?.pushViewController(walletVC, animated: true)
+                                                    }
+                                                }
+                                            }
             })
         }
         
@@ -295,7 +295,8 @@ class EditServiceViewController: UIViewController {
     @IBAction func deleteButtonTapped(_ sender: UIButton) {
         deleteThisService()
     }
-}
+    
+} // MARK: - End of EditServiceViewController
 
 
 // MARK: - UITextFieldDelegate Methods

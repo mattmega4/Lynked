@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="QZx-kT-1cO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Qec-k2-gG4">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -971,7 +971,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="contentView" destination="IBL-Yt-7Zc" id="GKm-bA-AF5"/>
-                        <outlet property="deleteServiceButton" destination="18D-Gy-A2p" id="qmw-po-HoJ"/>
                         <outlet property="fifthContainerView" destination="fvh-KK-H8l" id="vgF-oS-reX"/>
                         <outlet property="fifthDividerView" destination="NaC-Ez-QU3" id="fID-os-fqn"/>
                         <outlet property="firstContainerView" destination="5A5-XU-W5u" id="4vi-OY-5dX"/>
@@ -1004,10 +1003,10 @@
             </objects>
             <point key="canvasLocation" x="10806" y="-1277"/>
         </scene>
-        <!--View Controller-->
+        <!--Service Detail View Controller-->
         <scene sceneID="OcR-OC-1WB">
             <objects>
-                <viewController id="vSb-lL-eZb" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="vSb-lL-eZb" customClass="ServiceDetailViewController" customModule="Lynked" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sz5-AS-P9r"/>
                         <viewControllerLayoutGuide type="bottom" id="IAS-f2-BLq"/>
@@ -1016,291 +1015,350 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r1V-UE-IPR">
-                                <rect key="frame" x="135" y="79" width="51" height="31"/>
-                                <color key="onTintColor" red="0.36078431370000003" green="0.62745098040000002" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service Up To Date?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sf8-3c-IkS">
-                                <rect key="frame" x="88" y="120" width="144" height="16.5"/>
-                                <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="14"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xsx-h2-E3O">
-                                <rect key="frame" x="25" y="146" width="270" height="35"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M3j-VS-fkK">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lNL-WV-4Oe">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                        <subviews>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r1V-UE-IPR">
+                                                <rect key="frame" x="135.5" y="15" width="51" height="31"/>
+                                                <color key="onTintColor" red="0.36078431370000003" green="0.62745098040000002" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </switch>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service Up To Date?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sf8-3c-IkS">
+                                                <rect key="frame" x="88" y="56" width="144" height="16.5"/>
+                                                <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="14"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xsx-h2-E3O">
+                                                <rect key="frame" x="113.5" y="82.5" width="93" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="9nk-Sb-Hff"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
+                                                <state key="normal" title="Update Service"/>
+                                                <connections>
+                                                    <action selector="serviceUpdateBillingButtonTapped:" destination="vSb-lL-eZb" eventType="touchUpInside" id="bYU-ny-jmt"/>
+                                                    <action selector="updateServiceOnlineButtonTapped:" destination="s5Z-68-gGr" eventType="touchUpInside" id="57f-Jt-T26"/>
+                                                </connections>
+                                            </button>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4cV-k0-d9q">
+                                                <rect key="frame" x="0.0" y="132.5" width="320" height="186.5"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <prototypes>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="7Db-Vo-pVn" customClass="ServiceNameTableViewCell" customModule="Lynked" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="28" width="320" height="75"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Db-Vo-pVn" id="iog-u6-Sk1">
+                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="74.5"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faX-v7-b6b">
+                                                                    <rect key="frame" x="15" y="5" width="290" height="24.5"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="25" id="Wuc-dO-jCk"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
+                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Amazon" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PkD-HN-iGv">
+                                                                    <rect key="frame" x="15" y="34.5" width="290" height="35"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="35" id="cNz-gd-eXd"/>
+                                                                    </constraints>
+                                                                    <nil key="textColor"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <textInputTraits key="textInputTraits"/>
+                                                                    <connections>
+                                                                        <outlet property="delegate" destination="vSb-lL-eZb" id="fn4-np-dh3"/>
+                                                                    </connections>
+                                                                </textField>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="PkD-HN-iGv" firstAttribute="top" secondItem="faX-v7-b6b" secondAttribute="bottom" constant="5" id="4Zy-4L-rT5"/>
+                                                                <constraint firstAttribute="trailing" secondItem="PkD-HN-iGv" secondAttribute="trailing" constant="15" id="KbA-iT-S9K"/>
+                                                                <constraint firstAttribute="trailing" secondItem="faX-v7-b6b" secondAttribute="trailing" constant="15" id="NFY-b2-o04"/>
+                                                                <constraint firstItem="PkD-HN-iGv" firstAttribute="leading" secondItem="iog-u6-Sk1" secondAttribute="leading" constant="15" id="Qg4-I0-H6R"/>
+                                                                <constraint firstItem="faX-v7-b6b" firstAttribute="leading" secondItem="iog-u6-Sk1" secondAttribute="leading" constant="15" id="XcH-c0-ErR"/>
+                                                                <constraint firstItem="faX-v7-b6b" firstAttribute="top" secondItem="iog-u6-Sk1" secondAttribute="top" constant="5" id="tUO-LA-BmG"/>
+                                                                <constraint firstAttribute="bottom" secondItem="PkD-HN-iGv" secondAttribute="bottom" constant="5" id="vmP-Th-XKY"/>
+                                                            </constraints>
+                                                        </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="serviceNameLabel" destination="faX-v7-b6b" id="3aR-nc-pDR"/>
+                                                            <outlet property="serviceNameTextField" destination="PkD-HN-iGv" id="dvh-V6-mp9"/>
+                                                        </connections>
+                                                    </tableViewCell>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="75" id="qLV-a6-LOo" customClass="ServiceURLTableViewCell" customModule="Lynked" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="103" width="320" height="75"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qLV-a6-LOo" id="Ezn-gM-ML5">
+                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="74.5"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service URL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rhm-Ih-xto">
+                                                                    <rect key="frame" x="15" y="5" width="290" height="24.5"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="25" id="TkP-3x-Tfk"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
+                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Amazon.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y4v-Iv-iMS">
+                                                                    <rect key="frame" x="15" y="34.5" width="290" height="35"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="35" id="7cy-yc-Cxt"/>
+                                                                    </constraints>
+                                                                    <nil key="textColor"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <textInputTraits key="textInputTraits"/>
+                                                                    <connections>
+                                                                        <outlet property="delegate" destination="vSb-lL-eZb" id="rM0-Cn-yPr"/>
+                                                                    </connections>
+                                                                </textField>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="y4v-Iv-iMS" secondAttribute="trailing" constant="15" id="2Wx-AE-x9t"/>
+                                                                <constraint firstItem="Rhm-Ih-xto" firstAttribute="leading" secondItem="Ezn-gM-ML5" secondAttribute="leading" constant="15" id="APm-WK-8pr"/>
+                                                                <constraint firstAttribute="bottom" secondItem="y4v-Iv-iMS" secondAttribute="bottom" constant="5" id="HG0-xx-j3d"/>
+                                                                <constraint firstItem="y4v-Iv-iMS" firstAttribute="leading" secondItem="Ezn-gM-ML5" secondAttribute="leading" constant="15" id="UfD-xM-qnp"/>
+                                                                <constraint firstItem="y4v-Iv-iMS" firstAttribute="top" secondItem="Rhm-Ih-xto" secondAttribute="bottom" constant="5" id="UwQ-yg-TvH"/>
+                                                                <constraint firstAttribute="trailing" secondItem="Rhm-Ih-xto" secondAttribute="trailing" constant="15" id="ry5-Tr-HpX"/>
+                                                                <constraint firstItem="Rhm-Ih-xto" firstAttribute="top" secondItem="Ezn-gM-ML5" secondAttribute="top" constant="5" id="ua2-Qe-t9T"/>
+                                                            </constraints>
+                                                        </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="serviceUrlLabel" destination="Rhm-Ih-xto" id="ksS-jJ-bvJ"/>
+                                                            <outlet property="serviceUrlTextField" destination="y4v-Iv-iMS" id="HYh-e5-drs"/>
+                                                        </connections>
+                                                    </tableViewCell>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="85" id="VHe-ie-Iei" customClass="ServiceCategoryTableViewCell" customModule="Lynked" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="178" width="320" height="85"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VHe-ie-Iei" id="Yv2-DC-MsD">
+                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="84.5"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Dh-Of-ZJj">
+                                                                    <rect key="frame" x="15" y="5" width="70" height="25"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="25" id="9N9-Ar-ScF"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
+                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uTP-uB-GdF">
+                                                                    <rect key="frame" x="15" y="35" width="290" height="45"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="45" id="BH6-TO-8Sh"/>
+                                                                    </constraints>
+                                                                    <connections>
+                                                                        <outlet property="dataSource" destination="vSb-lL-eZb" id="ulz-7N-C7K"/>
+                                                                        <outlet property="delegate" destination="vSb-lL-eZb" id="dk9-9l-oI6"/>
+                                                                    </connections>
+                                                                </pickerView>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="9Dh-Of-ZJj" firstAttribute="top" secondItem="Yv2-DC-MsD" secondAttribute="top" constant="5" id="Mzd-8w-4ru"/>
+                                                                <constraint firstItem="9Dh-Of-ZJj" firstAttribute="leading" secondItem="Yv2-DC-MsD" secondAttribute="leading" constant="15" id="TpO-Nt-Ani"/>
+                                                                <constraint firstAttribute="bottom" secondItem="uTP-uB-GdF" secondAttribute="bottom" constant="5" id="XLD-Ia-cwl"/>
+                                                                <constraint firstItem="uTP-uB-GdF" firstAttribute="leading" secondItem="Yv2-DC-MsD" secondAttribute="leading" constant="15" id="gAa-ZU-914"/>
+                                                                <constraint firstAttribute="trailing" secondItem="uTP-uB-GdF" secondAttribute="trailing" constant="15" id="kod-T8-AY6"/>
+                                                                <constraint firstItem="uTP-uB-GdF" firstAttribute="top" secondItem="9Dh-Of-ZJj" secondAttribute="bottom" constant="5" id="lUT-bY-qby"/>
+                                                            </constraints>
+                                                        </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="serviceCategoryLabel" destination="9Dh-Of-ZJj" id="wcH-uJ-hg7"/>
+                                                            <outlet property="serviceCategoryPicker" destination="uTP-uB-GdF" id="n2X-e4-hCD"/>
+                                                        </connections>
+                                                    </tableViewCell>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="85" id="e05-6e-OL3" customClass="ServiceFixedAndRateTableViewCell" customModule="Lynked" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="263" width="320" height="85"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e05-6e-OL3" id="PHY-za-tk6">
+                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="84.5"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FIxed Service" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VnO-tF-ScO">
+                                                                    <rect key="frame" x="15" y="5" width="102" height="25"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="25" id="Aif-j9-39y"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
+                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <pickerView contentMode="scaleToFill" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="5d8-Sa-LTH">
+                                                                    <rect key="frame" x="15" y="34.5" width="226" height="45"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="45" id="Te0-pp-qNm"/>
+                                                                    </constraints>
+                                                                    <connections>
+                                                                        <outlet property="dataSource" destination="vSb-lL-eZb" id="Aeb-hP-QaZ"/>
+                                                                        <outlet property="delegate" destination="vSb-lL-eZb" id="oHy-cQ-SLm"/>
+                                                                    </connections>
+                                                                </pickerView>
+                                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zg1-By-ysW">
+                                                                    <rect key="frame" x="256" y="34.5" width="51" height="31"/>
+                                                                </switch>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="Zg1-By-ysW" firstAttribute="top" secondItem="5d8-Sa-LTH" secondAttribute="top" id="2cm-dz-oMD"/>
+                                                                <constraint firstItem="Zg1-By-ysW" firstAttribute="leading" secondItem="5d8-Sa-LTH" secondAttribute="trailing" constant="15" id="A6E-nR-hcP"/>
+                                                                <constraint firstItem="Zg1-By-ysW" firstAttribute="top" secondItem="VnO-tF-ScO" secondAttribute="bottom" constant="5" id="Gu4-wg-dWe"/>
+                                                                <constraint firstAttribute="bottom" secondItem="5d8-Sa-LTH" secondAttribute="bottom" constant="5" id="WgJ-00-oLr"/>
+                                                                <constraint firstItem="VnO-tF-ScO" firstAttribute="leading" secondItem="PHY-za-tk6" secondAttribute="leading" constant="15" id="jIC-wi-jnI"/>
+                                                                <constraint firstItem="5d8-Sa-LTH" firstAttribute="leading" secondItem="PHY-za-tk6" secondAttribute="leading" constant="15" id="lfM-vJ-iGl"/>
+                                                                <constraint firstAttribute="trailing" secondItem="Zg1-By-ysW" secondAttribute="trailing" constant="15" id="oZF-gE-Xsw"/>
+                                                                <constraint firstItem="VnO-tF-ScO" firstAttribute="top" secondItem="PHY-za-tk6" secondAttribute="top" constant="5" id="wmq-I6-wsS"/>
+                                                            </constraints>
+                                                        </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="serviceFixedLabel" destination="VnO-tF-ScO" id="rrw-lP-Ae7"/>
+                                                            <outlet property="serviceFixedRatePicker" destination="5d8-Sa-LTH" id="SvV-7Z-J6t"/>
+                                                            <outlet property="serviceFixedSwitch" destination="Zg1-By-ysW" id="2GZ-Lm-ggm"/>
+                                                        </connections>
+                                                    </tableViewCell>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="115" id="kdm-Bs-39a" customClass="ServiceNextScheduledTableViewCell" customModule="Lynked" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="348" width="320" height="115"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kdm-Bs-39a" id="117-qg-nOG">
+                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="114.5"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next Scheduled Payment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BtX-l9-Hxe">
+                                                                    <rect key="frame" x="15" y="5" width="193" height="25"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="25" id="NJN-U1-i0e"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
+                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="PhT-3M-qkR">
+                                                                    <rect key="frame" x="15" y="35" width="290" height="74.5"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="74.670000000000002" id="knG-Lv-K9e"/>
+                                                                    </constraints>
+                                                                    <date key="date" timeIntervalSinceReferenceDate="519805248.54981703">
+                                                                        <!--2017-06-22 06:20:48 +0000-->
+                                                                    </date>
+                                                                </datePicker>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="PhT-3M-qkR" firstAttribute="leading" secondItem="117-qg-nOG" secondAttribute="leading" constant="15" id="Zbe-Ee-ep0"/>
+                                                                <constraint firstItem="PhT-3M-qkR" firstAttribute="top" secondItem="BtX-l9-Hxe" secondAttribute="bottom" constant="5" id="aZw-wx-GQf"/>
+                                                                <constraint firstAttribute="trailing" secondItem="PhT-3M-qkR" secondAttribute="trailing" constant="15" id="evO-y6-0Es"/>
+                                                                <constraint firstAttribute="bottom" secondItem="PhT-3M-qkR" secondAttribute="bottom" constant="5" id="fne-Lk-14j"/>
+                                                                <constraint firstItem="BtX-l9-Hxe" firstAttribute="leading" secondItem="117-qg-nOG" secondAttribute="leading" constant="15" id="o6s-1a-PDv"/>
+                                                                <constraint firstItem="BtX-l9-Hxe" firstAttribute="top" secondItem="117-qg-nOG" secondAttribute="top" constant="5" id="wsJ-tU-W6g"/>
+                                                            </constraints>
+                                                        </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="serviceScheduledDatePicker" destination="PhT-3M-qkR" id="EBc-af-f76"/>
+                                                            <outlet property="serviceScheduledLabel" destination="BtX-l9-Hxe" id="dXA-w9-1Dr"/>
+                                                        </connections>
+                                                    </tableViewCell>
+                                                </prototypes>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="vSb-lL-eZb" id="BiN-hI-Mvp"/>
+                                                    <outlet property="delegate" destination="vSb-lL-eZb" id="Hhd-iw-mJS"/>
+                                                </connections>
+                                            </tableView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p7z-RC-wVg">
+                                                <rect key="frame" x="25" y="364" width="270" height="45"/>
+                                                <color key="backgroundColor" red="0.36078431372549019" green="0.62745098039215685" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="45" id="qaR-Um-mSn"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="20"/>
+                                                <state key="normal" title="Save Service">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="deleteButtonTapped:" destination="s5Z-68-gGr" eventType="touchUpInside" id="wLW-mZ-6Lw"/>
+                                                    <action selector="saveServiceButtonTapped:" destination="vSb-lL-eZb" eventType="touchUpInside" id="mb3-Nh-dYd"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HJM-7U-RP8">
+                                                <rect key="frame" x="25" y="434" width="270" height="45"/>
+                                                <color key="backgroundColor" red="1" green="0.29803921570000003" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="45" id="kQY-IC-ySF"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="20"/>
+                                                <state key="normal" title="Delete Service">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="deleteButtonTapped:" destination="s5Z-68-gGr" eventType="touchUpInside" id="8Pb-Ef-hlC"/>
+                                                    <action selector="deleteServiceButtonTapped:" destination="vSb-lL-eZb" eventType="touchUpInside" id="OA3-Zf-rp9"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="4cV-k0-d9q" firstAttribute="top" secondItem="xsx-h2-E3O" secondAttribute="bottom" constant="15" id="4BG-Fv-Mi8"/>
+                                            <constraint firstItem="p7z-RC-wVg" firstAttribute="top" secondItem="4cV-k0-d9q" secondAttribute="bottom" constant="45" id="DYk-7v-Ksw"/>
+                                            <constraint firstItem="r1V-UE-IPR" firstAttribute="top" secondItem="lNL-WV-4Oe" secondAttribute="top" constant="15" id="H84-bt-Wzq"/>
+                                            <constraint firstAttribute="trailing" secondItem="HJM-7U-RP8" secondAttribute="trailing" constant="25" id="HK1-yM-DHb"/>
+                                            <constraint firstItem="p7z-RC-wVg" firstAttribute="leading" secondItem="lNL-WV-4Oe" secondAttribute="leading" constant="25" id="O4V-Qd-aHQ"/>
+                                            <constraint firstItem="4cV-k0-d9q" firstAttribute="leading" secondItem="lNL-WV-4Oe" secondAttribute="leading" id="QzZ-ja-461"/>
+                                            <constraint firstItem="sf8-3c-IkS" firstAttribute="top" secondItem="r1V-UE-IPR" secondAttribute="bottom" constant="10" id="V70-OO-bzj"/>
+                                            <constraint firstItem="r1V-UE-IPR" firstAttribute="centerX" secondItem="lNL-WV-4Oe" secondAttribute="centerX" id="X5m-bZ-wxh"/>
+                                            <constraint firstAttribute="bottom" secondItem="HJM-7U-RP8" secondAttribute="bottom" constant="25" id="Xhi-Mr-rkv"/>
+                                            <constraint firstItem="HJM-7U-RP8" firstAttribute="leading" secondItem="lNL-WV-4Oe" secondAttribute="leading" constant="25" id="eQR-YR-kE9"/>
+                                            <constraint firstItem="HJM-7U-RP8" firstAttribute="top" secondItem="p7z-RC-wVg" secondAttribute="bottom" constant="25" id="fcj-SI-Bol"/>
+                                            <constraint firstItem="xsx-h2-E3O" firstAttribute="centerX" secondItem="lNL-WV-4Oe" secondAttribute="centerX" id="hDf-t0-mt6"/>
+                                            <constraint firstItem="xsx-h2-E3O" firstAttribute="top" secondItem="sf8-3c-IkS" secondAttribute="bottom" constant="10" id="jnJ-NI-Ek3"/>
+                                            <constraint firstAttribute="trailing" secondItem="4cV-k0-d9q" secondAttribute="trailing" id="nzq-vu-cFb"/>
+                                            <constraint firstItem="xsx-h2-E3O" firstAttribute="top" secondItem="sf8-3c-IkS" secondAttribute="bottom" constant="10" id="qbl-84-9NV"/>
+                                            <constraint firstAttribute="trailing" secondItem="p7z-RC-wVg" secondAttribute="trailing" constant="25" id="tke-4J-q9R"/>
+                                            <constraint firstItem="sf8-3c-IkS" firstAttribute="centerX" secondItem="lNL-WV-4Oe" secondAttribute="centerX" id="uWC-Hx-UIC"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="9nk-Sb-Hff"/>
+                                    <constraint firstItem="lNL-WV-4Oe" firstAttribute="leading" secondItem="M3j-VS-fkK" secondAttribute="leading" id="Ndz-eA-bie"/>
+                                    <constraint firstItem="lNL-WV-4Oe" firstAttribute="height" secondItem="M3j-VS-fkK" secondAttribute="height" id="OA3-8c-MUq"/>
+                                    <constraint firstAttribute="trailing" secondItem="lNL-WV-4Oe" secondAttribute="trailing" id="Pwj-Kq-Ctt"/>
+                                    <constraint firstItem="lNL-WV-4Oe" firstAttribute="top" secondItem="M3j-VS-fkK" secondAttribute="top" id="Say-yM-HWN"/>
+                                    <constraint firstAttribute="bottom" secondItem="lNL-WV-4Oe" secondAttribute="bottom" id="qnw-ri-0F5"/>
+                                    <constraint firstItem="lNL-WV-4Oe" firstAttribute="width" secondItem="M3j-VS-fkK" secondAttribute="width" id="zvc-u4-2a0"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
-                                <state key="normal" title="Update Service"/>
-                                <connections>
-                                    <action selector="updateServiceOnlineButtonTapped:" destination="s5Z-68-gGr" eventType="touchUpInside" id="57f-Jt-T26"/>
-                                </connections>
-                            </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4cV-k0-d9q">
-                                <rect key="frame" x="0.0" y="191" width="320" height="262"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="7Db-Vo-pVn" customClass="ServiceNameTableViewCell" customModule="Lynked" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="75"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Db-Vo-pVn" id="iog-u6-Sk1">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="74.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faX-v7-b6b">
-                                                    <rect key="frame" x="15" y="5" width="290" height="24.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="25" id="Wuc-dO-jCk"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Amazon" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PkD-HN-iGv">
-                                                    <rect key="frame" x="15" y="34.5" width="290" height="35"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="35" id="cNz-gd-eXd"/>
-                                                    </constraints>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="vSb-lL-eZb" id="fn4-np-dh3"/>
-                                                    </connections>
-                                                </textField>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="PkD-HN-iGv" firstAttribute="top" secondItem="faX-v7-b6b" secondAttribute="bottom" constant="5" id="4Zy-4L-rT5"/>
-                                                <constraint firstAttribute="trailing" secondItem="PkD-HN-iGv" secondAttribute="trailing" constant="15" id="KbA-iT-S9K"/>
-                                                <constraint firstAttribute="trailing" secondItem="faX-v7-b6b" secondAttribute="trailing" constant="15" id="NFY-b2-o04"/>
-                                                <constraint firstItem="PkD-HN-iGv" firstAttribute="leading" secondItem="iog-u6-Sk1" secondAttribute="leading" constant="15" id="Qg4-I0-H6R"/>
-                                                <constraint firstItem="faX-v7-b6b" firstAttribute="leading" secondItem="iog-u6-Sk1" secondAttribute="leading" constant="15" id="XcH-c0-ErR"/>
-                                                <constraint firstItem="faX-v7-b6b" firstAttribute="top" secondItem="iog-u6-Sk1" secondAttribute="top" constant="5" id="tUO-LA-BmG"/>
-                                                <constraint firstAttribute="bottom" secondItem="PkD-HN-iGv" secondAttribute="bottom" constant="5" id="vmP-Th-XKY"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="serviceNameLabel" destination="faX-v7-b6b" id="3aR-nc-pDR"/>
-                                            <outlet property="serviceNameTextField" destination="PkD-HN-iGv" id="dvh-V6-mp9"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="75" id="qLV-a6-LOo" customClass="ServiceURLTableViewCell" customModule="Lynked" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="103" width="320" height="75"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qLV-a6-LOo" id="Ezn-gM-ML5">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="74.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service URL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rhm-Ih-xto">
-                                                    <rect key="frame" x="15" y="5" width="290" height="24.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="25" id="TkP-3x-Tfk"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Amazon.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y4v-Iv-iMS">
-                                                    <rect key="frame" x="15" y="34.5" width="290" height="35"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="35" id="7cy-yc-Cxt"/>
-                                                    </constraints>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="vSb-lL-eZb" id="rM0-Cn-yPr"/>
-                                                    </connections>
-                                                </textField>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="y4v-Iv-iMS" secondAttribute="trailing" constant="15" id="2Wx-AE-x9t"/>
-                                                <constraint firstItem="Rhm-Ih-xto" firstAttribute="leading" secondItem="Ezn-gM-ML5" secondAttribute="leading" constant="15" id="APm-WK-8pr"/>
-                                                <constraint firstAttribute="bottom" secondItem="y4v-Iv-iMS" secondAttribute="bottom" constant="5" id="HG0-xx-j3d"/>
-                                                <constraint firstItem="y4v-Iv-iMS" firstAttribute="leading" secondItem="Ezn-gM-ML5" secondAttribute="leading" constant="15" id="UfD-xM-qnp"/>
-                                                <constraint firstItem="y4v-Iv-iMS" firstAttribute="top" secondItem="Rhm-Ih-xto" secondAttribute="bottom" constant="5" id="UwQ-yg-TvH"/>
-                                                <constraint firstAttribute="trailing" secondItem="Rhm-Ih-xto" secondAttribute="trailing" constant="15" id="ry5-Tr-HpX"/>
-                                                <constraint firstItem="Rhm-Ih-xto" firstAttribute="top" secondItem="Ezn-gM-ML5" secondAttribute="top" constant="5" id="ua2-Qe-t9T"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="serviceUrlLabel" destination="Rhm-Ih-xto" id="ksS-jJ-bvJ"/>
-                                            <outlet property="serviceUrlTextField" destination="y4v-Iv-iMS" id="HYh-e5-drs"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="85" id="VHe-ie-Iei" customClass="ServiceCategoryTableViewCell" customModule="Lynked" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="178" width="320" height="85"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VHe-ie-Iei" id="Yv2-DC-MsD">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="84.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Dh-Of-ZJj">
-                                                    <rect key="frame" x="15" y="5" width="70" height="25"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="25" id="9N9-Ar-ScF"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uTP-uB-GdF">
-                                                    <rect key="frame" x="15" y="35" width="290" height="45"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="45" id="BH6-TO-8Sh"/>
-                                                    </constraints>
-                                                    <connections>
-                                                        <outlet property="dataSource" destination="vSb-lL-eZb" id="ulz-7N-C7K"/>
-                                                        <outlet property="delegate" destination="vSb-lL-eZb" id="dk9-9l-oI6"/>
-                                                    </connections>
-                                                </pickerView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="9Dh-Of-ZJj" firstAttribute="top" secondItem="Yv2-DC-MsD" secondAttribute="top" constant="5" id="Mzd-8w-4ru"/>
-                                                <constraint firstItem="9Dh-Of-ZJj" firstAttribute="leading" secondItem="Yv2-DC-MsD" secondAttribute="leading" constant="15" id="TpO-Nt-Ani"/>
-                                                <constraint firstAttribute="bottom" secondItem="uTP-uB-GdF" secondAttribute="bottom" constant="5" id="XLD-Ia-cwl"/>
-                                                <constraint firstItem="uTP-uB-GdF" firstAttribute="leading" secondItem="Yv2-DC-MsD" secondAttribute="leading" constant="15" id="gAa-ZU-914"/>
-                                                <constraint firstAttribute="trailing" secondItem="uTP-uB-GdF" secondAttribute="trailing" constant="15" id="kod-T8-AY6"/>
-                                                <constraint firstItem="uTP-uB-GdF" firstAttribute="top" secondItem="9Dh-Of-ZJj" secondAttribute="bottom" constant="5" id="lUT-bY-qby"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="serviceCategoryLabel" destination="9Dh-Of-ZJj" id="wcH-uJ-hg7"/>
-                                            <outlet property="serviceCategoryPicker" destination="uTP-uB-GdF" id="n2X-e4-hCD"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="85" id="e05-6e-OL3" customClass="ServiceFixedAndRateTableViewCell" customModule="Lynked" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="263" width="320" height="85"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e05-6e-OL3" id="PHY-za-tk6">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="84.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FIxed Service" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VnO-tF-ScO">
-                                                    <rect key="frame" x="15" y="5" width="102" height="25"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="25" id="Aif-j9-39y"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <pickerView contentMode="scaleToFill" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="5d8-Sa-LTH">
-                                                    <rect key="frame" x="15" y="34.5" width="226" height="45"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="45" id="Te0-pp-qNm"/>
-                                                    </constraints>
-                                                    <connections>
-                                                        <outlet property="dataSource" destination="vSb-lL-eZb" id="Aeb-hP-QaZ"/>
-                                                        <outlet property="delegate" destination="vSb-lL-eZb" id="oHy-cQ-SLm"/>
-                                                    </connections>
-                                                </pickerView>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zg1-By-ysW">
-                                                    <rect key="frame" x="256" y="34.5" width="51" height="31"/>
-                                                </switch>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Zg1-By-ysW" firstAttribute="top" secondItem="5d8-Sa-LTH" secondAttribute="top" id="2cm-dz-oMD"/>
-                                                <constraint firstItem="Zg1-By-ysW" firstAttribute="leading" secondItem="5d8-Sa-LTH" secondAttribute="trailing" constant="15" id="A6E-nR-hcP"/>
-                                                <constraint firstItem="Zg1-By-ysW" firstAttribute="top" secondItem="VnO-tF-ScO" secondAttribute="bottom" constant="5" id="Gu4-wg-dWe"/>
-                                                <constraint firstAttribute="bottom" secondItem="5d8-Sa-LTH" secondAttribute="bottom" constant="5" id="WgJ-00-oLr"/>
-                                                <constraint firstItem="VnO-tF-ScO" firstAttribute="leading" secondItem="PHY-za-tk6" secondAttribute="leading" constant="15" id="jIC-wi-jnI"/>
-                                                <constraint firstItem="5d8-Sa-LTH" firstAttribute="leading" secondItem="PHY-za-tk6" secondAttribute="leading" constant="15" id="lfM-vJ-iGl"/>
-                                                <constraint firstAttribute="trailing" secondItem="Zg1-By-ysW" secondAttribute="trailing" constant="15" id="oZF-gE-Xsw"/>
-                                                <constraint firstItem="VnO-tF-ScO" firstAttribute="top" secondItem="PHY-za-tk6" secondAttribute="top" constant="5" id="wmq-I6-wsS"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="serviceFixedLabel" destination="VnO-tF-ScO" id="rrw-lP-Ae7"/>
-                                            <outlet property="serviceFixedRatePicker" destination="5d8-Sa-LTH" id="SvV-7Z-J6t"/>
-                                            <outlet property="serviceFixedSwitch" destination="Zg1-By-ysW" id="2GZ-Lm-ggm"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="115" id="kdm-Bs-39a" customClass="ServiceNextScheduledTableViewCell" customModule="Lynked" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="348" width="320" height="115"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kdm-Bs-39a" id="117-qg-nOG">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="114.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next Scheduled Payment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BtX-l9-Hxe">
-                                                    <rect key="frame" x="15" y="5" width="193" height="25"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="25" id="NJN-U1-i0e"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="PhT-3M-qkR">
-                                                    <rect key="frame" x="15" y="35" width="290" height="74.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="74.670000000000002" id="knG-Lv-K9e"/>
-                                                    </constraints>
-                                                    <date key="date" timeIntervalSinceReferenceDate="519805248.54981703">
-                                                        <!--2017-06-22 06:20:48 +0000-->
-                                                    </date>
-                                                </datePicker>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="PhT-3M-qkR" firstAttribute="leading" secondItem="117-qg-nOG" secondAttribute="leading" constant="15" id="Zbe-Ee-ep0"/>
-                                                <constraint firstItem="PhT-3M-qkR" firstAttribute="top" secondItem="BtX-l9-Hxe" secondAttribute="bottom" constant="5" id="aZw-wx-GQf"/>
-                                                <constraint firstAttribute="trailing" secondItem="PhT-3M-qkR" secondAttribute="trailing" constant="15" id="evO-y6-0Es"/>
-                                                <constraint firstAttribute="bottom" secondItem="PhT-3M-qkR" secondAttribute="bottom" constant="5" id="fne-Lk-14j"/>
-                                                <constraint firstItem="BtX-l9-Hxe" firstAttribute="leading" secondItem="117-qg-nOG" secondAttribute="leading" constant="15" id="o6s-1a-PDv"/>
-                                                <constraint firstItem="BtX-l9-Hxe" firstAttribute="top" secondItem="117-qg-nOG" secondAttribute="top" constant="5" id="wsJ-tU-W6g"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="serviceScheduledDatePicker" destination="PhT-3M-qkR" id="EBc-af-f76"/>
-                                            <outlet property="serviceScheduledLabel" destination="BtX-l9-Hxe" id="dXA-w9-1Dr"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="vSb-lL-eZb" id="BiN-hI-Mvp"/>
-                                    <outlet property="delegate" destination="vSb-lL-eZb" id="Hhd-iw-mJS"/>
-                                </connections>
-                            </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="18D-Gy-A2p">
-                                <rect key="frame" x="25" y="498" width="270" height="45"/>
-                                <color key="backgroundColor" red="1" green="0.29803921570000003" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="MkD-H8-A7v"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="20"/>
-                                <state key="normal" title="Delete Service">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="deleteButtonTapped:" destination="s5Z-68-gGr" eventType="touchUpInside" id="orz-Fw-sLT"/>
-                                </connections>
-                            </button>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="xsx-h2-E3O" secondAttribute="trailing" constant="25" id="1PY-b0-gBQ"/>
-                            <constraint firstItem="4cV-k0-d9q" firstAttribute="leading" secondItem="OPU-pP-CuZ" secondAttribute="leading" id="1Uq-fL-JO7"/>
-                            <constraint firstItem="18D-Gy-A2p" firstAttribute="leading" secondItem="OPU-pP-CuZ" secondAttribute="leading" constant="25" id="1lg-oI-8MT"/>
-                            <constraint firstItem="r1V-UE-IPR" firstAttribute="top" secondItem="sz5-AS-P9r" secondAttribute="bottom" constant="15" id="3pd-CI-adw"/>
-                            <constraint firstItem="IAS-f2-BLq" firstAttribute="top" secondItem="18D-Gy-A2p" secondAttribute="bottom" constant="25" id="8iU-ni-3lx"/>
-                            <constraint firstItem="18D-Gy-A2p" firstAttribute="top" secondItem="4cV-k0-d9q" secondAttribute="bottom" constant="45" id="BCX-OB-dsb"/>
-                            <constraint firstItem="sf8-3c-IkS" firstAttribute="top" secondItem="r1V-UE-IPR" secondAttribute="bottom" constant="10" id="HEj-d3-Qp8"/>
-                            <constraint firstAttribute="trailing" secondItem="18D-Gy-A2p" secondAttribute="trailing" constant="25" id="HHI-oE-aLb"/>
-                            <constraint firstItem="4cV-k0-d9q" firstAttribute="top" secondItem="xsx-h2-E3O" secondAttribute="bottom" constant="10" id="Ilk-nx-Z1S"/>
-                            <constraint firstItem="xsx-h2-E3O" firstAttribute="leading" secondItem="OPU-pP-CuZ" secondAttribute="leading" constant="25" id="Ztw-7M-B8b"/>
-                            <constraint firstItem="xsx-h2-E3O" firstAttribute="top" secondItem="sf8-3c-IkS" secondAttribute="bottom" constant="10" id="aMU-IA-QJa"/>
-                            <constraint firstItem="r1V-UE-IPR" firstAttribute="centerX" secondItem="OPU-pP-CuZ" secondAttribute="centerX" id="m8o-7o-4ku"/>
-                            <constraint firstAttribute="trailing" secondItem="4cV-k0-d9q" secondAttribute="trailing" id="tlE-xe-iWp"/>
-                            <constraint firstItem="sf8-3c-IkS" firstAttribute="centerX" secondItem="OPU-pP-CuZ" secondAttribute="centerX" id="wXv-ZM-znE"/>
+                            <constraint firstItem="IAS-f2-BLq" firstAttribute="top" secondItem="M3j-VS-fkK" secondAttribute="bottom" id="9yI-i8-PnT"/>
+                            <constraint firstItem="M3j-VS-fkK" firstAttribute="top" secondItem="sz5-AS-P9r" secondAttribute="bottom" id="F6f-Om-2hG"/>
+                            <constraint firstAttribute="trailing" secondItem="M3j-VS-fkK" secondAttribute="trailing" id="hc0-sI-1Dx"/>
+                            <constraint firstItem="M3j-VS-fkK" firstAttribute="leading" secondItem="OPU-pP-CuZ" secondAttribute="leading" id="m2b-7J-kFj"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="XwW-rL-HGI">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="Xeg-No-l9s"/>
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="FGJ-Lj-SMy"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="Xeg-No-l9s">
+                            <connections>
+                                <action selector="leftNavBarButtonTapped:" destination="vSb-lL-eZb" id="HFO-cp-ADu"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="contentView" destination="lNL-WV-4Oe" id="b7E-vu-z3A"/>
+                        <outlet property="deleteServiceButton" destination="HJM-7U-RP8" id="UjO-oi-iHZ"/>
+                        <outlet property="leftNavBarButton" destination="Xeg-No-l9s" id="8rz-1Y-3eO"/>
+                        <outlet property="saveServiceButton" destination="p7z-RC-wVg" id="K7V-GI-sPg"/>
+                        <outlet property="scrollView" destination="M3j-VS-fkK" id="OpX-YQ-TIg"/>
+                        <outlet property="serviceBillingCurrentLabel" destination="sf8-3c-IkS" id="STs-49-wMX"/>
+                        <outlet property="serviceBillingCurrentSwitch" destination="r1V-UE-IPR" id="3dx-GR-J1e"/>
+                        <outlet property="serviceTableView" destination="4cV-k0-d9q" id="UBn-wr-tOX"/>
+                        <outlet property="serviceUpdateBillingButton" destination="xsx-h2-E3O" id="b0M-dz-CNF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pge-88-XXE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

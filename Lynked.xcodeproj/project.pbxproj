@@ -24,6 +24,7 @@
 		2921B2181EFB9A2A008F377B /* ServiceCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921B2171EFB9A2A008F377B /* ServiceCategoryTableViewCell.swift */; };
 		2921B21A1EFB9A50008F377B /* ServiceFixedAndRateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921B2191EFB9A50008F377B /* ServiceFixedAndRateTableViewCell.swift */; };
 		2921B21C1EFB9A72008F377B /* ServiceNextScheduledTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921B21B1EFB9A72008F377B /* ServiceNextScheduledTableViewCell.swift */; };
+		2921B21E1EFB9FB2008F377B /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921B21D1EFB9FB2008F377B /* ServiceDetailViewController.swift */; };
 		2924F9BE1EF22F090014C284 /* SegmentColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */; };
 		2924F9C01EF24F280014C284 /* AutoCompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F9BF1EF24F280014C284 /* AutoCompleteTableViewCell.swift */; };
 		292764931EDFA3160096AE1E /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292764921EDFA3160096AE1E /* WalletViewController.swift */; };
@@ -73,6 +74,7 @@
 		2921B2171EFB9A2A008F377B /* ServiceCategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		2921B2191EFB9A50008F377B /* ServiceFixedAndRateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceFixedAndRateTableViewCell.swift; sourceTree = "<group>"; };
 		2921B21B1EFB9A72008F377B /* ServiceNextScheduledTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceNextScheduledTableViewCell.swift; sourceTree = "<group>"; };
+		2921B21D1EFB9FB2008F377B /* ServiceDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDetailViewController.swift; sourceTree = "<group>"; };
 		2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentColorManager.swift; sourceTree = "<group>"; };
 		2924F9BF1EF24F280014C284 /* AutoCompleteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoCompleteTableViewCell.swift; sourceTree = "<group>"; };
 		292764921EDFA3160096AE1E /* WalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 		2921B2121EFB99CD008F377B /* Service TableView Cells */ = {
 			isa = PBXGroup;
 			children = (
+				2921B21D1EFB9FB2008F377B /* ServiceDetailViewController.swift */,
 				2921B2131EFB99FA008F377B /* ServiceNameTableViewCell.swift */,
 				2921B2151EFB9A10008F377B /* ServiceURLTableViewCell.swift */,
 				2921B2171EFB9A2A008F377B /* ServiceCategoryTableViewCell.swift */,
@@ -430,6 +433,7 @@
 			files = (
 				1DC0D8D91DFE59360039B8F6 /* AddCardViewController.swift in Sources */,
 				2921B2161EFB9A10008F377B /* ServiceURLTableViewCell.swift in Sources */,
+				2921B21E1EFB9FB2008F377B /* ServiceDetailViewController.swift in Sources */,
 				298FA4EC1EF78F5C009B5A36 /* Array+Extensions.swift in Sources */,
 				297BE9FE1EF707EA0035D4DA /* AcknowledgementsViewModel.swift in Sources */,
 				29CB33141EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift in Sources */,
