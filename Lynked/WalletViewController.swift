@@ -121,7 +121,7 @@ class WalletViewController: UIViewController {
             }
         }
     }
-}
+} // MARK: - End of WalletViewController
 
 
 // MARK: - TableView Delegate & Data Source Methods

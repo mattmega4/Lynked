@@ -62,39 +62,39 @@ class PreferencesViewController: UIViewController {
             }
         }
         
-            alertController.addAction(cancelAction)
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    // MARK: - IB Actions
+    
+    @IBAction func nightModeButtonTapped(_ sender: UIButton) {
+    }
+    
+    @IBAction func useTouchIDButtonTapped(_ sender: UIButton) {
+    }
+    
+    @IBAction func feedbackButtonTapped(_ sender: UIButton) {
+        Instabug.invoke()
+        Instabug.setCommentFieldRequired(true)
+        Instabug.setEmailFieldRequired(false)
+    }
+    
+    @IBAction func acknowledgementsButtonTapped(_ sender: UIButton) {
+        
+        if let ackVC = self.storyboard?.instantiateViewController(withIdentifier: "ackVC") as? AcknowledgementsViewController {
+            self.navigationController?.pushViewController(ackVC, animated: true)
         }
         
-        
-        // MARK: - IB Actions
-        
-        @IBAction func nightModeButtonTapped(_ sender: UIButton) {
-        }
-        
-        @IBAction func useTouchIDButtonTapped(_ sender: UIButton) {
-        }
-        
-        @IBAction func feedbackButtonTapped(_ sender: UIButton) {
-            Instabug.invoke()
-            Instabug.setCommentFieldRequired(true)
-            Instabug.setEmailFieldRequired(false)
-        }
-        
-        @IBAction func acknowledgementsButtonTapped(_ sender: UIButton) {
-            
-            if let ackVC = self.storyboard?.instantiateViewController(withIdentifier: "ackVC") as? AcknowledgementsViewController {
-                self.navigationController?.pushViewController(ackVC, animated: true)
-            }
-            
-        }
-        
-        @IBAction func deleteButtonTapped(_ sender: UIButton) {
-            deleteUser()
-        }
-        
-        
-} // End of PreferencesViewController Class
+    }
+    
+    @IBAction func deleteButtonTapped(_ sender: UIButton) {
+        deleteUser()
+    }
+    
+    
+} // MARK: - End of PreferencesViewController
 
 

@@ -287,26 +287,26 @@ class EntryViewController: UIViewController {
             signInOrUpButtonContainerView.isHidden = true
         }
     }
-
+    
     
     // MARK: - Sign User In
     
     func signUserIn() {
         FirebaseUtility.shared.signUserInWith(email: textFieldOne.text,
                                               password: textFieldTwo.text) { (user, errMessage) in
-            
-            if let errorMessage = errMessage {
-                let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errorMessage)", preferredStyle: .alert)
-                self.present(alertController, animated: true, completion:nil)
-                let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
-                }
-                alertController.addAction(OKAction)
-            }
-            else {
-                if let WalletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
-                    self.navigationController?.pushViewController(WalletVC, animated: true)
-                }
-            }
+                                                
+                                                if let errorMessage = errMessage {
+                                                    let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errorMessage)", preferredStyle: .alert)
+                                                    self.present(alertController, animated: true, completion:nil)
+                                                    let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
+                                                    }
+                                                    alertController.addAction(OKAction)
+                                                }
+                                                else {
+                                                    if let WalletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
+                                                        self.navigationController?.pushViewController(WalletVC, animated: true)
+                                                    }
+                                                }
         }
     }
     
@@ -317,19 +317,19 @@ class EntryViewController: UIViewController {
         FirebaseUtility.shared.registerUserWith(email: newUserEmail,
                                                 password: textFieldOne.text,
                                                 confirmPassword: textFieldTwo.text) { (user, errMessage) in
-            
-            if let errorMessage = errMessage {
-                let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errorMessage)", preferredStyle: .alert)
-                self.present(alertController, animated: true, completion:nil)
-                let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
-                }
-                alertController.addAction(OKAction)
-            }
-            else {
-                if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
-                    self.navigationController?.pushViewController(addVC, animated: true)
-                }
-            }
+                                                    
+                                                    if let errorMessage = errMessage {
+                                                        let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errorMessage)", preferredStyle: .alert)
+                                                        self.present(alertController, animated: true, completion:nil)
+                                                        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
+                                                        }
+                                                        alertController.addAction(OKAction)
+                                                    }
+                                                    else {
+                                                        if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
+                                                            self.navigationController?.pushViewController(addVC, animated: true)
+                                                        }
+                                                    }
         }
     }
     
@@ -375,7 +375,8 @@ class EntryViewController: UIViewController {
         hideShowKeyboardLogicLeftVsRight()
     }
     
-} // End of EntryPageViewController
+    
+} // MARK: - End of EntryViewController
 
 extension EntryViewController: UITextFieldDelegate {
     

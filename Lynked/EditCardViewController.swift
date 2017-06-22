@@ -112,7 +112,7 @@ class EditCardViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
         
     }
-
+    
     
     // MARK: - Delete Card with UIAlert
     
@@ -155,7 +155,7 @@ class EditCardViewController: UIViewController {
         alertController.addAction(okAction)
         
         self.present(alertController, animated: true, completion: nil)
-  
+        
     }
     
     
@@ -171,7 +171,7 @@ class EditCardViewController: UIViewController {
                                       last4: digitsTextField.text,
                                       color: segControl.selectedSegmentIndex) { (updatedCard, error) in
                                         
-            self.navigationController?.popViewController(animated: true)
+                                        self.navigationController?.popViewController(animated: true)
         }
     }
     
@@ -198,6 +198,7 @@ class EditCardViewController: UIViewController {
     @IBAction func deleteButtonTapped(_ sender: UIButton) {
         deleteCard()
     }
+    
     
     // MARK: - Keyboard Methods
     
@@ -229,7 +230,7 @@ class EditCardViewController: UIViewController {
     }
     
     
-} // End of EditCardViewController Class
+} // MARK: - End of EditCardViewController
 
 
 extension EditCardViewController: UITextFieldDelegate {

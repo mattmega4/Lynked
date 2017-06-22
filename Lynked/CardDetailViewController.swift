@@ -39,7 +39,7 @@ class CardDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.serviceNameTextField.delegate = self
@@ -65,7 +65,7 @@ class CardDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         addServiceButton.alpha = 0.4
         addServiceButton.isEnabled = false
         getServices()
@@ -75,16 +75,16 @@ class CardDetailViewController: UIViewController {
         if let theCard = card {
             FirebaseUtility.shared.getServicesFor(card: theCard,
                                                   completion: { (services, error) in
-                if let theServices = services {
-                    
-                    self.serviceArray = theServices
-                    self.collectionView.reloadData()
-                } else {
-                    if let theError = error?.localizedDescription {
-                        let errorMessage = theError
-                        print(errorMessage)
-                    }
-                }
+                                                    if let theServices = services {
+                                                        
+                                                        self.serviceArray = theServices
+                                                        self.collectionView.reloadData()
+                                                    } else {
+                                                        if let theError = error?.localizedDescription {
+                                                            let errorMessage = theError
+                                                            print(errorMessage)
+                                                        }
+                                                    }
             })
         } else {
             navigationController?.popViewController(animated: true)
@@ -98,7 +98,7 @@ class CardDetailViewController: UIViewController {
             return $0.serviceAttention > $1.serviceAttention
         }
     }
-
+    
     
     // MARK: - Firebase Methods For CollectionView
     
@@ -106,16 +106,16 @@ class CardDetailViewController: UIViewController {
         MBProgressHUD.showAdded(to: self.view, animated: true)
         FirebaseUtility.shared.addService(name: serviceNameTextField.text,
                                           forCard: card) { (service, errMessage) in
-            MBProgressHUD.hide(for: self.view, animated: true)
-            if let theService = service {
-                self.addService(service: theService)
-                
-                self.serviceNameTextField.text = ""
-                self.addServiceButton.alpha = 0.4
-                self.addServiceButton.isEnabled = false
-                
-                self.collectionView.reloadData()
-            }
+                                            MBProgressHUD.hide(for: self.view, animated: true)
+                                            if let theService = service {
+                                                self.addService(service: theService)
+                                                
+                                                self.serviceNameTextField.text = ""
+                                                self.addServiceButton.alpha = 0.4
+                                                self.addServiceButton.isEnabled = false
+                                                
+                                                self.collectionView.reloadData()
+                                            }
         }
     }
     
@@ -253,18 +253,18 @@ class CardDetailViewController: UIViewController {
         contentInset.bottom = keyboardFrame.size.height
         self.collectionView.contentInset = contentInset
     }
-
+    
     func keyboardWillHide(notification:NSNotification) {
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         self.collectionView.contentInset = contentInset
     }
-}
+} // MARK: - End of CardDetailViewController
 
 
 // MARK: - UITextField Delegate
 
 extension CardDetailViewController: UITextFieldDelegate {
-
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == serviceNameTextField {
             
@@ -319,7 +319,7 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "serviceCell", for: indexPath as IndexPath) as! ServiceCollectionViewCell
         let row = indexPath.row
-
+        
         cell.colorStatusView.backgroundColor = .white
         
         if serviceArray[row].serviceStatus == true {
