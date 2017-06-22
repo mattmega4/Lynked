@@ -36,7 +36,6 @@ class PreferencesViewController: UIViewController {
         
         nightModeButton.isHidden = true
         useTouchIDButton.isHidden = true
-        feedbackButton.isHidden = true
         
         setNavBar()
     }
@@ -79,6 +78,8 @@ class PreferencesViewController: UIViewController {
         
         @IBAction func feedbackButtonTapped(_ sender: UIButton) {
             Instabug.invoke()
+            Instabug.setCommentFieldRequired(true)
+            Instabug.setEmailFieldRequired(false)
         }
         
         @IBAction func acknowledgementsButtonTapped(_ sender: UIButton) {
