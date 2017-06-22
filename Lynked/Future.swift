@@ -9,6 +9,14 @@
 import Foundation
 import UIKit
 
+
+//    var autoCompletePossibilities: [String] = []
+//    var autoComplete: [String] = []
+//
+//    var countedSet: NSCountedSet?
+//    var dataArray = [String]()
+
+
 // MARK: Predictive Text FOr TableView Logic
 
 //    func getListOfAllServicesFromFirebase() {

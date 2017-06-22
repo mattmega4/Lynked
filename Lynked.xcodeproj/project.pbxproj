@@ -25,8 +25,9 @@
 		2921B21A1EFB9A50008F377B /* ServiceFixedAndRateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921B2191EFB9A50008F377B /* ServiceFixedAndRateTableViewCell.swift */; };
 		2921B21C1EFB9A72008F377B /* ServiceNextScheduledTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921B21B1EFB9A72008F377B /* ServiceNextScheduledTableViewCell.swift */; };
 		2921B21E1EFB9FB2008F377B /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921B21D1EFB9FB2008F377B /* ServiceDetailViewController.swift */; };
+		2921B2201EFBA2E0008F377B /* TempLetterImagePickerUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921B21F1EFBA2E0008F377B /* TempLetterImagePickerUtility.swift */; };
+		2921B2231EFBA42F008F377B /* ServiceCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921B2221EFBA42F008F377B /* ServiceCategoryCollectionViewCell.swift */; };
 		2924F9BE1EF22F090014C284 /* SegmentColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */; };
-		2924F9C01EF24F280014C284 /* AutoCompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F9BF1EF24F280014C284 /* AutoCompleteTableViewCell.swift */; };
 		292764931EDFA3160096AE1E /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292764921EDFA3160096AE1E /* WalletViewController.swift */; };
 		292764951EDFC8350096AE1E /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292764941EDFC8350096AE1E /* CardTableViewCell.swift */; };
 		2943B48B1EF624D600A0E8DD /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */; };
@@ -75,8 +76,9 @@
 		2921B2191EFB9A50008F377B /* ServiceFixedAndRateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceFixedAndRateTableViewCell.swift; sourceTree = "<group>"; };
 		2921B21B1EFB9A72008F377B /* ServiceNextScheduledTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceNextScheduledTableViewCell.swift; sourceTree = "<group>"; };
 		2921B21D1EFB9FB2008F377B /* ServiceDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDetailViewController.swift; sourceTree = "<group>"; };
+		2921B21F1EFBA2E0008F377B /* TempLetterImagePickerUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempLetterImagePickerUtility.swift; sourceTree = "<group>"; };
+		2921B2221EFBA42F008F377B /* ServiceCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentColorManager.swift; sourceTree = "<group>"; };
-		2924F9BF1EF24F280014C284 /* AutoCompleteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoCompleteTableViewCell.swift; sourceTree = "<group>"; };
 		292764921EDFA3160096AE1E /* WalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		292764941EDFC8350096AE1E /* CardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
 		2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseUtility.swift; sourceTree = "<group>"; };
@@ -139,11 +141,11 @@
 		1DC0D8A91DFE516A0039B8F6 /* Lynked */ = {
 			isa = PBXGroup;
 			children = (
-				297BEA011EF766410035D4DA /* Future */,
 				1DC0D8C21DFE518F0039B8F6 /* Model */,
 				1DC0D8C11DFE518C0039B8F6 /* View */,
 				29773CDB1EC3B6230023F277 /* Controller */,
 				29CCE7261EDF8F0000995139 /* Extensions */,
+				297BEA011EF766410035D4DA /* Future */,
 				1DC0D8BF1DFE51790039B8F6 /* Additional Files */,
 			);
 			path = Lynked;
@@ -180,6 +182,7 @@
 				1DD7D2581E393C0700AF1299 /* CardClass.swift */,
 				1DD7D25B1E393C2300AF1299 /* ServiceClass.swift */,
 				2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */,
+				2921B21F1EFBA2E0008F377B /* TempLetterImagePickerUtility.swift */,
 				1DC0D8B11DFE516A0039B8F6 /* Lynked.xcdatamodeld */,
 			);
 			name = Model;
@@ -188,7 +191,6 @@
 		2921B2121EFB99CD008F377B /* Service TableView Cells */ = {
 			isa = PBXGroup;
 			children = (
-				2921B21D1EFB9FB2008F377B /* ServiceDetailViewController.swift */,
 				2921B2131EFB99FA008F377B /* ServiceNameTableViewCell.swift */,
 				2921B2151EFB9A10008F377B /* ServiceURLTableViewCell.swift */,
 				2921B2171EFB9A2A008F377B /* ServiceCategoryTableViewCell.swift */,
@@ -198,25 +200,32 @@
 			name = "Service TableView Cells";
 			sourceTree = "<group>";
 		};
-		292764961EDFC8480096AE1E /* Custom Cells */ = {
+		2921B2211EFBA3FE008F377B /* Service CollectionView Cells */ = {
 			isa = PBXGroup;
 			children = (
+				2921B2221EFBA42F008F377B /* ServiceCategoryCollectionViewCell.swift */,
 				29EE32431EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift */,
-				292764941EDFC8350096AE1E /* CardTableViewCell.swift */,
-				2924F9BF1EF24F280014C284 /* AutoCompleteTableViewCell.swift */,
-				29CB33131EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift */,
 			);
-			name = "Custom Cells";
+			name = "Service CollectionView Cells";
 			sourceTree = "<group>";
 		};
-		296DF54A1EF5D3A700D5874D /* Modally */ = {
+		2921B2241EFBA458008F377B /* Wallet TableView Cell */ = {
 			isa = PBXGroup;
 			children = (
+				292764941EDFC8350096AE1E /* CardTableViewCell.swift */,
+			);
+			name = "Wallet TableView Cell";
+			sourceTree = "<group>";
+		};
+		2921B2251EFBA47E008F377B /* Acknowledgement */ = {
+			isa = PBXGroup;
+			children = (
+				29CB33131EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift */,
 				29CB33111EF65EFA009CEE3B /* AcknowledgementsViewController.swift */,
 				297BE9FD1EF707EA0035D4DA /* AcknowledgementsViewModel.swift */,
 				297BE9FF1EF708640035D4DA /* Library.swift */,
 			);
-			name = Modally;
+			name = Acknowledgement;
 			sourceTree = "<group>";
 		};
 		29773CDB1EC3B6230023F277 /* Controller */ = {
@@ -226,12 +235,12 @@
 				29773CDC1EC3B6730023F277 /* EntryViewController.swift */,
 				1DC0D8D81DFE59360039B8F6 /* AddCardViewController.swift */,
 				292764921EDFA3160096AE1E /* WalletViewController.swift */,
+				2921B2241EFBA458008F377B /* Wallet TableView Cell */,
 				29EE32401EC9754E00C2FFB6 /* CardDetailViewController.swift */,
 				1DC0D8DE1DFE5F910039B8F6 /* EditCardViewController.swift */,
 				1DC0D8E01DFE5FBB0039B8F6 /* EditServiceViewController.swift */,
 				1D1712781E01F0870087F299 /* PreferencesViewController.swift */,
-				296DF54A1EF5D3A700D5874D /* Modally */,
-				292764961EDFC8480096AE1E /* Custom Cells */,
+				2921B2251EFBA47E008F377B /* Acknowledgement */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -249,6 +258,8 @@
 			children = (
 				29BDD8BA1EF9024300F6A2DF /* ServicesViewController.swift */,
 				294D0E311EF9E9F7000E4BC6 /* CategoryViewController.swift */,
+				2921B21D1EFB9FB2008F377B /* ServiceDetailViewController.swift */,
+				2921B2211EFBA3FE008F377B /* Service CollectionView Cells */,
 				2921B2121EFB99CD008F377B /* Service TableView Cells */,
 			);
 			name = "New Idea";
@@ -448,16 +459,17 @@
 				298FA4EA1EF78F40009B5A36 /* NSObject+Extensions.swift in Sources */,
 				29A8F3EC1EF9EED000D20F79 /* Keys.swift in Sources */,
 				2921B2141EFB99FA008F377B /* ServiceNameTableViewCell.swift in Sources */,
-				2924F9C01EF24F280014C284 /* AutoCompleteTableViewCell.swift in Sources */,
 				1DC0D8DF1DFE5F910039B8F6 /* EditCardViewController.swift in Sources */,
 				2921B21C1EFB9A72008F377B /* ServiceNextScheduledTableViewCell.swift in Sources */,
 				298FA4E81EF78F26009B5A36 /* UIView+Extensions.swift in Sources */,
 				1DC0D8B31DFE516A0039B8F6 /* Lynked.xcdatamodeld in Sources */,
+				2921B2201EFBA2E0008F377B /* TempLetterImagePickerUtility.swift in Sources */,
 				297BEA031EF766500035D4DA /* Future.swift in Sources */,
 				1DD7D2591E393C0700AF1299 /* CardClass.swift in Sources */,
 				29CB33121EF65EFA009CEE3B /* AcknowledgementsViewController.swift in Sources */,
 				1DC0D8AB1DFE516A0039B8F6 /* AppDelegate.swift in Sources */,
 				294D0E321EF9E9F7000E4BC6 /* CategoryViewController.swift in Sources */,
+				2921B2231EFBA42F008F377B /* ServiceCategoryCollectionViewCell.swift in Sources */,
 				29BDD8BB1EF9024300F6A2DF /* ServicesViewController.swift in Sources */,
 				2921B21A1EFB9A50008F377B /* ServiceFixedAndRateTableViewCell.swift in Sources */,
 				292764931EDFA3160096AE1E /* WalletViewController.swift in Sources */,
