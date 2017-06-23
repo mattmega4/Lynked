@@ -28,9 +28,155 @@ class ServiceDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        setNavBar()
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ServiceDetailViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        updateViewBasedOnService()
+    }
+    
+    
+    // MARK: - Update Views
+    
+    func updateViewBasedOnService() {
+        //        serviceStateToggleSwtich.isOn = service?.serviceStatus == true
+        //        serviceNameTextField.text = service?.serviceName
+        //        if let name = service?.serviceName {
+        //        title = "\(name) Details"
+        //            updateServiceOnlineButton.setTitle("Go To \(name)'s Website to Update Payment", for: .normal)
+        //        }
+        //        urlTextField.text = service?.serviceUrl
+        //        fixedExpenseToggleSwitch.isOn = service?.serviceFixed == true
+        //        fixedAmountTextField.text = "$\(service?.serviceAmount ?? 0.0)"
+        //
+        //        if let row = service?.servicePayRateIndex {
+        //            fixedAmountPickerView.selectRow(row,
+        //                                            inComponent: 0,
+        //                                            animated: true)
+        //        }
+    }
+    
+    
+    // MARK: - Firebase Methods
+    
+    func updateServiceToFirebase() {
+        
+        //        FirebaseUtility.shared.update(service: service,
+        //                                      name: serviceNameTextField.text,
+        //                                      url: urlTextField.text,
+        //                                      amount: fixedAmountTextField.text,
+        //                                      isFixed: fixedExpenseToggleSwitch.isOn,
+        //                                      state: serviceStateToggleSwtich.isOn,
+        //                                      rate: timeFrame ) { (updatedService, errMessage) in
+        //
+        //                                        self.navigationController?.popViewController(animated: true)
+        //        }
+    }
+    
+    
+    // MARK: - Delete Service with UIAlert
+    
+    func deleteThisService() {
+        
+        //        let alertController = UIAlertController(title: "Wait!", message: "This will completely remove this service from your card. It will also be reflected in your total fixed monthly expenses if it was a fixed expense.", preferredStyle: UIAlertControllerStyle.alert)
+        //        let cancelAction = UIAlertAction(title: "Never Mind!", style: UIAlertActionStyle.cancel, handler: nil)
+        //
+        //        let okAction = UIAlertAction(title: "I Understand!", style: UIAlertActionStyle.default) { (result: UIAlertAction) in
+        //
+        //            guard let theService = self.service else {
+        //                return
+        //            }
+        //
+        //            FirebaseUtility.shared.delete(service: theService,
+        //                                          completion: { (success, error) in
+        //
+        //                                            if let errorMessage = error {
+        //                                                print(errorMessage)
+        //                                            } else if success {
+        //                                                var didGoBack = false
+        //                                                if let viewControllers = self.navigationController?.viewControllers {
+        //                                                    for aController in viewControllers {
+        //                                                        if aController is CardDetailViewController {
+        //                                                            didGoBack = true
+        //                                                            self.navigationController?.popToViewController(aController, animated: true)
+        //                                                            break
+        //                                                        }
+        //                                                    }
+        //
+        //                                                }
+        //                                                if !didGoBack {
+        //                                                    if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
+        //                                                        self.navigationController?.pushViewController(walletVC, animated: true)
+        //                                                    }
+        //                                                }
+        //                                            }
+        //            })
+        //        }
+        //
+        //        alertController.addAction(cancelAction)
+        //        alertController.addAction(okAction)
+        //
+        //        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    // MARK: - Update Service on Service Website
+    
+    func updateServiceOnServiceWebsite() {
+        //        if let sendURL = URLForSite {
+        //            if let url = URL(string: "https://" + sendURL) {
+        //                let svc = SFSafariViewController(url: url)
+        //                self.present(svc, animated: true, completion: nil)
+        //            }
+        //        } else {
+        //            if let tName = nameForSite {
+        //                if let url = URL(string: "https://www.google.com/#q=\(tName)") {
+        //                    let svc = SFSafariViewController(url: url)
+        //                    self.present(svc, animated: true, completion: nil)
+        //                }
+        //            }
+        //        }
+    }
+    
+    
+    // MARK: - Keyboard Methods
+    
+    func keyboardWillShow(notification:NSNotification) {
+        var userInfo = notification.userInfo!
+        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        var contentInset: UIEdgeInsets = self.scrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height + 30
+        self.scrollView.contentInset = contentInset
+        deleteServiceButton.isEnabled = false
+        deleteServiceButton.isHidden = true
+    }
+    
+    func keyboardWillHide(notification:NSNotification) {
+        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+        self.scrollView.contentInset = contentInset
+        deleteServiceButton.isEnabled = true
+        deleteServiceButton.isHidden = false
+    }
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        textField.resignFirstResponder()
+        return false
+    }
     
     
     
@@ -38,15 +184,19 @@ class ServiceDetailViewController: UIViewController {
     // MARK: - IB Actions
     
     @IBAction func leftNavBarButtonTapped(_ sender: UIBarButtonItem) {
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func serviceUpdateBillingButtonTapped(_ sender: UIButton) {
+        updateServiceOnServiceWebsite()
     }
     
     @IBAction func saveServiceButtonTapped(_ sender: UIButton) {
+        //        updateServiceToFirebase()
     }
     
     @IBAction func deleteServiceButtonTapped(_ sender: UIButton) {
+        //        deleteThisService()
     }
     
     

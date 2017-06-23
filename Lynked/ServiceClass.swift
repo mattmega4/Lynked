@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+
 
 class ServiceClass {
 
@@ -20,6 +22,8 @@ class ServiceClass {
     var serviceAmount: Double = 0
     var serviceAttention: Int = 0
     var servicePayRateIndex = 0
+    
+    var category: String?
     
     
     init(id: String, cardId: String, serviceDict: [String : Any]) {
@@ -41,6 +45,10 @@ class ServiceClass {
         if let theIndex = serviceDict["servicePaymentRate"] as? Int {
             servicePayRateIndex = theIndex
         }
+        
+        category = serviceDict["catname"] as? String
+        
+        
     }
   
 }

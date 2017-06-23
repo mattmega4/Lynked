@@ -6,6 +6,7 @@
 //  Copyright © 2017 Matthew Singleton. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 
