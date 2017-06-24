@@ -162,7 +162,7 @@ class FirebaseUtility: NSObject {
     
     // MARK: - Add Service
     
-    func addService(name: String?, forCard card: CardClass?, completion: @escaping (_ service: ServiceClass?, _ errMessage: String?) -> Void) {
+    func addService(name: String?, forCard card: CardClass?, withCategory category: String?, completion: @escaping (_ service: ServiceClass?, _ errMessage: String?) -> Void) {
         guard let theName = name else {
             let errorMessage = "Please enter the service name"
             completion(nil, errorMessage)
@@ -178,6 +178,12 @@ class FirebaseUtility: NSObject {
         
         let serviceRef = ref.child("newServices").child(theCard.cardID).childByAutoId()
         
+        var selectedCategory = "Miscellaneous"
+        if let theCategory = category {
+            if !theCategory.isEmpty {
+                selectedCategory = theCategory
+            }
+        }
         let serviceDict: [String : Any] = ["serviceName": theName,
                                            "serviceURL": theName.createServiceURL(),
                                            "serviceStatus": true,
@@ -185,7 +191,7 @@ class FirebaseUtility: NSObject {
                                            "serviceAmount" : 0,
                                            "attentionInt" : 0,
                                            "servicePaymentRate": 2,
-                                           "category": "Miscellaneous"]
+                                           "category": selectedCategory]
         
         serviceRef.setValue(serviceDict, withCompletionBlock: { (error, ref) in
             
