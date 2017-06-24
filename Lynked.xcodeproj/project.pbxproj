@@ -33,7 +33,7 @@
 		294135FB1EFD9D8200002FAC /* CategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294135FA1EFD9D8200002FAC /* CategoryManager.swift */; };
 		2943B48B1EF624D600A0E8DD /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */; };
 		294D0E321EF9E9F7000E4BC6 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294D0E311EF9E9F7000E4BC6 /* CategoryViewController.swift */; };
-		2950A44E1EFDE67800F94BF4 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2950A44D1EFDE67800F94BF4 /* Category.swift */; };
+		2950A4521EFE40BF00F94BF4 /* ServicePayRateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2950A4511EFE40BF00F94BF4 /* ServicePayRateManager.swift */; };
 		29773CDD1EC3B6730023F277 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29773CDC1EC3B6730023F277 /* EntryViewController.swift */; };
 		297BE9FC1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 297BE9FB1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist */; };
 		297BE9FE1EF707EA0035D4DA /* AcknowledgementsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297BE9FD1EF707EA0035D4DA /* AcknowledgementsViewModel.swift */; };
@@ -51,7 +51,6 @@
 		29CB33121EF65EFA009CEE3B /* AcknowledgementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CB33111EF65EFA009CEE3B /* AcknowledgementsViewController.swift */; };
 		29CB33141EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CB33131EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift */; };
 		29D5906B1EF5AE5600CA66D6 /* RequestReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D5906A1EF5AE5600CA66D6 /* RequestReview.swift */; };
-		29DD17071EFCB49D00A634A4 /* ServiceInformationUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DD17061EFCB49D00A634A4 /* ServiceInformationUtility.swift */; };
 		29EE32441EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EE32431EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift */; };
 		FE255734139BB8197894689C /* Pods_Lynked.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 267A4AE157A5C3F5E4C71A91 /* Pods_Lynked.framework */; };
 /* End PBXBuildFile section */
@@ -86,7 +85,7 @@
 		294135FA1EFD9D8200002FAC /* CategoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryManager.swift; sourceTree = "<group>"; };
 		2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseUtility.swift; sourceTree = "<group>"; };
 		294D0E311EF9E9F7000E4BC6 /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
-		2950A44D1EFDE67800F94BF4 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		2950A4511EFE40BF00F94BF4 /* ServicePayRateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicePayRateManager.swift; sourceTree = "<group>"; };
 		29773CDC1EC3B6730023F277 /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		297BE9FB1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Pods-Lynked-acknowledgements.plist"; path = "../Pods/Target Support Files/Pods-Lynked/Pods-Lynked-acknowledgements.plist"; sourceTree = "<group>"; };
 		297BE9FD1EF707EA0035D4DA /* AcknowledgementsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AcknowledgementsViewModel.swift; path = ../AcknowledgementsViewModel.swift; sourceTree = "<group>"; };
@@ -104,7 +103,6 @@
 		29CB33111EF65EFA009CEE3B /* AcknowledgementsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcknowledgementsViewController.swift; sourceTree = "<group>"; };
 		29CB33131EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcknowledgementsTableViewCell.swift; sourceTree = "<group>"; };
 		29D5906A1EF5AE5600CA66D6 /* RequestReview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestReview.swift; sourceTree = "<group>"; };
-		29DD17061EFCB49D00A634A4 /* ServiceInformationUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceInformationUtility.swift; sourceTree = "<group>"; };
 		29EE32431EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceCollectionViewCell.swift; sourceTree = "<group>"; };
 		29F778D71EEE291300B6AA6E /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		332153A02078D17E6D55BF0C /* Pods-Lynked.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lynked.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lynked/Pods-Lynked.release.xcconfig"; sourceTree = "<group>"; };
@@ -187,9 +185,8 @@
 				1DD7D25B1E393C2300AF1299 /* ServiceClass.swift */,
 				2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */,
 				2921B21F1EFBA2E0008F377B /* TempLetterImagePickerUtility.swift */,
-				29DD17061EFCB49D00A634A4 /* ServiceInformationUtility.swift */,
+				2950A4511EFE40BF00F94BF4 /* ServicePayRateManager.swift */,
 				294135FA1EFD9D8200002FAC /* CategoryManager.swift */,
-				2950A44D1EFDE67800F94BF4 /* Category.swift */,
 				1DC0D8B11DFE516A0039B8F6 /* Lynked.xcdatamodeld */,
 			);
 			name = Model;
@@ -243,10 +240,11 @@
 				1DC0D8D81DFE59360039B8F6 /* AddCardViewController.swift */,
 				292764921EDFA3160096AE1E /* WalletViewController.swift */,
 				29BDD8BA1EF9024300F6A2DF /* ServicesViewController.swift */,
-				2921B2241EFBA458008F377B /* Wallet TableView Cell */,
-				1DC0D8E01DFE5FBB0039B8F6 /* EditServiceViewController.swift */,
 				1DC0D8DE1DFE5F910039B8F6 /* EditCardViewController.swift */,
 				1D1712781E01F0870087F299 /* PreferencesViewController.swift */,
+				2921B2211EFBA3FE008F377B /* Service CollectionView Cells */,
+				2921B2121EFB99CD008F377B /* Service TableView Cells */,
+				2921B2241EFBA458008F377B /* Wallet TableView Cell */,
 				2921B2251EFBA47E008F377B /* Acknowledgement */,
 			);
 			name = Controller;
@@ -263,10 +261,9 @@
 		29BDD8B91EF9022100F6A2DF /* New Idea */ = {
 			isa = PBXGroup;
 			children = (
+				1DC0D8E01DFE5FBB0039B8F6 /* EditServiceViewController.swift */,
 				2921B21D1EFB9FB2008F377B /* ServiceDetailViewController.swift */,
 				294D0E311EF9E9F7000E4BC6 /* CategoryViewController.swift */,
-				2921B2211EFBA3FE008F377B /* Service CollectionView Cells */,
-				2921B2121EFB99CD008F377B /* Service TableView Cells */,
 			);
 			name = "New Idea";
 			sourceTree = "<group>";
@@ -448,6 +445,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2950A4521EFE40BF00F94BF4 /* ServicePayRateManager.swift in Sources */,
 				1DC0D8D91DFE59360039B8F6 /* AddCardViewController.swift in Sources */,
 				2921B2161EFB9A10008F377B /* ServiceURLTableViewCell.swift in Sources */,
 				2921B21E1EFB9FB2008F377B /* ServiceDetailViewController.swift in Sources */,
@@ -457,7 +455,6 @@
 				29D5906B1EF5AE5600CA66D6 /* RequestReview.swift in Sources */,
 				1DD7D25C1E393C2300AF1299 /* ServiceClass.swift in Sources */,
 				29773CDD1EC3B6730023F277 /* EntryViewController.swift in Sources */,
-				2950A44E1EFDE67800F94BF4 /* Category.swift in Sources */,
 				2943B48B1EF624D600A0E8DD /* FirebaseUtility.swift in Sources */,
 				298FA4E61EF78EDB009B5A36 /* String+Extensions.swift in Sources */,
 				292764951EDFC8350096AE1E /* CardTableViewCell.swift in Sources */,
@@ -483,7 +480,6 @@
 				1DC0D8E11DFE5FBB0039B8F6 /* EditServiceViewController.swift in Sources */,
 				298FA4E41EF78EA4009B5A36 /* UIViewController+Extensions.swift in Sources */,
 				2921B2181EFB9A2A008F377B /* ServiceCategoryTableViewCell.swift in Sources */,
-				29DD17071EFCB49D00A634A4 /* ServiceInformationUtility.swift in Sources */,
 				1D1712791E01F0870087F299 /* PreferencesViewController.swift in Sources */,
 				297BEA001EF708640035D4DA /* Library.swift in Sources */,
 				29EE32441EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift in Sources */,
