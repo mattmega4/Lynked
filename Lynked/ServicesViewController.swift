@@ -12,10 +12,34 @@ import MBProgressHUD
 
 class ServicesViewController: UIViewController {
     
+    @IBOutlet weak var leftNavBarButton: UIBarButtonItem!
+    @IBOutlet weak var rightNavBarButton: UIBarButtonItem!
+    @IBOutlet weak var categoryViewHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var firstContainerView: UIView!
+    @IBOutlet weak var serviceLabel: UILabel!
+    @IBOutlet weak var serviceTextField: UITextField!
+    @IBOutlet weak var categoryTextField: UITextField!
+    @IBOutlet weak var rightVerticalDividerView: UIView!
+    @IBOutlet weak var addServiceButton: UIButton!
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var secondContainerView: UIView!
+    
+    @IBOutlet weak var thirdContainerView: UIView!
     @IBOutlet weak var segControl: UISegmentedControl!
+    
+    @IBOutlet weak var disclaimerLabelOne: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var disclaimerLabelTwo: UILabel!
+    
+    @IBOutlet weak var editCardButton: UIButton!
+    
+    @IBOutlet weak var dividerViewOne: UIView!
+    @IBOutlet weak var dividerViewTwo: UIView!
+    @IBOutlet weak var dividerViewThree: UIView!
+    
+    let categoryPickerView = UIPickerView()
+    
     let serviceCellId = "ServiceCell"
     let categoryCellId = "CategoryCell"
     var services = [ServiceClass]()
@@ -31,16 +55,46 @@ class ServicesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.serviceTextField.delegate = self
+        self.categoryTextField.delegate = self
+        self.categoryPickerView.delegate = self
+        self.categoryPickerView.dataSource = self
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
+        
+        collectionView.allowsSelection = true
+        categoryViewHeightConstraint.constant = 0
+        setNavBar()
+        
+        serviceTextField.addTarget(self, action: #selector(enableAddButton(textField:)), for: .editingChanged)
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ServicesViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        tap.cancelsTouchesInView = false
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        
+        guard let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        flowLayout.minimumInteritemSpacing = margin
+        flowLayout.minimumLineSpacing = margin
+        flowLayout.sectionInset = UIEdgeInsets(top: margin, left: margin, bottom: margin, right: margin)
+        
+        categoryTextField.inputView = categoryPickerView
+        
+        title = card?.nickname
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        addServiceButton.alpha = 0.4
+        addServiceButton.isEnabled = false
         getServices()
         
     }
+    
+    
+    // MARK: - Get Services
     
     func getServices() {
         if let theCard = card {
@@ -63,9 +117,10 @@ class ServicesViewController: UIViewController {
     }
     
     
+    // MARK: - Get Categories
+    
     func getCategories() {
         
-        // big array contains
         let allCategories = services.flatMap({ (service) -> String? in
             return service.category
         })
@@ -76,14 +131,167 @@ class ServicesViewController: UIViewController {
         }
     }
     
+    // MARK: - Add Service
+    
+    func addService(service: ServiceClass) {
+        services.append(service)
+        self.services.sort {
+            if $0.serviceAttention == $1.serviceAttention { return $0.serviceName ?? "" < $1.serviceName ?? "" }
+            return $0.serviceAttention > $1.serviceAttention
+        }
+    }
+    
+    
+    
+    func addServiceToCard() {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        FirebaseUtility.shared.addService(name: serviceTextField.text, forCard: card, withCategory: categoryTextField.text) { (service, errMessage) in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            if let theService = service {
+                self.addService(service: theService)
+                
+                self.serviceTextField.text = ""
+                self.addServiceButton.alpha = 0.4
+                self.addServiceButton.isEnabled = false
+                self.getCategories()
+                self.collectionView.reloadData()
+                
+                UIView.animate(withDuration: 2.2, animations: {
+                    self.categoryViewHeightConstraint.constant = 0
+                    //                    self.secondContainerView.layoutSubviews()
+                })
+                
+            }
+        }
+    }
+    
+    
+    // MARK: - IB Actions
+    
+    @IBAction func leftNavBarButtonTapped(_ sender: UIBarButtonItem) {
+        if let walletVC = storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
+            navigationController?.pushViewController(walletVC, animated: true)
+        }
+    }
+    
+    @IBAction func rightNavBarButtonTapped(_ sender: UIBarButtonItem) {
+        if let prefVC = storyboard?.instantiateViewController(withIdentifier: "PrefVC") as? PreferencesViewController {
+            navigationController?.pushViewController(prefVC, animated: true)
+        }
+    }
+    
+    @IBAction func editCardButtonTapped(_ sender: UIButton) {
+        if let editCardVC = storyboard?.instantiateViewController(withIdentifier: "EditCardVC") as? EditCardViewController {
+            if let theId = card?.cardID {
+                editCardVC.thisCardIDTransfered = theId
+            }
+            editCardVC.serviceArray = services
+            editCardVC.card = card
+            navigationController?.pushViewController(editCardVC, animated: true)
+        }
+    }
+    
+    @IBAction func addServiceButtonTapped(_ sender: UIButton) {
+        addServiceToCard()
+    }
+    
     @IBAction func changeSegment(sender: UISegmentedControl) {
         isDisplayingCategories = sender.selectedSegmentIndex == 1
         collectionView.reloadData()
     }
     
+    
+    // MARK: - Keyboard Methods
+    
+    func keyboardWillShow(notification:NSNotification) {
+        var userInfo = notification.userInfo!
+        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        var contentInset: UIEdgeInsets = self.collectionView.contentInset
+        contentInset.bottom = keyboardFrame.size.height
+        self.collectionView.contentInset = contentInset
+    }
+    
+    func keyboardWillHide(notification:NSNotification) {
+        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+        self.collectionView.contentInset = contentInset
+    }
 }
 
-extension ServicesViewController: UICollectionViewDataSource, UITableViewDelegate, UICollectionViewDelegateFlowLayout {
+
+// MARK: - UIPickerView Delegate & DataSource Methods
+
+extension ServicesViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return CategoryManager.shared.categories.count
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return CategoryManager.shared.categories[row]
+    }
+    
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let category = CategoryManager.shared.categories[row]
+        categoryTextField.text = category
+    }
+    
+}
+
+// MARK: - UITextField Delegate Methods
+
+
+extension ServicesViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == serviceTextField {
+            serviceTextField.returnKeyType = .go
+            addServiceToCard()
+            view.endEditing(true)
+        }
+        return false
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == categoryTextField {
+            categoryTextField.text = categories[0]
+        }
+        else if textField == serviceTextField {
+            
+            UIView.animate(withDuration: 2.2, animations: {
+                self.categoryViewHeightConstraint.constant = 50
+                //                self.secondContainerView.layoutSubviews()
+            })
+            
+        }
+        return true
+    }
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
+    
+    func enableAddButton(textField: UITextField) {
+        if (textField.text?.isEmpty)! {
+            addServiceButton.isEnabled = false
+            addServiceButton.alpha = 0.4
+        } else if !(textField.text?.isEmpty)! {
+            addServiceButton.isEnabled = true
+            addServiceButton.alpha = 1.0
+        }
+    }
+}
+
+
+// MARK: - UICollectionView Delegate, DataSource, and DelegateFlowLayout Methods
+
+extension ServicesViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         collectionView?.collectionViewLayout.invalidateLayout()
@@ -107,7 +315,6 @@ extension ServicesViewController: UICollectionViewDataSource, UITableViewDelegat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if !isDisplayingCategories {
             
-            // Populate services
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: serviceCellId, for: indexPath) as! ServiceCollectionViewCell
             let service = services[indexPath.row]
             cell.colorStatusView.backgroundColor = service.serviceStatus ? .green : .red
@@ -127,7 +334,7 @@ extension ServicesViewController: UICollectionViewDataSource, UITableViewDelegat
             }
             return cell
         }
-        // Populate CAtegories
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: categoryCellId, for: indexPath) as! ServiceCategoryCollectionViewCell
         cell.categoryNameLabel.text = categories[indexPath.row]
         let categoryServices = services.filter({$0.category == categories[indexPath.row]})
@@ -145,6 +352,8 @@ extension ServicesViewController: UICollectionViewDataSource, UITableViewDelegat
                         cell.previewImageViewTwo.sd_setImage(with: myURL, placeholderImage: placeholderImage)
                     case 2:
                         cell.previewImageViewThree.sd_setImage(with: myURL, placeholderImage: placeholderImage)
+                    case 3:
+                        cell.previewImageViewFour.sd_setImage(with: myURL, placeholderImage: placeholderImage)
                         
                     default:
                         print("I shouldn't have been printed")
@@ -154,6 +363,22 @@ extension ServicesViewController: UICollectionViewDataSource, UITableViewDelegat
         }
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if !isDisplayingCategories {
+            if let serviceDetailVC = storyboard?.instantiateViewController(withIdentifier: "serviceDetailVC") as? ServiceDetailViewController {
+                let selectedService = services[indexPath.row]
+                navigationController?.pushViewController(serviceDetailVC, animated: true)
+            }
+        }
+        else {
+            
+        }
+    }
+    
+    
+    /// did select
+//    serviceDetailVC
 }
 
 

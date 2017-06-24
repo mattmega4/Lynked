@@ -1,5 +1,5 @@
 //
-//  ServiceDetailViewController.swift
+//  ServiceDetailTableViewController.swift
 //  Lynked
 //
 //  Created by Matthew Howes Singleton on 6/21/17.
@@ -8,13 +8,10 @@
 
 import UIKit
 
-class ServiceDetailViewController: UIViewController {
+class ServiceDetailViewController: UITableViewController {
     
     @IBOutlet weak var leftNavBarButton: UIBarButtonItem!
-    
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var contentView: UIView!
-    
+        
     @IBOutlet weak var serviceBillingCurrentSwitch: UISwitch!
     @IBOutlet weak var serviceBillingCurrentLabel: UILabel!
     @IBOutlet weak var serviceUpdateBillingButton: UIButton!
@@ -33,12 +30,12 @@ class ServiceDetailViewController: UIViewController {
     var nameForSite: String?
     var URLForSite: String?
     
-    var stateOfService: Bool?
-    var stateOfFixed: Bool?
-    var category = "Miscellaneous"
-    var catIdx: Int?
-    var fixedAmount: Double?
-    var payRateInx: Int?
+//    var stateOfService: Bool?
+//    var stateOfFixed: Bool?
+//    var category = "Miscellaneous"
+//    var catIdx: Int?
+//    var fixedAmount: Double?
+//    var payRateInx: Int?
     
     var service: ServiceClass?
     
@@ -80,17 +77,17 @@ class ServiceDetailViewController: UIViewController {
             URLForSite = url
         }
         
-        if service?.serviceFixed == true {
-            stateOfFixed = true
-        } else {
-            stateOfFixed = false
-        }
+//        if service?.serviceFixed == true {
+//            stateOfFixed = true
+//        } else {
+//            stateOfFixed = false
+//        }
         
 //        catIdx = service?.category ?? 0
         
-        fixedAmount = service?.serviceAmount ?? 0.0
-        
-        payRateInx = service?.servicePayRateIndex ?? 0
+//        fixedAmount = service?.serviceAmount ?? 0.0
+//        
+//        payRateInx = service?.servicePayRateIndex ?? 0
         
         //        fixedAmountTextField.text = "$\(service?.serviceAmount ?? 0.0)"
         
@@ -193,16 +190,16 @@ class ServiceDetailViewController: UIViewController {
         var userInfo = notification.userInfo!
         var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
-        var contentInset: UIEdgeInsets = self.scrollView.contentInset
+        var contentInset: UIEdgeInsets = self.tableView.contentInset
         contentInset.bottom = keyboardFrame.size.height + 30
-        self.scrollView.contentInset = contentInset
+        self.tableView.contentInset = contentInset
         deleteServiceButton.isEnabled = false
         deleteServiceButton.isHidden = true
     }
     
     func keyboardWillHide(notification:NSNotification) {
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
-        self.scrollView.contentInset = contentInset
+        self.tableView.contentInset = contentInset
         deleteServiceButton.isEnabled = true
         deleteServiceButton.isHidden = false
     }
@@ -244,17 +241,16 @@ class ServiceDetailViewController: UIViewController {
 } // MARK: - End of ServiceDetailViewController
 
 
-
 // MARK: - UITableView Delegate & DataSource Methods
 
-extension ServiceDetailViewController: UITableViewDelegate, UITableViewDataSource {
+extension ServiceDetailViewController {
     
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
             
