@@ -23,17 +23,40 @@ class ServiceDetailViewController: UITableViewController {
     @IBOutlet weak var saveServiceButton: UIButton!
     @IBOutlet weak var deleteServiceButton: UIButton!
     
-    
+    var servState: Bool?
     var servName: String?
     var servUrl: String?
-    //    var servState: Bool?
-    var servFixed: Bool?
+    var servFixed = false
     var servCategory: String?
-    var servAmount: Double?
-    //    var payRateInx: Int?
+    var servAmount: String?
+    var servPayRate: String?
+    var servScheduled: Double?
     
     var service: ServiceClass?
     
+    let serviceCellIdentifier = "serviceCell"
+    
+    let items: [[String : Any]] =
+        [["title" : "Name", "placeholder" : "Netflix", "hasSwitch" : false],
+         ["title" : "URL", "placeholder" : "netflix.com", "hasSwitch" : false],
+         ["title" : "Category", "placeholder" : "Entertainment", "hasSwitch" : false],
+         ["title" : "Pay Amount", "placeholder" : "9.99", "hasSwitch" : false],
+         ["title" : "Pay Rate", "placeholder" : "Monthy", "hasSwitch" : true],
+         ["title" : "Next Scheduled Payment", "placeholder" : "15th of May", "hasSwitch" : false]]
+    
+    let categoryPicker = UIPickerView()
+    let payRatePicker = UIPickerView()
+    
+    let datePicker = UIDatePicker()
+    
+    var nameTextField: UITextField?
+    var urlTextField: UITextField?
+    var categoryTextField: UITextField?
+    var amountTextField: UITextField?
+    var rateTextField: UITextField?
+    var dateTextField: UITextField?
+    
+    var fixedSwitch: UISwitch?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,17 +65,38 @@ class ServiceDetailViewController: UITableViewController {
         self.serviceTableView.delegate = self
         self.serviceTableView.dataSource = self
         
+        self.categoryPicker.delegate = self
+        self.categoryPicker.dataSource = self
+        
+        self.payRatePicker.delegate = self
+        self.payRatePicker.dataSource = self
+        
+        self.nameTextField?.delegate = self
+        self.urlTextField?.delegate = self
+        self.amountTextField?.delegate = self
+        
+        datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .editingChanged)
+        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ServiceDetailViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        updateViewBasedOnService()
+    }
+    
+    func datePickerValueChanged(_ sender: UIDatePicker) {
+        let date = sender.date
+        servScheduled = date.timeIntervalSinceReferenceDate
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM dd, yyyy"
+        dateTextField?.text = formatter.string(from: date)
+        service?.nextPaymentDate = date
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        updateViewBasedOnService()
     }
     
     
@@ -60,19 +104,32 @@ class ServiceDetailViewController: UITableViewController {
     
     func updateViewBasedOnService() {
         
+        servState = service?.serviceStatus
         serviceBillingCurrentSwitch.isOn = service?.serviceStatus == true
+        
         if let name = service?.serviceName {
             servName = name
             title = "\(name) Details"
             serviceUpdateBillingButton.setTitle("Go To \(name)'s Website to Update Payment", for: .normal)
         }
+        
+        
         if let url = service?.serviceUrl {
             servUrl = url
         }
-        servFixed = service?.serviceFixed
-        servAmount = service?.serviceAmount ?? 0.0
+        servFixed = service?.serviceFixed ?? true
+        if let theAmount = service?.serviceAmount {
+            servAmount = String(theAmount)
+        }
+        //servAmount = service?.serviceAmount ?? 0.0
         
-        //        payRateInx = service?.servicePayRateIndex ?? 0
+        servCategory = service?.category
+        
+        servPayRate = service?.paymentRate
+        
+        servScheduled = (service?.nextPaymentDate ?? Date()).timeIntervalSinceReferenceDate
+        
+        
     }
     
     
@@ -80,16 +137,18 @@ class ServiceDetailViewController: UITableViewController {
     
     func updateServiceToFirebase() {
         
-        //        FirebaseUtility.shared.update(service: service,
-        //                                      name: service.text,
-        //                                      url: urlTextField.text,
-        //                                      amount: fixedAmountTextField.text,
-        //                                      isFixed: fixedExpenseToggleSwitch.isOn,
-        //                                      state: serviceStateToggleSwtich.isOn,
-        //                                      rate: timeFrame ) { (updatedService, errMessage) in
-        //
-        //                                        self.navigationController?.popViewController(animated: true)
-        //        }
+        FirebaseUtility.shared.update(service: service,
+                                      name: nameTextField?.text,
+                                      url: urlTextField?.text,
+                                      amount: amountTextField?.text,
+                                      isFixed: fixedSwitch?.isOn == true,
+                                      state: serviceBillingCurrentSwitch.isOn,
+                                      rate: rateTextField?.text,
+                                      scheduled: servScheduled,
+                                      categ: categoryTextField?.text) {
+                                        (updatedService, errMessage) in
+                                        self.navigationController?.popViewController(animated: true)
+        }
     }
     
     
@@ -178,12 +237,12 @@ class ServiceDetailViewController: UITableViewController {
     }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
+        textField.endEditing(true)
         return true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
+        textField.endEditing(true)
         textField.resignFirstResponder()
         return false
     }
@@ -202,11 +261,11 @@ class ServiceDetailViewController: UITableViewController {
     }
     
     @IBAction func saveServiceButtonTapped(_ sender: UIButton) {
-        //        updateServiceToFirebase()
+                updateServiceToFirebase()
     }
     
     @IBAction func deleteServiceButtonTapped(_ sender: UIButton) {
-        //        deleteThisService()
+                deleteThisService()
     }
     
     
@@ -214,59 +273,137 @@ class ServiceDetailViewController: UITableViewController {
 } // MARK: - End of ServiceDetailViewController
 
 
+
+// MARK: - UITextField Delegates
+
+extension ServiceDetailViewController: UITextFieldDelegate {
+ 
+    
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == nameTextField {
+            service?.serviceName = textField.text
+        }
+        else if textField == urlTextField {
+            service?.serviceUrl = textField.text
+        }
+        else if textField == amountTextField {
+            if let amount = amountTextField?.text {
+                if let theAmount = Double(amount) {
+                    service?.serviceAmount = theAmount
+                }
+            }
+        }
+    }
+    
+    
+}
+
+// MARK: - UIPickerView Delegate Methods
+
+extension ServiceDetailViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView == categoryPicker {
+            return CategoryManager.shared.categories.count
+            
+        }
+        return ServicePayRateManager.shared.payRates.count
+        
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        if pickerView == categoryPicker {
+            return CategoryManager.shared.categories[row]
+            
+        }
+        return ServicePayRateManager.shared.payRates[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView == categoryPicker {
+            categoryTextField?.text = CategoryManager.shared.categories[row]
+            service?.category = CategoryManager.shared.categories[row]
+        } else {
+            rateTextField?.text = ServicePayRateManager.shared.payRates[row]
+            service?.paymentRate = ServicePayRateManager.shared.payRates[row]
+        }
+    }
+}
+
+
 // MARK: - UITableView Delegate & DataSource Methods
 
 extension ServiceDetailViewController {
     
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row == 0 {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! ServiceNameTableViewCell
-
-            cell.serviceNameTextField.text = servName
-            return cell
-            
-        } else if indexPath.row == 1 {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! ServiceURLTableViewCell
-
-            cell.serviceUrlLabel.text = servUrl
-            return cell
-            
-        } else if indexPath.row == 2 {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! ServiceCategoryTableViewCell
-          
-            // PAss from prev VC
-//            if let index = CategoryManager.shared.categories.index(where: {$0 == self.category}) {
-//                cell.serviceCategoryPicker.selectRow(index, inComponent: 0, animated: false)
-//            }
-            
-            
-            return cell
-            
-        } else if indexPath.row == 3 {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! ServiceFixedAndRateTableViewCell
-            
-            cell.serviceFixedRatePicker.selectedRow(inComponent: 0)
-            return cell
-            
-        } else /*if indexPath.row == 4*/ {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! ServiceNextScheduledTableViewCell
-            
-            //            cell.serviceScheduledDatePicker.setDate(<#T##date: Date##Date#>, animated: <#T##Bool#>)
-            return cell
-            
+        let cell = tableView.dequeueReusableCell(withIdentifier: serviceCellIdentifier, for: indexPath as IndexPath) as! ServiceDetailTableViewCell
+        let item = items[indexPath.row]
+        
+        cell.serviceTitleLabel.text = item["title"] as? String
+        
+        cell.serviceTextField.placeholder = item["placeholder"] as? String
+        
+        cell.fixedToggleSwitch?.isHidden = item["hasSwitch"] as? Bool != true
+        if cell.fixedToggleSwitch?.isHidden == false {
+            fixedSwitch = cell.fixedToggleSwitch
+            fixedSwitch?.isOn = service?.serviceFixed == true
         }
         
+        switch indexPath.row {
+        case 0:
+            cell.serviceTextField.text = service?.serviceName
+            nameTextField = cell.serviceTextField
+        case 1:
+            cell.serviceTextField.text = service?.serviceUrl
+            urlTextField = cell.serviceTextField
+        case 2:
+            cell.serviceTextField.text = service?.category
+            cell.serviceTextField.inputView = categoryPicker
+            categoryTextField = cell.serviceTextField
+        case 3:
+            if let amount = service?.serviceAmount {
+                cell.serviceTextField.text = String(amount)
+            }
+            amountTextField = cell.serviceTextField
+        case 4:
+            cell.serviceTextField.text = service?.paymentRate
+            cell.serviceTextField.inputView = payRatePicker
+            rateTextField = cell.serviceTextField
+        case 5:
+            if let theService = service {
+                let paymentDate = ServicePayRateManager.shared.getNextPaymentDateFor(service: theService)
+                let formatter = DateFormatter()
+                formatter.dateFormat = "MMM dd, yyyy"
+                cell.serviceTextField.text = formatter.string(from: paymentDate)
+                cell.serviceTextField.inputView = datePicker
+            }
+            dateTextField = cell.serviceTextField
+        default:
+            print("HOW DID I GET HERE?")
+        }
+        
+        return cell
+        
+        
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 75
     }
     
     

@@ -190,8 +190,9 @@ class FirebaseUtility: NSObject {
                                            "serviceFixed": false,
                                            "serviceAmount" : 0,
                                            "attentionInt" : 0,
-                                           "servicePaymentRate": 2,
-                                           "category": selectedCategory]
+                                           "category": selectedCategory,
+                                           "paymentRate": "Monthly",
+                                           "nextPaymentDate": Date().timeIntervalSinceReferenceDate]
         
         serviceRef.setValue(serviceDict, withCompletionBlock: { (error, ref) in
             
@@ -228,7 +229,8 @@ class FirebaseUtility: NSObject {
                    amount: String(service.serviceAmount),
                    isFixed: service.serviceFixed ?? false,
                    state: false,
-                   rate: service.servicePayRateIndex,
+                   rate: service.paymentRate,
+                   scheduled: service.nextPaymentDate.timeIntervalSinceReferenceDate,
                    categ: service.category,
                    completion: { (service, errMessage) in
                     
@@ -256,7 +258,8 @@ class FirebaseUtility: NSObject {
                 amount: String?,
                 isFixed: Bool,
                 state: Bool,
-                rate: Int?,
+                rate: String?,
+                scheduled: Double?,
                 categ: String?,
                 completion: @escaping (_ service: ServiceClass?, _ errMessage: String?) -> Void) {
         
@@ -311,9 +314,9 @@ class FirebaseUtility: NSObject {
                                            "serviceFixed": isFixed,
                                            "serviceAmount" : serviceAmount,
                                            "attentionInt" : attention,
-                                           "servicePaymentRate": theRate,
-                                           "categIndex": theCat]
-        
+                                           "category": theCat,
+                                           "paymentRate": theRate]
+
         serviceRef.setValue(serviceDict, withCompletionBlock: { (error, ref) in
             
             if let theError = error?.localizedDescription {

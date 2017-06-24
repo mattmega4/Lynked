@@ -12,7 +12,7 @@ import UIKit
 //import Crashlytics
 import SafariServices
 
-class EditServiceViewController: UIViewController {
+class EditServiceViewController: UIViewController { // OLD
     
     @IBOutlet weak var leftNavBarButton: UIBarButtonItem!
     @IBOutlet weak var rightNavBarButton: UIBarButtonItem!

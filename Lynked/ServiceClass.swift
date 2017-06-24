@@ -21,10 +21,10 @@ class ServiceClass {
     var serviceFixed: Bool?
     var serviceAmount: Double = 0
     var serviceAttention: Int = 0
-    var servicePayRateIndex = 0
     
+    var nextPaymentDate = Date()
     var category: String?
-    
+    var paymentRate: String?
     
     init(id: String, cardId: String, serviceDict: [String : Any]) {
         serviceID = id
@@ -44,13 +44,14 @@ class ServiceClass {
             serviceAttention = tempAtten
         }
         
-        if let theIndex = serviceDict["servicePaymentRate"] as? Int {
-            servicePayRateIndex = theIndex
+        if let payDate = serviceDict["nextPaymentDate"] as? Double {
+            nextPaymentDate = Date(timeIntervalSince1970: payDate)
+            nextPaymentDate = ServicePayRateManager.shared.getNextPaymentDateFor(service: self)
         }
         
         category = serviceDict["category"] as? String 
         
-       
+        paymentRate = serviceDict["paymentRate"] as? String
         
         
     }
