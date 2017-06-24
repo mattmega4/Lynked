@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import Firebase
-import Fabric
-import Crashlytics
+//import Firebase
+//import Fabric
+//import Crashlytics
 import SafariServices
 
 class EditServiceViewController: UIViewController {

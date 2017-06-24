@@ -8,6 +8,14 @@
 
 import UIKit
 
+class Category: NSObject {
+    
+    var id = 0
+    var name: String?
+    var services = [ServiceClass]()
+    
+}
+
 class CategoryManager: NSObject {
     
     
@@ -24,27 +32,7 @@ class CategoryManager: NSObject {
                       "Education",
                       "Travel",
                       "Medical"]
-    
-    
-    
-    //    func categoryAtIndex(index: Int) -> String {
-    //
-    //        if index < categories.count {
-    //
-    //            if let index = categories[][] as? String {
-    //
-    //            }
-    //        }
-    //    }
-    
-    
-    //    CAtegoryCount
-    //        -> Service Id
-    //            -> Category Name : Int
-    
-    
-    
-    
+
 }
 
 

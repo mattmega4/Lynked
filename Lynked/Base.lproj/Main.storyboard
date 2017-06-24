@@ -780,6 +780,9 @@
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="E8Q-9N-fOS" id="Rhk-xD-ONx"/>
+                                            </connections>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -821,6 +824,9 @@
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="E8Q-9N-fOS" id="eV3-M3-Xtz"/>
+                                            </connections>
                                         </textField>
                                     </subviews>
                                     <constraints>
