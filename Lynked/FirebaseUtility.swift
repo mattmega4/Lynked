@@ -174,15 +174,18 @@ class FirebaseUtility: NSObject {
             completion(nil, errorMessage)
             return
         }
+
         
         let serviceRef = ref.child("newServices").child(theCard.cardID).childByAutoId()
         
         let serviceDict: [String : Any] = ["serviceName": theName,
-                                           "serviceURL": theName.createServiceURL(), "serviceStatus": true,
+                                           "serviceURL": theName.createServiceURL(),
+                                           "serviceStatus": true,
                                            "serviceFixed": false,
                                            "serviceAmount" : 0,
                                            "attentionInt" : 0,
-                                           "servicePaymentRate": 2]
+                                           "servicePaymentRate": 2,
+                                           "category": "Miscellaneous"]
         
         serviceRef.setValue(serviceDict, withCompletionBlock: { (error, ref) in
             
@@ -220,6 +223,7 @@ class FirebaseUtility: NSObject {
                    isFixed: service.serviceFixed ?? false,
                    state: false,
                    rate: service.servicePayRateIndex,
+                   categ: service.category,
                    completion: { (service, errMessage) in
                     
                 if let theService = service {
@@ -247,6 +251,7 @@ class FirebaseUtility: NSObject {
                 isFixed: Bool,
                 state: Bool,
                 rate: Int?,
+                categ: String?,
                 completion: @escaping (_ service: ServiceClass?, _ errMessage: String?) -> Void) {
         
         guard let service = service else {
@@ -273,6 +278,12 @@ class FirebaseUtility: NSObject {
             return
         }
         
+        guard let theCat = categ else {
+            let errorMessage = "Please enter the category"
+            completion(nil, errorMessage)
+            return
+        }
+        
         var serviceAmount: Double = 0
         
         if let theAmount = amount {
@@ -294,7 +305,8 @@ class FirebaseUtility: NSObject {
                                            "serviceFixed": isFixed,
                                            "serviceAmount" : serviceAmount,
                                            "attentionInt" : attention,
-                                           "servicePaymentRate": theRate]
+                                           "servicePaymentRate": theRate,
+                                           "categIndex": theCat]
         
         serviceRef.setValue(serviceDict, withCompletionBlock: { (error, ref) in
             

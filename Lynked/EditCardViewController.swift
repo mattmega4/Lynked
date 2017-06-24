@@ -180,7 +180,7 @@ class EditCardViewController: UIViewController {
     
     @IBAction func leftBarButtonTapped(_ sender: UIBarButtonItem) {
         leftNavBarButton.isEnabled = false
-        if let detailVC = storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
+        if let detailVC = storyboard?.instantiateViewController(withIdentifier: "servieVC") as? ServicesViewController {
             detailVC.card = card
             navigationController?.popViewController(animated: true)
         }
