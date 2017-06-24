@@ -93,6 +93,7 @@ class ServicesViewController: UIViewController {
         addServiceButton.isEnabled = false
         getServices()
         
+        
     }
     
     
@@ -105,6 +106,11 @@ class ServicesViewController: UIViewController {
                     
                     self.serviceArray = theServices
                     self.getCategories()
+                    self.serviceArray.sort {
+                        if $0.serviceAttention == $1.serviceAttention { return $0.serviceName ?? "" < $1.serviceName ?? "" }
+                        return $0.serviceAttention > $1.serviceAttention
+                    }
+
                     self.collectionView.reloadData()
                 } else {
                     if let theError = error?.localizedDescription {
@@ -137,10 +143,10 @@ class ServicesViewController: UIViewController {
     
     func addService(service: ServiceClass) {
         serviceArray.append(service)
-        self.serviceArray.sort {
-            if $0.serviceAttention == $1.serviceAttention { return $0.serviceName ?? "" < $1.serviceName ?? "" }
-            return $0.serviceAttention > $1.serviceAttention
-        }
+//        self.serviceArray.sort {
+//            if $0.serviceAttention == $1.serviceAttention { return $0.serviceName ?? "" < $1.serviceName ?? "" }
+//            return $0.serviceAttention > $1.serviceAttention
+//        }
     }
     
     

@@ -691,6 +691,9 @@
                                     </constraints>
                                     <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
                                     <state key="normal" title="Update Service"/>
+                                    <connections>
+                                        <action selector="serviceUpdateBillingButtonTapped:" destination="E8Q-9N-fOS" eventType="touchUpInside" id="zmy-IO-U2u"/>
+                                    </connections>
                                 </button>
                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KLb-UQ-Rwl">
                                     <rect key="frame" x="136" y="10" width="51" height="30"/>
@@ -710,20 +713,9 @@
                             </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="bas-6q-aNe">
-                            <rect key="frame" x="0.0" y="573" width="320" height="203"/>
+                            <rect key="frame" x="0.0" y="223" width="320" height="203"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HJM-7U-RP8">
-                                    <rect key="frame" x="25" y="115" width="270" height="45"/>
-                                    <color key="backgroundColor" red="1" green="0.29803921570000003" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="45" id="kQY-IC-ySF"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="20"/>
-                                    <state key="normal" title="Delete Service">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p7z-RC-wVg">
                                     <rect key="frame" x="25" y="35" width="270" height="45"/>
                                     <color key="backgroundColor" red="0.36078431372549019" green="0.62745098039215685" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
@@ -734,6 +726,23 @@
                                     <state key="normal" title="Save Service">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="saveServiceButtonTapped:" destination="E8Q-9N-fOS" eventType="touchUpInside" id="72k-Jj-0IP"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HJM-7U-RP8">
+                                    <rect key="frame" x="25" y="115" width="270" height="45"/>
+                                    <color key="backgroundColor" red="1" green="0.29803921570000003" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="45" id="kQY-IC-ySF"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="20"/>
+                                    <state key="normal" title="Delete Service">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="deleteServiceButtonTapped:" destination="E8Q-9N-fOS" eventType="touchUpInside" id="FLZ-XD-S9b"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" red="0.68235294120000001" green="0.91764705879999997" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -747,133 +756,8 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="75" id="7Db-Vo-pVn" customClass="ServiceNameTableViewCell" customModule="Lynked" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="138" width="320" height="75"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Db-Vo-pVn" id="iog-u6-Sk1">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="74.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faX-v7-b6b">
-                                            <rect key="frame" x="15" y="5" width="290" height="24.5"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="25" id="Wuc-dO-jCk"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Amazon" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PkD-HN-iGv">
-                                            <rect key="frame" x="15" y="34.5" width="290" height="35"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="35" id="cNz-gd-eXd"/>
-                                            </constraints>
-                                            <nil key="textColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                            <connections>
-                                                <outlet property="delegate" destination="E8Q-9N-fOS" id="Rhk-xD-ONx"/>
-                                            </connections>
-                                        </textField>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="PkD-HN-iGv" firstAttribute="top" secondItem="faX-v7-b6b" secondAttribute="bottom" constant="5" id="4Zy-4L-rT5"/>
-                                        <constraint firstAttribute="trailing" secondItem="PkD-HN-iGv" secondAttribute="trailing" constant="15" id="KbA-iT-S9K"/>
-                                        <constraint firstAttribute="trailing" secondItem="faX-v7-b6b" secondAttribute="trailing" constant="15" id="NFY-b2-o04"/>
-                                        <constraint firstItem="PkD-HN-iGv" firstAttribute="leading" secondItem="iog-u6-Sk1" secondAttribute="leading" constant="15" id="Qg4-I0-H6R"/>
-                                        <constraint firstItem="faX-v7-b6b" firstAttribute="leading" secondItem="iog-u6-Sk1" secondAttribute="leading" constant="15" id="XcH-c0-ErR"/>
-                                        <constraint firstItem="faX-v7-b6b" firstAttribute="top" secondItem="iog-u6-Sk1" secondAttribute="top" constant="5" id="tUO-LA-BmG"/>
-                                        <constraint firstAttribute="bottom" secondItem="PkD-HN-iGv" secondAttribute="bottom" constant="5" id="vmP-Th-XKY"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="serviceNameLabel" destination="faX-v7-b6b" id="3aR-nc-pDR"/>
-                                    <outlet property="serviceNameTextField" destination="PkD-HN-iGv" id="dvh-V6-mp9"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="75" id="qLV-a6-LOo" customClass="ServiceURLTableViewCell" customModule="Lynked" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="213" width="320" height="75"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qLV-a6-LOo" id="Ezn-gM-ML5">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="74.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service URL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rhm-Ih-xto">
-                                            <rect key="frame" x="15" y="5" width="290" height="24.5"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="25" id="TkP-3x-Tfk"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Amazon.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y4v-Iv-iMS">
-                                            <rect key="frame" x="15" y="34.5" width="290" height="35"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="35" id="7cy-yc-Cxt"/>
-                                            </constraints>
-                                            <nil key="textColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                            <connections>
-                                                <outlet property="delegate" destination="E8Q-9N-fOS" id="eV3-M3-Xtz"/>
-                                            </connections>
-                                        </textField>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="y4v-Iv-iMS" secondAttribute="trailing" constant="15" id="2Wx-AE-x9t"/>
-                                        <constraint firstItem="Rhm-Ih-xto" firstAttribute="leading" secondItem="Ezn-gM-ML5" secondAttribute="leading" constant="15" id="APm-WK-8pr"/>
-                                        <constraint firstAttribute="bottom" secondItem="y4v-Iv-iMS" secondAttribute="bottom" constant="5" id="HG0-xx-j3d"/>
-                                        <constraint firstItem="y4v-Iv-iMS" firstAttribute="leading" secondItem="Ezn-gM-ML5" secondAttribute="leading" constant="15" id="UfD-xM-qnp"/>
-                                        <constraint firstItem="y4v-Iv-iMS" firstAttribute="top" secondItem="Rhm-Ih-xto" secondAttribute="bottom" constant="5" id="UwQ-yg-TvH"/>
-                                        <constraint firstAttribute="trailing" secondItem="Rhm-Ih-xto" secondAttribute="trailing" constant="15" id="ry5-Tr-HpX"/>
-                                        <constraint firstItem="Rhm-Ih-xto" firstAttribute="top" secondItem="Ezn-gM-ML5" secondAttribute="top" constant="5" id="ua2-Qe-t9T"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="serviceUrlLabel" destination="Rhm-Ih-xto" id="ksS-jJ-bvJ"/>
-                                    <outlet property="serviceUrlTextField" destination="y4v-Iv-iMS" id="HYh-e5-drs"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="85" id="VHe-ie-Iei" customClass="ServiceCategoryTableViewCell" customModule="Lynked" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="288" width="320" height="85"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VHe-ie-Iei" id="Yv2-DC-MsD">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="84.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Dh-Of-ZJj">
-                                            <rect key="frame" x="15" y="5" width="70" height="25"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="25" id="9N9-Ar-ScF"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uTP-uB-GdF">
-                                            <rect key="frame" x="15" y="35" width="290" height="45"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="45" id="BH6-TO-8Sh"/>
-                                            </constraints>
-                                        </pickerView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="9Dh-Of-ZJj" firstAttribute="top" secondItem="Yv2-DC-MsD" secondAttribute="top" constant="5" id="Mzd-8w-4ru"/>
-                                        <constraint firstItem="9Dh-Of-ZJj" firstAttribute="leading" secondItem="Yv2-DC-MsD" secondAttribute="leading" constant="15" id="TpO-Nt-Ani"/>
-                                        <constraint firstAttribute="bottom" secondItem="uTP-uB-GdF" secondAttribute="bottom" constant="5" id="XLD-Ia-cwl"/>
-                                        <constraint firstItem="uTP-uB-GdF" firstAttribute="leading" secondItem="Yv2-DC-MsD" secondAttribute="leading" constant="15" id="gAa-ZU-914"/>
-                                        <constraint firstAttribute="trailing" secondItem="uTP-uB-GdF" secondAttribute="trailing" constant="15" id="kod-T8-AY6"/>
-                                        <constraint firstItem="uTP-uB-GdF" firstAttribute="top" secondItem="9Dh-Of-ZJj" secondAttribute="bottom" constant="5" id="lUT-bY-qby"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="serviceCategoryLabel" destination="9Dh-Of-ZJj" id="wcH-uJ-hg7"/>
-                                    <outlet property="serviceCategoryPicker" destination="uTP-uB-GdF" id="n2X-e4-hCD"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="85" id="e05-6e-OL3" customClass="ServiceFixedAndRateTableViewCell" customModule="Lynked" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="373" width="320" height="85"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="serviceCell" rowHeight="85" id="e05-6e-OL3" customClass="ServiceDetailTableViewCell" customModule="Lynked" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="138" width="320" height="85"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e05-6e-OL3" id="PHY-za-tk6">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="84.5"/>
@@ -888,71 +772,34 @@
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <pickerView contentMode="scaleToFill" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="5d8-Sa-LTH">
-                                            <rect key="frame" x="15" y="34.5" width="226" height="45"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="45" id="Te0-pp-qNm"/>
-                                            </constraints>
-                                        </pickerView>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zg1-By-ysW">
                                             <rect key="frame" x="256" y="34.5" width="51" height="31"/>
                                         </switch>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Monthly" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Aiv-sj-GW1">
+                                            <rect key="frame" x="15" y="35" width="226" height="44.5"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="E8Q-9N-fOS" id="kZO-VL-8WZ"/>
+                                            </connections>
+                                        </textField>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Zg1-By-ysW" firstAttribute="top" secondItem="5d8-Sa-LTH" secondAttribute="top" id="2cm-dz-oMD"/>
-                                        <constraint firstItem="Zg1-By-ysW" firstAttribute="leading" secondItem="5d8-Sa-LTH" secondAttribute="trailing" constant="15" id="A6E-nR-hcP"/>
+                                        <constraint firstItem="Zg1-By-ysW" firstAttribute="leading" secondItem="Aiv-sj-GW1" secondAttribute="trailing" constant="15" id="3i9-Py-Slk"/>
+                                        <constraint firstItem="Aiv-sj-GW1" firstAttribute="leading" secondItem="PHY-za-tk6" secondAttribute="leading" constant="15" id="Dpz-EK-asq"/>
                                         <constraint firstItem="Zg1-By-ysW" firstAttribute="top" secondItem="VnO-tF-ScO" secondAttribute="bottom" constant="5" id="Gu4-wg-dWe"/>
-                                        <constraint firstAttribute="bottom" secondItem="5d8-Sa-LTH" secondAttribute="bottom" constant="5" id="WgJ-00-oLr"/>
                                         <constraint firstItem="VnO-tF-ScO" firstAttribute="leading" secondItem="PHY-za-tk6" secondAttribute="leading" constant="15" id="jIC-wi-jnI"/>
-                                        <constraint firstItem="5d8-Sa-LTH" firstAttribute="leading" secondItem="PHY-za-tk6" secondAttribute="leading" constant="15" id="lfM-vJ-iGl"/>
+                                        <constraint firstAttribute="bottom" secondItem="Aiv-sj-GW1" secondAttribute="bottom" constant="5" id="k9J-FB-lLb"/>
                                         <constraint firstAttribute="trailing" secondItem="Zg1-By-ysW" secondAttribute="trailing" constant="15" id="oZF-gE-Xsw"/>
+                                        <constraint firstItem="Aiv-sj-GW1" firstAttribute="top" secondItem="VnO-tF-ScO" secondAttribute="bottom" constant="5" id="rbH-fK-o7e"/>
                                         <constraint firstItem="VnO-tF-ScO" firstAttribute="top" secondItem="PHY-za-tk6" secondAttribute="top" constant="5" id="wmq-I6-wsS"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="serviceFixedLabel" destination="VnO-tF-ScO" id="rrw-lP-Ae7"/>
-                                    <outlet property="serviceFixedRatePicker" destination="5d8-Sa-LTH" id="SvV-7Z-J6t"/>
-                                    <outlet property="serviceFixedSwitch" destination="Zg1-By-ysW" id="2GZ-Lm-ggm"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="115" id="kdm-Bs-39a" customClass="ServiceNextScheduledTableViewCell" customModule="Lynked" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="458" width="320" height="115"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kdm-Bs-39a" id="117-qg-nOG">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="114.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next Scheduled Payment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BtX-l9-Hxe">
-                                            <rect key="frame" x="15" y="5" width="193" height="25"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="25" id="NJN-U1-i0e"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="PhT-3M-qkR">
-                                            <rect key="frame" x="15" y="35" width="290" height="74.5"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="74.670000000000002" id="knG-Lv-K9e"/>
-                                            </constraints>
-                                            <date key="date" timeIntervalSinceReferenceDate="519805248.54981703">
-                                                <!--2017-06-22 06:20:48 +0000-->
-                                            </date>
-                                        </datePicker>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="PhT-3M-qkR" firstAttribute="leading" secondItem="117-qg-nOG" secondAttribute="leading" constant="15" id="Zbe-Ee-ep0"/>
-                                        <constraint firstItem="PhT-3M-qkR" firstAttribute="top" secondItem="BtX-l9-Hxe" secondAttribute="bottom" constant="5" id="aZw-wx-GQf"/>
-                                        <constraint firstAttribute="trailing" secondItem="PhT-3M-qkR" secondAttribute="trailing" constant="15" id="evO-y6-0Es"/>
-                                        <constraint firstAttribute="bottom" secondItem="PhT-3M-qkR" secondAttribute="bottom" constant="5" id="fne-Lk-14j"/>
-                                        <constraint firstItem="BtX-l9-Hxe" firstAttribute="leading" secondItem="117-qg-nOG" secondAttribute="leading" constant="15" id="o6s-1a-PDv"/>
-                                        <constraint firstItem="BtX-l9-Hxe" firstAttribute="top" secondItem="117-qg-nOG" secondAttribute="top" constant="5" id="wsJ-tU-W6g"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="serviceScheduledDatePicker" destination="PhT-3M-qkR" id="EBc-af-f76"/>
-                                    <outlet property="serviceScheduledLabel" destination="BtX-l9-Hxe" id="dXA-w9-1Dr"/>
+                                    <outlet property="fixedToggleSwitch" destination="Zg1-By-ysW" id="w49-8s-pr9"/>
+                                    <outlet property="serviceTextField" destination="Aiv-sj-GW1" id="Hi5-Dc-fjl"/>
+                                    <outlet property="serviceTitleLabel" destination="VnO-tF-ScO" id="JLP-iY-Biq"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -961,16 +808,26 @@
                             <outlet property="delegate" destination="E8Q-9N-fOS" id="oOE-4V-tDB"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="bm1-HC-Akc"/>
+                    <navigationItem key="navigationItem" id="bm1-HC-Akc">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="VDo-P4-4AY">
+                            <connections>
+                                <action selector="leftNavBarButtonTapped:" destination="E8Q-9N-fOS" id="6qb-2f-bUU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="deleteServiceButton" destination="HJM-7U-RP8" id="gHh-6y-nwt"/>
+                        <outlet property="leftNavBarButton" destination="VDo-P4-4AY" id="azm-x8-vSG"/>
+                        <outlet property="saveServiceButton" destination="p7z-RC-wVg" id="Ccc-3N-Nas"/>
                         <outlet property="serviceBillingCurrentLabel" destination="387-i6-zMd" id="Dvw-K2-S8R"/>
                         <outlet property="serviceBillingCurrentSwitch" destination="KLb-UQ-Rwl" id="zty-a3-VbU"/>
+                        <outlet property="serviceTableView" destination="njt-RQ-iWJ" id="cpV-cX-0yb"/>
                         <outlet property="serviceUpdateBillingButton" destination="yS2-bN-w0B" id="DGh-Cb-3lW"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ndX-56-w3y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="11779" y="-1278"/>
+            <point key="canvasLocation" x="11778.75" y="-1278.1690140845071"/>
         </scene>
         <!--Preferences View Controller-->
         <scene sceneID="2hb-5X-d2q">
@@ -1305,7 +1162,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mKG-k1-KFL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9677" y="-1278"/>
+            <point key="canvasLocation" x="9677" y="-608"/>
         </scene>
         <!--Acknowledgements View Controller-->
         <scene sceneID="peY-4v-ypF">

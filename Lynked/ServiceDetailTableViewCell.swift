@@ -1,17 +1,22 @@
 //
-//  ServiceCategoryTableViewCell.swift
+//  ServiceDetailTableViewCell.swift
 //  Lynked
 //
-//  Created by Matthew Howes Singleton on 6/21/17.
+//  Created by Matthew Howes Singleton on 6/24/17.
 //  Copyright © 2017 Matthew Singleton. All rights reserved.
 //
 
 import UIKit
 
-class ServiceCategoryTableViewCell: UITableViewCell {
+
+class ServiceDetailTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var serviceCategoryLabel: UILabel!
-    @IBOutlet weak var serviceCategoryPicker: UIPickerView!
+    @IBOutlet weak var serviceTitleLabel: UILabel!
+    
+    @IBOutlet weak var serviceTextField: UITextField!
+    
+    @IBOutlet weak var fixedToggleSwitch: UISwitch?
+    
     
 
     override func awakeFromNib() {
