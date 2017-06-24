@@ -137,7 +137,7 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
             let row = indexPath.row
             self.selectedCard = self.cardArray[row].cardID
             if self.selectedCard != "" {
-                if let cardDVC = self.storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
+                if let cardDVC = self.storyboard?.instantiateViewController(withIdentifier: "serviceVC") as? ServicesViewController {
                     cardDVC.card = self.cardArray[indexPath.row]
                     self.navigationController?.pushViewController(cardDVC, animated: true)
                 }

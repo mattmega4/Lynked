@@ -95,7 +95,7 @@ class AddCardViewController: UIViewController {
                                         
                                         MBProgressHUD.hide(for: self.view, animated: true)
                                         if let theCard = card {
-                                            if let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
+                                            if let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "serviceVC") as? ServicesViewController {
                                                 detailVC.card = theCard
                                                 self.navigationController?.pushViewController(detailVC, animated: true)
                                             }

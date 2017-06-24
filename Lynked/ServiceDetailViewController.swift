@@ -24,11 +24,31 @@ class ServiceDetailViewController: UIViewController {
     @IBOutlet weak var saveServiceButton: UIButton!
     @IBOutlet weak var deleteServiceButton: UIButton!
     
+    var serviceUpToDateTransfered: Bool?
+    var serviceNameTransfered: String?
+    var serviceURLTransfered: String?
+    var serviceFixedTransfered: Bool?
+    var serviceAmountTransfered: String?
+    
+    var nameForSite: String?
+    var URLForSite: String?
+    
+    var stateOfService: Bool?
+    var stateOfFixed: Bool?
+    var category = "Miscellaneous"
+    var catIdx: Int?
+    var fixedAmount: Double?
+    var payRateInx: Int?
+    
+    var service: ServiceClass?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setNavBar()
+        self.serviceTableView.delegate = self
+        self.serviceTableView.dataSource = self
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ServiceDetailViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -47,21 +67,41 @@ class ServiceDetailViewController: UIViewController {
     // MARK: - Update Views
     
     func updateViewBasedOnService() {
-        //        serviceStateToggleSwtich.isOn = service?.serviceStatus == true
-        //        serviceNameTextField.text = service?.serviceName
-        //        if let name = service?.serviceName {
-        //        title = "\(name) Details"
-        //            updateServiceOnlineButton.setTitle("Go To \(name)'s Website to Update Payment", for: .normal)
-        //        }
-        //        urlTextField.text = service?.serviceUrl
-        //        fixedExpenseToggleSwitch.isOn = service?.serviceFixed == true
+        
+        serviceBillingCurrentSwitch.isOn = service?.serviceStatus == true
+        
+        if let name = service?.serviceName {
+            nameForSite = name
+            title = "\(name) Details"
+            serviceUpdateBillingButton.setTitle("Go To \(name)'s Website to Update Payment", for: .normal)
+        }
+        
+        if let url = service?.serviceUrl {
+            URLForSite = url
+        }
+        
+        if service?.serviceFixed == true {
+            stateOfFixed = true
+        } else {
+            stateOfFixed = false
+        }
+        
+//        catIdx = service?.category ?? 0
+        
+        fixedAmount = service?.serviceAmount ?? 0.0
+        
+        payRateInx = service?.servicePayRateIndex ?? 0
+        
         //        fixedAmountTextField.text = "$\(service?.serviceAmount ?? 0.0)"
-        //
+        
+        
         //        if let row = service?.servicePayRateIndex {
         //            fixedAmountPickerView.selectRow(row,
         //                                            inComponent: 0,
         //                                            animated: true)
         //        }
+        
+        
     }
     
     
@@ -202,3 +242,73 @@ class ServiceDetailViewController: UIViewController {
     
     
 } // MARK: - End of ServiceDetailViewController
+
+
+
+// MARK: - UITableView Delegate & DataSource Methods
+
+extension ServiceDetailViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if indexPath.row == 0 {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! ServiceNameTableViewCell
+            let row = indexPath.row
+            cell.serviceNameTextField.text = nameForSite
+            return cell
+            
+        } else if indexPath.row == 1 {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! ServiceURLTableViewCell
+            let row = indexPath.row
+            cell.serviceUrlLabel.text = URLForSite
+            return cell
+            
+        } else if indexPath.row == 2 {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! ServiceCategoryTableViewCell
+            let row = indexPath.row
+            // PAss from prev VC
+            if let index = CategoryManager.shared.categories.index(where: {$0 == self.category}) {
+                cell.serviceCategoryPicker.selectRow(index, inComponent: 0, animated: false)
+            }
+            
+  
+            return cell
+            
+        } else if indexPath.row == 3 {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! ServiceFixedAndRateTableViewCell
+            let row = indexPath.row
+            cell.serviceFixedRatePicker.selectedRow(inComponent: 0)
+            return cell
+            
+        } else /*if indexPath.row == 4*/ {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! ServiceNextScheduledTableViewCell
+            let row = indexPath.row
+            //            cell.serviceScheduledDatePicker.setDate(<#T##date: Date##Date#>, animated: <#T##Bool#>)
+            return cell
+            
+        }
+        
+    }
+    
+    
+    
+    
+}
+
+
+
+
+
+
+
+

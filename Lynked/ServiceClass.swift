@@ -17,7 +17,7 @@ class ServiceClass {
     var cardID: String
     var serviceName: String?
     var serviceUrl: String?
-    var serviceStatus: Bool?
+    var serviceStatus = true
     var serviceFixed: Bool?
     var serviceAmount: Double = 0
     var serviceAttention: Int = 0
@@ -31,7 +31,9 @@ class ServiceClass {
         self.cardID = cardId
         serviceName = serviceDict["serviceName"] as? String
         serviceUrl = serviceDict["serviceURL"] as? String
-        serviceStatus = serviceDict["serviceStatus"] as? Bool
+        if let theStatus = serviceDict["serviceStatus"] as? Bool {
+            serviceStatus = theStatus
+        }
         
         serviceFixed = serviceDict["serviceFixed"] as? Bool
         
@@ -46,7 +48,9 @@ class ServiceClass {
             servicePayRateIndex = theIndex
         }
         
-        category = serviceDict["catname"] as? String
+        category = serviceDict["category"] as? String 
+        
+       
         
         
     }

@@ -30,8 +30,10 @@
 		2924F9BE1EF22F090014C284 /* SegmentColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */; };
 		292764931EDFA3160096AE1E /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292764921EDFA3160096AE1E /* WalletViewController.swift */; };
 		292764951EDFC8350096AE1E /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292764941EDFC8350096AE1E /* CardTableViewCell.swift */; };
+		294135FB1EFD9D8200002FAC /* CategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294135FA1EFD9D8200002FAC /* CategoryManager.swift */; };
 		2943B48B1EF624D600A0E8DD /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */; };
 		294D0E321EF9E9F7000E4BC6 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294D0E311EF9E9F7000E4BC6 /* CategoryViewController.swift */; };
+		2950A44E1EFDE67800F94BF4 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2950A44D1EFDE67800F94BF4 /* Category.swift */; };
 		29773CDD1EC3B6730023F277 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29773CDC1EC3B6730023F277 /* EntryViewController.swift */; };
 		297BE9FC1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 297BE9FB1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist */; };
 		297BE9FE1EF707EA0035D4DA /* AcknowledgementsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297BE9FD1EF707EA0035D4DA /* AcknowledgementsViewModel.swift */; };
@@ -82,8 +84,10 @@
 		2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentColorManager.swift; sourceTree = "<group>"; };
 		292764921EDFA3160096AE1E /* WalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		292764941EDFC8350096AE1E /* CardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
+		294135FA1EFD9D8200002FAC /* CategoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryManager.swift; sourceTree = "<group>"; };
 		2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseUtility.swift; sourceTree = "<group>"; };
 		294D0E311EF9E9F7000E4BC6 /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		2950A44D1EFDE67800F94BF4 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		29773CDC1EC3B6730023F277 /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		297BE9FB1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Pods-Lynked-acknowledgements.plist"; path = "../Pods/Target Support Files/Pods-Lynked/Pods-Lynked-acknowledgements.plist"; sourceTree = "<group>"; };
 		297BE9FD1EF707EA0035D4DA /* AcknowledgementsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AcknowledgementsViewModel.swift; path = ../AcknowledgementsViewModel.swift; sourceTree = "<group>"; };
@@ -186,6 +190,8 @@
 				2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */,
 				2921B21F1EFBA2E0008F377B /* TempLetterImagePickerUtility.swift */,
 				29DD17061EFCB49D00A634A4 /* ServiceInformationUtility.swift */,
+				294135FA1EFD9D8200002FAC /* CategoryManager.swift */,
+				2950A44D1EFDE67800F94BF4 /* Category.swift */,
 				1DC0D8B11DFE516A0039B8F6 /* Lynked.xcdatamodeld */,
 			);
 			name = Model;
@@ -239,7 +245,6 @@
 				1DC0D8D81DFE59360039B8F6 /* AddCardViewController.swift */,
 				292764921EDFA3160096AE1E /* WalletViewController.swift */,
 				2921B2241EFBA458008F377B /* Wallet TableView Cell */,
-				29EE32401EC9754E00C2FFB6 /* CardDetailViewController.swift */,
 				1DC0D8E01DFE5FBB0039B8F6 /* EditServiceViewController.swift */,
 				1DC0D8DE1DFE5F910039B8F6 /* EditCardViewController.swift */,
 				1D1712781E01F0870087F299 /* PreferencesViewController.swift */,
@@ -259,9 +264,10 @@
 		29BDD8B91EF9022100F6A2DF /* New Idea */ = {
 			isa = PBXGroup;
 			children = (
+				29EE32401EC9754E00C2FFB6 /* CardDetailViewController.swift */,
 				29BDD8BA1EF9024300F6A2DF /* ServicesViewController.swift */,
-				294D0E311EF9E9F7000E4BC6 /* CategoryViewController.swift */,
 				2921B21D1EFB9FB2008F377B /* ServiceDetailViewController.swift */,
+				294D0E311EF9E9F7000E4BC6 /* CategoryViewController.swift */,
 				2921B2211EFBA3FE008F377B /* Service CollectionView Cells */,
 				2921B2121EFB99CD008F377B /* Service TableView Cells */,
 			);
@@ -454,6 +460,7 @@
 				29D5906B1EF5AE5600CA66D6 /* RequestReview.swift in Sources */,
 				1DD7D25C1E393C2300AF1299 /* ServiceClass.swift in Sources */,
 				29773CDD1EC3B6730023F277 /* EntryViewController.swift in Sources */,
+				2950A44E1EFDE67800F94BF4 /* Category.swift in Sources */,
 				2943B48B1EF624D600A0E8DD /* FirebaseUtility.swift in Sources */,
 				298FA4E61EF78EDB009B5A36 /* String+Extensions.swift in Sources */,
 				292764951EDFC8350096AE1E /* CardTableViewCell.swift in Sources */,
@@ -470,6 +477,7 @@
 				297BEA031EF766500035D4DA /* Future.swift in Sources */,
 				1DD7D2591E393C0700AF1299 /* CardClass.swift in Sources */,
 				29CB33121EF65EFA009CEE3B /* AcknowledgementsViewController.swift in Sources */,
+				294135FB1EFD9D8200002FAC /* CategoryManager.swift in Sources */,
 				1DC0D8AB1DFE516A0039B8F6 /* AppDelegate.swift in Sources */,
 				294D0E321EF9E9F7000E4BC6 /* CategoryViewController.swift in Sources */,
 				2921B2231EFBA42F008F377B /* ServiceCategoryCollectionViewCell.swift in Sources */,
