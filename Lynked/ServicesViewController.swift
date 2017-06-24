@@ -42,8 +42,10 @@ class ServicesViewController: UIViewController {
     
     let serviceCellId = "ServiceCell"
     let categoryCellId = "CategoryCell"
-    var services = [ServiceClass]()
+    
+    var serviceArray = [ServiceClass]()
     var categories = [String]()
+    
     var isDisplayingCategories = false
     
     var card: CardClass?
@@ -101,7 +103,7 @@ class ServicesViewController: UIViewController {
             FirebaseUtility.shared.getServicesFor(card: theCard, completion: { (services, error) in
                 if let theServices = services {
                     
-                    self.services = theServices
+                    self.serviceArray = theServices
                     self.getCategories()
                     self.collectionView.reloadData()
                 } else {
@@ -121,7 +123,7 @@ class ServicesViewController: UIViewController {
     
     func getCategories() {
         
-        let allCategories = services.flatMap({ (service) -> String? in
+        let allCategories = serviceArray.flatMap({ (service) -> String? in
             return service.category
         })
         
@@ -134,8 +136,8 @@ class ServicesViewController: UIViewController {
     // MARK: - Add Service
     
     func addService(service: ServiceClass) {
-        services.append(service)
-        self.services.sort {
+        serviceArray.append(service)
+        self.serviceArray.sort {
             if $0.serviceAttention == $1.serviceAttention { return $0.serviceName ?? "" < $1.serviceName ?? "" }
             return $0.serviceAttention > $1.serviceAttention
         }
@@ -185,7 +187,7 @@ class ServicesViewController: UIViewController {
             if let theId = card?.cardID {
                 editCardVC.thisCardIDTransfered = theId
             }
-            editCardVC.serviceArray = services
+            editCardVC.serviceArray = serviceArray
             editCardVC.card = card
             navigationController?.pushViewController(editCardVC, animated: true)
         }
@@ -307,7 +309,7 @@ extension ServicesViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if !isDisplayingCategories {
-            return services.count
+            return serviceArray.count
         }
         return categories.count
     }
@@ -316,7 +318,7 @@ extension ServicesViewController: UICollectionViewDelegate, UICollectionViewData
         if !isDisplayingCategories {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: serviceCellId, for: indexPath) as! ServiceCollectionViewCell
-            let service = services[indexPath.row]
+            let service = serviceArray[indexPath.row]
             cell.colorStatusView.backgroundColor = service.serviceStatus ? .green : .red
             cell.serviceNameLabel.text = service.serviceName
             cell.serviceFixedAmountLabel.text = String(service.serviceAmount)
@@ -337,7 +339,7 @@ extension ServicesViewController: UICollectionViewDelegate, UICollectionViewData
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: categoryCellId, for: indexPath) as! ServiceCategoryCollectionViewCell
         cell.categoryNameLabel.text = categories[indexPath.row]
-        let categoryServices = services.filter({$0.category == categories[indexPath.row]})
+        let categoryServices = serviceArray.filter({$0.category == categories[indexPath.row]})
         for i in 0..<min(categoryServices.count, 3) {
             let service = categoryServices[i]
             let placeholderImage = UIImage.init(named: "\(TempLetterImagePickerUtility.shared.getLetterOrNumberAndChooseImage(text: service.serviceName!))")
@@ -367,7 +369,7 @@ extension ServicesViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if !isDisplayingCategories {
             if let serviceDetailVC = storyboard?.instantiateViewController(withIdentifier: "serviceDetailVC") as? ServiceDetailViewController {
-                let selectedService = services[indexPath.row]
+                 serviceDetailVC.service = self.serviceArray[indexPath.row]
                 navigationController?.pushViewController(serviceDetailVC, animated: true)
             }
         }

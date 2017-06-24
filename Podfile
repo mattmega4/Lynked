@@ -8,7 +8,6 @@ target 'Lynked' do
   # Pods for Lynked
 
 
-  # pod 'Onboard'
   pod 'MBProgressHUD'
   pod 'Instabug'
   pod 'Fabric'

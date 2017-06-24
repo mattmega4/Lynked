@@ -22,15 +22,15 @@ class ServiceDetailViewController: UITableViewController {
     
     @IBOutlet weak var saveServiceButton: UIButton!
     @IBOutlet weak var deleteServiceButton: UIButton!
-
+    
     
     var servName: String?
     var servUrl: String?
-//    var servState: Bool?
+    //    var servState: Bool?
     var servFixed: Bool?
     var servCategory: String?
     var servAmount: Double?
-//    var payRateInx: Int?
+    //    var payRateInx: Int?
     
     var service: ServiceClass?
     
@@ -59,7 +59,7 @@ class ServiceDetailViewController: UITableViewController {
     // MARK: - Update Views
     
     func updateViewBasedOnService() {
-
+        
         serviceBillingCurrentSwitch.isOn = service?.serviceStatus == true
         if let name = service?.serviceName {
             servName = name
@@ -70,7 +70,7 @@ class ServiceDetailViewController: UITableViewController {
             servUrl = url
         }
         servFixed = service?.serviceFixed
-                servAmount = service?.serviceAmount ?? 0.0
+        servAmount = service?.serviceAmount ?? 0.0
         
         //        payRateInx = service?.servicePayRateIndex ?? 0
     }
@@ -80,16 +80,16 @@ class ServiceDetailViewController: UITableViewController {
     
     func updateServiceToFirebase() {
         
-//        FirebaseUtility.shared.update(service: service,
-//                                      name: service.text,
-//                                      url: urlTextField.text,
-//                                      amount: fixedAmountTextField.text,
-//                                      isFixed: fixedExpenseToggleSwitch.isOn,
-//                                      state: serviceStateToggleSwtich.isOn,
-//                                      rate: timeFrame ) { (updatedService, errMessage) in
-//                                        
-//                                        self.navigationController?.popViewController(animated: true)
-//        }
+        //        FirebaseUtility.shared.update(service: service,
+        //                                      name: service.text,
+        //                                      url: urlTextField.text,
+        //                                      amount: fixedAmountTextField.text,
+        //                                      isFixed: fixedExpenseToggleSwitch.isOn,
+        //                                      state: serviceStateToggleSwtich.isOn,
+        //                                      rate: timeFrame ) { (updatedService, errMessage) in
+        //
+        //                                        self.navigationController?.popViewController(animated: true)
+        //        }
     }
     
     
@@ -106,29 +106,28 @@ class ServiceDetailViewController: UITableViewController {
                 return
             }
             
-            FirebaseUtility.shared.delete(service: theService,
-                                          completion: { (success, error) in
-                                            
-                                            if let errorMessage = error {
-                                                print(errorMessage)
-                                            } else if success {
-                                                var didGoBack = false
-                                                if let viewControllers = self.navigationController?.viewControllers {
-                                                    for aController in viewControllers {
-                                                        if aController is ServicesViewController {
-                                                            didGoBack = true
-                                                            self.navigationController?.popToViewController(aController, animated: true)
-                                                            break
-                                                        }
-                                                    }
-                                                    
-                                                }
-                                                if !didGoBack {
-                                                    if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
-                                                        self.navigationController?.pushViewController(walletVC, animated: true)
-                                                    }
-                                                }
-                                            }
+            FirebaseUtility.shared.delete(service: theService, completion: { (success, error) in
+                
+                if let errorMessage = error {
+                    print(errorMessage)
+                } else if success {
+                    var didGoBack = false
+                    if let viewControllers = self.navigationController?.viewControllers {
+                        for aController in viewControllers {
+                            if aController is ServicesViewController {
+                                didGoBack = true
+                                self.navigationController?.popToViewController(aController, animated: true)
+                                break
+                            }
+                        }
+                        
+                    }
+                    if !didGoBack {
+                        if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
+                            self.navigationController?.pushViewController(walletVC, animated: true)
+                        }
+                    }
+                }
             })
         }
         
@@ -229,25 +228,25 @@ extension ServiceDetailViewController {
         if indexPath.row == 0 {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! ServiceNameTableViewCell
-            let row = indexPath.row
+
             cell.serviceNameTextField.text = servName
             return cell
             
         } else if indexPath.row == 1 {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! ServiceURLTableViewCell
-            let row = indexPath.row
+
             cell.serviceUrlLabel.text = servUrl
             return cell
             
         } else if indexPath.row == 2 {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! ServiceCategoryTableViewCell
-            let row = indexPath.row
+          
             // PAss from prev VC
-            if let index = CategoryManager.shared.categories.index(where: {$0 == self.category}) {
-                cell.serviceCategoryPicker.selectRow(index, inComponent: 0, animated: false)
-            }
+//            if let index = CategoryManager.shared.categories.index(where: {$0 == self.category}) {
+//                cell.serviceCategoryPicker.selectRow(index, inComponent: 0, animated: false)
+//            }
             
             
             return cell
@@ -255,14 +254,14 @@ extension ServiceDetailViewController {
         } else if indexPath.row == 3 {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! ServiceFixedAndRateTableViewCell
-            let row = indexPath.row
+            
             cell.serviceFixedRatePicker.selectedRow(inComponent: 0)
             return cell
             
         } else /*if indexPath.row == 4*/ {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! ServiceNextScheduledTableViewCell
-            let row = indexPath.row
+            
             //            cell.serviceScheduledDatePicker.setDate(<#T##date: Date##Date#>, animated: <#T##Bool#>)
             return cell
             
