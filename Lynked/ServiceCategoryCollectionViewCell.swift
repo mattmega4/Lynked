@@ -14,8 +14,8 @@ class ServiceCategoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var previewImageViewTwo: UIImageView!
     @IBOutlet weak var previewImageViewThree: UIImageView!
     @IBOutlet weak var previewImageViewFour: UIImageView!
-    
+
+
     @IBOutlet weak var categoryNameLabel: UILabel!
-    
     
 }
