@@ -12,12 +12,8 @@ import UIKit
 private var materialKey = false
 
 extension UIView {
-    func createRoundView() {
-        layer.cornerRadius = frame.size.width/2
-        clipsToBounds = true
-    }
-    
-    @IBInspectable var cellDesign: Bool {
+
+    @IBInspectable var materialDesign: Bool {
         
         get {
             
@@ -37,5 +33,10 @@ extension UIView {
                 self.layer.shadowColor = UIColor(red: 157.0/255.0, green: 157.0/255.0, blue: 157.0/255.0, alpha: 1.0).cgColor
             }
         }
+    }
+    
+    func createRoundView() {
+        layer.cornerRadius = frame.size.width/2
+        clipsToBounds = true
     }
 }
