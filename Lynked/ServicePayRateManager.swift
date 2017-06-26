@@ -13,10 +13,10 @@ class ServicePayRateManager: NSObject {
     static let shared = ServicePayRateManager()
     
     let payRates = [/*"Weekly",*/
-//                    "Biweekly",
-                    "Monthly",
-//                    "Quarterly",
-                    "Annually"]
+        //                    "Biweekly",
+        "Monthly",
+        //                    "Quarterly",
+        "Annually"]
     
     func getNextPaymentDateFor(service: ServiceClass) -> Date {
         if service.nextPaymentDate.timeIntervalSinceNow > 0 {
@@ -73,6 +73,6 @@ class ServicePayRateManager: NSObject {
         
         return Date()
     }
-
+    
 }
 

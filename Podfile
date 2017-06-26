@@ -7,7 +7,7 @@ target 'Lynked' do
 
   # Pods for Lynked
 
-
+  pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
   pod 'MBProgressHUD'
   pod 'Instabug'
   pod 'Fabric'
@@ -20,6 +20,19 @@ target 'Lynked' do
  
 
 
+
+end
+
+target ‘Lynked Widget’ do
+use_frameworks!
+
+  pod 'Fabric'
+  pod 'Crashlytics'
+  pod 'SDWebImage'
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'Firebase/Performance'
 
 end
 

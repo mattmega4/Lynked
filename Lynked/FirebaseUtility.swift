@@ -21,6 +21,40 @@ class FirebaseUtility: NSObject {
     var user = Auth.auth().currentUser
     
     
+    // MARK: - Get All Cards
+    
+    func getAllServices(completion: @escaping (_ services: [ServiceClass]?, _ errorMessage: String?) -> Void) {
+        getCards { (cards, error) in
+            if let theCards = cards {
+                self.getServices(cards: theCards, index: 0, services: [], completion: { (services, error) in
+                    completion(services, error)
+                })
+            }
+            else {
+                completion(nil, error)
+            }
+        }
+    }
+    
+    
+    private func getServices(cards: [CardClass], index: Int, services: [ServiceClass], completion: @escaping (_ services: [ServiceClass]?, _ errorMessage: String?) -> Void) {
+        if index < cards.count {
+            let card = cards[index]
+            getServicesFor(card: card, completion: { (serviceArray, error) in
+                if let theServices = serviceArray {
+                    self.getServices(cards: cards, index: index + 1, services: services + theServices, completion: completion)
+                }
+                else {
+                     self.getServices(cards: cards, index: index + 1, services: services, completion: completion)
+                }
+            })
+        }
+        else {
+            completion(services, nil)
+        }
+    }
+    
+    
     // MARK: - Get Card
     
     func getCards(completion: @escaping (_ cards: [CardClass]?, _ errorMessage: String?) -> Void) {
@@ -35,7 +69,7 @@ class FirebaseUtility: NSObject {
         userCardRef.observeSingleEvent(of: .value, with: { (snapshot) in
             let enumerator = snapshot.children
             var cards = [CardClass]()
-            let cardTrace = Performance.startTrace(name: "PullCardTrace")
+            //let cardTrace = Performance.startTrace(name: "PullCardTrace")
             while let cardSnapshot = enumerator.nextObject() as? DataSnapshot {
                 
                 if let cardDict = cardSnapshot.value as? [String : Any] {
@@ -44,7 +78,7 @@ class FirebaseUtility: NSObject {
                 }
             }
             completion(cards, nil)
-            cardTrace?.stop()
+            //cardTrace?.stop()
         })
     }
     
@@ -449,7 +483,7 @@ class FirebaseUtility: NSObject {
         servicesRef.observeSingleEvent(of: .value, with: { (snapshot) in
             let enumerator = snapshot.children
             var serviceArray = [ServiceClass]()
-            let serviceTrace = Performance.startTrace(name: "PullServiceTrace")
+            //let serviceTrace = Performance.startTrace(name: "PullServiceTrace")
             while let serviceSnapshot = enumerator.nextObject() as? DataSnapshot {
                 
                 if let serviceDict = serviceSnapshot.value as? [String : Any] {
@@ -458,7 +492,7 @@ class FirebaseUtility: NSObject {
                 }
             }
             completion(serviceArray, nil)
-            serviceTrace?.stop()
+//            serviceTrace?.stop()
         })
     }
     

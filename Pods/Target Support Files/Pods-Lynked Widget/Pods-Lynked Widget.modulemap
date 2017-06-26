@@ -1,0 +1,6 @@
+framework module Pods_Lynked_Widget {
+  umbrella header "Pods-Lynked Widget-umbrella.h"
+
+  export *
+  module * { export * }
+}
