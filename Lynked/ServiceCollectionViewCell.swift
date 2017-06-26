@@ -10,7 +10,7 @@ import UIKit
 
 class ServiceCollectionViewCell: UICollectionViewCell {
     
-
+    
     @IBOutlet weak var colorStatusView: UIView!
     @IBOutlet weak var serviceLogoImage: UIImageView!
     @IBOutlet weak var serviceNameLabel: UILabel!
@@ -20,7 +20,7 @@ class ServiceCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.colorStatusView.layoutIfNeeded()       // add this
+        self.colorStatusView.layoutIfNeeded()
         self.colorStatusView.layer.cornerRadius = min(colorStatusView.frame.size.width, colorStatusView.frame.size.height)/2
         self.colorStatusView.clipsToBounds = true
         

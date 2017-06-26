@@ -23,6 +23,8 @@ class WalletViewController: UIViewController {
     var cardtypeToTransfer: String?
     var cardArray: [CardClass] = []
     
+    let cardCellIdentifier = "cardCell"
+    let newCardCellIdentifier = "newCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -133,6 +135,12 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // if new card then do stuff
+        
+        //
+        
+        // but if it was a card
         DispatchQueue.main.async {
             let row = indexPath.row
             self.selectedCard = self.cardArray[row].cardID
@@ -144,11 +152,18 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
             }
             tableView.isUserInteractionEnabled = false
         }
+        // was a card
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! CardTableViewCell
+        // if new card then do stuff
+        
+        //
+        
+        // but if it was a card
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: cardCellIdentifier, for: indexPath as IndexPath) as! CardTableViewCell
         let row = indexPath.row
         
         cell.cardBackgroundView.backgroundColor = cardArray[row].color
@@ -158,6 +173,7 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
         cell.cardDetailsLabel.textColor = cardArray[row].textColor
         
         return cell
+        ///
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

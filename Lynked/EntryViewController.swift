@@ -292,21 +292,20 @@ class EntryViewController: UIViewController {
     // MARK: - Sign User In
     
     func signUserIn() {
-        FirebaseUtility.shared.signUserInWith(email: textFieldOne.text,
-                                              password: textFieldTwo.text) { (user, errMessage) in
-                                                
-                                                if let errorMessage = errMessage {
-                                                    let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errorMessage)", preferredStyle: .alert)
-                                                    self.present(alertController, animated: true, completion:nil)
-                                                    let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
-                                                    }
-                                                    alertController.addAction(OKAction)
-                                                }
-                                                else {
-                                                    if let WalletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
-                                                        self.navigationController?.pushViewController(WalletVC, animated: true)
-                                                    }
-                                                }
+        FirebaseUtility.shared.signUserInWith(email: textFieldOne.text,password: textFieldTwo.text) { (user, errMessage) in
+            
+            if let errorMessage = errMessage {
+                let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errorMessage)", preferredStyle: .alert)
+                self.present(alertController, animated: true, completion:nil)
+                let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
+                }
+                alertController.addAction(OKAction)
+            }
+            else {
+                if let WalletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
+                    self.navigationController?.pushViewController(WalletVC, animated: true)
+                }
+            }
         }
     }
     
@@ -314,22 +313,20 @@ class EntryViewController: UIViewController {
     // MARK: - Register User
     
     func registerNewUser() {
-        FirebaseUtility.shared.registerUserWith(email: newUserEmail,
-                                                password: textFieldOne.text,
-                                                confirmPassword: textFieldTwo.text) { (user, errMessage) in
-                                                    
-                                                    if let errorMessage = errMessage {
-                                                        let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errorMessage)", preferredStyle: .alert)
-                                                        self.present(alertController, animated: true, completion:nil)
-                                                        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
-                                                        }
-                                                        alertController.addAction(OKAction)
-                                                    }
-                                                    else {
-                                                        if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
-                                                            self.navigationController?.pushViewController(addVC, animated: true)
-                                                        }
-                                                    }
+        FirebaseUtility.shared.registerUserWith(email: newUserEmail, password: textFieldOne.text, confirmPassword: textFieldTwo.text) { (user, errMessage) in
+            
+            if let errorMessage = errMessage {
+                let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errorMessage)", preferredStyle: .alert)
+                self.present(alertController, animated: true, completion:nil)
+                let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
+                }
+                alertController.addAction(OKAction)
+            }
+            else {
+                if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
+                    self.navigationController?.pushViewController(addVC, animated: true)
+                }
+            }
         }
     }
     

@@ -53,6 +53,7 @@
 		29D412B41F00B68F0081CF79 /* SegmentColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */; };
 		29D412B51F00B6F60081CF79 /* ServicePayRateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2950A4511EFE40BF00F94BF4 /* ServicePayRateManager.swift */; };
 		29D412B61F00B8070081CF79 /* TempLetterImagePickerUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921B21F1EFBA2E0008F377B /* TempLetterImagePickerUtility.swift */; };
+		29D412B81F00D43A0081CF79 /* NewCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D412B71F00D43A0081CF79 /* NewCardTableViewCell.swift */; };
 		29D5906B1EF5AE5600CA66D6 /* RequestReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D5906A1EF5AE5600CA66D6 /* RequestReview.swift */; };
 		29EE32441EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EE32431EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift */; };
 		29EFAB251EFE46A1007F384E /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29EFAB241EFE46A1007F384E /* NotificationCenter.framework */; };
@@ -130,6 +131,7 @@
 		29CB33111EF65EFA009CEE3B /* AcknowledgementsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcknowledgementsViewController.swift; sourceTree = "<group>"; };
 		29CB33131EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcknowledgementsTableViewCell.swift; sourceTree = "<group>"; };
 		29D412AE1F00AF0C0081CF79 /* WidgetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidgetTableViewCell.swift; sourceTree = "<group>"; };
+		29D412B71F00D43A0081CF79 /* NewCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCardTableViewCell.swift; sourceTree = "<group>"; };
 		29D5906A1EF5AE5600CA66D6 /* RequestReview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestReview.swift; sourceTree = "<group>"; };
 		29EE32431EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceCollectionViewCell.swift; sourceTree = "<group>"; };
 		29EFAB231EFE46A1007F384E /* Lynked Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Lynked Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -260,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				292764941EDFC8350096AE1E /* CardTableViewCell.swift */,
+				29D412B71F00D43A0081CF79 /* NewCardTableViewCell.swift */,
 			);
 			name = "Wallet TableView Cell";
 			sourceTree = "<group>";
@@ -599,6 +602,7 @@
 				298FA4E41EF78EA4009B5A36 /* UIViewController+Extensions.swift in Sources */,
 				1D1712791E01F0870087F299 /* PreferencesViewController.swift in Sources */,
 				297BEA001EF708640035D4DA /* Library.swift in Sources */,
+				29D412B81F00D43A0081CF79 /* NewCardTableViewCell.swift in Sources */,
 				29EE32441EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift in Sources */,
 				29AA67E21EE7B4BA000EDE42 /* InAppPurchaseUtility.swift in Sources */,
 			);
