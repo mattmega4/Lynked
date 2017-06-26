@@ -278,8 +278,6 @@ class ServiceDetailViewController: UITableViewController {
 
 extension ServiceDetailViewController: UITextFieldDelegate {
  
-    
-    
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == nameTextField {
             service?.serviceName = textField.text
@@ -295,8 +293,6 @@ extension ServiceDetailViewController: UITextFieldDelegate {
             }
         }
     }
-    
-    
 }
 
 // MARK: - UIPickerView Delegate Methods
@@ -367,9 +363,11 @@ extension ServiceDetailViewController {
         case 0:
             cell.serviceTextField.text = service?.serviceName
             nameTextField = cell.serviceTextField
+            nameTextField?.keyboardType = .default
         case 1:
             cell.serviceTextField.text = service?.serviceUrl
             urlTextField = cell.serviceTextField
+            urlTextField?.keyboardType = .URL
         case 2:
             cell.serviceTextField.text = service?.category
             cell.serviceTextField.inputView = categoryPicker
@@ -377,6 +375,7 @@ extension ServiceDetailViewController {
         case 3:
             if let amount = service?.serviceAmount {
                 cell.serviceTextField.text = String(amount)
+                cell.serviceTextField.keyboardType = .decimalPad
             }
             amountTextField = cell.serviceTextField
         case 4:

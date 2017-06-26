@@ -14,18 +14,20 @@ class ServicesViewController: UIViewController {
     
     @IBOutlet weak var leftNavBarButton: UIBarButtonItem!
     @IBOutlet weak var rightNavBarButton: UIBarButtonItem!
-    @IBOutlet weak var categoryViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var firstContainerView: UIView!
-    @IBOutlet weak var serviceLabel: UILabel!
     @IBOutlet weak var serviceTextField: UITextField!
     @IBOutlet weak var categoryTextField: UITextField!
+    
+    @IBOutlet weak var leftVerticalDividerView: UIView!
     @IBOutlet weak var rightVerticalDividerView: UIView!
     @IBOutlet weak var addServiceButton: UIButton!
     
-    @IBOutlet weak var secondContainerView: UIView!
     
-    @IBOutlet weak var thirdContainerView: UIView!
+    @IBOutlet weak var dividerViewTwo: UIView!
+    
+    
+    @IBOutlet weak var secondContainerView: UIView!
     @IBOutlet weak var segControl: UISegmentedControl!
     
     @IBOutlet weak var disclaimerLabelOne: UILabel!
@@ -35,8 +37,7 @@ class ServicesViewController: UIViewController {
     @IBOutlet weak var editCardButton: UIButton!
     
     @IBOutlet weak var dividerViewOne: UIView!
-    @IBOutlet weak var dividerViewTwo: UIView!
-    @IBOutlet weak var dividerViewThree: UIView!
+    
     
     let categoryPickerView = UIPickerView()
     
@@ -65,7 +66,6 @@ class ServicesViewController: UIViewController {
         self.collectionView.dataSource = self
         
         collectionView.allowsSelection = true
-        categoryViewHeightConstraint.constant = 0
         setNavBar()
         
         serviceTextField.addTarget(self, action: #selector(enableAddButton(textField:)), for: .editingChanged)
@@ -93,7 +93,6 @@ class ServicesViewController: UIViewController {
         addServiceButton.isEnabled = false
         getServices()
         
-        
     }
     
     
@@ -110,7 +109,7 @@ class ServicesViewController: UIViewController {
                         if $0.serviceAttention == $1.serviceAttention { return $0.serviceName ?? "" < $1.serviceName ?? "" }
                         return $0.serviceAttention > $1.serviceAttention
                     }
-
+                    
                     self.collectionView.reloadData()
                 } else {
                     if let theError = error?.localizedDescription {
@@ -143,12 +142,7 @@ class ServicesViewController: UIViewController {
     
     func addService(service: ServiceClass) {
         serviceArray.append(service)
-//        self.serviceArray.sort {
-//            if $0.serviceAttention == $1.serviceAttention { return $0.serviceName ?? "" < $1.serviceName ?? "" }
-//            return $0.serviceAttention > $1.serviceAttention
-//        }
     }
-    
     
     
     func addServiceToCard() {
@@ -163,11 +157,6 @@ class ServicesViewController: UIViewController {
                 self.addServiceButton.isEnabled = false
                 self.getCategories()
                 self.collectionView.reloadData()
-                
-                UIView.animate(withDuration: 2.2, animations: {
-                    self.categoryViewHeightConstraint.constant = 0
-                    //                    self.secondContainerView.layoutSubviews()
-                })
                 
             }
         }
@@ -258,7 +247,10 @@ extension ServicesViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == serviceTextField {
-            serviceTextField.returnKeyType = .go
+            serviceTextField.returnKeyType = .next
+            categoryTextField.becomeFirstResponder()
+        } else if textField == categoryTextField {
+            textField.returnKeyType = .go
             addServiceToCard()
             view.endEditing(true)
         }
@@ -268,13 +260,7 @@ extension ServicesViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if textField == categoryTextField {
             categoryTextField.text = categories[0]
-        }
-        else if textField == serviceTextField {
-            
-            UIView.animate(withDuration: 2.2, animations: {
-                self.categoryViewHeightConstraint.constant = 50
-                //                self.secondContainerView.layoutSubviews()
-            })
+        } else if textField == serviceTextField {
             
         }
         return true
@@ -375,7 +361,7 @@ extension ServicesViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if !isDisplayingCategories {
             if let serviceDetailVC = storyboard?.instantiateViewController(withIdentifier: "serviceDetailVC") as? ServiceDetailViewController {
-                 serviceDetailVC.service = self.serviceArray[indexPath.row]
+                serviceDetailVC.service = self.serviceArray[indexPath.row]
                 navigationController?.pushViewController(serviceDetailVC, animated: true)
             }
         }
@@ -383,10 +369,6 @@ extension ServicesViewController: UICollectionViewDelegate, UICollectionViewData
             
         }
     }
-    
-    
-    /// did select
-//    serviceDetailVC
 }
 
 
