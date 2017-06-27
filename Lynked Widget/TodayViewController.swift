@@ -8,7 +8,8 @@
 
 import UIKit
 import NotificationCenter
-import SDWebImage
+//import SDWebImage
+import Kingfisher 
 
 
 class TodayViewController: UIViewController, NCWidgetProviding {
@@ -94,7 +95,8 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
                 let myURLString: String = "http://www.google.com/s2/favicons?domain=\(serviceURL)"
                 
                 if let myURL = URL(string: myURLString) {
-                    cell.serviceImageView.sd_setImage(with: myURL, placeholderImage: placeholderImage)
+//                    cell.serviceImageView.sd_setImage(with: myURL, placeholderImage: placeholderImage)
+                    cell.serviceImageView.kf.setImage(with: myURL, placeholder: placeholderImage)
                 }
             }
         }

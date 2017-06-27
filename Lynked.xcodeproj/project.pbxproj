@@ -112,6 +112,7 @@
 		292764921EDFA3160096AE1E /* WalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		292764941EDFC8350096AE1E /* CardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
 		292DEB071F01D77F008247EC /* Lynked.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Lynked.entitlements; sourceTree = "<group>"; };
+		29390C2E1F02F0B70047F013 /* FavIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavIcon.swift; path = ../../Desktop/FavIcon.swift; sourceTree = "<group>"; };
 		294135FA1EFD9D8200002FAC /* CategoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryManager.swift; sourceTree = "<group>"; };
 		2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseUtility.swift; sourceTree = "<group>"; };
 		294D0E311EF9E9F7000E4BC6 /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
@@ -345,6 +346,7 @@
 		5992905EFC84512369FCFBED /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				29390C2E1F02F0B70047F013 /* FavIcon.swift */,
 				29F778D71EEE291300B6AA6E /* AdSupport.framework */,
 				299F85211EE78DB1001A819D /* StoreKit.framework */,
 				267A4AE157A5C3F5E4C71A91 /* Pods_Lynked.framework */,
@@ -776,6 +778,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Lynked/Lynked.entitlements;
 				DEVELOPMENT_TEAM = K8YZSQZRNW;
 				ENABLE_BITCODE = NO;
@@ -784,6 +787,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.matthewhsingleton.Lynked;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -794,6 +798,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Lynked/Lynked.entitlements;
 				DEVELOPMENT_TEAM = K8YZSQZRNW;
 				ENABLE_BITCODE = NO;
