@@ -22,7 +22,7 @@ class ServiceClass {
     var serviceAmount: Double = 0
     var serviceAttention: Int = 0
     
-    var nextPaymentDate = Date()
+    var nextPaymentDate: Date?
     var category: String?
     var paymentRate: String?
     

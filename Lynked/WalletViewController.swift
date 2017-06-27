@@ -34,6 +34,9 @@ class WalletViewController: UIViewController {
         
         title = "Wallet"
         setNavBar()
+        FirebaseUtility.shared.getAllServices { (services, error) in
+            
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

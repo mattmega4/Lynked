@@ -10,6 +10,7 @@ import UIKit
 
 class WidgetTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var serviceImageView: UIImageView!
     
     @IBOutlet weak var serviceNameLabel: UILabel!

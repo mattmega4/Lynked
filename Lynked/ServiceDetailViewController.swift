@@ -40,8 +40,8 @@ class ServiceDetailViewController: UITableViewController {
         [["title" : "Name", "placeholder" : "Netflix", "hasSwitch" : false],
          ["title" : "URL", "placeholder" : "netflix.com", "hasSwitch" : false],
          ["title" : "Category", "placeholder" : "Entertainment", "hasSwitch" : false],
-         ["title" : "Pay Amount", "placeholder" : "9.99", "hasSwitch" : false],
-         ["title" : "Pay Rate", "placeholder" : "Monthy", "hasSwitch" : true],
+         ["title" : "Pay Amount", "placeholder" : "9.99", "hasSwitch" : true],
+         ["title" : "Pay Rate", "placeholder" : "Monthy", "hasSwitch" : false],
          ["title" : "Next Scheduled Payment", "placeholder" : "15th of May", "hasSwitch" : false]]
     
     let categoryPicker = UIPickerView()
@@ -74,8 +74,9 @@ class ServiceDetailViewController: UITableViewController {
         self.nameTextField?.delegate = self
         self.urlTextField?.delegate = self
         self.amountTextField?.delegate = self
+        self.dateTextField?.delegate = self
         
-        datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .editingChanged)
+        datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ServiceDetailViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -136,19 +137,39 @@ class ServiceDetailViewController: UITableViewController {
     // MARK: - Firebase Methods
     
     func updateServiceToFirebase() {
-        
-        FirebaseUtility.shared.update(service: service,
-                                      name: nameTextField?.text,
-                                      url: urlTextField?.text,
-                                      amount: amountTextField?.text,
-                                      isFixed: fixedSwitch?.isOn == true,
-                                      state: serviceBillingCurrentSwitch.isOn,
-                                      rate: rateTextField?.text,
-                                      scheduled: servScheduled,
-                                      categ: categoryTextField?.text) {
-                                        (updatedService, errMessage) in
-                                        self.navigationController?.popViewController(animated: true)
+        if servFixed {
+            FirebaseUtility.shared.update(service: service,
+                                          name: nameTextField?.text,
+                                          url: urlTextField?.text,
+                                          amount: amountTextField?.text,
+                                          isFixed: true,
+                                          state: serviceBillingCurrentSwitch.isOn,
+                                          rate: rateTextField?.text,
+                                          scheduled: servScheduled,
+                                          categ: categoryTextField?.text,
+                                          paymentDate: datePicker.date,
+                                          completion: { (updatedService, errMessage) in
+                                            self.navigationController?.popViewController(animated: true)
+            })
+            
+        } else {
+            
+            FirebaseUtility.shared.update(service: service,
+                                          name: nameTextField?.text,
+                                          url: urlTextField?.text,
+                                          amount: nil,
+                                          isFixed: false,
+                                          state: serviceBillingCurrentSwitch.isOn,
+                                          rate: nil,
+                                          scheduled: nil,
+                                          categ: categoryTextField?.text,
+                                          paymentDate: nil,
+                                          completion: { (updatedService, errMessage) in
+                                            self.navigationController?.popViewController(animated: true)
+            })
+            
         }
+        
     }
     
     
@@ -261,11 +282,11 @@ class ServiceDetailViewController: UITableViewController {
     }
     
     @IBAction func saveServiceButtonTapped(_ sender: UIButton) {
-                updateServiceToFirebase()
+        updateServiceToFirebase()
     }
     
     @IBAction func deleteServiceButtonTapped(_ sender: UIButton) {
-                deleteThisService()
+        deleteThisService()
     }
     
     
@@ -277,7 +298,7 @@ class ServiceDetailViewController: UITableViewController {
 // MARK: - UITextField Delegates
 
 extension ServiceDetailViewController: UITextFieldDelegate {
- 
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == nameTextField {
             service?.serviceName = textField.text
@@ -358,7 +379,7 @@ extension ServiceDetailViewController {
             fixedSwitch = cell.fixedToggleSwitch
             fixedSwitch?.isOn = service?.serviceFixed == true
         }
-        
+        cell.delegate = self
         switch indexPath.row {
         case 0:
             cell.serviceTextField.text = service?.serviceName
@@ -373,22 +394,31 @@ extension ServiceDetailViewController {
             cell.serviceTextField.inputView = categoryPicker
             categoryTextField = cell.serviceTextField
         case 3:
+            cell.serviceTextField.isEnabled = self.servFixed
             if let amount = service?.serviceAmount {
                 cell.serviceTextField.text = String(amount)
                 cell.serviceTextField.keyboardType = .decimalPad
             }
             amountTextField = cell.serviceTextField
+            cell.fixedToggleSwitch?.isOn = servFixed
         case 4:
+            cell.serviceTextField.isEnabled = self.servFixed
             cell.serviceTextField.text = service?.paymentRate
             cell.serviceTextField.inputView = payRatePicker
             rateTextField = cell.serviceTextField
         case 5:
+            cell.serviceTextField.isEnabled = self.servFixed
             if let theService = service {
-                let paymentDate = ServicePayRateManager.shared.getNextPaymentDateFor(service: theService)
-                let formatter = DateFormatter()
-                formatter.dateFormat = "MMM dd, yyyy"
-                cell.serviceTextField.text = formatter.string(from: paymentDate)
+                if let paymentDate = ServicePayRateManager.shared.getNextPaymentDateFor(service: theService) {
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "MMM dd, yyyy"
+                    cell.serviceTextField.text = formatter.string(from: paymentDate)
+                    
+                }
                 cell.serviceTextField.inputView = datePicker
+            }
+            else {
+                cell.serviceTextField.text = ""
             }
             dateTextField = cell.serviceTextField
         default:
@@ -411,7 +441,14 @@ extension ServiceDetailViewController {
 }
 
 
-
+extension ServiceDetailViewController: ServiceDetailTableViewCellDelegate {
+    
+    func serviceDetailTableViewCell(cell: ServiceDetailTableViewCell, didChangeFixedSwitch fixedSwitch: UISwitch) {
+        servFixed = fixedSwitch.isOn
+        tableView.reloadData()
+    }
+    
+}
 
 
 

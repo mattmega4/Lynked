@@ -27,5 +27,16 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.widget-extension</string>
 	</dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSAllowsArbitraryLoadsInWebContent</key>
+		<false/>
+	</dict>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>Instagram</string>
+	</array>
 </dict>
 </plist>

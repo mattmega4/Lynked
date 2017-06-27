@@ -9,19 +9,33 @@
 import UIKit
 import NotificationCenter
 import SDWebImage
-import Firebase
+
 
 class TodayViewController: UIViewController, NCWidgetProviding {
     
-    @IBOutlet weak var tableView: UITableView!
-    let widgetCellIdentifier = "widgetCell"
-    var serviceArray = [ServiceClass]()
+    @IBOutlet weak var signInLabel: UILabel!
     
-        
+    @IBOutlet weak var tableView: UITableView!
+    
+    let widgetCellIdentifier = "widgetCell"
+    var serviceArray = [[String : String]]()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        FirebaseApp.configure()
-        
+        print("foooodfdajla")
+        //FirebaseApp.configure()
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+//        let groupDefaults = UserDefaults(suiteName: "group.Lynked")
+//        if let services = groupDefaults?.object(forKey: "services") as? [[String : String]] {
+//            serviceArray = services
+//            print(services)
+//            signInLabel.isHidden = true
+//        } else {
+//            signInLabel.isHidden = false
+//        }
+
         // Do any additional setup after loading the view from its nib.
     }
     
@@ -30,17 +44,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // Dispose of any resources that can be recreated.
     }
     
-    func getServices() {
-        
-        FirebaseUtility.shared.getAllServices { (services, error) in
-            if let theServices = services {
-                self.serviceArray = theServices
-                self.tableView.reloadData()
-            }
-        }
-        
-        
-    }
     
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
         // Perform any setup necessary in order to update the view.
@@ -48,8 +51,18 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // If an error is encountered, use NCUpdateResult.Failed
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
-        getServices()
-        completionHandler(NCUpdateResult.newData)
+        let groupDefaults = UserDefaults(suiteName: "group.Lynked")
+        if let services = groupDefaults?.object(forKey: "services") as? [[String : String]] {
+            serviceArray = services
+            print(services)
+            self.tableView.reloadData()
+            signInLabel.isHidden = true
+            completionHandler(NCUpdateResult.newData)
+        } else {
+            signInLabel.isHidden = false
+            completionHandler(NCUpdateResult.noData)
+        }
+        
     }
     
 }
@@ -71,35 +84,37 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: widgetCellIdentifier, for: indexPath) as! WidgetTableViewCell
         
         let service = serviceArray[indexPath.row]
-        
-        let placeholderImage = UIImage.init(named: "\(TempLetterImagePickerUtility.shared.getLetterOrNumberAndChooseImage(text: service.serviceName!))")
-        if let seviceURLString = service.serviceUrl, service.serviceUrl?.isEmpty == false {
-            let myURLString: String = "http://www.google.com/s2/favicons?domain=\(seviceURLString)"
+        if let serviceName = service["name"], let serviceURL = service["url"] {
             
-            if let myURL = URL(string: myURLString) {
-                cell.serviceImageView.sd_setImage(with: myURL, placeholderImage: placeholderImage)
+            cell.serviceNameLabel.text = serviceName.capitalized
+            cell.serviceDateLabel.text = service["date"]?.capitalized
+            
+            let placeholderImage = UIImage.init(named: "\(TempLetterImagePickerUtility.shared.getLetterOrNumberAndChooseImage(text: serviceName))")
+            if serviceURL.isEmpty == false {
+                let myURLString: String = "http://www.google.com/s2/favicons?domain=\(serviceURL)"
+                
+                if let myURL = URL(string: myURLString) {
+                    cell.serviceImageView.sd_setImage(with: myURL, placeholderImage: placeholderImage)
+                }
             }
         }
-            
-        else {
-            cell.serviceImageView.image = placeholderImage
-        }
         
-        cell.serviceNameLabel.text = service.serviceName
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM dd, yyyy"
+        //        let dateFormatter = DateFormatter()
+        //        dateFormatter.dateFormat = "MMM dd, yyyy"
+        //
+        //
+        //
+        //        cell.serviceDateLabel.text = dateFormatter.string(from: service.nextPaymentDate)
         
         
         
-        cell.serviceDateLabel.text = dateFormatter.string(from: service.nextPaymentDate)
-
-
-
         return cell
     }
     
-        
-
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        extensionContext?.open(URL(string: "Instagram://")! , completionHandler: nil)
+    }
+    
+    
+    
 }

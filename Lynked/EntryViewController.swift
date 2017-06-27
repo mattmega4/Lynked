@@ -75,6 +75,26 @@ class EntryViewController: UIViewController {
         leftButtonWasTappedWhichIsDefault()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        checkIfAlreadyLoggedIn()
+    }
+    
+    
+    // MARK: - Check if Already Logged In
+    
+    func checkIfAlreadyLoggedIn() {
+        
+        if Auth.auth().currentUser != nil {
+            if let WalletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
+                self.navigationController?.pushViewController(WalletVC, animated: true)
+            }
+        }
+        
+    }
+    
+    
     // MARK: - Switch Logic For Sign In or Create Button in Bottom Container View
     
     func bottomContainerStateSwitcher() {
