@@ -7,8 +7,11 @@
 //
 
 import UIKit
-import SDWebImage
+//import SDWebImage
+import Kingfisher
 import MBProgressHUD
+
+
 
 class ServicesViewController: UIViewController {
     
@@ -319,12 +322,27 @@ extension ServicesViewController: UICollectionViewDelegate, UICollectionViewData
             cell.colorStatusView.backgroundColor = service.serviceStatus ? .green : .red
             cell.serviceNameLabel.text = service.serviceName
             cell.serviceFixedAmountLabel.text = String(service.serviceAmount)
+            
+            
+            
+//            try FavIcon.downloadPreferred("https://apple.com") { result in
+//                if case let .success(image) = result {
+//                    // On iOS, this is a UIImage, do something with it here.
+//                    // This closure will be executed on the main queue, so it's safe to touch
+//                    // the UI here.
+//                }
+//            }
+            
+            
+            
+            
             let placeholderImage = UIImage.init(named: "\(TempLetterImagePickerUtility.shared.getLetterOrNumberAndChooseImage(text: service.serviceName!))")
             if let seviceURLString = service.serviceUrl, service.serviceUrl?.isEmpty == false {
                 let myURLString: String = "http://www.google.com/s2/favicons?domain=\(seviceURLString)"
                 
                 if let myURL = URL(string: myURLString) {
-                    cell.serviceLogoImage.sd_setImage(with: myURL, placeholderImage: placeholderImage)
+                    cell.serviceLogoImage.kf.setImage(with: myURL, placeholder: placeholderImage)
+//                    cell.serviceLogoImage.sd_setImage(with: myURL, placeholderImage: placeholderImage)
                 }
             }
                 
@@ -346,13 +364,17 @@ extension ServicesViewController: UICollectionViewDelegate, UICollectionViewData
                 if let myURL = URL(string: myURLString) {
                     switch i {
                     case 0:
-                        cell.previewImageViewOne.sd_setImage(with: myURL, placeholderImage: placeholderImage)
+                        cell.previewImageViewOne.kf.setImage(with: myURL, placeholder: placeholderImage)
+//                        cell.previewImageViewOne.sd_setImage(with: myURL, placeholderImage: placeholderImage)
                     case 1:
-                        cell.previewImageViewTwo.sd_setImage(with: myURL, placeholderImage: placeholderImage)
+                        cell.previewImageViewTwo.kf.setImage(with: myURL, placeholder: placeholderImage)
+//                        cell.previewImageViewTwo.sd_setImage(with: myURL, placeholderImage: placeholderImage)
                     case 2:
-                        cell.previewImageViewThree.sd_setImage(with: myURL, placeholderImage: placeholderImage)
+                        cell.previewImageViewThree.kf.setImage(with: myURL, placeholder: placeholderImage)
+//                        cell.previewImageViewThree.sd_setImage(with: myURL, placeholderImage: placeholderImage)
                     case 3:
-                        cell.previewImageViewFour.sd_setImage(with: myURL, placeholderImage: placeholderImage)
+                        cell.previewImageViewFour.kf.setImage(with: myURL, placeholder: placeholderImage)
+//                        cell.previewImageViewFour.sd_setImage(with: myURL, placeholderImage: placeholderImage)
                         
                     default:
                         print("I shouldn't have been printed")
