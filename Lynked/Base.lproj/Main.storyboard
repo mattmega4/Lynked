@@ -767,6 +767,9 @@
                                         </label>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zg1-By-ysW">
                                             <rect key="frame" x="256" y="34.5" width="51" height="31"/>
+                                            <connections>
+                                                <action selector="serviceFixedSwitched:" destination="e05-6e-OL3" eventType="valueChanged" id="36S-Za-ZBC"/>
+                                            </connections>
                                         </switch>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Monthly" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Aiv-sj-GW1">
                                             <rect key="frame" x="15" y="35" width="226" height="44.5"/>

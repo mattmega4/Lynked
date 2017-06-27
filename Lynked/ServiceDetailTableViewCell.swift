@@ -12,11 +12,10 @@ import UIKit
 class ServiceDetailTableViewCell: UITableViewCell {
     
     @IBOutlet weak var serviceTitleLabel: UILabel!
-    
     @IBOutlet weak var serviceTextField: UITextField!
-    
     @IBOutlet weak var fixedToggleSwitch: UISwitch?
     
+    var delegate: ServiceDetailTableViewCellDelegate?
     
 
     override func awakeFromNib() {
@@ -29,5 +28,21 @@ class ServiceDetailTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    
+    @IBAction func serviceFixedSwitched(_ sender: UISwitch) {
+        
+        delegate?.serviceDetailTableViewCell(cell: self, didChangeFixedSwitch: sender)
+        
+    }
 
 }
+
+
+protocol ServiceDetailTableViewCellDelegate {
+    
+    func serviceDetailTableViewCell(cell: ServiceDetailTableViewCell, didChangeFixedSwitch fixedSwitch: UISwitch)
+    
+}
+
+

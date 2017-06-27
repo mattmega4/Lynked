@@ -28,12 +28,32 @@ class FirebaseUtility: NSObject {
             if let theCards = cards {
                 self.getServices(cards: theCards, index: 0, services: [], completion: { (services, error) in
                     completion(services, error)
+                    let groupDefaults = UserDefaults(suiteName: "group.Lynked")
+                    if let theServices = services {
+                        let simpleArray = self.getSimpleArrayFrom(services: theServices)
+                        groupDefaults?.set(simpleArray, forKey: "services")
+                    }
                 })
             }
             else {
                 completion(nil, error)
             }
         }
+    }
+    
+    private func getSimpleArrayFrom(services: [ServiceClass]) -> [[String : String]] {
+        var simpleArray = [[String : String]]()
+        for aService in services {
+            
+            if let name = aService.serviceName, let url = aService.serviceUrl, let nextPaymentDate = aService.nextPaymentDate, aService.serviceFixed == true {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "MMM dd, yyyy"
+                let date = formatter.string(from: nextPaymentDate)
+                let object = ["name" : name, "url" : url, "date" : date]
+                simpleArray.append(object)
+            }
+        }
+        return simpleArray
     }
     
     
@@ -45,7 +65,7 @@ class FirebaseUtility: NSObject {
                     self.getServices(cards: cards, index: index + 1, services: services + theServices, completion: completion)
                 }
                 else {
-                     self.getServices(cards: cards, index: index + 1, services: services, completion: completion)
+                    self.getServices(cards: cards, index: index + 1, services: services, completion: completion)
                 }
             })
         }
@@ -208,7 +228,7 @@ class FirebaseUtility: NSObject {
             completion(nil, errorMessage)
             return
         }
-
+        
         
         let serviceRef = ref.child("newServices").child(theCard.cardID).childByAutoId()
         
@@ -224,9 +244,7 @@ class FirebaseUtility: NSObject {
                                            "serviceFixed": false,
                                            "serviceAmount" : 0,
                                            "attentionInt" : 0,
-                                           "category": selectedCategory,
-                                           "paymentRate": "Monthly",
-                                           "nextPaymentDate": Date().timeIntervalSinceReferenceDate]
+                                           "category": selectedCategory]
         
         serviceRef.setValue(serviceDict, withCompletionBlock: { (error, ref) in
             
@@ -264,14 +282,14 @@ class FirebaseUtility: NSObject {
                    isFixed: service.serviceFixed ?? false,
                    state: false,
                    rate: service.paymentRate,
-                   scheduled: service.nextPaymentDate.timeIntervalSinceReferenceDate,
+                   scheduled: service.nextPaymentDate?.timeIntervalSinceReferenceDate,
                    categ: service.category,
-                   completion: { (service, errMessage) in
-                    
-                if let theService = service {
-                    theServices.append(theService)
-                }
-                self.resetServices(services: services, updatedServices: theServices, index: index + 1, completion: completion)
+                   paymentDate: service.nextPaymentDate,
+                   completion: { (service, error) in
+                    if let theService = service {
+                        theServices.append(theService)
+                    }
+                    self.resetServices(services: services, updatedServices: theServices, index: index + 1, completion: completion)
             })
         }
         else {
@@ -283,264 +301,301 @@ class FirebaseUtility: NSObject {
         }
     }
     
-    
-    // MARK: - Update Service
-    
-    func update(service: ServiceClass?,
-                name: String?,
-                url: String?,
-                amount: String?,
-                isFixed: Bool,
-                state: Bool,
-                rate: String?,
-                scheduled: Double?,
-                categ: String?,
-                completion: @escaping (_ service: ServiceClass?, _ errMessage: String?) -> Void) {
-        
-        guard let service = service else {
-            let errorMessage = "Something went wrong"
-            completion(nil, errorMessage)
-            return
-        }
-        
-        guard let theName = name else {
-            let errorMessage = "Please enter the service name"
-            completion(nil, errorMessage)
-            return
-        }
-        
-        guard let theURL = url else {
-            let errorMessage = "Please enter the service url"
-            completion(nil, errorMessage)
-            return
-        }
-        
-        guard let theRate = rate else {
-            let errorMessage = "Please enter the pay rate"
-            completion(nil, errorMessage)
-            return
-        }
-        
-        guard let theCat = categ else {
-            let errorMessage = "Please enter the category"
-            completion(nil, errorMessage)
-            return
-        }
-        
-        var serviceAmount: Double = 0
-        
-        if let theAmount = amount {
-            var amountWhiteSpacesRemoved = theAmount.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-            if amountWhiteSpacesRemoved.hasPrefix("$") && amountWhiteSpacesRemoved.characters.count > 1 {
-                amountWhiteSpacesRemoved.remove(at: amountWhiteSpacesRemoved.startIndex)
-            }
-            serviceAmount = Double(amountWhiteSpacesRemoved) ?? 0.0
-        }
-        
-        let attention: Int = state ? 0 : 1
-        serviceAmount = isFixed ? serviceAmount : 0
-        
-        let serviceRef = ref.child("newServices").child(service.cardID).child(service.serviceID)
-        
-        let serviceDict: [String : Any] = ["serviceName": theName,
-                                           "serviceURL": theURL,
-                                           "serviceStatus": state,
-                                           "serviceFixed": isFixed,
-                                           "serviceAmount" : serviceAmount,
-                                           "attentionInt" : attention,
-                                           "category": theCat,
-                                           "paymentRate": theRate]
 
-        serviceRef.setValue(serviceDict, withCompletionBlock: { (error, ref) in
+
+//    update(service: service,
+//    name: service.serviceName,
+//    url: service.serviceUrl,
+//    amount: String(service.serviceAmount),
+//    isFixed: service.serviceFixed ?? false,
+//    state: false,
+//    rate: service.paymentRate,
+//    scheduled: service.nextPaymentDate?.timeIntervalSinceReferenceDate,
+//    categ: service.category,
+//    completion: { (service, errMessage) in
+//    
+//    if let theService = service {
+//    theServices.append(theService)
+//    }
+//    self.resetServices(services: services, updatedServices: theServices, index: index + 1, completion: completion)
+//    })
+//}
+//else {
+//    Analytics.logEvent("Card_Altered", parameters: ["success" : true])
+//    
+//    Answers.logCustomEvent(withName: "Card was Altered",
+//                           customAttributes: nil)
+//    completion(theServices)
+//}
+//}
+
+
+// MARK: - Update Service
+
+func update(service: ServiceClass?,
+            name: String?,
+            url: String?,
+            amount: String?,
+            isFixed: Bool,
+            state: Bool,
+            rate: String?,
+            scheduled: Double?,
+            categ: String?,
+            paymentDate: Date?,
+            completion: @escaping (_ service: ServiceClass?, _ errMessage: String?) -> Void) {
+    
+    guard let service = service else {
+        let errorMessage = "Something went wrong"
+        completion(nil, errorMessage)
+        return
+    }
+    
+    guard let theName = name else {
+        let errorMessage = "Please enter the service name"
+        completion(nil, errorMessage)
+        return
+    }
+    
+    guard let theURL = url else {
+        let errorMessage = "Please enter the service url"
+        completion(nil, errorMessage)
+        return
+    }
+    
+    //        guard let theRate = rate else {
+    //            let errorMessage = "Please enter the pay rate"
+    //            completion(nil, errorMessage)
+    //            return
+    //        }
+    
+    guard let theCat = categ else {
+        let errorMessage = "Please enter the category"
+        completion(nil, errorMessage)
+        return
+    }
+    
+    
+    let attention: Int = state ? 0 : 1
+    //serviceAmount = isFixed ? serviceAmount : 0
+    
+    let serviceRef = ref.child("newServices").child(service.cardID).child(service.serviceID)
+    
+    var serviceDict: [String : Any] = ["serviceName": theName,
+                                       "serviceURL": theURL,
+                                       "serviceStatus": state,
+                                       "serviceFixed": isFixed,
+                                       "attentionInt" : attention,
+                                       "category": theCat]
+    
+    if isFixed, let theRate = rate, let theAmount = amount, let paymentDate = paymentDate?.timeIntervalSince1970 {
+        var serviceAmount: Double = 0
+        var amountWhiteSpacesRemoved = theAmount.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        if amountWhiteSpacesRemoved.hasPrefix("$") && amountWhiteSpacesRemoved.characters.count > 1 {
+            amountWhiteSpacesRemoved.remove(at: amountWhiteSpacesRemoved.startIndex)
+        }
+        serviceAmount = Double(amountWhiteSpacesRemoved) ?? 0.0
+        
+        serviceDict = ["serviceName": theName,
+                       "serviceURL": theURL,
+                       "serviceStatus": state,
+                       "serviceFixed": isFixed,
+                       "serviceAmount" : serviceAmount,
+                       "attentionInt" : attention,
+                       "category": theCat,
+                       "paymentRate": theRate,
+                       "nextPaymentDate": paymentDate]
+    }
+    
+    serviceRef.setValue(serviceDict, withCompletionBlock: { (error, ref) in
+        
+        if let theError = error?.localizedDescription {
+            let errorMessage = theError
+            completion(nil, errorMessage)
             
-            if let theError = error?.localizedDescription {
-                let errorMessage = theError
-                completion(nil, errorMessage)
-                
-            } else {
-                
-                Analytics.logEvent("Service_Details_Updated", parameters: ["success" : true])
-                
-                Answers.logCustomEvent(withName: "Service Details Updated",
-                                       customAttributes: nil)
-                
-                
-                let service = ServiceClass(id: ref.key, cardId: service.cardID, serviceDict: serviceDict)
-                completion(service, nil)
-            }
-        })
-    }
-    
-    
-    // MARK: - Sign User In
-    
-    func signUserInWith(email: String?, password: String?, completion: @escaping (_ user: User?, _ errorMessage: String?) -> Void) {
-        
-        guard let theEmail = email else {
-            let errMessage = "Please enter an email"
-            completion(nil, errMessage)
-            return
-        }
-        
-        guard let thePassword = password else {
-            let errMessage = "Please enter a password"
-            completion(nil, errMessage)
-            return
-        }
-        
-        
-        Auth.auth().signIn(withEmail: theEmail, password: thePassword, completion: { (user, error) in
-            if let theError = error {
-                
-                var errMessage = "An unknown error occured."
-                if let errCode = AuthErrorCode(rawValue: (theError._code)) {
-                    switch errCode {
-                        
-                    case .invalidEmail:
-                        errMessage = "The entered email does not meet requirements."
-                    case .weakPassword:
-                        errMessage = "The entered password does not meet minimum requirements."
-                    case .wrongPassword:
-                        errMessage = "The entered password is not correct."
-                    default:
-                        errMessage = "Please try again."
-                    }
-                }
-                completion(nil, errMessage)
-            } else {
-                
-                Analytics.logEvent("Email_Login", parameters: ["success" : true])
-                
-                Answers.logLogin(withMethod: "Email Login",
-                                 success: true,
-                                 customAttributes: [:])
-                
-                self.user = user
-                completion(user, nil)
-            }
-        })
-    }
-    
-    
-    // MARK: - Register User
-    
-    func registerUserWith(email: String?, password: String?, confirmPassword: String?, completion: @escaping (_ user: User?, _ errorMessage: String?) -> Void) {
-        
-        guard let theEmail = email else {
-            let errMessage = "Please enter an email"
-            completion(nil, errMessage)
-            return
-        }
-        
-        guard let thePassword = password else {
-            let errMessage = "Please enter a password"
-            completion(nil, errMessage)
-            return
-        }
-        
-        guard password == confirmPassword else {
-            let errMessage = "Passwords do not match"
-            completion(nil, errMessage)
-            return
-        }
-        
-        Auth.auth().createUser(withEmail: theEmail, password: thePassword, completion: { (user, error) in
-            if let theError = error {
-                
-                var errMessage = "An unknown error occured."
-                if let errCode = AuthErrorCode(rawValue: (theError._code)) {
-                    switch errCode {
-                        
-                    case .invalidEmail:
-                        errMessage = "The entered email does not meet requirements."
-                    case .emailAlreadyInUse:
-                        errMessage = "The entered email has already been registered."
-                    case .weakPassword:
-                        errMessage = "The entered password does not meet minimum requirements."
-                    default:
-                        errMessage = "Please try again."
-                    }
-                }
-                completion(nil, errMessage)
-            } else {
-                Analytics.logEvent("Email_Register", parameters: ["success" : true])
-                
-                Answers.logSignUp(withMethod: "Email Register",
-                                  success: true,
-                                  customAttributes: [:])
-                self.user = user
-                completion(user, nil)
-            }
-        })
-    }
-    
-    
-    // MARK: - Get Services
-    
-    func getServicesFor(card: CardClass, completion: @escaping (_ services: [ServiceClass]?, _ error: Error?) -> Void) {
-        
-        let servicesRef = ref.child("newServices").child(card.cardID)
-        servicesRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            let enumerator = snapshot.children
-            var serviceArray = [ServiceClass]()
-            //let serviceTrace = Performance.startTrace(name: "PullServiceTrace")
-            while let serviceSnapshot = enumerator.nextObject() as? DataSnapshot {
-                
-                if let serviceDict = serviceSnapshot.value as? [String : Any] {
-                    let service = ServiceClass(id:serviceSnapshot.key, cardId: card.cardID, serviceDict: serviceDict)
-                    serviceArray.append(service)
-                }
-            }
-            completion(serviceArray, nil)
-//            serviceTrace?.stop()
-        })
-    }
-    
-    
-    // MARK: - Delete Service
-    
-    func delete(service: ServiceClass?, completion: @escaping (_ success: Bool, _ error: String?) -> Void) {
-        
-        guard let service = service else {
-            let errorMessage = "Something went wrong"
-            completion(false, errorMessage)
-            return
-        }
-        
-        let serviceRef = ref.child("newServices").child(service.cardID).child(service.serviceID)
-        serviceRef.removeValue { (error, ref) in
+        } else {
             
-            if let theError = error?.localizedDescription {
-                let errMessage = theError
-                completion(false, errMessage)
-                
-            } else {
-                
-                let serviceRef = self.ref.child("newServices").child(service.cardID).child(service.serviceID)
-                serviceRef.removeValue()
-                
-                Analytics.logEvent("Service_Deleted", parameters: ["success" : true])
-                
-                Answers.logCustomEvent(withName: "Service Deleted",
-                                       customAttributes: nil)
-                
-                completion(true, nil)
+            Analytics.logEvent("Service_Details_Updated", parameters: ["success" : true])
+            
+            Answers.logCustomEvent(withName: "Service Details Updated",
+                                   customAttributes: nil)
+            
+            
+            let service = ServiceClass(id: ref.key, cardId: service.cardID, serviceDict: serviceDict)
+            completion(service, nil)
+        }
+    })
+}
+
+
+// MARK: - Sign User In
+
+func signUserInWith(email: String?, password: String?, completion: @escaping (_ user: User?, _ errorMessage: String?) -> Void) {
+    
+    guard let theEmail = email else {
+        let errMessage = "Please enter an email"
+        completion(nil, errMessage)
+        return
+    }
+    
+    guard let thePassword = password else {
+        let errMessage = "Please enter a password"
+        completion(nil, errMessage)
+        return
+    }
+    
+    
+    Auth.auth().signIn(withEmail: theEmail, password: thePassword, completion: { (user, error) in
+        if let theError = error {
+            
+            var errMessage = "An unknown error occured."
+            if let errCode = AuthErrorCode(rawValue: (theError._code)) {
+                switch errCode {
+                    
+                case .invalidEmail:
+                    errMessage = "The entered email does not meet requirements."
+                case .weakPassword:
+                    errMessage = "The entered password does not meet minimum requirements."
+                case .wrongPassword:
+                    errMessage = "The entered password is not correct."
+                default:
+                    errMessage = "Please try again."
+                }
+            }
+            completion(nil, errMessage)
+        } else {
+            
+            Analytics.logEvent("Email_Login", parameters: ["success" : true])
+            
+            Answers.logLogin(withMethod: "Email Login",
+                             success: true,
+                             customAttributes: [:])
+            
+            self.user = user
+            completion(user, nil)
+        }
+    })
+}
+
+
+// MARK: - Register User
+
+func registerUserWith(email: String?, password: String?, confirmPassword: String?, completion: @escaping (_ user: User?, _ errorMessage: String?) -> Void) {
+    
+    guard let theEmail = email else {
+        let errMessage = "Please enter an email"
+        completion(nil, errMessage)
+        return
+    }
+    
+    guard let thePassword = password else {
+        let errMessage = "Please enter a password"
+        completion(nil, errMessage)
+        return
+    }
+    
+    guard password == confirmPassword else {
+        let errMessage = "Passwords do not match"
+        completion(nil, errMessage)
+        return
+    }
+    
+    Auth.auth().createUser(withEmail: theEmail, password: thePassword, completion: { (user, error) in
+        if let theError = error {
+            
+            var errMessage = "An unknown error occured."
+            if let errCode = AuthErrorCode(rawValue: (theError._code)) {
+                switch errCode {
+                    
+                case .invalidEmail:
+                    errMessage = "The entered email does not meet requirements."
+                case .emailAlreadyInUse:
+                    errMessage = "The entered email has already been registered."
+                case .weakPassword:
+                    errMessage = "The entered password does not meet minimum requirements."
+                default:
+                    errMessage = "Please try again."
+                }
+            }
+            completion(nil, errMessage)
+        } else {
+            Analytics.logEvent("Email_Register", parameters: ["success" : true])
+            
+            Answers.logSignUp(withMethod: "Email Register",
+                              success: true,
+                              customAttributes: [:])
+            self.user = user
+            completion(user, nil)
+        }
+    })
+}
+
+
+// MARK: - Get Services
+
+func getServicesFor(card: CardClass, completion: @escaping (_ services: [ServiceClass]?, _ error: Error?) -> Void) {
+    
+    let servicesRef = ref.child("newServices").child(card.cardID)
+    servicesRef.observeSingleEvent(of: .value, with: { (snapshot) in
+        let enumerator = snapshot.children
+        var serviceArray = [ServiceClass]()
+        //let serviceTrace = Performance.startTrace(name: "PullServiceTrace")
+        while let serviceSnapshot = enumerator.nextObject() as? DataSnapshot {
+            
+            if let serviceDict = serviceSnapshot.value as? [String : Any] {
+                let service = ServiceClass(id:serviceSnapshot.key, cardId: card.cardID, serviceDict: serviceDict)
+                serviceArray.append(service)
             }
         }
+        completion(serviceArray, nil)
+        //            serviceTrace?.stop()
+    })
+}
+
+
+// MARK: - Delete Service
+
+func delete(service: ServiceClass?, completion: @escaping (_ success: Bool, _ error: String?) -> Void) {
+    
+    guard let service = service else {
+        let errorMessage = "Something went wrong"
+        completion(false, errorMessage)
+        return
     }
     
-    
-    // MARK: - Delete Account
-    
-    func deleteAccount(completion: (_ success: Bool, _ error: Error?) -> Void) {
+    let serviceRef = ref.child("newServices").child(service.cardID).child(service.serviceID)
+    serviceRef.removeValue { (error, ref) in
         
-        user?.delete(completion: { (error) in
-            Analytics.logEvent("User_Deleted", parameters: ["success" : true])
+        if let theError = error?.localizedDescription {
+            let errMessage = theError
+            completion(false, errMessage)
             
-                            Answers.logCustomEvent(withName: "User Deleted",
-                                                   customAttributes: nil)
-        })
+        } else {
+            
+            let serviceRef = self.ref.child("newServices").child(service.cardID).child(service.serviceID)
+            serviceRef.removeValue()
+            
+            Analytics.logEvent("Service_Deleted", parameters: ["success" : true])
+            
+            Answers.logCustomEvent(withName: "Service Deleted",
+                                   customAttributes: nil)
+            
+            completion(true, nil)
+        }
     }
+}
+
+
+// MARK: - Delete Account
+
+func deleteAccount(completion: (_ success: Bool, _ error: Error?) -> Void) {
     
-    
+    user?.delete(completion: { (error) in
+        Analytics.logEvent("User_Deleted", parameters: ["success" : true])
+        
+        Answers.logCustomEvent(withName: "User Deleted",
+                               customAttributes: nil)
+    })
+}
+
+
 }

@@ -95,6 +95,11 @@ class ServicesViewController: UIViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        showReview()
+    }
     
     // MARK: - Get Services
     

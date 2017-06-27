@@ -24,6 +24,7 @@
 		2924F9BE1EF22F090014C284 /* SegmentColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */; };
 		292764931EDFA3160096AE1E /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292764921EDFA3160096AE1E /* WalletViewController.swift */; };
 		292764951EDFC8350096AE1E /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292764941EDFC8350096AE1E /* CardTableViewCell.swift */; };
+		292DEB061F01D486008247EC /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 1D01B26F1E03A27500098A9A /* GoogleService-Info.plist */; };
 		294135FB1EFD9D8200002FAC /* CategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294135FA1EFD9D8200002FAC /* CategoryManager.swift */; };
 		2943B48B1EF624D600A0E8DD /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */; };
 		294D0E321EF9E9F7000E4BC6 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294D0E311EF9E9F7000E4BC6 /* CategoryViewController.swift */; };
@@ -39,6 +40,7 @@
 		298FA4E81EF78F26009B5A36 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FA4E71EF78F26009B5A36 /* UIView+Extensions.swift */; };
 		298FA4EA1EF78F40009B5A36 /* NSObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FA4E91EF78F40009B5A36 /* NSObject+Extensions.swift */; };
 		298FA4EC1EF78F5C009B5A36 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FA4EB1EF78F5C009B5A36 /* Array+Extensions.swift */; };
+		299F6FC01F018AD300935054 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DC0D8B41DFE516A0039B8F6 /* Assets.xcassets */; };
 		299F85221EE78DB1001A819D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299F85211EE78DB1001A819D /* StoreKit.framework */; };
 		29A8F3EC1EF9EED000D20F79 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A8F3EB1EF9EED000D20F79 /* Keys.swift */; };
 		29AA67E21EE7B4BA000EDE42 /* InAppPurchaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA67E11EE7B4BA000EDE42 /* InAppPurchaseUtility.swift */; };
@@ -109,6 +111,7 @@
 		2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentColorManager.swift; sourceTree = "<group>"; };
 		292764921EDFA3160096AE1E /* WalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		292764941EDFC8350096AE1E /* CardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
+		292DEB071F01D77F008247EC /* Lynked.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Lynked.entitlements; sourceTree = "<group>"; };
 		294135FA1EFD9D8200002FAC /* CategoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryManager.swift; sourceTree = "<group>"; };
 		2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseUtility.swift; sourceTree = "<group>"; };
 		294D0E311EF9E9F7000E4BC6 /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +127,7 @@
 		298FA4E71EF78F26009B5A36 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		298FA4E91EF78F40009B5A36 /* NSObject+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Extensions.swift"; sourceTree = "<group>"; };
 		298FA4EB1EF78F5C009B5A36 /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		299F6FC11F018CB500935054 /* Lynked Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Lynked Widget.entitlements"; sourceTree = "<group>"; };
 		299F85211EE78DB1001A819D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		29A8F3EB1EF9EED000D20F79 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		29AA67E11EE7B4BA000EDE42 /* InAppPurchaseUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseUtility.swift; sourceTree = "<group>"; };
@@ -192,6 +196,7 @@
 		1DC0D8A91DFE516A0039B8F6 /* Lynked */ = {
 			isa = PBXGroup;
 			children = (
+				292DEB071F01D77F008247EC /* Lynked.entitlements */,
 				1DC0D8C21DFE518F0039B8F6 /* Model */,
 				1DC0D8C11DFE518C0039B8F6 /* View */,
 				29773CDB1EC3B6230023F277 /* Controller */,
@@ -328,6 +333,7 @@
 		29EFAB261EFE46A1007F384E /* Lynked Widget */ = {
 			isa = PBXGroup;
 			children = (
+				299F6FC11F018CB500935054 /* Lynked Widget.entitlements */,
 				29EFAB271EFE46A1007F384E /* TodayViewController.swift */,
 				29EFAB291EFE46A1007F384E /* MainInterface.storyboard */,
 				29EFAB2C1EFE46A1007F384E /* Info.plist */,
@@ -420,6 +426,9 @@
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.InAppPurchase = {
 								enabled = 1;
 							};
@@ -429,6 +438,11 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = K8YZSQZRNW;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -468,6 +482,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				299F6FC01F018AD300935054 /* Assets.xcassets in Resources */,
 				29EFAB2B1EFE46A1007F384E /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -612,6 +627,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				292DEB061F01D486008247EC /* GoogleService-Info.plist in Sources */,
 				29D412B61F00B8070081CF79 /* TempLetterImagePickerUtility.swift in Sources */,
 				29D412B51F00B6F60081CF79 /* ServicePayRateManager.swift in Sources */,
 				29D412B41F00B68F0081CF79 /* SegmentColorManager.swift in Sources */,
@@ -760,6 +776,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Lynked/Lynked.entitlements;
 				DEVELOPMENT_TEAM = K8YZSQZRNW;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Lynked/Info.plist;
@@ -777,6 +794,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Lynked/Lynked.entitlements;
 				DEVELOPMENT_TEAM = K8YZSQZRNW;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Lynked/Info.plist;
@@ -793,6 +811,7 @@
 			baseConfigurationReference = 777E17BCF265AA7F0F2BABBF /* Pods-Lynked Widget.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = "Lynked Widget/Lynked Widget.entitlements";
 				DEVELOPMENT_TEAM = K8YZSQZRNW;
 				INFOPLIST_FILE = "Lynked Widget/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -809,6 +828,7 @@
 			baseConfigurationReference = F3429FCF5D80180D088B49B1 /* Pods-Lynked Widget.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = "Lynked Widget/Lynked Widget.entitlements";
 				DEVELOPMENT_TEAM = K8YZSQZRNW;
 				INFOPLIST_FILE = "Lynked Widget/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
