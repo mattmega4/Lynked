@@ -27,20 +27,6 @@
 		292DEB061F01D486008247EC /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 1D01B26F1E03A27500098A9A /* GoogleService-Info.plist */; };
 		294135FB1EFD9D8200002FAC /* CategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294135FA1EFD9D8200002FAC /* CategoryManager.swift */; };
 		2943B48B1EF624D600A0E8DD /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */; };
-		294C31521F030F5300299F70 /* FavIcon in Resources */ = {isa = PBXBuildFile; fileRef = 294C31491F030F5200299F70 /* FavIcon */; };
-		294C31531F030F5300299F70 /* FavIcon in Resources */ = {isa = PBXBuildFile; fileRef = 294C31491F030F5200299F70 /* FavIcon */; };
-		294C31541F030F5300299F70 /* FavIconTests in Resources */ = {isa = PBXBuildFile; fileRef = 294C314D1F030F5300299F70 /* FavIconTests */; };
-		294C31551F030F5300299F70 /* FavIconTests in Resources */ = {isa = PBXBuildFile; fileRef = 294C314D1F030F5300299F70 /* FavIconTests */; };
-		294C31561F030F5300299F70 /* LibXML2 in Resources */ = {isa = PBXBuildFile; fileRef = 294C314E1F030F5300299F70 /* LibXML2 */; };
-		294C31571F030F5300299F70 /* LibXML2 in Resources */ = {isa = PBXBuildFile; fileRef = 294C314E1F030F5300299F70 /* LibXML2 */; };
-		294C31581F030F5300299F70 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 294C314F1F030F5300299F70 /* LICENSE */; };
-		294C31591F030F5300299F70 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 294C314F1F030F5300299F70 /* LICENSE */; };
-		294C315A1F030F5300299F70 /* Rakefile in Resources */ = {isa = PBXBuildFile; fileRef = 294C31501F030F5300299F70 /* Rakefile */; };
-		294C315B1F030F5300299F70 /* Rakefile in Resources */ = {isa = PBXBuildFile; fileRef = 294C31501F030F5300299F70 /* Rakefile */; };
-		294C315C1F030F5300299F70 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 294C31511F030F5300299F70 /* README.md */; };
-		294C315D1F030F5300299F70 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 294C31511F030F5300299F70 /* README.md */; };
-		294C316A1F030F7F00299F70 /* FavIcon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294C31631F030F5300299F70 /* FavIcon.framework */; };
-		294C316B1F030F8900299F70 /* FavIcon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294C31631F030F5300299F70 /* FavIcon.framework */; };
 		294D0E321EF9E9F7000E4BC6 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294D0E311EF9E9F7000E4BC6 /* CategoryViewController.swift */; };
 		2950A4521EFE40BF00F94BF4 /* ServicePayRateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2950A4511EFE40BF00F94BF4 /* ServicePayRateManager.swift */; };
 		29773CDD1EC3B6730023F277 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29773CDC1EC3B6730023F277 /* EntryViewController.swift */; };
@@ -81,34 +67,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		294C31621F030F5300299F70 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 294C314A1F030F5200299F70 /* FavIcon.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2E18521B1BDAE5160065F877;
-			remoteInfo = "FavIcon-iOS";
-		};
-		294C31641F030F5300299F70 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 294C314A1F030F5200299F70 /* FavIcon.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2E1852251BDAE5160065F877;
-			remoteInfo = "FavIcon-iOSTests";
-		};
-		294C31661F030F5300299F70 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 294C314A1F030F5200299F70 /* FavIcon.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2E18523A1BDAE5300065F877;
-			remoteInfo = "FavIcon-OSX";
-		};
-		294C31681F030F5300299F70 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 294C314A1F030F5200299F70 /* FavIcon.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2E1852431BDAE5300065F877;
-			remoteInfo = "FavIcon-OSXTests";
-		};
 		29EFAB2D1EFE46A1007F384E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1DC0D89F1DFE516A0039B8F6 /* Project object */;
@@ -157,13 +115,6 @@
 		29390C2E1F02F0B70047F013 /* FavIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavIcon.swift; path = ../../Desktop/FavIcon.swift; sourceTree = "<group>"; };
 		294135FA1EFD9D8200002FAC /* CategoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryManager.swift; sourceTree = "<group>"; };
 		2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseUtility.swift; sourceTree = "<group>"; };
-		294C31491F030F5200299F70 /* FavIcon */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FavIcon; path = "../../Downloads/FavIcon-master/FavIcon"; sourceTree = "<group>"; };
-		294C314A1F030F5200299F70 /* FavIcon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FavIcon.xcodeproj; path = "../../Downloads/FavIcon-master/FavIcon.xcodeproj"; sourceTree = "<group>"; };
-		294C314D1F030F5300299F70 /* FavIconTests */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FavIconTests; path = "../../Downloads/FavIcon-master/FavIconTests"; sourceTree = "<group>"; };
-		294C314E1F030F5300299F70 /* LibXML2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = LibXML2; path = "../../Downloads/FavIcon-master/LibXML2"; sourceTree = "<group>"; };
-		294C314F1F030F5300299F70 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = "../../Downloads/FavIcon-master/LICENSE"; sourceTree = "<group>"; };
-		294C31501F030F5300299F70 /* Rakefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Rakefile; path = "../../Downloads/FavIcon-master/Rakefile"; sourceTree = "<group>"; };
-		294C31511F030F5300299F70 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = "../../Downloads/FavIcon-master/README.md"; sourceTree = "<group>"; };
 		294D0E311EF9E9F7000E4BC6 /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		2950A4511EFE40BF00F94BF4 /* ServicePayRateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicePayRateManager.swift; sourceTree = "<group>"; };
 		29773CDC1EC3B6730023F277 /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
@@ -206,7 +157,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				294C316A1F030F7F00299F70 /* FavIcon.framework in Frameworks */,
 				FE255734139BB8197894689C /* Pods_Lynked.framework in Frameworks */,
 				299F85221EE78DB1001A819D /* StoreKit.framework in Frameworks */,
 			);
@@ -216,7 +166,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				294C316B1F030F8900299F70 /* FavIcon.framework in Frameworks */,
 				29EFAB251EFE46A1007F384E /* NotificationCenter.framework in Frameworks */,
 				E86C3EB7EE5754E5BF9A1F85 /* Pods_Lynked_Widget.framework in Frameworks */,
 			);
@@ -233,7 +182,6 @@
 				1DC0D8A81DFE516A0039B8F6 /* Products */,
 				7C6C21144E94777124CC2B96 /* Pods */,
 				5992905EFC84512369FCFBED /* Frameworks */,
-				294C312D1F030E6C00299F70 /* FavIcon */,
 			);
 			sourceTree = "<group>";
 		};
@@ -333,31 +281,6 @@
 				297BE9FF1EF708640035D4DA /* Library.swift */,
 			);
 			name = Acknowledgement;
-			sourceTree = "<group>";
-		};
-		294C312D1F030E6C00299F70 /* FavIcon */ = {
-			isa = PBXGroup;
-			children = (
-				294C31491F030F5200299F70 /* FavIcon */,
-				294C314A1F030F5200299F70 /* FavIcon.xcodeproj */,
-				294C314D1F030F5300299F70 /* FavIconTests */,
-				294C314E1F030F5300299F70 /* LibXML2 */,
-				294C314F1F030F5300299F70 /* LICENSE */,
-				294C31501F030F5300299F70 /* Rakefile */,
-				294C31511F030F5300299F70 /* README.md */,
-			);
-			name = FavIcon;
-			sourceTree = "<group>";
-		};
-		294C314B1F030F5200299F70 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				294C31631F030F5300299F70 /* FavIcon.framework */,
-				294C31651F030F5300299F70 /* FavIcon-iOSTests.xctest */,
-				294C31671F030F5300299F70 /* FavIcon.framework */,
-				294C31691F030F5300299F70 /* FavIcon-OSXTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		29773CDB1EC3B6230023F277 /* Controller */ = {
@@ -536,12 +459,6 @@
 			mainGroup = 1DC0D89E1DFE516A0039B8F6;
 			productRefGroup = 1DC0D8A81DFE516A0039B8F6 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 294C314B1F030F5200299F70 /* Products */;
-					ProjectRef = 294C314A1F030F5200299F70 /* FavIcon.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				1DC0D8A61DFE516A0039B8F6 /* Lynked */,
@@ -550,50 +467,14 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXReferenceProxy section */
-		294C31631F030F5300299F70 /* FavIcon.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = FavIcon.framework;
-			remoteRef = 294C31621F030F5300299F70 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		294C31651F030F5300299F70 /* FavIcon-iOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "FavIcon-iOSTests.xctest";
-			remoteRef = 294C31641F030F5300299F70 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		294C31671F030F5300299F70 /* FavIcon.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = FavIcon.framework;
-			remoteRef = 294C31661F030F5300299F70 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		294C31691F030F5300299F70 /* FavIcon-OSXTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "FavIcon-OSXTests.xctest";
-			remoteRef = 294C31681F030F5300299F70 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
-
 /* Begin PBXResourcesBuildPhase section */
 		1DC0D8A51DFE516A0039B8F6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				297BE9FC1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist in Resources */,
-				294C31561F030F5300299F70 /* LibXML2 in Resources */,
 				1DC0D8B81DFE516A0039B8F6 /* LaunchScreen.storyboard in Resources */,
 				1D01B2701E03A27500098A9A /* GoogleService-Info.plist in Resources */,
-				294C31541F030F5300299F70 /* FavIconTests in Resources */,
-				294C315A1F030F5300299F70 /* Rakefile in Resources */,
-				294C31521F030F5300299F70 /* FavIcon in Resources */,
-				294C31581F030F5300299F70 /* LICENSE in Resources */,
 				1DC0D8B51DFE516A0039B8F6 /* Assets.xcassets in Resources */,
 				1DC0D8B01DFE516A0039B8F6 /* Main.storyboard in Resources */,
 			);
@@ -603,13 +484,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				294C31591F030F5300299F70 /* LICENSE in Resources */,
-				294C31531F030F5300299F70 /* FavIcon in Resources */,
-				294C31551F030F5300299F70 /* FavIconTests in Resources */,
 				299F6FC01F018AD300935054 /* Assets.xcassets in Resources */,
 				29EFAB2B1EFE46A1007F384E /* MainInterface.storyboard in Resources */,
-				294C31571F030F5300299F70 /* LibXML2 in Resources */,
-				294C315B1F030F5300299F70 /* Rakefile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -717,7 +593,6 @@
 				298FA4EC1EF78F5C009B5A36 /* Array+Extensions.swift in Sources */,
 				297BE9FE1EF707EA0035D4DA /* AcknowledgementsViewModel.swift in Sources */,
 				29CB33141EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift in Sources */,
-				294C315C1F030F5300299F70 /* README.md in Sources */,
 				29D5906B1EF5AE5600CA66D6 /* RequestReview.swift in Sources */,
 				1DD7D25C1E393C2300AF1299 /* ServiceClass.swift in Sources */,
 				29773CDD1EC3B6730023F277 /* EntryViewController.swift in Sources */,
@@ -763,7 +638,6 @@
 				29D412B11F00B18C0081CF79 /* FirebaseUtility.swift in Sources */,
 				29D412B01F00B15A0081CF79 /* ServiceClass.swift in Sources */,
 				29EFAB281EFE46A1007F384E /* TodayViewController.swift in Sources */,
-				294C315D1F030F5300299F70 /* README.md in Sources */,
 				29D412AF1F00AF0C0081CF79 /* WidgetTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -909,7 +783,7 @@
 				DEVELOPMENT_TEAM = K8YZSQZRNW;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Lynked/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.matthewhsingleton.Lynked;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -930,7 +804,7 @@
 				DEVELOPMENT_TEAM = K8YZSQZRNW;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Lynked/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.matthewhsingleton.Lynked;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -947,7 +821,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Lynked Widget/Lynked Widget.entitlements";
 				DEVELOPMENT_TEAM = K8YZSQZRNW;
 				INFOPLIST_FILE = "Lynked Widget/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.matthewhsingleton.Lynked.Lynked-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -964,7 +838,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Lynked Widget/Lynked Widget.entitlements";
 				DEVELOPMENT_TEAM = K8YZSQZRNW;
 				INFOPLIST_FILE = "Lynked Widget/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.matthewhsingleton.Lynked.Lynked-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";

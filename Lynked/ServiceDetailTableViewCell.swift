@@ -43,6 +43,7 @@ protocol ServiceDetailTableViewCellDelegate {
     
     func serviceDetailTableViewCell(cell: ServiceDetailTableViewCell, didChangeFixedSwitch fixedSwitch: UISwitch)
     
+    
 }
 
 

@@ -10,7 +10,6 @@ import UIKit
 //import SDWebImage
 import Kingfisher
 import MBProgressHUD
-import FavIcon
 import Alamofire
 
 
@@ -44,20 +43,18 @@ class ServicesViewController: UIViewController {
     
     
     let categoryPickerView = UIPickerView()
-    
     let serviceCellId = "ServiceCell"
     let categoryCellId = "CategoryCell"
-    
     var serviceArray = [ServiceClass]()
     var categories = [String]()
-    
     var isDisplayingCategories = false
-    
     var card: CardClass?
-    
-    let margin: CGFloat = 10
-    let cellsPerC = 3
-    
+
+    //    let margin: CGFloat = 10
+    //    let cellsPerC = 3
+    let margin = (UIDevice.current.userInterfaceIdiom == .pad ? 5: 10) as CGFloat
+    let cellsPerC = (UIDevice.current.userInterfaceIdiom == .pad ? 4: 3) as CGFloat
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,8 +99,20 @@ class ServicesViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        showReview()
+        sortArray()
+//        showReview()
     }
+    
+    
+    // MARK: - Sort Array
+    
+    func sortArray() {
+        self.serviceArray.sort {
+            if $0.serviceAttention == $1.serviceAttention { return $0.serviceName ?? "" < $1.serviceName ?? "" }
+            return $0.serviceAttention > $1.serviceAttention
+        }
+    }
+    
     
     // MARK: - Get Services
     
@@ -114,10 +123,7 @@ class ServicesViewController: UIViewController {
                     
                     self.serviceArray = theServices
                     self.getCategories()
-                    self.serviceArray.sort {
-                        if $0.serviceAttention == $1.serviceAttention { return $0.serviceName ?? "" < $1.serviceName ?? "" }
-                        return $0.serviceAttention > $1.serviceAttention
-                    }
+                    self.sortArray()
                     
                     self.collectionView.reloadData()
                 } else {
@@ -151,22 +157,23 @@ class ServicesViewController: UIViewController {
     
     func addService(service: ServiceClass) {
         serviceArray.append(service)
+        sortArray()
     }
     
     
     func addServiceToCard() {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        FirebaseUtility.shared.addService(name: serviceTextField.text, forCard: card, withCategory: categoryTextField.text) { (service, errMessage) in
+        FirebaseUtility.shared.addService(name: serviceTextField.text?.capitalized, forCard: card, withCategory: categoryTextField.text) { (service, errMessage) in
             MBProgressHUD.hide(for: self.view, animated: true)
             if let theService = service {
                 self.addService(service: theService)
                 
                 self.serviceTextField.text = ""
+                self.categoryTextField.text = nil
                 self.addServiceButton.alpha = 0.4
                 self.addServiceButton.isEnabled = false
                 self.getCategories()
                 self.collectionView.reloadData()
-                
             }
         }
     }
@@ -302,11 +309,34 @@ extension ServicesViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        
         let flowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         let marginsAndInsets = flowLayout.sectionInset.left + flowLayout.sectionInset.right + flowLayout.minimumInteritemSpacing * CGFloat(cellsPerC - 1)
         let itemWidth = ((collectionView.bounds.size.width - marginsAndInsets) / CGFloat(cellsPerC)).rounded(.down)
+        
+        
         return CGSize(width: itemWidth, height: itemWidth)
     }
+    
+    
+    
+    
+    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    //
+    //        // How many Cells Wide ------------ 4 for ipad 3 for not ipad
+    //        let numberOfCellsWide = (UIDevice.current.userInterfaceIdiom == .pad ? 4: 3) as CGFloat
+    //        // Width of the Cell: minus the 1 because I want a 1 px separation of cells.
+    //        let width = (collectionView.frame.width/numberOfCellsWide) - 1
+    //
+    //        return CGSize(width:width, height:width)
+    //    }
+    
+    
+    
+    
+    
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if !isDisplayingCategories {
@@ -324,21 +354,10 @@ extension ServicesViewController: UICollectionViewDelegate, UICollectionViewData
             cell.serviceNameLabel.text = service.serviceName
             cell.serviceFixedAmountLabel.text = String(service.serviceAmount)
             
-            
-            
-            
-            
-            
-            
-            
-            
             let placeholderImage = UIImage.init(named: "\(TempLetterImagePickerUtility.shared.getLetterOrNumberAndChooseImage(text: service.serviceName!))")
-            
-            
             
             if let serviceURLString = service.serviceUrl, service.serviceUrl?.isEmpty == false {
                 
-                //
                 if let imageURL = URL(string: "https://logo.clearbit.com/\(serviceURLString)") {
                     cell.serviceLogoImage.kf.setImage(with: imageURL, placeholder: placeholderImage, options: nil, progressBlock: nil, completionHandler: { (image, error, cacheType, url) in
                         if image == nil {
@@ -350,61 +369,6 @@ extension ServicesViewController: UICollectionViewDelegate, UICollectionViewData
                         }
                     })
                 }
-                
-                
-                
-                //                let request = Alamofire.request("https://logo.clearbit.com/\(serviceURLString)")
-                //                request.responseData(completionHandler: { (response) in
-                //                    if let imageData = response.data
-                //                })
-                //                do {
-                //
-                //                    try FavIcon.downloadPreferred("http://www.\(serviceURLString)", width: 400, height: 400, completion: { (result) in
-                //
-                //                        switch result {
-                //                        case let .success(image):
-                //                            let icon = image
-                //                            print(icon)
-                //                            cell.serviceLogoImage.image = image
-                //                        //cell.serviceLogoImage.kf.setImage(with: icon as? Resource, placeholder: placeholderImage) //image = icon
-                //                        case let .failure(error):
-                //
-                //                                                        print("failed - \(error)")
-                //                        }
-                //                    })
-                
-                
-                //                    try FavIcon.downloadPreferred("http://www.\(serviceURLString)") { result in
-                
-                //                        switch result {
-                //                        case let .success(image):
-                //                            let icon = image
-                //                            print(icon)
-                //                            cell.serviceLogoImage.image = image
-                //                            //cell.serviceLogoImage.kf.setImage(with: icon as? Resource, placeholder: placeholderImage) //image = icon
-                //                        case let .failure(error):
-                //
-                //                            let myURLString: String = "http://www.google.com/s2/favicons?domain=\(serviceURLString)"
-                //
-                //                            if let myURL = URL(string: myURLString) {
-                //                                cell.serviceLogoImage.kf.setImage(with: myURL, placeholder: placeholderImage)
-                //                            }
-                //                            print("failed - \(error)")
-                //                        }
-                //                    }
-                
-                
-                //
-                
-                //                }
-                //                catch {
-                //                    cell.serviceLogoImage.image = placeholderImage
-                //                }
-                //            }
-                //
-                //            else {
-                //                cell.serviceLogoImage.image = placeholderImage
-                //            }
                 return cell
             }
         }

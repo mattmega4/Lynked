@@ -26,14 +26,14 @@ end
 target ‘Lynked Widget’ do
 use_frameworks!
 
-  pod 'Fabric'
-  pod 'Crashlytics'
-  pod 'SDWebImage'
-  pod 'Kingfisher', '~> 3.0'
-  pod 'Firebase/Core'
-  pod 'Firebase/Auth'
-  pod 'Firebase/Database'
-  pod 'Firebase/Performance'
+ #pod 'Fabric'
+ #pod 'Crashlytics'
+ #pod 'SDWebImage'
+  pod 'Kingfisher'
+ #pod 'Firebase/Core'
+ #pod 'Firebase/Auth'
+ #pod 'Firebase/Database'
+ #pod 'Firebase/Performance'
 
 end
 

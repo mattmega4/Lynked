@@ -1,5 +1,4 @@
 PODS:
-  - Alamofire (4.5.0)
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - Fabric (1.6.11)
@@ -53,13 +52,9 @@ PODS:
   - Kingfisher (3.10.2)
   - MBProgressHUD (1.0.0)
   - Protobuf (3.3.0)
-  - SDWebImage (4.0.0):
-    - SDWebImage/Core (= 4.0.0)
-  - SDWebImage/Core (4.0.0)
   - Spring (1.0.3)
 
 DEPENDENCIES:
-  - Alamofire
   - Crashlytics
   - Fabric
   - Firebase/Auth
@@ -68,9 +63,7 @@ DEPENDENCIES:
   - Firebase/Performance
   - Instabug
   - Kingfisher
-  - Kingfisher (~> 3.0)
   - MBProgressHUD
-  - SDWebImage
   - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift3`)
 
 EXTERNAL SOURCES:
@@ -84,7 +77,6 @@ CHECKOUT OPTIONS:
     :git: https://github.com/MengTo/Spring.git
 
 SPEC CHECKSUMS:
-  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   Firebase: c7ad0731eab26d18a3fc547dd048b0f7cd9c63ae
@@ -100,9 +92,8 @@ SPEC CHECKSUMS:
   Kingfisher: 7297492bf8cec9b2e2dee3519f2219948580d98e
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
-  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
 
-PODFILE CHECKSUM: 7a48c023ae88bcb180d979df3eff5bfd3f656d53
+PODFILE CHECKSUM: 4aff7cd7383342593f383f6071819465a1e58dde
 
 COCOAPODS: 1.2.1
