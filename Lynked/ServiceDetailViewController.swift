@@ -15,7 +15,6 @@ class ServiceDetailViewController: UITableViewController {
     @IBOutlet weak var leftNavBarButton: UIBarButtonItem!
     
     @IBOutlet weak var serviceBillingCurrentSwitch: UISwitch!
-    @IBOutlet weak var previewImageView: UIImageView!
     @IBOutlet weak var serviceBillingCurrentLabel: UILabel!
     @IBOutlet weak var serviceUpdateBillingButton: UIButton!
     
@@ -384,14 +383,7 @@ extension ServiceDetailViewController {
         
         cell.delegate = self
         
-        
-//        func currencyRightToLeftFormatter(textField: UITextField) {
-//            if textField == self.amountTextField {
-//                if let amountString = textField.text?.currencyInputFormatting() {
-//                    textField.text = amountString
-//                }
-//            }
-//        }
+
         
         
         
@@ -448,30 +440,21 @@ extension ServiceDetailViewController {
         }
         
         return cell
-        
-        
-        
+  
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
     }
-
 }
 
 
 extension ServiceDetailViewController: ServiceDetailTableViewCellDelegate {
-    
 
-
-    
     func serviceDetailTableViewCell(cell: ServiceDetailTableViewCell, didChangeFixedSwitch fixedSwitch: UISwitch) {
         servFixed = fixedSwitch.isOn
         tableView.reloadData()
     }
-    
-
-    
 }
 
 

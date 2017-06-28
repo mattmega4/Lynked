@@ -100,7 +100,7 @@ class ServicesViewController: UIViewController {
         super.viewDidAppear(animated)
         
         sortArray()
-//        showReview()
+        showReview()
     }
     
     
@@ -318,25 +318,6 @@ extension ServicesViewController: UICollectionViewDelegate, UICollectionViewData
         
         return CGSize(width: itemWidth, height: itemWidth)
     }
-    
-    
-    
-    
-    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    //
-    //        // How many Cells Wide ------------ 4 for ipad 3 for not ipad
-    //        let numberOfCellsWide = (UIDevice.current.userInterfaceIdiom == .pad ? 4: 3) as CGFloat
-    //        // Width of the Cell: minus the 1 because I want a 1 px separation of cells.
-    //        let width = (collectionView.frame.width/numberOfCellsWide) - 1
-    //
-    //        return CGSize(width:width, height:width)
-    //    }
-    
-    
-    
-    
-    
-    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if !isDisplayingCategories {
