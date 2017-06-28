@@ -78,7 +78,7 @@ class AddCardViewController: UIViewController {
     func addDataToFirebase() {
         
         let nicknameToAdd = firstContainerTextField.text ?? ""
-        let nicknameWithoutWhiteSpaces = nicknameToAdd.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let nicknameWithoutWhiteSpaces = nicknameToAdd.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).capitalized
         finalNickname = nicknameWithoutWhiteSpaces.capitalized
         let last4 = secondContainerTextField.text
         let typeToAdd = finalType
@@ -88,21 +88,18 @@ class AddCardViewController: UIViewController {
         
         MBProgressHUD.showAdded(to: view, animated: true)
         
-        FirebaseUtility.shared.addCard(name: finalNickname,
-                                       type: finalType,
-                                       color: color,
-                                       last4: last4) { (card, errorMessage) in
-                                        
-                                        MBProgressHUD.hide(for: self.view, animated: true)
-                                        if let theCard = card {
-                                            if let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "serviceVC") as? ServicesViewController {
-                                                detailVC.card = theCard
-                                                self.navigationController?.pushViewController(detailVC, animated: true)
-                                            }
-                                        }
-                                        else {
-                                            // Display error?
-                                        }
+        FirebaseUtility.shared.addCard(name: finalNickname?.capitalized, type: finalType, color: color, last4: last4) { (card, errorMessage) in
+            
+            MBProgressHUD.hide(for: self.view, animated: true)
+            if let theCard = card {
+                if let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "serviceVC") as? ServicesViewController {
+                    detailVC.card = theCard
+                    self.navigationController?.pushViewController(detailVC, animated: true)
+                }
+            }
+            else {
+                // Display error?
+            }
         }
     }
     

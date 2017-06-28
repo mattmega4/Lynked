@@ -15,6 +15,7 @@ class ServiceDetailViewController: UITableViewController {
     @IBOutlet weak var leftNavBarButton: UIBarButtonItem!
     
     @IBOutlet weak var serviceBillingCurrentSwitch: UISwitch!
+    @IBOutlet weak var previewImageView: UIImageView!
     @IBOutlet weak var serviceBillingCurrentLabel: UILabel!
     @IBOutlet weak var serviceUpdateBillingButton: UIButton!
     
@@ -76,6 +77,7 @@ class ServiceDetailViewController: UITableViewController {
         self.amountTextField?.delegate = self
         self.dateTextField?.delegate = self
         
+        
         datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ServiceDetailViewController.dismissKeyboard))
@@ -104,17 +106,13 @@ class ServiceDetailViewController: UITableViewController {
     // MARK: - Update Views
     
     func updateViewBasedOnService() {
-        
         servState = service?.serviceStatus
         serviceBillingCurrentSwitch.isOn = service?.serviceStatus == true
-        
         if let name = service?.serviceName {
             servName = name
             title = "\(name) Details"
-            serviceUpdateBillingButton.setTitle("Go To \(name)'s Website to Update Payment", for: .normal)
+            serviceUpdateBillingButton.setTitle("Update \(name) Billing Info", for: .normal)
         }
-        
-        
         if let url = service?.serviceUrl {
             servUrl = url
         }
@@ -122,15 +120,9 @@ class ServiceDetailViewController: UITableViewController {
         if let theAmount = service?.serviceAmount {
             servAmount = String(theAmount)
         }
-        //servAmount = service?.serviceAmount ?? 0.0
-        
         servCategory = service?.category
-        
         servPayRate = service?.paymentRate
-        
         servScheduled = (service?.nextPaymentDate ?? Date()).timeIntervalSinceReferenceDate
-        
-        
     }
     
     
@@ -289,8 +281,6 @@ class ServiceDetailViewController: UITableViewController {
         deleteThisService()
     }
     
-    
-    
 } // MARK: - End of ServiceDetailViewController
 
 
@@ -306,6 +296,7 @@ extension ServiceDetailViewController: UITextFieldDelegate {
         else if textField == urlTextField {
             service?.serviceUrl = textField.text
         }
+            
         else if textField == amountTextField {
             if let amount = amountTextField?.text {
                 if let theAmount = Double(amount) {
@@ -314,6 +305,15 @@ extension ServiceDetailViewController: UITextFieldDelegate {
             }
         }
     }
+    
+    
+    //    func currencyRightToLeftFormatter(textField: UITextField) {
+    //        if textField == amountTextField {
+    //            if let amountString = textField.text?.currencyInputFormatting() {
+    //                textField.text = amountString
+    //            }
+    //        }
+    //    }
 }
 
 // MARK: - UIPickerView Delegate Methods
@@ -375,11 +375,27 @@ extension ServiceDetailViewController {
         cell.serviceTextField.placeholder = item["placeholder"] as? String
         
         cell.fixedToggleSwitch?.isHidden = item["hasSwitch"] as? Bool != true
+        
+        
         if cell.fixedToggleSwitch?.isHidden == false {
             fixedSwitch = cell.fixedToggleSwitch
             fixedSwitch?.isOn = service?.serviceFixed == true
         }
+        
         cell.delegate = self
+        
+        
+//        func currencyRightToLeftFormatter(textField: UITextField) {
+//            if textField == self.amountTextField {
+//                if let amountString = textField.text?.currencyInputFormatting() {
+//                    textField.text = amountString
+//                }
+//            }
+//        }
+        
+        
+        
+        
         switch indexPath.row {
         case 0:
             cell.serviceTextField.text = service?.serviceName
@@ -397,9 +413,15 @@ extension ServiceDetailViewController {
             cell.serviceTextField.isEnabled = self.servFixed
             if let amount = service?.serviceAmount {
                 cell.serviceTextField.text = String(amount)
+                
                 cell.serviceTextField.keyboardType = .decimalPad
             }
             amountTextField = cell.serviceTextField
+            
+            
+            
+            //            currencyInputFormatting()
+            
             cell.fixedToggleSwitch?.isOn = servFixed
         case 4:
             cell.serviceTextField.isEnabled = self.servFixed
@@ -434,19 +456,21 @@ extension ServiceDetailViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
     }
-    
-    
-    
-    
+
 }
 
 
 extension ServiceDetailViewController: ServiceDetailTableViewCellDelegate {
     
+
+
+    
     func serviceDetailTableViewCell(cell: ServiceDetailTableViewCell, didChangeFixedSwitch fixedSwitch: UISwitch) {
         servFixed = fixedSwitch.isOn
         tableView.reloadData()
     }
+    
+
     
 }
 

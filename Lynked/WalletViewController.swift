@@ -134,7 +134,9 @@ class WalletViewController: UIViewController {
 extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 125.0
+        return (UIDevice.current.userInterfaceIdiom == .pad ? 279 : 127) as CGFloat
+        
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -171,8 +173,13 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.cardBackgroundView.backgroundColor = cardArray[row].color
         cell.cardNicknameLabel.text = cardArray[row].nickname
+        cell.cardNicknameLabel.font = cell.cardNicknameLabel.font.withSize((UIDevice.current.userInterfaceIdiom == .pad ? 38 : 16))
+        
         cell.cardNicknameLabel.textColor = cardArray[row].textColor
         cell.cardDetailsLabel.text = "\(String(describing: cardArray[row].type ?? "")) \(String(describing: cardArray[row].fourDigits ?? ""))"
+        
+        cell.cardDetailsLabel.font = cell.cardDetailsLabel.font.withSize((UIDevice.current.userInterfaceIdiom == .pad ? 32 : 14))
+        
         cell.cardDetailsLabel.textColor = cardArray[row].textColor
         
         return cell
