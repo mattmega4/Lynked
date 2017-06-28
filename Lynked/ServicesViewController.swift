@@ -10,7 +10,7 @@ import UIKit
 //import SDWebImage
 import Kingfisher
 import MBProgressHUD
-import Alamofire
+
 
 
 class ServicesViewController: UIViewController {

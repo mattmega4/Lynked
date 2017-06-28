@@ -16,7 +16,6 @@ target 'Lynked' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Performance'
- #pod 'SDWebImage'
   pod 'Kingfisher'
 
 
@@ -26,14 +25,14 @@ end
 target ‘Lynked Widget’ do
 use_frameworks!
 
- #pod 'Fabric'
- #pod 'Crashlytics'
- #pod 'SDWebImage'
+  pod 'Fabric'
+  pod 'Firebase/Performance'
+  pod 'Crashlytics'
   pod 'Kingfisher'
- #pod 'Firebase/Core'
- #pod 'Firebase/Auth'
- #pod 'Firebase/Database'
- #pod 'Firebase/Performance'
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'Firebase/Performance'
 
 end
 
