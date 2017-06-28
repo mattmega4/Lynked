@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -36,49 +35,73 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dcK-7b-FG1" userLabel="First Container View">
-                                <rect key="frame" x="0.0" y="64" width="768" height="50"/>
+                                <rect key="frame" x="0.0" y="64" width="768" height="70"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add Service" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="YYl-Cz-UJu">
-                                        <rect key="frame" x="0.0" y="0.0" width="586" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="376" height="70"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fTh-43-ilh" userLabel="Right Vertical Divider View">
-                                        <rect key="frame" x="591" y="0.0" width="1" height="50"/>
+                                        <rect key="frame" x="381" y="0.0" width="1" height="70"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="1" id="bIp-95-Ska"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lzn-Ew-wdQ">
-                                        <rect key="frame" x="693" y="0.0" width="75" height="50"/>
+                                        <rect key="frame" x="633" y="0.0" width="135" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="75" id="A4X-T7-TJN"/>
+                                            <constraint firstAttribute="width" constant="135" id="KDc-Rt-J0L"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="GillSans-BoldItalic" family="Gill Sans" pointSize="15"/>
                                         <state key="normal" title="ADD">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="KDc-Rt-J0L"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <mask key="constraints">
+                                                <exclude reference="A4X-T7-TJN"/>
+                                                <include reference="KDc-Rt-J0L"/>
+                                            </mask>
+                                        </variation>
                                         <connections>
                                             <action selector="addServiceButtonTapped:" destination="NQ9-nn-dLy" eventType="touchUpInside" id="laC-3Z-4OD"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OLN-ma-YdC" userLabel="Right Vertical Divider View">
-                                        <rect key="frame" x="692" y="0.0" width="1" height="50"/>
+                                        <rect key="frame" x="632" y="0.0" width="1" height="70"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="1" id="4Fv-Qh-8P6"/>
                                         </constraints>
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="To Category" textAlignment="center" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="3k4-nm-e9X">
-                                        <rect key="frame" x="592" y="0.0" width="100" height="50"/>
+                                        <rect key="frame" x="382" y="0.0" width="250" height="70"/>
                                         <constraints>
+                                            <constraint firstAttribute="width" constant="250" id="CR4-IM-Jwm"/>
                                             <constraint firstAttribute="width" constant="100" id="mF2-YU-tot"/>
                                         </constraints>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="CR4-IM-Jwm"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <mask key="constraints">
+                                                <include reference="CR4-IM-Jwm"/>
+                                                <exclude reference="mF2-YU-tot"/>
+                                            </mask>
+                                        </variation>
                                         <connections>
                                             <outlet property="delegate" destination="NQ9-nn-dLy" id="bQi-Uv-tqR"/>
                                         </connections>
@@ -93,6 +116,7 @@
                                     <constraint firstItem="OLN-ma-YdC" firstAttribute="top" secondItem="dcK-7b-FG1" secondAttribute="top" id="M7Y-4m-Ket"/>
                                     <constraint firstItem="lzn-Ew-wdQ" firstAttribute="top" secondItem="dcK-7b-FG1" secondAttribute="top" id="Sv9-Xg-4CR"/>
                                     <constraint firstItem="fTh-43-ilh" firstAttribute="leading" secondItem="YYl-Cz-UJu" secondAttribute="trailing" constant="5" id="UB6-z1-a56"/>
+                                    <constraint firstAttribute="height" constant="70" id="asL-ab-Kz4"/>
                                     <constraint firstAttribute="trailing" secondItem="lzn-Ew-wdQ" secondAttribute="trailing" id="bRg-tG-elq"/>
                                     <constraint firstAttribute="bottom" secondItem="3k4-nm-e9X" secondAttribute="bottom" id="c0e-r7-tak"/>
                                     <constraint firstItem="lzn-Ew-wdQ" firstAttribute="leading" secondItem="OLN-ma-YdC" secondAttribute="trailing" id="fi7-DY-Hx7"/>
@@ -104,19 +128,30 @@
                                     <constraint firstItem="YYl-Cz-UJu" firstAttribute="top" secondItem="dcK-7b-FG1" secondAttribute="top" id="z5k-3S-79T"/>
                                     <constraint firstItem="fTh-43-ilh" firstAttribute="top" secondItem="dcK-7b-FG1" secondAttribute="top" id="zXM-nQ-JiZ"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="asL-ab-Kz4"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="asL-ab-Kz4"/>
+                                        <exclude reference="kwN-YR-fiK"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ax5-08-hfT" userLabel="Divider View One">
-                                <rect key="frame" x="0.0" y="114" width="768" height="1"/>
+                                <rect key="frame" x="0.0" y="134" width="768" height="1"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="cMF-Ep-41y"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YWt-Ez-LYs" userLabel="Third Container View">
-                                <rect key="frame" x="0.0" y="115" width="768" height="40"/>
+                                <rect key="frame" x="0.0" y="135" width="768" height="55"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="D6n-Jg-aV1">
-                                        <rect key="frame" x="-10" y="0.0" width="788" height="41"/>
+                                        <rect key="frame" x="-10" y="0.0" width="788" height="56"/>
                                         <segments>
                                             <segment title="All Services"/>
                                             <segment title="Category View"/>
@@ -129,22 +164,34 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="9Lx-Qv-iXX"/>
                                     <constraint firstAttribute="height" constant="40" id="KaO-3l-SYQ"/>
                                     <constraint firstItem="D6n-Jg-aV1" firstAttribute="leading" secondItem="YWt-Ez-LYs" secondAttribute="leading" constant="-10" id="MnZ-cG-ZdR"/>
                                     <constraint firstAttribute="bottom" secondItem="D6n-Jg-aV1" secondAttribute="bottom" id="WjM-ge-8yp"/>
                                     <constraint firstAttribute="trailing" secondItem="D6n-Jg-aV1" secondAttribute="trailing" constant="-10" id="fro-Bh-8HH"/>
                                     <constraint firstItem="D6n-Jg-aV1" firstAttribute="top" secondItem="YWt-Ez-LYs" secondAttribute="top" id="pup-Lc-2bf"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="9Lx-Qv-iXX"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="9Lx-Qv-iXX"/>
+                                        <exclude reference="KaO-3l-SYQ"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JQ2-Bv-shI" userLabel="Divider View Three">
-                                <rect key="frame" x="0.0" y="155" width="768" height="1"/>
+                                <rect key="frame" x="0.0" y="190" width="768" height="1"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="m8d-L1-Coq"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To add further information tap on created service!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFO-Id-gEg">
-                                <rect key="frame" x="309" y="171" width="150" height="35"/>
+                                <rect key="frame" x="309" y="206" width="150" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="VW1-cV-WyG"/>
                                     <constraint firstAttribute="height" constant="35" id="cYw-18-kdD"/>
@@ -154,7 +201,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cHp-Ed-s2f">
-                                <rect key="frame" x="0.0" y="211" width="768" height="704"/>
+                                <rect key="frame" x="0.0" y="246" width="768" height="614"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="VdY-hB-bH3">
                                     <size key="itemSize" width="133" height="133"/>
@@ -299,21 +346,33 @@
                                 </cells>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keep Scrolling..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJV-Wl-UAM">
-                                <rect key="frame" x="50" y="920" width="668" height="14"/>
+                                <rect key="frame" x="50" y="865" width="668" height="14"/>
                                 <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="12"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fj4-Fy-p3v">
-                                <rect key="frame" x="45" y="954" width="678" height="45"/>
+                                <rect key="frame" x="150" y="899" width="468" height="60"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.62745098040000002" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="5Ls-oc-crP"/>
+                                    <constraint firstAttribute="height" constant="60" id="LZm-v6-QXq"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="20"/>
                                 <state key="normal" title="EDIT CARD">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="LZm-v6-QXq"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <mask key="constraints">
+                                        <exclude reference="5Ls-oc-crP"/>
+                                        <include reference="LZm-v6-QXq"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="editCardButtonTapped:" destination="NQ9-nn-dLy" eventType="touchUpInside" id="pMo-pO-lqH"/>
                                 </connections>
@@ -326,10 +385,13 @@
                             <constraint firstItem="aJV-Wl-UAM" firstAttribute="top" secondItem="cHp-Ed-s2f" secondAttribute="bottom" constant="5" id="9Nd-Tb-eXw"/>
                             <constraint firstAttribute="trailing" secondItem="YWt-Ez-LYs" secondAttribute="trailing" id="9ZJ-Kk-cE9"/>
                             <constraint firstItem="YWt-Ez-LYs" firstAttribute="top" secondItem="Ax5-08-hfT" secondAttribute="bottom" id="9uV-8v-XBI"/>
+                            <constraint firstItem="fj4-Fy-p3v" firstAttribute="leading" secondItem="xlt-OH-CQk" secondAttribute="leading" constant="150" id="A2W-NK-vSa"/>
                             <constraint firstAttribute="trailing" secondItem="Ax5-08-hfT" secondAttribute="trailing" id="C9l-YZ-VaB"/>
                             <constraint firstItem="YWt-Ez-LYs" firstAttribute="leading" secondItem="xlt-OH-CQk" secondAttribute="leading" id="CVD-QI-elL"/>
+                            <constraint firstItem="WiI-he-Y8V" firstAttribute="top" secondItem="fj4-Fy-p3v" secondAttribute="bottom" constant="65" id="DqP-n6-sFe"/>
                             <constraint firstItem="WiI-he-Y8V" firstAttribute="top" secondItem="fj4-Fy-p3v" secondAttribute="bottom" constant="25" id="E1t-AO-cEg"/>
                             <constraint firstItem="bFO-Id-gEg" firstAttribute="top" secondItem="JQ2-Bv-shI" secondAttribute="bottom" constant="15" id="KL0-p4-FdA"/>
+                            <constraint firstAttribute="trailing" secondItem="fj4-Fy-p3v" secondAttribute="trailing" constant="150" id="L5d-xY-NnL"/>
                             <constraint firstItem="JQ2-Bv-shI" firstAttribute="leading" secondItem="xlt-OH-CQk" secondAttribute="leading" id="PgK-Qx-q6I"/>
                             <constraint firstItem="fj4-Fy-p3v" firstAttribute="top" secondItem="aJV-Wl-UAM" secondAttribute="bottom" constant="20" id="Thu-is-yBW"/>
                             <constraint firstItem="Ax5-08-hfT" firstAttribute="leading" secondItem="xlt-OH-CQk" secondAttribute="leading" id="Ylu-iv-aL7"/>
@@ -346,6 +408,23 @@
                             <constraint firstAttribute="trailing" secondItem="cHp-Ed-s2f" secondAttribute="trailing" id="uDE-XS-WMW"/>
                             <constraint firstItem="JQ2-Bv-shI" firstAttribute="top" secondItem="YWt-Ez-LYs" secondAttribute="bottom" id="x63-Qn-bV8"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="A2W-NK-vSa"/>
+                                <exclude reference="L5d-xY-NnL"/>
+                                <exclude reference="DqP-n6-sFe"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <include reference="A2W-NK-vSa"/>
+                                <include reference="L5d-xY-NnL"/>
+                                <exclude reference="blL-tD-yDa"/>
+                                <exclude reference="qbG-ck-viI"/>
+                                <include reference="DqP-n6-sFe"/>
+                                <exclude reference="E1t-AO-cEg"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="CNm-hn-Hcv">
                         <barButtonItem key="leftBarButtonItem" title="Wallet" id="cSW-HP-X8W">
@@ -680,22 +759,13 @@
                                         <constraint firstAttribute="height" constant="1" id="CMh-b9-fzq"/>
                                     </constraints>
                                 </view>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tba-At-8ZK">
-                                    <rect key="frame" x="277" y="49" width="20" height="20"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="20" id="Kv7-9g-mFh"/>
-                                        <constraint firstAttribute="height" constant="20" id="t5p-Va-IJR"/>
-                                    </constraints>
-                                </imageView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="gRJ-Cy-9J6" secondAttribute="bottom" id="0ab-64-pe4"/>
                                 <constraint firstItem="yS2-bN-w0B" firstAttribute="top" secondItem="387-i6-zMd" secondAttribute="bottom" id="Cpk-ZN-ljP"/>
-                                <constraint firstItem="387-i6-zMd" firstAttribute="leading" secondItem="tba-At-8ZK" secondAttribute="trailing" constant="15" id="IXi-PN-E0H"/>
                                 <constraint firstItem="387-i6-zMd" firstAttribute="centerX" secondItem="cOe-Zy-uFb" secondAttribute="centerX" id="Ubo-61-7FW"/>
                                 <constraint firstItem="387-i6-zMd" firstAttribute="top" secondItem="KLb-UQ-Rwl" secondAttribute="bottom" id="XAU-Ox-4jj"/>
-                                <constraint firstItem="387-i6-zMd" firstAttribute="centerY" secondItem="tba-At-8ZK" secondAttribute="centerY" id="c5I-Zf-LhK"/>
                                 <constraint firstItem="gRJ-Cy-9J6" firstAttribute="leading" secondItem="cOe-Zy-uFb" secondAttribute="leading" id="cyC-zn-c7E"/>
                                 <constraint firstItem="yS2-bN-w0B" firstAttribute="leading" secondItem="cOe-Zy-uFb" secondAttribute="leading" constant="15" id="fam-B7-sj8"/>
                                 <constraint firstAttribute="trailing" secondItem="yS2-bN-w0B" secondAttribute="trailing" constant="15" id="gA3-TN-7pF"/>
@@ -825,7 +895,6 @@
                     <connections>
                         <outlet property="deleteServiceButton" destination="HJM-7U-RP8" id="gHh-6y-nwt"/>
                         <outlet property="leftNavBarButton" destination="VDo-P4-4AY" id="azm-x8-vSG"/>
-                        <outlet property="previewImageView" destination="tba-At-8ZK" id="9S5-tf-p3e"/>
                         <outlet property="saveServiceButton" destination="p7z-RC-wVg" id="Ccc-3N-Nas"/>
                         <outlet property="serviceBillingCurrentLabel" destination="387-i6-zMd" id="Dvw-K2-S8R"/>
                         <outlet property="serviceBillingCurrentSwitch" destination="KLb-UQ-Rwl" id="zty-a3-VbU"/>
@@ -856,10 +925,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="768" height="960"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BigLy" translatesAutoresizingMaskIntoConstraints="NO" id="naq-dk-eEq">
-                                                <rect key="frame" x="323.5" y="20" width="120.5" height="120.5"/>
+                                                <rect key="frame" x="324.5" y="20" width="118.5" height="118.5"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MNJ-Ed-kWu">
-                                                <rect key="frame" x="25" y="185.5" width="718" height="120"/>
+                                                <rect key="frame" x="25" y="183.5" width="718" height="120.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="18"/>
                                                 <state key="normal" title="NIGHT MODE">
@@ -870,7 +939,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G00-Qk-Aub">
-                                                <rect key="frame" x="25" y="331" width="718" height="119.5"/>
+                                                <rect key="frame" x="25" y="329.5" width="718" height="119.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="18"/>
                                                 <state key="normal" title="USE TOUCH ID">
@@ -881,7 +950,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J9l-DB-yZe">
-                                                <rect key="frame" x="25" y="476" width="718" height="119.5"/>
+                                                <rect key="frame" x="25" y="474.5" width="718" height="119.5"/>
                                                 <color key="backgroundColor" red="0.42646154761314392" green="0.61634743213653564" blue="0.92164194583892822" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="18"/>
                                                 <state key="normal" title="FEEDBACK">
@@ -892,7 +961,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pGl-VI-LuE">
-                                                <rect key="frame" x="25" y="620.5" width="718" height="119"/>
+                                                <rect key="frame" x="25" y="619" width="718" height="120.5"/>
                                                 <color key="backgroundColor" red="0.42646154761314392" green="0.61634743213653564" blue="0.92164194583892822" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="20"/>
                                                 <state key="normal" title="ACKNOWLEDGMENTS">
@@ -1192,19 +1261,19 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lynked" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8o0-ss-tgj">
-                                            <rect key="frame" x="94" y="20.5" width="226" height="62"/>
+                                            <rect key="frame" x="271" y="20.5" width="226" height="62"/>
                                             <fontDescription key="fontDescription" name="GillSans-UltraBold" family="Gill Sans" pointSize="50"/>
                                             <color key="textColor" red="0.42352941176470588" green="0.61960784313725492" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPa-uj-XB3">
-                                            <rect key="frame" x="187" y="90.5" width="40" height="20"/>
+                                            <rect key="frame" x="364" y="90.5" width="40" height="20"/>
                                             <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="17"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This app uses the following libraries" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQc-CU-Ses">
-                                            <rect key="frame" x="10" y="167" width="394" height="20"/>
+                                            <rect key="frame" x="10" y="167" width="748" height="20"/>
                                             <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="17"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -1230,16 +1299,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U0I-d3-7fK">
-                                                    <rect key="frame" x="10" y="10" width="394" height="111.5"/>
+                                                    <rect key="frame" x="10" y="10" width="748" height="111.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUT-Kj-Mvj">
-                                                            <rect key="frame" x="10" y="20" width="374" height="20"/>
+                                                            <rect key="frame" x="10" y="20" width="728" height="20"/>
                                                             <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="17"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BIn-ah-ijJ">
-                                                            <rect key="frame" x="10" y="50" width="374" height="17.5"/>
+                                                            <rect key="frame" x="10" y="50" width="728" height="17.5"/>
                                                             <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -2026,7 +2095,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MLd-gp-zf3">
-                                                    <rect key="frame" x="-22" y="25" width="458" height="229"/>
+                                                    <rect key="frame" x="155" y="25" width="458" height="229"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qpz-U3-Y3W">
                                                             <rect key="frame" x="3" y="3" width="452" height="223"/>
@@ -2130,7 +2199,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rS2-Dq-54k">
-                                                    <rect key="frame" x="-22" y="25" width="458" height="229"/>
+                                                    <rect key="frame" x="155" y="25" width="458" height="229"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QCl-Uv-CkS">
                                                             <rect key="frame" x="3" y="3" width="452" height="223"/>
