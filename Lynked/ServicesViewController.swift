@@ -10,7 +10,8 @@ import UIKit
 //import SDWebImage
 import Kingfisher
 import MBProgressHUD
-
+import FavIcon
+import Alamofire
 
 
 class ServicesViewController: UIViewController {
@@ -325,32 +326,89 @@ extension ServicesViewController: UICollectionViewDelegate, UICollectionViewData
             
             
             
-//            try FavIcon.downloadPreferred("https://apple.com") { result in
-//                if case let .success(image) = result {
-//                    // On iOS, this is a UIImage, do something with it here.
-//                    // This closure will be executed on the main queue, so it's safe to touch
-//                    // the UI here.
-//                }
-//            }
+            
+            
             
             
             
             
             let placeholderImage = UIImage.init(named: "\(TempLetterImagePickerUtility.shared.getLetterOrNumberAndChooseImage(text: service.serviceName!))")
-            if let seviceURLString = service.serviceUrl, service.serviceUrl?.isEmpty == false {
-                let myURLString: String = "http://www.google.com/s2/favicons?domain=\(seviceURLString)"
+            
+            
+            
+            if let serviceURLString = service.serviceUrl, service.serviceUrl?.isEmpty == false {
                 
-                if let myURL = URL(string: myURLString) {
-                    cell.serviceLogoImage.kf.setImage(with: myURL, placeholder: placeholderImage)
-//                    cell.serviceLogoImage.sd_setImage(with: myURL, placeholderImage: placeholderImage)
+                //
+                if let imageURL = URL(string: "https://logo.clearbit.com/\(serviceURLString)") {
+                    cell.serviceLogoImage.kf.setImage(with: imageURL, placeholder: placeholderImage, options: nil, progressBlock: nil, completionHandler: { (image, error, cacheType, url) in
+                        if image == nil {
+                            let myURLString: String = "http://www.google.com/s2/favicons?domain=\(serviceURLString)"
+                            if let myURL = URL(string: myURLString) {
+                                cell.serviceLogoImage.kf.setImage(with: myURL, placeholder: placeholderImage)
+                            }
+                            
+                        }
+                    })
                 }
-            }
                 
-            else {
-                cell.serviceLogoImage.image = placeholderImage
+                
+                
+                //                let request = Alamofire.request("https://logo.clearbit.com/\(serviceURLString)")
+                //                request.responseData(completionHandler: { (response) in
+                //                    if let imageData = response.data
+                //                })
+                //                do {
+                //
+                //                    try FavIcon.downloadPreferred("http://www.\(serviceURLString)", width: 400, height: 400, completion: { (result) in
+                //
+                //                        switch result {
+                //                        case let .success(image):
+                //                            let icon = image
+                //                            print(icon)
+                //                            cell.serviceLogoImage.image = image
+                //                        //cell.serviceLogoImage.kf.setImage(with: icon as? Resource, placeholder: placeholderImage) //image = icon
+                //                        case let .failure(error):
+                //
+                //                                                        print("failed - \(error)")
+                //                        }
+                //                    })
+                
+                
+                //                    try FavIcon.downloadPreferred("http://www.\(serviceURLString)") { result in
+                
+                //                        switch result {
+                //                        case let .success(image):
+                //                            let icon = image
+                //                            print(icon)
+                //                            cell.serviceLogoImage.image = image
+                //                            //cell.serviceLogoImage.kf.setImage(with: icon as? Resource, placeholder: placeholderImage) //image = icon
+                //                        case let .failure(error):
+                //
+                //                            let myURLString: String = "http://www.google.com/s2/favicons?domain=\(serviceURLString)"
+                //
+                //                            if let myURL = URL(string: myURLString) {
+                //                                cell.serviceLogoImage.kf.setImage(with: myURL, placeholder: placeholderImage)
+                //                            }
+                //                            print("failed - \(error)")
+                //                        }
+                //                    }
+                
+                
+                //
+                
+                //                }
+                //                catch {
+                //                    cell.serviceLogoImage.image = placeholderImage
+                //                }
+                //            }
+                //
+                //            else {
+                //                cell.serviceLogoImage.image = placeholderImage
+                //            }
+                return cell
             }
-            return cell
         }
+        
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: categoryCellId, for: indexPath) as! ServiceCategoryCollectionViewCell
         cell.categoryNameLabel.text = categories[indexPath.row]
@@ -365,16 +423,16 @@ extension ServicesViewController: UICollectionViewDelegate, UICollectionViewData
                     switch i {
                     case 0:
                         cell.previewImageViewOne.kf.setImage(with: myURL, placeholder: placeholderImage)
-//                        cell.previewImageViewOne.sd_setImage(with: myURL, placeholderImage: placeholderImage)
+                    //                        cell.previewImageViewOne.sd_setImage(with: myURL, placeholderImage: placeholderImage)
                     case 1:
                         cell.previewImageViewTwo.kf.setImage(with: myURL, placeholder: placeholderImage)
-//                        cell.previewImageViewTwo.sd_setImage(with: myURL, placeholderImage: placeholderImage)
+                    //                        cell.previewImageViewTwo.sd_setImage(with: myURL, placeholderImage: placeholderImage)
                     case 2:
                         cell.previewImageViewThree.kf.setImage(with: myURL, placeholder: placeholderImage)
-//                        cell.previewImageViewThree.sd_setImage(with: myURL, placeholderImage: placeholderImage)
+                    //                        cell.previewImageViewThree.sd_setImage(with: myURL, placeholderImage: placeholderImage)
                     case 3:
                         cell.previewImageViewFour.kf.setImage(with: myURL, placeholder: placeholderImage)
-//                        cell.previewImageViewFour.sd_setImage(with: myURL, placeholderImage: placeholderImage)
+                        //                        cell.previewImageViewFour.sd_setImage(with: myURL, placeholderImage: placeholderImage)
                         
                     default:
                         print("I shouldn't have been printed")
