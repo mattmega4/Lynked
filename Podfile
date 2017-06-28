@@ -17,7 +17,7 @@ target 'Lynked' do
   pod 'Firebase/Database'
   pod 'Firebase/Performance'
  #pod 'SDWebImage'
-  pod 'Kingfisher', '~> 3.0'
+  pod 'Kingfisher'
 
 
 

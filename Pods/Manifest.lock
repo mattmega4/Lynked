@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (4.5.0)
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - Fabric (1.6.11)
@@ -58,6 +59,7 @@ PODS:
   - Spring (1.0.3)
 
 DEPENDENCIES:
+  - Alamofire
   - Crashlytics
   - Fabric
   - Firebase/Auth
@@ -65,6 +67,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Performance
   - Instabug
+  - Kingfisher
   - Kingfisher (~> 3.0)
   - MBProgressHUD
   - SDWebImage
@@ -81,6 +84,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/MengTo/Spring.git
 
 SPEC CHECKSUMS:
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   Firebase: c7ad0731eab26d18a3fc547dd048b0f7cd9c63ae
@@ -99,6 +103,6 @@ SPEC CHECKSUMS:
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
 
-PODFILE CHECKSUM: b8c16d21fb160e2f94c1518b8f359ffa23bc83b3
+PODFILE CHECKSUM: 7a48c023ae88bcb180d979df3eff5bfd3f656d53
 
 COCOAPODS: 1.2.1
