@@ -85,13 +85,18 @@ class EntryViewController: UIViewController {
     // MARK: - Check if Already Logged In
     
     func checkIfAlreadyLoggedIn() {
-        
-        if Auth.auth().currentUser != nil {
-            if let WalletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
-                self.navigationController?.pushViewController(WalletVC, animated: true)
-            }
-        }
-        
+//        
+//        Auth.auth().addStateDidChangeListener { (auth, user) in
+//            if user != nil {
+//                if let WalletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
+//                    self.navigationController?.pushViewController(WalletVC, animated: true)
+//                }
+//            } else {
+//                if let entryVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? WalletViewController {
+//                    self.navigationController?.pushViewController(entryVC, animated: true)
+//                }
+//            }
+//        }
     }
     
     

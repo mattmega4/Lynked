@@ -7,10 +7,8 @@
 //
 
 import UIKit
-//import SDWebImage
 import Kingfisher
 import MBProgressHUD
-
 
 
 class ServicesViewController: UIViewController {
@@ -49,12 +47,12 @@ class ServicesViewController: UIViewController {
     var categories = [String]()
     var isDisplayingCategories = false
     var card: CardClass?
-
+    
     //    let margin: CGFloat = 10
     //    let cellsPerC = 3
     let margin = (UIDevice.current.userInterfaceIdiom == .pad ? 5: 10) as CGFloat
     let cellsPerC = (UIDevice.current.userInterfaceIdiom == .pad ? 4: 3) as CGFloat
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -273,14 +271,14 @@ extension ServicesViewController: UITextFieldDelegate {
         return false
     }
     
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if textField == categoryTextField {
-            categoryTextField.text = categories[0]
-        } else if textField == serviceTextField {
-            
-        }
-        return true
-    }
+//    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+//        if textField == categoryTextField {
+//            categoryTextField.text = categories[0]
+//        } else if textField == serviceTextField {
+//            
+//        }
+//        return true
+//    }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
@@ -360,27 +358,26 @@ extension ServicesViewController: UICollectionViewDelegate, UICollectionViewData
         let categoryServices = serviceArray.filter({$0.category == categories[indexPath.row]})
         for i in 0..<min(categoryServices.count, 3) {
             let service = categoryServices[i]
+            
             let placeholderImage = UIImage.init(named: "\(TempLetterImagePickerUtility.shared.getLetterOrNumberAndChooseImage(text: service.serviceName!))")
+            
+            
+            
             if let seviceURLString = service.serviceUrl, service.serviceUrl?.isEmpty == false {
-                let myURLString: String = "http://www.google.com/s2/favicons?domain=\(seviceURLString)"
+                let myURLString: String = "https://logo.clearbit.com/\(seviceURLString)"
                 
                 if let myURL = URL(string: myURLString) {
                     switch i {
                     case 0:
                         cell.previewImageViewOne.kf.setImage(with: myURL, placeholder: placeholderImage)
-                    //                        cell.previewImageViewOne.sd_setImage(with: myURL, placeholderImage: placeholderImage)
                     case 1:
                         cell.previewImageViewTwo.kf.setImage(with: myURL, placeholder: placeholderImage)
-                    //                        cell.previewImageViewTwo.sd_setImage(with: myURL, placeholderImage: placeholderImage)
                     case 2:
                         cell.previewImageViewThree.kf.setImage(with: myURL, placeholder: placeholderImage)
-                    //                        cell.previewImageViewThree.sd_setImage(with: myURL, placeholderImage: placeholderImage)
                     case 3:
                         cell.previewImageViewFour.kf.setImage(with: myURL, placeholder: placeholderImage)
-                        //                        cell.previewImageViewFour.sd_setImage(with: myURL, placeholderImage: placeholderImage)
-                        
                     default:
-                        print("I shouldn't have been printed")
+                        print("error")
                     }
                 }
             }

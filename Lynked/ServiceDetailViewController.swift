@@ -62,6 +62,7 @@ class ServiceDetailViewController: UITableViewController {
         super.viewDidLoad()
         
         setNavBar()
+        
         self.serviceTableView.delegate = self
         self.serviceTableView.dataSource = self
         
@@ -304,15 +305,6 @@ extension ServiceDetailViewController: UITextFieldDelegate {
             }
         }
     }
-    
-    
-    //    func currencyRightToLeftFormatter(textField: UITextField) {
-    //        if textField == amountTextField {
-    //            if let amountString = textField.text?.currencyInputFormatting() {
-    //                textField.text = amountString
-    //            }
-    //        }
-    //    }
 }
 
 // MARK: - UIPickerView Delegate Methods
@@ -382,12 +374,7 @@ extension ServiceDetailViewController {
         }
         
         cell.delegate = self
-        
 
-        
-        
-        
-        
         switch indexPath.row {
         case 0:
             cell.serviceTextField.text = service?.serviceName
@@ -409,11 +396,6 @@ extension ServiceDetailViewController {
                 cell.serviceTextField.keyboardType = .decimalPad
             }
             amountTextField = cell.serviceTextField
-            
-            
-            
-            //            currencyInputFormatting()
-            
             cell.fixedToggleSwitch?.isOn = servFixed
         case 4:
             cell.serviceTextField.isEnabled = self.servFixed
