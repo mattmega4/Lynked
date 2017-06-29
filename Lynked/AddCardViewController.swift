@@ -11,7 +11,6 @@ import MBProgressHUD
 
 class AddCardViewController: UIViewController {
     
-    @IBOutlet weak var cancelNavBarButton: UIBarButtonItem!
     @IBOutlet weak var nextNavBarButton: UIBarButtonItem!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
@@ -55,6 +54,8 @@ class AddCardViewController: UIViewController {
         title = "Add Card"
         
         setNavBar()
+        self.navigationItem.setHidesBackButton(true, animated:true)
+        
         nextNavBarButton.isEnabled = false
         firstContainerTextField.addTarget(self, action: #selector(checkNicknameTextField(textField:)), for: .editingChanged)
         secondContainerTextField.addTarget(self, action: #selector(checkTypeTextField(textField:)), for: .editingChanged)
@@ -114,13 +115,8 @@ class AddCardViewController: UIViewController {
         }
     }
     
-    // MARK: - IB Actions
     
-    @IBAction func navBarCancelButtonTapped(_ sender: UIBarButtonItem) {
-        if let walletVC = storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
-            navigationController?.pushViewController(walletVC, animated: true)
-        }
-    }
+    // MARK: - IB Actions
     
     @IBAction func navBarNextButtonTapped(_ sender: UIBarButtonItem) {
         addDataToFirebase()
