@@ -22,8 +22,8 @@ class WalletViewController: UIViewController {
     var cardArray: [CardClass] = []
     var delegate: WalletViewControllerDelegate?
     
-    let cardCellIdentifier = "cardCell"
-    let newCardCellIdentifier = "newCell"
+    let CARD_CELL_IDENTIFIER = "cardCell"
+    let NEW_CARD_CELL_IDENTIFIER = "newCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,9 +39,7 @@ class WalletViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 500
         self.splitViewController?.preferredDisplayMode = .allVisible
-        //self.splitViewController?.displayMode =
         self.navigationItem.setHidesBackButton(true, animated: true)
-        // self.splitViewController?.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -191,13 +189,13 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: newCardCellIdentifier, for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: NEW_CARD_CELL_IDENTIFIER, for: indexPath)
             
             return cell
             
         }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: cardCellIdentifier, for: indexPath as IndexPath) as! CardTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CARD_CELL_IDENTIFIER, for: indexPath as IndexPath) as! CardTableViewCell
         let row = indexPath.row - 1
         
         

@@ -289,7 +289,7 @@
 		29773CDB1EC3B6230023F277 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				29BDD8B91EF9022100F6A2DF /* New Idea */,
+				29BDD8B91EF9022100F6A2DF /* To Do */,
 				29773CDC1EC3B6730023F277 /* EntryViewController.swift */,
 				1DC0D8D81DFE59360039B8F6 /* AddCardViewController.swift */,
 				292764921EDFA3160096AE1E /* WalletViewController.swift */,
@@ -314,12 +314,12 @@
 			name = Future;
 			sourceTree = "<group>";
 		};
-		29BDD8B91EF9022100F6A2DF /* New Idea */ = {
+		29BDD8B91EF9022100F6A2DF /* To Do */ = {
 			isa = PBXGroup;
 			children = (
 				294D0E311EF9E9F7000E4BC6 /* CategoryViewController.swift */,
 			);
-			name = "New Idea";
+			name = "To Do";
 			sourceTree = "<group>";
 		};
 		29CCE7261EDF8F0000995139 /* Extensions */ = {
