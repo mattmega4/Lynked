@@ -228,7 +228,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CBG-ku-rDV">
-                                                    <rect key="frame" x="45.666666666666657" y="23" width="42.333333333333343" height="42.666666666666671"/>
+                                                    <rect key="frame" x="35.666666666666657" y="8.3333333333333321" width="62.333333333333343" height="62.666666666666671"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="CBG-ku-rDV" secondAttribute="height" multiplier="1:1" id="X1b-p4-20X"/>
                                                     </constraints>
@@ -245,14 +245,13 @@
                                         </view>
                                         <constraints>
                                             <constraint firstItem="k8t-hb-Evn" firstAttribute="top" secondItem="SoT-GT-vqV" secondAttribute="top" constant="10" id="2Q4-9T-oKY"/>
-                                            <constraint firstAttribute="trailing" secondItem="CBG-ku-rDV" secondAttribute="trailing" constant="45" id="8iZ-1s-fPz"/>
+                                            <constraint firstAttribute="trailing" secondItem="CBG-ku-rDV" secondAttribute="trailing" constant="35" id="8iZ-1s-fPz"/>
                                             <constraint firstItem="muJ-up-KrE" firstAttribute="leading" secondItem="SoT-GT-vqV" secondAttribute="leading" constant="5" id="Hgx-4l-fgb"/>
-                                            <constraint firstItem="muJ-up-KrE" firstAttribute="top" secondItem="CBG-ku-rDV" secondAttribute="bottom" constant="10.5" id="MUK-ge-ss3"/>
+                                            <constraint firstItem="muJ-up-KrE" firstAttribute="top" secondItem="CBG-ku-rDV" secondAttribute="bottom" constant="5" id="MUK-ge-ss3"/>
                                             <constraint firstAttribute="trailing" secondItem="muJ-up-KrE" secondAttribute="trailing" constant="5" id="OwO-lk-cUd"/>
                                             <constraint firstAttribute="trailing" secondItem="k8t-hb-Evn" secondAttribute="trailing" constant="10" id="Sy4-2j-VDh"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="0yM-Vb-l6k" secondAttribute="bottom" constant="0.5" id="UBW-NN-tz9"/>
                                             <constraint firstAttribute="trailing" secondItem="0yM-Vb-l6k" secondAttribute="trailing" constant="10" id="V29-XX-UTE"/>
-                                            <constraint firstItem="muJ-up-KrE" firstAttribute="centerX" secondItem="CBG-ku-rDV" secondAttribute="centerX" id="bor-qY-uLX"/>
                                             <constraint firstItem="0yM-Vb-l6k" firstAttribute="centerX" secondItem="CBG-ku-rDV" secondAttribute="centerX" id="mCe-He-4Jl"/>
                                             <constraint firstItem="0yM-Vb-l6k" firstAttribute="leading" secondItem="SoT-GT-vqV" secondAttribute="leading" constant="10" id="uSu-mS-Hik"/>
                                             <constraint firstItem="0yM-Vb-l6k" firstAttribute="top" secondItem="muJ-up-KrE" secondAttribute="bottom" constant="8.5" id="yMa-N0-7qd"/>
@@ -2282,13 +2281,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MLd-gp-zf3">
-                                                    <rect key="frame" x="128" y="18" width="158" height="100"/>
+                                                    <rect key="frame" x="27" y="10" width="360" height="227"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qpz-U3-Y3W">
-                                                            <rect key="frame" x="6" y="6" width="146" height="88"/>
+                                                            <rect key="frame" x="6" y="6" width="348" height="215"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mO6-AV-yXx">
-                                                                    <rect key="frame" x="15" y="20" width="116" height="35"/>
+                                                                    <rect key="frame" x="15" y="20" width="318" height="35"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="80" id="Gi2-58-hcb"/>
                                                                         <constraint firstAttribute="height" constant="35" id="v0t-Yw-oRS"/>
@@ -2309,7 +2308,7 @@
                                                                     </variation>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tcr-n4-3hx">
-                                                                    <rect key="frame" x="15" y="61.000000000000007" width="116" height="18.666666666666679"/>
+                                                                    <rect key="frame" x="15" y="60.999999999999986" width="318" height="145.66666666666663"/>
                                                                     <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="16"/>
                                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
@@ -2350,9 +2349,9 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="MLd-gp-zf3" firstAttribute="top" secondItem="Pir-za-s9d" secondAttribute="top" constant="25" id="0pv-0z-Wd7"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="MLd-gp-zf3" secondAttribute="bottom" priority="250" constant="10" id="4yT-Yb-ttx"/>
-                                                <constraint firstItem="MLd-gp-zf3" firstAttribute="centerX" secondItem="Pir-za-s9d" secondAttribute="centerX" id="YLE-lD-Whe"/>
-                                                <constraint firstItem="MLd-gp-zf3" firstAttribute="top" secondItem="Pir-za-s9d" secondAttribute="topMargin" constant="10" id="jMi-tf-RWj"/>
+                                                <constraint firstAttribute="bottom" secondItem="MLd-gp-zf3" secondAttribute="bottom" constant="10" id="bde-RX-NON"/>
+                                                <constraint firstItem="MLd-gp-zf3" firstAttribute="centerX" secondItem="Pir-za-s9d" secondAttribute="centerX" id="ntV-3k-FFF"/>
+                                                <constraint firstItem="MLd-gp-zf3" firstAttribute="top" secondItem="Pir-za-s9d" secondAttribute="top" constant="10" id="xdF-em-FLa"/>
                                                 <constraint firstAttribute="bottom" secondItem="MLd-gp-zf3" secondAttribute="bottom" constant="25" id="xv6-rz-YAw"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
@@ -2378,21 +2377,21 @@
                                             <outlet property="cardNicknameLabel" destination="mO6-AV-yXx" id="Ock-Ba-IJK"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="newCell" rowHeight="279" id="V9y-R1-13b" customClass="NewCardTableViewCell" customModule="Lynked" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="275" width="414" height="279"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="newCell" rowHeight="247" id="V9y-R1-13b" customClass="NewCardTableViewCell" customModule="Lynked" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="275" width="414" height="247"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V9y-R1-13b" id="znk-g3-fAt">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="279"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="247"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rS2-Dq-54k">
-                                                    <rect key="frame" x="102" y="18" width="210" height="132.33333333333334"/>
+                                                    <rect key="frame" x="27" y="10" width="360" height="227"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QCl-Uv-CkS">
-                                                            <rect key="frame" x="6" y="6" width="198" height="120.33333333333334"/>
+                                                            <rect key="frame" x="6" y="6" width="348" height="215"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADD CARD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3na-lZ-fCe">
-                                                                    <rect key="frame" x="24.666666666666657" y="46" width="148.00000000000003" height="29"/>
+                                                                    <rect key="frame" x="24.666666666666657" y="93.333333333333343" width="298" height="29.000000000000014"/>
                                                                     <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="25"/>
                                                                     <color key="textColor" red="0.19647874374968194" green="0.15331359318324497" blue="0.33027343749999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -2428,11 +2427,11 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="rS2-Dq-54k" firstAttribute="centerX" secondItem="znk-g3-fAt" secondAttribute="centerX" id="BZh-g1-GYy"/>
                                                 <constraint firstItem="rS2-Dq-54k" firstAttribute="top" secondItem="znk-g3-fAt" secondAttribute="top" constant="25" id="FWp-7H-udD"/>
+                                                <constraint firstAttribute="bottom" secondItem="rS2-Dq-54k" secondAttribute="bottom" constant="10" id="dZV-vB-s6O"/>
                                                 <constraint firstAttribute="bottom" secondItem="rS2-Dq-54k" secondAttribute="bottom" constant="25" id="nHi-xH-7xu"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="rS2-Dq-54k" secondAttribute="bottom" priority="250" constant="10" id="p0k-1W-XFX"/>
-                                                <constraint firstItem="rS2-Dq-54k" firstAttribute="centerX" secondItem="znk-g3-fAt" secondAttribute="centerX" id="slm-il-BkB"/>
-                                                <constraint firstItem="rS2-Dq-54k" firstAttribute="top" secondItem="znk-g3-fAt" secondAttribute="topMargin" constant="10" id="yb0-Xk-LZr"/>
+                                                <constraint firstItem="rS2-Dq-54k" firstAttribute="top" secondItem="znk-g3-fAt" secondAttribute="top" constant="10" id="nbd-s6-qGs"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
