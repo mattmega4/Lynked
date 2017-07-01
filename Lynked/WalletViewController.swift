@@ -142,13 +142,12 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
         
         if indexPath.row == 0 {
             
-            
             if InAppPurchaseUtility.shared.isPurchased {
                 if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: ADD_CARD_STORYBOARD_IDENTIFIER) as? AddCardViewController {
                     self.navigationController?.pushViewController(addCardVC, animated: true)
                 }
-                
-            } else {
+            }
+            else {
                 let actionSheet = UIAlertController(title: nil, message: "You will need to purchase this to add more than 1 card", preferredStyle: .actionSheet)
                 let purchaseAction = UIAlertAction(title: "Purchase", style: .default, handler: { (action) in
                     self.purchaseProduct()
@@ -176,19 +175,12 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
                     if let cell = tableView.cellForRow(at: indexPath) as? CardTableViewCell {
                         cell.cardBorderView.backgroundColor = .orange
                     }
+
+                    cardDVC.card = self.cardArray[indexPath.row - 1]
                     
-                    
-                    //delegate?.walletViewController(controller: self, didSelectCard: self.selectedCard)
-                    
-                    
-                    cardDVC.card = self.cardArray[indexPath.row]
                     let serviceNavigation = UINavigationController(rootViewController: cardDVC)
                     self.splitViewController?.showDetailViewController(serviceNavigation, sender: self)
-                    
-                    
-                    //(parent?.parent as? UISplitViewController)?.showDetailViewController(cardDVC, sender: self)
-                    
-                    //                    self.navigationController?.pushViewController(cardDVC, animated: true)
+        
                 }
             }
             tableView.isUserInteractionEnabled = false
