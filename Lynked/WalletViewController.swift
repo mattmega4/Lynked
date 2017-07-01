@@ -33,17 +33,19 @@ class WalletViewController: UIViewController {
         
         title = "Wallet"
         setNavBar()
+        pullAllUsersCards()
         FirebaseUtility.shared.getAllServices { (services, error) in }
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 500
-
+        self.splitViewController?.preferredDisplayMode = .allVisible
+       // self.splitViewController?.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        pullAllUsersCards()
+//        pullAllUsersCards()
         tableView.isUserInteractionEnabled = true
     }
     
@@ -166,6 +168,12 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
             if self.selectedCard != "" {
                 if let cardDVC = self.storyboard?.instantiateViewController(withIdentifier: "serviceVC") as? ServicesViewController {
                     
+                    
+                    if let cell = tableView.cellForRow(at: indexPath) as? CardTableViewCell {
+                        cell.cardBorderView.backgroundColor = .orange
+                    }
+                    
+                    
                     //delegate?.walletViewController(controller: self, didSelectCard: self.selectedCard)
                     
                     
@@ -189,8 +197,18 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
         
         // but if it was a card
         
+        //////
         let cell = tableView.dequeueReusableCell(withIdentifier: cardCellIdentifier, for: indexPath as IndexPath) as! CardTableViewCell
         let row = indexPath.row
+        
+        
+        if cell.isSelected {
+            cell.cardBorderView.backgroundColor = .orange
+            cell.cardBackgroundView.backgroundColor = cardArray[row].color
+        } else {
+            cell.cardBorderView.backgroundColor = .darkGray
+            cell.cardBackgroundView.backgroundColor = cardArray[row].color
+        }
         
         cell.cardBackgroundView.backgroundColor = cardArray[row].color
         cell.cardNicknameLabel.text = cardArray[row].nickname
@@ -217,8 +235,12 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
 extension WalletViewController: UISplitViewControllerDelegate {
     
     override func collapseSecondaryViewController(_ secondaryViewController: UIViewController, for splitViewController: UISplitViewController) {
-        
     }
+    
+    func splitViewController(_ splitViewController: UISplitViewController, show vc: UIViewController, sender: Any?) -> Bool {
+        return true
+    }
+    
 }
 
 protocol WalletViewControllerDelegate {
