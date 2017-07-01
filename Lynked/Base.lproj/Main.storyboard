@@ -1242,7 +1242,6 @@
                 <splitViewController storyboardIdentifier="splitVC" id="1el-ye-wps" sceneMemberID="viewController">
                     <connections>
                         <segue destination="xHQ-yF-oEb" kind="relationship" relationship="masterViewController" id="o7o-hd-f32"/>
-                        <segue destination="NQ9-nn-dLy" kind="relationship" relationship="detailViewController" id="gg8-ev-oWK"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EPo-ha-SPb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1432,7 +1431,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mKG-k1-KFL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9246" y="404"/>
+            <point key="canvasLocation" x="9245" y="-432"/>
         </scene>
         <!--Acknowledgements View Controller-->
         <scene sceneID="peY-4v-ypF">
@@ -2351,7 +2350,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="MLd-gp-zf3" firstAttribute="top" secondItem="Pir-za-s9d" secondAttribute="top" constant="25" id="0pv-0z-Wd7"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="MLd-gp-zf3" secondAttribute="bottom" priority="200" constant="10" id="4yT-Yb-ttx"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="MLd-gp-zf3" secondAttribute="bottom" priority="250" constant="10" id="4yT-Yb-ttx"/>
                                                 <constraint firstItem="MLd-gp-zf3" firstAttribute="centerX" secondItem="Pir-za-s9d" secondAttribute="centerX" id="YLE-lD-Whe"/>
                                                 <constraint firstItem="MLd-gp-zf3" firstAttribute="top" secondItem="Pir-za-s9d" secondAttribute="topMargin" constant="10" id="jMi-tf-RWj"/>
                                                 <constraint firstAttribute="bottom" secondItem="MLd-gp-zf3" secondAttribute="bottom" constant="25" id="xv6-rz-YAw"/>
@@ -2387,13 +2386,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rS2-Dq-54k">
-                                                    <rect key="frame" x="28" y="18" width="264" height="166.33333333333334"/>
+                                                    <rect key="frame" x="102" y="18" width="210" height="132.33333333333334"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QCl-Uv-CkS">
-                                                            <rect key="frame" x="6" y="6" width="252" height="154.33333333333334"/>
+                                                            <rect key="frame" x="6" y="6" width="198" height="120.33333333333334"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADD CARD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3na-lZ-fCe">
-                                                                    <rect key="frame" x="24.666666666666671" y="63" width="202" height="29"/>
+                                                                    <rect key="frame" x="24.666666666666657" y="46" width="148.00000000000003" height="29"/>
                                                                     <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="25"/>
                                                                     <color key="textColor" red="0.19647874374968194" green="0.15331359318324497" blue="0.33027343749999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -2429,12 +2428,11 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="rS2-Dq-54k" firstAttribute="top" secondItem="znk-g3-fAt" secondAttribute="topMargin" constant="10" id="6mQ-fU-gMc"/>
                                                 <constraint firstItem="rS2-Dq-54k" firstAttribute="top" secondItem="znk-g3-fAt" secondAttribute="top" constant="25" id="FWp-7H-udD"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="rS2-Dq-54k" secondAttribute="trailing" constant="20" id="Soj-Nc-cNv"/>
                                                 <constraint firstAttribute="bottom" secondItem="rS2-Dq-54k" secondAttribute="bottom" constant="25" id="nHi-xH-7xu"/>
-                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="rS2-Dq-54k" secondAttribute="bottom" constant="10" id="vez-7v-Msq"/>
-                                                <constraint firstItem="rS2-Dq-54k" firstAttribute="leading" secondItem="znk-g3-fAt" secondAttribute="leadingMargin" constant="20" id="yE5-g4-hXs"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="rS2-Dq-54k" secondAttribute="bottom" priority="250" constant="10" id="p0k-1W-XFX"/>
+                                                <constraint firstItem="rS2-Dq-54k" firstAttribute="centerX" secondItem="znk-g3-fAt" secondAttribute="centerX" id="slm-il-BkB"/>
+                                                <constraint firstItem="rS2-Dq-54k" firstAttribute="top" secondItem="znk-g3-fAt" secondAttribute="topMargin" constant="10" id="yb0-Xk-LZr"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
@@ -2662,7 +2660,4 @@
         <image name="cardImage" width="252" height="183"/>
         <image name="whiteLy" width="1024" height="1024"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="gg8-ev-oWK"/>
-    </inferredMetricsTieBreakers>
 </document>

@@ -80,14 +80,21 @@ class ServicesViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         
-        //        guard let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-        //        flowLayout.minimumInteritemSpacing = margin
-        //        flowLayout.minimumLineSpacing = margin
-        //        flowLayout.sectionInset = UIEdgeInsets(top: margin, left: margin, bottom: margin, right: margin)
+        guard let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        flowLayout.minimumInteritemSpacing = margin
+        flowLayout.minimumLineSpacing = margin
+        flowLayout.sectionInset = UIEdgeInsets(top: margin, left: margin, bottom: margin, right: margin)
         
         categoryTextField.inputView = categoryPickerView
         
         title = card?.nickname
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            navigationItem.leftBarButtonItem = nil
+            navigationItem.rightBarButtonItem = nil
+        }
+//        (UIDevice.current.userInterfaceIdiom == .pad ? 5: 10)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
