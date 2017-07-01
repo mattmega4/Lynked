@@ -41,24 +41,16 @@ class ServicesViewController: UIViewController {
     
     
     let categoryPickerView = UIPickerView()
-    let serviceCellId = "ServiceCell"
-    let categoryCellId = "CategoryCell"
     var serviceArray = [ServiceClass]()
     var categories = [String]()
     var isDisplayingCategories = false
     var card: CardClass?
-    
-    
-    
     let margin: CGFloat = 10
     let cellsPerC = 3
+    let SERVICE_CELL_IDENTIFIER = "ServiceCell"
+    let CATEGORY_CELL_IDENTIFIER = "CategoryCell"
     
-    
-    //        let margin = (UIDevice.current.userInterfaceIdiom == .pad ? 5: 10) as CGFloat
-    //        let cellsPerC = (UIDevice.current.userInterfaceIdiom == .pad ? 4: 3) as CGFloat
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -283,15 +275,6 @@ extension ServicesViewController: UITextFieldDelegate {
         return false
     }
     
-    //    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-    //        if textField == categoryTextField {
-    //            categoryTextField.text = categories[0]
-    //        } else if textField == serviceTextField {
-    //
-    //        }
-    //        return true
-    //    }
-    
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return true
@@ -340,7 +323,7 @@ extension ServicesViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if !isDisplayingCategories {
             
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: serviceCellId, for: indexPath) as! ServiceCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SERVICE_CELL_IDENTIFIER, for: indexPath) as! ServiceCollectionViewCell
             let service = serviceArray[indexPath.row]
             cell.colorStatusView.backgroundColor = service.serviceStatus ? .green : .red
             cell.serviceNameLabel.text = service.serviceName
@@ -366,7 +349,7 @@ extension ServicesViewController: UICollectionViewDelegate, UICollectionViewData
         }
         
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: categoryCellId, for: indexPath) as! ServiceCategoryCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CATEGORY_CELL_IDENTIFIER, for: indexPath) as! ServiceCategoryCollectionViewCell
         cell.categoryNameLabel.text = categories[indexPath.row]
         let categoryServices = serviceArray.filter({$0.category == categories[indexPath.row]})
         for i in 0..<min(categoryServices.count, 3) {

@@ -40,7 +40,6 @@ class EditCardViewController: UIViewController {
     @IBOutlet weak var digitsTextField: UITextField!
     
     
-    
     var nicknameFieldSatisfied: Bool?
     var typeFieldSatisfied: Bool?
     var thisCardIDTransfered = ""

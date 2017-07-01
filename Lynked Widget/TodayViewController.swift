@@ -8,8 +8,10 @@
 
 import UIKit
 import NotificationCenter
-//import SDWebImage
-import Kingfisher 
+import Kingfisher
+import Firebase
+import CoreMedia
+
 
 
 class TodayViewController: UIViewController, NCWidgetProviding {
@@ -18,25 +20,16 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     @IBOutlet weak var tableView: UITableView!
     
-    let widgetCellIdentifier = "widgetCell"
+    let WIDGET_CELL_IDENTIFIER = "widgetCell"
     var serviceArray = [[String : String]]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("foooodfdajla")
-        //FirebaseApp.configure()
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
-//        let groupDefaults = UserDefaults(suiteName: "group.Lynked")
-//        if let services = groupDefaults?.object(forKey: "services") as? [[String : String]] {
-//            serviceArray = services
-//            print(services)
-//            signInLabel.isHidden = true
-//        } else {
-//            signInLabel.isHidden = false
-//        }
-
+        
         // Do any additional setup after loading the view from its nib.
     }
     
@@ -82,7 +75,7 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: widgetCellIdentifier, for: indexPath) as! WidgetTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: WIDGET_CELL_IDENTIFIER, for: indexPath) as! WidgetTableViewCell
         
         let service = serviceArray[indexPath.row]
         if let serviceName = service["name"], let serviceURL = service["url"] {
@@ -92,23 +85,13 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
             
             let placeholderImage = UIImage.init(named: "\(TempLetterImagePickerUtility.shared.getLetterOrNumberAndChooseImage(text: serviceName))")
             if serviceURL.isEmpty == false {
-                let myURLString: String = "http://www.google.com/s2/favicons?domain=\(serviceURL)"
+                let myURLString: String = "https://logo.clearbit.com/\(serviceURL)"
                 
                 if let myURL = URL(string: myURLString) {
-//                    cell.serviceImageView.sd_setImage(with: myURL, placeholderImage: placeholderImage)
                     cell.serviceImageView.kf.setImage(with: myURL, placeholder: placeholderImage)
                 }
             }
         }
-        
-        //        let dateFormatter = DateFormatter()
-        //        dateFormatter.dateFormat = "MMM dd, yyyy"
-        //
-        //
-        //
-        //        cell.serviceDateLabel.text = dateFormatter.string(from: service.nextPaymentDate)
-        
-        
         
         return cell
     }

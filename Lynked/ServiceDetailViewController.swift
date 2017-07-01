@@ -34,15 +34,15 @@ class ServiceDetailViewController: UITableViewController {
     
     var service: ServiceClass?
     
-    let serviceCellIdentifier = "serviceCell"
+    let SERVICE_DETAIL_CELL_IDENTIFIER = "serviceCell"
     
     let items: [[String : Any]] =
         [["title" : "Name", "placeholder" : "Netflix", "hasSwitch" : false],
          ["title" : "URL", "placeholder" : "netflix.com", "hasSwitch" : false],
-         // ["title" : "Category", "placeholder" : "Entertainment", "hasSwitch" : false],
-            ["title" : "Pay Amount", "placeholder" : "9.99", "hasSwitch" : true],
-            ["title" : "Pay Rate", "placeholder" : "Monthy", "hasSwitch" : false],
-            ["title" : "Next Scheduled Payment", "placeholder" : "15th of May", "hasSwitch" : false]]
+         ["title" : "Category", "placeholder" : "Entertainment", "hasSwitch" : false],
+         ["title" : "Pay Amount", "placeholder" : "9.99", "hasSwitch" : true],
+         ["title" : "Pay Rate", "placeholder" : "Monthy", "hasSwitch" : false],
+         ["title" : "Next Scheduled Payment", "placeholder" : "15th of May", "hasSwitch" : false]]
     
     let categoryPicker = UIPickerView()
     let payRatePicker = UIPickerView()
@@ -76,10 +76,6 @@ class ServiceDetailViewController: UITableViewController {
         self.urlTextField?.delegate = self
         self.amountTextField?.delegate = self
         self.dateTextField?.delegate = self
-        
-        //        amountTextField.addTarget(self, action: #selector(myTextFieldDidChange), for: .editingChanged)
-        
-        //        amountTextField?.addTarget(self, action: #selector(myTextFieldDidChange(_:)), for: .editingChanged)
         
         datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
         
@@ -364,7 +360,7 @@ extension ServiceDetailViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: serviceCellIdentifier, for: indexPath as IndexPath) as! ServiceDetailTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: SERVICE_DETAIL_CELL_IDENTIFIER, for: indexPath as IndexPath) as! ServiceDetailTableViewCell
         let item = items[indexPath.row]
         
         cell.serviceTitleLabel.text = item["title"] as? String
