@@ -39,10 +39,10 @@ class ServiceDetailViewController: UITableViewController {
     let items: [[String : Any]] =
         [["title" : "Name", "placeholder" : "Netflix", "hasSwitch" : false],
          ["title" : "URL", "placeholder" : "netflix.com", "hasSwitch" : false],
-         ["title" : "Category", "placeholder" : "Entertainment", "hasSwitch" : false],
-         ["title" : "Pay Amount", "placeholder" : "9.99", "hasSwitch" : true],
-         ["title" : "Pay Rate", "placeholder" : "Monthy", "hasSwitch" : false],
-         ["title" : "Next Scheduled Payment", "placeholder" : "15th of May", "hasSwitch" : false]]
+         // ["title" : "Category", "placeholder" : "Entertainment", "hasSwitch" : false],
+            ["title" : "Pay Amount", "placeholder" : "9.99", "hasSwitch" : true],
+            ["title" : "Pay Rate", "placeholder" : "Monthy", "hasSwitch" : false],
+            ["title" : "Next Scheduled Payment", "placeholder" : "15th of May", "hasSwitch" : false]]
     
     let categoryPicker = UIPickerView()
     let payRatePicker = UIPickerView()
@@ -77,9 +77,9 @@ class ServiceDetailViewController: UITableViewController {
         self.amountTextField?.delegate = self
         self.dateTextField?.delegate = self
         
-//        amountTextField.addTarget(self, action: #selector(myTextFieldDidChange), for: .editingChanged)
+        //        amountTextField.addTarget(self, action: #selector(myTextFieldDidChange), for: .editingChanged)
         
-//        amountTextField?.addTarget(self, action: #selector(myTextFieldDidChange(_:)), for: .editingChanged)
+        //        amountTextField?.addTarget(self, action: #selector(myTextFieldDidChange(_:)), for: .editingChanged)
         
         datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
         
@@ -241,7 +241,7 @@ class ServiceDetailViewController: UITableViewController {
         var contentInset: UIEdgeInsets = self.tableView.contentInset
         contentInset.bottom = keyboardFrame.size.height + 30
         self.tableView.contentInset = contentInset
-
+        
     }
     
     func keyboardWillHide(notification:NSNotification) {
@@ -380,7 +380,7 @@ extension ServiceDetailViewController {
         }
         
         cell.delegate = self
-
+        
         switch indexPath.row {
         case 0:
             cell.serviceTextField.text = service?.serviceName
@@ -429,7 +429,7 @@ extension ServiceDetailViewController {
         }
         
         return cell
-  
+        
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -439,7 +439,7 @@ extension ServiceDetailViewController {
 
 
 extension ServiceDetailViewController: ServiceDetailTableViewCellDelegate {
-
+    
     func serviceDetailTableViewCell(cell: ServiceDetailTableViewCell, didChangeFixedSwitch fixedSwitch: UISwitch) {
         servFixed = fixedSwitch.isOn
         tableView.reloadData()
