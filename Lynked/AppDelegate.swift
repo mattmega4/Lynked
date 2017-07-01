@@ -21,24 +21,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        
         // MARK: - NavBar Light Color
-        
         UIApplication.shared.statusBarStyle = .lightContent
-        
-        
-        // MARK: - Instabug
-        
-        Instabug.start(withToken: IBK, invocationEvent: .shake)
-        
-        
-        // MARK: - App Run Counter for Review
-        incrementAppRuns()
-        
         
         // MARK: - Firebase/Fabric
         FirebaseApp.configure()
+        Database.database().isPersistenceEnabled = true
         Fabric.with([Crashlytics.self])
+        
+        // MARK: - Instabug
+        Instabug.start(withToken: IBK, invocationEvent: .shake)
+        
+        // MARK: - App Run Counter for Review
+        incrementAppRuns()
         
         return true
     }
@@ -120,11 +115,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 }
 
-
-
-// MARK: Devslopes Idea
-
-let ad = UIApplication.shared.delegate as! AppDelegate
-@available(iOS 10.0, *)
-let context = ad.persistentContainer.viewContext
 

@@ -77,6 +77,9 @@ class ServiceDetailViewController: UITableViewController {
         self.amountTextField?.delegate = self
         self.dateTextField?.delegate = self
         
+//        amountTextField.addTarget(self, action: #selector(myTextFieldDidChange), for: .editingChanged)
+        
+//        amountTextField?.addTarget(self, action: #selector(myTextFieldDidChange(_:)), for: .editingChanged)
         
         datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
         
@@ -238,15 +241,12 @@ class ServiceDetailViewController: UITableViewController {
         var contentInset: UIEdgeInsets = self.tableView.contentInset
         contentInset.bottom = keyboardFrame.size.height + 30
         self.tableView.contentInset = contentInset
-        deleteServiceButton.isEnabled = false
-        deleteServiceButton.isHidden = true
+
     }
     
     func keyboardWillHide(notification:NSNotification) {
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         self.tableView.contentInset = contentInset
-        deleteServiceButton.isEnabled = true
-        deleteServiceButton.isHidden = false
     }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
@@ -288,6 +288,12 @@ class ServiceDetailViewController: UITableViewController {
 // MARK: - UITextField Delegates
 
 extension ServiceDetailViewController: UITextFieldDelegate {
+    
+    func myTextFieldDidChange(_ textField: UITextField) {
+        if let amountString = textField.text?.currencyInputFormatting() {
+            textField.text = amountString
+        }
+    }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == nameTextField {
@@ -395,6 +401,7 @@ extension ServiceDetailViewController {
                 
                 cell.serviceTextField.keyboardType = .decimalPad
             }
+            
             amountTextField = cell.serviceTextField
             cell.fixedToggleSwitch?.isOn = servFixed
         case 4:

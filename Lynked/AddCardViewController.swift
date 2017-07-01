@@ -92,12 +92,16 @@ class AddCardViewController: UIViewController {
         FirebaseUtility.shared.addCard(name: finalNickname?.capitalized, type: finalType, color: color, last4: last4) { (card, errorMessage) in
             
             MBProgressHUD.hide(for: self.view, animated: true)
-            if let theCard = card {
-                if let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "serviceVC") as? ServicesViewController {
-                    detailVC.card = theCard
-                    self.navigationController?.pushViewController(detailVC, animated: true)
+//            if let theCard = card {
+                if let splitVC = self.storyboard?.instantiateViewController(withIdentifier: "splitVC") as? UISplitViewController {
+                
+                    self.present(splitVC, animated: true, completion: nil)
                 }
-            }
+//                if let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "serviceVC") as? ServicesViewController {
+//                    detailVC.card = theCard
+//                    self.navigationController?.pushViewController(detailVC, animated: true)
+//                }
+//            }
             else {
                 // Display error?
             }

@@ -12,8 +12,6 @@ import MBProgressHUD
 
 class WalletViewController: UIViewController {
     
-    
-    @IBOutlet weak var leftNavButton: UIBarButtonItem!
     @IBOutlet weak var rightNavButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     
@@ -22,6 +20,7 @@ class WalletViewController: UIViewController {
     var card4ToTransfer: String?
     var cardtypeToTransfer: String?
     var cardArray: [CardClass] = []
+    var delegate: WalletViewControllerDelegate?
     
     let cardCellIdentifier = "cardCell"
     let newCardCellIdentifier = "newCell"
@@ -34,9 +33,11 @@ class WalletViewController: UIViewController {
         
         title = "Wallet"
         setNavBar()
-        FirebaseUtility.shared.getAllServices { (services, error) in
-            
-        }
+        FirebaseUtility.shared.getAllServices { (services, error) in }
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 500
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,36 +70,30 @@ class WalletViewController: UIViewController {
     }
     
     
-    // MARK: - IB Actions
+    // MARK: - Prepare For Segue
     
-    @IBAction func leftBarButtonTapped(_ sender: UIBarButtonItem) {
-        if let prefVC = self.storyboard?.instantiateViewController(withIdentifier: "PrefVC") as? PreferencesViewController {
-            self.navigationController?.pushViewController(prefVC, animated: true)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let selectedRow = tableView.indexPathForSelectedRow {
+            let card = cardArray[selectedRow.row]
+            if let walletDetailVC = segue.destination as? ServicesViewController {
+                walletDetailVC.card = card
+            }
         }
     }
     
     
-    @IBAction func rightBarButtonTapped(_ sender: UIBarButtonItem) {
+    // MARK: - IB Actions
+    
+    @IBAction func leftBarButtonTapped(_ sender: UIBarButtonItem) {
         
-        if InAppPurchaseUtility.shared.isPurchased {
-            if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
-                self.navigationController?.pushViewController(addCardVC, animated: true)
-            }
-            
-        } else {
-            let actionSheet = UIAlertController(title: nil, message: "You will need to purchase this to add more than 1 card", preferredStyle: .actionSheet)
-            let purchaseAction = UIAlertAction(title: "Purchase", style: .default, handler: { (action) in
-                self.purchaseProduct()
-            })
-            let restoreAction = UIAlertAction(title: "Restore", style: .default, handler: { (action) in
-                self.restorePurchase()
-            })
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            actionSheet.addAction(purchaseAction)
-            actionSheet.addAction(restoreAction)
-            actionSheet.addAction(cancelAction)
-            present(actionSheet, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func rightBarButtonTapped(_ sender: UIBarButtonItem) {
+        if let prefVC = self.storyboard?.instantiateViewController(withIdentifier: "PrefVC") as? PreferencesViewController {
+            self.navigationController?.pushViewController(prefVC, animated: true)
         }
+        
     }
     
     func purchaseProduct() {
@@ -143,7 +138,26 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
         
         // if new card then do stuff
         
+        //        if InAppPurchaseUtility.shared.isPurchased {
+        //            if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
+        //                self.navigationController?.pushViewController(addCardVC, animated: true)
+        //            }
         //
+        //        } else {
+        //            let actionSheet = UIAlertController(title: nil, message: "You will need to purchase this to add more than 1 card", preferredStyle: .actionSheet)
+        //            let purchaseAction = UIAlertAction(title: "Purchase", style: .default, handler: { (action) in
+        //                self.purchaseProduct()
+        //            })
+        //            let restoreAction = UIAlertAction(title: "Restore", style: .default, handler: { (action) in
+        //                self.restorePurchase()
+        //            })
+        //            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        //            actionSheet.addAction(purchaseAction)
+        //            actionSheet.addAction(restoreAction)
+        //            actionSheet.addAction(cancelAction)
+        //            present(actionSheet, animated: true, completion: nil)
+        //        }
+        
         
         // but if it was a card
         DispatchQueue.main.async {
@@ -151,8 +165,15 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
             self.selectedCard = self.cardArray[row].cardID
             if self.selectedCard != "" {
                 if let cardDVC = self.storyboard?.instantiateViewController(withIdentifier: "serviceVC") as? ServicesViewController {
+                    
+                    //delegate?.walletViewController(controller: self, didSelectCard: self.selectedCard)
+                    
+                    
                     cardDVC.card = self.cardArray[indexPath.row]
-                    self.navigationController?.pushViewController(cardDVC, animated: true)
+                    self.splitViewController?.showDetailViewController(cardDVC, sender: self)
+                    //(parent?.parent as? UISplitViewController)?.showDetailViewController(cardDVC, sender: self)
+                    
+                    //self.navigationController?.pushViewController(cardDVC, animated: true)
                 }
             }
             tableView.isUserInteractionEnabled = false
@@ -191,3 +212,22 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
+
+
+extension WalletViewController: UISplitViewControllerDelegate {
+    
+    override func collapseSecondaryViewController(_ secondaryViewController: UIViewController, for splitViewController: UISplitViewController) {
+        
+    }
+}
+
+protocol WalletViewControllerDelegate {
+    func walletViewController(controller: WalletViewController, didSelectCard card: CardClass)
+}
+
+
+
+
+
+
+

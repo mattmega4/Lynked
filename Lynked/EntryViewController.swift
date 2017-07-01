@@ -327,8 +327,8 @@ class EntryViewController: UIViewController {
                 alertController.addAction(OKAction)
             }
             else {
-                if let WalletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
-                    self.navigationController?.pushViewController(WalletVC, animated: true)
+                if let splitVC = self.storyboard?.instantiateViewController(withIdentifier: "splitVC") as? UISplitViewController {
+                    self.present(splitVC, animated: true, completion: nil)
                 }
             }
         }

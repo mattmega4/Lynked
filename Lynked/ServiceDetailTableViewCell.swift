@@ -29,6 +29,13 @@ class ServiceDetailTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func amountTextFieldActive(_ sender: UITextField) {
+        if fixedToggleSwitch?.isHidden == false {
+            if let amountString = sender.text?.currencyInputFormatting() {
+                sender.text = amountString
+            }
+        }
+    }
     
     @IBAction func serviceFixedSwitched(_ sender: UISwitch) {
         delegate?.serviceDetailTableViewCell(cell: self, didChangeFixedSwitch: sender)
@@ -40,6 +47,8 @@ class ServiceDetailTableViewCell: UITableViewCell {
 protocol ServiceDetailTableViewCellDelegate {
     
     func serviceDetailTableViewCell(cell: ServiceDetailTableViewCell, didChangeFixedSwitch fixedSwitch: UISwitch)
+    
+//    func serviceDetailTableViewCell(cell: ServiceDetailTableViewCell, didChangeTextField textField: UITextField)
     
 }
 
