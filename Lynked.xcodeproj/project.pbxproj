@@ -44,6 +44,7 @@
 		299F85221EE78DB1001A819D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299F85211EE78DB1001A819D /* StoreKit.framework */; };
 		29A8F3EC1EF9EED000D20F79 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A8F3EB1EF9EED000D20F79 /* Keys.swift */; };
 		29AA67E21EE7B4BA000EDE42 /* InAppPurchaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA67E11EE7B4BA000EDE42 /* InAppPurchaseUtility.swift */; };
+		29AA96CD1F074EA900194670 /* Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA96CC1F074EA900194670 /* Identifiers.swift */; };
 		29BDD8BB1EF9024300F6A2DF /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BDD8BA1EF9024300F6A2DF /* ServicesViewController.swift */; };
 		29CB33121EF65EFA009CEE3B /* AcknowledgementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CB33111EF65EFA009CEE3B /* AcknowledgementsViewController.swift */; };
 		29CB33141EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CB33131EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift */; };
@@ -132,6 +133,7 @@
 		299F85211EE78DB1001A819D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		29A8F3EB1EF9EED000D20F79 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		29AA67E11EE7B4BA000EDE42 /* InAppPurchaseUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseUtility.swift; sourceTree = "<group>"; };
+		29AA96CC1F074EA900194670 /* Identifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiers.swift; sourceTree = "<group>"; };
 		29BDD8BA1EF9024300F6A2DF /* ServicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
 		29CB33111EF65EFA009CEE3B /* AcknowledgementsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcknowledgementsViewController.swift; sourceTree = "<group>"; };
 		29CB33131EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcknowledgementsTableViewCell.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				1D01B26F1E03A27500098A9A /* GoogleService-Info.plist */,
 				297BE9FB1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist */,
 				29A8F3EB1EF9EED000D20F79 /* Keys.swift */,
+				29AA96CC1F074EA900194670 /* Identifiers.swift */,
 			);
 			name = "Additional Files";
 			sourceTree = "<group>";
@@ -635,6 +638,7 @@
 				2921B2201EFBA2E0008F377B /* TempLetterImagePickerUtility.swift in Sources */,
 				297BEA031EF766500035D4DA /* Future.swift in Sources */,
 				1DD7D2591E393C0700AF1299 /* CardClass.swift in Sources */,
+				29AA96CD1F074EA900194670 /* Identifiers.swift in Sources */,
 				29CB33121EF65EFA009CEE3B /* AcknowledgementsViewController.swift in Sources */,
 				294135FB1EFD9D8200002FAC /* CategoryManager.swift in Sources */,
 				1DC0D8AB1DFE516A0039B8F6 /* AppDelegate.swift in Sources */,

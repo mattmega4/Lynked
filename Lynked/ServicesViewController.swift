@@ -48,20 +48,15 @@ class ServicesViewController: UIViewController {
     var isDisplayingCategories = false
     var card: CardClass?
     
-    //    let margin: CGFloat = 10
-    //    let cellsPerC = 3
-    
-//    let bounds = collectionView.bounds.width
-//    
-//    let numberOfCellsWide = floor()
     
     
-//    let numberOfCellsWide = floor(collectionView.bounds.width / 105.0)
-//    
-//    let width = collectionView.bounds.width / numberOfCellsWide
+    let margin: CGFloat = 10
+    let cellsPerC = 3
     
-    let margin = (UIDevice.current.userInterfaceIdiom == .pad ? 5: 10) as CGFloat
-    let cellsPerC = (UIDevice.current.userInterfaceIdiom == .pad ? 4: 3) as CGFloat
+    
+    //        let margin = (UIDevice.current.userInterfaceIdiom == .pad ? 5: 10) as CGFloat
+    //        let cellsPerC = (UIDevice.current.userInterfaceIdiom == .pad ? 4: 3) as CGFloat
+    
     
     
     override func viewDidLoad() {
@@ -85,10 +80,10 @@ class ServicesViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         
-        guard let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-        flowLayout.minimumInteritemSpacing = margin
-        flowLayout.minimumLineSpacing = margin
-        flowLayout.sectionInset = UIEdgeInsets(top: margin, left: margin, bottom: margin, right: margin)
+        //        guard let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        //        flowLayout.minimumInteritemSpacing = margin
+        //        flowLayout.minimumLineSpacing = margin
+        //        flowLayout.sectionInset = UIEdgeInsets(top: margin, left: margin, bottom: margin, right: margin)
         
         categoryTextField.inputView = categoryPickerView
         
@@ -108,7 +103,7 @@ class ServicesViewController: UIViewController {
         super.viewDidAppear(animated)
         
         sortArray()
-//        showReview()
+        //        showReview()
     }
     
     
@@ -190,19 +185,19 @@ class ServicesViewController: UIViewController {
     // MARK: - IB Actions
     
     @IBAction func leftNavBarButtonTapped(_ sender: UIBarButtonItem) {
-        if let walletVC = storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
+        if let walletVC = storyboard?.instantiateViewController(withIdentifier: WALLET_STORYBOARD_IDENTIFIER) as? WalletViewController {
             navigationController?.pushViewController(walletVC, animated: true)
         }
     }
     
     @IBAction func rightNavBarButtonTapped(_ sender: UIBarButtonItem) {
-        if let prefVC = storyboard?.instantiateViewController(withIdentifier: "PrefVC") as? PreferencesViewController {
+        if let prefVC = storyboard?.instantiateViewController(withIdentifier: PREFERENCES_STORYBOARD_IDENTIFIER) as? PreferencesViewController {
             navigationController?.pushViewController(prefVC, animated: true)
         }
     }
     
     @IBAction func editCardButtonTapped(_ sender: UIButton) {
-        if let editCardVC = storyboard?.instantiateViewController(withIdentifier: "EditCardVC") as? EditCardViewController {
+        if let editCardVC = storyboard?.instantiateViewController(withIdentifier: EDIT_CARD_STORYBOARD_IDENTIFIER) as? EditCardViewController {
             if let theId = card?.cardID {
                 editCardVC.thisCardIDTransfered = theId
             }
@@ -281,14 +276,14 @@ extension ServicesViewController: UITextFieldDelegate {
         return false
     }
     
-//    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-//        if textField == categoryTextField {
-//            categoryTextField.text = categories[0]
-//        } else if textField == serviceTextField {
-//            
-//        }
-//        return true
-//    }
+    //    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+    //        if textField == categoryTextField {
+    //            categoryTextField.text = categories[0]
+    //        } else if textField == serviceTextField {
+    //
+    //        }
+    //        return true
+    //    }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
@@ -318,21 +313,14 @@ extension ServicesViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let numberOfCellsWide = floor(collectionView.bounds.width / 105.0)
         
-        let width = collectionView.bounds.width / numberOfCellsWide
+        let flowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        let marginsAndInsets = flowLayout.sectionInset.left + flowLayout.sectionInset.right + flowLayout.minimumInteritemSpacing * CGFloat(cellsPerC - 1)
+        let itemWidth = ((collectionView.bounds.size.width - marginsAndInsets) / CGFloat(cellsPerC)).rounded(.down)
         
-        let height = width
         
-        let size = CGSize(width: width, height: height)
+        return CGSize(width: itemWidth, height: itemWidth)
         
-//        let flowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-//        let marginsAndInsets = flowLayout.sectionInset.left + flowLayout.sectionInset.right + flowLayout.minimumInteritemSpacing * CGFloat(cellsPerC - 1)
-//        let itemWidth = ((collectionView.bounds.size.width - marginsAndInsets) / CGFloat(cellsPerC)).rounded(.down)
-//        
-//        
-//        return CGSize(width: itemWidth, height: itemWidth)
-        return size
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -405,7 +393,7 @@ extension ServicesViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if !isDisplayingCategories {
-            if let serviceDetailVC = storyboard?.instantiateViewController(withIdentifier: "serviceDetailVC") as? ServiceDetailViewController {
+            if let serviceDetailVC = storyboard?.instantiateViewController(withIdentifier: SERVICE_DETAIL_STORYBOARD_IDENTIFIER) as? ServiceDetailViewController {
                 serviceDetailVC.service = self.serviceArray[indexPath.row]
                 navigationController?.pushViewController(serviceDetailVC, animated: true)
             }

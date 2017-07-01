@@ -198,7 +198,7 @@ class ServiceDetailViewController: UITableViewController {
                         
                     }
                     if !didGoBack {
-                        if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
+                        if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: WALLET_STORYBOARD_IDENTIFIER) as? WalletViewController {
                             self.navigationController?.pushViewController(walletVC, animated: true)
                         }
                     }

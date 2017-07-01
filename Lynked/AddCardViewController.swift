@@ -54,7 +54,7 @@ class AddCardViewController: UIViewController {
         title = "Add Card"
         
         setNavBar()
-        self.navigationItem.setHidesBackButton(true, animated:true)
+        self.navigationItem.setHidesBackButton(true, animated: true)
         
         nextNavBarButton.isEnabled = false
         firstContainerTextField.addTarget(self, action: #selector(checkNicknameTextField(textField:)), for: .editingChanged)
@@ -93,7 +93,7 @@ class AddCardViewController: UIViewController {
             
             MBProgressHUD.hide(for: self.view, animated: true)
 //            if let theCard = card {
-                if let splitVC = self.storyboard?.instantiateViewController(withIdentifier: "splitVC") as? UISplitViewController {
+                if let splitVC = self.storyboard?.instantiateViewController(withIdentifier: SPLIT_STORYBOARD_IDENTIFIER) as? UISplitViewController {
                 
                     self.present(splitVC, animated: true, completion: nil)
                 }

@@ -55,7 +55,7 @@ class PreferencesViewController: UIViewController {
                 if let error = error {
                     // An error happened.
                 } else {
-                    if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? EntryViewController {
+                    if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: ENTRY_STORYBOARD_IDENTIFIER) as? EntryViewController {
                         self.navigationController?.pushViewController(loginVC, animated: true)
                     }
                 }
@@ -84,7 +84,7 @@ class PreferencesViewController: UIViewController {
     
     @IBAction func acknowledgementsButtonTapped(_ sender: UIButton) {
         
-        if let ackVC = self.storyboard?.instantiateViewController(withIdentifier: "ackVC") as? AcknowledgementsViewController {
+        if let ackVC = self.storyboard?.instantiateViewController(withIdentifier: ACKNOWLEDGEMENTS_STORYBOARD_IDENTIFIER) as? AcknowledgementsViewController {
             self.navigationController?.pushViewController(ackVC, animated: true)
         }
         

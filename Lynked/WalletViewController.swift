@@ -39,13 +39,14 @@ class WalletViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 500
         self.splitViewController?.preferredDisplayMode = .allVisible
-       // self.splitViewController?.delegate = self
+        self.navigationItem.setHidesBackButton(true, animated: true)
+        // self.splitViewController?.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        pullAllUsersCards()
+        //        pullAllUsersCards()
         tableView.isUserInteractionEnabled = true
     }
     
@@ -56,7 +57,7 @@ class WalletViewController: UIViewController {
             MBProgressHUD.hide(for: self.view, animated: true)
             if let theCards = cards {
                 if theCards.count < 1 {
-                    if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
+                    if let addVC = self.storyboard?.instantiateViewController(withIdentifier: ADD_CARD_STORYBOARD_IDENTIFIER) as? AddCardViewController {
                         self.navigationController?.pushViewController(addVC, animated: true)
                     }
                 }
@@ -92,7 +93,7 @@ class WalletViewController: UIViewController {
     
     
     @IBAction func rightBarButtonTapped(_ sender: UIBarButtonItem) {
-        if let prefVC = self.storyboard?.instantiateViewController(withIdentifier: "PrefVC") as? PreferencesViewController {
+        if let prefVC = self.storyboard?.instantiateViewController(withIdentifier: PREFERENCES_STORYBOARD_IDENTIFIER) as? PreferencesViewController {
             self.navigationController?.pushViewController(prefVC, animated: true)
         }
         
@@ -101,7 +102,7 @@ class WalletViewController: UIViewController {
     func purchaseProduct() {
         InAppPurchaseUtility.shared.purchaseProduct { (success, error) in
             if success {
-                if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
+                if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: ADD_CARD_STORYBOARD_IDENTIFIER) as? AddCardViewController {
                     self.navigationController?.pushViewController(addCardVC, animated: true)
                 }
             }
@@ -114,7 +115,7 @@ class WalletViewController: UIViewController {
     func restorePurchase() {
         InAppPurchaseUtility.shared.restorePurchase { (success, error) in
             if success {
-                if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
+                if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: ADD_CARD_STORYBOARD_IDENTIFIER) as? AddCardViewController {
                     self.navigationController?.pushViewController(addCardVC, animated: true)
                 }
             }
@@ -141,7 +142,7 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
         // if new card then do stuff
         
         //        if InAppPurchaseUtility.shared.isPurchased {
-        //            if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
+        //                    if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: ADD_CARD_STORYBOARD_IDENTIFIER) as? AddCardViewController {
         //                self.navigationController?.pushViewController(addCardVC, animated: true)
         //            }
         //
@@ -166,7 +167,7 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
             let row = indexPath.row
             self.selectedCard = self.cardArray[row].cardID
             if self.selectedCard != "" {
-                if let cardDVC = self.storyboard?.instantiateViewController(withIdentifier: "serviceVC") as? ServicesViewController {
+                if let cardDVC = self.storyboard?.instantiateViewController(withIdentifier: SERVICES_STORYBOARD_IDENTIFIER) as? ServicesViewController {
                     
                     
                     if let cell = tableView.cellForRow(at: indexPath) as? CardTableViewCell {
@@ -181,7 +182,7 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
                     self.splitViewController?.showDetailViewController(cardDVC, sender: self)
                     //(parent?.parent as? UISplitViewController)?.showDetailViewController(cardDVC, sender: self)
                     
-                    //self.navigationController?.pushViewController(cardDVC, animated: true)
+                    //                    self.navigationController?.pushViewController(cardDVC, animated: true)
                 }
             }
             tableView.isUserInteractionEnabled = false
