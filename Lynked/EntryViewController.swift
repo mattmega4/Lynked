@@ -78,27 +78,7 @@ class EntryViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        checkIfAlreadyLoggedIn()
     }
-    
-    
-    // MARK: - Check if Already Logged In
-    
-    func checkIfAlreadyLoggedIn() {
-//        
-//        Auth.auth().addStateDidChangeListener { (auth, user) in
-//            if user != nil {
-//                if let WalletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
-//                    self.navigationController?.pushViewController(WalletVC, animated: true)
-//                }
-//            } else {
-//                if let entryVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? WalletViewController {
-//                    self.navigationController?.pushViewController(entryVC, animated: true)
-//                }
-//            }
-//        }
-    }
-    
     
     // MARK: - Switch Logic For Sign In or Create Button in Bottom Container View
     
@@ -327,9 +307,10 @@ class EntryViewController: UIViewController {
                 alertController.addAction(OKAction)
             }
             else {
-                if let splitVC = self.storyboard?.instantiateViewController(withIdentifier: "splitVC") as? UISplitViewController {
+                if let splitVC = self.storyboard?.instantiateViewController(withIdentifier: SPLIT_STORYBOARD_IDENTIFIER) as? UISplitViewController {
                     self.present(splitVC, animated: true, completion: nil)
                 }
+                
             }
         }
     }
@@ -348,7 +329,7 @@ class EntryViewController: UIViewController {
                 alertController.addAction(OKAction)
             }
             else {
-                if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
+                if let addVC = self.storyboard?.instantiateViewController(withIdentifier: ADD_CARD_STORYBOARD_IDENTIFIER) as? AddCardViewController {
                     self.navigationController?.pushViewController(addVC, animated: true)
                 }
             }
@@ -409,9 +390,7 @@ extension EntryViewController: UITextFieldDelegate {
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         if leftOn == true && rightOn == false {
-            
             if textField == textFieldOne {
                 textFieldOne.returnKeyType = .next
                 textFieldTwo.becomeFirstResponder()
@@ -420,19 +399,13 @@ extension EntryViewController: UITextFieldDelegate {
                 textFieldTwo.returnKeyType = .done
                 bottomContainerStateSwitcher()
             }
-            
-            
         } else if leftOn == false && rightOn == true {
-            
             if createUserStepOneFinished == false {
-                
                 if textField == textFieldOne {
                     textFieldOne.returnKeyType = .continue
                     bottomContainerStateSwitcher()
                 }
-                
             } else {
-                
                 if textField == textFieldOne {
                     textFieldOne.returnKeyType = .next
                     textFieldTwo.becomeFirstResponder()
@@ -440,11 +413,8 @@ extension EntryViewController: UITextFieldDelegate {
                     textFieldTwo.returnKeyType = .done
                     bottomContainerStateSwitcher()
                 }
-                
-                
             }
         }
-        
         return false
     }
     
