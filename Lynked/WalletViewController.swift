@@ -39,6 +39,7 @@ class WalletViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 500
         self.splitViewController?.preferredDisplayMode = .allVisible
+        //self.splitViewController?.displayMode =
         self.navigationItem.setHidesBackButton(true, animated: true)
         // self.splitViewController?.delegate = self
     }
@@ -139,32 +140,34 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        // if new card then do stuff
-        
-        //        if InAppPurchaseUtility.shared.isPurchased {
-        //                    if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: ADD_CARD_STORYBOARD_IDENTIFIER) as? AddCardViewController {
-        //                self.navigationController?.pushViewController(addCardVC, animated: true)
-        //            }
-        //
-        //        } else {
-        //            let actionSheet = UIAlertController(title: nil, message: "You will need to purchase this to add more than 1 card", preferredStyle: .actionSheet)
-        //            let purchaseAction = UIAlertAction(title: "Purchase", style: .default, handler: { (action) in
-        //                self.purchaseProduct()
-        //            })
-        //            let restoreAction = UIAlertAction(title: "Restore", style: .default, handler: { (action) in
-        //                self.restorePurchase()
-        //            })
-        //            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        //            actionSheet.addAction(purchaseAction)
-        //            actionSheet.addAction(restoreAction)
-        //            actionSheet.addAction(cancelAction)
-        //            present(actionSheet, animated: true, completion: nil)
-        //        }
-        
-        
-        // but if it was a card
+        if indexPath.row == 0 {
+            
+            
+            if InAppPurchaseUtility.shared.isPurchased {
+                if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: ADD_CARD_STORYBOARD_IDENTIFIER) as? AddCardViewController {
+                    self.navigationController?.pushViewController(addCardVC, animated: true)
+                }
+                
+            } else {
+                let actionSheet = UIAlertController(title: nil, message: "You will need to purchase this to add more than 1 card", preferredStyle: .actionSheet)
+                let purchaseAction = UIAlertAction(title: "Purchase", style: .default, handler: { (action) in
+                    self.purchaseProduct()
+                })
+                let restoreAction = UIAlertAction(title: "Restore", style: .default, handler: { (action) in
+                    self.restorePurchase()
+                })
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                actionSheet.addAction(purchaseAction)
+                actionSheet.addAction(restoreAction)
+                actionSheet.addAction(cancelAction)
+                actionSheet.popoverPresentationController?.sourceView = tableView.cellForRow(at: indexPath)
+                present(actionSheet, animated: true, completion: nil)
+            }
+            return
+        }
+
         DispatchQueue.main.async {
-            let row = indexPath.row
+            let row = indexPath.row - 1
             self.selectedCard = self.cardArray[row].cardID
             if self.selectedCard != "" {
                 if let cardDVC = self.storyboard?.instantiateViewController(withIdentifier: SERVICES_STORYBOARD_IDENTIFIER) as? ServicesViewController {
@@ -179,7 +182,10 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
                     
                     
                     cardDVC.card = self.cardArray[indexPath.row]
-                    self.splitViewController?.showDetailViewController(cardDVC, sender: self)
+                    let serviceNavigation = UINavigationController(rootViewController: cardDVC)
+                    self.splitViewController?.showDetailViewController(serviceNavigation, sender: self)
+                    
+                    
                     //(parent?.parent as? UISplitViewController)?.showDetailViewController(cardDVC, sender: self)
                     
                     //                    self.navigationController?.pushViewController(cardDVC, animated: true)
@@ -192,15 +198,15 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        // if new card then do stuff
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: newCardCellIdentifier, for: indexPath)
+            
+            return cell
+            
+        }
         
-        //
-        
-        // but if it was a card
-        
-        //////
         let cell = tableView.dequeueReusableCell(withIdentifier: cardCellIdentifier, for: indexPath as IndexPath) as! CardTableViewCell
-        let row = indexPath.row
+        let row = indexPath.row - 1
         
         
         if cell.isSelected {
@@ -227,7 +233,7 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cardArray.count
+        return cardArray.count + 1
     }
     
 }
@@ -236,6 +242,17 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
 extension WalletViewController: UISplitViewControllerDelegate {
     
     override func collapseSecondaryViewController(_ secondaryViewController: UIViewController, for splitViewController: UISplitViewController) {
+        
+        
+    }
+    
+    func splitViewController(_ splitViewController: UISplitViewController, showDetail vc: UIViewController, sender: Any?) -> Bool {
+        if let theVC = vc as? ServicesViewController {
+            if theVC.card != nil {
+                return true
+            }
+        }
+        return false
     }
     
     func splitViewController(_ splitViewController: UISplitViewController, show vc: UIViewController, sender: Any?) -> Bool {
