@@ -50,6 +50,16 @@ class ServicesViewController: UIViewController {
     
     //    let margin: CGFloat = 10
     //    let cellsPerC = 3
+    
+//    let bounds = collectionView.bounds.width
+//    
+//    let numberOfCellsWide = floor()
+    
+    
+//    let numberOfCellsWide = floor(collectionView.bounds.width / 105.0)
+//    
+//    let width = collectionView.bounds.width / numberOfCellsWide
+    
     let margin = (UIDevice.current.userInterfaceIdiom == .pad ? 5: 10) as CGFloat
     let cellsPerC = (UIDevice.current.userInterfaceIdiom == .pad ? 4: 3) as CGFloat
     
@@ -98,7 +108,7 @@ class ServicesViewController: UIViewController {
         super.viewDidAppear(animated)
         
         sortArray()
-        showReview()
+//        showReview()
     }
     
     
@@ -308,13 +318,21 @@ extension ServicesViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
+        let numberOfCellsWide = floor(collectionView.bounds.width / 105.0)
         
-        let flowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        let marginsAndInsets = flowLayout.sectionInset.left + flowLayout.sectionInset.right + flowLayout.minimumInteritemSpacing * CGFloat(cellsPerC - 1)
-        let itemWidth = ((collectionView.bounds.size.width - marginsAndInsets) / CGFloat(cellsPerC)).rounded(.down)
+        let width = collectionView.bounds.width / numberOfCellsWide
         
+        let height = width
         
-        return CGSize(width: itemWidth, height: itemWidth)
+        let size = CGSize(width: width, height: height)
+        
+//        let flowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+//        let marginsAndInsets = flowLayout.sectionInset.left + flowLayout.sectionInset.right + flowLayout.minimumInteritemSpacing * CGFloat(cellsPerC - 1)
+//        let itemWidth = ((collectionView.bounds.size.width - marginsAndInsets) / CGFloat(cellsPerC)).rounded(.down)
+//        
+//        
+//        return CGSize(width: itemWidth, height: itemWidth)
+        return size
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
