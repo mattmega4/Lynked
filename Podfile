@@ -15,6 +15,7 @@ target 'Lynked' do
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'Firebase/Core'
+  pod 'Firebase/Storage'
   pod 'Firebase/Messaging'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
