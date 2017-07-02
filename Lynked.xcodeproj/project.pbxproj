@@ -33,7 +33,6 @@
 		297BE9FC1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 297BE9FB1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist */; };
 		297BE9FE1EF707EA0035D4DA /* AcknowledgementsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297BE9FD1EF707EA0035D4DA /* AcknowledgementsViewModel.swift */; };
 		297BEA001EF708640035D4DA /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297BE9FF1EF708640035D4DA /* Library.swift */; };
-		297BEA031EF766500035D4DA /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297BEA021EF766500035D4DA /* Future.swift */; };
 		298E7D511EFEF10100A83CA8 /* ServiceDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298E7D501EFEF10100A83CA8 /* ServiceDetailTableViewCell.swift */; };
 		298FA4E41EF78EA4009B5A36 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FA4E31EF78EA4009B5A36 /* UIViewController+Extensions.swift */; };
 		298FA4E61EF78EDB009B5A36 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FA4E51EF78EDB009B5A36 /* String+Extensions.swift */; };
@@ -123,7 +122,6 @@
 		297BE9FB1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Pods-Lynked-acknowledgements.plist"; path = "../Pods/Target Support Files/Pods-Lynked/Pods-Lynked-acknowledgements.plist"; sourceTree = "<group>"; };
 		297BE9FD1EF707EA0035D4DA /* AcknowledgementsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AcknowledgementsViewModel.swift; path = ../AcknowledgementsViewModel.swift; sourceTree = "<group>"; };
 		297BE9FF1EF708640035D4DA /* Library.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
-		297BEA021EF766500035D4DA /* Future.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Future.swift; sourceTree = "<group>"; };
 		298E7D501EFEF10100A83CA8 /* ServiceDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDetailTableViewCell.swift; sourceTree = "<group>"; };
 		298FA4E31EF78EA4009B5A36 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		298FA4E51EF78EDB009B5A36 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
@@ -207,7 +205,6 @@
 				1DC0D8C11DFE518C0039B8F6 /* View */,
 				29773CDB1EC3B6230023F277 /* Controller */,
 				29CCE7261EDF8F0000995139 /* Extensions */,
-				297BEA011EF766410035D4DA /* Future */,
 				1DC0D8BF1DFE51790039B8F6 /* Additional Files */,
 			);
 			path = Lynked;
@@ -307,14 +304,6 @@
 				2921B2251EFBA47E008F377B /* Acknowledgement */,
 			);
 			name = Controller;
-			sourceTree = "<group>";
-		};
-		297BEA011EF766410035D4DA /* Future */ = {
-			isa = PBXGroup;
-			children = (
-				297BEA021EF766500035D4DA /* Future.swift */,
-			);
-			name = Future;
 			sourceTree = "<group>";
 		};
 		29BDD8B91EF9022100F6A2DF /* To Do */ = {
@@ -645,7 +634,6 @@
 				298E7D511EFEF10100A83CA8 /* ServiceDetailTableViewCell.swift in Sources */,
 				1DC0D8B31DFE516A0039B8F6 /* Lynked.xcdatamodeld in Sources */,
 				2921B2201EFBA2E0008F377B /* TempLetterImagePickerUtility.swift in Sources */,
-				297BEA031EF766500035D4DA /* Future.swift in Sources */,
 				1DD7D2591E393C0700AF1299 /* CardClass.swift in Sources */,
 				29AA96CD1F074EA900194670 /* Identifiers.swift in Sources */,
 				29CB33121EF65EFA009CEE3B /* AcknowledgementsViewController.swift in Sources */,

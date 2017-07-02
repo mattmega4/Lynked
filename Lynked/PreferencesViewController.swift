@@ -21,7 +21,8 @@ class PreferencesViewController: UIViewController {
     @IBOutlet weak var logoImgView: UIImageView!
     
     @IBOutlet weak var nightModeButton: UIButton!
-    @IBOutlet weak var useTouchIDButton: UIButton!
+    
+    @IBOutlet weak var signOutButton: UIButton!
     @IBOutlet weak var feedbackButton: UIButton!
     @IBOutlet weak var acknowledgementsButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
@@ -37,7 +38,7 @@ class PreferencesViewController: UIViewController {
         title = "Preferences"
         
         nightModeButton.isHidden = true
-        useTouchIDButton.isHidden = true
+        
         
         setNavBar()
     }
@@ -79,7 +80,19 @@ class PreferencesViewController: UIViewController {
     @IBAction func nightModeButtonTapped(_ sender: UIButton) {
     }
     
-    @IBAction func useTouchIDButtonTapped(_ sender: UIButton) {
+    
+    @IBAction func signOutButtonTapped(_ sender: UIButton) {
+        do {
+            try Auth.auth().signOut()
+            
+            if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: ENTRY_STORYBOARD_IDENTIFIER) as? EntryViewController {
+                self.navigationController?.pushViewController(loginVC, animated: true)
+            }
+            
+        }
+        catch {
+           debugPrint(error)
+        }
     }
     
     @IBAction func feedbackButtonTapped(_ sender: UIButton) {

@@ -130,20 +130,12 @@ class EditCardViewController: UIViewController {
                 if let errorMessage = error {
                     print(errorMessage)
                 } else if success {
-                    var didGoBack = false
                     if let viewControllers = self.navigationController?.viewControllers {
                         for aController in viewControllers {
                             if aController is WalletViewController {
-                                didGoBack = true
                                 self.navigationController?.popToViewController(aController, animated: true)
                                 break
                             }
-                        }
-                        
-                    }
-                    if !didGoBack {
-                        if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: WALLET_STORYBOARD_IDENTIFIER) as? WalletViewController {
-                            self.navigationController?.pushViewController(walletVC, animated: true)
                         }
                     }
                 }

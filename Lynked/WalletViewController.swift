@@ -9,6 +9,7 @@
 import UIKit
 import StoreKit
 import MBProgressHUD
+import FirebaseAuth
 
 class WalletViewController: UIViewController {
     
@@ -49,6 +50,19 @@ class WalletViewController: UIViewController {
 //        tableView.isUserInteractionEnabled = true
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if Auth.auth().currentUser == nil {
+            if let loginVc = storyboard?.instantiateViewController(withIdentifier: ENTRY_STORYBOARD_IDENTIFIER) as? EntryViewController {
+                let loginNavigation = UINavigationController(rootViewController: loginVc)
+            self.splitViewController?.present(loginNavigation, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    
+    
     func pullAllUsersCards() {
         MBProgressHUD.showAdded(to: view, animated: true)
         FirebaseUtility.shared.getCards { (cards, errMessage) in
@@ -57,7 +71,9 @@ class WalletViewController: UIViewController {
             if let theCards = cards {
                 if theCards.count < 1 {
                     if let addVC = self.storyboard?.instantiateViewController(withIdentifier: ADD_CARD_STORYBOARD_IDENTIFIER) as? AddCardViewController {
-                        self.navigationController?.pushViewController(addVC, animated: true)
+                        //self.navigationController?.pushViewController(addVC, animated: true)
+                        let addNavigation = UINavigationController(rootViewController: addVC)
+                        self.splitViewController?.present(addNavigation, animated: true, completion: nil)
                     }
                 }
                 else {
@@ -86,8 +102,8 @@ class WalletViewController: UIViewController {
     
     // MARK: - IB Actions
     
-    @IBAction func leftBarButtonTapped(_ sender: UIBarButtonItem) {
-        
+    @IBAction func backFromDetail(segue: UIStoryboardSegue) {
+        print("back")
     }
     
     

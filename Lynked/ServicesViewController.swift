@@ -188,14 +188,13 @@ class ServicesViewController: UIViewController {
     // MARK: - IB Actions
     
     @IBAction func leftNavBarButtonTapped(_ sender: UIBarButtonItem) {
-        if let walletVC = storyboard?.instantiateViewController(withIdentifier: WALLET_STORYBOARD_IDENTIFIER) as? WalletViewController {
-            navigationController?.pushViewController(walletVC, animated: true)
-        }
+
     }
     
     @IBAction func rightNavBarButtonTapped(_ sender: UIBarButtonItem) {
-        if let prefVC = storyboard?.instantiateViewController(withIdentifier: PREFERENCES_STORYBOARD_IDENTIFIER) as? PreferencesViewController {
-            navigationController?.pushViewController(prefVC, animated: true)
+        if let prefVC = self.storyboard?.instantiateViewController(withIdentifier: PREFERENCES_STORYBOARD_IDENTIFIER) as? PreferencesViewController {
+            let prefNavigation = UINavigationController(rootViewController: prefVC)
+            self.splitViewController?.present(prefNavigation, animated: true, completion: nil)
         }
     }
     
