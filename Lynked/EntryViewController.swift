@@ -100,7 +100,8 @@ class EntryViewController: UIViewController {
         leftContainerButton.alpha = 0.3
         leftContainerButton.isEnabled = false
         leftContainerLabel.alpha = 0.3
-        leftContainerIndicatorImageView.image = UIImage.init(named: "indicatorTriangle.png")
+        leftContainerIndicatorImageView.image = #imageLiteral(resourceName: "indicatorTriangle")
+//        leftContainerIndicatorImageView.image = UIImage.init(named: "indicatorTriangle.png")
     }
     
     
@@ -117,6 +118,7 @@ class EntryViewController: UIViewController {
         rightContainerButton.isEnabled = false
         rightContainerLabel.alpha = 0.3
         rightContainerIndicatorImageView.image = UIImage.init(named: "indicatorTriangle.png")
+        rightContainerIndicatorImageView.image = #imageLiteral(resourceName: "indicatorTriangle")
     }
     
     

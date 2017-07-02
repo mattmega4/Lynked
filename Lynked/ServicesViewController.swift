@@ -51,7 +51,7 @@ class ServicesViewController: UIViewController {
     let SERVICE_CELL_IDENTIFIER = "ServiceCell"
     let CATEGORY_CELL_IDENTIFIER = "CategoryCell"
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -89,7 +89,7 @@ class ServicesViewController: UIViewController {
             navigationItem.leftBarButtonItem = nil
             navigationItem.rightBarButtonItem = nil
         }
-//        (UIDevice.current.userInterfaceIdiom == .pad ? 5: 10)
+        //        (UIDevice.current.userInterfaceIdiom == .pad ? 5: 10)
         
     }
     
@@ -399,22 +399,17 @@ extension ServicesViewController: UICollectionViewDelegate, UICollectionViewData
 }
 
 
-// MARK: - DBZ
+// MARK: - DZNEmptyDataSet Extension
 
 extension ServicesViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
     
-//    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-//       return #imageLiteral(resourceName: "BigLy")
-//    }
-//    
     func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
         let imageView = UIImageView(frame: self.view.frame)
-        imageView.image = #imageLiteral(resourceName: "BigLy")
-        imageView.alpha = 0.5
+        imageView.image = #imageLiteral(resourceName: "EmptyViewImage")
+        imageView.alpha = 0.3
         imageView.contentMode = .scaleAspectFit
         return imageView
     }
-    
     
 }
 
