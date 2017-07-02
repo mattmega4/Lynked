@@ -18,12 +18,17 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var profileViewBorder: UIView!
     @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var editImageButton: UIButton!
+    
     @IBOutlet weak var profileNameLabel: UILabel!
+    @IBOutlet weak var editNameButton: NSLayoutConstraint!
     
     @IBOutlet weak var leftSideButton: UIButton!
     @IBOutlet weak var rightSideButton: UIButton!
     
     @IBOutlet weak var rightViewContainer: UIView!
+    
+    @IBOutlet weak var tellFriendButton: UIButton!
     @IBOutlet weak var feedbackButton: UIButton!
     @IBOutlet weak var acknowledgementsButton: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
@@ -32,7 +37,7 @@ class ProfileViewController: UIViewController {
     let ref = Database.database().reference()
     let user = Auth.auth().currentUser
     
-//    let storage = Storage.storage()
+    //    let storage = Storage.storage()
     
     var leftOnRightOff = true
     
@@ -51,8 +56,20 @@ class ProfileViewController: UIViewController {
     
     
     
-    //MARK: - IBActions
+    //MARK: - Profile IBActions
     
+    @IBAction func editImageButtonTapped(_ sender: UIButton) {
+    }
+    
+    @IBAction func editNameButtonTapped(_ sender: UIButton) {
+    }
+    
+    //MARK: - Left Container IBActions
+    
+    
+    //MARK: - Right Container IBActions
+    @IBAction func tellFriendButtonTapped(_ sender: UIButton) {
+    }
     
     @IBAction func feedbackButtonTapped(_ sender: UIButton) {
         Instabug.invoke()
