@@ -56,7 +56,7 @@ class PreferencesViewController: UIViewController {
             
             self.user?.delete { error in
                 if let error = error {
-                    // An error happened.
+                    debugPrint(error)
                 } else {
                     if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: ENTRY_STORYBOARD_IDENTIFIER) as? EntryViewController {
                         self.navigationController?.pushViewController(loginVC, animated: true)
