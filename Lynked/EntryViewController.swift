@@ -11,6 +11,7 @@ import Firebase
 import FirebaseAuth
 import Fabric
 import Crashlytics
+import LocalAuthentication
 
 class EntryViewController: UIViewController {
     
@@ -73,10 +74,16 @@ class EntryViewController: UIViewController {
         
         checkIfBothSignInRequirementsAreMet()
         leftButtonWasTappedWhichIsDefault()
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        if Auth.auth().currentUser != nil {
+            useTouchID()
+        }
         
     }
     
@@ -101,7 +108,7 @@ class EntryViewController: UIViewController {
         leftContainerButton.isEnabled = false
         leftContainerLabel.alpha = 0.3
         leftContainerIndicatorImageView.image = #imageLiteral(resourceName: "indicatorTriangle")
-//        leftContainerIndicatorImageView.image = UIImage.init(named: "indicatorTriangle.png")
+        //        leftContainerIndicatorImageView.image = UIImage.init(named: "indicatorTriangle.png")
     }
     
     
@@ -296,6 +303,28 @@ class EntryViewController: UIViewController {
     }
     
     
+    // MARK: - Local Authorization // spell check
+    
+    func useTouchID() {
+        
+        let context = LAContext()
+        var error: NSError?
+        
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            // can eval
+            let reason = "Use Touch ID to Log In"
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason, reply: { (success, authError) in
+                
+                DispatchQueue.main.async {
+                    if success {
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
+            })
+        }
+    }
+    
+    
     // MARK: - Sign User In
     
     func signUserIn() {
@@ -309,10 +338,10 @@ class EntryViewController: UIViewController {
                 alertController.addAction(OKAction)
             }
             else {
-                if let splitVC = self.storyboard?.instantiateViewController(withIdentifier: SPLIT_STORYBOARD_IDENTIFIER) as? UISplitViewController {
-                    self.present(splitVC, animated: true, completion: nil)
-                }
-                
+//                if let splitVC = self.storyboard?.instantiateViewController(withIdentifier: SPLIT_STORYBOARD_IDENTIFIER) as? UISplitViewController {
+//                    self.present(splitVC, animated: true, completion: nil)
+//                }
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }
@@ -331,9 +360,10 @@ class EntryViewController: UIViewController {
                 alertController.addAction(OKAction)
             }
             else {
-                if let addVC = self.storyboard?.instantiateViewController(withIdentifier: ADD_CARD_STORYBOARD_IDENTIFIER) as? AddCardViewController {
-                    self.navigationController?.pushViewController(addVC, animated: true)
-                }
+//                if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: WALLET_STORYBOARD_IDENTIFIER) as? AddCardViewController {
+//                    self.navigationController?.pushViewController(addVC, animated: true)
+//                }
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }
