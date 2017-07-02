@@ -40,6 +40,7 @@
 		298FA4E81EF78F26009B5A36 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FA4E71EF78F26009B5A36 /* UIView+Extensions.swift */; };
 		298FA4EA1EF78F40009B5A36 /* NSObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FA4E91EF78F40009B5A36 /* NSObject+Extensions.swift */; };
 		298FA4EC1EF78F5C009B5A36 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FA4EB1EF78F5C009B5A36 /* Array+Extensions.swift */; };
+		29929B521F08927900369314 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29929B511F08927900369314 /* LocalAuthentication.framework */; };
 		299F6FC01F018AD300935054 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DC0D8B41DFE516A0039B8F6 /* Assets.xcassets */; };
 		299F85221EE78DB1001A819D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299F85211EE78DB1001A819D /* StoreKit.framework */; };
 		29A8F3EC1EF9EED000D20F79 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A8F3EB1EF9EED000D20F79 /* Keys.swift */; };
@@ -129,6 +130,7 @@
 		298FA4E71EF78F26009B5A36 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		298FA4E91EF78F40009B5A36 /* NSObject+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Extensions.swift"; sourceTree = "<group>"; };
 		298FA4EB1EF78F5C009B5A36 /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		29929B511F08927900369314 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		299F6FC11F018CB500935054 /* Lynked Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Lynked Widget.entitlements"; sourceTree = "<group>"; };
 		299F85211EE78DB1001A819D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		29A8F3EB1EF9EED000D20F79 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29929B521F08927900369314 /* LocalAuthentication.framework in Frameworks */,
 				FE255734139BB8197894689C /* Pods_Lynked.framework in Frameworks */,
 				299F85221EE78DB1001A819D /* StoreKit.framework in Frameworks */,
 			);
@@ -349,6 +352,7 @@
 		5992905EFC84512369FCFBED /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				29929B511F08927900369314 /* LocalAuthentication.framework */,
 				29390C2E1F02F0B70047F013 /* FavIcon.swift */,
 				29F778D71EEE291300B6AA6E /* AdSupport.framework */,
 				299F85211EE78DB1001A819D /* StoreKit.framework */,

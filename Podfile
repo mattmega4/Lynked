@@ -22,7 +22,6 @@ target 'Lynked' do
   pod 'Kingfisher'
 
 
-
 end
 
 target 'Lynked Widget' do
