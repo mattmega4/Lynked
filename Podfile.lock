@@ -18,9 +18,6 @@ PODS:
   - Firebase/Performance (4.0.3):
     - Firebase/Core
     - FirebasePerformance (= 1.0.3)
-  - Firebase/Storage (4.0.3):
-    - Firebase/Core
-    - FirebaseStorage (= 2.0.0)
   - FirebaseAnalytics (4.0.2):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
@@ -48,10 +45,6 @@ PODS:
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
     - GTMSessionFetcher/Core (~> 1.1)
     - Protobuf (~> 3.1)
-  - FirebaseStorage (2.0.0):
-    - FirebaseAnalytics (~> 4.0)
-    - FirebaseCore (~> 4.0)
-    - GTMSessionFetcher/Core (~> 1.1)
   - GoogleToolboxForMac/DebugUtils (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/Defines (2.1.1)
@@ -80,7 +73,6 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Messaging
   - Firebase/Performance
-  - Firebase/Storage
   - Instabug
   - Kingfisher
   - MBProgressHUD
@@ -108,7 +100,6 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
   FirebaseMessaging: 227406c05b0dc9290702d2e9f18ab5528f0c2cf2
   FirebasePerformance: 36bdb0500213b459ae991766801d5dc5399ff231
-  FirebaseStorage: 8110a1ed2034c8fbfd83890d2acc9cdbbd99afec
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
   Instabug: 3454aeae7b537d8dfccf8a0a25b07a7bfe616854
@@ -117,6 +108,6 @@ SPEC CHECKSUMS:
   Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
 
-PODFILE CHECKSUM: a59e0d08bc16c7b73352aeea74c636b420e2e695
+PODFILE CHECKSUM: e64b690b7561eebe356c67c3e109284d638606f4
 
 COCOAPODS: 1.3.0.beta.2
