@@ -8,6 +8,7 @@
 
 import UIKit
 import MBProgressHUD
+import UserNotifications
 
 class AddCardViewController: UIViewController {
     
@@ -69,9 +70,12 @@ class AddCardViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        pushNotification()
         checkIfAllConditionsAreMet()
         allCardTypes+=["Visa", "MasterCard", "American Express", "Discover", "Capital One", "China UnionPay", "RuPay", "Diner's Club", "JCB", "Other" ]
     }
+    
+    
     
     
     // MARK: - Write to Firebase
@@ -92,20 +96,36 @@ class AddCardViewController: UIViewController {
         FirebaseUtility.shared.addCard(name: finalNickname?.capitalized, type: finalType, color: color, last4: last4) { (card, errorMessage) in
             
             MBProgressHUD.hide(for: self.view, animated: true)
-//            if let theCard = card {
                 if let splitVC = self.storyboard?.instantiateViewController(withIdentifier: SPLIT_STORYBOARD_IDENTIFIER) as? UISplitViewController {
                 
                     self.present(splitVC, animated: true, completion: nil)
                 }
-//                if let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "serviceVC") as? ServicesViewController {
-//                    detailVC.card = theCard
-//                    self.navigationController?.pushViewController(detailVC, animated: true)
-//                }
-//            }
+
             else {
                 // Display error?
             }
         }
+    }
+    
+    
+    // MARK: - Push Notification
+    
+    func pushNotification() {
+        if #available(iOS 10.0, *) {
+            // For iOS 10 display notification (sent via APNS)
+//            UNUserNotificationCenter.current().delegate = self
+            
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+        } else {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(settings)
+        }
+        
+        UIApplication.shared.registerForRemoteNotifications()
     }
     
     
@@ -246,7 +266,13 @@ extension AddCardViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 }
 
-
+//extension AddCardViewController: UNUserNotificationCenterDelegate {
+//    
+//    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+//
+//    }
+//    
+//}
 
 
 

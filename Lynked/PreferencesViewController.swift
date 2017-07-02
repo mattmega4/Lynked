@@ -13,6 +13,8 @@ import Firebase
 
 class PreferencesViewController: UIViewController {
     
+    // left button is dismiss
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     
@@ -69,6 +71,10 @@ class PreferencesViewController: UIViewController {
     
     
     // MARK: - IB Actions
+    
+    @IBAction func leftNavButtonTapped(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func nightModeButtonTapped(_ sender: UIButton) {
     }

@@ -46,7 +46,7 @@ class WalletViewController: UIViewController {
         super.viewWillAppear(animated)
         
         //        pullAllUsersCards()
-        tableView.isUserInteractionEnabled = true
+//        tableView.isUserInteractionEnabled = true
     }
     
     func pullAllUsersCards() {
@@ -93,7 +93,8 @@ class WalletViewController: UIViewController {
     
     @IBAction func rightBarButtonTapped(_ sender: UIBarButtonItem) {
         if let prefVC = self.storyboard?.instantiateViewController(withIdentifier: PREFERENCES_STORYBOARD_IDENTIFIER) as? PreferencesViewController {
-            self.navigationController?.pushViewController(prefVC, animated: true)
+            let prefNavigation = UINavigationController(rootViewController: prefVC)
+            self.splitViewController?.present(prefNavigation, animated: true, completion: nil)
         }
         
     }
@@ -130,11 +131,6 @@ class WalletViewController: UIViewController {
 
 extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return (UIDevice.current.userInterfaceIdiom == .pad ? 279 : 127) as CGFloat
-        
-        
-    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -144,8 +140,7 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
                 if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: ADD_CARD_STORYBOARD_IDENTIFIER) as? AddCardViewController {
                     self.navigationController?.pushViewController(addCardVC, animated: true)
                 }
-            }
-            else {
+            } else {
                 let actionSheet = UIAlertController(title: nil, message: "You will need to purchase this to add more than 1 card", preferredStyle: .actionSheet)
                 let purchaseAction = UIAlertAction(title: "Purchase", style: .default, handler: { (action) in
                     self.purchaseProduct()
@@ -181,7 +176,7 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
         
                 }
             }
-            tableView.isUserInteractionEnabled = false
+//            tableView.isUserInteractionEnabled = false
         }
         // was a card
     }
@@ -232,8 +227,6 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
 extension WalletViewController: UISplitViewControllerDelegate {
     
     override func collapseSecondaryViewController(_ secondaryViewController: UIViewController, for splitViewController: UISplitViewController) {
-        
-        
     }
     
     func splitViewController(_ splitViewController: UISplitViewController, showDetail vc: UIViewController, sender: Any?) -> Bool {

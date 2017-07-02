@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 import MBProgressHUD
+import DZNEmptyDataSet
 
 
 class ServicesViewController: UIViewController {
@@ -60,6 +61,9 @@ class ServicesViewController: UIViewController {
         self.categoryPickerView.dataSource = self
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
+        
+        self.collectionView.emptyDataSetSource = self
+        self.collectionView.emptyDataSetDelegate = self
         
         collectionView.allowsSelection = true
         setNavBar()
@@ -395,6 +399,24 @@ extension ServicesViewController: UICollectionViewDelegate, UICollectionViewData
 }
 
 
+// MARK: - DBZ
+
+extension ServicesViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
+    
+//    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+//       return #imageLiteral(resourceName: "BigLy")
+//    }
+//    
+    func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
+        let imageView = UIImageView(frame: self.view.frame)
+        imageView.image = #imageLiteral(resourceName: "BigLy")
+        imageView.alpha = 0.5
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }
+    
+    
+}
 
 
 
