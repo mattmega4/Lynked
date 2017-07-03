@@ -43,10 +43,12 @@
 		29929B541F08F6EA00369314 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29929B531F08F6EA00369314 /* ProfileViewController.swift */; };
 		299F6FC01F018AD300935054 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DC0D8B41DFE516A0039B8F6 /* Assets.xcassets */; };
 		299F85221EE78DB1001A819D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299F85211EE78DB1001A819D /* StoreKit.framework */; };
-		29A8F3EC1EF9EED000D20F79 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A8F3EB1EF9EED000D20F79 /* Keys.swift */; };
 		29AA67E21EE7B4BA000EDE42 /* InAppPurchaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA67E11EE7B4BA000EDE42 /* InAppPurchaseUtility.swift */; };
 		29AA96CD1F074EA900194670 /* Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA96CC1F074EA900194670 /* Identifiers.swift */; };
 		29BDD8BB1EF9024300F6A2DF /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BDD8BA1EF9024300F6A2DF /* ServicesViewController.swift */; };
+		29CA61701F09B9BB00391199 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 29CA616F1F09B9BB00391199 /* Keys.plist */; };
+		29CA61721F09C6E200391199 /* BranchUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA61711F09C6E200391199 /* BranchUtility.swift */; };
+		29CA61741F09E56C00391199 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA61731F09E56C00391199 /* UITextField+Extensions.swift */; };
 		29CB33121EF65EFA009CEE3B /* AcknowledgementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CB33111EF65EFA009CEE3B /* AcknowledgementsViewController.swift */; };
 		29CB33141EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CB33131EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift */; };
 		29D412AF1F00AF0C0081CF79 /* WidgetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D412AE1F00AF0C0081CF79 /* WidgetTableViewCell.swift */; };
@@ -133,10 +135,12 @@
 		29929B531F08F6EA00369314 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		299F6FC11F018CB500935054 /* Lynked Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Lynked Widget.entitlements"; sourceTree = "<group>"; };
 		299F85211EE78DB1001A819D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		29A8F3EB1EF9EED000D20F79 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		29AA67E11EE7B4BA000EDE42 /* InAppPurchaseUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseUtility.swift; sourceTree = "<group>"; };
 		29AA96CC1F074EA900194670 /* Identifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiers.swift; sourceTree = "<group>"; };
 		29BDD8BA1EF9024300F6A2DF /* ServicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
+		29CA616F1F09B9BB00391199 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
+		29CA61711F09C6E200391199 /* BranchUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BranchUtility.swift; sourceTree = "<group>"; };
+		29CA61731F09E56C00391199 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
 		29CB33111EF65EFA009CEE3B /* AcknowledgementsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcknowledgementsViewController.swift; sourceTree = "<group>"; };
 		29CB33131EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcknowledgementsTableViewCell.swift; sourceTree = "<group>"; };
 		29D412AE1F00AF0C0081CF79 /* WidgetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidgetTableViewCell.swift; sourceTree = "<group>"; };
@@ -222,6 +226,7 @@
 				1DC0D8B91DFE516A0039B8F6 /* Info.plist */,
 				1D01B26F1E03A27500098A9A /* GoogleService-Info.plist */,
 				297BE9FB1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist */,
+				29CA616F1F09B9BB00391199 /* Keys.plist */,
 			);
 			name = "Additional Files";
 			sourceTree = "<group>";
@@ -246,6 +251,7 @@
 				2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */,
 				2921B21F1EFBA2E0008F377B /* TempLetterImagePickerUtility.swift */,
 				2950A4511EFE40BF00F94BF4 /* ServicePayRateManager.swift */,
+				29CA61711F09C6E200391199 /* BranchUtility.swift */,
 				1DC0D8B11DFE516A0039B8F6 /* Lynked.xcdatamodeld */,
 			);
 			name = Model;
@@ -310,7 +316,6 @@
 		29929B551F08F74100369314 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				29A8F3EB1EF9EED000D20F79 /* Keys.swift */,
 				29AA96CC1F074EA900194670 /* Identifiers.swift */,
 			);
 			name = Constants;
@@ -333,6 +338,7 @@
 				298FA4E51EF78EDB009B5A36 /* String+Extensions.swift */,
 				298FA4E91EF78F40009B5A36 /* NSObject+Extensions.swift */,
 				298FA4EB1EF78F5C009B5A36 /* Array+Extensions.swift */,
+				29CA61731F09E56C00391199 /* UITextField+Extensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -444,6 +450,9 @@
 							com.apple.Push = {
 								enabled = 1;
 							};
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
 						};
 					};
 					29EFAB221EFE46A1007F384E = {
@@ -482,6 +491,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29CA61701F09B9BB00391199 /* Keys.plist in Resources */,
 				297BE9FC1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist in Resources */,
 				1DC0D8B81DFE516A0039B8F6 /* LaunchScreen.storyboard in Resources */,
 				1D01B2701E03A27500098A9A /* GoogleService-Info.plist in Resources */,
@@ -509,6 +519,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Lynked/Pods-Lynked-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Branch/Branch.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
@@ -521,6 +532,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Branch.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
@@ -640,12 +652,13 @@
 				292764951EDFC8350096AE1E /* CardTableViewCell.swift in Sources */,
 				2924F9BE1EF22F090014C284 /* SegmentColorManager.swift in Sources */,
 				298FA4EA1EF78F40009B5A36 /* NSObject+Extensions.swift in Sources */,
-				29A8F3EC1EF9EED000D20F79 /* Keys.swift in Sources */,
+				29CA61741F09E56C00391199 /* UITextField+Extensions.swift in Sources */,
 				1DC0D8DF1DFE5F910039B8F6 /* EditCardViewController.swift in Sources */,
 				298FA4E81EF78F26009B5A36 /* UIView+Extensions.swift in Sources */,
 				298E7D511EFEF10100A83CA8 /* ServiceDetailTableViewCell.swift in Sources */,
 				1DC0D8B31DFE516A0039B8F6 /* Lynked.xcdatamodeld in Sources */,
 				2921B2201EFBA2E0008F377B /* TempLetterImagePickerUtility.swift in Sources */,
+				29CA61721F09C6E200391199 /* BranchUtility.swift in Sources */,
 				1DD7D2591E393C0700AF1299 /* CardClass.swift in Sources */,
 				29AA96CD1F074EA900194670 /* Identifiers.swift in Sources */,
 				29CB33121EF65EFA009CEE3B /* AcknowledgementsViewController.swift in Sources */,

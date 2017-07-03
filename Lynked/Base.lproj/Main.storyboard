@@ -1199,7 +1199,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wnK-Sd-Rdp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="11754" y="-1278"/>
+            <point key="canvasLocation" x="11754" y="-607"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="BsU-Lk-Jnc">
@@ -1223,23 +1223,37 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
                                                 <subviews>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oEo-GT-V6e">
-                                                        <rect key="frame" x="148.66666666666669" y="25" width="116.66666666666669" height="116.66666666666666"/>
+                                                        <rect key="frame" x="149" y="25" width="116" height="116"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ihe-vT-hj7">
-                                                                <rect key="frame" x="3.3333333333333428" y="3" width="110.66666666666669" height="110.66666666666666"/>
+                                                                <rect key="frame" x="3.3333333333333428" y="3" width="109.99999999999997" height="110"/>
                                                             </imageView>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vuo-Kk-caE">
+                                                                <rect key="frame" x="3.3333333333333428" y="3" width="109.99999999999997" height="110"/>
+                                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
+                                                                <state key="normal">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="editImageButtonTapped:" destination="rd5-QT-6qy" eventType="touchUpInside" id="4Ju-S1-Pvz"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
+                                                            <constraint firstItem="Vuo-Kk-caE" firstAttribute="top" secondItem="ihe-vT-hj7" secondAttribute="top" id="6QG-e6-uAU"/>
                                                             <constraint firstItem="ihe-vT-hj7" firstAttribute="top" secondItem="oEo-GT-V6e" secondAttribute="top" constant="3" id="8Me-OP-63h"/>
+                                                            <constraint firstItem="Vuo-Kk-caE" firstAttribute="bottom" secondItem="ihe-vT-hj7" secondAttribute="bottom" id="IBz-Ob-bTf"/>
                                                             <constraint firstAttribute="bottom" secondItem="ihe-vT-hj7" secondAttribute="bottom" constant="3" id="c3l-H2-iuR"/>
+                                                            <constraint firstItem="Vuo-Kk-caE" firstAttribute="leading" secondItem="ihe-vT-hj7" secondAttribute="leading" id="eCO-LV-qhR"/>
+                                                            <constraint firstItem="Vuo-Kk-caE" firstAttribute="trailing" secondItem="ihe-vT-hj7" secondAttribute="trailing" id="kgN-2X-icV"/>
                                                             <constraint firstAttribute="trailing" secondItem="ihe-vT-hj7" secondAttribute="trailing" constant="3" id="rm5-XQ-ycA"/>
                                                             <constraint firstAttribute="width" secondItem="oEo-GT-V6e" secondAttribute="height" multiplier="1:1" id="sfS-X5-7p1"/>
                                                             <constraint firstItem="ihe-vT-hj7" firstAttribute="leading" secondItem="oEo-GT-V6e" secondAttribute="leading" constant="3" id="wcG-pu-ZxA"/>
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ne4-jc-Hfn">
-                                                        <rect key="frame" x="112.33333333333331" y="161.66666666666663" width="189.33333333333337" height="23.333333333333343"/>
+                                                        <rect key="frame" x="109.66666666666669" y="161" width="194.66666666666663" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="Ne4-jc-Hfn" secondAttribute="height" multiplier="284:35" id="Di7-h1-afR"/>
                                                         </constraints>
@@ -1247,45 +1261,44 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k27-gI-CnF">
-                                                        <rect key="frame" x="326.66666666666669" y="158.33333333333334" width="45.666666666666629" height="30"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" secondItem="k27-gI-CnF" secondAttribute="height" multiplier="23:15" id="lFB-6f-7mf"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
-                                                        <state key="normal" title="EDIT">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
+                                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" clearsOnBeginEditing="YES" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pae-ht-Dul">
+                                                        <rect key="frame" x="109.66666666666669" y="161" width="194.66666666666663" height="24"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="20"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="done"/>
                                                         <connections>
-                                                            <action selector="editNameButtonTapped:" destination="rd5-QT-6qy" eventType="touchUpInside" id="yju-Qk-Zfl"/>
+                                                            <outlet property="delegate" destination="rd5-QT-6qy" id="mh0-ge-wha"/>
                                                         </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vuo-Kk-caE">
-                                                        <rect key="frame" x="327.33333333333331" y="68" width="46" height="30"/>
+                                                    </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zsb-tb-Eck">
+                                                        <rect key="frame" x="329.33333333333331" y="160.66666666666666" width="25" height="25"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" secondItem="Vuo-Kk-caE" secondAttribute="height" multiplier="23:15" id="G1N-EM-Lbt"/>
+                                                            <constraint firstAttribute="height" constant="25" id="UEd-BH-Gfp"/>
+                                                            <constraint firstAttribute="width" constant="25" id="q1m-q4-CTJ"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
-                                                        <state key="normal" title="EDIT">
+                                                        <state key="normal" title="Pencil">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="editImageButtonTapped:" destination="rd5-QT-6qy" eventType="touchUpInside" id="4Ju-S1-Pvz"/>
+                                                            <action selector="editNameButtonTapped:" destination="rd5-QT-6qy" eventType="touchUpInside" id="IAi-zn-tgN"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.42352941176470588" green="0.61960784313725492" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
-                                                    <constraint firstItem="k27-gI-CnF" firstAttribute="centerY" secondItem="Ne4-jc-Hfn" secondAttribute="centerY" id="9ya-hQ-Jqw"/>
+                                                    <constraint firstItem="zsb-tb-Eck" firstAttribute="centerY" secondItem="pae-ht-Dul" secondAttribute="centerY" id="0sN-Am-RU2"/>
                                                     <constraint firstAttribute="width" secondItem="D1U-an-2qd" secondAttribute="height" multiplier="207:100" id="AKo-ic-e14"/>
                                                     <constraint firstItem="oEo-GT-V6e" firstAttribute="centerX" secondItem="D1U-an-2qd" secondAttribute="centerX" id="FtP-FT-lpv"/>
+                                                    <constraint firstItem="pae-ht-Dul" firstAttribute="bottom" secondItem="Ne4-jc-Hfn" secondAttribute="bottom" id="JdK-h0-BZG"/>
+                                                    <constraint firstItem="pae-ht-Dul" firstAttribute="top" secondItem="Ne4-jc-Hfn" secondAttribute="top" id="M0b-2V-qoI"/>
                                                     <constraint firstItem="Ne4-jc-Hfn" firstAttribute="centerX" secondItem="D1U-an-2qd" secondAttribute="centerX" id="NKw-HJ-w4P"/>
+                                                    <constraint firstItem="pae-ht-Dul" firstAttribute="trailing" secondItem="Ne4-jc-Hfn" secondAttribute="trailing" id="S8J-6i-BOW"/>
+                                                    <constraint firstItem="pae-ht-Dul" firstAttribute="leading" secondItem="Ne4-jc-Hfn" secondAttribute="leading" id="UGJ-5p-EAI"/>
                                                     <constraint firstAttribute="bottom" secondItem="Ne4-jc-Hfn" secondAttribute="bottom" constant="15" id="UeP-vM-Bwe"/>
-                                                    <constraint firstItem="k27-gI-CnF" firstAttribute="centerX" secondItem="Vuo-Kk-caE" secondAttribute="centerX" id="Xed-AY-Hyd"/>
-                                                    <constraint firstItem="Vuo-Kk-caE" firstAttribute="centerY" secondItem="oEo-GT-V6e" secondAttribute="centerY" id="cHO-wH-QsQ"/>
+                                                    <constraint firstItem="zsb-tb-Eck" firstAttribute="leading" secondItem="pae-ht-Dul" secondAttribute="trailing" constant="25" id="nrb-2O-hBf"/>
                                                     <constraint firstItem="oEo-GT-V6e" firstAttribute="top" secondItem="D1U-an-2qd" secondAttribute="top" constant="25" id="rn2-Ng-C5v"/>
                                                     <constraint firstItem="Ne4-jc-Hfn" firstAttribute="top" secondItem="oEo-GT-V6e" secondAttribute="bottom" constant="20" id="v6D-Rs-s7R"/>
-                                                    <constraint firstItem="k27-gI-CnF" firstAttribute="leading" secondItem="Ne4-jc-Hfn" secondAttribute="trailing" constant="25" id="w3D-qe-YpZ"/>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Py-Ge-LNW">
@@ -1307,7 +1320,11 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                             </button>
-                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F44-2M-IGK">
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bGX-Xf-Dsa">
+                                                <rect key="frame" x="0.0" y="245" width="414" height="427"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F44-2M-IGK">
                                                 <rect key="frame" x="0.0" y="245" width="414" height="427"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uRi-wn-ov0">
@@ -1395,10 +1412,6 @@
                                                     <constraint firstItem="uRi-wn-ov0" firstAttribute="height" secondItem="OpH-WV-o7F" secondAttribute="height" id="yn0-2R-pLW"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bGX-Xf-Dsa">
-                                                <rect key="frame" x="0.0" y="245" width="414" height="427"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -1448,13 +1461,14 @@
                         <outlet property="contentView" destination="XAv-pA-gtm" id="Qdd-MJ-iyJ"/>
                         <outlet property="deleteButton" destination="6Fl-So-sHH" id="Rfx-gO-auT"/>
                         <outlet property="editImageButton" destination="Vuo-Kk-caE" id="axU-go-oPD"/>
-                        <outlet property="editNameButton" destination="9ya-hQ-Jqw" id="KAI-pR-ZY4"/>
+                        <outlet property="editNameButton" destination="zsb-tb-Eck" id="3ok-eq-xdB"/>
                         <outlet property="feedbackButton" destination="CS1-O6-VTN" id="8rs-OA-NhU"/>
                         <outlet property="headerView" destination="D1U-an-2qd" id="qkY-Rq-nHb"/>
                         <outlet property="leftSideButton" destination="2Py-Ge-LNW" id="pkx-DS-DTI"/>
                         <outlet property="logoutButton" destination="Xjx-Wc-u8A" id="GF0-J2-BPr"/>
                         <outlet property="profileImageView" destination="ihe-vT-hj7" id="9vH-0W-1Gx"/>
                         <outlet property="profileNameLabel" destination="Ne4-jc-Hfn" id="E7d-Ci-hT1"/>
+                        <outlet property="profileNameTextField" destination="pae-ht-Dul" id="qXF-he-osU"/>
                         <outlet property="profileViewBorder" destination="oEo-GT-V6e" id="paF-Ta-0Mg"/>
                         <outlet property="rightSideButton" destination="hoA-fm-qKm" id="but-VJ-awv"/>
                         <outlet property="rightViewContainer" destination="F44-2M-IGK" id="BrD-X0-gv2"/>
@@ -1798,7 +1812,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6RQ-aj-qnW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="13780" y="-1278"/>
+            <point key="canvasLocation" x="14817" y="-1281"/>
         </scene>
         <!--Entry View Controller-->
         <scene sceneID="BWO-Sg-5XA">
@@ -2757,7 +2771,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KSf-5z-E3L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="13780" y="-2219"/>
+            <point key="canvasLocation" x="14817" y="-2221"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="w5e-2g-e0R">

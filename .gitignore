@@ -65,6 +65,7 @@ fastlane/screenshots
 fastlane/test_output
 
 
-Lynked/Keys.swift
+Lynked/Info.plist
+Lynked/Keys.plist
 Lynked/String_Encryption.swift
 CrashReportingKey/ServiceAccount.json
