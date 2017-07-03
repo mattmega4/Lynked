@@ -181,7 +181,7 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
             let row = indexPath.row - 1
             self.selectedCard = self.cardArray[row].cardID
             if self.selectedCard != "" {
-                if let cardDVC = self.storyboard?.instantiateViewController(withIdentifier: SERVICES_STORYBOARD_IDENTIFIER) as? ServicesViewController {
+                if let cardDVC = self.storyboard?.instantiateViewController(withIdentifier: SERVICES_STORYBOARD_IDENTIFIER) as? ServiceListViewController {
                     
                     
                     if let cell = tableView.cellForRow(at: indexPath) as? CardTableViewCell {
