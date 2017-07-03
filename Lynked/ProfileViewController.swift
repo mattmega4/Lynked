@@ -107,6 +107,13 @@ class ProfileViewController: UIViewController {
         
         let userName = profileNameTextField.text ?? ""
         
+        if !userName.isEmpty {
+            self.profileNameLabel.text = userName
+            self.editNameButton.isHidden = false
+            self.profileNameLabel.isHidden = false
+            self.profileNameTextField.isHidden = true
+            // write to fb
+        }
         
         
     }
@@ -280,15 +287,9 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             self.profileImageView.image = editedImage
-            if let userId = user?.uid, let imageData = UIImageJPEGRepresentation(editedImage, 1.0) {
-                let storageRef = storage.reference().child("profilePictures").child(userId)
-                storageRef.putData(imageData, metadata: nil, completion: { (storageMetaData, error) in
-                    if let profilePictureLink = storageMetaData?.downloadURL()?.absoluteString {
-                        let userProfileRef = self.ref.child("users").child(userId)
-                        userProfileRef.updateChildValues(["profilePicture" : profilePictureLink])
-                    }
-                })
-            }
+            
+            FirebaseUtility.shared.saveUserPicture(image: editedImage)
+
         }
         dismiss(animated: true, completion: nil)
     }
