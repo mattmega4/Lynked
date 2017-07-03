@@ -35,6 +35,7 @@ use_frameworks!
   pod 'Kingfisher'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
+  pod 'Firebase/Storage'
   pod 'Firebase/Database'
   pod 'Firebase/Performance'
 
