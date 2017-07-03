@@ -192,7 +192,7 @@ class ServicesViewController: UIViewController {
     }
     
     @IBAction func rightNavBarButtonTapped(_ sender: UIBarButtonItem) {
-        if let prefVC = self.storyboard?.instantiateViewController(withIdentifier: PREFERENCES_STORYBOARD_IDENTIFIER) as? PreferencesViewController {
+        if let prefVC = self.storyboard?.instantiateViewController(withIdentifier: PROFILE_STORYBOARD_IDENTIFIER) as? ProfileViewController {
             let prefNavigation = UINavigationController(rootViewController: prefVC)
             self.splitViewController?.present(prefNavigation, animated: true, completion: nil)
         }

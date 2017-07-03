@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Firebase
 import Fabric
+import Branch
 import Crashlytics
 import Instabug
 
@@ -27,16 +28,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // MARK: - Firebase/Fabric
         FirebaseApp.configure()
         Database.database().isPersistenceEnabled = true
-        Fabric.with([Crashlytics.self])
+        Fabric.with([Crashlytics.self, Branch.self])
+        Branch.getInstance().initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: { params, error in
+            guard error == nil else { return }
+            guard let userDidClick = params?["+clicked_branch_link"] as? Bool else { return }
+            if userDidClick {
+                // This code will execute when your app is opened from a Branch deep link, which
+                // means that you can route to a custom activity depending on what they clicked.
+                // In this example, we'll just print out the data from the link that was clicked.
+                debugPrint("deep link data:  \(String(describing: params))")
+            }
+        })
+        
         
         // MARK: - Instabug
-        Instabug.start(withToken: IBK, invocationEvent: .shake)
+        if let path = Bundle.main.path(forResource: "Keys", ofType: "plist") {
+            if let dic = NSDictionary(contentsOfFile: path) as? [String : String] {
+                if let instaBugToken = dic["IBK"] {
+                    Instabug.start(withToken: instaBugToken, invocationEvent: .shake)
+                }
+            }
+        }
+        
         
         // MARK: - App Run Counter for Review
         incrementAppRuns()
         
         return true
     }
+    
+    
+     // Respond to URI scheme links
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        // For Branch to detect when a URI scheme is clicked
+        Branch.getInstance().handleDeepLink(url as URL!)
+        // do other deep link routing for the Facebook SDK, Pinterest SDK, etc
+        return true
+    }
+    
+    // Respond to Universal Links
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+        // For Branch to detect when a Universal Link is clicked
+        Branch.getInstance().continue(userActivity)
+        return true
+    }
+
+    
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

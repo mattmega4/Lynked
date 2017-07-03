@@ -34,7 +34,7 @@ class WalletViewController: UIViewController {
         
         title = "Wallet"
         setNavBar()
-        pullAllUsersCards()
+//        pullAllUsersCards()
         FirebaseUtility.shared.getAllServices { (services, error) in }
         
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -46,7 +46,7 @@ class WalletViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        //        pullAllUsersCards()
+                pullAllUsersCards()
 //        tableView.isUserInteractionEnabled = true
     }
     
@@ -82,19 +82,8 @@ class WalletViewController: UIViewController {
                 }
             }
             else {
+//                debugPrint(errMessage)
                 // TODO: - Display error
-            }
-        }
-    }
-    
-    
-    // MARK: - Prepare For Segue
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let selectedRow = tableView.indexPathForSelectedRow {
-            let card = cardArray[selectedRow.row]
-            if let walletDetailVC = segue.destination as? ServicesViewController {
-                walletDetailVC.card = card
             }
         }
     }
@@ -108,7 +97,7 @@ class WalletViewController: UIViewController {
     
     
     @IBAction func rightBarButtonTapped(_ sender: UIBarButtonItem) {
-        if let prefVC = self.storyboard?.instantiateViewController(withIdentifier: PREFERENCES_STORYBOARD_IDENTIFIER) as? PreferencesViewController {
+        if let prefVC = self.storyboard?.instantiateViewController(withIdentifier: PROFILE_STORYBOARD_IDENTIFIER) as? ProfileViewController {
             let prefNavigation = UINavigationController(rootViewController: prefVC)
             self.splitViewController?.present(prefNavigation, animated: true, completion: nil)
         }
@@ -192,9 +181,8 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
         
                 }
             }
-//            tableView.isUserInteractionEnabled = false
         }
-        // was a card
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
