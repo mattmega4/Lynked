@@ -281,17 +281,17 @@ extension ServiceListViewController: UITableViewDelegate, UITableViewDataSource 
         }
         return categories.count
     }
-
     
-   
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if !isDisplayingCategories {
             let cell = tableView.dequeueReusableCell(withIdentifier: SERVICE_CELL_IDENTIFIER, for: indexPath) as! ServiceTableViewCell
             let service = serviceArray[indexPath.row]
             cell.serviceColorStatusView.backgroundColor = service.serviceStatus ? .green : .red
             cell.serviceNameLabel.text = service.serviceName
             cell.serviceAmountLabel.text = String("$\(service.serviceAmount)")
-            // due date
+            cell.serviceDueDateLabel.text = String((service.nextPaymentDate ?? Date()).timeIntervalSinceReferenceDate)
             
             let placeholderImage = UIImage.init(named: "\(TempLetterImagePickerUtility.shared.getLetterOrNumberAndChooseImage(text: service.serviceName!))")
             
@@ -318,35 +318,33 @@ extension ServiceListViewController: UITableViewDelegate, UITableViewDataSource 
         let categoryServices = serviceArray.filter({$0.category == categories[indexPath.row]})
         for i in 0..<min(categoryServices.count, 3) {
             let service = categoryServices[i]
-        
-            let placeholderImage = UIImage.init(named: "\(TempLetterImagePickerUtility.shared.getLetterOrNumberAndChooseImage(text: service.serviceName!))")
-        
             
+            //            let placeholderImage = UIImage.init(named: "\(TempLetterImagePickerUtility.shared.getLetterOrNumberAndChooseImage(text: service.serviceName!))")
             
-//            if let seviceURLString = service.serviceUrl, service.serviceUrl?.isEmpty == false {
-//                let myURLString: String = "https://logo.clearbit.com/\(seviceURLString)"
-//        
-//                if let myURL = URL(string: myURLString) {
-//                    switch i {
-//                    case 0:
-////                        cell.previewImageViewOne.kf.setImage(with: myURL, placeholder: placeholderImage)
-//                    case 1:
-////                        cell.previewImageViewTwo.kf.setImage(with: myURL, placeholder: placeholderImage)
-//                    case 2:
-////                        cell.previewImageViewThree.kf.setImage(with: myURL, placeholder: placeholderImage)
-//                    case 3:
-////                        cell.previewImageViewFour.kf.setImage(with: myURL, placeholder: placeholderImage)
-//                    default:
-//                        print("error")
-//                    }
-//                }
-//            }
+            //            if let seviceURLString = service.serviceUrl, service.serviceUrl?.isEmpty == false {
+            //                let myURLString: String = "https://logo.clearbit.com/\(seviceURLString)"
+            //
+            //                if let myURL = URL(string: myURLString) {
+            //                    switch i {
+            //                    case 0:
+            ////                        cell.previewImageViewOne.kf.setImage(with: myURL, placeholder: placeholderImage)
+            //                    case 1:
+            ////                        cell.previewImageViewTwo.kf.setImage(with: myURL, placeholder: placeholderImage)
+            //                    case 2:
+            ////                        cell.previewImageViewThree.kf.setImage(with: myURL, placeholder: placeholderImage)
+            //                    case 3:
+            ////                        cell.previewImageViewFour.kf.setImage(with: myURL, placeholder: placeholderImage)
+            //                    default:
+            //                        print("error")
+            //                    }
+            //                }
+            //            }
         }
         return cell
     }
-
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !isDisplayingCategories {
             if let serviceDetailVC = storyboard?.instantiateViewController(withIdentifier: SERVICE_DETAIL_STORYBOARD_IDENTIFIER) as? ServiceDetailViewController {
                 serviceDetailVC.service = self.serviceArray[indexPath.row]
@@ -354,11 +352,10 @@ extension ServiceListViewController: UITableViewDelegate, UITableViewDataSource 
             }
         }
         else {
-            
+            //
         }
     }
-
-    
+   
 }
 
 // MARK: - DZNEmptyDataSet Extension
