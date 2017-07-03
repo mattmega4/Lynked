@@ -170,8 +170,8 @@ class FirebaseUtility: NSObject {
             completion(serviceArray, nil)
         })
     }
-
-
+    
+    
     func addService(name: String?, forCard card: CardClass?, withCategory category: String?, completion: @escaping (_ service: ServiceClass?, _ errMessage: String?) -> Void) {
         guard let theName = name else {
             let errorMessage = "Please enter the service name"
@@ -340,7 +340,7 @@ class FirebaseUtility: NSObject {
             }
         })
     }
-
+    
     
     func delete(service: ServiceClass?, completion: @escaping (_ success: Bool, _ error: String?) -> Void) {
         
@@ -371,7 +371,7 @@ class FirebaseUtility: NSObject {
             }
         }
     }
-
+    
     // MARK: - Today Extension Services
     
     func getAllServices(completion: @escaping (_ services: [ServiceClass]?, _ errorMessage: String?) -> Void) {
