@@ -1,0 +1,6 @@
+framework module SCPinViewController {
+  umbrella header "SCPinViewController-umbrella.h"
+
+  export *
+  module * { export * }
+}

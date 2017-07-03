@@ -12,6 +12,7 @@ import FirebaseAuth
 import Fabric
 import Crashlytics
 import LocalAuthentication
+import SCPinViewController
 
 class EntryViewController: UIViewController {
     
@@ -338,9 +339,6 @@ class EntryViewController: UIViewController {
                 alertController.addAction(OKAction)
             }
             else {
-//                if let splitVC = self.storyboard?.instantiateViewController(withIdentifier: SPLIT_STORYBOARD_IDENTIFIER) as? UISplitViewController {
-//                    self.present(splitVC, animated: true, completion: nil)
-//                }
                 self.dismiss(animated: true, completion: nil)
             }
         }
@@ -360,10 +358,13 @@ class EntryViewController: UIViewController {
                 alertController.addAction(OKAction)
             }
             else {
-//                if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: WALLET_STORYBOARD_IDENTIFIER) as? AddCardViewController {
-//                    self.navigationController?.pushViewController(addVC, animated: true)
-//                }
-                self.dismiss(animated: true, completion: nil)
+                if let pinVC = SCPinViewController(scope: .create) {
+                    pinVC.createDelegate = self
+                    self.present(pinVC, animated: true, completion: nil)
+                }
+                else {
+                    self.dismiss(animated: true, completion: nil)
+                }
             }
         }
     }
@@ -527,3 +528,24 @@ extension EntryViewController: UITextFieldDelegate {
     
     
 }
+
+
+extension EntryViewController: SCPinViewControllerCreateDelegate {
+    
+    func pinViewController(_ pinViewController: SCPinViewController!, didSetNewPin pin: String!) {
+        UserDefaults.standard.set(pin, forKey: "pin")
+        UserDefaults.standard.set(true, forKey: "unlocked")
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func lengthForPin() -> Int {
+        return 4
+    }
+    
+}
+
+
+
+
+
+

@@ -22,6 +22,7 @@ target 'Lynked' do
   pod 'Firebase/Database'
   pod 'Firebase/Performance'
   pod 'Kingfisher'
+  pod 'SCPinViewController'
 
 
 end
