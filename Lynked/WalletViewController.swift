@@ -10,6 +10,7 @@ import UIKit
 import StoreKit
 import MBProgressHUD
 import FirebaseAuth
+import SCPinViewController
 
 class WalletViewController: UIViewController {
     
@@ -58,6 +59,19 @@ class WalletViewController: UIViewController {
                 let loginNavigation = UINavigationController(rootViewController: loginVc)
             self.splitViewController?.present(loginNavigation, animated: true, completion: nil)
             }
+        }
+        else {
+            
+            let appUnlocked = UserDefaults.standard.bool(forKey: "unlocked")
+            if !appUnlocked {
+                if let pinVC = SCPinViewController(scope: .validate) {
+                    
+                    pinVC.dataSource = self
+                    pinVC.validateDelegate = self
+                    self.present(pinVC, animated: true, completion: nil)
+                }
+            }
+            
         }
     }
     
@@ -227,6 +241,34 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
+extension WalletViewController: SCPinViewControllerDataSource, SCPinViewControllerValidateDelegate {
+    
+    
+    func code(for pinViewController: SCPinViewController!) -> String! {
+        if let pin = UserDefaults.standard.object(forKey: "pin") as? String {
+            return pin
+        }
+        return "1234"
+    }
+    
+    func pinViewControllerDidSetWrongPin(_ pinViewController: SCPinViewController!) {
+        print("wrong pin")
+    }
+    
+    func pinViewControllerDidSetСorrectPin(_ pinViewController: SCPinViewController!) {
+        UserDefaults.standard.set(true, forKey: "unlocked")
+        pinViewController.dismiss(animated: true, completion: nil)
+    }
+    
+    func showTouchIDVerificationImmediately() -> Bool {
+        return true
+    }
+    
+    func hideTouchIDButtonIfFingersAreNotEnrolled() -> Bool {
+        return true
+    }
+  
+}
 
 extension WalletViewController: UISplitViewControllerDelegate {
     
