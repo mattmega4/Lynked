@@ -47,9 +47,6 @@ class ServiceDetailTableViewCell: UITableViewCell {
 protocol ServiceDetailTableViewCellDelegate {
     
     func serviceDetailTableViewCell(cell: ServiceDetailTableViewCell, didChangeFixedSwitch fixedSwitch: UISwitch)
-    
-//    func serviceDetailTableViewCell(cell: ServiceDetailTableViewCell, didChangeTextField textField: UITextField)
-    
 }
 
 

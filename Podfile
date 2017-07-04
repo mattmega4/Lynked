@@ -23,6 +23,7 @@ target 'Lynked' do
   pod 'Firebase/Performance'
   pod 'Kingfisher'
   pod 'SCPinViewController'
+  pod 'SwipeCellKit'
 
 
 end
