@@ -60,6 +60,7 @@
 		29D412B81F00D43A0081CF79 /* NewCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D412B71F00D43A0081CF79 /* NewCardTableViewCell.swift */; };
 		29D5906B1EF5AE5600CA66D6 /* RequestReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D5906A1EF5AE5600CA66D6 /* RequestReview.swift */; };
 		29E39CB81F0B168300E23949 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E39CB71F0B168300E23949 /* CategoryTableViewCell.swift */; };
+		29E39CBC1F0B226600E23949 /* UpdateServiceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E39CBB1F0B226600E23949 /* UpdateServiceTableViewController.swift */; };
 		29E713D41F0AEDA0004B5715 /* ServiceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E713D31F0AEDA0004B5715 /* ServiceListViewController.swift */; };
 		29E713D61F0AEE0E004B5715 /* ServiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E713D51F0AEE0E004B5715 /* ServiceTableViewCell.swift */; };
 		29EFAB251EFE46A1007F384E /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29EFAB241EFE46A1007F384E /* NotificationCenter.framework */; };
@@ -145,6 +146,7 @@
 		29D412B71F00D43A0081CF79 /* NewCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCardTableViewCell.swift; sourceTree = "<group>"; };
 		29D5906A1EF5AE5600CA66D6 /* RequestReview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestReview.swift; sourceTree = "<group>"; };
 		29E39CB71F0B168300E23949 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		29E39CBB1F0B226600E23949 /* UpdateServiceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateServiceTableViewController.swift; sourceTree = "<group>"; };
 		29E713D31F0AEDA0004B5715 /* ServiceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceListViewController.swift; sourceTree = "<group>"; };
 		29E713D51F0AEE0E004B5715 /* ServiceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTableViewCell.swift; sourceTree = "<group>"; };
 		29EFAB231EFE46A1007F384E /* Lynked Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Lynked Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -295,6 +297,7 @@
 				29E713D31F0AEDA0004B5715 /* ServiceListViewController.swift */,
 				29E39CB61F0B164900E23949 /* Service List TableView Cells */,
 				2921B21D1EFB9FB2008F377B /* ServiceDetailViewController.swift */,
+				29E39CBB1F0B226600E23949 /* UpdateServiceTableViewController.swift */,
 				2921B2121EFB99CD008F377B /* Service TableView Cells */,
 				1DC0D8DE1DFE5F910039B8F6 /* EditCardViewController.swift */,
 				29929B531F08F6EA00369314 /* ProfileViewController.swift */,
@@ -655,6 +658,7 @@
 				2924F9BE1EF22F090014C284 /* SegmentColorManager.swift in Sources */,
 				29E713D41F0AEDA0004B5715 /* ServiceListViewController.swift in Sources */,
 				29E39CB81F0B168300E23949 /* CategoryTableViewCell.swift in Sources */,
+				29E39CBC1F0B226600E23949 /* UpdateServiceTableViewController.swift in Sources */,
 				298FA4EA1EF78F40009B5A36 /* NSObject+Extensions.swift in Sources */,
 				29CA61741F09E56C00391199 /* UITextField+Extensions.swift in Sources */,
 				1DC0D8DF1DFE5F910039B8F6 /* EditCardViewController.swift in Sources */,

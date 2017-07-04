@@ -359,6 +359,12 @@ extension ServiceListViewController: UITableViewDelegate, UITableViewDataSource 
         }
     }
     
+//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//        // Return false if you do not want the specified item to be editable.
+//        return true
+//    }
+
+    
 }
 
 // MARK: - DZNEmptyDataSet Extension
