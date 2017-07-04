@@ -647,8 +647,8 @@
                                                     </variation>
                                                     <variation key="heightClass=regular-widthClass=regular">
                                                         <mask key="constraints">
-                                                            <exclude reference="34m-ol-K7g"/>
                                                             <include reference="2s6-5b-sXs"/>
+                                                            <exclude reference="34m-ol-K7g"/>
                                                         </mask>
                                                     </variation>
                                                 </label>
@@ -1147,6 +1147,51 @@
             </objects>
             <point key="canvasLocation" x="10593" y="-1282"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="tZN-Tr-9PN">
+            <objects>
+                <viewController id="C5J-p7-r8a" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WdE-DC-leD"/>
+                        <viewControllerLayoutGuide type="bottom" id="5BG-7z-YS0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0PD-CT-53n">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PFT-fO-YGL">
+                                <rect key="frame" x="0.0" y="64" width="414" height="75"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="AEt-f9-jsn"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pgD-Jh-seT">
+                                <rect key="frame" x="184" y="622" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PFe-Wi-iEV">
+                                <rect key="frame" x="159" y="353" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PFT-fO-YGL" firstAttribute="leading" secondItem="0PD-CT-53n" secondAttribute="leading" id="Tqy-4F-RHT"/>
+                            <constraint firstItem="PFT-fO-YGL" firstAttribute="top" secondItem="WdE-DC-leD" secondAttribute="bottom" id="pv7-v6-sd2"/>
+                            <constraint firstAttribute="trailing" secondItem="PFT-fO-YGL" secondAttribute="trailing" id="uqK-7U-Rmc"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="J3e-j7-kDU"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gMI-Sh-OJe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="11519" y="-459"/>
+        </scene>
         <!--Table View Controller-->
         <scene sceneID="DhJ-b2-rfI">
             <objects>
@@ -1193,7 +1238,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k0b-FN-tnW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="11374" y="-1106"/>
+            <point key="canvasLocation" x="11541" y="-1282"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="oGJ-zm-oiP">
@@ -2869,6 +2914,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hqa-QB-t21" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7474" y="-2217"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Wvh-1X-Ucr">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gTm-vg-UtP" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HiS-E3-Hh3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="C5J-p7-r8a" kind="relationship" relationship="rootViewController" id="jV6-Iw-0P2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x7x-t7-LfL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="10593" y="-459"/>
         </scene>
     </scenes>
     <resources>

@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 import FirebaseStorage
-import Instabug
 import MBProgressHUD
 import Kingfisher
 
@@ -81,7 +80,6 @@ class ProfileViewController: UIViewController {
                     self.profileImageView.kf.setImage(with: profilePictureURL, placeholder: #imageLiteral(resourceName: "E"), options: nil, progressBlock: nil, completionHandler: nil)
                 }
             }
-            
             if let profileName = userInfo?["userName"] {
                 
                 self.profileNameLabel.text = profileName
@@ -96,7 +94,6 @@ class ProfileViewController: UIViewController {
                 self.profileNameTextField.becomeFirstResponder()
                 self.profileNameTextField.placeholder = "Enter Your Name Here!"
             }
-
         }
     }
     
@@ -143,11 +140,6 @@ class ProfileViewController: UIViewController {
     }
     
     
-    
-    
-    
-    
-    
     //MARK: - Profile IBActions
     
     @IBAction func editImageButtonTapped(_ sender: UIButton) {
@@ -191,13 +183,10 @@ class ProfileViewController: UIViewController {
             }
             MBProgressHUD.hide(for: self.view, animated: true)
         }
-        
     }
     
     @IBAction func feedbackButtonTapped(_ sender: UIButton) {
-        Instabug.invoke()
-        Instabug.setCommentFieldRequired(true)
-        Instabug.setEmailFieldRequired(false)
+        //
     }
     
     @IBAction func acknowledgementsButtonTapped(_ sender: UIButton) {
@@ -209,11 +198,9 @@ class ProfileViewController: UIViewController {
     @IBAction func logoutButtonTapped(_ sender: UIButton) {
         do {
             try Auth.auth().signOut()
-            
             if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: ENTRY_STORYBOARD_IDENTIFIER) as? EntryViewController {
                 self.navigationController?.pushViewController(loginVC, animated: true)
             }
-            
         }
         catch {
             debugPrint(error)
@@ -270,7 +257,6 @@ extension ProfileViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == profileNameTextField {
-            //profileNameTextField.returnKeyType = .done
             saveNameToFirebase()
         }
         return false
@@ -287,9 +273,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             self.profileImageView.image = editedImage
-            
             FirebaseUtility.shared.saveUserPicture(image: editedImage)
-
         }
         dismiss(animated: true, completion: nil)
     }
