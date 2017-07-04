@@ -40,17 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         })
         
-        
-        // MARK: - Instabug
-        if let path = Bundle.main.path(forResource: "Keys", ofType: "plist") {
-            if let dic = NSDictionary(contentsOfFile: path) as? [String : String] {
-                if let instaBugToken = dic["IBK"] {
-                    Instabug.start(withToken: instaBugToken, invocationEvent: .shake)
-                }
-            }
-        }
-        
-        
         // MARK: - App Run Counter for Review
         incrementAppRuns()
         
@@ -58,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-     // Respond to URI scheme links
+    // Respond to URI scheme links
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         // For Branch to detect when a URI scheme is clicked
         Branch.getInstance().handleDeepLink(url as URL!)
@@ -72,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Branch.getInstance().continue(userActivity)
         return true
     }
-
+    
     
     
     func applicationWillResignActive(_ application: UIApplication) {
