@@ -42,7 +42,7 @@ class ServiceListViewController: UIViewController {
         addDelegates()
         
         addServiceTextField.addTarget(self, action: #selector(enableAddButton(textField:)), for: .editingChanged)
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ServicesViewController.dismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ServiceListViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         tap.cancelsTouchesInView = false
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -291,7 +291,13 @@ extension ServiceListViewController: UITableViewDelegate, UITableViewDataSource 
             cell.serviceColorStatusView.backgroundColor = service.serviceStatus ? .green : .red
             cell.serviceNameLabel.text = service.serviceName
             cell.serviceAmountLabel.text = String("$\(service.serviceAmount)")
-            cell.serviceDueDateLabel.text = String((service.nextPaymentDate ?? Date()).timeIntervalSinceReferenceDate)
+            
+            if let dueDate = service.nextPaymentDate {
+                let date = dueDate
+                let formatter = DateFormatter()
+                formatter.dateFormat = "MMM dd, yyyy"
+                cell.serviceDueDateLabel.text = formatter.string(from: date)
+            }
             
             let placeholderImage = UIImage.init(named: "\(TempLetterImagePickerUtility.shared.getLetterOrNumberAndChooseImage(text: service.serviceName!))")
             
@@ -313,32 +319,29 @@ extension ServiceListViewController: UITableViewDelegate, UITableViewDataSource 
         }
         
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: CATEGORY_CELL_IDENTIFIER, for: indexPath) as! ServiceTableViewCell
-        cell.serviceNameLabel.text = categories[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: CATEGORY_CELL_IDENTIFIER, for: indexPath) as! CategoryTableViewCell
+        cell.categoryLabel.text = categories[indexPath.row]
         let categoryServices = serviceArray.filter({$0.category == categories[indexPath.row]})
         for i in 0..<min(categoryServices.count, 3) {
             let service = categoryServices[i]
-            
-            //            let placeholderImage = UIImage.init(named: "\(TempLetterImagePickerUtility.shared.getLetterOrNumberAndChooseImage(text: service.serviceName!))")
-            
-            //            if let seviceURLString = service.serviceUrl, service.serviceUrl?.isEmpty == false {
-            //                let myURLString: String = "https://logo.clearbit.com/\(seviceURLString)"
-            //
-            //                if let myURL = URL(string: myURLString) {
-            //                    switch i {
-            //                    case 0:
-            ////                        cell.previewImageViewOne.kf.setImage(with: myURL, placeholder: placeholderImage)
-            //                    case 1:
-            ////                        cell.previewImageViewTwo.kf.setImage(with: myURL, placeholder: placeholderImage)
-            //                    case 2:
-            ////                        cell.previewImageViewThree.kf.setImage(with: myURL, placeholder: placeholderImage)
-            //                    case 3:
-            ////                        cell.previewImageViewFour.kf.setImage(with: myURL, placeholder: placeholderImage)
-            //                    default:
-            //                        print("error")
-            //                    }
-            //                }
-            //            }
+            let placeholderImage = UIImage.init(named: "\(TempLetterImagePickerUtility.shared.getLetterOrNumberAndChooseImage(text: service.serviceName!))")
+            if let seviceURLString = service.serviceUrl, service.serviceUrl?.isEmpty == false {
+                let myURLString: String = "https://logo.clearbit.com/\(seviceURLString)"
+                if let myURL = URL(string: myURLString) {
+                    switch i {
+                    case 0:
+                        cell.categoryImageOne.kf.setImage(with: myURL, placeholder: placeholderImage)
+                    case 1:
+                        cell.categoryImageTwo.kf.setImage(with: myURL, placeholder: placeholderImage)
+                    case 2:
+                        cell.categoryImageThree.kf.setImage(with: myURL, placeholder: placeholderImage)
+                    case 3:
+                        cell.categoryImageFour.kf.setImage(with: myURL, placeholder: placeholderImage)
+                    default:
+                        print("error")
+                    }
+                }
+            }
         }
         return cell
     }
@@ -355,7 +358,7 @@ extension ServiceListViewController: UITableViewDelegate, UITableViewDataSource 
             //
         }
     }
-   
+    
 }
 
 // MARK: - DZNEmptyDataSet Extension

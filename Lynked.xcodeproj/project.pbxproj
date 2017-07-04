@@ -20,7 +20,6 @@
 		1DD7D25C1E393C2300AF1299 /* ServiceClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7D25B1E393C2300AF1299 /* ServiceClass.swift */; };
 		2921B21E1EFB9FB2008F377B /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921B21D1EFB9FB2008F377B /* ServiceDetailViewController.swift */; };
 		2921B2201EFBA2E0008F377B /* TempLetterImagePickerUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921B21F1EFBA2E0008F377B /* TempLetterImagePickerUtility.swift */; };
-		2921B2231EFBA42F008F377B /* ServiceCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921B2221EFBA42F008F377B /* ServiceCategoryCollectionViewCell.swift */; };
 		2924F9BE1EF22F090014C284 /* SegmentColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */; };
 		292764931EDFA3160096AE1E /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292764921EDFA3160096AE1E /* WalletViewController.swift */; };
 		292764951EDFC8350096AE1E /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292764941EDFC8350096AE1E /* CardTableViewCell.swift */; };
@@ -45,7 +44,6 @@
 		299F85221EE78DB1001A819D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299F85211EE78DB1001A819D /* StoreKit.framework */; };
 		29AA67E21EE7B4BA000EDE42 /* InAppPurchaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA67E11EE7B4BA000EDE42 /* InAppPurchaseUtility.swift */; };
 		29AA96CD1F074EA900194670 /* Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA96CC1F074EA900194670 /* Identifiers.swift */; };
-		29BDD8BB1EF9024300F6A2DF /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BDD8BA1EF9024300F6A2DF /* ServicesViewController.swift */; };
 		29CA61701F09B9BB00391199 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 29CA616F1F09B9BB00391199 /* Keys.plist */; };
 		29CA61721F09C6E200391199 /* BranchUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA61711F09C6E200391199 /* BranchUtility.swift */; };
 		29CA61741F09E56C00391199 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA61731F09E56C00391199 /* UITextField+Extensions.swift */; };
@@ -61,9 +59,9 @@
 		29D412B61F00B8070081CF79 /* TempLetterImagePickerUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921B21F1EFBA2E0008F377B /* TempLetterImagePickerUtility.swift */; };
 		29D412B81F00D43A0081CF79 /* NewCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D412B71F00D43A0081CF79 /* NewCardTableViewCell.swift */; };
 		29D5906B1EF5AE5600CA66D6 /* RequestReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D5906A1EF5AE5600CA66D6 /* RequestReview.swift */; };
+		29E39CB81F0B168300E23949 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E39CB71F0B168300E23949 /* CategoryTableViewCell.swift */; };
 		29E713D41F0AEDA0004B5715 /* ServiceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E713D31F0AEDA0004B5715 /* ServiceListViewController.swift */; };
 		29E713D61F0AEE0E004B5715 /* ServiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E713D51F0AEE0E004B5715 /* ServiceTableViewCell.swift */; };
-		29EE32441EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EE32431EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift */; };
 		29EFAB251EFE46A1007F384E /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29EFAB241EFE46A1007F384E /* NotificationCenter.framework */; };
 		29EFAB281EFE46A1007F384E /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EFAB271EFE46A1007F384E /* TodayViewController.swift */; };
 		29EFAB2B1EFE46A1007F384E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29EFAB291EFE46A1007F384E /* MainInterface.storyboard */; };
@@ -113,7 +111,6 @@
 		267A4AE157A5C3F5E4C71A91 /* Pods_Lynked.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lynked.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2921B21D1EFB9FB2008F377B /* ServiceDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDetailViewController.swift; sourceTree = "<group>"; };
 		2921B21F1EFBA2E0008F377B /* TempLetterImagePickerUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempLetterImagePickerUtility.swift; sourceTree = "<group>"; };
-		2921B2221EFBA42F008F377B /* ServiceCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentColorManager.swift; sourceTree = "<group>"; };
 		292764921EDFA3160096AE1E /* WalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		292764941EDFC8350096AE1E /* CardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
@@ -139,7 +136,6 @@
 		299F85211EE78DB1001A819D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		29AA67E11EE7B4BA000EDE42 /* InAppPurchaseUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseUtility.swift; sourceTree = "<group>"; };
 		29AA96CC1F074EA900194670 /* Identifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiers.swift; sourceTree = "<group>"; };
-		29BDD8BA1EF9024300F6A2DF /* ServicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
 		29CA616F1F09B9BB00391199 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		29CA61711F09C6E200391199 /* BranchUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BranchUtility.swift; sourceTree = "<group>"; };
 		29CA61731F09E56C00391199 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
@@ -148,9 +144,9 @@
 		29D412AE1F00AF0C0081CF79 /* WidgetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidgetTableViewCell.swift; sourceTree = "<group>"; };
 		29D412B71F00D43A0081CF79 /* NewCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCardTableViewCell.swift; sourceTree = "<group>"; };
 		29D5906A1EF5AE5600CA66D6 /* RequestReview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestReview.swift; sourceTree = "<group>"; };
+		29E39CB71F0B168300E23949 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		29E713D31F0AEDA0004B5715 /* ServiceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceListViewController.swift; sourceTree = "<group>"; };
 		29E713D51F0AEE0E004B5715 /* ServiceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTableViewCell.swift; sourceTree = "<group>"; };
-		29EE32431EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceCollectionViewCell.swift; sourceTree = "<group>"; };
 		29EFAB231EFE46A1007F384E /* Lynked Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Lynked Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		29EFAB241EFE46A1007F384E /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		29EFAB271EFE46A1007F384E /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -269,15 +265,6 @@
 			name = "Service TableView Cells";
 			sourceTree = "<group>";
 		};
-		2921B2211EFBA3FE008F377B /* Service CollectionView Cells */ = {
-			isa = PBXGroup;
-			children = (
-				2921B2221EFBA42F008F377B /* ServiceCategoryCollectionViewCell.swift */,
-				29EE32431EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift */,
-			);
-			name = "Service CollectionView Cells";
-			sourceTree = "<group>";
-		};
 		2921B2241EFBA458008F377B /* Wallet TableView Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -304,14 +291,15 @@
 				29773CDC1EC3B6730023F277 /* EntryViewController.swift */,
 				1DC0D8D81DFE59360039B8F6 /* AddCardViewController.swift */,
 				292764921EDFA3160096AE1E /* WalletViewController.swift */,
-				29BDD8BA1EF9024300F6A2DF /* ServicesViewController.swift */,
+				2921B2241EFBA458008F377B /* Wallet TableView Cell */,
+				29E713D31F0AEDA0004B5715 /* ServiceListViewController.swift */,
+				29E39CB61F0B164900E23949 /* Service List TableView Cells */,
 				2921B21D1EFB9FB2008F377B /* ServiceDetailViewController.swift */,
+				2921B2121EFB99CD008F377B /* Service TableView Cells */,
 				1DC0D8DE1DFE5F910039B8F6 /* EditCardViewController.swift */,
+				29929B531F08F6EA00369314 /* ProfileViewController.swift */,
 				1D1712781E01F0870087F299 /* PreferencesViewController.swift */,
 				29CB33111EF65EFA009CEE3B /* AcknowledgementsViewController.swift */,
-				2921B2211EFBA3FE008F377B /* Service CollectionView Cells */,
-				2921B2121EFB99CD008F377B /* Service TableView Cells */,
-				2921B2241EFBA458008F377B /* Wallet TableView Cell */,
 				2921B2251EFBA47E008F377B /* Acknowledgement */,
 			);
 			name = Controller;
@@ -329,9 +317,6 @@
 			isa = PBXGroup;
 			children = (
 				294D0E311EF9E9F7000E4BC6 /* CategoryViewController.swift */,
-				29929B531F08F6EA00369314 /* ProfileViewController.swift */,
-				29E713D31F0AEDA0004B5715 /* ServiceListViewController.swift */,
-				29E713D51F0AEE0E004B5715 /* ServiceTableViewCell.swift */,
 			);
 			name = "To Do";
 			sourceTree = "<group>";
@@ -347,6 +332,15 @@
 				29CA61731F09E56C00391199 /* UITextField+Extensions.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		29E39CB61F0B164900E23949 /* Service List TableView Cells */ = {
+			isa = PBXGroup;
+			children = (
+				29E713D51F0AEE0E004B5715 /* ServiceTableViewCell.swift */,
+				29E39CB71F0B168300E23949 /* CategoryTableViewCell.swift */,
+			);
+			name = "Service List TableView Cells";
 			sourceTree = "<group>";
 		};
 		29EFAB261EFE46A1007F384E /* Lynked Widget */ = {
@@ -660,6 +654,7 @@
 				292764951EDFC8350096AE1E /* CardTableViewCell.swift in Sources */,
 				2924F9BE1EF22F090014C284 /* SegmentColorManager.swift in Sources */,
 				29E713D41F0AEDA0004B5715 /* ServiceListViewController.swift in Sources */,
+				29E39CB81F0B168300E23949 /* CategoryTableViewCell.swift in Sources */,
 				298FA4EA1EF78F40009B5A36 /* NSObject+Extensions.swift in Sources */,
 				29CA61741F09E56C00391199 /* UITextField+Extensions.swift in Sources */,
 				1DC0D8DF1DFE5F910039B8F6 /* EditCardViewController.swift in Sources */,
@@ -674,14 +669,11 @@
 				294135FB1EFD9D8200002FAC /* CategoryManager.swift in Sources */,
 				1DC0D8AB1DFE516A0039B8F6 /* AppDelegate.swift in Sources */,
 				294D0E321EF9E9F7000E4BC6 /* CategoryViewController.swift in Sources */,
-				2921B2231EFBA42F008F377B /* ServiceCategoryCollectionViewCell.swift in Sources */,
-				29BDD8BB1EF9024300F6A2DF /* ServicesViewController.swift in Sources */,
 				292764931EDFA3160096AE1E /* WalletViewController.swift in Sources */,
 				298FA4E41EF78EA4009B5A36 /* UIViewController+Extensions.swift in Sources */,
 				1D1712791E01F0870087F299 /* PreferencesViewController.swift in Sources */,
 				297BEA001EF708640035D4DA /* Library.swift in Sources */,
 				29D412B81F00D43A0081CF79 /* NewCardTableViewCell.swift in Sources */,
-				29EE32441EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift in Sources */,
 				29E713D61F0AEE0E004B5715 /* ServiceTableViewCell.swift in Sources */,
 				29AA67E21EE7B4BA000EDE42 /* InAppPurchaseUtility.swift in Sources */,
 			);

@@ -35,7 +35,7 @@ class WalletViewController: UIViewController {
         
         title = "Wallet"
         setNavBar()
-//        pullAllUsersCards()
+        //        pullAllUsersCards()
         FirebaseUtility.shared.getAllServices { (services, error) in }
         
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -47,8 +47,8 @@ class WalletViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-                pullAllUsersCards()
-//        tableView.isUserInteractionEnabled = true
+        pullAllUsersCards()
+        //        tableView.isUserInteractionEnabled = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -57,7 +57,7 @@ class WalletViewController: UIViewController {
         if Auth.auth().currentUser == nil {
             if let loginVc = storyboard?.instantiateViewController(withIdentifier: ENTRY_STORYBOARD_IDENTIFIER) as? EntryViewController {
                 let loginNavigation = UINavigationController(rootViewController: loginVc)
-            self.splitViewController?.present(loginNavigation, animated: true, completion: nil)
+                self.splitViewController?.present(loginNavigation, animated: true, completion: nil)
             }
         }
         else {
@@ -96,7 +96,7 @@ class WalletViewController: UIViewController {
                 }
             }
             else {
-//                debugPrint(errMessage)
+                //                debugPrint(errMessage)
                 // TODO: - Display error
             }
         }
@@ -176,7 +176,7 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
             }
             return
         }
-
+        
         DispatchQueue.main.async {
             let row = indexPath.row - 1
             self.selectedCard = self.cardArray[row].cardID
@@ -187,12 +187,12 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
                     if let cell = tableView.cellForRow(at: indexPath) as? CardTableViewCell {
                         cell.cardBorderView.backgroundColor = .orange
                     }
-
+                    
                     cardDVC.card = self.cardArray[indexPath.row - 1]
                     
                     let serviceNavigation = UINavigationController(rootViewController: cardDVC)
                     self.splitViewController?.showDetailViewController(serviceNavigation, sender: self)
-        
+                    
                 }
             }
         }
@@ -267,7 +267,7 @@ extension WalletViewController: SCPinViewControllerDataSource, SCPinViewControll
     func hideTouchIDButtonIfFingersAreNotEnrolled() -> Bool {
         return true
     }
-  
+    
 }
 
 extension WalletViewController: UISplitViewControllerDelegate {
@@ -276,7 +276,7 @@ extension WalletViewController: UISplitViewControllerDelegate {
     }
     
     func splitViewController(_ splitViewController: UISplitViewController, showDetail vc: UIViewController, sender: Any?) -> Bool {
-        if let theVC = vc as? ServicesViewController {
+        if let theVC = vc as? ServiceListViewController {
             if theVC.card != nil {
                 return true
             }
