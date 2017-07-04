@@ -12,7 +12,7 @@ import Firebase
 import Fabric
 import Branch
 import Crashlytics
-import Instabug
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
