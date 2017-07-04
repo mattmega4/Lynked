@@ -292,11 +292,18 @@ extension ServiceListViewController: UITableViewDelegate, UITableViewDataSource 
             cell.serviceNameLabel.text = service.serviceName
             cell.serviceAmountLabel.text = String("$\(service.serviceAmount)")
             
-            if let dueDate = service.nextPaymentDate {
-                let date = dueDate
-                let formatter = DateFormatter()
-                formatter.dateFormat = "MMM dd, yyyy"
-                cell.serviceDueDateLabel.text = formatter.string(from: date)
+            if let fxed = service.serviceFixed {
+                if fxed == true {
+                    if let dueDate = service.nextPaymentDate {
+                        let date = dueDate
+                        let formatter = DateFormatter()
+                        formatter.dateFormat = "MMM dd, yyyy"
+                        cell.serviceDueDateLabel.text = formatter.string(from: date)
+                    }
+                }
+                else {
+                    cell.serviceDueDateLabel.text = nil
+                }
             }
             
             let placeholderImage = UIImage.init(named: "\(TempLetterImagePickerUtility.shared.getLetterOrNumberAndChooseImage(text: service.serviceName!))")
@@ -359,11 +366,11 @@ extension ServiceListViewController: UITableViewDelegate, UITableViewDataSource 
         }
     }
     
-//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//        // Return false if you do not want the specified item to be editable.
-//        return true
-//    }
-
+    //    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    //        // Return false if you do not want the specified item to be editable.
+    //        return true
+    //    }
+    
     
 }
 
