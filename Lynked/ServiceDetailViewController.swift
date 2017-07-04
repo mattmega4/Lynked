@@ -185,7 +185,7 @@ class ServiceDetailViewController: UITableViewController {
                     var didGoBack = false
                     if let viewControllers = self.navigationController?.viewControllers {
                         for aController in viewControllers {
-                            if aController is ServicesViewController {
+                            if aController is ServiceListViewController {
                                 didGoBack = true
                                 self.navigationController?.popToViewController(aController, animated: true)
                                 break
