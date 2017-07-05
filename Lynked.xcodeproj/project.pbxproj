@@ -27,6 +27,7 @@
 		2943B48B1EF624D600A0E8DD /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */; };
 		294D0E321EF9E9F7000E4BC6 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294D0E311EF9E9F7000E4BC6 /* CategoryViewController.swift */; };
 		2950A4521EFE40BF00F94BF4 /* ServicePayRateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2950A4511EFE40BF00F94BF4 /* ServicePayRateManager.swift */; };
+		295E02291F0CB4E30006AAC0 /* LynkedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295E02281F0CB4E30006AAC0 /* LynkedTests.swift */; };
 		29773CDD1EC3B6730023F277 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29773CDC1EC3B6730023F277 /* EntryViewController.swift */; };
 		297BE9FC1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 297BE9FB1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist */; };
 		297BE9FE1EF707EA0035D4DA /* AcknowledgementsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297BE9FD1EF707EA0035D4DA /* AcknowledgementsViewModel.swift */; };
@@ -71,6 +72,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		295E022B1F0CB4E30006AAC0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1DC0D89F1DFE516A0039B8F6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1DC0D8A61DFE516A0039B8F6;
+			remoteInfo = Lynked;
+		};
 		29EFAB2D1EFE46A1007F384E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1DC0D89F1DFE516A0039B8F6 /* Project object */;
@@ -119,6 +127,9 @@
 		2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseUtility.swift; sourceTree = "<group>"; };
 		294D0E311EF9E9F7000E4BC6 /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		2950A4511EFE40BF00F94BF4 /* ServicePayRateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicePayRateManager.swift; sourceTree = "<group>"; };
+		295E02261F0CB4E30006AAC0 /* LynkedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LynkedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		295E02281F0CB4E30006AAC0 /* LynkedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LynkedTests.swift; sourceTree = "<group>"; };
+		295E022A1F0CB4E30006AAC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29773CDC1EC3B6730023F277 /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		297BE9FB1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Pods-Lynked-acknowledgements.plist"; path = "../Pods/Target Support Files/Pods-Lynked/Pods-Lynked-acknowledgements.plist"; sourceTree = "<group>"; };
 		297BE9FD1EF707EA0035D4DA /* AcknowledgementsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AcknowledgementsViewModel.swift; path = ../AcknowledgementsViewModel.swift; sourceTree = "<group>"; };
@@ -171,6 +182,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		295E02231F0CB4E30006AAC0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		29EFAB201EFE46A1007F384E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -188,6 +206,7 @@
 			children = (
 				1DC0D8A91DFE516A0039B8F6 /* Lynked */,
 				29EFAB261EFE46A1007F384E /* Lynked Widget */,
+				295E02271F0CB4E30006AAC0 /* LynkedTests */,
 				1DC0D8A81DFE516A0039B8F6 /* Products */,
 				7C6C21144E94777124CC2B96 /* Pods */,
 				5992905EFC84512369FCFBED /* Frameworks */,
@@ -199,6 +218,7 @@
 			children = (
 				1DC0D8A71DFE516A0039B8F6 /* Lynked.app */,
 				29EFAB231EFE46A1007F384E /* Lynked Widget.appex */,
+				295E02261F0CB4E30006AAC0 /* LynkedTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -282,6 +302,15 @@
 				297BE9FF1EF708640035D4DA /* Library.swift */,
 			);
 			name = Acknowledgement;
+			sourceTree = "<group>";
+		};
+		295E02271F0CB4E30006AAC0 /* LynkedTests */ = {
+			isa = PBXGroup;
+			children = (
+				295E02281F0CB4E30006AAC0 /* LynkedTests.swift */,
+				295E022A1F0CB4E30006AAC0 /* Info.plist */,
+			);
+			path = LynkedTests;
 			sourceTree = "<group>";
 		};
 		29773CDB1EC3B6230023F277 /* Controller */ = {
@@ -406,6 +435,24 @@
 			productReference = 1DC0D8A71DFE516A0039B8F6 /* Lynked.app */;
 			productType = "com.apple.product-type.application";
 		};
+		295E02251F0CB4E30006AAC0 /* LynkedTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 295E022D1F0CB4E30006AAC0 /* Build configuration list for PBXNativeTarget "LynkedTests" */;
+			buildPhases = (
+				295E02221F0CB4E30006AAC0 /* Sources */,
+				295E02231F0CB4E30006AAC0 /* Frameworks */,
+				295E02241F0CB4E30006AAC0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				295E022C1F0CB4E30006AAC0 /* PBXTargetDependency */,
+			);
+			name = LynkedTests;
+			productName = LynkedTests;
+			productReference = 295E02261F0CB4E30006AAC0 /* LynkedTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		29EFAB221EFE46A1007F384E /* Lynked Widget */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 29EFAB301EFE46A1007F384E /* Build configuration list for PBXNativeTarget "Lynked Widget" */;
@@ -455,6 +502,12 @@
 							};
 						};
 					};
+					295E02251F0CB4E30006AAC0 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = K8YZSQZRNW;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 1DC0D8A61DFE516A0039B8F6;
+					};
 					29EFAB221EFE46A1007F384E = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = K8YZSQZRNW;
@@ -482,6 +535,7 @@
 			targets = (
 				1DC0D8A61DFE516A0039B8F6 /* Lynked */,
 				29EFAB221EFE46A1007F384E /* Lynked Widget */,
+				295E02251F0CB4E30006AAC0 /* LynkedTests */,
 			);
 		};
 /* End PBXProject section */
@@ -497,6 +551,13 @@
 				1D01B2701E03A27500098A9A /* GoogleService-Info.plist in Resources */,
 				1DC0D8B51DFE516A0039B8F6 /* Assets.xcassets in Resources */,
 				1DC0D8B01DFE516A0039B8F6 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		295E02241F0CB4E30006AAC0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,6 +740,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		295E02221F0CB4E30006AAC0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				295E02291F0CB4E30006AAC0 /* LynkedTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		29EFAB1F1EFE46A1007F384E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -699,6 +768,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		295E022C1F0CB4E30006AAC0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1DC0D8A61DFE516A0039B8F6 /* Lynked */;
+			targetProxy = 295E022B1F0CB4E30006AAC0 /* PBXContainerItemProxy */;
+		};
 		29EFAB2E1EFE46A1007F384E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 29EFAB221EFE46A1007F384E /* Lynked Widget */;
@@ -867,6 +941,38 @@
 			};
 			name = Release;
 		};
+		295E022E1F0CB4E30006AAC0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				DEVELOPMENT_TEAM = K8YZSQZRNW;
+				INFOPLIST_FILE = LynkedTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.matthewhsingleton.LynkedTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lynked.app/Lynked";
+			};
+			name = Debug;
+		};
+		295E022F1F0CB4E30006AAC0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				DEVELOPMENT_TEAM = K8YZSQZRNW;
+				INFOPLIST_FILE = LynkedTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.matthewhsingleton.LynkedTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lynked.app/Lynked";
+			};
+			name = Release;
+		};
 		29EFAB311EFE46A1007F384E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 777E17BCF265AA7F0F2BABBF /* Pods-Lynked Widget.debug.xcconfig */;
@@ -923,6 +1029,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		295E022D1F0CB4E30006AAC0 /* Build configuration list for PBXNativeTarget "LynkedTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				295E022E1F0CB4E30006AAC0 /* Debug */,
+				295E022F1F0CB4E30006AAC0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		29EFAB301EFE46A1007F384E /* Build configuration list for PBXNativeTarget "Lynked Widget" */ = {
 			isa = XCConfigurationList;
