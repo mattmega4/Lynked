@@ -272,7 +272,7 @@ extension ServiceListViewController: UITextFieldDelegate {
 extension ServiceListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1 // 2?
+        return 1 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -366,11 +366,28 @@ extension ServiceListViewController: UITableViewDelegate, UITableViewDataSource 
         }
     }
     
-    //    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-    //        // Return false if you do not want the specified item to be editable.
-    //        return true
-    //    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        
+        return true
+    }
     
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        if !isDisplayingCategories {
+            let action  = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+                
+            }
+            var markTitle = "Service\nCurrent"
+            let service = serviceArray[indexPath.row]
+            if service.serviceStatus {
+                markTitle = "Service\nNot Current"
+            }
+            let markAction = UITableViewRowAction(style: .normal, title: markTitle, handler: { (action, indexPath) in
+                
+            })
+            return [action, markAction]
+        }
+        return nil
+    }
     
 }
 
