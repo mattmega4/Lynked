@@ -11,6 +11,7 @@ import Firebase
 import FirebaseStorage
 import MBProgressHUD
 import Kingfisher
+import mailgun
 
 
 class ProfileViewController: UIViewController {
@@ -185,8 +186,34 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    
+    
+    
     @IBAction func feedbackButtonTapped(_ sender: UIButton) {
-        //
+        
+        guard let path = Bundle.main.path(forResource: "Keys", ofType: "plist") else {
+            return
+        }
+        guard let dic = NSDictionary(contentsOfFile: path) as? [String : String] else {
+            return
+        }
+        guard let mailKey = dic["ActiveApiKey"] else {
+            return
+        }
+        
+        let mailGun = Mailgun.client(withDomain: "sandboxb521e090cff14308ac6c086329ad958c.mailgun.org", apiKey: mailKey)
+        
+        mailGun?.sendMessage(to: "singletondevelopment@gmail.com", from: "Lynked@lynked.com", subject: "Feedback", body: "testing", success: { (success) in
+            
+            // dismiss
+            
+        }, failure: { (error) in
+            
+            debugPrint(error)
+            // dismiss
+        })
+        
+        
     }
     
     @IBAction func acknowledgementsButtonTapped(_ sender: UIButton) {

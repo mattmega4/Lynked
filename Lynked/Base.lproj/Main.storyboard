@@ -358,7 +358,8 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="54" sectionHeaderHeight="28" sectionFooterHeight="28" id="njt-RQ-iWJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexBackgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="cOe-Zy-uFb">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="169"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -406,7 +407,7 @@
                             </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="bas-6q-aNe">
-                            <rect key="frame" x="0.0" y="679" width="414" height="171"/>
+                            <rect key="frame" x="0.0" y="735" width="414" height="171"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p7z-RC-wVg">
@@ -485,10 +486,10 @@
                             </variation>
                         </view>
                         <sections>
-                            <tableViewSection id="gjc-4R-JcP">
+                            <tableViewSection headerTitle="Basic" id="gjc-4R-JcP">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="serviceCell" rowHeight="85" id="e05-6e-OL3" customClass="ServiceDetailTableViewCell" customModule="Lynked" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="169" width="414" height="85"/>
+                                        <rect key="frame" x="0.0" y="197" width="414" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e05-6e-OL3" id="PHY-za-tk6">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="84.5"/>
@@ -541,7 +542,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="serviceCell" rowHeight="85" id="ygS-Zi-hLv" customClass="ServiceDetailTableViewCell" customModule="Lynked" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="254" width="414" height="85"/>
+                                        <rect key="frame" x="0.0" y="282" width="414" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ygS-Zi-hLv" id="LNt-Fb-E1I">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="84.5"/>
@@ -593,8 +594,65 @@
                                             <outlet property="serviceTitleLabel" destination="HiY-E2-Gxw" id="tgg-gG-Ydh"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="serviceCell" rowHeight="85" id="f4v-vc-haW" customClass="ServiceDetailTableViewCell" customModule="Lynked" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="367" width="414" height="85"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f4v-vc-haW" id="nRh-q1-PbT">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="84.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2VG-Mq-DZ1">
+                                                    <rect key="frame" x="15" y="5" width="70" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="Uti-bh-TTk"/>
+                                                        <constraint firstAttribute="height" constant="40" id="VQ3-z5-eAK"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="VQ3-z5-eAK"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="heightClass=regular-widthClass=regular">
+                                                        <mask key="constraints">
+                                                            <exclude reference="Uti-bh-TTk"/>
+                                                            <include reference="VQ3-z5-eAK"/>
+                                                        </mask>
+                                                    </variation>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Entertainment" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Na1-fP-gU7">
+                                                    <rect key="frame" x="15" y="35" width="384" height="44.666666666666671"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert"/>
+                                                    <connections>
+                                                        <action selector="amountTextFieldActive:" destination="f4v-vc-haW" eventType="editingChanged" id="hB5-5v-N0d"/>
+                                                        <outlet property="delegate" destination="E8Q-9N-fOS" id="adz-9P-BuT"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Na1-fP-gU7" firstAttribute="top" secondItem="2VG-Mq-DZ1" secondAttribute="bottom" constant="5" id="8m9-c5-ixI"/>
+                                                <constraint firstItem="2VG-Mq-DZ1" firstAttribute="top" secondItem="nRh-q1-PbT" secondAttribute="top" constant="5" id="9hj-PH-X9W"/>
+                                                <constraint firstItem="Na1-fP-gU7" firstAttribute="leading" secondItem="nRh-q1-PbT" secondAttribute="leading" constant="15" id="9mF-WZ-YcE"/>
+                                                <constraint firstAttribute="bottom" secondItem="Na1-fP-gU7" secondAttribute="bottom" constant="5" id="U3G-nY-SDN"/>
+                                                <constraint firstAttribute="trailing" secondItem="Na1-fP-gU7" secondAttribute="trailing" constant="15" id="X8e-zT-O4D"/>
+                                                <constraint firstItem="2VG-Mq-DZ1" firstAttribute="leading" secondItem="nRh-q1-PbT" secondAttribute="leading" constant="15" id="ssZ-9R-Q4Y"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="serviceTextField" destination="Na1-fP-gU7" id="bCJ-oD-eRD"/>
+                                            <outlet property="serviceTitleLabel" destination="2VG-Mq-DZ1" id="FvF-V3-AHg"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Advanced" id="h1U-w9-73f">
+                                <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="serviceCell" rowHeight="85" id="OXt-EZ-GQM" customClass="ServiceDetailTableViewCell" customModule="Lynked" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="339" width="414" height="85"/>
+                                        <rect key="frame" x="0.0" y="480" width="414" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OXt-EZ-GQM" id="zfI-8r-rZW">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="84.5"/>
@@ -679,61 +737,8 @@
                                             <outlet property="serviceTitleLabel" destination="E9v-Jx-a9L" id="j5P-Ha-tRt"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="serviceCell" rowHeight="85" id="f4v-vc-haW" customClass="ServiceDetailTableViewCell" customModule="Lynked" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="424" width="414" height="85"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f4v-vc-haW" id="nRh-q1-PbT">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="84.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2VG-Mq-DZ1">
-                                                    <rect key="frame" x="15" y="5" width="70" height="25"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="25" id="Uti-bh-TTk"/>
-                                                        <constraint firstAttribute="height" constant="40" id="VQ3-z5-eAK"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="VQ3-z5-eAK"/>
-                                                        </mask>
-                                                    </variation>
-                                                    <variation key="heightClass=regular-widthClass=regular">
-                                                        <mask key="constraints">
-                                                            <exclude reference="Uti-bh-TTk"/>
-                                                            <include reference="VQ3-z5-eAK"/>
-                                                        </mask>
-                                                    </variation>
-                                                </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Entertainment" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Na1-fP-gU7">
-                                                    <rect key="frame" x="15" y="35" width="384" height="44.666666666666671"/>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert"/>
-                                                    <connections>
-                                                        <action selector="amountTextFieldActive:" destination="f4v-vc-haW" eventType="editingChanged" id="hB5-5v-N0d"/>
-                                                        <outlet property="delegate" destination="E8Q-9N-fOS" id="adz-9P-BuT"/>
-                                                    </connections>
-                                                </textField>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Na1-fP-gU7" firstAttribute="top" secondItem="2VG-Mq-DZ1" secondAttribute="bottom" constant="5" id="8m9-c5-ixI"/>
-                                                <constraint firstItem="2VG-Mq-DZ1" firstAttribute="top" secondItem="nRh-q1-PbT" secondAttribute="top" constant="5" id="9hj-PH-X9W"/>
-                                                <constraint firstItem="Na1-fP-gU7" firstAttribute="leading" secondItem="nRh-q1-PbT" secondAttribute="leading" constant="15" id="9mF-WZ-YcE"/>
-                                                <constraint firstAttribute="bottom" secondItem="Na1-fP-gU7" secondAttribute="bottom" constant="5" id="U3G-nY-SDN"/>
-                                                <constraint firstAttribute="trailing" secondItem="Na1-fP-gU7" secondAttribute="trailing" constant="15" id="X8e-zT-O4D"/>
-                                                <constraint firstItem="2VG-Mq-DZ1" firstAttribute="leading" secondItem="nRh-q1-PbT" secondAttribute="leading" constant="15" id="ssZ-9R-Q4Y"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="serviceTextField" destination="Na1-fP-gU7" id="bCJ-oD-eRD"/>
-                                            <outlet property="serviceTitleLabel" destination="2VG-Mq-DZ1" id="FvF-V3-AHg"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="serviceCell" rowHeight="85" id="wfY-Tf-BBy" customClass="ServiceDetailTableViewCell" customModule="Lynked" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="509" width="414" height="85"/>
+                                        <rect key="frame" x="0.0" y="565" width="414" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wfY-Tf-BBy" id="I7q-7r-2OQ">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="84.5"/>
@@ -786,7 +791,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="serviceCell" rowHeight="85" id="avs-xD-Pog" customClass="ServiceDetailTableViewCell" customModule="Lynked" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="594" width="414" height="85"/>
+                                        <rect key="frame" x="0.0" y="650" width="414" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="avs-xD-Pog" id="psQ-Z5-Pun">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="84.5"/>
@@ -1013,7 +1018,6 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="deleteButtonTapped:" destination="rd5-QT-6qy" eventType="touchUpInside" id="RQg-LP-xar"/>
                                                             <action selector="logoutButtonTapped:" destination="rd5-QT-6qy" eventType="touchUpInside" id="esR-AK-aDZ"/>
                                                         </connections>
                                                     </button>
@@ -1171,8 +1175,15 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PFe-Wi-iEV">
-                                <rect key="frame" x="159" y="353" width="97" height="30"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ac8-2j-ePS">
+                                <rect key="frame" x="87" y="394" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ljP-2b-nKK">
+                                <rect key="frame" x="146" y="204" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
