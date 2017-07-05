@@ -8,22 +8,25 @@ target 'Lynked' do
   # Pods for Lynked
 
 
-  pod 'DZNEmptyDataSet'
-  pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
-  pod 'MBProgressHUD'
+
   pod 'Fabric'
   pod 'Branch'
   pod 'Crashlytics'
+  
   pod 'Firebase/Core'
   pod 'Firebase/Storage'
   pod 'Firebase/Messaging'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Performance'
+  
   pod 'Kingfisher'
   pod 'SCPinViewController'
   pod 'mailgun'
   pod 'UITextView+Placeholder'
+  pod 'DZNEmptyDataSet'
+  pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
+  pod 'MBProgressHUD'
 
 
 end
