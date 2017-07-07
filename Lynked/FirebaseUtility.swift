@@ -36,7 +36,7 @@ class FirebaseUtility: NSObject {
         userCardRef.observeSingleEvent(of: .value, with: { (snapshot) in
             let enumerator = snapshot.children
             var cards = [CardClass]()
-            //let cardTrace = Performance.startTrace(name: "PullCardTrace")
+            
             while let cardSnapshot = enumerator.nextObject() as? DataSnapshot {
                 
                 if let cardDict = cardSnapshot.value as? [String : Any] {
@@ -45,7 +45,7 @@ class FirebaseUtility: NSObject {
                 }
             }
             completion(cards, nil)
-            //cardTrace?.stop()
+            
         })
     }
     

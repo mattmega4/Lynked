@@ -11,52 +11,49 @@ import Firebase
 import FirebaseStorage
 import MBProgressHUD
 import Kingfisher
-import mailgun
 
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UITableViewController {
     
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var contentView: UIView!
     
     @IBOutlet weak var headerView: UIView!
-    @IBOutlet weak var profileViewBorder: UIView!
+    @IBOutlet weak var profileImageBorderView: UIView!
     @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var editImageButton: UIButton!
+    @IBOutlet weak var invisibleProfileButton: UIButton!
     
-    @IBOutlet weak var profileNameTextField: UITextField!
-    @IBOutlet weak var profileNameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var editNameButton: UIButton!
     
-    @IBOutlet weak var leftSideButton: UIButton!
-    @IBOutlet weak var rightSideButton: UIButton!
-    
-    //
-    //
-    
-    @IBOutlet weak var rightViewContainer: UIView!
-    
-    @IBOutlet weak var tellFriendButton: UIButton!
+    @IBOutlet weak var feedbackCell: UITableViewCell!
     @IBOutlet weak var feedbackButton: UIButton!
-    @IBOutlet weak var acknowledgementsButton: UIButton!
+    
+    @IBOutlet weak var recommendCell: UITableViewCell!
+    @IBOutlet weak var recommendButton: UIButton!
+    
+    @IBOutlet weak var acknowledgementCell: UITableViewCell!
+    @IBOutlet weak var acknowledgementButton: UIButton!
+    
+    @IBOutlet weak var logoutCell: UITableViewCell!
     @IBOutlet weak var logoutButton: UIButton!
+    
+    @IBOutlet weak var deleteCell: UITableViewCell!
     @IBOutlet weak var deleteButton: UIButton!
     
     let ref = Database.database().reference()
     let user = Auth.auth().currentUser
     let storage = Storage.storage()
     
-    var leftOnRightOff = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Profile"
         setNavBar()
-        profileNameLabel.isHidden = false
-        profileNameTextField.isHidden = true
-        self.profileNameTextField.delegate = self
-        profileNameTextField.placeHolderTextColor = .white
+        nameLabel.isHidden = false
+        nameTextField.isHidden = true
+        self.nameTextField.delegate = self
+        nameTextField.placeHolderTextColor = .white
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,7 +64,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        profileViewBorder.createRoundView()
+        profileImageBorderView.createRoundView()
         profileImageView.createRoundView()
     }
     
@@ -83,33 +80,33 @@ class ProfileViewController: UIViewController {
             }
             if let profileName = userInfo?["userName"] {
                 
-                self.profileNameLabel.text = profileName
+                self.nameLabel.text = profileName
                 self.editNameButton.isHidden = false
-                self.profileNameLabel.isHidden = false
-                self.profileNameTextField.isHidden = true
+                self.nameLabel.isHidden = false
+                self.nameTextField.isHidden = true
             }
             else {
                 self.editNameButton.isHidden = true
-                self.profileNameLabel.isHidden = true
-                self.profileNameTextField.isHidden = false
-                self.profileNameTextField.becomeFirstResponder()
-                self.profileNameTextField.placeholder = "Enter Your Name Here!"
+                self.nameLabel.isHidden = true
+                self.nameTextField.isHidden = false
+                self.nameTextField.becomeFirstResponder()
+                self.nameTextField.placeholder = "Enter Your Name Here!"
             }
         }
     }
     
     func saveNameToFirebase() {
         
-        profileNameTextField.resignFirstResponder()
+        nameTextField.resignFirstResponder()
         
         
-        let userName = profileNameTextField.text ?? ""
+        let userName = nameTextField.text ?? ""
         
         if !userName.isEmpty {
-            self.profileNameLabel.text = userName
+            self.nameLabel.text = userName
             self.editNameButton.isHidden = false
-            self.profileNameLabel.isHidden = false
-            self.profileNameTextField.isHidden = true
+            self.nameLabel.isHidden = false
+            self.nameTextField.isHidden = true
             // write to fb
         }
         
@@ -161,17 +158,20 @@ class ProfileViewController: UIViewController {
     
     
     @IBAction func editNameButtonTapped(_ sender: UIButton) {
-        profileNameLabel.isHidden = true
-        profileNameTextField.isHidden = false
+        nameLabel.isHidden = true
+        nameTextField.isHidden = false
     }
-    
-    
-    //MARK: - Left Container IBActions
-    
-    
-    
+
     
     //MARK: - Right Container IBActions
+    
+    @IBAction func feedbackButtonTapped(_ sender: UIButton) {
+        
+        if let feedbackVC = self.storyboard?.instantiateViewController(withIdentifier: FEEDBACK_STORYBOARD_IDENTIFIER) as? FeedbackViewController {
+            self.navigationController?.pushViewController(feedbackVC, animated: true)
+        }
+        
+    }
     
     @IBAction func tellFriendButtonTapped(_ sender: UIButton) {
         
@@ -186,36 +186,7 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    
-    
-    
-    @IBAction func feedbackButtonTapped(_ sender: UIButton) {
-        
-        guard let path = Bundle.main.path(forResource: "Keys", ofType: "plist") else {
-            return
-        }
-        guard let dic = NSDictionary(contentsOfFile: path) as? [String : String] else {
-            return
-        }
-        guard let mailKey = dic["ActiveApiKey"] else {
-            return
-        }
-        
-        let mailGun = Mailgun.client(withDomain: "sandboxb521e090cff14308ac6c086329ad958c.mailgun.org", apiKey: mailKey)
-        
-        mailGun?.sendMessage(to: "singletondevelopment@gmail.com", from: "Lynked@lynked.com", subject: "Feedback", body: "testing", success: { (success) in
-            
-            // dismiss
-            
-        }, failure: { (error) in
-            
-            debugPrint(error)
-            // dismiss
-        })
-        
-        
-    }
-    
+
     @IBAction func acknowledgementsButtonTapped(_ sender: UIButton) {
         if let ackVC = self.storyboard?.instantiateViewController(withIdentifier: ACKNOWLEDGEMENTS_STORYBOARD_IDENTIFIER) as? AcknowledgementsViewController {
             self.navigationController?.pushViewController(ackVC, animated: true)
@@ -256,20 +227,20 @@ class ProfileViewController: UIViewController {
     
     // MARK: - Keyboard Methods
     
-    func keyboardWillShow(notification:NSNotification) {
-        var userInfo = notification.userInfo!
-        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
-        var contentInset: UIEdgeInsets = self.scrollView.contentInset
-        contentInset.bottom = keyboardFrame.size.height
-        self.scrollView.contentInset = contentInset
-    }
-    
-    
-    func keyboardWillHide(notification:NSNotification) {
-        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
-        self.scrollView.contentInset = contentInset
-    }
+//    func keyboardWillShow(notification:NSNotification) {
+//        var userInfo = notification.userInfo!
+//        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+//        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+//        var contentInset: UIEdgeInsets = self.scrollView.contentInset
+//        contentInset.bottom = keyboardFrame.size.height
+//        self.scrollView.contentInset = contentInset
+//    }
+//    
+//    
+//    func keyboardWillHide(notification:NSNotification) {
+//        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+//        self.scrollView.contentInset = contentInset
+//    }
     
     
 }
@@ -283,7 +254,7 @@ extension ProfileViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == profileNameTextField {
+        if textField == nameTextField {
             saveNameToFirebase()
         }
         return false
