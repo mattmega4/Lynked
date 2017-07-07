@@ -873,10 +873,10 @@
             </objects>
             <point key="canvasLocation" x="8986" y="-1282"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="13i-nC-xRj">
             <objects>
-                <tableViewController id="ey9-uw-oJd" sceneMemberID="viewController">
+                <tableViewController id="ey9-uw-oJd" customClass="ProfileViewController" customModule="Lynked" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="3GK-qB-KeF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -897,6 +897,9 @@
                                             <state key="normal">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="editImageButtonTapped:" destination="ey9-uw-oJd" eventType="touchUpInside" id="Jbv-kI-hW0"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -937,6 +940,9 @@
                                     <state key="normal" image="EditButton">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="editNameButtonTapped:" destination="ey9-uw-oJd" eventType="touchUpInside" id="exa-Vb-ila"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" red="0.42352941176470588" green="0.61960784313725492" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
@@ -965,6 +971,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="67.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qox-WM-NlW">
+                                                    <rect key="frame" x="15" y="4.9999999999999964" width="334" height="57.666666666666657"/>
+                                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
+                                                    <state key="normal" title="Provide Feedback">
+                                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="feedbackButtonTapped:" destination="ey9-uw-oJd" eventType="touchUpInside" id="aRb-Kr-Icw"/>
+                                                    </connections>
+                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1FW-Mg-RtT">
                                                     <rect key="frame" x="364" y="4.9999999999999964" width="35" height="57.666666666666657"/>
                                                     <constraints>
@@ -972,13 +988,6 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
                                                     <state key="normal" title="&gt;">
-                                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qox-WM-NlW">
-                                                    <rect key="frame" x="15" y="4.9999999999999964" width="334" height="57.666666666666657"/>
-                                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
-                                                    <state key="normal" title="Provide Feedback">
                                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
@@ -1001,6 +1010,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="67.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z1q-ht-Wwe">
+                                                    <rect key="frame" x="15" y="4.9999999999999964" width="334" height="57.666666666666657"/>
+                                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
+                                                    <state key="normal" title="Recommend Lynked to Friend">
+                                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="tellFriendButtonTapped:" destination="ey9-uw-oJd" eventType="touchUpInside" id="0db-tS-Td6"/>
+                                                    </connections>
+                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YJZ-Es-gYK">
                                                     <rect key="frame" x="364" y="4.9999999999999964" width="35" height="57.666666666666657"/>
                                                     <constraints>
@@ -1008,13 +1027,6 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
                                                     <state key="normal" title="&gt;">
-                                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z1q-ht-Wwe">
-                                                    <rect key="frame" x="15" y="4.9999999999999964" width="334" height="57.666666666666657"/>
-                                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
-                                                    <state key="normal" title="Recommend Lynked to Friend">
                                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
@@ -1037,6 +1049,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="67.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MLz-Qr-NdT">
+                                                    <rect key="frame" x="15" y="4.9999999999999964" width="334" height="57.666666666666657"/>
+                                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
+                                                    <state key="normal" title="Acknowledgements">
+                                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="acknowledgementsButtonTapped:" destination="ey9-uw-oJd" eventType="touchUpInside" id="kfX-61-8Uo"/>
+                                                    </connections>
+                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YG8-O3-3Ya">
                                                     <rect key="frame" x="364" y="4.9999999999999964" width="35" height="57.666666666666657"/>
                                                     <constraints>
@@ -1044,13 +1066,6 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
                                                     <state key="normal" title="&gt;">
-                                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MLz-Qr-NdT">
-                                                    <rect key="frame" x="15" y="4.9999999999999964" width="334" height="57.666666666666657"/>
-                                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
-                                                    <state key="normal" title="Acknowledgements">
                                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
@@ -1073,6 +1088,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="67.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0VX-es-dvp">
+                                                    <rect key="frame" x="15" y="4.9999999999999964" width="334" height="57.666666666666657"/>
+                                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
+                                                    <state key="normal" title="Logout">
+                                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="logoutButtonTapped:" destination="ey9-uw-oJd" eventType="touchUpInside" id="6G4-cJ-Djg"/>
+                                                    </connections>
+                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vvH-lv-wID">
                                                     <rect key="frame" x="364" y="4.9999999999999964" width="35" height="57.666666666666657"/>
                                                     <constraints>
@@ -1080,13 +1105,6 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
                                                     <state key="normal" title="&gt;">
-                                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0VX-es-dvp">
-                                                    <rect key="frame" x="15" y="4.9999999999999964" width="334" height="57.666666666666657"/>
-                                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
-                                                    <state key="normal" title="Logout">
                                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
@@ -1109,6 +1127,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="67.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rLj-gZ-zF7">
+                                                    <rect key="frame" x="15" y="4.9999999999999964" width="334" height="57.666666666666657"/>
+                                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
+                                                    <state key="normal" title="Delete Account">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="deleteButtonTapped:" destination="ey9-uw-oJd" eventType="touchUpInside" id="OOk-5H-ZRH"/>
+                                                    </connections>
+                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5pU-qJ-df0">
                                                     <rect key="frame" x="364" y="4.9999999999999964" width="35" height="57.666666666666657"/>
                                                     <constraints>
@@ -1116,13 +1144,6 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
                                                     <state key="normal" title="&gt;">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rLj-gZ-zF7">
-                                                    <rect key="frame" x="15" y="4.9999999999999964" width="334" height="57.666666666666657"/>
-                                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
-                                                    <state key="normal" title="Delete Account">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
@@ -1151,15 +1172,35 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="B9s-kt-fSr"/>
+                    <connections>
+                        <outlet property="acknowledgementButton" destination="MLz-Qr-NdT" id="VBh-fc-VEX"/>
+                        <outlet property="acknowledgementCell" destination="yez-Y0-BZI" id="rtr-ze-Cwt"/>
+                        <outlet property="deleteButton" destination="rLj-gZ-zF7" id="AL8-ck-vAq"/>
+                        <outlet property="deleteCell" destination="Jhm-ut-V0d" id="KOE-xE-tZs"/>
+                        <outlet property="editNameButton" destination="zsb-tb-Eck" id="1AY-Oc-wZO"/>
+                        <outlet property="feedbackButton" destination="Qox-WM-NlW" id="w9H-Lj-1Tb"/>
+                        <outlet property="feedbackCell" destination="fhK-ox-6aw" id="78e-OU-nMm"/>
+                        <outlet property="headerView" destination="D1U-an-2qd" id="ruy-jL-bEt"/>
+                        <outlet property="invisibleProfileButton" destination="Vuo-Kk-caE" id="tav-1t-LfS"/>
+                        <outlet property="logoutButton" destination="0VX-es-dvp" id="Dy7-jR-WLS"/>
+                        <outlet property="logoutCell" destination="Dsb-Y4-tk0" id="iuu-aT-BOL"/>
+                        <outlet property="nameLabel" destination="Ne4-jc-Hfn" id="fLQ-wo-D8A"/>
+                        <outlet property="nameTextField" destination="pae-ht-Dul" id="3sf-Jr-aDI"/>
+                        <outlet property="profileImageBorderView" destination="oEo-GT-V6e" id="Fs0-Mz-qJb"/>
+                        <outlet property="profileImageView" destination="ihe-vT-hj7" id="NWT-PJ-F1g"/>
+                        <outlet property="recommendButton" destination="z1q-ht-Wwe" id="4t9-GY-ThM"/>
+                        <outlet property="recommendCell" destination="DBf-oZ-bra" id="0Vq-2J-etd"/>
+                        <outlet property="tableView" destination="3GK-qB-KeF" id="fpO-q7-Kf2"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="26b-fn-gZt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="10816" y="-1277"/>
         </scene>
-        <!--View Controller-->
+        <!--Feedback View Controller-->
         <scene sceneID="tZN-Tr-9PN">
             <objects>
-                <viewController id="C5J-p7-r8a" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="feedbackVC" automaticallyAdjustsScrollViewInsets="NO" id="C5J-p7-r8a" customClass="FeedbackViewController" customModule="Lynked" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WdE-DC-leD"/>
                         <viewControllerLayoutGuide type="bottom" id="5BG-7z-YS0"/>
@@ -1168,41 +1209,88 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PFT-fO-YGL">
-                                <rect key="frame" x="0.0" y="64" width="414" height="75"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GQr-Pk-HGG">
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ibs-3Z-kjv">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Choose Feedback Topic" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1YT-ux-p5h">
+                                                <rect key="frame" x="10" y="10" width="394" height="45"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="45" id="iAy-I4-L7k"/>
+                                                </constraints>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="next"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="C5J-p7-r8a" id="bse-3l-hFw"/>
+                                                </connections>
+                                            </textField>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zwU-2F-i2m">
+                                                <rect key="frame" x="10" y="60" width="394" height="312"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" keyboardAppearance="alert" returnKeyType="done"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="C5J-p7-r8a" id="Gce-8m-I3Z"/>
+                                                </connections>
+                                            </textView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="zwU-2F-i2m" secondAttribute="trailing" constant="10" id="9dU-Yd-TC2"/>
+                                            <constraint firstAttribute="bottom" secondItem="zwU-2F-i2m" secondAttribute="bottom" constant="300" id="Luu-RD-Uay"/>
+                                            <constraint firstItem="zwU-2F-i2m" firstAttribute="leading" secondItem="ibs-3Z-kjv" secondAttribute="leading" constant="10" id="THM-rn-bcr"/>
+                                            <constraint firstItem="1YT-ux-p5h" firstAttribute="top" secondItem="ibs-3Z-kjv" secondAttribute="top" constant="10" id="aHZ-4a-zaQ"/>
+                                            <constraint firstAttribute="trailing" secondItem="1YT-ux-p5h" secondAttribute="trailing" constant="10" id="aSk-4U-1a3"/>
+                                            <constraint firstItem="zwU-2F-i2m" firstAttribute="top" secondItem="1YT-ux-p5h" secondAttribute="bottom" constant="5" id="tk6-dU-1ba"/>
+                                            <constraint firstItem="1YT-ux-p5h" firstAttribute="leading" secondItem="ibs-3Z-kjv" secondAttribute="leading" constant="10" id="ymv-Iw-H2b"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="AEt-f9-jsn"/>
+                                    <constraint firstAttribute="bottom" secondItem="ibs-3Z-kjv" secondAttribute="bottom" id="462-Wd-BMZ"/>
+                                    <constraint firstItem="ibs-3Z-kjv" firstAttribute="height" secondItem="GQr-Pk-HGG" secondAttribute="height" id="go0-YM-fe5"/>
+                                    <constraint firstItem="ibs-3Z-kjv" firstAttribute="leading" secondItem="GQr-Pk-HGG" secondAttribute="leading" id="kuA-es-knw"/>
+                                    <constraint firstItem="ibs-3Z-kjv" firstAttribute="width" secondItem="GQr-Pk-HGG" secondAttribute="width" id="oUz-1j-cBg"/>
+                                    <constraint firstItem="ibs-3Z-kjv" firstAttribute="top" secondItem="GQr-Pk-HGG" secondAttribute="top" id="ouH-A2-Kvt"/>
+                                    <constraint firstAttribute="trailing" secondItem="ibs-3Z-kjv" secondAttribute="trailing" id="tTi-ce-DJN"/>
                                 </constraints>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pgD-Jh-seT">
-                                <rect key="frame" x="184" y="622" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ac8-2j-ePS">
-                                <rect key="frame" x="87" y="394" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ljP-2b-nKK">
-                                <rect key="frame" x="146" y="204" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="PFT-fO-YGL" firstAttribute="leading" secondItem="0PD-CT-53n" secondAttribute="leading" id="Tqy-4F-RHT"/>
-                            <constraint firstItem="PFT-fO-YGL" firstAttribute="top" secondItem="WdE-DC-leD" secondAttribute="bottom" id="pv7-v6-sd2"/>
-                            <constraint firstAttribute="trailing" secondItem="PFT-fO-YGL" secondAttribute="trailing" id="uqK-7U-Rmc"/>
+                            <constraint firstItem="GQr-Pk-HGG" firstAttribute="leading" secondItem="0PD-CT-53n" secondAttribute="leading" id="0Ow-yS-nfl"/>
+                            <constraint firstAttribute="trailing" secondItem="GQr-Pk-HGG" secondAttribute="trailing" id="Jmm-PW-GMB"/>
+                            <constraint firstItem="GQr-Pk-HGG" firstAttribute="top" secondItem="WdE-DC-leD" secondAttribute="bottom" id="oB9-ma-C5w"/>
+                            <constraint firstItem="5BG-7z-YS0" firstAttribute="top" secondItem="GQr-Pk-HGG" secondAttribute="bottom" id="v1e-eh-zMN"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="J3e-j7-kDU"/>
+                    <navigationItem key="navigationItem" id="J3e-j7-kDU">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="efU-LQ-asf">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="leftNavBarButtonTapped:" destination="C5J-p7-r8a" id="d0i-Vz-NJW"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Send" id="uLA-Sp-Myu">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="rightNavBarButtonTapped:" destination="C5J-p7-r8a" id="wOM-jI-QBg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="bodyTextView" destination="zwU-2F-i2m" id="EW7-Fs-hXR"/>
+                        <outlet property="contentView" destination="ibs-3Z-kjv" id="GpO-dk-emn"/>
+                        <outlet property="leftNavBarButton" destination="efU-LQ-asf" id="aB3-Tq-rXE"/>
+                        <outlet property="rightNavBarButton" destination="uLA-Sp-Myu" id="ykS-48-iKD"/>
+                        <outlet property="scrollView" destination="GQr-Pk-HGG" id="Ukx-Jl-3rp"/>
+                        <outlet property="topicTextField" destination="1YT-ux-p5h" id="ERX-jt-RM1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gMI-Sh-OJe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
