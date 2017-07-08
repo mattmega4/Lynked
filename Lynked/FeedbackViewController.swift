@@ -13,7 +13,6 @@ import UITextView_Placeholder
 
 class FeedbackViewController: UIViewController {
     
-    @IBOutlet weak var leftNavBarButton: UIBarButtonItem!
     @IBOutlet weak var rightNavBarButton: UIBarButtonItem!
     
     @IBOutlet weak var scrollView: UIScrollView!
@@ -73,10 +72,6 @@ class FeedbackViewController: UIViewController {
     }
     
     // MARK: - IBActions
-    
-    @IBAction func leftNavBarButtonTapped(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
-    }
     
     @IBAction func rightNavBarButtonTapped(_ sender: UIBarButtonItem) {
         guard let path = Bundle.main.path(forResource: "Keys", ofType: "plist") else {

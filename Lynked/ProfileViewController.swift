@@ -89,28 +89,21 @@ class ProfileViewController: UITableViewController {
                 self.editNameButton.isHidden = true
                 self.nameLabel.isHidden = true
                 self.nameTextField.isHidden = false
-                self.nameTextField.becomeFirstResponder()
                 self.nameTextField.placeholder = "Enter Your Name Here!"
             }
         }
     }
     
     func saveNameToFirebase() {
-        
         nameTextField.resignFirstResponder()
-        
-        
         let userName = nameTextField.text ?? ""
-        
         if !userName.isEmpty {
             self.nameLabel.text = userName
             self.editNameButton.isHidden = false
             self.nameLabel.isHidden = false
             self.nameTextField.isHidden = true
-            // write to fb
+            FirebaseUtility.shared.saveUserName(name: userName)
         }
-        
-        
     }
     
     
