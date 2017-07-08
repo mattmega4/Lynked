@@ -18,7 +18,6 @@
 		1DD7D2591E393C0700AF1299 /* CardClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7D2581E393C0700AF1299 /* CardClass.swift */; };
 		1DD7D25C1E393C2300AF1299 /* ServiceClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7D25B1E393C2300AF1299 /* ServiceClass.swift */; };
 		291EC7CE1F0F524700900500 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291EC7CD1F0F524700900500 /* FeedbackViewController.swift */; };
-		2921B21E1EFB9FB2008F377B /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921B21D1EFB9FB2008F377B /* ServiceDetailViewController.swift */; };
 		2921B2201EFBA2E0008F377B /* TempLetterImagePickerUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921B21F1EFBA2E0008F377B /* TempLetterImagePickerUtility.swift */; };
 		2924F9BE1EF22F090014C284 /* SegmentColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */; };
 		292764931EDFA3160096AE1E /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292764921EDFA3160096AE1E /* WalletViewController.swift */; };
@@ -118,7 +117,6 @@
 		1DD7D25B1E393C2300AF1299 /* ServiceClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceClass.swift; sourceTree = "<group>"; };
 		267A4AE157A5C3F5E4C71A91 /* Pods_Lynked.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lynked.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		291EC7CD1F0F524700900500 /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
-		2921B21D1EFB9FB2008F377B /* ServiceDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDetailViewController.swift; sourceTree = "<group>"; };
 		2921B21F1EFBA2E0008F377B /* TempLetterImagePickerUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempLetterImagePickerUtility.swift; sourceTree = "<group>"; };
 		2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentColorManager.swift; sourceTree = "<group>"; };
 		292764921EDFA3160096AE1E /* WalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
@@ -325,7 +323,6 @@
 				2921B2241EFBA458008F377B /* Wallet TableView Cell */,
 				29E713D31F0AEDA0004B5715 /* ServiceListViewController.swift */,
 				29E39CB61F0B164900E23949 /* Service List TableView Cells */,
-				2921B21D1EFB9FB2008F377B /* ServiceDetailViewController.swift */,
 				29E39CBB1F0B226600E23949 /* UpdateServiceTableViewController.swift */,
 				2921B2121EFB99CD008F377B /* Service TableView Cells */,
 				1DC0D8DE1DFE5F910039B8F6 /* EditCardViewController.swift */,
@@ -707,7 +704,6 @@
 			files = (
 				2950A4521EFE40BF00F94BF4 /* ServicePayRateManager.swift in Sources */,
 				1DC0D8D91DFE59360039B8F6 /* AddCardViewController.swift in Sources */,
-				2921B21E1EFB9FB2008F377B /* ServiceDetailViewController.swift in Sources */,
 				291EC7CE1F0F524700900500 /* FeedbackViewController.swift in Sources */,
 				298FA4EC1EF78F5C009B5A36 /* Array+Extensions.swift in Sources */,
 				297BE9FE1EF707EA0035D4DA /* AcknowledgementsViewModel.swift in Sources */,
