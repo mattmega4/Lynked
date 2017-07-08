@@ -24,6 +24,9 @@ class ServiceListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var editCardButton: UIButton!
+    
+    
     let categoryPickerView = UIPickerView()
     var serviceArray = [ServiceClass]()
     var categories = [String]()
@@ -32,7 +35,6 @@ class ServiceListViewController: UIViewController {
     
     let SERVICE_CELL_IDENTIFIER = "servCell"
     let CATEGORY_CELL_IDENTIFIER = "categoryCell"
-    
     
     
     override func viewDidLoad() {
@@ -138,7 +140,7 @@ class ServiceListViewController: UIViewController {
             if let theService = service {
                 self.addService(service: theService)
                 
-                self.addServiceTextField.text = ""
+                self.addServiceTextField.text = nil
                 self.categoryTextField.text = nil
                 self.addButton.alpha = 0.4
                 self.addButton.isEnabled = false
@@ -239,6 +241,12 @@ extension ServiceListViewController: UIPickerViewDelegate, UIPickerViewDataSourc
 
 extension ServiceListViewController: UITextFieldDelegate {
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == categoryTextField {
+            categoryTextField.inputView = categoryPickerView
+        }
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == addServiceTextField {
             addServiceTextField.returnKeyType = .next
@@ -272,7 +280,7 @@ extension ServiceListViewController: UITextFieldDelegate {
 extension ServiceListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1 
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -356,7 +364,7 @@ extension ServiceListViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !isDisplayingCategories {
-            if let serviceDetailVC = storyboard?.instantiateViewController(withIdentifier: SERVICE_DETAIL_STORYBOARD_IDENTIFIER) as? ServiceDetailViewController {
+            if let serviceDetailVC = storyboard?.instantiateViewController(withIdentifier: SERVICE_DETAIL_STORYBOARD_IDENTIFIER) as? UpdateServiceTableViewController {
                 serviceDetailVC.service = self.serviceArray[indexPath.row]
                 navigationController?.pushViewController(serviceDetailVC, animated: true)
             }
@@ -375,16 +383,26 @@ extension ServiceListViewController: UITableViewDelegate, UITableViewDataSource 
         if !isDisplayingCategories {
             let action  = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
                 
+                FirebaseUtility.shared.delete(service: self.serviceArray[indexPath.row], completion: { (success, error) in
+                    
+                    if let errorMessage = error {
+                        print(errorMessage)
+                    } else if success {
+                        self.getServices()
+                    }
+                })
             }
-            var markTitle = "Service\nCurrent"
-            let service = serviceArray[indexPath.row]
-            if service.serviceStatus {
-                markTitle = "Service\nNot Current"
-            }
-            let markAction = UITableViewRowAction(style: .normal, title: markTitle, handler: { (action, indexPath) in
-                
-            })
-            return [action, markAction]
+            //            var markTitle = "Service\nCurrent"
+            //            let service = serviceArray[indexPath.row]
+            //            if service.serviceStatus {
+            //                markTitle = "Service\nNot Current"
+            //            }
+            //            let markAction = UITableViewRowAction(style: .normal, title: markTitle, handler: { (action, indexPath) in
+            //
+            //                // Change up to Date
+            //
+            //            })
+            return [action] //, markAction
         }
         return nil
     }
