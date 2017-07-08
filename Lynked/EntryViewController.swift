@@ -85,9 +85,9 @@ class EntryViewController: UIViewController {
         if Auth.auth().currentUser != nil {
             useTouchID()
         }
-        
     }
     
+
     // MARK: - Switch Logic For Sign In or Create Button in Bottom Container View
     
     func bottomContainerStateSwitcher() {
