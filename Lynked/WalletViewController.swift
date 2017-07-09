@@ -35,7 +35,6 @@ class WalletViewController: UIViewController {
         
         title = "Wallet"
         setNavBar()
-        //        pullAllUsersCards()
         FirebaseUtility.shared.getAllServices { (services, error) in }
         
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -48,7 +47,6 @@ class WalletViewController: UIViewController {
         super.viewWillAppear(animated)
         
         pullAllUsersCards()
-        //        tableView.isUserInteractionEnabled = true
     }
     
     override func viewDidAppear(_ animated: Bool) {

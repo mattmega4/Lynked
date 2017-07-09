@@ -72,7 +72,7 @@ class ServiceListViewController: UIViewController {
         super.viewDidAppear(animated)
         
         sortArray()
-        //        showReview()
+        showReview()
     }
     
     
@@ -80,7 +80,9 @@ class ServiceListViewController: UIViewController {
     
     func sortArray() {
         self.serviceArray.sort {
-            if $0.serviceAttention == $1.serviceAttention { return $0.serviceName ?? "" < $1.serviceName ?? "" }
+            if $0.serviceAttention == $1.serviceAttention {
+                return $0.serviceName ?? "" < $1.serviceName ?? ""
+            }
             return $0.serviceAttention > $1.serviceAttention
         }
     }
@@ -146,6 +148,12 @@ class ServiceListViewController: UIViewController {
                 self.addButton.isEnabled = false
                 self.getCategories()
                 self.tableView.reloadData()
+                
+                if let index = self.serviceArray.index(where: {$0.serviceName == theService.serviceName}) {
+                    let indexPath = IndexPath(row: index, section: 0)
+                    self.tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+                }
+                
             }
         }
     }

@@ -137,7 +137,9 @@ class UpdateServiceTableViewController: UITableViewController {
             servUrl = url
             urlTextField.text = url
         }
-        servFixed = service?.serviceFixed ?? true
+        servFixed = service?.serviceFixed ?? false
+        fixedSwitch.isOn = servFixed
+        
         if let theAmount = service?.serviceAmount {
             servAmount = String(theAmount)
             amountTextField.text = String(theAmount)

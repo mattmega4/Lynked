@@ -394,8 +394,19 @@ class FirebaseUtility: NSObject {
     
     private func getSimpleArrayFrom(services: [ServiceClass]) -> [[String : String]] {
         var simpleArray = [[String : String]]()
-        for aService in services {
-            
+        
+        let sortedServices = services.sorted { (service1, service2) -> Bool in
+            guard let service1Date = service1.nextPaymentDate else {
+                return false
+            }
+            guard let service2Date = service2.nextPaymentDate else {
+                return true
+            }
+            return service1Date.compare(service2Date) == .orderedDescending
+        }
+        
+        for i in 0..<sortedServices.count {
+            let aService = sortedServices[i]
             if let name = aService.serviceName, let url = aService.serviceUrl, let nextPaymentDate = aService.nextPaymentDate, aService.serviceFixed == true {
                 let formatter = DateFormatter()
                 formatter.dateFormat = "MMM dd, yyyy"

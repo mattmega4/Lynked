@@ -353,7 +353,7 @@ class EntryViewController: UIViewController {
             if let errorMessage = errMessage {
                 let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errorMessage)", preferredStyle: .alert)
                 self.present(alertController, animated: true, completion:nil)
-                let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
+                let OKAction = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction) in
                 }
                 alertController.addAction(OKAction)
             }
@@ -361,6 +361,7 @@ class EntryViewController: UIViewController {
                 if let pinVC = SCPinViewController(scope: .create) {
                     pinVC.createDelegate = self
                     self.present(pinVC, animated: true, completion: nil)
+                    
                 }
                 else {
                     self.dismiss(animated: true, completion: nil)
@@ -529,13 +530,17 @@ extension EntryViewController: UITextFieldDelegate {
     
 }
 
+// MARK: - SCPinViewControllerDelegate
 
 extension EntryViewController: SCPinViewControllerCreateDelegate {
     
     func pinViewController(_ pinViewController: SCPinViewController!, didSetNewPin pin: String!) {
         UserDefaults.standard.set(pin, forKey: "pin")
         UserDefaults.standard.set(true, forKey: "unlocked")
-        dismiss(animated: true, completion: nil)
+        pinViewController.dismiss(animated: true) { 
+            self.dismiss(animated: true, completion: nil)
+        }
+        
     }
     
     func lengthForPin() -> Int {

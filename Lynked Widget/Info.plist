@@ -17,16 +17,13 @@
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>2.6</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
-	<key>NSExtension</key>
-	<dict>
-		<key>NSExtensionMainStoryboard</key>
-		<string>MainInterface</string>
-		<key>NSExtensionPointIdentifier</key>
-		<string>com.apple.widget-extension</string>
-	</dict>
+	<string>3</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>Lynked</string>
+	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -34,9 +31,12 @@
 		<key>NSAllowsArbitraryLoadsInWebContent</key>
 		<false/>
 	</dict>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>Lynked</string>
-	</array>
+	<key>NSExtension</key>
+	<dict>
+		<key>NSExtensionMainStoryboard</key>
+		<string>MainInterface</string>
+		<key>NSExtensionPointIdentifier</key>
+		<string>com.apple.widget-extension</string>
+	</dict>
 </dict>
 </plist>
