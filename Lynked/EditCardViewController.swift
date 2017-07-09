@@ -39,7 +39,6 @@ class EditCardViewController: UIViewController {
     @IBOutlet weak var nicknameTextField: UITextField!
     @IBOutlet weak var digitsTextField: UITextField!
     
-    
     var nicknameFieldSatisfied: Bool?
     var typeFieldSatisfied: Bool?
     var thisCardIDTransfered = ""
@@ -64,6 +63,8 @@ class EditCardViewController: UIViewController {
         self.nicknameTextField.delegate = self
         self.digitsTextField.delegate = self
         
+        
+        
         lyLogo.createRoundView()
         
         title = "Edit Card"
@@ -81,7 +82,6 @@ class EditCardViewController: UIViewController {
         
         leftNavBarButton.isEnabled = true
         rightNavBarButton.isEnabled = true
-        //pullCardData()
         populateCardInfo()
     }
     
@@ -126,19 +126,16 @@ class EditCardViewController: UIViewController {
             guard let theCard = self.card else {
                 return
             }
+            
             FirebaseUtility.shared.delete(card: theCard, completion: { (success, error) in
                 if let errorMessage = error {
                     print(errorMessage)
                 } else if success {
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+                    
                     self.navigationController?.popToRootViewController(animated: true)
-//                    if let viewControllers = self.navigationController?.viewControllers {
-//                        for aController in viewControllers {
-//                            if aController is WalletViewController {
-//                                self.navigationController?.popToViewController(aController, animated: true)
-//                                break
-//                            }
-//                        }
-//                    }
+                    
+                    
                 }
             })
         }
@@ -158,12 +155,9 @@ class EditCardViewController: UIViewController {
             return
         }
         
-        FirebaseUtility.shared.update(card: theCard,
-                                      nickName: nicknameTextField.text,
-                                      last4: digitsTextField.text,
-                                      color: segControl.selectedSegmentIndex) { (updatedCard, error) in
-                                        
-                                        self.navigationController?.popViewController(animated: true)
+        FirebaseUtility.shared.update(card: theCard, nickName: nicknameTextField.text, last4: digitsTextField.text, color: segControl.selectedSegmentIndex) { (updatedCard, error) in
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+            self.navigationController?.popViewController(animated: true)
         }
     }
     
@@ -246,3 +240,7 @@ extension EditCardViewController: UITextFieldDelegate {
     }
     
 }
+
+
+
+
