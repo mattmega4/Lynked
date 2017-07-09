@@ -22,8 +22,9 @@ class WalletViewController: UIViewController {
     var card4ToTransfer: String?
     var cardtypeToTransfer: String?
     var cardArray: [CardClass] = []
-    var delegate: WalletViewControllerDelegate?
     
+    var delegate: WalletViewControllerDelegate?
+
     let CARD_CELL_IDENTIFIER = "cardCell"
     let NEW_CARD_CELL_IDENTIFIER = "newCell"
     
@@ -41,17 +42,20 @@ class WalletViewController: UIViewController {
         tableView.estimatedRowHeight = 500
         self.splitViewController?.preferredDisplayMode = .allVisible
         self.navigationItem.setHidesBackButton(true, animated: true)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        pullAllUsersCards()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
+        
+        pullAllUsersCards()
         if Auth.auth().currentUser == nil {
             if let loginVc = storyboard?.instantiateViewController(withIdentifier: ENTRY_STORYBOARD_IDENTIFIER) as? EntryViewController {
                 let loginNavigation = UINavigationController(rootViewController: loginVc)
@@ -69,11 +73,9 @@ class WalletViewController: UIViewController {
                     self.present(pinVC, animated: true, completion: nil)
                 }
             }
-            
         }
     }
-    
-    
+
     
     func pullAllUsersCards() {
         MBProgressHUD.showAdded(to: view, animated: true)
@@ -98,6 +100,13 @@ class WalletViewController: UIViewController {
                 // TODO: - Display error
             }
         }
+    }
+    
+    
+    // MARK: - Notification Center
+    
+    func loadList(){
+        pullAllUsersCards()
     }
     
     
@@ -291,7 +300,6 @@ extension WalletViewController: UISplitViewControllerDelegate {
 protocol WalletViewControllerDelegate {
     func walletViewController(controller: WalletViewController, didSelectCard card: CardClass)
 }
-
 
 
 

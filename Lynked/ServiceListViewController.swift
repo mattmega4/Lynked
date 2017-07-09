@@ -304,8 +304,10 @@ extension ServiceListViewController: UITableViewDelegate, UITableViewDataSource 
         if !isDisplayingCategories {
             let cell = tableView.dequeueReusableCell(withIdentifier: SERVICE_CELL_IDENTIFIER, for: indexPath) as! ServiceTableViewCell
             let service = serviceArray[indexPath.row]
+            
             cell.serviceColorStatusView.backgroundColor = service.serviceStatus ? .green : .red
             cell.serviceNameLabel.text = service.serviceName
+            cell.serviceCategoryLabel.text = service.category
             cell.serviceAmountLabel.text = String("$\(service.serviceAmount)")
             
             if let fxed = service.serviceFixed {
