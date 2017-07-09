@@ -15,6 +15,7 @@ import Kingfisher
 
 class ProfileViewController: UITableViewController {
     
+    @IBOutlet weak var leftNavBarButton: UIBarButtonItem!
     
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var profileImageBorderView: UIView!
@@ -133,6 +134,12 @@ class ProfileViewController: UITableViewController {
     
     //MARK: - Profile IBActions
     
+    
+    @IBAction func leftNavBarButtonTapped(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
     @IBAction func editImageButtonTapped(_ sender: UIButton) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let choosePictureAction = UIAlertAction(title: "Choose Profile Picture", style: .default) { (action) in
@@ -157,6 +164,8 @@ class ProfileViewController: UITableViewController {
 
     
     //MARK: - Right Container IBActions
+    
+
     
     @IBAction func feedbackButtonTapped(_ sender: UIButton) {
         
@@ -206,8 +215,8 @@ class ProfileViewController: UITableViewController {
                 if let error = error {
                     debugPrint(error)
                 } else {
-                    if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: ENTRY_STORYBOARD_IDENTIFIER) as? EntryViewController {
-                        self.navigationController?.pushViewController(loginVC, animated: true)
+                    if let walletvc = self.storyboard?.instantiateViewController(withIdentifier: WALLET_STORYBOARD_IDENTIFIER) as? WalletViewController {
+                        self.navigationController?.pushViewController(walletvc, animated: true)
                     }
                 }
             }

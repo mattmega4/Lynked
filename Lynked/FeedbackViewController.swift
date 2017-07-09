@@ -71,6 +71,19 @@ class FeedbackViewController: UIViewController {
         topics+=["Bug Report", "Feature Suggestion", "Other"]
     }
     
+    
+    // MARK: - Thank you Alert
+    
+    func thankYouAlert() {
+        let alert = UIAlertController(title: "Thank you", message: "We will review feedback ASAP", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .cancel) { (action) in
+            self.navigationController?.popViewController(animated: true)
+            
+        }
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     // MARK: - IBActions
     
     @IBAction func rightNavBarButtonTapped(_ sender: UIBarButtonItem) {
@@ -96,12 +109,12 @@ class FeedbackViewController: UIViewController {
         
         mailGun?.sendMessage(to: "singletondevelopment@gmail.com", from: "Lynked@lynked.com", subject: theTopic, body: theBody, success: { (success) in
             
-            self.dismiss(animated: true, completion: nil)
+            self.thankYouAlert()
             
         }, failure: { (error) in
             
             debugPrint(error.debugDescription)
-            self.dismiss(animated: true, completion: nil)
+            self.thankYouAlert()
         })
         
     }
@@ -183,7 +196,7 @@ extension FeedbackViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let titleData = topics[row]
-        let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont(name: "GillSans", size: 15.0)!,NSForegroundColorAttributeName:UIColor.white])
+        let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont(name: "GillSans", size: 15.0)!,NSForegroundColorAttributeName:UIColor.darkGray])
         return myTitle
     }
     

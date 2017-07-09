@@ -29,10 +29,10 @@ class NewCardTableViewCell: UITableViewCell {
         super.layoutSubviews()
         
         self.cardBorderView.layoutIfNeeded()
-        self.cardBorderView.createRoundView()
+        self.cardBorderView.createRoundedCorners()
         
         self.cardBackgroundView.layoutIfNeeded()
-        self.cardBackgroundView.createRoundView()
+        self.cardBackgroundView.createRoundedCorners()
         
     }
     

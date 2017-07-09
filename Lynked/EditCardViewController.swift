@@ -96,7 +96,7 @@ class EditCardViewController: UIViewController {
     
     func changeStatusOfCardAndServices() { // reset all services to needs attention
         
-        let alertController = UIAlertController(title: "Something went wrong!", message: "This will mark all linked services as 'needs attention.' You will have to update each service one at a time!", preferredStyle: UIAlertControllerStyle.alert)
+        let alertController = UIAlertController(title: "Wait!", message: "This will mark all linked services as 'needs attention.' You will have to update each service one at a time!", preferredStyle: UIAlertControllerStyle.alert)
         
         let cancelAction = UIAlertAction(title: "Never Mind!", style: UIAlertActionStyle.cancel, handler: nil)
         
@@ -130,14 +130,15 @@ class EditCardViewController: UIViewController {
                 if let errorMessage = error {
                     print(errorMessage)
                 } else if success {
-                    if let viewControllers = self.navigationController?.viewControllers {
-                        for aController in viewControllers {
-                            if aController is WalletViewController {
-                                self.navigationController?.popToViewController(aController, animated: true)
-                                break
-                            }
-                        }
-                    }
+                    self.navigationController?.popToRootViewController(animated: true)
+//                    if let viewControllers = self.navigationController?.viewControllers {
+//                        for aController in viewControllers {
+//                            if aController is WalletViewController {
+//                                self.navigationController?.popToViewController(aController, animated: true)
+//                                break
+//                            }
+//                        }
+//                    }
                 }
             })
         }
