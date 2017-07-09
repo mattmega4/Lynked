@@ -65,11 +65,15 @@ MasterCard
 
 * [Firebase](https://firebase.google.com) - Google MBaaS Tracks crashes and performance & hosts data
 * [Fabric](https://fabric.io) - Twitter/Google Tracks crashes & events 
-* [SDWebImage](https://github.com/rs/SDWebImage) - Asynchronous image downloader with cache support as a UIImageView category
+* [SCPinViewController](https://github.com/SugarAndCandy/SCPinViewController) - Super customization Pin controller.
+* [mailgun](https://github.com/rackerlabs/objc-mailgun) - Objective-C SDK for Mailgun.
+* [UITextView+Placeholder](https://github.com/devxoul/UITextView-Placeholder) - A missing placeholder for UITextView
+* [DZNEmptyDataSet](https://github.com/dzenbot/DZNEmptyDataSet) - A drop-in UITableView/UICollectionView superclass category for showing empty datasets whenever the view has no content to display
+* [Kingfisher](https://github.com/onevcat/Kingfisher) - A lightweight, pure-Swift library for downloading and caching images from the web
 
 
 ## Authors
 
-* **Matthew H Singleton** - *Developer* - [Portfolio](www.matthewhsingleton.com)
+* **Matthew H Singleton** - *Developer* - [Portfolio](http://www.matthewhsingleton.com)
 
 
