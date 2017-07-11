@@ -281,18 +281,19 @@ class UpdateServiceTableViewController: UITableViewController {
     // MARK: - Keyboard Methods
     
     func keyboardWillShow(notification:NSNotification) {
-        var userInfo = notification.userInfo!
-        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
-        var contentInset: UIEdgeInsets = self.tableView.contentInset
-        contentInset.bottom = keyboardFrame.size.height + 30
-        self.tableView.contentInset = contentInset
+//        var userInfo = notification.userInfo!
+//        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+//        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+//        var contentInset: UIEdgeInsets = self.tableView.contentInset
+//        contentInset.bottom = keyboardFrame.size.height // + 30
+//        self.tableView.contentInset = contentInset
         
     }
     
     func keyboardWillHide(notification:NSNotification) {
-        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
-        self.tableView.contentInset = contentInset
+//        var contentInset: UIEdgeInsets = self.tableView.contentInset
+//        contentInset.bottom = 0
+//        self.tableView.contentInset = contentInset
     }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
