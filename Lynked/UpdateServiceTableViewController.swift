@@ -93,8 +93,6 @@ class UpdateServiceTableViewController: UITableViewController {
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UpdateServiceTableViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         updateViewBasedOnService()
     }
@@ -279,22 +277,6 @@ class UpdateServiceTableViewController: UITableViewController {
     
     
     // MARK: - Keyboard Methods
-    
-    func keyboardWillShow(notification:NSNotification) {
-//        var userInfo = notification.userInfo!
-//        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-//        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
-//        var contentInset: UIEdgeInsets = self.tableView.contentInset
-//        contentInset.bottom = keyboardFrame.size.height // + 30
-//        self.tableView.contentInset = contentInset
-        
-    }
-    
-    func keyboardWillHide(notification:NSNotification) {
-//        var contentInset: UIEdgeInsets = self.tableView.contentInset
-//        contentInset.bottom = 0
-//        self.tableView.contentInset = contentInset
-    }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
