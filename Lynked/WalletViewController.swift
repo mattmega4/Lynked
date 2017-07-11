@@ -24,7 +24,7 @@ class WalletViewController: UIViewController {
     var cardArray: [CardClass] = []
     
     var delegate: WalletViewControllerDelegate?
-
+    
     let CARD_CELL_IDENTIFIER = "cardCell"
     let NEW_CARD_CELL_IDENTIFIER = "newCell"
     
@@ -56,6 +56,7 @@ class WalletViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
         
         pullAllUsersCards()
+        
         if Auth.auth().currentUser == nil {
             if let loginVc = storyboard?.instantiateViewController(withIdentifier: ENTRY_STORYBOARD_IDENTIFIER) as? EntryViewController {
                 let loginNavigation = UINavigationController(rootViewController: loginVc)
@@ -64,8 +65,10 @@ class WalletViewController: UIViewController {
         }
         else {
             
-            let appUnlocked = UserDefaults.standard.bool(forKey: "unlocked")
-            if !appUnlocked {
+            let appLocked = UserDefaults.standard.bool(forKey: USER_DEFAULTS_PIN_STRING)
+            
+            if !appLocked {
+                
                 if let pinVC = SCPinViewController(scope: .validate) {
                     
                     pinVC.dataSource = self
@@ -75,13 +78,13 @@ class WalletViewController: UIViewController {
             }
         }
     }
-
+    
     
     func pullAllUsersCards() {
-        MBProgressHUD.showAdded(to: view, animated: true)
+        
         FirebaseUtility.shared.getCards { (cards, errMessage) in
+            MBProgressHUD.showAdded(to: self.view, animated: true)
             
-            MBProgressHUD.hide(for: self.view, animated: true)
             if let theCards = cards {
                 if theCards.count < 1 {
                     if let addVC = self.storyboard?.instantiateViewController(withIdentifier: ADD_CARD_STORYBOARD_IDENTIFIER) as? AddCardViewController {
@@ -93,6 +96,8 @@ class WalletViewController: UIViewController {
                 else {
                     self.cardArray = theCards
                     self.tableView.reloadData()
+                    
+                    MBProgressHUD.hide(for: self.view, animated: true)
                 }
             }
             else {
