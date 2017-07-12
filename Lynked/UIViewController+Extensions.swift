@@ -24,6 +24,7 @@ extension UIViewController {
                                                                    green: 158.0/255.0,
                                                                    blue: 236.0/255.0,
                                                                    alpha: 1.0)
+        
         UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white,

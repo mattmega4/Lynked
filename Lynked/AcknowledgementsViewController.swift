@@ -17,24 +17,22 @@ class AcknowledgementsViewController: UIViewController {
     
     
     let viewModel = AcknowledgementsViewModel()
-    
     var pods = [Library]()
+    let ACKNOWLEDGEMENT_CELL_IDENTIFIER = "AcknowledgeCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
         pods = viewModel.getAcknowlwdgements()
         versionLabel.text = viewModel.getVersionInfo()
-        
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 500
         setNavBar()
         title = "Acknowledgements"
-        showReview()
     }
+    
     
     // MARK: - IBActions
     
@@ -55,7 +53,7 @@ extension AcknowledgementsViewController: UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AcknowledgeCell", for: indexPath as IndexPath) as! AcknowledgementsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: ACKNOWLEDGEMENT_CELL_IDENTIFIER, for: indexPath as IndexPath) as! AcknowledgementsTableViewCell
         let pod = pods[indexPath.row]
         cell.nameLabel.text = pod.name
         cell.descriptionLabel.text = pod.legalDescription

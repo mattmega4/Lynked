@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1D01B2701E03A27500098A9A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1D01B26F1E03A27500098A9A /* GoogleService-Info.plist */; };
-		1D1712791E01F0870087F299 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1712781E01F0870087F299 /* PreferencesViewController.swift */; };
 		1DC0D8AB1DFE516A0039B8F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC0D8AA1DFE516A0039B8F6 /* AppDelegate.swift */; };
 		1DC0D8B01DFE516A0039B8F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DC0D8AE1DFE516A0039B8F6 /* Main.storyboard */; };
 		1DC0D8B31DFE516A0039B8F6 /* Lynked.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1DC0D8B11DFE516A0039B8F6 /* Lynked.xcdatamodeld */; };
@@ -16,37 +15,95 @@
 		1DC0D8B81DFE516A0039B8F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DC0D8B61DFE516A0039B8F6 /* LaunchScreen.storyboard */; };
 		1DC0D8D91DFE59360039B8F6 /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC0D8D81DFE59360039B8F6 /* AddCardViewController.swift */; };
 		1DC0D8DF1DFE5F910039B8F6 /* EditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC0D8DE1DFE5F910039B8F6 /* EditCardViewController.swift */; };
-		1DC0D8E11DFE5FBB0039B8F6 /* EditServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC0D8E01DFE5FBB0039B8F6 /* EditServiceViewController.swift */; };
 		1DD7D2591E393C0700AF1299 /* CardClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7D2581E393C0700AF1299 /* CardClass.swift */; };
 		1DD7D25C1E393C2300AF1299 /* ServiceClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7D25B1E393C2300AF1299 /* ServiceClass.swift */; };
+		291EC7CE1F0F524700900500 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291EC7CD1F0F524700900500 /* FeedbackViewController.swift */; };
+		2921B2201EFBA2E0008F377B /* TempLetterImagePickerUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921B21F1EFBA2E0008F377B /* TempLetterImagePickerUtility.swift */; };
 		2924F9BE1EF22F090014C284 /* SegmentColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */; };
-		2924F9C01EF24F280014C284 /* AutoCompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F9BF1EF24F280014C284 /* AutoCompleteTableViewCell.swift */; };
 		292764931EDFA3160096AE1E /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292764921EDFA3160096AE1E /* WalletViewController.swift */; };
 		292764951EDFC8350096AE1E /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292764941EDFC8350096AE1E /* CardTableViewCell.swift */; };
+		292DEB061F01D486008247EC /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 1D01B26F1E03A27500098A9A /* GoogleService-Info.plist */; };
+		294135FB1EFD9D8200002FAC /* CategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294135FA1EFD9D8200002FAC /* CategoryManager.swift */; };
 		2943B48B1EF624D600A0E8DD /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */; };
+		294D0E321EF9E9F7000E4BC6 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294D0E311EF9E9F7000E4BC6 /* CategoryViewController.swift */; };
+		2950A4521EFE40BF00F94BF4 /* ServicePayRateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2950A4511EFE40BF00F94BF4 /* ServicePayRateManager.swift */; };
+		295E02291F0CB4E30006AAC0 /* LynkedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295E02281F0CB4E30006AAC0 /* LynkedTests.swift */; };
 		29773CDD1EC3B6730023F277 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29773CDC1EC3B6730023F277 /* EntryViewController.swift */; };
 		297BE9FC1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 297BE9FB1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist */; };
 		297BE9FE1EF707EA0035D4DA /* AcknowledgementsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297BE9FD1EF707EA0035D4DA /* AcknowledgementsViewModel.swift */; };
 		297BEA001EF708640035D4DA /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297BE9FF1EF708640035D4DA /* Library.swift */; };
-		297BEA031EF766500035D4DA /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297BEA021EF766500035D4DA /* Future.swift */; };
+		298E7D511EFEF10100A83CA8 /* ServiceDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298E7D501EFEF10100A83CA8 /* ServiceDetailTableViewCell.swift */; };
 		298FA4E41EF78EA4009B5A36 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FA4E31EF78EA4009B5A36 /* UIViewController+Extensions.swift */; };
 		298FA4E61EF78EDB009B5A36 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FA4E51EF78EDB009B5A36 /* String+Extensions.swift */; };
 		298FA4E81EF78F26009B5A36 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FA4E71EF78F26009B5A36 /* UIView+Extensions.swift */; };
 		298FA4EA1EF78F40009B5A36 /* NSObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FA4E91EF78F40009B5A36 /* NSObject+Extensions.swift */; };
 		298FA4EC1EF78F5C009B5A36 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FA4EB1EF78F5C009B5A36 /* Array+Extensions.swift */; };
+		29929B521F08927900369314 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29929B511F08927900369314 /* LocalAuthentication.framework */; };
+		29929B541F08F6EA00369314 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29929B531F08F6EA00369314 /* ProfileViewController.swift */; };
+		299F6FC01F018AD300935054 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DC0D8B41DFE516A0039B8F6 /* Assets.xcassets */; };
 		299F85221EE78DB1001A819D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299F85211EE78DB1001A819D /* StoreKit.framework */; };
 		29AA67E21EE7B4BA000EDE42 /* InAppPurchaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA67E11EE7B4BA000EDE42 /* InAppPurchaseUtility.swift */; };
+		29AA96CD1F074EA900194670 /* Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA96CC1F074EA900194670 /* Identifiers.swift */; };
+		29CA61701F09B9BB00391199 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 29CA616F1F09B9BB00391199 /* Keys.plist */; };
+		29CA61721F09C6E200391199 /* BranchUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA61711F09C6E200391199 /* BranchUtility.swift */; };
+		29CA61741F09E56C00391199 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA61731F09E56C00391199 /* UITextField+Extensions.swift */; };
 		29CB33121EF65EFA009CEE3B /* AcknowledgementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CB33111EF65EFA009CEE3B /* AcknowledgementsViewController.swift */; };
 		29CB33141EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CB33131EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift */; };
+		29D412AF1F00AF0C0081CF79 /* WidgetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D412AE1F00AF0C0081CF79 /* WidgetTableViewCell.swift */; };
+		29D412B01F00B15A0081CF79 /* ServiceClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7D25B1E393C2300AF1299 /* ServiceClass.swift */; };
+		29D412B11F00B18C0081CF79 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */; };
+		29D412B21F00B5D80081CF79 /* CardClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7D2581E393C0700AF1299 /* CardClass.swift */; };
+		29D412B31F00B67E0081CF79 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FA4E51EF78EDB009B5A36 /* String+Extensions.swift */; };
+		29D412B41F00B68F0081CF79 /* SegmentColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */; };
+		29D412B51F00B6F60081CF79 /* ServicePayRateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2950A4511EFE40BF00F94BF4 /* ServicePayRateManager.swift */; };
+		29D412B61F00B8070081CF79 /* TempLetterImagePickerUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921B21F1EFBA2E0008F377B /* TempLetterImagePickerUtility.swift */; };
+		29D412B81F00D43A0081CF79 /* NewCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D412B71F00D43A0081CF79 /* NewCardTableViewCell.swift */; };
 		29D5906B1EF5AE5600CA66D6 /* RequestReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D5906A1EF5AE5600CA66D6 /* RequestReview.swift */; };
-		29EE32411EC9754E00C2FFB6 /* CardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EE32401EC9754E00C2FFB6 /* CardDetailViewController.swift */; };
-		29EE32441EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EE32431EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift */; };
+		29E39CB81F0B168300E23949 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E39CB71F0B168300E23949 /* CategoryTableViewCell.swift */; };
+		29E39CBC1F0B226600E23949 /* UpdateServiceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E39CBB1F0B226600E23949 /* UpdateServiceTableViewController.swift */; };
+		29E713D41F0AEDA0004B5715 /* ServiceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E713D31F0AEDA0004B5715 /* ServiceListViewController.swift */; };
+		29E713D61F0AEE0E004B5715 /* ServiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E713D51F0AEE0E004B5715 /* ServiceTableViewCell.swift */; };
+		29EFAB251EFE46A1007F384E /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29EFAB241EFE46A1007F384E /* NotificationCenter.framework */; };
+		29EFAB281EFE46A1007F384E /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EFAB271EFE46A1007F384E /* TodayViewController.swift */; };
+		29EFAB2B1EFE46A1007F384E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29EFAB291EFE46A1007F384E /* MainInterface.storyboard */; };
+		29EFAB2F1EFE46A1007F384E /* Lynked Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 29EFAB231EFE46A1007F384E /* Lynked Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E86C3EB7EE5754E5BF9A1F85 /* Pods_Lynked_Widget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA6F3E9D57672DC96FCD6C6 /* Pods_Lynked_Widget.framework */; };
 		FE255734139BB8197894689C /* Pods_Lynked.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 267A4AE157A5C3F5E4C71A91 /* Pods_Lynked.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		295E022B1F0CB4E30006AAC0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1DC0D89F1DFE516A0039B8F6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1DC0D8A61DFE516A0039B8F6;
+			remoteInfo = Lynked;
+		};
+		29EFAB2D1EFE46A1007F384E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1DC0D89F1DFE516A0039B8F6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 29EFAB221EFE46A1007F384E;
+			remoteInfo = "Lynked Widget";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		29EFAB331EFE46A1007F384E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				29EFAB2F1EFE46A1007F384E /* Lynked Widget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1D01B26F1E03A27500098A9A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		1D1712781E01F0870087F299 /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		1DC0D8A71DFE516A0039B8F6 /* Lynked.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lynked.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DC0D8AA1DFE516A0039B8F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1DC0D8AF1DFE516A0039B8F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -56,35 +113,62 @@
 		1DC0D8B91DFE516A0039B8F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1DC0D8D81DFE59360039B8F6 /* AddCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
 		1DC0D8DE1DFE5F910039B8F6 /* EditCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCardViewController.swift; sourceTree = "<group>"; };
-		1DC0D8E01DFE5FBB0039B8F6 /* EditServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditServiceViewController.swift; sourceTree = "<group>"; };
 		1DD7D2581E393C0700AF1299 /* CardClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardClass.swift; sourceTree = "<group>"; };
 		1DD7D25B1E393C2300AF1299 /* ServiceClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceClass.swift; sourceTree = "<group>"; };
 		267A4AE157A5C3F5E4C71A91 /* Pods_Lynked.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lynked.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		291EC7CD1F0F524700900500 /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
+		2921B21F1EFBA2E0008F377B /* TempLetterImagePickerUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempLetterImagePickerUtility.swift; sourceTree = "<group>"; };
 		2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentColorManager.swift; sourceTree = "<group>"; };
-		2924F9BF1EF24F280014C284 /* AutoCompleteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoCompleteTableViewCell.swift; sourceTree = "<group>"; };
 		292764921EDFA3160096AE1E /* WalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		292764941EDFC8350096AE1E /* CardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
+		292DEB071F01D77F008247EC /* Lynked.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Lynked.entitlements; sourceTree = "<group>"; };
+		29390C2E1F02F0B70047F013 /* FavIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavIcon.swift; path = ../../Desktop/FavIcon.swift; sourceTree = "<group>"; };
+		294135FA1EFD9D8200002FAC /* CategoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryManager.swift; sourceTree = "<group>"; };
 		2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseUtility.swift; sourceTree = "<group>"; };
+		294D0E311EF9E9F7000E4BC6 /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		2950A4511EFE40BF00F94BF4 /* ServicePayRateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicePayRateManager.swift; sourceTree = "<group>"; };
+		295E02261F0CB4E30006AAC0 /* LynkedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LynkedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		295E02281F0CB4E30006AAC0 /* LynkedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LynkedTests.swift; sourceTree = "<group>"; };
+		295E022A1F0CB4E30006AAC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29773CDC1EC3B6730023F277 /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		297BE9FB1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Pods-Lynked-acknowledgements.plist"; path = "../Pods/Target Support Files/Pods-Lynked/Pods-Lynked-acknowledgements.plist"; sourceTree = "<group>"; };
 		297BE9FD1EF707EA0035D4DA /* AcknowledgementsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AcknowledgementsViewModel.swift; path = ../AcknowledgementsViewModel.swift; sourceTree = "<group>"; };
 		297BE9FF1EF708640035D4DA /* Library.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
-		297BEA021EF766500035D4DA /* Future.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Future.swift; sourceTree = "<group>"; };
+		298E7D501EFEF10100A83CA8 /* ServiceDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDetailTableViewCell.swift; sourceTree = "<group>"; };
 		298FA4E31EF78EA4009B5A36 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		298FA4E51EF78EDB009B5A36 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		298FA4E71EF78F26009B5A36 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		298FA4E91EF78F40009B5A36 /* NSObject+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Extensions.swift"; sourceTree = "<group>"; };
 		298FA4EB1EF78F5C009B5A36 /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		29929B511F08927900369314 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		29929B531F08F6EA00369314 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		299F6FC11F018CB500935054 /* Lynked Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Lynked Widget.entitlements"; sourceTree = "<group>"; };
 		299F85211EE78DB1001A819D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		29AA67E11EE7B4BA000EDE42 /* InAppPurchaseUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseUtility.swift; sourceTree = "<group>"; };
+		29AA96CC1F074EA900194670 /* Identifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiers.swift; sourceTree = "<group>"; };
+		29CA616F1F09B9BB00391199 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
+		29CA61711F09C6E200391199 /* BranchUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BranchUtility.swift; sourceTree = "<group>"; };
+		29CA61731F09E56C00391199 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
 		29CB33111EF65EFA009CEE3B /* AcknowledgementsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcknowledgementsViewController.swift; sourceTree = "<group>"; };
 		29CB33131EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcknowledgementsTableViewCell.swift; sourceTree = "<group>"; };
+		29D412AE1F00AF0C0081CF79 /* WidgetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidgetTableViewCell.swift; sourceTree = "<group>"; };
+		29D412B71F00D43A0081CF79 /* NewCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCardTableViewCell.swift; sourceTree = "<group>"; };
 		29D5906A1EF5AE5600CA66D6 /* RequestReview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestReview.swift; sourceTree = "<group>"; };
-		29EE32401EC9754E00C2FFB6 /* CardDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
-		29EE32431EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceCollectionViewCell.swift; sourceTree = "<group>"; };
+		29E39CB71F0B168300E23949 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		29E39CBB1F0B226600E23949 /* UpdateServiceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateServiceTableViewController.swift; sourceTree = "<group>"; };
+		29E713D31F0AEDA0004B5715 /* ServiceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceListViewController.swift; sourceTree = "<group>"; };
+		29E713D51F0AEE0E004B5715 /* ServiceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTableViewCell.swift; sourceTree = "<group>"; };
+		29EFAB231EFE46A1007F384E /* Lynked Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Lynked Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		29EFAB241EFE46A1007F384E /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		29EFAB271EFE46A1007F384E /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		29EFAB2A1EFE46A1007F384E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		29EFAB2C1EFE46A1007F384E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29F778D71EEE291300B6AA6E /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		332153A02078D17E6D55BF0C /* Pods-Lynked.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lynked.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lynked/Pods-Lynked.release.xcconfig"; sourceTree = "<group>"; };
 		61C5BAFDC0F62D6BA28B7B7A /* Pods-Lynked.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lynked.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lynked/Pods-Lynked.debug.xcconfig"; sourceTree = "<group>"; };
+		777E17BCF265AA7F0F2BABBF /* Pods-Lynked Widget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lynked Widget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lynked Widget/Pods-Lynked Widget.debug.xcconfig"; sourceTree = "<group>"; };
+		7EA6F3E9D57672DC96FCD6C6 /* Pods_Lynked_Widget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lynked_Widget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3429FCF5D80180D088B49B1 /* Pods-Lynked Widget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lynked Widget.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lynked Widget/Pods-Lynked Widget.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,8 +176,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29929B521F08927900369314 /* LocalAuthentication.framework in Frameworks */,
 				FE255734139BB8197894689C /* Pods_Lynked.framework in Frameworks */,
 				299F85221EE78DB1001A819D /* StoreKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		295E02231F0CB4E30006AAC0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29EFAB201EFE46A1007F384E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29EFAB251EFE46A1007F384E /* NotificationCenter.framework in Frameworks */,
+				E86C3EB7EE5754E5BF9A1F85 /* Pods_Lynked_Widget.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +205,8 @@
 			isa = PBXGroup;
 			children = (
 				1DC0D8A91DFE516A0039B8F6 /* Lynked */,
+				29EFAB261EFE46A1007F384E /* Lynked Widget */,
+				295E02271F0CB4E30006AAC0 /* LynkedTests */,
 				1DC0D8A81DFE516A0039B8F6 /* Products */,
 				7C6C21144E94777124CC2B96 /* Pods */,
 				5992905EFC84512369FCFBED /* Frameworks */,
@@ -114,6 +217,8 @@
 			isa = PBXGroup;
 			children = (
 				1DC0D8A71DFE516A0039B8F6 /* Lynked.app */,
+				29EFAB231EFE46A1007F384E /* Lynked Widget.appex */,
+				295E02261F0CB4E30006AAC0 /* LynkedTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -121,12 +226,13 @@
 		1DC0D8A91DFE516A0039B8F6 /* Lynked */ = {
 			isa = PBXGroup;
 			children = (
-				297BEA011EF766410035D4DA /* Future */,
+				292DEB071F01D77F008247EC /* Lynked.entitlements */,
 				1DC0D8C21DFE518F0039B8F6 /* Model */,
 				1DC0D8C11DFE518C0039B8F6 /* View */,
 				29773CDB1EC3B6230023F277 /* Controller */,
 				29CCE7261EDF8F0000995139 /* Extensions */,
 				1DC0D8BF1DFE51790039B8F6 /* Additional Files */,
+				29929B551F08F74100369314 /* Constants */,
 			);
 			path = Lynked;
 			sourceTree = "<group>";
@@ -134,12 +240,13 @@
 		1DC0D8BF1DFE51790039B8F6 /* Additional Files */ = {
 			isa = PBXGroup;
 			children = (
-				297BE9FB1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist */,
 				1DC0D8AA1DFE516A0039B8F6 /* AppDelegate.swift */,
 				1DC0D8B41DFE516A0039B8F6 /* Assets.xcassets */,
+				1DC0D8B61DFE516A0039B8F6 /* LaunchScreen.storyboard */,
 				1DC0D8B91DFE516A0039B8F6 /* Info.plist */,
 				1D01B26F1E03A27500098A9A /* GoogleService-Info.plist */,
-				1DC0D8B61DFE516A0039B8F6 /* LaunchScreen.storyboard */,
+				297BE9FB1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist */,
+				29CA616F1F09B9BB00391199 /* Keys.plist */,
 			);
 			name = "Additional Files";
 			sourceTree = "<group>";
@@ -159,56 +266,88 @@
 				2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */,
 				29D5906A1EF5AE5600CA66D6 /* RequestReview.swift */,
 				1DD7D2581E393C0700AF1299 /* CardClass.swift */,
+				294135FA1EFD9D8200002FAC /* CategoryManager.swift */,
 				1DD7D25B1E393C2300AF1299 /* ServiceClass.swift */,
 				2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */,
+				2921B21F1EFBA2E0008F377B /* TempLetterImagePickerUtility.swift */,
+				2950A4511EFE40BF00F94BF4 /* ServicePayRateManager.swift */,
+				29CA61711F09C6E200391199 /* BranchUtility.swift */,
 				1DC0D8B11DFE516A0039B8F6 /* Lynked.xcdatamodeld */,
 			);
 			name = Model;
 			sourceTree = "<group>";
 		};
-		292764961EDFC8480096AE1E /* Custom Cells */ = {
+		2921B2121EFB99CD008F377B /* Service TableView Cells */ = {
 			isa = PBXGroup;
 			children = (
-				29EE32431EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift */,
-				292764941EDFC8350096AE1E /* CardTableViewCell.swift */,
-				2924F9BF1EF24F280014C284 /* AutoCompleteTableViewCell.swift */,
-				29CB33131EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift */,
+				298E7D501EFEF10100A83CA8 /* ServiceDetailTableViewCell.swift */,
 			);
-			name = "Custom Cells";
+			name = "Service TableView Cells";
 			sourceTree = "<group>";
 		};
-		296DF54A1EF5D3A700D5874D /* Modally */ = {
+		2921B2241EFBA458008F377B /* Wallet TableView Cell */ = {
 			isa = PBXGroup;
 			children = (
-				29CB33111EF65EFA009CEE3B /* AcknowledgementsViewController.swift */,
+				292764941EDFC8350096AE1E /* CardTableViewCell.swift */,
+				29D412B71F00D43A0081CF79 /* NewCardTableViewCell.swift */,
+			);
+			name = "Wallet TableView Cell";
+			sourceTree = "<group>";
+		};
+		2921B2251EFBA47E008F377B /* Acknowledgement */ = {
+			isa = PBXGroup;
+			children = (
+				29CB33131EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift */,
 				297BE9FD1EF707EA0035D4DA /* AcknowledgementsViewModel.swift */,
 				297BE9FF1EF708640035D4DA /* Library.swift */,
 			);
-			name = Modally;
+			name = Acknowledgement;
+			sourceTree = "<group>";
+		};
+		295E02271F0CB4E30006AAC0 /* LynkedTests */ = {
+			isa = PBXGroup;
+			children = (
+				295E02281F0CB4E30006AAC0 /* LynkedTests.swift */,
+				295E022A1F0CB4E30006AAC0 /* Info.plist */,
+			);
+			path = LynkedTests;
 			sourceTree = "<group>";
 		};
 		29773CDB1EC3B6230023F277 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				29BDD8B91EF9022100F6A2DF /* To Do */,
 				29773CDC1EC3B6730023F277 /* EntryViewController.swift */,
 				1DC0D8D81DFE59360039B8F6 /* AddCardViewController.swift */,
 				292764921EDFA3160096AE1E /* WalletViewController.swift */,
-				29EE32401EC9754E00C2FFB6 /* CardDetailViewController.swift */,
+				2921B2241EFBA458008F377B /* Wallet TableView Cell */,
+				29E713D31F0AEDA0004B5715 /* ServiceListViewController.swift */,
+				29E39CB61F0B164900E23949 /* Service List TableView Cells */,
+				29E39CBB1F0B226600E23949 /* UpdateServiceTableViewController.swift */,
+				2921B2121EFB99CD008F377B /* Service TableView Cells */,
 				1DC0D8DE1DFE5F910039B8F6 /* EditCardViewController.swift */,
-				1DC0D8E01DFE5FBB0039B8F6 /* EditServiceViewController.swift */,
-				1D1712781E01F0870087F299 /* PreferencesViewController.swift */,
-				296DF54A1EF5D3A700D5874D /* Modally */,
-				292764961EDFC8480096AE1E /* Custom Cells */,
+				29929B531F08F6EA00369314 /* ProfileViewController.swift */,
+				291EC7CD1F0F524700900500 /* FeedbackViewController.swift */,
+				29CB33111EF65EFA009CEE3B /* AcknowledgementsViewController.swift */,
+				2921B2251EFBA47E008F377B /* Acknowledgement */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
 		};
-		297BEA011EF766410035D4DA /* Future */ = {
+		29929B551F08F74100369314 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				297BEA021EF766500035D4DA /* Future.swift */,
+				29AA96CC1F074EA900194670 /* Identifiers.swift */,
 			);
-			name = Future;
+			name = Constants;
+			sourceTree = "<group>";
+		};
+		29BDD8B91EF9022100F6A2DF /* To Do */ = {
+			isa = PBXGroup;
+			children = (
+				294D0E311EF9E9F7000E4BC6 /* CategoryViewController.swift */,
+			);
+			name = "To Do";
 			sourceTree = "<group>";
 		};
 		29CCE7261EDF8F0000995139 /* Extensions */ = {
@@ -219,16 +358,42 @@
 				298FA4E51EF78EDB009B5A36 /* String+Extensions.swift */,
 				298FA4E91EF78F40009B5A36 /* NSObject+Extensions.swift */,
 				298FA4EB1EF78F5C009B5A36 /* Array+Extensions.swift */,
+				29CA61731F09E56C00391199 /* UITextField+Extensions.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		29E39CB61F0B164900E23949 /* Service List TableView Cells */ = {
+			isa = PBXGroup;
+			children = (
+				29E713D51F0AEE0E004B5715 /* ServiceTableViewCell.swift */,
+				29E39CB71F0B168300E23949 /* CategoryTableViewCell.swift */,
+			);
+			name = "Service List TableView Cells";
+			sourceTree = "<group>";
+		};
+		29EFAB261EFE46A1007F384E /* Lynked Widget */ = {
+			isa = PBXGroup;
+			children = (
+				299F6FC11F018CB500935054 /* Lynked Widget.entitlements */,
+				29EFAB271EFE46A1007F384E /* TodayViewController.swift */,
+				29EFAB291EFE46A1007F384E /* MainInterface.storyboard */,
+				29EFAB2C1EFE46A1007F384E /* Info.plist */,
+				29D412AE1F00AF0C0081CF79 /* WidgetTableViewCell.swift */,
+			);
+			path = "Lynked Widget";
 			sourceTree = "<group>";
 		};
 		5992905EFC84512369FCFBED /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				29929B511F08927900369314 /* LocalAuthentication.framework */,
+				29390C2E1F02F0B70047F013 /* FavIcon.swift */,
 				29F778D71EEE291300B6AA6E /* AdSupport.framework */,
 				299F85211EE78DB1001A819D /* StoreKit.framework */,
 				267A4AE157A5C3F5E4C71A91 /* Pods_Lynked.framework */,
+				29EFAB241EFE46A1007F384E /* NotificationCenter.framework */,
+				7EA6F3E9D57672DC96FCD6C6 /* Pods_Lynked_Widget.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -238,6 +403,8 @@
 			children = (
 				61C5BAFDC0F62D6BA28B7B7A /* Pods-Lynked.debug.xcconfig */,
 				332153A02078D17E6D55BF0C /* Pods-Lynked.release.xcconfig */,
+				777E17BCF265AA7F0F2BABBF /* Pods-Lynked Widget.debug.xcconfig */,
+				F3429FCF5D80180D088B49B1 /* Pods-Lynked Widget.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -256,15 +423,54 @@
 				16554256D1E1E2258A980705 /* [CP] Embed Pods Frameworks */,
 				1E4EA4E66A903214CB950DA9 /* [CP] Copy Pods Resources */,
 				1DA6FCE41E4BDB8C009506A9 /* ShellScript */,
+				29EFAB331EFE46A1007F384E /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				29EFAB2E1EFE46A1007F384E /* PBXTargetDependency */,
 			);
 			name = Lynked;
 			productName = Lynked;
 			productReference = 1DC0D8A71DFE516A0039B8F6 /* Lynked.app */;
 			productType = "com.apple.product-type.application";
+		};
+		295E02251F0CB4E30006AAC0 /* LynkedTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 295E022D1F0CB4E30006AAC0 /* Build configuration list for PBXNativeTarget "LynkedTests" */;
+			buildPhases = (
+				295E02221F0CB4E30006AAC0 /* Sources */,
+				295E02231F0CB4E30006AAC0 /* Frameworks */,
+				295E02241F0CB4E30006AAC0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				295E022C1F0CB4E30006AAC0 /* PBXTargetDependency */,
+			);
+			name = LynkedTests;
+			productName = LynkedTests;
+			productReference = 295E02261F0CB4E30006AAC0 /* LynkedTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		29EFAB221EFE46A1007F384E /* Lynked Widget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 29EFAB301EFE46A1007F384E /* Build configuration list for PBXNativeTarget "Lynked Widget" */;
+			buildPhases = (
+				FE08024F0C45EDC72C8D3E21 /* [CP] Check Pods Manifest.lock */,
+				29EFAB1F1EFE46A1007F384E /* Sources */,
+				29EFAB201EFE46A1007F384E /* Frameworks */,
+				29EFAB211EFE46A1007F384E /* Resources */,
+				EADD5A4804293AF7AECB1ED4 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Lynked Widget";
+			productName = "Lynked Widget";
+			productReference = 29EFAB231EFE46A1007F384E /* Lynked Widget.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -272,7 +478,7 @@
 		1DC0D89F1DFE516A0039B8F6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Matthew Singleton";
 				TargetAttributes = {
@@ -282,7 +488,32 @@
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
+						};
+					};
+					295E02251F0CB4E30006AAC0 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = K8YZSQZRNW;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 1DC0D8A61DFE516A0039B8F6;
+					};
+					29EFAB221EFE46A1007F384E = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = K8YZSQZRNW;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
 							};
 						};
@@ -303,6 +534,8 @@
 			projectRoot = "";
 			targets = (
 				1DC0D8A61DFE516A0039B8F6 /* Lynked */,
+				29EFAB221EFE46A1007F384E /* Lynked Widget */,
+				295E02251F0CB4E30006AAC0 /* LynkedTests */,
 			);
 		};
 /* End PBXProject section */
@@ -312,11 +545,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29CA61701F09B9BB00391199 /* Keys.plist in Resources */,
 				297BE9FC1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist in Resources */,
 				1DC0D8B81DFE516A0039B8F6 /* LaunchScreen.storyboard in Resources */,
 				1D01B2701E03A27500098A9A /* GoogleService-Info.plist in Resources */,
 				1DC0D8B51DFE516A0039B8F6 /* Assets.xcassets in Resources */,
 				1DC0D8B01DFE516A0039B8F6 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		295E02241F0CB4E30006AAC0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29EFAB211EFE46A1007F384E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				299F6FC01F018AD300935054 /* Assets.xcassets in Resources */,
+				29EFAB2B1EFE46A1007F384E /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,9 +579,32 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Lynked/Pods-Lynked-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/Branch/Branch.framework",
+				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SCPinViewController/SCPinViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/UITextView+Placeholder/UITextView_Placeholder.framework",
+				"${BUILT_PRODUCTS_DIR}/mailgun/mailgun.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Branch.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCPinViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UITextView_Placeholder.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/mailgun.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -357,9 +630,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Lynked/Pods-Lynked-resources.sh",
+				"${PODS_ROOT}/Instabug/Instabug.framework/Instabug.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -372,13 +648,49 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Lynked-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EADD5A4804293AF7AECB1ED4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Lynked Widget/Pods-Lynked Widget-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FE08024F0C45EDC72C8D3E21 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Lynked Widget-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -388,10 +700,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2950A4521EFE40BF00F94BF4 /* ServicePayRateManager.swift in Sources */,
 				1DC0D8D91DFE59360039B8F6 /* AddCardViewController.swift in Sources */,
+				291EC7CE1F0F524700900500 /* FeedbackViewController.swift in Sources */,
 				298FA4EC1EF78F5C009B5A36 /* Array+Extensions.swift in Sources */,
 				297BE9FE1EF707EA0035D4DA /* AcknowledgementsViewModel.swift in Sources */,
 				29CB33141EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift in Sources */,
+				29929B541F08F6EA00369314 /* ProfileViewController.swift in Sources */,
 				29D5906B1EF5AE5600CA66D6 /* RequestReview.swift in Sources */,
 				1DD7D25C1E393C2300AF1299 /* ServiceClass.swift in Sources */,
 				29773CDD1EC3B6730023F277 /* EntryViewController.swift in Sources */,
@@ -399,27 +714,71 @@
 				298FA4E61EF78EDB009B5A36 /* String+Extensions.swift in Sources */,
 				292764951EDFC8350096AE1E /* CardTableViewCell.swift in Sources */,
 				2924F9BE1EF22F090014C284 /* SegmentColorManager.swift in Sources */,
-				29EE32411EC9754E00C2FFB6 /* CardDetailViewController.swift in Sources */,
+				29E713D41F0AEDA0004B5715 /* ServiceListViewController.swift in Sources */,
+				29E39CB81F0B168300E23949 /* CategoryTableViewCell.swift in Sources */,
+				29E39CBC1F0B226600E23949 /* UpdateServiceTableViewController.swift in Sources */,
 				298FA4EA1EF78F40009B5A36 /* NSObject+Extensions.swift in Sources */,
-				2924F9C01EF24F280014C284 /* AutoCompleteTableViewCell.swift in Sources */,
+				29CA61741F09E56C00391199 /* UITextField+Extensions.swift in Sources */,
 				1DC0D8DF1DFE5F910039B8F6 /* EditCardViewController.swift in Sources */,
 				298FA4E81EF78F26009B5A36 /* UIView+Extensions.swift in Sources */,
+				298E7D511EFEF10100A83CA8 /* ServiceDetailTableViewCell.swift in Sources */,
 				1DC0D8B31DFE516A0039B8F6 /* Lynked.xcdatamodeld in Sources */,
-				297BEA031EF766500035D4DA /* Future.swift in Sources */,
+				2921B2201EFBA2E0008F377B /* TempLetterImagePickerUtility.swift in Sources */,
+				29CA61721F09C6E200391199 /* BranchUtility.swift in Sources */,
 				1DD7D2591E393C0700AF1299 /* CardClass.swift in Sources */,
+				29AA96CD1F074EA900194670 /* Identifiers.swift in Sources */,
 				29CB33121EF65EFA009CEE3B /* AcknowledgementsViewController.swift in Sources */,
+				294135FB1EFD9D8200002FAC /* CategoryManager.swift in Sources */,
 				1DC0D8AB1DFE516A0039B8F6 /* AppDelegate.swift in Sources */,
+				294D0E321EF9E9F7000E4BC6 /* CategoryViewController.swift in Sources */,
 				292764931EDFA3160096AE1E /* WalletViewController.swift in Sources */,
-				1DC0D8E11DFE5FBB0039B8F6 /* EditServiceViewController.swift in Sources */,
 				298FA4E41EF78EA4009B5A36 /* UIViewController+Extensions.swift in Sources */,
-				1D1712791E01F0870087F299 /* PreferencesViewController.swift in Sources */,
 				297BEA001EF708640035D4DA /* Library.swift in Sources */,
-				29EE32441EC975EB00C2FFB6 /* ServiceCollectionViewCell.swift in Sources */,
+				29D412B81F00D43A0081CF79 /* NewCardTableViewCell.swift in Sources */,
+				29E713D61F0AEE0E004B5715 /* ServiceTableViewCell.swift in Sources */,
 				29AA67E21EE7B4BA000EDE42 /* InAppPurchaseUtility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		295E02221F0CB4E30006AAC0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				295E02291F0CB4E30006AAC0 /* LynkedTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29EFAB1F1EFE46A1007F384E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				292DEB061F01D486008247EC /* GoogleService-Info.plist in Sources */,
+				29D412B61F00B8070081CF79 /* TempLetterImagePickerUtility.swift in Sources */,
+				29D412B51F00B6F60081CF79 /* ServicePayRateManager.swift in Sources */,
+				29D412B41F00B68F0081CF79 /* SegmentColorManager.swift in Sources */,
+				29D412B31F00B67E0081CF79 /* String+Extensions.swift in Sources */,
+				29D412B21F00B5D80081CF79 /* CardClass.swift in Sources */,
+				29D412B11F00B18C0081CF79 /* FirebaseUtility.swift in Sources */,
+				29D412B01F00B15A0081CF79 /* ServiceClass.swift in Sources */,
+				29EFAB281EFE46A1007F384E /* TodayViewController.swift in Sources */,
+				29D412AF1F00AF0C0081CF79 /* WidgetTableViewCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		295E022C1F0CB4E30006AAC0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1DC0D8A61DFE516A0039B8F6 /* Lynked */;
+			targetProxy = 295E022B1F0CB4E30006AAC0 /* PBXContainerItemProxy */;
+		};
+		29EFAB2E1EFE46A1007F384E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 29EFAB221EFE46A1007F384E /* Lynked Widget */;
+			targetProxy = 29EFAB2D1EFE46A1007F384E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		1DC0D8AE1DFE516A0039B8F6 /* Main.storyboard */ = {
@@ -436,6 +795,14 @@
 				1DC0D8B71DFE516A0039B8F6 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		29EFAB291EFE46A1007F384E /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				29EFAB2A1EFE46A1007F384E /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -481,7 +848,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -524,7 +891,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -537,7 +904,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 61C5BAFDC0F62D6BA28B7B7A /* Pods-Lynked.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Lynked/Lynked.entitlements;
 				DEVELOPMENT_TEAM = K8YZSQZRNW;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Lynked/Info.plist;
@@ -545,7 +915,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.matthewhsingleton.Lynked;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -553,7 +925,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 332153A02078D17E6D55BF0C /* Pods-Lynked.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Lynked/Lynked.entitlements;
 				DEVELOPMENT_TEAM = K8YZSQZRNW;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Lynked/Info.plist;
@@ -562,6 +937,75 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.matthewhsingleton.Lynked;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		295E022E1F0CB4E30006AAC0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				DEVELOPMENT_TEAM = K8YZSQZRNW;
+				INFOPLIST_FILE = LynkedTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.matthewhsingleton.LynkedTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lynked.app/Lynked";
+			};
+			name = Debug;
+		};
+		295E022F1F0CB4E30006AAC0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				DEVELOPMENT_TEAM = K8YZSQZRNW;
+				INFOPLIST_FILE = LynkedTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.matthewhsingleton.LynkedTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lynked.app/Lynked";
+			};
+			name = Release;
+		};
+		29EFAB311EFE46A1007F384E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 777E17BCF265AA7F0F2BABBF /* Pods-Lynked Widget.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = "Lynked Widget/Lynked Widget.entitlements";
+				DEVELOPMENT_TEAM = K8YZSQZRNW;
+				INFOPLIST_FILE = "Lynked Widget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.matthewhsingleton.Lynked.Lynked-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		29EFAB321EFE46A1007F384E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3429FCF5D80180D088B49B1 /* Pods-Lynked Widget.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = "Lynked Widget/Lynked Widget.entitlements";
+				DEVELOPMENT_TEAM = K8YZSQZRNW;
+				INFOPLIST_FILE = "Lynked Widget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.matthewhsingleton.Lynked.Lynked-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -582,6 +1026,24 @@
 			buildConfigurations = (
 				1DC0D8BD1DFE516A0039B8F6 /* Debug */,
 				1DC0D8BE1DFE516A0039B8F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		295E022D1F0CB4E30006AAC0 /* Build configuration list for PBXNativeTarget "LynkedTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				295E022E1F0CB4E30006AAC0 /* Debug */,
+				295E022F1F0CB4E30006AAC0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		29EFAB301EFE46A1007F384E /* Build configuration list for PBXNativeTarget "Lynked Widget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				29EFAB311EFE46A1007F384E /* Debug */,
+				29EFAB321EFE46A1007F384E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

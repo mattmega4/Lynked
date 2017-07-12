@@ -8,10 +8,10 @@
 
 import UIKit
 import MBProgressHUD
+import UserNotifications
 
 class AddCardViewController: UIViewController {
     
-    @IBOutlet weak var cancelNavBarButton: UIBarButtonItem!
     @IBOutlet weak var nextNavBarButton: UIBarButtonItem!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
@@ -51,10 +51,12 @@ class AddCardViewController: UIViewController {
         secondContainerTextField.delegate = self
         cardTypePickerView.delegate = self
         cardTypePickerView.dataSource = self
-
+        
         title = "Add Card"
-       
+        
         setNavBar()
+        self.navigationItem.setHidesBackButton(true, animated: true)
+        
         nextNavBarButton.isEnabled = false
         firstContainerTextField.addTarget(self, action: #selector(checkNicknameTextField(textField:)), for: .editingChanged)
         secondContainerTextField.addTarget(self, action: #selector(checkTypeTextField(textField:)), for: .editingChanged)
@@ -68,17 +70,20 @@ class AddCardViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        pushNotification()
         checkIfAllConditionsAreMet()
         allCardTypes+=["Visa", "MasterCard", "American Express", "Discover", "Capital One", "China UnionPay", "RuPay", "Diner's Club", "JCB", "Other" ]
     }
     
     
+    
+    
     // MARK: - Write to Firebase
     
     func addDataToFirebase() {
-
+        
         let nicknameToAdd = firstContainerTextField.text ?? ""
-        let nicknameWithoutWhiteSpaces = nicknameToAdd.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let nicknameWithoutWhiteSpaces = nicknameToAdd.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).capitalized
         finalNickname = nicknameWithoutWhiteSpaces.capitalized
         let last4 = secondContainerTextField.text
         let typeToAdd = finalType
@@ -88,22 +93,40 @@ class AddCardViewController: UIViewController {
         
         MBProgressHUD.showAdded(to: view, animated: true)
         
-        FirebaseUtility.shared.addCard(name: finalNickname,
-                                       type: finalType,
-                                       color: color,
-                                       last4: last4) { (card, errorMessage) in
+        FirebaseUtility.shared.addCard(name: finalNickname?.capitalized, type: finalType, color: color, last4: last4) { (card, errorMessage) in
             
             MBProgressHUD.hide(for: self.view, animated: true)
-            if let theCard = card {
-                if let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
-                    detailVC.card = theCard
-                    self.navigationController?.pushViewController(detailVC, animated: true)
-                }
-            }
-            else {
-                // Display error?
-            }
+//                if let splitVC = self.storyboard?.instantiateViewController(withIdentifier: SPLIT_STORYBOARD_IDENTIFIER) as? UISplitViewController {
+//                
+//                    self.present(splitVC, animated: true, completion: nil)
+//                }
+            self.dismiss(animated: true, completion: nil)
+
+//            else {
+//                // Display error?
+//            }
         }
+    }
+    
+    
+    // MARK: - Push Notification
+    
+    func pushNotification() {
+        if #available(iOS 10.0, *) {
+            // For iOS 10 display notification (sent via APNS)
+//            UNUserNotificationCenter.current().delegate = self
+            
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+        } else {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(settings)
+        }
+        
+        UIApplication.shared.registerForRemoteNotifications()
     }
     
     
@@ -117,13 +140,8 @@ class AddCardViewController: UIViewController {
         }
     }
     
-    // MARK: - IB Actions
     
-    @IBAction func navBarCancelButtonTapped(_ sender: UIBarButtonItem) {
-        if let walletVC = storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
-            navigationController?.pushViewController(walletVC, animated: true)
-        }
-    }
+    // MARK: - IB Actions
     
     @IBAction func navBarNextButtonTapped(_ sender: UIBarButtonItem) {
         addDataToFirebase()
@@ -150,16 +168,16 @@ class AddCardViewController: UIViewController {
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         self.scrollView.contentInset = contentInset
     }
-     
     
-} // End of AddCardViewController Class
+    
+} // MARK: - End of AddCardViewController
 
 
 // MARK: - UITextField Methods
 
 extension AddCardViewController: UITextFieldDelegate {
     
-     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if textField == firstContainerTextField {
             firstContainerTextField.returnKeyType = .next
@@ -177,7 +195,7 @@ extension AddCardViewController: UITextFieldDelegate {
         return true
     }
     
-
+    
     
     func checkNicknameTextField(textField: UITextField) {
         if textField == firstContainerTextField {
@@ -249,7 +267,13 @@ extension AddCardViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 }
 
-
+//extension AddCardViewController: UNUserNotificationCenterDelegate {
+//    
+//    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+//
+//    }
+//    
+//}
 
 
 

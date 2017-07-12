@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+
 
 class ServiceClass {
 
@@ -15,19 +17,23 @@ class ServiceClass {
     var cardID: String
     var serviceName: String?
     var serviceUrl: String?
-    var serviceStatus: Bool?
+    var serviceStatus = true
     var serviceFixed: Bool?
     var serviceAmount: Double = 0
     var serviceAttention: Int = 0
-    var servicePayRateIndex = 0
     
+    var nextPaymentDate: Date?
+    var category: String?
+    var paymentRate: String?
     
     init(id: String, cardId: String, serviceDict: [String : Any]) {
         serviceID = id
         self.cardID = cardId
         serviceName = serviceDict["serviceName"] as? String
         serviceUrl = serviceDict["serviceURL"] as? String
-        serviceStatus = serviceDict["serviceStatus"] as? Bool
+        if let theStatus = serviceDict["serviceStatus"] as? Bool {
+            serviceStatus = theStatus
+        }
         
         serviceFixed = serviceDict["serviceFixed"] as? Bool
         
@@ -38,9 +44,16 @@ class ServiceClass {
             serviceAttention = tempAtten
         }
         
-        if let theIndex = serviceDict["servicePaymentRate"] as? Int {
-            servicePayRateIndex = theIndex
+        if let payDate = serviceDict["nextPaymentDate"] as? Double {
+            nextPaymentDate = Date(timeIntervalSince1970: payDate)
+            nextPaymentDate = ServicePayRateManager.shared.getNextPaymentDateFor(service: self)
         }
+        
+        category = serviceDict["category"] as? String 
+        
+        paymentRate = serviceDict["paymentRate"] as? String
+        
+        
     }
   
 }

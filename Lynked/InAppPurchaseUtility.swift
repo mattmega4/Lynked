@@ -94,5 +94,5 @@ class InAppPurchaseUtility: NSObject, SKProductsRequestDelegate, SKPaymentTransa
         SKPaymentQueue.default().add(self)
         SKPaymentQueue.default().restoreCompletedTransactions()
     }
-   
+    
 }

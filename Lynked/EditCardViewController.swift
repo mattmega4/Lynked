@@ -39,8 +39,6 @@ class EditCardViewController: UIViewController {
     @IBOutlet weak var nicknameTextField: UITextField!
     @IBOutlet weak var digitsTextField: UITextField!
     
-    
-    
     var nicknameFieldSatisfied: Bool?
     var typeFieldSatisfied: Bool?
     var thisCardIDTransfered = ""
@@ -65,6 +63,8 @@ class EditCardViewController: UIViewController {
         self.nicknameTextField.delegate = self
         self.digitsTextField.delegate = self
         
+        
+        
         lyLogo.createRoundView()
         
         title = "Edit Card"
@@ -82,7 +82,6 @@ class EditCardViewController: UIViewController {
         
         leftNavBarButton.isEnabled = true
         rightNavBarButton.isEnabled = true
-        //pullCardData()
         populateCardInfo()
     }
     
@@ -97,7 +96,7 @@ class EditCardViewController: UIViewController {
     
     func changeStatusOfCardAndServices() { // reset all services to needs attention
         
-        let alertController = UIAlertController(title: "Something went wrong!", message: "This will mark all linked services as 'needs attention.' You will have to update each service one at a time!", preferredStyle: UIAlertControllerStyle.alert)
+        let alertController = UIAlertController(title: "Wait!", message: "This will mark all linked services as 'needs attention.' You will have to update each service one at a time!", preferredStyle: UIAlertControllerStyle.alert)
         
         let cancelAction = UIAlertAction(title: "Never Mind!", style: UIAlertActionStyle.cancel, handler: nil)
         
@@ -112,7 +111,7 @@ class EditCardViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
         
     }
-
+    
     
     // MARK: - Delete Card with UIAlert
     
@@ -127,26 +126,16 @@ class EditCardViewController: UIViewController {
             guard let theCard = self.card else {
                 return
             }
+            
             FirebaseUtility.shared.delete(card: theCard, completion: { (success, error) in
                 if let errorMessage = error {
                     print(errorMessage)
                 } else if success {
-                    var didGoBack = false
-                    if let viewControllers = self.navigationController?.viewControllers {
-                        for aController in viewControllers {
-                            if aController is WalletViewController {
-                                didGoBack = true
-                                self.navigationController?.popToViewController(aController, animated: true)
-                                break
-                            }
-                        }
-                        
-                    }
-                    if !didGoBack {
-                        if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
-                            self.navigationController?.pushViewController(walletVC, animated: true)
-                        }
-                    }
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+                    
+                    self.navigationController?.popToRootViewController(animated: true)
+                    
+                    
                 }
             })
         }
@@ -155,7 +144,7 @@ class EditCardViewController: UIViewController {
         alertController.addAction(okAction)
         
         self.present(alertController, animated: true, completion: nil)
-  
+        
     }
     
     
@@ -166,11 +155,8 @@ class EditCardViewController: UIViewController {
             return
         }
         
-        FirebaseUtility.shared.update(card: theCard,
-                                      nickName: nicknameTextField.text,
-                                      last4: digitsTextField.text,
-                                      color: segControl.selectedSegmentIndex) { (updatedCard, error) in
-                                        
+        FirebaseUtility.shared.update(card: theCard, nickName: nicknameTextField.text, last4: digitsTextField.text, color: segControl.selectedSegmentIndex) { (updatedCard, error) in
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
             self.navigationController?.popViewController(animated: true)
         }
     }
@@ -180,7 +166,7 @@ class EditCardViewController: UIViewController {
     
     @IBAction func leftBarButtonTapped(_ sender: UIBarButtonItem) {
         leftNavBarButton.isEnabled = false
-        if let detailVC = storyboard?.instantiateViewController(withIdentifier: "CardDetailVC") as? CardDetailViewController {
+        if let detailVC = storyboard?.instantiateViewController(withIdentifier: SERVICES_STORYBOARD_IDENTIFIER) as? ServiceListViewController {
             detailVC.card = card
             navigationController?.popViewController(animated: true)
         }
@@ -198,6 +184,7 @@ class EditCardViewController: UIViewController {
     @IBAction func deleteButtonTapped(_ sender: UIButton) {
         deleteCard()
     }
+    
     
     // MARK: - Keyboard Methods
     
@@ -229,7 +216,7 @@ class EditCardViewController: UIViewController {
     }
     
     
-} // End of EditCardViewController Class
+} // MARK: - End of EditCardViewController
 
 
 extension EditCardViewController: UITextFieldDelegate {
@@ -253,3 +240,7 @@ extension EditCardViewController: UITextFieldDelegate {
     }
     
 }
+
+
+
+
