@@ -2021,7 +2021,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IIl-4r-bYm">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="332.33333333333331"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LyPlainWhite" translatesAutoresizingMaskIntoConstraints="NO" id="1YO-Wo-8oR">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoWhite" translatesAutoresizingMaskIntoConstraints="NO" id="1YO-Wo-8oR">
                                                         <rect key="frame" x="86" y="45" width="242" height="242"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="1YO-Wo-8oR" secondAttribute="height" multiplier="1:1" id="Om2-1j-QNO"/>
@@ -3106,8 +3106,8 @@
     <resources>
         <image name="EditButton" width="100" height="100"/>
         <image name="Lock" width="125" height="125"/>
+        <image name="LogoWhite" width="1024" height="1024"/>
         <image name="Ly" width="50" height="50"/>
-        <image name="LyPlainWhite" width="1024" height="1024"/>
         <image name="Plus" width="125" height="125"/>
         <image name="cardImage" width="252" height="183"/>
     </resources>
