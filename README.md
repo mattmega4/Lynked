@@ -18,11 +18,9 @@ Lynked is a payment keychain for all your subscription services, so you never ha
 
 ## Demo
 
-<<<<<<< HEAD
-![Lynked Walkthrough](https://github.com/mattmega4/Lynked/blob/VersionTwo/Lynked.gif "Lynked Walkthrough")
-=======
+
 ![Lynked Walkthrough](https://github.com/mattmega4/Lynked/blob/v2.5.1/NewGif.gif "Lynked Walkthrough")
->>>>>>> v2.5.1
+
 
 
 
@@ -32,7 +30,7 @@ Visit http://www.matthewhsingleton.com/lynked OR https://itunes.apple.com/us/app
 
 ### Prerequisites
 
-iOS 10.0 +
+iOS 9.0 +
 
 ### Installing
 
