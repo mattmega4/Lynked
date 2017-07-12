@@ -11,6 +11,8 @@ import Firebase
 import FirebaseAuth
 import Fabric
 import Crashlytics
+import LocalAuthentication
+import SCPinViewController
 
 class EntryViewController: UIViewController {
     
@@ -73,8 +75,19 @@ class EntryViewController: UIViewController {
         
         checkIfBothSignInRequirementsAreMet()
         leftButtonWasTappedWhichIsDefault()
+        
+        
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if Auth.auth().currentUser != nil {
+            useTouchID()
+        }
+    }
+    
+
     // MARK: - Switch Logic For Sign In or Create Button in Bottom Container View
     
     func bottomContainerStateSwitcher() {
@@ -95,7 +108,8 @@ class EntryViewController: UIViewController {
         leftContainerButton.alpha = 0.3
         leftContainerButton.isEnabled = false
         leftContainerLabel.alpha = 0.3
-        leftContainerIndicatorImageView.image = UIImage.init(named: "indicatorTriangle.png")
+        leftContainerIndicatorImageView.image = #imageLiteral(resourceName: "indicatorTriangle")
+        //        leftContainerIndicatorImageView.image = UIImage.init(named: "indicatorTriangle.png")
     }
     
     
@@ -112,6 +126,7 @@ class EntryViewController: UIViewController {
         rightContainerButton.isEnabled = false
         rightContainerLabel.alpha = 0.3
         rightContainerIndicatorImageView.image = UIImage.init(named: "indicatorTriangle.png")
+        rightContainerIndicatorImageView.image = #imageLiteral(resourceName: "indicatorTriangle")
     }
     
     
@@ -287,13 +302,34 @@ class EntryViewController: UIViewController {
             signInOrUpButtonContainerView.isHidden = true
         }
     }
-
+    
+    
+    // MARK: - Local Authorization // spell check
+    
+    func useTouchID() {
+        
+        let context = LAContext()
+        var error: NSError?
+        
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            // can eval
+            let reason = "Use Touch ID to Log In"
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason, reply: { (success, authError) in
+                
+                DispatchQueue.main.async {
+                    if success {
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
+            })
+        }
+    }
+    
     
     // MARK: - Sign User In
     
     func signUserIn() {
-        FirebaseUtility.shared.signUserInWith(email: textFieldOne.text,
-                                              password: textFieldTwo.text) { (user, errMessage) in
+        FirebaseUtility.shared.signUserInWith(email: textFieldOne.text,password: textFieldTwo.text) { (user, errMessage) in
             
             if let errorMessage = errMessage {
                 let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errorMessage)", preferredStyle: .alert)
@@ -303,9 +339,7 @@ class EntryViewController: UIViewController {
                 alertController.addAction(OKAction)
             }
             else {
-                if let WalletVC = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as? WalletViewController {
-                    self.navigationController?.pushViewController(WalletVC, animated: true)
-                }
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }
@@ -314,20 +348,23 @@ class EntryViewController: UIViewController {
     // MARK: - Register User
     
     func registerNewUser() {
-        FirebaseUtility.shared.registerUserWith(email: newUserEmail,
-                                                password: textFieldOne.text,
-                                                confirmPassword: textFieldTwo.text) { (user, errMessage) in
+        FirebaseUtility.shared.registerUserWith(email: newUserEmail, password: textFieldOne.text, confirmPassword: textFieldTwo.text) { (user, errMessage) in
             
             if let errorMessage = errMessage {
                 let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errorMessage)", preferredStyle: .alert)
                 self.present(alertController, animated: true, completion:nil)
-                let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
+                let OKAction = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction) in
                 }
                 alertController.addAction(OKAction)
             }
             else {
-                if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddCardVC") as? AddCardViewController {
-                    self.navigationController?.pushViewController(addVC, animated: true)
+                if let pinVC = SCPinViewController(scope: .create) {
+                    pinVC.createDelegate = self
+                    self.present(pinVC, animated: true, completion: nil)
+                    
+                }
+                else {
+                    self.dismiss(animated: true, completion: nil)
                 }
             }
         }
@@ -375,7 +412,8 @@ class EntryViewController: UIViewController {
         hideShowKeyboardLogicLeftVsRight()
     }
     
-} // End of EntryPageViewController
+    
+} // MARK: - End of EntryViewController
 
 extension EntryViewController: UITextFieldDelegate {
     
@@ -386,9 +424,7 @@ extension EntryViewController: UITextFieldDelegate {
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         if leftOn == true && rightOn == false {
-            
             if textField == textFieldOne {
                 textFieldOne.returnKeyType = .next
                 textFieldTwo.becomeFirstResponder()
@@ -397,19 +433,13 @@ extension EntryViewController: UITextFieldDelegate {
                 textFieldTwo.returnKeyType = .done
                 bottomContainerStateSwitcher()
             }
-            
-            
         } else if leftOn == false && rightOn == true {
-            
             if createUserStepOneFinished == false {
-                
                 if textField == textFieldOne {
                     textFieldOne.returnKeyType = .continue
                     bottomContainerStateSwitcher()
                 }
-                
             } else {
-                
                 if textField == textFieldOne {
                     textFieldOne.returnKeyType = .next
                     textFieldTwo.becomeFirstResponder()
@@ -417,11 +447,8 @@ extension EntryViewController: UITextFieldDelegate {
                     textFieldTwo.returnKeyType = .done
                     bottomContainerStateSwitcher()
                 }
-                
-                
             }
         }
-        
         return false
     }
     
@@ -502,3 +529,28 @@ extension EntryViewController: UITextFieldDelegate {
     
     
 }
+
+// MARK: - SCPinViewControllerDelegate
+
+extension EntryViewController: SCPinViewControllerCreateDelegate {
+    
+    func pinViewController(_ pinViewController: SCPinViewController!, didSetNewPin pin: String!) {
+        UserDefaults.standard.set(pin, forKey: "pin")
+        UserDefaults.standard.set(true, forKey: "unlocked")
+        pinViewController.dismiss(animated: true) { 
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+    }
+    
+    func lengthForPin() -> Int {
+        return 4
+    }
+    
+}
+
+
+
+
+
+

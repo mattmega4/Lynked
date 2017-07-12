@@ -10,7 +10,9 @@ import UIKit
 import CoreData
 import Firebase
 import Fabric
+import Branch
 import Crashlytics
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,26 +22,58 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // MARK: - NavBar Light Color
         UIApplication.shared.statusBarStyle = .lightContent
         
-        // App Run Counter for Review
-        incrementAppRuns()
-        
-        // Firebase/Fabric
+        // MARK: - Firebase/Fabric
         FirebaseApp.configure()
-        Fabric.with([Crashlytics.self])
+        Database.database().isPersistenceEnabled = true
+        Fabric.with([Crashlytics.self, Branch.self])
+        Branch.getInstance().initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: { params, error in
+            guard error == nil else { return }
+            guard let userDidClick = params?["+clicked_branch_link"] as? Bool else { return }
+            if userDidClick {
+                // This code will execute when your app is opened from a Branch deep link, which
+                // means that you can route to a custom activity depending on what they clicked.
+                // In this example, we'll just print out the data from the link that was clicked.
+                debugPrint("deep link data:  \(String(describing: params))")
+            }
+        })
+        
+        // MARK: - App Run Counter for Review
+        incrementAppRuns()
         
         return true
     }
     
+    
+    // Respond to URI scheme links
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        // For Branch to detect when a URI scheme is clicked
+        Branch.getInstance().handleDeepLink(url as URL!)
+        // do other deep link routing for the Facebook SDK, Pinterest SDK, etc
+        return true
+    }
+    
+    // Respond to Universal Links
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+        // For Branch to detect when a Universal Link is clicked
+        Branch.getInstance().continue(userActivity)
+        return true
+    }
+    
+    
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+        UserDefaults.standard.set(true, forKey: USER_DEFAULTS_PIN_STRING)
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        UserDefaults.standard.set(true, forKey: USER_DEFAULTS_PIN_STRING)
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -53,6 +87,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
+        UserDefaults.standard.set(true, forKey: USER_DEFAULTS_PIN_STRING)
+        
         if #available(iOS 10.0, *) {
             self.saveContext()
         } else {
@@ -109,11 +145,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 }
 
-
-
-// MARK: Devslopes Idea
-
-let ad = UIApplication.shared.delegate as! AppDelegate
-@available(iOS 10.0, *)
-let context = ad.persistentContainer.viewContext
 

@@ -31,7 +31,6 @@ extension String {
         let fullTrim = outerTrim.removingWhitespaces()
         let urlForFirebase = "\(fullTrim).com"
         return urlForFirebase
-        
     }
     
     func currencyInputFormatting() -> String {
@@ -59,6 +58,5 @@ extension String {
         
         return formatter.string(from: number)!
     }
-
-    
+      
 }
