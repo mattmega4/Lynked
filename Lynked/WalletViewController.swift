@@ -83,17 +83,15 @@ class WalletViewController: UIViewController {
     func pullAllUsersCards() {
         
         FirebaseUtility.shared.getCards { (cards, errMessage) in
-            MBProgressHUD.showAdded(to: self.view, animated: true)
-            
             if let theCards = cards {
                 if theCards.count < 1 {
                     if let addVC = self.storyboard?.instantiateViewController(withIdentifier: ADD_CARD_STORYBOARD_IDENTIFIER) as? AddCardViewController {
-                        //self.navigationController?.pushViewController(addVC, animated: true)
                         let addNavigation = UINavigationController(rootViewController: addVC)
                         self.splitViewController?.present(addNavigation, animated: true, completion: nil)
                     }
                 }
                 else {
+                    MBProgressHUD.showAdded(to: self.view, animated: true)
                     self.cardArray = theCards
                     self.tableView.reloadData()
                     
