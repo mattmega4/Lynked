@@ -230,19 +230,33 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
             cell.cardBackgroundView.backgroundColor = cardArray[row].color
         }
         
-        cell.cardBackgroundView.backgroundColor = cardArray[row].color
+//        cell.cardBackgroundView.backgroundColor = cardArray[row].color
+        
+        
+        
+        if let img = cardArray[row].image {
+            cell.cardBackgroundImage.image = img
+        }
+        
+        
         cell.cardNicknameLabel.text = cardArray[row].nickname
         cell.cardNicknameLabel.font = cell.cardNicknameLabel.font.withSize((UIDevice.current.userInterfaceIdiom == .pad ? 38 : 16))
-        
         cell.cardNicknameLabel.textColor = cardArray[row].textColor
-        cell.cardDetailsLabel.text = "\(String(describing: cardArray[row].type ?? "")) \(String(describing: cardArray[row].fourDigits ?? ""))"
         
+        
+        
+        
+        cell.cardDetailsLabel.text =  "\(String(describing: cardArray[row].fourDigits ?? ""))"
+        cell.cardDetailsLabel.textColor = cardArray[row].textColor
         cell.cardDetailsLabel.font = cell.cardDetailsLabel.font.withSize((UIDevice.current.userInterfaceIdiom == .pad ? 32 : 14))
         
-        cell.cardDetailsLabel.textColor = cardArray[row].textColor
         
+        cell.cardTypeLabel.text = "\(String(describing: cardArray[row].type ?? ""))"
+        cell.cardTypeLabel.textColor = cardArray[row].textColor
+        cell.cardTypeLabel.font = cell.cardDetailsLabel.font.withSize((UIDevice.current.userInterfaceIdiom == .pad ? 32 : 14))
+ 
         return cell
-        ///
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
