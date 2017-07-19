@@ -96,15 +96,9 @@ class AddCardViewController: UIViewController {
         FirebaseUtility.shared.addCard(name: finalNickname?.capitalized, type: finalType, color: color, last4: last4) { (card, errorMessage) in
             
             MBProgressHUD.hide(for: self.view, animated: true)
-//                if let splitVC = self.storyboard?.instantiateViewController(withIdentifier: SPLIT_STORYBOARD_IDENTIFIER) as? UISplitViewController {
-//                
-//                    self.present(splitVC, animated: true, completion: nil)
-//                }
+
             self.dismiss(animated: true, completion: nil)
 
-//            else {
-//                // Display error?
-//            }
         }
     }
     
@@ -267,13 +261,6 @@ extension AddCardViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 }
 
-//extension AddCardViewController: UNUserNotificationCenterDelegate {
-//    
-//    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-//
-//    }
-//    
-//}
 
 
 

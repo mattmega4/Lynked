@@ -20,6 +20,7 @@ class SegmentColorManager: NSObject {
                           ["type" : 1, "color" : UIColor.init(red: 213.0/255.0, green: 212.0/255.0, blue: 219.0/255.0, alpha: 1.0)],
                           ["type" : 1, "color" : UIColor.init(red: 197.0/255.0, green: 179.0/255.0, blue: 88.0/255.0, alpha: 1.0)]]
     
+    
     func colorAtIndex(index: Int) -> UIColor {
         if index < colors.count {
             if let color = colors[index]["color"] as? UIColor {
@@ -29,6 +30,7 @@ class SegmentColorManager: NSObject {
         return UIColor.white
     }
     
+    
     func textColorAtIndex(index: Int) -> UIColor {
         if index < colors.count {
             if let colorNumber = colors[index]["type"] as? Int {
@@ -37,5 +39,29 @@ class SegmentColorManager: NSObject {
         }
         return UIColor.black
     }
+    
+    
+    
+    private let cardImages = [["type" : 0, "img" : #imageLiteral(resourceName: "RedCard")],
+                              ["type" : 0, "img" : #imageLiteral(resourceName: "Green Card")],
+                              ["type" : 0, "img" : #imageLiteral(resourceName: "Blue Card")],
+                              ["type" : 0, "img" : #imageLiteral(resourceName: "Black Card")],
+                              ["type" : 1, "img" : #imageLiteral(resourceName: "Silver Card")],
+                              ["type" : 1, "img" : #imageLiteral(resourceName: "Gold Card")]]
+    
+    
+    
+    
+    func imageAtIndex(index: Int) -> UIImage {
+        if index < cardImages.count {
+            if let img = cardImages[index]["img"] as? UIImage {
+                return img
+            }
+        }
+        return #imageLiteral(resourceName: "Silver Card")
+    }
+    
+    
+    
     
 }

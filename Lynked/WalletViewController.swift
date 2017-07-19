@@ -83,17 +83,15 @@ class WalletViewController: UIViewController {
     func pullAllUsersCards() {
         
         FirebaseUtility.shared.getCards { (cards, errMessage) in
-            MBProgressHUD.showAdded(to: self.view, animated: true)
-            
             if let theCards = cards {
                 if theCards.count < 1 {
                     if let addVC = self.storyboard?.instantiateViewController(withIdentifier: ADD_CARD_STORYBOARD_IDENTIFIER) as? AddCardViewController {
-                        //self.navigationController?.pushViewController(addVC, animated: true)
                         let addNavigation = UINavigationController(rootViewController: addVC)
                         self.splitViewController?.present(addNavigation, animated: true, completion: nil)
                     }
                 }
                 else {
+                    MBProgressHUD.showAdded(to: self.view, animated: true)
                     self.cardArray = theCards
                     self.tableView.reloadData()
                     
@@ -232,19 +230,33 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
             cell.cardBackgroundView.backgroundColor = cardArray[row].color
         }
         
-        cell.cardBackgroundView.backgroundColor = cardArray[row].color
+//        cell.cardBackgroundView.backgroundColor = cardArray[row].color
+        
+        
+        
+        if let img = cardArray[row].image {
+            cell.cardBackgroundImage.image = img
+        }
+        
+        
         cell.cardNicknameLabel.text = cardArray[row].nickname
         cell.cardNicknameLabel.font = cell.cardNicknameLabel.font.withSize((UIDevice.current.userInterfaceIdiom == .pad ? 38 : 16))
-        
         cell.cardNicknameLabel.textColor = cardArray[row].textColor
-        cell.cardDetailsLabel.text = "\(String(describing: cardArray[row].type ?? "")) \(String(describing: cardArray[row].fourDigits ?? ""))"
         
+        
+        
+        
+        cell.cardDetailsLabel.text =  "\(String(describing: cardArray[row].fourDigits ?? ""))"
+        cell.cardDetailsLabel.textColor = cardArray[row].textColor
         cell.cardDetailsLabel.font = cell.cardDetailsLabel.font.withSize((UIDevice.current.userInterfaceIdiom == .pad ? 32 : 14))
         
-        cell.cardDetailsLabel.textColor = cardArray[row].textColor
         
+        cell.cardTypeLabel.text = "\(String(describing: cardArray[row].type ?? ""))"
+        cell.cardTypeLabel.textColor = cardArray[row].textColor
+        cell.cardTypeLabel.font = cell.cardDetailsLabel.font.withSize((UIDevice.current.userInterfaceIdiom == .pad ? 32 : 14))
+ 
         return cell
-        ///
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
