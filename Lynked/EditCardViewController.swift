@@ -133,8 +133,11 @@ class EditCardViewController: UIViewController {
                 } else if success {
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
                     
-                    self.navigationController?.popToRootViewController(animated: true)
-                    
+//                    self.navigationController?.popToRootViewController(animated: true)
+
+                    if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: WALLET_STORYBOARD_IDENTIFIER) as? WalletViewController {
+                        self.navigationController?.pushViewController(walletVC, animated: true)
+                    }
                     
                 }
             })
