@@ -575,7 +575,7 @@
                                                     <rect key="frame" x="15" y="35" width="384" height="44.666666666666671"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL" keyboardAppearance="alert"/>
                                                     <connections>
                                                         <action selector="amountTextFieldActive:" destination="ygS-Zi-hLv" eventType="editingChanged" id="1GX-1m-C3h"/>
                                                         <outlet property="delegate" destination="E8Q-9N-fOS" id="E0z-hg-hKC"/>
@@ -706,7 +706,7 @@
                                                     <rect key="frame" x="15" y="35" width="320" height="44.666666666666671"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="alert"/>
                                                     <connections>
                                                         <action selector="amountTextFieldActive:" destination="OXt-EZ-GQM" eventType="editingChanged" id="OMK-GA-rNA"/>
                                                         <outlet property="delegate" destination="E8Q-9N-fOS" id="eoI-CT-mIN"/>
