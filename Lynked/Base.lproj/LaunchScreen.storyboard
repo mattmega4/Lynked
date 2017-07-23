@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -25,7 +25,6 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="675" id="IBh-1z-iUM"/>
                                     <constraint firstAttribute="height" constant="63" id="ema-oe-q49"/>
-                                    <constraint firstAttribute="width" constant="228" id="jq3-rq-VYJ"/>
                                     <constraint firstAttribute="height" constant="190" id="v7w-HH-K2X"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="GillSans-UltraBold" family="Gill Sans" pointSize="100"/>
@@ -41,7 +40,6 @@
                                     <mask key="constraints">
                                         <include reference="IBh-1z-iUM"/>
                                         <exclude reference="ema-oe-q49"/>
-                                        <exclude reference="jq3-rq-VYJ"/>
                                         <include reference="v7w-HH-K2X"/>
                                     </mask>
                                 </variation>
@@ -50,7 +48,9 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="KsG-Iv-Oib" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="DIg-9t-DOp"/>
+                            <constraint firstItem="KsG-Iv-Oib" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="46" id="fYb-ub-MS5"/>
                             <constraint firstItem="KsG-Iv-Oib" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="g2Y-rr-SqH"/>
+                            <constraint firstAttribute="trailing" secondItem="KsG-Iv-Oib" secondAttribute="trailing" constant="46" id="r4m-kN-u1v"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>

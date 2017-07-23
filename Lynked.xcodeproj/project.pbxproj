@@ -28,6 +28,7 @@
 		294D0E321EF9E9F7000E4BC6 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294D0E311EF9E9F7000E4BC6 /* CategoryViewController.swift */; };
 		2950A4521EFE40BF00F94BF4 /* ServicePayRateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2950A4511EFE40BF00F94BF4 /* ServicePayRateManager.swift */; };
 		295E02291F0CB4E30006AAC0 /* LynkedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295E02281F0CB4E30006AAC0 /* LynkedTests.swift */; };
+		296898DB1F248D6100071021 /* LegalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296898DA1F248D6100071021 /* LegalViewController.swift */; };
 		29773CDD1EC3B6730023F277 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29773CDC1EC3B6730023F277 /* EntryViewController.swift */; };
 		297BE9FC1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 297BE9FB1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist */; };
 		297BE9FE1EF707EA0035D4DA /* AcknowledgementsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297BE9FD1EF707EA0035D4DA /* AcknowledgementsViewModel.swift */; };
@@ -130,6 +131,7 @@
 		295E02261F0CB4E30006AAC0 /* LynkedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LynkedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		295E02281F0CB4E30006AAC0 /* LynkedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LynkedTests.swift; sourceTree = "<group>"; };
 		295E022A1F0CB4E30006AAC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		296898DA1F248D6100071021 /* LegalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegalViewController.swift; sourceTree = "<group>"; };
 		29773CDC1EC3B6730023F277 /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		297BE9FB1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Pods-Lynked-acknowledgements.plist"; path = "../Pods/Target Support Files/Pods-Lynked/Pods-Lynked-acknowledgements.plist"; sourceTree = "<group>"; };
 		297BE9FD1EF707EA0035D4DA /* AcknowledgementsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AcknowledgementsViewModel.swift; path = ../AcknowledgementsViewModel.swift; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 				291EC7CD1F0F524700900500 /* FeedbackViewController.swift */,
 				29CB33111EF65EFA009CEE3B /* AcknowledgementsViewController.swift */,
 				2921B2251EFBA47E008F377B /* Acknowledgement */,
+				296898DA1F248D6100071021 /* LegalViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -718,6 +721,7 @@
 				2924F9BE1EF22F090014C284 /* SegmentColorManager.swift in Sources */,
 				29E713D41F0AEDA0004B5715 /* ServiceListViewController.swift in Sources */,
 				29E39CB81F0B168300E23949 /* CategoryTableViewCell.swift in Sources */,
+				296898DB1F248D6100071021 /* LegalViewController.swift in Sources */,
 				29E39CBC1F0B226600E23949 /* UpdateServiceTableViewController.swift in Sources */,
 				298FA4EA1EF78F40009B5A36 /* NSObject+Extensions.swift in Sources */,
 				29CA61741F09E56C00391199 /* UITextField+Extensions.swift in Sources */,
