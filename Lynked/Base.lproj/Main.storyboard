@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1el-ye-wps">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1el-ye-wps">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1114,8 +1114,48 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="68" id="Dsb-Y4-tk0">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="68" id="bwO-xe-S56">
                                         <rect key="frame" x="0.0" y="404" width="414" height="68"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bwO-xe-S56" id="4T4-9n-w2e">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="67.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c4o-lo-Kqi">
+                                                    <rect key="frame" x="15" y="4.9999999999999964" width="334" height="57.666666666666657"/>
+                                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
+                                                    <state key="normal" title="Legal">
+                                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="legalButtonTapped:" destination="ey9-uw-oJd" eventType="touchUpInside" id="dwU-ES-cPG"/>
+                                                        <action selector="tellFriendButtonTapped:" destination="ey9-uw-oJd" eventType="touchUpInside" id="Ggh-iK-uDh"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PzD-jP-DP2">
+                                                    <rect key="frame" x="364" y="4.9999999999999964" width="35" height="57.666666666666657"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="35" id="pjt-L0-6Wr"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
+                                                    <state key="normal" title="&gt;">
+                                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="c4o-lo-Kqi" firstAttribute="top" secondItem="4T4-9n-w2e" secondAttribute="top" constant="5" id="7aD-J4-3ah"/>
+                                                <constraint firstItem="PzD-jP-DP2" firstAttribute="bottom" secondItem="c4o-lo-Kqi" secondAttribute="bottom" id="BSj-yz-2hP"/>
+                                                <constraint firstItem="PzD-jP-DP2" firstAttribute="top" secondItem="c4o-lo-Kqi" secondAttribute="top" id="fpu-zw-OEL"/>
+                                                <constraint firstAttribute="trailing" secondItem="PzD-jP-DP2" secondAttribute="trailing" constant="15" id="pwj-HL-tZz"/>
+                                                <constraint firstAttribute="bottom" secondItem="c4o-lo-Kqi" secondAttribute="bottom" constant="5" id="uiI-Le-9Oc"/>
+                                                <constraint firstItem="PzD-jP-DP2" firstAttribute="leading" secondItem="c4o-lo-Kqi" secondAttribute="trailing" constant="15" id="xT9-S3-KVK"/>
+                                                <constraint firstItem="c4o-lo-Kqi" firstAttribute="leading" secondItem="4T4-9n-w2e" secondAttribute="leading" constant="15" id="zzP-gl-Xjl"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="68" id="Dsb-Y4-tk0">
+                                        <rect key="frame" x="0.0" y="472" width="414" height="68"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dsb-Y4-tk0" id="1eA-e1-bDL">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="67.5"/>
@@ -1154,7 +1194,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="68" id="Jhm-ut-V0d">
-                                        <rect key="frame" x="0.0" y="472" width="414" height="68"/>
+                                        <rect key="frame" x="0.0" y="540" width="414" height="68"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jhm-ut-V0d" id="rbO-L5-Mjq">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="67.5"/>
@@ -1234,6 +1274,8 @@
                         <outlet property="headerView" destination="D1U-an-2qd" id="ruy-jL-bEt"/>
                         <outlet property="invisibleProfileButton" destination="Vuo-Kk-caE" id="tav-1t-LfS"/>
                         <outlet property="leftNavBarButton" destination="cII-tc-S8U" id="qBL-zS-ZHL"/>
+                        <outlet property="legalButton" destination="c4o-lo-Kqi" id="eYD-f9-Vlk"/>
+                        <outlet property="legalCell" destination="bwO-xe-S56" id="uJg-hd-itV"/>
                         <outlet property="logoutButton" destination="0VX-es-dvp" id="Dy7-jR-WLS"/>
                         <outlet property="logoutCell" destination="Dsb-Y4-tk0" id="iuu-aT-BOL"/>
                         <outlet property="nameLabel" destination="Ne4-jc-Hfn" id="fLQ-wo-D8A"/>
@@ -1242,7 +1284,6 @@
                         <outlet property="profileImageView" destination="ihe-vT-hj7" id="NWT-PJ-F1g"/>
                         <outlet property="recommendButton" destination="z1q-ht-Wwe" id="4t9-GY-ThM"/>
                         <outlet property="recommendCell" destination="DBf-oZ-bra" id="0Vq-2J-etd"/>
-                        <outlet property="tableView" destination="3GK-qB-KeF" id="fpO-q7-Kf2"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="26b-fn-gZt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1367,7 +1408,136 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gMI-Sh-OJe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="11519" y="-459"/>
+            <point key="canvasLocation" x="10593" y="293"/>
+        </scene>
+        <!--Legal View Controller-->
+        <scene sceneID="lBf-Kq-WMp">
+            <objects>
+                <viewController storyboardIdentifier="legalVC" id="Uki-5Z-124" customClass="LegalViewController" customModule="Lynked" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZGE-RC-Rk5"/>
+                        <viewControllerLayoutGuide type="bottom" id="Irh-mk-i8N"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9tz-wO-YrB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zUJ-7o-j1F">
+                                <rect key="frame" x="15" y="79" width="384" height="642"/>
+                                <mutableString key="text">Terms of Service
+
+Last updated: July 23, 2017
+
+Please read these Terms of Service ("Terms", "Terms of Service") carefully before using the Lynked mobile application (the "Service") operated by Lynked ("us", "we", or "our").
+
+Your access to and use of the Service is conditioned upon your acceptance of and compliance with these Terms. These Terms apply to all visitors, users and others who wish to access or use the Service.
+
+By accessing or using the Service you agree to be bound by these Terms. If you disagree with any part of the terms then you do not have permission to access the Service.
+
+Communications
+
+By creating an Account on our service, you agree to subscribe to newsletters, marketing or promotional materials and other information we may send. However, you may opt out of receiving any, or all, of these communications from us by following the unsubscribe link or instructions provided in any email we send.
+
+Content
+
+Our Service allows you to post, link, store, share and otherwise make available certain information, text, graphics, videos, or other material ("Content"). You are responsible for the Content that you post on or through the Service, including its legality, reliability, and appropriateness.
+
+By posting Content on or through the Service, You represent and warrant that: (i) the Content is yours (you own it) and/or you have the right to use it and the right to grant us the rights and license as provided in these Terms, and (ii) that the posting of your Content on or through the Service does not violate the privacy rights, publicity rights, copyrights, contract rights or any other rights of any person or entity. We reserve the right to terminate the account of anyone found to be infringing on a copyright.
+
+You retain any and all of your rights to any Content you submit, post or display on or through the Service and you are responsible for protecting those rights. We take no responsibility and assume no liability for Content you or any third party posts on or through the Service. However, by posting Content using the Service you grant us the right and license to use, modify, perform, display, reproduce, and distribute such Content on and through the Service.
+
+Lynked has the right but not the obligation to monitor and edit all Content provided by users.
+
+In addition, Content found on or through this Service are the property of Lynked or used with permission. You may not distribute, modify, transmit, reuse, download, repost, copy, or use said Content, whether in whole or in part, for commercial purposes or for personal gain, without express advance written permission from us.
+
+Accounts
+
+When you create an account with us, you guarantee that you are above the age of 18, and that the information you provide us is accurate, complete, and current at all times. Inaccurate, incomplete, or obsolete information may result in the immediate termination of your account on the Service.
+
+You are responsible for maintaining the confidentiality of your account and password, including but not limited to the restriction of access to your computer and/or account. You agree to accept responsibility for any and all activities or actions that occur under your account and/or password, whether your password is with our Service or a third-party service. You must notify us immediately upon becoming aware of any breach of security or unauthorized use of your account.
+
+You may not use as a username the name of another person or entity or that is not lawfully available for use, a name or trademark that is subject to any rights of another person or entity other than you, without appropriate authorization. You may not use as a username any name that is offensive, vulgar or obscene.
+
+Links To Other Web Sites
+
+Our Service may contain links to third party web sites or services that are not owned or controlled by Lynked
+
+Lynked has no control over, and assumes no responsibility for the content, privacy policies, or practices of any third party web sites or services. We do not warrant the offerings of any of these entities/individuals or their websites.
+
+You acknowledge and agree that Lynked shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods or services available on or through any such third party web sites or services.
+
+We strongly advise you to read the terms and conditions and privacy policies of any third party web sites or services that you visit.
+
+Termination
+
+We may terminate or suspend your account and bar access to the Service immediately, without prior notice or liability, under our sole discretion, for any reason whatsoever and without limitation, including but not limited to a breach of the Terms.
+
+If you wish to terminate your account, you may simply discontinue using the Service.
+
+All provisions of the Terms which by their nature should survive termination shall survive termination, including, without limitation, ownership provisions, warranty disclaimers, indemnity and limitations of liability.
+
+Indemnification
+
+You agree to defend, indemnify and hold harmless Lynked and its licensee and licensors, and their employees, contractors, agents, officers and directors, from and against any and all claims, damages, obligations, losses, liabilities, costs or debt, and expenses (including but not limited to attorney's fees), resulting from or arising out of a) your use and access of the Service, by you or any person using your account and password; b) a breach of these Terms, or c) Content posted on the Service.
+
+Limitation Of Liability
+
+In no event shall Lynked, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from (i) your access to or use of or inability to access or use the Service; (ii) any conduct or content of any third party on the Service; (iii) any content obtained from the Service; and (iv) unauthorized access, use or alteration of your transmissions or content, whether based on warranty, contract, tort (including negligence) or any other legal theory, whether or not we have been informed of the possibility of such damage, and even if a remedy set forth herein is found to have failed of its essential purpose.
+
+Disclaimer
+
+Your use of the Service is at your sole risk. The Service is provided on an "AS IS" and "AS AVAILABLE" basis. The Service is provided without warranties of any kind, whether express or implied, including, but not limited to, implied warranties of merchantability, fitness for a particular purpose, non-infringement or course of performance.
+
+Lynked its subsidiaries, affiliates, and its licensors do not warrant that a) the Service will function uninterrupted, secure or available at any particular time or location; b) any errors or defects will be corrected; c) the Service is free of viruses or other harmful components; or d) the results of using the Service will meet your requirements.
+
+Exclusions
+
+Some jurisdictions do not allow the exclusion of certain warranties or the exclusion or limitation of liability for consequential or incidental damages, so the limitations above may not apply to you.
+
+Governing Law
+
+These Terms shall be governed and construed in accordance with the laws of California, United States, without regard to its conflict of law provisions.
+
+Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights. If any provision of these Terms is held to be invalid or unenforceable by a court, the remaining provisions of these Terms will remain in effect. These Terms constitute the entire agreement between us regarding our Service, and supersede and replace any prior agreements we might have had between us regarding the Service.
+
+Changes
+
+We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will provide at least 30 days notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.
+
+By continuing to access or use our Service after any revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, you are no longer authorized to use the Service.
+
+Contact Us
+
+If you have any questions about these Terms, please contact us.</mutableString>
+                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zUJ-7o-j1F" firstAttribute="top" secondItem="ZGE-RC-Rk5" secondAttribute="bottom" constant="15" id="OG1-pg-jHe"/>
+                            <constraint firstAttribute="trailing" secondItem="zUJ-7o-j1F" secondAttribute="trailing" constant="15" id="Pkd-6z-rbe"/>
+                            <constraint firstItem="Irh-mk-i8N" firstAttribute="top" secondItem="zUJ-7o-j1F" secondAttribute="bottom" constant="15" id="TJx-G4-9GU"/>
+                            <constraint firstItem="zUJ-7o-j1F" firstAttribute="leading" secondItem="9tz-wO-YrB" secondAttribute="leading" constant="15" id="Tuf-9p-vLI"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="dPl-uK-Dtc">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="ZEo-jz-LBy">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="leftNavBarButtonTapped:" destination="Uki-5Z-124" id="1nK-ig-BZM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="leftNavBarButton" destination="ZEo-jz-LBy" id="XNH-ed-Iq6"/>
+                        <outlet property="legalLabel" destination="zUJ-7o-j1F" id="zUi-XT-qw6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PF8-ds-th5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="11581" y="293"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="oGJ-zm-oiP">
@@ -1885,19 +2055,19 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="202"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lynked" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8o0-ss-tgj">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lynked" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8o0-ss-tgj">
                                             <rect key="frame" x="94" y="25" width="226" height="62"/>
                                             <fontDescription key="fontDescription" name="GillSans-UltraBold" family="Gill Sans" pointSize="50"/>
                                             <color key="textColor" red="0.42352941176470588" green="0.61960784313725492" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPa-uj-XB3">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lPa-uj-XB3">
                                             <rect key="frame" x="187" y="95" width="40" height="20"/>
                                             <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="17"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This app uses the following libraries" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQc-CU-Ses">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This app uses the following libraries" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RQc-CU-Ses">
                                             <rect key="frame" x="10" y="167" width="394" height="20"/>
                                             <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="17"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1926,13 +2096,13 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U0I-d3-7fK">
                                                     <rect key="frame" x="10" y="10.000000000000007" width="394" height="111.66666666666669"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUT-Kj-Mvj">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dUT-Kj-Mvj">
                                                             <rect key="frame" x="10" y="20" width="374" height="20"/>
                                                             <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="17"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BIn-ah-ijJ">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BIn-ah-ijJ">
                                                             <rect key="frame" x="10" y="50" width="374" height="17.666666666666671"/>
                                                             <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1965,6 +2135,7 @@
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="cellDesign" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="descriptionLabel" destination="BIn-ah-ijJ" id="gRb-45-FXf"/>
@@ -1984,6 +2155,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="bUo-Dc-yz7">
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="s7d-oF-x5Y">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="doneButtonTapped:" destination="yXD-Dp-unn" id="K4K-SW-C2v"/>
                             </connections>
@@ -3124,6 +3296,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x7x-t7-LfL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="10593" y="-459"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="K3k-MY-PZl">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Zsl-Da-Yq1" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ps4-fk-3sf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Uki-5Z-124" kind="relationship" relationship="rootViewController" id="bYw-4s-6JH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2F3-Oe-AYb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="11583" y="-460"/>
         </scene>
     </scenes>
     <resources>

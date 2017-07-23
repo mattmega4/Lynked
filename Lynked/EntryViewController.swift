@@ -75,8 +75,6 @@ class EntryViewController: UIViewController {
         
         checkIfBothSignInRequirementsAreMet()
         leftButtonWasTappedWhichIsDefault()
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {

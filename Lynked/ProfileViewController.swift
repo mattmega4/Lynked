@@ -35,6 +35,9 @@ class ProfileViewController: UITableViewController {
     @IBOutlet weak var acknowledgementCell: UITableViewCell!
     @IBOutlet weak var acknowledgementButton: UIButton!
     
+    @IBOutlet weak var legalCell: UITableViewCell!
+    @IBOutlet weak var legalButton: UIButton!
+    
     @IBOutlet weak var logoutCell: UITableViewCell!
     @IBOutlet weak var logoutButton: UIButton!
     
@@ -161,11 +164,11 @@ class ProfileViewController: UITableViewController {
         nameLabel.isHidden = true
         nameTextField.isHidden = false
     }
-
+    
     
     //MARK: - Right Container IBActions
     
-
+    
     
     @IBAction func feedbackButtonTapped(_ sender: UIButton) {
         
@@ -188,10 +191,17 @@ class ProfileViewController: UITableViewController {
         }
     }
     
-
+    
     @IBAction func acknowledgementsButtonTapped(_ sender: UIButton) {
         if let ackVC = self.storyboard?.instantiateViewController(withIdentifier: ACKNOWLEDGEMENTS_STORYBOARD_IDENTIFIER) as? AcknowledgementsViewController {
             self.navigationController?.pushViewController(ackVC, animated: true)
+        }
+    }
+    
+    
+    @IBAction func legalButtonTapped(_ sender: UIButton) {
+        if let legalVC = self.storyboard?.instantiateViewController(withIdentifier: LEGAL_STORYBOARD_IDENTIFIER) as? LegalViewController {
+            self.navigationController?.pushViewController(legalVC, animated: true)
         }
     }
     
@@ -229,20 +239,20 @@ class ProfileViewController: UITableViewController {
     
     // MARK: - Keyboard Methods
     
-//    func keyboardWillShow(notification:NSNotification) {
-//        var userInfo = notification.userInfo!
-//        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-//        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
-//        var contentInset: UIEdgeInsets = self.scrollView.contentInset
-//        contentInset.bottom = keyboardFrame.size.height
-//        self.scrollView.contentInset = contentInset
-//    }
-//    
-//    
-//    func keyboardWillHide(notification:NSNotification) {
-//        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
-//        self.scrollView.contentInset = contentInset
-//    }
+    //    func keyboardWillShow(notification:NSNotification) {
+    //        var userInfo = notification.userInfo!
+    //        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+    //        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+    //        var contentInset: UIEdgeInsets = self.scrollView.contentInset
+    //        contentInset.bottom = keyboardFrame.size.height
+    //        self.scrollView.contentInset = contentInset
+    //    }
+    //
+    //
+    //    func keyboardWillHide(notification:NSNotification) {
+    //        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+    //        self.scrollView.contentInset = contentInset
+    //    }
     
     
 }
