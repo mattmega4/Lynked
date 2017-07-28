@@ -208,8 +208,10 @@ class ProfileViewController: UITableViewController {
     @IBAction func logoutButtonTapped(_ sender: UIButton) {
         do {
             try Auth.auth().signOut()
+            
             if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: ENTRY_STORYBOARD_IDENTIFIER) as? EntryViewController {
-                self.navigationController?.pushViewController(loginVC, animated: true)
+                //self.navigationController?.pushViewController(loginVC, animated: true)
+                dismiss(animated: true, completion: nil)
             }
         }
         catch {

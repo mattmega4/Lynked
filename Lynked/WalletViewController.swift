@@ -55,16 +55,18 @@ class WalletViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
         
-        pullAllUsersCards()
+        
         
         if Auth.auth().currentUser == nil {
+            cardArray.removeAll()
+            self.tableView.reloadData()
             if let loginVc = storyboard?.instantiateViewController(withIdentifier: ENTRY_STORYBOARD_IDENTIFIER) as? EntryViewController {
                 let loginNavigation = UINavigationController(rootViewController: loginVc)
                 self.splitViewController?.present(loginNavigation, animated: true, completion: nil)
             }
         }
         else {
-            
+            pullAllUsersCards()
             let appLocked = UserDefaults.standard.bool(forKey: USER_DEFAULTS_PIN_STRING)
             
             if !appLocked {
