@@ -98,6 +98,8 @@ class EditCardViewController: UIViewController {
         
         let alertController = UIAlertController(title: "Wait!", message: "This will mark all linked services as 'needs attention.' You will have to update each service one at a time!", preferredStyle: UIAlertControllerStyle.alert)
         
+
+        
         let cancelAction = UIAlertAction(title: "Never Mind!", style: UIAlertActionStyle.cancel, handler: nil)
         
         let okAction = UIAlertAction(title: "I Understand!", style: UIAlertActionStyle.default) { (result: UIAlertAction) in

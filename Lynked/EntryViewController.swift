@@ -37,6 +37,7 @@ class EntryViewController: UIViewController {
     @IBOutlet weak var textFieldTwo: UITextField!
     @IBOutlet weak var signInOrUpButtonContainerView: UIView!
     @IBOutlet weak var signInOrUpButton: UIButton!
+    @IBOutlet weak var resetPasswordButton: UIButton!
     
     var leftOn: Bool?
     var rightOn: Bool?
@@ -85,7 +86,7 @@ class EntryViewController: UIViewController {
         }
     }
     
-
+    
     // MARK: - Switch Logic For Sign In or Create Button in Bottom Container View
     
     func bottomContainerStateSwitcher() {
@@ -352,20 +353,52 @@ class EntryViewController: UIViewController {
                 let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errorMessage)", preferredStyle: .alert)
                 self.present(alertController, animated: true, completion:nil)
                 let OKAction = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction) in
+                    self.rightButtonWasTapped()
                 }
                 alertController.addAction(OKAction)
             }
             else {
-                if let pinVC = SCPinViewController(scope: .create) {
-                    pinVC.createDelegate = self
-                    self.present(pinVC, animated: true, completion: nil)
-                    
-                }
-                else {
-                    self.dismiss(animated: true, completion: nil)
-                }
+                //                if let pinVC = SCPinViewController(scope: .create) {
+                //                    pinVC.createDelegate = self
+                //                    self.present(pinVC, animated: true, completion: nil)
+                //
+                //                }
+                //                else {
+                self.dismiss(animated: true, completion: nil)
+                //                }
             }
         }
+    }
+    
+    // MARK: - Reset Password
+    
+    func resetPassword() {
+        
+        
+        let alertController = UIAlertController(title: "Reset Password?", message: "An email will be sent to the entered email address with a link to reset password", preferredStyle: UIAlertControllerStyle.alert)
+        
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Email"
+            textField.keyboardAppearance = .dark
+            textField.keyboardType = .emailAddress
+        }
+
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+        
+        let okAction = UIAlertAction(title: "Reset", style: UIAlertActionStyle.destructive) { (result: UIAlertAction) in
+            
+            if let txt = alertController.textFields?.first?.text {
+                FirebaseUtility.shared.resetPasswordWith(email: txt, completion: { (result) in
+                    self.leftButtonWasTappedWhichIsDefault()
+                })
+            }
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+
     }
     
     
@@ -383,6 +416,9 @@ class EntryViewController: UIViewController {
         bottomContainerStateSwitcher()
     }
     
+    @IBAction func resetPasswordButtonTapped(_ sender: UIButton) {
+        resetPassword()
+    }
     
     // MARK: - Keyboard Methods
     
@@ -435,14 +471,17 @@ extension EntryViewController: UITextFieldDelegate {
             if createUserStepOneFinished == false {
                 if textField == textFieldOne {
                     textFieldOne.returnKeyType = .continue
+                    textFieldOne.keyboardType = .emailAddress
                     bottomContainerStateSwitcher()
                 }
             } else {
                 if textField == textFieldOne {
                     textFieldOne.returnKeyType = .next
+                    textFieldOne.keyboardType = .default
                     textFieldTwo.becomeFirstResponder()
                 } else {
                     textFieldTwo.returnKeyType = .done
+                    textFieldTwo.keyboardType = .default
                     bottomContainerStateSwitcher()
                 }
             }
@@ -535,11 +574,14 @@ extension EntryViewController: SCPinViewControllerCreateDelegate {
     func pinViewController(_ pinViewController: SCPinViewController!, didSetNewPin pin: String!) {
         UserDefaults.standard.set(pin, forKey: "pin")
         UserDefaults.standard.set(true, forKey: "unlocked")
-        pinViewController.dismiss(animated: true) { 
+        pinViewController.dismiss(animated: true) {
             self.dismiss(animated: true, completion: nil)
         }
         
     }
+    
+    
+    
     
     func lengthForPin() -> Int {
         return 4

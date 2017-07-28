@@ -437,7 +437,17 @@ class FirebaseUtility: NSObject {
     }
     
     
-    // MARK: - Login/Signup
+    // MARK: - Auth
+    
+    func resetPasswordWith(email: String, completion: (_ error: String) -> Void) {
+        Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+            print(error.debugDescription)
+        }
+    }
+    
+//    Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+//    // ...
+//    }
     
     func signUserInWith(email: String?, password: String?, completion: @escaping (_ user: User?, _ errorMessage: String?) -> Void) {
         
