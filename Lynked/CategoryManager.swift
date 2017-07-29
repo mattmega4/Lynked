@@ -12,7 +12,7 @@ class Category: NSObject {
     
     var id = 0
     var name: String?
-    var services = [ServiceClass]()
+    var services = [Service]()
     
 }
 

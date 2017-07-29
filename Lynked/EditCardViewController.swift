@@ -51,8 +51,8 @@ class EditCardViewController: UIViewController {
     var cardID: String?
     var cardDeleted = false
     
-    var card: CardClass?
-    var serviceArray = [ServiceClass]()
+    var card: Card?
+    var serviceArray = [Service]()
     
     let ref = Database.database().reference()
     let user = Auth.auth().currentUser

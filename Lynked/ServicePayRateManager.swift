@@ -18,7 +18,7 @@ class ServicePayRateManager: NSObject {
         //                    "Quarterly",
         "Annually"]
     
-    func getNextPaymentDateFor(service: ServiceClass) -> Date? {
+    func getNextPaymentDateFor(service: Service) -> Date? {
         if let theDate = service.nextPaymentDate {
             if theDate.timeIntervalSinceNow > 0 {
                 return service.nextPaymentDate

@@ -15,8 +15,10 @@
 		1DC0D8B81DFE516A0039B8F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DC0D8B61DFE516A0039B8F6 /* LaunchScreen.storyboard */; };
 		1DC0D8D91DFE59360039B8F6 /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC0D8D81DFE59360039B8F6 /* AddCardViewController.swift */; };
 		1DC0D8DF1DFE5F910039B8F6 /* EditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC0D8DE1DFE5F910039B8F6 /* EditCardViewController.swift */; };
-		1DD7D2591E393C0700AF1299 /* CardClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7D2581E393C0700AF1299 /* CardClass.swift */; };
-		1DD7D25C1E393C2300AF1299 /* ServiceClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7D25B1E393C2300AF1299 /* ServiceClass.swift */; };
+		290AC7C51F2C667500EE2783 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290AC7C41F2C667500EE2783 /* Card.swift */; };
+		290AC7C91F2C66AE00EE2783 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290AC7C41F2C667500EE2783 /* Card.swift */; };
+		290AC7CF1F2C695500EE2783 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290AC7CE1F2C695500EE2783 /* Service.swift */; };
+		290AC7D01F2C695500EE2783 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290AC7CE1F2C695500EE2783 /* Service.swift */; };
 		291EC7CE1F0F524700900500 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291EC7CD1F0F524700900500 /* FeedbackViewController.swift */; };
 		2921B2201EFBA2E0008F377B /* TempLetterImagePickerUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921B21F1EFBA2E0008F377B /* TempLetterImagePickerUtility.swift */; };
 		2924F9BE1EF22F090014C284 /* SegmentColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */; };
@@ -51,9 +53,7 @@
 		29CB33121EF65EFA009CEE3B /* AcknowledgementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CB33111EF65EFA009CEE3B /* AcknowledgementsViewController.swift */; };
 		29CB33141EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CB33131EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift */; };
 		29D412AF1F00AF0C0081CF79 /* WidgetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D412AE1F00AF0C0081CF79 /* WidgetTableViewCell.swift */; };
-		29D412B01F00B15A0081CF79 /* ServiceClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7D25B1E393C2300AF1299 /* ServiceClass.swift */; };
 		29D412B11F00B18C0081CF79 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */; };
-		29D412B21F00B5D80081CF79 /* CardClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7D2581E393C0700AF1299 /* CardClass.swift */; };
 		29D412B31F00B67E0081CF79 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FA4E51EF78EDB009B5A36 /* String+Extensions.swift */; };
 		29D412B41F00B68F0081CF79 /* SegmentColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */; };
 		29D412B51F00B6F60081CF79 /* ServicePayRateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2950A4511EFE40BF00F94BF4 /* ServicePayRateManager.swift */; };
@@ -114,9 +114,9 @@
 		1DC0D8B91DFE516A0039B8F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1DC0D8D81DFE59360039B8F6 /* AddCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
 		1DC0D8DE1DFE5F910039B8F6 /* EditCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCardViewController.swift; sourceTree = "<group>"; };
-		1DD7D2581E393C0700AF1299 /* CardClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardClass.swift; sourceTree = "<group>"; };
-		1DD7D25B1E393C2300AF1299 /* ServiceClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceClass.swift; sourceTree = "<group>"; };
 		267A4AE157A5C3F5E4C71A91 /* Pods_Lynked.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lynked.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		290AC7C41F2C667500EE2783 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		290AC7CE1F2C695500EE2783 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		291EC7CD1F0F524700900500 /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		2921B21F1EFBA2E0008F377B /* TempLetterImagePickerUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempLetterImagePickerUtility.swift; sourceTree = "<group>"; };
 		2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentColorManager.swift; sourceTree = "<group>"; };
@@ -267,9 +267,9 @@
 				29AA67E11EE7B4BA000EDE42 /* InAppPurchaseUtility.swift */,
 				2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */,
 				29D5906A1EF5AE5600CA66D6 /* RequestReview.swift */,
-				1DD7D2581E393C0700AF1299 /* CardClass.swift */,
+				290AC7C41F2C667500EE2783 /* Card.swift */,
+				290AC7CE1F2C695500EE2783 /* Service.swift */,
 				294135FA1EFD9D8200002FAC /* CategoryManager.swift */,
-				1DD7D25B1E393C2300AF1299 /* ServiceClass.swift */,
 				2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */,
 				2921B21F1EFBA2E0008F377B /* TempLetterImagePickerUtility.swift */,
 				2950A4511EFE40BF00F94BF4 /* ServicePayRateManager.swift */,
@@ -709,11 +709,11 @@
 				1DC0D8D91DFE59360039B8F6 /* AddCardViewController.swift in Sources */,
 				291EC7CE1F0F524700900500 /* FeedbackViewController.swift in Sources */,
 				298FA4EC1EF78F5C009B5A36 /* Array+Extensions.swift in Sources */,
+				290AC7C51F2C667500EE2783 /* Card.swift in Sources */,
 				297BE9FE1EF707EA0035D4DA /* AcknowledgementsViewModel.swift in Sources */,
 				29CB33141EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift in Sources */,
 				29929B541F08F6EA00369314 /* ProfileViewController.swift in Sources */,
 				29D5906B1EF5AE5600CA66D6 /* RequestReview.swift in Sources */,
-				1DD7D25C1E393C2300AF1299 /* ServiceClass.swift in Sources */,
 				29773CDD1EC3B6730023F277 /* EntryViewController.swift in Sources */,
 				2943B48B1EF624D600A0E8DD /* FirebaseUtility.swift in Sources */,
 				298FA4E61EF78EDB009B5A36 /* String+Extensions.swift in Sources */,
@@ -731,10 +731,10 @@
 				1DC0D8B31DFE516A0039B8F6 /* Lynked.xcdatamodeld in Sources */,
 				2921B2201EFBA2E0008F377B /* TempLetterImagePickerUtility.swift in Sources */,
 				29CA61721F09C6E200391199 /* BranchUtility.swift in Sources */,
-				1DD7D2591E393C0700AF1299 /* CardClass.swift in Sources */,
 				29AA96CD1F074EA900194670 /* Identifiers.swift in Sources */,
 				29CB33121EF65EFA009CEE3B /* AcknowledgementsViewController.swift in Sources */,
 				294135FB1EFD9D8200002FAC /* CategoryManager.swift in Sources */,
+				290AC7CF1F2C695500EE2783 /* Service.swift in Sources */,
 				1DC0D8AB1DFE516A0039B8F6 /* AppDelegate.swift in Sources */,
 				294D0E321EF9E9F7000E4BC6 /* CategoryViewController.swift in Sources */,
 				292764931EDFA3160096AE1E /* WalletViewController.swift in Sources */,
@@ -763,9 +763,9 @@
 				29D412B51F00B6F60081CF79 /* ServicePayRateManager.swift in Sources */,
 				29D412B41F00B68F0081CF79 /* SegmentColorManager.swift in Sources */,
 				29D412B31F00B67E0081CF79 /* String+Extensions.swift in Sources */,
-				29D412B21F00B5D80081CF79 /* CardClass.swift in Sources */,
 				29D412B11F00B18C0081CF79 /* FirebaseUtility.swift in Sources */,
-				29D412B01F00B15A0081CF79 /* ServiceClass.swift in Sources */,
+				290AC7C91F2C66AE00EE2783 /* Card.swift in Sources */,
+				290AC7D01F2C695500EE2783 /* Service.swift in Sources */,
 				29EFAB281EFE46A1007F384E /* TodayViewController.swift in Sources */,
 				29D412AF1F00AF0C0081CF79 /* WidgetTableViewCell.swift in Sources */,
 			);

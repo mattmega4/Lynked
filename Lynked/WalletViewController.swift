@@ -21,7 +21,7 @@ class WalletViewController: UIViewController {
     var cardNicknameToTransfer: String?
     var card4ToTransfer: String?
     var cardtypeToTransfer: String?
-    var cardArray: [CardClass] = []
+    var cardArray: [Card] = []
     
     var delegate: WalletViewControllerDelegate?
     
@@ -36,7 +36,7 @@ class WalletViewController: UIViewController {
         
         title = "Wallet"
         setNavBar()
-        FirebaseUtility.shared.getAllServices { (services, error) in }
+//        FirebaseUtility.shared.getAllServices { (services, error) in }
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 500
@@ -53,9 +53,9 @@ class WalletViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        FirebaseUtility.shared.getAllServices { (services, error) in }
+        
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
-        
-        
         
         if Auth.auth().currentUser == nil {
             cardArray.removeAll()
@@ -101,8 +101,7 @@ class WalletViewController: UIViewController {
                 }
             }
             else {
-                //                debugPrint(errMessage)
-                // TODO: - Display error
+
             }
         }
     }
@@ -208,7 +207,6 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
         }
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -232,22 +230,15 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
             cell.cardBackgroundView.backgroundColor = cardArray[row].color
         }
         
-//        cell.cardBackgroundView.backgroundColor = cardArray[row].color
-        
-        
-        
         if let img = cardArray[row].image {
             cell.cardBackgroundImage.image = img
         }
-        
         
         cell.cardNicknameLabel.text = cardArray[row].nickname
         cell.cardNicknameLabel.font = cell.cardNicknameLabel.font.withSize((UIDevice.current.userInterfaceIdiom == .pad ? 38 : 16))
         cell.cardNicknameLabel.textColor = cardArray[row].textColor
         
-        
-        
-        
+
         cell.cardDetailsLabel.text =  "\(String(describing: cardArray[row].fourDigits ?? ""))"
         cell.cardDetailsLabel.textColor = cardArray[row].textColor
         cell.cardDetailsLabel.font = cell.cardDetailsLabel.font.withSize((UIDevice.current.userInterfaceIdiom == .pad ? 32 : 14))
@@ -317,7 +308,7 @@ extension WalletViewController: UISplitViewControllerDelegate {
 }
 
 protocol WalletViewControllerDelegate {
-    func walletViewController(controller: WalletViewController, didSelectCard card: CardClass)
+    func walletViewController(controller: WalletViewController, didSelectCard card: Card)
 }
 
 
