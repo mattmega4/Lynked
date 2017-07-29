@@ -1,17 +1,14 @@
 //
-//  ServiceClass.swift
+//  Service.swift
 //  Lynked
 //
-//  Created by Matthew Singleton on 1/25/17.
+//  Created by Matthew Howes Singleton on 7/28/17.
 //  Copyright © 2017 Matthew Singleton. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
-
-class ServiceClass {
-
+class Service: NSObject {
     
     var serviceID: String
     var cardID: String
@@ -27,6 +24,7 @@ class ServiceClass {
     var paymentRate: String?
     
     init(id: String, cardId: String, serviceDict: [String : Any]) {
+        
         serviceID = id
         self.cardID = cardId
         serviceName = serviceDict["serviceName"] as? String
@@ -46,16 +44,18 @@ class ServiceClass {
         
         if let payDate = serviceDict["nextPaymentDate"] as? Double {
             nextPaymentDate = Date(timeIntervalSince1970: payDate)
-            nextPaymentDate = ServicePayRateManager.shared.getNextPaymentDateFor(service: self)
+            
+            //            nextPaymentDate = ServicePayRateManager.shared.getNextPaymentDateFor(service: self)
+            
         }
         
-        category = serviceDict["category"] as? String 
+        category = serviceDict["category"] as? String
         
         paymentRate = serviceDict["paymentRate"] as? String
         
         
     }
-  
+    
+    
+    
 }
-
-

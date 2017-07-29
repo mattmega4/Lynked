@@ -28,10 +28,10 @@ class ServiceListViewController: UIViewController {
     
     
     let categoryPickerView = UIPickerView()
-    var serviceArray = [ServiceClass]()
+    var serviceArray = [Service]()
     var categories = [String]()
     var isDisplayingCategories = false
-    var card: CardClass?
+    var card: Card?
     
     let SERVICE_CELL_IDENTIFIER = "servCell"
     let CATEGORY_CELL_IDENTIFIER = "categoryCell"
@@ -129,7 +129,7 @@ class ServiceListViewController: UIViewController {
     
     // MARK: - Add Service
     
-    func addService(service: ServiceClass) {
+    func addService(service: Service) {
         serviceArray.append(service)
         sortArray()
     }
@@ -312,7 +312,8 @@ extension ServiceListViewController: UITableViewDelegate, UITableViewDataSource 
             
             if let fxed = service.serviceFixed {
                 if fxed == true {
-                    if let dueDate = service.nextPaymentDate {
+                    
+                    if let dueDate = ServicePayRateManager.shared.getNextPaymentDateFor(service: service) {
                         let date = dueDate
                         let formatter = DateFormatter()
                         formatter.dateFormat = "MMM dd, yyyy"

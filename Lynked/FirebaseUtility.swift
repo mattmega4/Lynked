@@ -24,7 +24,7 @@ class FirebaseUtility: NSObject {
     
     // MARK: - Cards
     
-    func getCards(completion: @escaping (_ cards: [CardClass]?, _ errorMessage: String?) -> Void) {
+    func getCards(completion: @escaping (_ cards: [Card]?, _ errorMessage: String?) -> Void) {
         
         guard let userID = user?.uid else {
             let error = "Unknown error occured! User is not logged in."
@@ -35,21 +35,19 @@ class FirebaseUtility: NSObject {
         let userCardRef = ref.child("newCards").child(userID)
         userCardRef.observeSingleEvent(of: .value, with: { (snapshot) in
             let enumerator = snapshot.children
-            var cards = [CardClass]()
+            var cards = [Card]()
             
             while let cardSnapshot = enumerator.nextObject() as? DataSnapshot {
-                
                 if let cardDict = cardSnapshot.value as? [String : Any] {
-                    let card = CardClass(id: cardSnapshot.key, cardDict: cardDict)
+                    let card = Card(id: cardSnapshot.key, cardDict: cardDict)
                     cards.append(card)
                 }
             }
             completion(cards, nil)
-            
         })
     }
     
-    func addCard(name: String?, type: String?, color: Int, last4: String?, completion: @escaping (_ card: CardClass?, _ errMessage: String?) -> Void) {
+    func addCard(name: String?, type: String?, color: Int, last4: String?, completion: @escaping (_ card: Card?, _ errMessage: String?) -> Void) {
         guard let theName = name else {
             let errorMessage = "Please enter the card name"
             completion(nil, errorMessage)
@@ -82,7 +80,7 @@ class FirebaseUtility: NSObject {
                     
                     Answers.logCustomEvent(withName: "New Card Added",
                                            customAttributes: nil)
-                    let card = CardClass(id: ref.key, cardDict: cardDict)
+                    let card = Card(id: ref.key, cardDict: cardDict)
                     completion(card, nil)
                 }
             })
@@ -90,7 +88,7 @@ class FirebaseUtility: NSObject {
     }
     
     
-    func delete(card: CardClass, completion: @escaping (_ success: Bool, _ error: String?) -> Void) {
+    func delete(card: Card, completion: @escaping (_ success: Bool, _ error: String?) -> Void) {
         
         guard let userId = user?.uid else {
             let errMessage = "Something went wrong"
@@ -118,7 +116,7 @@ class FirebaseUtility: NSObject {
         }
     }
     
-    func update(card: CardClass, nickName: String?, last4: String?, color: Int, completion: @escaping (_ card: CardClass?, _ error: String?) -> Void) {
+    func update(card: Card, nickName: String?, last4: String?, color: Int, completion: @escaping (_ card: Card?, _ error: String?) -> Void) {
         guard let userId = user?.uid else {
             let errMessage = "Something went wrong"
             completion(nil, errMessage)
@@ -146,7 +144,7 @@ class FirebaseUtility: NSObject {
                 Answers.logCustomEvent(withName: "Update Card",
                                        customAttributes: nil)
                 
-                let card = CardClass(id: ref.key, cardDict: cardDict)
+                let card = Card(id: ref.key, cardDict: cardDict)
                 completion(card, nil)
             }
         })
@@ -155,15 +153,15 @@ class FirebaseUtility: NSObject {
     
     // MARK: - Services
     
-    func getServicesFor(card: CardClass, completion: @escaping (_ services: [ServiceClass]?, _ error: Error?) -> Void) {
+    func getServicesFor(card: Card, completion: @escaping (_ services: [Service]?, _ error: Error?) -> Void) {
         let servicesRef = ref.child("newServices").child(card.cardID)
         servicesRef.observeSingleEvent(of: .value, with: { (snapshot) in
             let enumerator = snapshot.children
-            var serviceArray = [ServiceClass]()
+            var serviceArray = [Service]()
             while let serviceSnapshot = enumerator.nextObject() as? DataSnapshot {
                 
                 if let serviceDict = serviceSnapshot.value as? [String : Any] {
-                    let service = ServiceClass(id:serviceSnapshot.key, cardId: card.cardID, serviceDict: serviceDict)
+                    let service = Service(id:serviceSnapshot.key, cardId: card.cardID, serviceDict: serviceDict)
                     serviceArray.append(service)
                 }
             }
@@ -172,7 +170,7 @@ class FirebaseUtility: NSObject {
     }
     
     
-    func addService(name: String?, forCard card: CardClass?, withCategory category: String?, completion: @escaping (_ service: ServiceClass?, _ errMessage: String?) -> Void) {
+    func addService(name: String?, forCard card: Card?, withCategory category: String?, completion: @escaping (_ service: Service?, _ errMessage: String?) -> Void) {
         guard let theName = name else {
             let errorMessage = "Please enter the service name"
             completion(nil, errorMessage)
@@ -213,18 +211,18 @@ class FirebaseUtility: NSObject {
                 
                 Answers.logCustomEvent(withName: "New Service Added",
                                        customAttributes: nil)
-                let service = ServiceClass(id: ref.key, cardId: theCard.cardID, serviceDict: serviceDict)
+                let service = Service(id: ref.key, cardId: theCard.cardID, serviceDict: serviceDict)
                 completion(service, nil)
             }
         })
     }
     
-    func resetServices(services: [ServiceClass], completion: @escaping (_ services: [ServiceClass]) -> Void) {
-        resetServices(services: services, updatedServices: [ServiceClass](), index: 0, completion: completion)
+    func resetServices(services: [Service], completion: @escaping (_ services: [Service]) -> Void) {
+        resetServices(services: services, updatedServices: [Service](), index: 0, completion: completion)
     }
     
     
-    private func resetServices(services: [ServiceClass], updatedServices:[ServiceClass], index: Int, completion: @escaping (_ services: [ServiceClass]) -> Void) {
+    private func resetServices(services: [Service], updatedServices:[Service], index: Int, completion: @escaping (_ services: [Service]) -> Void) {
         var theServices = updatedServices
         if index < services.count {
             let service = services[index]
@@ -254,7 +252,7 @@ class FirebaseUtility: NSObject {
         }
     }
     
-    func update(service: ServiceClass?,
+    func update(service: Service?,
                 name: String?,
                 url: String?,
                 amount: String?,
@@ -264,7 +262,7 @@ class FirebaseUtility: NSObject {
                 scheduled: Double?,
                 categ: String?,
                 paymentDate: Date?,
-                completion: @escaping (_ service: ServiceClass?, _ errMessage: String?) -> Void) {
+                completion: @escaping (_ service: Service?, _ errMessage: String?) -> Void) {
         
         guard let service = service else {
             let errorMessage = "Something went wrong"
@@ -335,14 +333,14 @@ class FirebaseUtility: NSObject {
                                        customAttributes: nil)
                 
                 
-                let service = ServiceClass(id: ref.key, cardId: service.cardID, serviceDict: serviceDict)
+                let service = Service(id: ref.key, cardId: service.cardID, serviceDict: serviceDict)
                 completion(service, nil)
             }
         })
     }
     
     
-    func delete(service: ServiceClass?, completion: @escaping (_ success: Bool, _ error: String?) -> Void) {
+    func delete(service: Service?, completion: @escaping (_ success: Bool, _ error: String?) -> Void) {
         
         guard let service = service else {
             let errorMessage = "Something went wrong"
@@ -374,7 +372,7 @@ class FirebaseUtility: NSObject {
     
     // MARK: - Today Extension Services
     
-    func getAllServices(completion: @escaping (_ services: [ServiceClass]?, _ errorMessage: String?) -> Void) {
+    func getAllServices(completion: @escaping (_ services: [Service]?, _ errorMessage: String?) -> Void) {
         getCards { (cards, error) in
             if let theCards = cards {
                 self.getServices(cards: theCards, index: 0, services: [], completion: { (services, error) in
@@ -392,7 +390,7 @@ class FirebaseUtility: NSObject {
         }
     }
     
-    private func getSimpleArrayFrom(services: [ServiceClass]) -> [[String : String]] {
+    private func getSimpleArrayFrom(services: [Service]) -> [[String : String]] {
         var simpleArray = [[String : String]]()
         
         let sortedServices = services.sorted { (service1, service2) -> Bool in
@@ -402,7 +400,7 @@ class FirebaseUtility: NSObject {
             guard let service2Date = service2.nextPaymentDate else {
                 return true
             }
-            return service1Date.compare(service2Date) == .orderedDescending
+            return service1Date.compare(service2Date) == .orderedAscending
         }
         
         for i in 0..<sortedServices.count {
@@ -419,7 +417,7 @@ class FirebaseUtility: NSObject {
     }
     
     
-    private func getServices(cards: [CardClass], index: Int, services: [ServiceClass], completion: @escaping (_ services: [ServiceClass]?, _ errorMessage: String?) -> Void) {
+    private func getServices(cards: [Card], index: Int, services: [Service], completion: @escaping (_ services: [Service]?, _ errorMessage: String?) -> Void) {
         if index < cards.count {
             let card = cards[index]
             getServicesFor(card: card, completion: { (serviceArray, error) in
@@ -445,9 +443,6 @@ class FirebaseUtility: NSObject {
         }
     }
     
-//    Auth.auth().sendPasswordReset(withEmail: email) { (error) in
-//    // ...
-//    }
     
     func signUserInWith(email: String?, password: String?, completion: @escaping (_ user: User?, _ errorMessage: String?) -> Void) {
         
@@ -574,6 +569,11 @@ class FirebaseUtility: NSObject {
         if let userID = user?.uid {
             let userRef = ref.child("users").child(userID)
             userRef.updateChildValues(["userName" : name])
+        }
+        if let user = Auth.auth().currentUser {
+            let changeRequest = user.createProfileChangeRequest()
+            changeRequest.displayName = name
+            changeRequest.commitChanges(completion: nil)
         }
     }
     

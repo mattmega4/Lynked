@@ -13,7 +13,6 @@ import Firebase
 import CoreMedia
 
 
-
 class TodayViewController: UIViewController, NCWidgetProviding {
     
     @IBOutlet weak var signInLabel: UILabel!
@@ -69,7 +68,7 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return min(serviceArray.count, 3)
+        return min(serviceArray.count, 2)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

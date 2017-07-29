@@ -62,7 +62,7 @@ class UpdateServiceTableViewController: UITableViewController {
     var servPayRate: String?
     var servScheduled: Double?
     
-    var service: ServiceClass?
+    var service: Service?
     
     let categoryPicker = UIPickerView()
     let payRatePicker = UIPickerView()
@@ -150,13 +150,13 @@ class UpdateServiceTableViewController: UITableViewController {
             servPayRate = theRate
             paymentIncrimentTextField.text = theRate
         }
-        
-        if let theScheduled = service?.nextPaymentDate {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "MMM dd, yyyy"
-            paymentDateTextField.text = formatter.string(from: theScheduled)
-            servScheduled = theScheduled.timeIntervalSinceReferenceDate
-            
+        if let theService = service {
+            if let theScheduled = ServicePayRateManager.shared.getNextPaymentDateFor(service: theService) {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "MMM dd, yyyy"
+                paymentDateTextField.text = formatter.string(from: theScheduled)
+                servScheduled = theScheduled.timeIntervalSinceReferenceDate
+            }
         }
     }
     
@@ -173,7 +173,7 @@ class UpdateServiceTableViewController: UITableViewController {
     }
     
     
-    // MARK: - Firebase Methods
+    // MARK: - Update Service
     
     func updateServiceToFirebase() {
         if servFixed {
@@ -188,6 +188,7 @@ class UpdateServiceTableViewController: UITableViewController {
                                           categ: categoryTextField?.text,
                                           paymentDate: datePicker.date,
                                           completion: { (updatedService, errMessage) in
+                                             FirebaseUtility.shared.getAllServices { (services, error) in }
                                             self.navigationController?.popViewController(animated: true)
             })
             

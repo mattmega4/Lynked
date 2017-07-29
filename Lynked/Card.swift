@@ -1,17 +1,15 @@
 //
-//  CardClass.swift
+//  Card.swift
 //  Lynked
 //
-//  Created by Matthew Singleton on 1/25/17.
+//  Created by Matthew Howes Singleton on 7/28/17.
 //  Copyright © 2017 Matthew Singleton. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
+class Card: NSObject {
 
-class CardClass {
-    
     var cardID: String
     var nickname: String?
     var fourDigits: String?
@@ -34,5 +32,7 @@ class CardClass {
             textColor = SegmentColorManager.shared.textColorAtIndex(index: theIndex)
         }
     }
+    
+
     
 }
