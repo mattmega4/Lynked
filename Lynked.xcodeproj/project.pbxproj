@@ -20,7 +20,6 @@
 		290AC7CF1F2C695500EE2783 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290AC7CE1F2C695500EE2783 /* Service.swift */; };
 		290AC7D01F2C695500EE2783 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290AC7CE1F2C695500EE2783 /* Service.swift */; };
 		291EC7CE1F0F524700900500 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291EC7CD1F0F524700900500 /* FeedbackViewController.swift */; };
-		2921B2201EFBA2E0008F377B /* TempLetterImagePickerUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921B21F1EFBA2E0008F377B /* TempLetterImagePickerUtility.swift */; };
 		2924F9BE1EF22F090014C284 /* SegmentColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */; };
 		292764931EDFA3160096AE1E /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292764921EDFA3160096AE1E /* WalletViewController.swift */; };
 		292764951EDFC8350096AE1E /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292764941EDFC8350096AE1E /* CardTableViewCell.swift */; };
@@ -52,12 +51,13 @@
 		29CA61741F09E56C00391199 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA61731F09E56C00391199 /* UITextField+Extensions.swift */; };
 		29CB33121EF65EFA009CEE3B /* AcknowledgementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CB33111EF65EFA009CEE3B /* AcknowledgementsViewController.swift */; };
 		29CB33141EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CB33131EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift */; };
+		29CF61E61F2D7AE4006659FE /* InitialImageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CF61E51F2D7AE4006659FE /* InitialImageFactory.swift */; };
+		29CF61E71F2D7C0C006659FE /* InitialImageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CF61E51F2D7AE4006659FE /* InitialImageFactory.swift */; };
 		29D412AF1F00AF0C0081CF79 /* WidgetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D412AE1F00AF0C0081CF79 /* WidgetTableViewCell.swift */; };
 		29D412B11F00B18C0081CF79 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */; };
 		29D412B31F00B67E0081CF79 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FA4E51EF78EDB009B5A36 /* String+Extensions.swift */; };
 		29D412B41F00B68F0081CF79 /* SegmentColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */; };
 		29D412B51F00B6F60081CF79 /* ServicePayRateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2950A4511EFE40BF00F94BF4 /* ServicePayRateManager.swift */; };
-		29D412B61F00B8070081CF79 /* TempLetterImagePickerUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921B21F1EFBA2E0008F377B /* TempLetterImagePickerUtility.swift */; };
 		29D412B81F00D43A0081CF79 /* NewCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D412B71F00D43A0081CF79 /* NewCardTableViewCell.swift */; };
 		29D5906B1EF5AE5600CA66D6 /* RequestReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D5906A1EF5AE5600CA66D6 /* RequestReview.swift */; };
 		29E39CB81F0B168300E23949 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E39CB71F0B168300E23949 /* CategoryTableViewCell.swift */; };
@@ -118,7 +118,6 @@
 		290AC7C41F2C667500EE2783 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		290AC7CE1F2C695500EE2783 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		291EC7CD1F0F524700900500 /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
-		2921B21F1EFBA2E0008F377B /* TempLetterImagePickerUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempLetterImagePickerUtility.swift; sourceTree = "<group>"; };
 		2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentColorManager.swift; sourceTree = "<group>"; };
 		292764921EDFA3160096AE1E /* WalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		292764941EDFC8350096AE1E /* CardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
@@ -153,6 +152,7 @@
 		29CA61731F09E56C00391199 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
 		29CB33111EF65EFA009CEE3B /* AcknowledgementsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcknowledgementsViewController.swift; sourceTree = "<group>"; };
 		29CB33131EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcknowledgementsTableViewCell.swift; sourceTree = "<group>"; };
+		29CF61E51F2D7AE4006659FE /* InitialImageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialImageFactory.swift; sourceTree = "<group>"; };
 		29D412AE1F00AF0C0081CF79 /* WidgetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidgetTableViewCell.swift; sourceTree = "<group>"; };
 		29D412B71F00D43A0081CF79 /* NewCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCardTableViewCell.swift; sourceTree = "<group>"; };
 		29D5906A1EF5AE5600CA66D6 /* RequestReview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestReview.swift; sourceTree = "<group>"; };
@@ -271,9 +271,9 @@
 				290AC7CE1F2C695500EE2783 /* Service.swift */,
 				294135FA1EFD9D8200002FAC /* CategoryManager.swift */,
 				2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */,
-				2921B21F1EFBA2E0008F377B /* TempLetterImagePickerUtility.swift */,
 				2950A4511EFE40BF00F94BF4 /* ServicePayRateManager.swift */,
 				29CA61711F09C6E200391199 /* BranchUtility.swift */,
+				29CF61E51F2D7AE4006659FE /* InitialImageFactory.swift */,
 				1DC0D8B11DFE516A0039B8F6 /* Lynked.xcdatamodeld */,
 			);
 			name = Model;
@@ -727,7 +727,7 @@
 				298FA4E81EF78F26009B5A36 /* UIView+Extensions.swift in Sources */,
 				298E7D511EFEF10100A83CA8 /* ServiceDetailTableViewCell.swift in Sources */,
 				1DC0D8B31DFE516A0039B8F6 /* Lynked.xcdatamodeld in Sources */,
-				2921B2201EFBA2E0008F377B /* TempLetterImagePickerUtility.swift in Sources */,
+				29CF61E61F2D7AE4006659FE /* InitialImageFactory.swift in Sources */,
 				29CA61721F09C6E200391199 /* BranchUtility.swift in Sources */,
 				29AA96CD1F074EA900194670 /* Identifiers.swift in Sources */,
 				29CB33121EF65EFA009CEE3B /* AcknowledgementsViewController.swift in Sources */,
@@ -757,7 +757,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				292DEB061F01D486008247EC /* GoogleService-Info.plist in Sources */,
-				29D412B61F00B8070081CF79 /* TempLetterImagePickerUtility.swift in Sources */,
 				29D412B51F00B6F60081CF79 /* ServicePayRateManager.swift in Sources */,
 				29D412B41F00B68F0081CF79 /* SegmentColorManager.swift in Sources */,
 				29D412B31F00B67E0081CF79 /* String+Extensions.swift in Sources */,
@@ -766,6 +765,7 @@
 				290AC7D01F2C695500EE2783 /* Service.swift in Sources */,
 				29EFAB281EFE46A1007F384E /* TodayViewController.swift in Sources */,
 				29D412AF1F00AF0C0081CF79 /* WidgetTableViewCell.swift in Sources */,
+				29CF61E71F2D7C0C006659FE /* InitialImageFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
