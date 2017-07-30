@@ -83,13 +83,11 @@ class ProfileViewController: UITableViewController {
         }
       }
       if let profileName = userInfo?["userName"] {
-        
         self.nameLabel.text = profileName
         self.editNameButton.isHidden = false
         self.nameLabel.isHidden = false
         self.nameTextField.isHidden = true
-      }
-      else {
+      } else {
         self.editNameButton.isHidden = true
         self.nameLabel.isHidden = true
         self.nameTextField.isHidden = false

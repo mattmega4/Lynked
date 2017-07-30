@@ -10,7 +10,7 @@ import UIKit
 import StoreKit
 import MBProgressHUD
 import FirebaseAuth
-import SCPinViewController
+//import SCPinViewController
 
 class WalletViewController: UIViewController {
   
@@ -64,20 +64,17 @@ class WalletViewController: UIViewController {
         let loginNavigation = UINavigationController(rootViewController: loginVc)
         self.splitViewController?.present(loginNavigation, animated: true, completion: nil)
       }
-    }
-    else {
+    } else {
       pullAllUsersCards()
-      let appLocked = UserDefaults.standard.bool(forKey: USER_DEFAULTS_PIN_STRING)
+      //      let appLocked = UserDefaults.standard.bool(forKey: USER_DEFAULTS_PIN_STRING)
       
-      if !appLocked {
-        
-        if let pinVC = SCPinViewController(scope: .validate) {
-          
-          pinVC.dataSource = self
-          pinVC.validateDelegate = self
-          self.present(pinVC, animated: true, completion: nil)
-        }
-      }
+      //      if !appLocked {
+      //        if let pinVC = SCPinViewController(scope: .validate) {
+      //          pinVC.dataSource = self
+      //          pinVC.validateDelegate = self
+      //          self.present(pinVC, animated: true, completion: nil)
+      //        }
+      //      }
     }
   }
   
@@ -91,17 +88,15 @@ class WalletViewController: UIViewController {
             let addNavigation = UINavigationController(rootViewController: addVC)
             self.splitViewController?.present(addNavigation, animated: true, completion: nil)
           }
-        }
-        else {
+        } else {
           MBProgressHUD.showAdded(to: self.view, animated: true)
           self.cardArray = theCards
           self.tableView.reloadData()
           
           MBProgressHUD.hide(for: self.view, animated: true)
         }
-      }
-      else {
-        
+      } else {
+        //
       }
     }
   }
@@ -135,8 +130,7 @@ class WalletViewController: UIViewController {
         if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: ADD_CARD_STORYBOARD_IDENTIFIER) as? AddCardViewController {
           self.navigationController?.pushViewController(addCardVC, animated: true)
         }
-      }
-      else  {
+      } else  {
         self.showAlertWith(title: "Purchase Failed!", message: error?.localizedDescription)
       }
     }
@@ -148,19 +142,17 @@ class WalletViewController: UIViewController {
         if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: ADD_CARD_STORYBOARD_IDENTIFIER) as? AddCardViewController {
           self.navigationController?.pushViewController(addCardVC, animated: true)
         }
-      }
-      else  {
+      } else  {
         self.showAlertWith(title: "Purchase Failed!", message: error?.localizedDescription)
       }
     }
   }
-} // MARK: - End of WalletViewController
+}
 
 
 // MARK: - TableView Delegate & Data Source Methods
 
 extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
-  
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
@@ -193,7 +185,6 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
       self.selectedCard = self.cardArray[row].cardID
       if self.selectedCard != "" {
         if let cardDVC = self.storyboard?.instantiateViewController(withIdentifier: SERVICES_STORYBOARD_IDENTIFIER) as? ServiceListViewController {
-          
           
           if let cell = tableView.cellForRow(at: indexPath) as? CardTableViewCell {
             cell.cardBorderView.backgroundColor = .orange
@@ -258,34 +249,34 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
   
 }
 
-extension WalletViewController: SCPinViewControllerDataSource, SCPinViewControllerValidateDelegate {
-  
-  
-  func code(for pinViewController: SCPinViewController!) -> String! {
-    if let pin = UserDefaults.standard.object(forKey: "pin") as? String {
-      return pin
-    }
-    return "1234"
-  }
-  
-  func pinViewControllerDidSetWrongPin(_ pinViewController: SCPinViewController!) {
-    print("wrong pin")
-  }
-  
-  func pinViewControllerDidSetСorrectPin(_ pinViewController: SCPinViewController!) {
-    UserDefaults.standard.set(true, forKey: "unlocked")
-    pinViewController.dismiss(animated: true, completion: nil)
-  }
-  
-  func showTouchIDVerificationImmediately() -> Bool {
-    return true
-  }
-  
-  func hideTouchIDButtonIfFingersAreNotEnrolled() -> Bool {
-    return true
-  }
-  
-}
+//extension WalletViewController: SCPinViewControllerDataSource, SCPinViewControllerValidateDelegate {
+//
+//
+//  func code(for pinViewController: SCPinViewController!) -> String! {
+//    if let pin = UserDefaults.standard.object(forKey: "pin") as? String {
+//      return pin
+//    }
+//    return "1234"
+//  }
+//
+//  func pinViewControllerDidSetWrongPin(_ pinViewController: SCPinViewController!) {
+//    print("wrong pin")
+//  }
+//
+//  func pinViewControllerDidSetСorrectPin(_ pinViewController: SCPinViewController!) {
+//    UserDefaults.standard.set(true, forKey: "unlocked")
+//    pinViewController.dismiss(animated: true, completion: nil)
+//  }
+//
+//  func showTouchIDVerificationImmediately() -> Bool {
+//    return true
+//  }
+//
+//  func hideTouchIDButtonIfFingersAreNotEnrolled() -> Bool {
+//    return true
+//  }
+//
+//}
 
 extension WalletViewController: UISplitViewControllerDelegate {
   

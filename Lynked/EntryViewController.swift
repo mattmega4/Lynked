@@ -12,7 +12,7 @@ import FirebaseAuth
 import Fabric
 import Crashlytics
 import LocalAuthentication
-import SCPinViewController
+//import SCPinViewController
 
 class EntryViewController: UIViewController {
   
@@ -336,8 +336,7 @@ class EntryViewController: UIViewController {
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
         }
         alertController.addAction(OKAction)
-      }
-      else {
+      } else {
         self.dismiss(animated: true, completion: nil)
       }
     }
@@ -356,14 +355,12 @@ class EntryViewController: UIViewController {
           self.rightButtonWasTapped()
         }
         alertController.addAction(OKAction)
-      }
-      else {
+      } else {
         //                if let pinVC = SCPinViewController(scope: .create) {
         //                    pinVC.createDelegate = self
         //                    self.present(pinVC, animated: true, completion: nil)
         //
-        //                }
-        //                else {
+        //                } else {
         self.dismiss(animated: true, completion: nil)
         //                }
       }
@@ -373,7 +370,6 @@ class EntryViewController: UIViewController {
   // MARK: - Reset Password
   
   func resetPassword() {
-    
     
     let alertController = UIAlertController(title: "Reset Password?", message: "An email will be sent to the entered email address with a link to reset password", preferredStyle: UIAlertControllerStyle.alert)
     
@@ -456,14 +452,12 @@ extension EntryViewController: UITextFieldDelegate {
     return false
   }
   
-  
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     if leftOn == true && rightOn == false {
       if textField == textFieldOne {
         textFieldOne.returnKeyType = .next
         textFieldTwo.becomeFirstResponder()
-      }
-      else {
+      } else {
         textFieldTwo.returnKeyType = .done
         bottomContainerStateSwitcher()
       }
@@ -530,8 +524,7 @@ extension EntryViewController: UITextFieldDelegate {
             self.topFieldIsSatisfied = false
           }
           checkIfTopContinueRequirementIsMet()
-        }
-        else {
+        } else {
           if textField.text?.isEmpty == true {
             self.topFieldIsSatisfied = false
           } else {
@@ -569,25 +562,22 @@ extension EntryViewController: UITextFieldDelegate {
 
 // MARK: - SCPinViewControllerDelegate
 
-extension EntryViewController: SCPinViewControllerCreateDelegate {
-  
-  func pinViewController(_ pinViewController: SCPinViewController!, didSetNewPin pin: String!) {
-    UserDefaults.standard.set(pin, forKey: "pin")
-    UserDefaults.standard.set(true, forKey: "unlocked")
-    pinViewController.dismiss(animated: true) {
-      self.dismiss(animated: true, completion: nil)
-    }
-    
-  }
-  
-  
-  
-  
-  func lengthForPin() -> Int {
-    return 4
-  }
-  
-}
+//extension EntryViewController: SCPinViewControllerCreateDelegate {
+//
+//  func pinViewController(_ pinViewController: SCPinViewController!, didSetNewPin pin: String!) {
+//    UserDefaults.standard.set(pin, forKey: "pin")
+//    UserDefaults.standard.set(true, forKey: "unlocked")
+//    pinViewController.dismiss(animated: true) {
+//      self.dismiss(animated: true, completion: nil)
+//    }
+//
+//  }
+//
+//  func lengthForPin() -> Int {
+//    return 4
+//  }
+//
+//}
 
 
 

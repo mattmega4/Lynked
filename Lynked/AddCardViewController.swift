@@ -76,8 +76,6 @@ class AddCardViewController: UIViewController {
   }
   
   
-  
-  
   // MARK: - Write to Firebase
   
   func addDataToFirebase() {
@@ -224,7 +222,7 @@ extension AddCardViewController: UITextFieldDelegate {
       let characterSet = CharacterSet(charactersIn: string)
       
       let newLength = text.characters.count + string.characters.count - range.length
-      return  allowedCharacters.isSuperset(of: characterSet) && newLength <= 4 // Bool
+      return allowedCharacters.isSuperset(of: characterSet) && newLength <= 4 // Bool
     }
     
     return true

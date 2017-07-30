@@ -21,9 +21,7 @@ class ServiceListViewController: UIViewController {
   @IBOutlet weak var rightDividerView: UIView!
   @IBOutlet weak var addButton: UIButton!
   @IBOutlet weak var firstDividerView: UIView!
-  
   @IBOutlet weak var tableView: UITableView!
-  
   @IBOutlet weak var editCardButton: UIButton!
   
   
@@ -153,7 +151,6 @@ class ServiceListViewController: UIViewController {
           let indexPath = IndexPath(row: index, section: 0)
           self.tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
         }
-        
       }
     }
   }
@@ -319,8 +316,7 @@ extension ServiceListViewController: UITableViewDelegate, UITableViewDataSource 
             formatter.dateFormat = "MMM dd, yyyy"
             cell.serviceDueDateLabel.text = formatter.string(from: date)
           }
-        }
-        else {
+        } else {
           cell.serviceDueDateLabel.text = nil
         }
       }
@@ -336,7 +332,6 @@ extension ServiceListViewController: UITableViewDelegate, UITableViewDataSource 
               if let myURL = URL(string: myURLString) {
                 cell.serviceLogoImageVIew.kf.setImage(with: myURL, placeholder: placeholderImage)
               }
-              
             }
           })
         }
@@ -379,8 +374,7 @@ extension ServiceListViewController: UITableViewDelegate, UITableViewDataSource 
         serviceDetailVC.service = self.serviceArray[indexPath.row]
         navigationController?.pushViewController(serviceDetailVC, animated: true)
       }
-    }
-    else {
+    } else {
       //
     }
   }

@@ -17,23 +17,8 @@ class ServiceTableViewCell: UITableViewCell {
   @IBOutlet weak var serviceCategoryLabel: UILabel!
   @IBOutlet weak var serviceAmountLabel: UILabel!
   @IBOutlet weak var serviceDueDateLabel: UILabel!
-  
   @IBOutlet weak var leftDividerView: UIView!
   @IBOutlet weak var serviceColorStatusView: UIView!
-  
   @IBOutlet weak var bottomDividerView: UIView!
-  
-  
-  
-  override func awakeFromNib() {
-    super.awakeFromNib()
-    // Initialization code
-  }
-  
-  override func setSelected(_ selected: Bool, animated: Bool) {
-    super.setSelected(selected, animated: animated)
     
-    // Configure the view for the selected state
-  }
-  
 }

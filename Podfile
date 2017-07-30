@@ -19,7 +19,7 @@ target 'Lynked' do
   pod 'Firebase/Database'
   pod 'Firebase/Performance'
   pod 'Kingfisher'
-  pod 'SCPinViewController'
+  #pod 'SCPinViewController'
   pod 'mailgun'
   pod 'UITextView+Placeholder'
   pod 'DZNEmptyDataSet'

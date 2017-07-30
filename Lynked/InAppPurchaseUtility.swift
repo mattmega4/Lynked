@@ -56,15 +56,12 @@ class InAppPurchaseUtility: NSObject, SKProductsRequestDelegate, SKPaymentTransa
                             customAttributes: nil)
         
         
-      }
-      else if transaction.transactionState == .failed {
+      } else if transaction.transactionState == .failed {
         purchaseCompletion?(false, transaction.error)
-      }
-      else if transaction.transactionState == .restored {
+      } else if transaction.transactionState == .restored {
         purchaseCompletion?(true, nil)
       }
-    }
-    else {
+    } else {
       purchaseCompletion?(false, nil)
     }
   }
