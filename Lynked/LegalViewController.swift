@@ -9,24 +9,24 @@
 import UIKit
 
 class LegalViewController: UIViewController {
-
-    @IBOutlet weak var leftNavBarButton: UIBarButtonItem!
-    @IBOutlet weak var legalLabel: UILabel!
+  
+  @IBOutlet weak var leftNavBarButton: UIBarButtonItem!
+  @IBOutlet weak var legalLabel: UILabel!
+  
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        setNavBar()
-        title = "Legal"
-    }
-
-
-    @IBAction func leftNavBarButtonTapped(_ sender: UIBarButtonItem) {
-         navigationController?.popViewController(animated: true)
-    }
-    
-
+    setNavBar()
+    title = "Legal"
+  }
+  
+  
+  @IBAction func leftNavBarButtonTapped(_ sender: UIBarButtonItem) {
+    navigationController?.popViewController(animated: true)
+  }
+  
+  
 }
 
 

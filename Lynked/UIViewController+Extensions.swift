@@ -23,7 +23,7 @@ extension UIViewController {
         navigationController?.navigationBar.barTintColor = UIColor(red: 108.0/255.0,
                                                                    green: 158.0/255.0,
                                                                    blue: 236.0/255.0,
-                                                                   alpha: 1.0)
+                                                                   alpha: 0.9)
         
         UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]

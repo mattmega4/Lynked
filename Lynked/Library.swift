@@ -9,12 +9,12 @@
 import UIKit
 
 class Library: NSObject {
-
-    var name: String?
-    var legalDescription: String?
-    
-    init(object: [String : String]) {
-        name = object["Title"]
-        legalDescription = object["FooterText"]
-    }
+  
+  var name: String?
+  var legalDescription: String?
+  
+  init(object: [String : String]) {
+    name = object["Title"]
+    legalDescription = object["FooterText"]
+  }
 }

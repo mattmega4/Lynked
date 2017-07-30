@@ -9,32 +9,32 @@
 import UIKit
 
 class Category: NSObject {
-    
-    var id = 0
-    var name: String?
-    var services = [Service]()
-    
+  
+  var id = 0
+  var name: String?
+  var services = [Service]()
+  
 }
 
 class CategoryManager: NSObject {
-    
-    
-    static let shared = CategoryManager()
-    
-    
-    let categories = ["Miscellaneous",
-                      "Entertainment",
-                      "Utilities",
-                      "Food",
-                      "Professional",
-                      "Charity",
-                      "Shopping",
-                      "Education",
-                      "Travel",
-                      "Medical"]
-
+  
+  
+  static let shared = CategoryManager()
+  
+  
+  let categories = ["Miscellaneous",
+                    "Entertainment",
+                    "Utilities",
+                    "Food",
+                    "Professional",
+                    "Charity",
+                    "Shopping",
+                    "Education",
+                    "Travel",
+                    "Medical"]
+  
 }
 
 
 
-   
+
