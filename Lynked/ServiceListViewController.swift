@@ -321,9 +321,17 @@ extension ServiceListViewController: UITableViewDelegate, UITableViewDataSource 
         }
       }
       
-      let placeholderImage = UIImage.init(named: "\(TempLetterImagePickerUtility.shared.getLetterOrNumberAndChooseImage(text: service.serviceName!))")
+      //      let placeholderImage = UIImage.init(named: "\(TempLetterImagePickerUtility.shared.getLetterOrNumberAndChooseImage(text: service.serviceName!))")
+      let placeholderImage = InitialImageFactory.imageWith(name: service.serviceName)
       
-      if let serviceURLString = service.serviceUrl, service.serviceUrl?.isEmpty == false {
+      
+      
+      if let serviceURLString = service.serviceUrl { //, service.serviceUrl?.isEmpty == false {
+        if serviceURLString.isEmpty {
+          if let thePlaceholderImage = placeholderImage as? Resource {
+            cell.serviceLogoImageVIew.kf.setImage(with: thePlaceholderImage)
+          }
+        }
         
         if let imageURL = URL(string: "https://logo.clearbit.com/\(serviceURLString)") {
           cell.serviceLogoImageVIew.kf.setImage(with: imageURL, placeholder: placeholderImage, options: nil, progressBlock: nil, completionHandler: { (image, error, cacheType, url) in
@@ -345,7 +353,12 @@ extension ServiceListViewController: UITableViewDelegate, UITableViewDataSource 
     let categoryServices = serviceArray.filter({$0.category == categories[indexPath.row]})
     for i in 0..<min(categoryServices.count, 3) {
       let service = categoryServices[i]
-      let placeholderImage = UIImage.init(named: "\(TempLetterImagePickerUtility.shared.getLetterOrNumberAndChooseImage(text: service.serviceName!))")
+      
+      //      let placeholderImage = UIImage.init(named: "\(TempLetterImagePickerUtility.shared.getLetterOrNumberAndChooseImage(text: service.serviceName!))")
+      
+      let placeholderImage = InitialImageFactory.imageWith(name: service.serviceName)
+      
+      
       if let seviceURLString = service.serviceUrl, service.serviceUrl?.isEmpty == false {
         let myURLString: String = "https://logo.clearbit.com/\(seviceURLString)"
         if let myURL = URL(string: myURLString) {

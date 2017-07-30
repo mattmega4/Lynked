@@ -10,11 +10,11 @@ import Foundation
 import UIKit
 
 extension Array where Element: Hashable {
-    func countForElements() -> [(Element, Int)] {
-        let countedSet = NSCountedSet(array: self)
-        let res = countedSet.objectEnumerator().map { (object: Any) -> (Element, Int) in
-            return (object as! Element, countedSet.count(for: object))
-        }
-        return res
+  func countForElements() -> [(Element, Int)] {
+    let countedSet = NSCountedSet(array: self)
+    let res = countedSet.objectEnumerator().map { (object: Any) -> (Element, Int) in
+      return (object as! Element, countedSet.count(for: object))
     }
+    return res
+  }
 }

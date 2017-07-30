@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 
 extension UITextField{
-    @IBInspectable var placeHolderTextColor: UIColor? {
-        set {
-            let placeholderText = self.placeholder != nil ? self.placeholder! : ""
-            attributedPlaceholder = NSAttributedString(string:placeholderText, attributes:[NSForegroundColorAttributeName: newValue!])
-        }
-        get{
-            return self.placeHolderTextColor
-        }
+  @IBInspectable var placeHolderTextColor: UIColor? {
+    set {
+      let placeholderText = self.placeholder != nil ? self.placeholder! : ""
+      attributedPlaceholder = NSAttributedString(string:placeholderText, attributes:[NSForegroundColorAttributeName: newValue!])
     }
+    get{
+      return self.placeHolderTextColor
+    }
+  }
 }

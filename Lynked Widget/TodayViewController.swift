@@ -82,7 +82,8 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
             cell.serviceNameLabel.text = serviceName.capitalized
             cell.serviceDateLabel.text = service["date"]?.capitalized
             
-            let placeholderImage = UIImage.init(named: "\(TempLetterImagePickerUtility.shared.getLetterOrNumberAndChooseImage(text: serviceName))")
+//            let placeholderImage = UIImage.init(named: "\(TempLetterImagePickerUtility.shared.getLetterOrNumberAndChooseImage(text: serviceName))")
+          let placeholderImage = InitialImageFactory.imageWith(name: serviceName)
             if serviceURL.isEmpty == false {
                 let myURLString: String = "https://logo.clearbit.com/\(serviceURL)"
                 
