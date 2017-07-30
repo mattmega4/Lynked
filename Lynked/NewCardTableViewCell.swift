@@ -13,7 +13,7 @@ class NewCardTableViewCell: UITableViewCell {
   @IBOutlet weak var cardBorderView: UIView!
   @IBOutlet weak var cardBackgroundView: UIView!
   @IBOutlet weak var newCardLabel: UILabel!
-
+  
   
   override func layoutSubviews() {
     super.layoutSubviews()

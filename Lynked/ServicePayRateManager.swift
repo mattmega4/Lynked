@@ -38,8 +38,7 @@ class ServicePayRateManager: NSObject {
             if day > 28 {
               components.day = 28
             }
-          }
-          else {
+          } else {
             if day > 30 {
               components.day = 30
             }
@@ -52,15 +51,13 @@ class ServicePayRateManager: NSObject {
               }
             }
           }
-        }
-        else {
+        } else {
           components.month = cal.component(.month, from: Date())
         }
         if let theDate = cal.date(from: components) {
           return theDate
         }
-      }
-      else if service.paymentRate == "Annually" {
+      } else if service.paymentRate == "Annually" {
         let thisMonth = cal.component(.month, from: Date())
         if thisMonth < month {
           components.month = month

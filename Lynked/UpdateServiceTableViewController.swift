@@ -207,9 +207,7 @@ class UpdateServiceTableViewController: UITableViewController {
                                     completion: { (updatedService, errMessage) in
                                       self.navigationController?.popViewController(animated: true)
       })
-      
     }
-    
   }
   
   
@@ -309,9 +307,7 @@ class UpdateServiceTableViewController: UITableViewController {
     deleteThisService()
   }
   
-  
-  
-  
+
 }
 
 
@@ -376,8 +372,7 @@ extension UpdateServiceTableViewController: UITextFieldDelegate {
   func textFieldDidEndEditing(_ textField: UITextField) {
     if textField == nameTextField {
       service?.serviceName = textField.text
-    }
-    else if textField == urlTextField {
+    } else if textField == urlTextField {
       service?.serviceUrl = textField.text
     }
       
