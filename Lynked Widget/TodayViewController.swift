@@ -97,7 +97,7 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        extensionContext?.open(URL(string: "Instagram://")! , completionHandler: nil)
+        extensionContext?.open(URL(string: "Lynked://")! , completionHandler: nil)
     }
     
     
