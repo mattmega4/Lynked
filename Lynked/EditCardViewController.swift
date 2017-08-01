@@ -11,6 +11,7 @@ import Firebase
 import FirebaseDatabase
 import Fabric
 import Crashlytics
+import MBProgressHUD
 
 class EditCardViewController: UIViewController {
   
@@ -84,6 +85,9 @@ class EditCardViewController: UIViewController {
     rightNavBarButton.isEnabled = true
     populateCardInfo()
   }
+  
+  
+  // MARK: - Update View from Firebase
   
   func populateCardInfo() {
     segControl.selectedSegmentIndex = card?.colorIndex ?? 0
@@ -161,7 +165,9 @@ class EditCardViewController: UIViewController {
     }
     
     FirebaseUtility.shared.update(card: theCard, nickName: nicknameTextField.text, last4: digitsTextField.text, color: segControl.selectedSegmentIndex) { (updatedCard, error) in
+      MBProgressHUD.showAdded(to: self.view, animated: true)
       NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+      MBProgressHUD.hide(for: self.view, animated: true)
       self.navigationController?.popViewController(animated: true)
     }
   }

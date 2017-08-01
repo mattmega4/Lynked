@@ -58,23 +58,17 @@ class WalletViewController: UIViewController {
     NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
     
     if Auth.auth().currentUser == nil {
+      MBProgressHUD.showAdded(to: self.view, animated: true)
+      
       cardArray.removeAll()
       self.tableView.reloadData()
       if let loginVc = storyboard?.instantiateViewController(withIdentifier: ENTRY_STORYBOARD_IDENTIFIER) as? EntryViewController {
         let loginNavigation = UINavigationController(rootViewController: loginVc)
         self.splitViewController?.present(loginNavigation, animated: true, completion: nil)
       }
+      MBProgressHUD.hide(for: self.view, animated: true)
     } else {
       pullAllUsersCards()
-      //      let appLocked = UserDefaults.standard.bool(forKey: USER_DEFAULTS_PIN_STRING)
-      
-      //      if !appLocked {
-      //        if let pinVC = SCPinViewController(scope: .validate) {
-      //          pinVC.dataSource = self
-      //          pinVC.validateDelegate = self
-      //          self.present(pinVC, animated: true, completion: nil)
-      //        }
-      //      }
     }
   }
   
