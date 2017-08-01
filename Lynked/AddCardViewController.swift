@@ -89,10 +89,8 @@ class AddCardViewController: UIViewController {
     
     let color: Int = segControl.selectedSegmentIndex
     
-    MBProgressHUD.showAdded(to: view, animated: true)
-    
     FirebaseUtility.shared.addCard(name: finalNickname?.capitalized, type: finalType, color: color, last4: last4) { (card, errorMessage) in
-      
+      MBProgressHUD.showAdded(to: self.view, animated: true)
       MBProgressHUD.hide(for: self.view, animated: true)
       
       self.dismiss(animated: true, completion: nil)
