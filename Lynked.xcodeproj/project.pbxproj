@@ -24,10 +24,8 @@
 		292764931EDFA3160096AE1E /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292764921EDFA3160096AE1E /* WalletViewController.swift */; };
 		292764951EDFC8350096AE1E /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292764941EDFC8350096AE1E /* CardTableViewCell.swift */; };
 		292DEB061F01D486008247EC /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 1D01B26F1E03A27500098A9A /* GoogleService-Info.plist */; };
-		294135FB1EFD9D8200002FAC /* CategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294135FA1EFD9D8200002FAC /* CategoryManager.swift */; };
 		2943B48B1EF624D600A0E8DD /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */; };
 		294D0E321EF9E9F7000E4BC6 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294D0E311EF9E9F7000E4BC6 /* CategoryViewController.swift */; };
-		2950A4521EFE40BF00F94BF4 /* ServicePayRateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2950A4511EFE40BF00F94BF4 /* ServicePayRateManager.swift */; };
 		295E02291F0CB4E30006AAC0 /* LynkedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295E02281F0CB4E30006AAC0 /* LynkedTests.swift */; };
 		296898DB1F248D6100071021 /* LegalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296898DA1F248D6100071021 /* LegalViewController.swift */; };
 		29773CDD1EC3B6730023F277 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29773CDC1EC3B6730023F277 /* EntryViewController.swift */; };
@@ -57,7 +55,6 @@
 		29D412B11F00B18C0081CF79 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */; };
 		29D412B31F00B67E0081CF79 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FA4E51EF78EDB009B5A36 /* String+Extensions.swift */; };
 		29D412B41F00B68F0081CF79 /* SegmentColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */; };
-		29D412B51F00B6F60081CF79 /* ServicePayRateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2950A4511EFE40BF00F94BF4 /* ServicePayRateManager.swift */; };
 		29D412B81F00D43A0081CF79 /* NewCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D412B71F00D43A0081CF79 /* NewCardTableViewCell.swift */; };
 		29D5906B1EF5AE5600CA66D6 /* RequestReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D5906A1EF5AE5600CA66D6 /* RequestReview.swift */; };
 		29E39CB81F0B168300E23949 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E39CB71F0B168300E23949 /* CategoryTableViewCell.swift */; };
@@ -68,6 +65,14 @@
 		29EFAB281EFE46A1007F384E /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EFAB271EFE46A1007F384E /* TodayViewController.swift */; };
 		29EFAB2B1EFE46A1007F384E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29EFAB291EFE46A1007F384E /* MainInterface.storyboard */; };
 		29EFAB2F1EFE46A1007F384E /* Lynked Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 29EFAB231EFE46A1007F384E /* Lynked Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		29FD5E701F327908009C6C6B /* ServicePayRateManagerUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FD5E6F1F327908009C6C6B /* ServicePayRateManagerUtility.swift */; };
+		29FD5E711F327916009C6C6B /* ServicePayRateManagerUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FD5E6F1F327908009C6C6B /* ServicePayRateManagerUtility.swift */; };
+		29FD5E731F327968009C6C6B /* CategoryManagerUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FD5E721F327968009C6C6B /* CategoryManagerUtility.swift */; };
+		29FD5E741F3279A6009C6C6B /* CategoryManagerUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FD5E721F327968009C6C6B /* CategoryManagerUtility.swift */; };
+		29FD5E761F327A1F009C6C6B /* FirebaseStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FD5E751F327A1F009C6C6B /* FirebaseStrings.swift */; };
+		29FD5E771F327A1F009C6C6B /* FirebaseStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FD5E751F327A1F009C6C6B /* FirebaseStrings.swift */; };
+		29FD5E7A1F327BBB009C6C6B /* AnalyticsStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FD5E791F327BBB009C6C6B /* AnalyticsStrings.swift */; };
+		29FD5E7B1F327BBB009C6C6B /* AnalyticsStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FD5E791F327BBB009C6C6B /* AnalyticsStrings.swift */; };
 		E86C3EB7EE5754E5BF9A1F85 /* Pods_Lynked_Widget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA6F3E9D57672DC96FCD6C6 /* Pods_Lynked_Widget.framework */; };
 		FE255734139BB8197894689C /* Pods_Lynked.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 267A4AE157A5C3F5E4C71A91 /* Pods_Lynked.framework */; };
 /* End PBXBuildFile section */
@@ -123,10 +128,8 @@
 		292764941EDFC8350096AE1E /* CardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
 		292DEB071F01D77F008247EC /* Lynked.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Lynked.entitlements; sourceTree = "<group>"; };
 		29390C2E1F02F0B70047F013 /* FavIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavIcon.swift; path = ../../Desktop/FavIcon.swift; sourceTree = "<group>"; };
-		294135FA1EFD9D8200002FAC /* CategoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryManager.swift; sourceTree = "<group>"; };
 		2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseUtility.swift; sourceTree = "<group>"; };
 		294D0E311EF9E9F7000E4BC6 /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
-		2950A4511EFE40BF00F94BF4 /* ServicePayRateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicePayRateManager.swift; sourceTree = "<group>"; };
 		295E02261F0CB4E30006AAC0 /* LynkedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LynkedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		295E02281F0CB4E30006AAC0 /* LynkedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LynkedTests.swift; sourceTree = "<group>"; };
 		295E022A1F0CB4E30006AAC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -166,6 +169,10 @@
 		29EFAB2A1EFE46A1007F384E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		29EFAB2C1EFE46A1007F384E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29F778D71EEE291300B6AA6E /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		29FD5E6F1F327908009C6C6B /* ServicePayRateManagerUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicePayRateManagerUtility.swift; sourceTree = "<group>"; };
+		29FD5E721F327968009C6C6B /* CategoryManagerUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryManagerUtility.swift; sourceTree = "<group>"; };
+		29FD5E751F327A1F009C6C6B /* FirebaseStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseStrings.swift; sourceTree = "<group>"; };
+		29FD5E791F327BBB009C6C6B /* AnalyticsStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsStrings.swift; sourceTree = "<group>"; };
 		332153A02078D17E6D55BF0C /* Pods-Lynked.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lynked.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lynked/Pods-Lynked.release.xcconfig"; sourceTree = "<group>"; };
 		61C5BAFDC0F62D6BA28B7B7A /* Pods-Lynked.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lynked.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lynked/Pods-Lynked.debug.xcconfig"; sourceTree = "<group>"; };
 		777E17BCF265AA7F0F2BABBF /* Pods-Lynked Widget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lynked Widget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lynked Widget/Pods-Lynked Widget.debug.xcconfig"; sourceTree = "<group>"; };
@@ -264,15 +271,9 @@
 		1DC0D8C21DFE518F0039B8F6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				29AA67E11EE7B4BA000EDE42 /* InAppPurchaseUtility.swift */,
-				2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */,
+				29FD5E6D1F3278CB009C6C6B /* Utility */,
+				29FD5E6E1F3278DB009C6C6B /* Classes */,
 				29D5906A1EF5AE5600CA66D6 /* RequestReview.swift */,
-				290AC7C41F2C667500EE2783 /* Card.swift */,
-				290AC7CE1F2C695500EE2783 /* Service.swift */,
-				294135FA1EFD9D8200002FAC /* CategoryManager.swift */,
-				2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */,
-				2950A4511EFE40BF00F94BF4 /* ServicePayRateManager.swift */,
-				29CA61711F09C6E200391199 /* BranchUtility.swift */,
 				29CF61E51F2D7AE4006659FE /* InitialImageFactory.swift */,
 				1DC0D8B11DFE516A0039B8F6 /* Lynked.xcdatamodeld */,
 			);
@@ -385,6 +386,38 @@
 				29D412AE1F00AF0C0081CF79 /* WidgetTableViewCell.swift */,
 			);
 			path = "Lynked Widget";
+			sourceTree = "<group>";
+		};
+		29FD5E6D1F3278CB009C6C6B /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				29FD5E781F327A35009C6C6B /* Structs */,
+				2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */,
+				29CA61711F09C6E200391199 /* BranchUtility.swift */,
+				29AA67E11EE7B4BA000EDE42 /* InAppPurchaseUtility.swift */,
+				2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */,
+				29FD5E6F1F327908009C6C6B /* ServicePayRateManagerUtility.swift */,
+				29FD5E721F327968009C6C6B /* CategoryManagerUtility.swift */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
+		29FD5E6E1F3278DB009C6C6B /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				290AC7C41F2C667500EE2783 /* Card.swift */,
+				290AC7CE1F2C695500EE2783 /* Service.swift */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		29FD5E781F327A35009C6C6B /* Structs */ = {
+			isa = PBXGroup;
+			children = (
+				29FD5E751F327A1F009C6C6B /* FirebaseStrings.swift */,
+				29FD5E791F327BBB009C6C6B /* AnalyticsStrings.swift */,
+			);
+			name = Structs;
 			sourceTree = "<group>";
 		};
 		5992905EFC84512369FCFBED /* Frameworks */ = {
@@ -703,7 +736,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2950A4521EFE40BF00F94BF4 /* ServicePayRateManager.swift in Sources */,
 				1DC0D8D91DFE59360039B8F6 /* AddCardViewController.swift in Sources */,
 				291EC7CE1F0F524700900500 /* FeedbackViewController.swift in Sources */,
 				298FA4EC1EF78F5C009B5A36 /* Array+Extensions.swift in Sources */,
@@ -715,11 +747,14 @@
 				29773CDD1EC3B6730023F277 /* EntryViewController.swift in Sources */,
 				2943B48B1EF624D600A0E8DD /* FirebaseUtility.swift in Sources */,
 				298FA4E61EF78EDB009B5A36 /* String+Extensions.swift in Sources */,
+				29FD5E7A1F327BBB009C6C6B /* AnalyticsStrings.swift in Sources */,
 				292764951EDFC8350096AE1E /* CardTableViewCell.swift in Sources */,
+				29FD5E731F327968009C6C6B /* CategoryManagerUtility.swift in Sources */,
 				2924F9BE1EF22F090014C284 /* SegmentColorManager.swift in Sources */,
 				29E713D41F0AEDA0004B5715 /* ServiceListViewController.swift in Sources */,
 				29E39CB81F0B168300E23949 /* CategoryTableViewCell.swift in Sources */,
 				296898DB1F248D6100071021 /* LegalViewController.swift in Sources */,
+				29FD5E761F327A1F009C6C6B /* FirebaseStrings.swift in Sources */,
 				29E39CBC1F0B226600E23949 /* UpdateServiceTableViewController.swift in Sources */,
 				298FA4EA1EF78F40009B5A36 /* NSObject+Extensions.swift in Sources */,
 				29CA61741F09E56C00391199 /* UITextField+Extensions.swift in Sources */,
@@ -731,7 +766,6 @@
 				29CA61721F09C6E200391199 /* BranchUtility.swift in Sources */,
 				29AA96CD1F074EA900194670 /* Identifiers.swift in Sources */,
 				29CB33121EF65EFA009CEE3B /* AcknowledgementsViewController.swift in Sources */,
-				294135FB1EFD9D8200002FAC /* CategoryManager.swift in Sources */,
 				290AC7CF1F2C695500EE2783 /* Service.swift in Sources */,
 				1DC0D8AB1DFE516A0039B8F6 /* AppDelegate.swift in Sources */,
 				294D0E321EF9E9F7000E4BC6 /* CategoryViewController.swift in Sources */,
@@ -740,6 +774,7 @@
 				297BEA001EF708640035D4DA /* Library.swift in Sources */,
 				29D412B81F00D43A0081CF79 /* NewCardTableViewCell.swift in Sources */,
 				29E713D61F0AEE0E004B5715 /* ServiceTableViewCell.swift in Sources */,
+				29FD5E701F327908009C6C6B /* ServicePayRateManagerUtility.swift in Sources */,
 				29AA67E21EE7B4BA000EDE42 /* InAppPurchaseUtility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -757,15 +792,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				292DEB061F01D486008247EC /* GoogleService-Info.plist in Sources */,
-				29D412B51F00B6F60081CF79 /* ServicePayRateManager.swift in Sources */,
+				29FD5E711F327916009C6C6B /* ServicePayRateManagerUtility.swift in Sources */,
 				29D412B41F00B68F0081CF79 /* SegmentColorManager.swift in Sources */,
 				29D412B31F00B67E0081CF79 /* String+Extensions.swift in Sources */,
+				29FD5E7B1F327BBB009C6C6B /* AnalyticsStrings.swift in Sources */,
 				29D412B11F00B18C0081CF79 /* FirebaseUtility.swift in Sources */,
 				290AC7C91F2C66AE00EE2783 /* Card.swift in Sources */,
 				290AC7D01F2C695500EE2783 /* Service.swift in Sources */,
 				29EFAB281EFE46A1007F384E /* TodayViewController.swift in Sources */,
 				29D412AF1F00AF0C0081CF79 /* WidgetTableViewCell.swift in Sources */,
+				29FD5E741F3279A6009C6C6B /* CategoryManagerUtility.swift in Sources */,
 				29CF61E71F2D7C0C006659FE /* InitialImageFactory.swift in Sources */,
+				29FD5E771F327A1F009C6C6B /* FirebaseStrings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

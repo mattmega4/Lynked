@@ -1,16 +1,16 @@
 //
-//  ServicePayRateManager.swift
+//  ServicePayRateManagerUtility.swift
 //  Lynked
 //
-//  Created by Matthew Howes Singleton on 6/23/17.
+//  Created by Matthew Howes Singleton on 8/2/17.
 //  Copyright © 2017 Matthew Singleton. All rights reserved.
 //
 
 import UIKit
 
-class ServicePayRateManager: NSObject {
-  
-  static let shared = ServicePayRateManager()
+class ServicePayRateManagerUtility: NSObject {
+
+  static let shared = ServicePayRateManagerUtility()
   
   let payRates = [/*"Weekly",*/
     //                    "Biweekly",
@@ -73,5 +73,6 @@ class ServicePayRateManager: NSObject {
     return nil
   }
   
-}
 
+  
+}

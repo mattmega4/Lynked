@@ -27,31 +27,31 @@ class Service: NSObject {
     
     serviceID = id
     self.cardID = cardId
-    serviceName = serviceDict["serviceName"] as? String
-    serviceUrl = serviceDict["serviceURL"] as? String
-    if let theStatus = serviceDict["serviceStatus"] as? Bool {
+    serviceName = serviceDict[FirebaseKeys.serviceName] as? String
+    serviceUrl = serviceDict[FirebaseKeys.serviceURL] as? String
+    if let theStatus = serviceDict[FirebaseKeys.serviceStatus] as? Bool {
       serviceStatus = theStatus
     }
     
-    serviceFixed = serviceDict["serviceFixed"] as? Bool
+    serviceFixed = serviceDict[FirebaseKeys.serviceFixed] as? Bool
     
-    if let amount = serviceDict["serviceAmount"] as? Double {
+    if let amount = serviceDict[FirebaseKeys.serviceAmount] as? Double {
       serviceAmount = amount
     }
-    if let tempAtten = serviceDict["attentionInt"] as? Int {
+    if let tempAtten = serviceDict[FirebaseKeys.attentionInt] as? Int {
       serviceAttention = tempAtten
     }
     
-    if let payDate = serviceDict["nextPaymentDate"] as? Double {
+    if let payDate = serviceDict[FirebaseKeys.nextPaymentDate] as? Double {
       nextPaymentDate = Date(timeIntervalSince1970: payDate)
       
       //            nextPaymentDate = ServicePayRateManager.shared.getNextPaymentDateFor(service: self)
       
     }
     
-    category = serviceDict["category"] as? String
+    category = serviceDict[FirebaseKeys.category] as? String
     
-    paymentRate = serviceDict["paymentRate"] as? String
+    paymentRate = serviceDict[FirebaseKeys.paymentRate] as? String
     
     
   }

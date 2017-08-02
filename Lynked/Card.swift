@@ -21,10 +21,10 @@ class Card: NSObject {
   
   init(id: String, cardDict: [String: Any]) {
     cardID = id
-    nickname = cardDict["nickname"] as? String
-    fourDigits = cardDict["last4"] as? String
-    type = cardDict["type"] as? String
-    if let theIndex = cardDict["color"] as? Int {
+    nickname = cardDict[FirebaseKeys.nickname] as? String
+    fourDigits = cardDict[FirebaseKeys.last4] as? String
+    type = cardDict[FirebaseKeys.type] as? String
+    if let theIndex = cardDict[FirebaseKeys.color] as? Int {
       colorIndex = theIndex
       //            color = SegmentColorManager.shared.colorAtIndex(index: theIndex)
       image = SegmentColorManager.shared.imageAtIndex(index: theIndex)

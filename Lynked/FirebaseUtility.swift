@@ -13,6 +13,7 @@ import FirebasePerformance
 import Fabric
 import Crashlytics
 
+
 class FirebaseUtility: NSObject {
   
   static let shared = FirebaseUtility()
@@ -32,8 +33,8 @@ class FirebaseUtility: NSObject {
       return
     }
     
-    let userCardRef = ref.child("newCards").child(userID)
-    userCardRef.observeSingleEvent(of: .value, with: { (snapshot) in
+    let userCardRef = ref.child(FirebaseKeys.newCards).child(userID)
+    userCardRef.observe(.value, with: { (snapshot) in // changed from Single Event
       let enumerator = snapshot.children
       var cards = [Card]()
       
@@ -67,8 +68,9 @@ class FirebaseUtility: NSObject {
     }
     
     if let userId = user?.uid {
-      let cardRef = ref.child("newCards").child(userId).childByAutoId()
-      let cardDict: [String : Any] = ["nickname" : theName, "last4" : theLast4, "type" : theType, "color" : color]
+      let cardRef = ref.child(FirebaseKeys.newCards).child(userId).childByAutoId()
+      let cardDict: [String : Any] = [FirebaseKeys.nickname : theName, FirebaseKeys.last4 : theLast4, FirebaseKeys.type : theType, FirebaseKeys.color : color]
+      
       cardRef.setValue(cardDict, withCompletionBlock: { (error, ref) in
         
         if let theError = error?.localizedDescription {
@@ -76,9 +78,10 @@ class FirebaseUtility: NSObject {
           completion(nil, errorMessage)
           
         } else {
-          Analytics.logEvent("New_Card_Added", parameters: ["success" : true])
-          Answers.logCustomEvent(withName: "New Card Added",
+          Analytics.logEvent(AnalyticsKeys.newCardAdded, parameters: [AnalyticsKeys.success : true])
+          Answers.logCustomEvent(withName: AnalyticsKeys.newCardAdded,
                                  customAttributes: nil)
+          
           let card = Card(id: ref.key, cardDict: cardDict)
           completion(card, nil)
         }
@@ -95,18 +98,18 @@ class FirebaseUtility: NSObject {
       return
     }
     
-    let cardRef = ref.child("newCards").child(userId).child(card.cardID)
+    let cardRef = ref.child(FirebaseKeys.newCards).child(userId).child(card.cardID)
     cardRef.removeValue { (error, ref) in
       
       if let theError = error?.localizedDescription {
         let errMessage = theError
         completion(false, errMessage)
       } else {
-        let serviceRef = self.ref.child("newServices").child(card.cardID)
+        let serviceRef = self.ref.child(FirebaseKeys.newServices).child(card.cardID)
         serviceRef.removeValue()
         
-        Analytics.logEvent("Card_Deleted", parameters: ["success" : true])
-        Answers.logCustomEvent(withName: "Card Deleted",
+        Analytics.logEvent(AnalyticsKeys.cardDeleted, parameters: [AnalyticsKeys.success : true])
+        Answers.logCustomEvent(withName: AnalyticsKeys.cardDeleted,
                                customAttributes: nil)
         
         completion(true, nil)
@@ -115,6 +118,7 @@ class FirebaseUtility: NSObject {
   }
   
   func update(card: Card, nickName: String?, last4: String?, color: Int, completion: @escaping (_ card: Card?, _ error: String?) -> Void) {
+    
     guard let userId = user?.uid else {
       let errMessage = "Something went wrong"
       completion(nil, errMessage)
@@ -130,16 +134,20 @@ class FirebaseUtility: NSObject {
       completion(nil, errMessage)
       return
     }
-    let cardDict: [String : Any] = ["nickname" : name, "last4" : last4Digits, "type" : card.type ?? "", "color " : color]
-    let cardRef = ref.child("newCards").child(userId).child(card.cardID)
+    
+    let cardDict: [String : Any] = [FirebaseKeys.nickname : name, FirebaseKeys.last4 : last4Digits, FirebaseKeys.type : card.type ?? "", FirebaseKeys.color : color]
+    
+    let cardRef = ref.child(FirebaseKeys.newCards).child(userId).child(card.cardID)
+    
     cardRef.setValue(cardDict, withCompletionBlock: { (error, ref) in
+      
       if let theError = error?.localizedDescription {
         let errorMessage = theError
         completion(nil, errorMessage)
       } else {
-        Analytics.logEvent("Update_Card", parameters: ["success" : true])
+        Analytics.logEvent(AnalyticsKeys.updateCard, parameters: [AnalyticsKeys.success : true])
         
-        Answers.logCustomEvent(withName: "Update Card", customAttributes: nil)
+        Answers.logCustomEvent(withName: AnalyticsKeys.updateCard, customAttributes: nil)
         
         let card = Card(id: ref.key, cardDict: cardDict)
         completion(card, nil)
@@ -151,7 +159,7 @@ class FirebaseUtility: NSObject {
   // MARK: - Services
   
   func getServicesFor(card: Card, completion: @escaping (_ services: [Service]?, _ error: Error?) -> Void) {
-    let servicesRef = ref.child("newServices").child(card.cardID)
+    let servicesRef = ref.child(FirebaseKeys.newServices).child(card.cardID)
     servicesRef.observeSingleEvent(of: .value, with: { (snapshot) in
       let enumerator = snapshot.children
       var serviceArray = [Service]()
@@ -181,21 +189,21 @@ class FirebaseUtility: NSObject {
     }
     
     
-    let serviceRef = ref.child("newServices").child(theCard.cardID).childByAutoId()
+    let serviceRef = ref.child(FirebaseKeys.newServices).child(theCard.cardID).childByAutoId()
     
-    var selectedCategory = "Miscellaneous"
+    var selectedCategory = FirebaseKeys.miscellaneous
     if let theCategory = category {
       if !theCategory.isEmpty {
         selectedCategory = theCategory
       }
     }
-    let serviceDict: [String : Any] = ["serviceName" : theName,
-                                       "serviceURL" : theName.createServiceURL(),
-                                       "serviceStatus" : true,
-                                       "serviceFixed" : false,
-                                       "serviceAmount" : 0,
-                                       "attentionInt" : 0,
-                                       "category" : selectedCategory]
+    let serviceDict: [String : Any] = [FirebaseKeys.serviceName : theName,
+                                       FirebaseKeys.serviceURL : theName.createServiceURL(),
+                                       FirebaseKeys.serviceStatus : true,
+                                       FirebaseKeys.serviceFixed : false,
+                                       FirebaseKeys.serviceAmount : 0,
+                                       FirebaseKeys.attentionInt : 0,
+                                       FirebaseKeys.category : selectedCategory]
     
     serviceRef.setValue(serviceDict, withCompletionBlock: { (error, ref) in
       
@@ -204,9 +212,10 @@ class FirebaseUtility: NSObject {
         completion(nil, errorMessage)
         
       } else {
-        Analytics.logEvent("New_Service_Added", parameters: ["success" : true])
-        Answers.logCustomEvent(withName: "New Service Added",
+        Analytics.logEvent(AnalyticsKeys.newServiceAdded, parameters: [AnalyticsKeys.success : true])
+        Answers.logCustomEvent(withName: AnalyticsKeys.newServiceAdded,
                                customAttributes: nil)
+        
         let service = Service(id: ref.key, cardId: theCard.cardID, serviceDict: serviceDict)
         completion(service, nil)
       }
@@ -239,8 +248,8 @@ class FirebaseUtility: NSObject {
               self.resetServices(services: services, updatedServices: theServices, index: index + 1, completion: completion)
       })
     } else {
-      Analytics.logEvent("Card_Altered", parameters: ["success" : true])
-      Answers.logCustomEvent(withName: "Card was Altered",
+      Analytics.logEvent(AnalyticsKeys.cardAltered, parameters: [AnalyticsKeys.success : true])
+      Answers.logCustomEvent(withName: AnalyticsKeys.cardAltered,
                              customAttributes: nil)
       completion(theServices)
     }
@@ -285,14 +294,14 @@ class FirebaseUtility: NSObject {
     
     let attention: Int = state ? 0 : 1
     
-    let serviceRef = ref.child("newServices").child(service.cardID).child(service.serviceID)
+    let serviceRef = ref.child(FirebaseKeys.newServices).child(service.cardID).child(service.serviceID)
     
-    var serviceDict: [String : Any] = ["serviceName" : theName,
-                                       "serviceURL" : theURL,
-                                       "serviceStatus" : state,
-                                       "serviceFixed" : isFixed,
-                                       "attentionInt" : attention,
-                                       "category" : theCat]
+    var serviceDict: [String : Any] = [FirebaseKeys.serviceName : theName,
+                                       FirebaseKeys.serviceURL : theURL,
+                                       FirebaseKeys.serviceStatus : state,
+                                       FirebaseKeys.serviceFixed : isFixed,
+                                       FirebaseKeys.attentionInt : attention,
+                                       FirebaseKeys.category : theCat]
     
     if isFixed, let theRate = rate, let theAmount = amount, let paymentDate = paymentDate?.timeIntervalSince1970 {
       var serviceAmount: Double = 0
@@ -302,15 +311,15 @@ class FirebaseUtility: NSObject {
       }
       serviceAmount = Double(amountWhiteSpacesRemoved) ?? 0.0
       
-      serviceDict = ["serviceName" : theName,
-                     "serviceURL" : theURL,
-                     "serviceStatus" : state,
-                     "serviceFixed" : isFixed,
-                     "serviceAmount" : serviceAmount,
-                     "attentionInt" : attention,
-                     "category" : theCat,
-                     "paymentRate" : theRate,
-                     "nextPaymentDate" : paymentDate]
+      serviceDict = [FirebaseKeys.serviceName : theName,
+                     FirebaseKeys.serviceURL : theURL,
+                     FirebaseKeys.serviceStatus : state,
+                     FirebaseKeys.serviceFixed : isFixed,
+                     FirebaseKeys.serviceAmount : serviceAmount,
+                     FirebaseKeys.attentionInt : attention,
+                     FirebaseKeys.category : theCat,
+                     FirebaseKeys.paymentRate : theRate,
+                     FirebaseKeys.nextPaymentDate : paymentDate]
     }
     
     serviceRef.setValue(serviceDict, withCompletionBlock: { (error, ref) in
@@ -320,8 +329,8 @@ class FirebaseUtility: NSObject {
         completion(nil, errorMessage)
       } else {
         
-        Analytics.logEvent("Service_Details_Updated", parameters: ["success" : true])
-        Answers.logCustomEvent(withName: "Service Details Updated",
+        Analytics.logEvent(AnalyticsKeys.serviceDetailsUpdated, parameters: [AnalyticsKeys.success : true])
+        Answers.logCustomEvent(withName: AnalyticsKeys.serviceDetailsUpdated,
                                customAttributes: nil)
         
         
@@ -340,7 +349,7 @@ class FirebaseUtility: NSObject {
       return
     }
     
-    let serviceRef = ref.child("newServices").child(service.cardID).child(service.serviceID)
+    let serviceRef = ref.child(FirebaseKeys.newServices).child(service.cardID).child(service.serviceID)
     serviceRef.removeValue { (error, ref) in
       
       if let theError = error?.localizedDescription {
@@ -349,10 +358,10 @@ class FirebaseUtility: NSObject {
         
       } else {
         
-        let serviceRef = self.ref.child("newServices").child(service.cardID).child(service.serviceID)
+        let serviceRef = self.ref.child(FirebaseKeys.newServices).child(service.cardID).child(service.serviceID)
         serviceRef.removeValue()
-        Analytics.logEvent("Service_Deleted", parameters: ["success" : true])
-        Answers.logCustomEvent(withName: "Service Deleted", customAttributes: nil)
+        Analytics.logEvent(AnalyticsKeys.serviceDeleted, parameters: [AnalyticsKeys.success : true])
+        Answers.logCustomEvent(withName: AnalyticsKeys.serviceDeleted, customAttributes: nil)
         
         completion(true, nil)
       }
@@ -366,10 +375,10 @@ class FirebaseUtility: NSObject {
       if let theCards = cards {
         self.getServices(cards: theCards, index: 0, services: [], completion: { (services, error) in
           completion(services, error)
-          let groupDefaults = UserDefaults(suiteName: "group.Lynked")
+          let groupDefaults = UserDefaults(suiteName: FirebaseKeys.groupLynked)
           if let theServices = services {
             let simpleArray = self.getSimpleArrayFrom(services: theServices)
-            groupDefaults?.set(simpleArray, forKey: "services")
+            groupDefaults?.set(simpleArray, forKey: FirebaseKeys.services)
           }
         })
       } else {
@@ -465,9 +474,9 @@ class FirebaseUtility: NSObject {
         completion(nil, errMessage)
       } else {
         
-        Analytics.logEvent("Email_Login", parameters: ["success" : true])
+        Analytics.logEvent(AnalyticsKeys.emailLogin, parameters: [AnalyticsKeys.success : true])
         
-        Answers.logLogin(withMethod: "Email Login",
+        Answers.logLogin(withMethod: AnalyticsKeys.emailLogin,
                          success: true,
                          customAttributes: [:])
         
@@ -516,8 +525,8 @@ class FirebaseUtility: NSObject {
         }
         completion(nil, errMessage)
       } else {
-        Analytics.logEvent("Email_Register", parameters: ["success" : true])
-        Answers.logSignUp(withMethod: "Email Register",
+        Analytics.logEvent(AnalyticsKeys.emailRegister, parameters: [AnalyticsKeys.success : true])
+        Answers.logSignUp(withMethod: AnalyticsKeys.emailRegister,
                           success: true,
                           customAttributes: [:])
         self.user = user
@@ -532,7 +541,7 @@ class FirebaseUtility: NSObject {
   func pullUserData(completion: @escaping (_ userInfo: [String : String]?, _ errorMessage: String?) -> Void) {
     
     if let userID = user?.uid {
-      let userRef = ref.child("users").child(userID)
+      let userRef = ref.child(FirebaseKeys.users).child(userID)
       
       userRef.observeSingleEvent(of: .value, with: { (snapshot) in
         
@@ -549,9 +558,10 @@ class FirebaseUtility: NSObject {
   
   func saveUserName(name: String) {
     if let userID = user?.uid {
-      let userRef = ref.child("users").child(userID)
-      userRef.updateChildValues(["userName": name])
+      let userRef = ref.child(FirebaseKeys.users).child(userID)
+      userRef.updateChildValues([FirebaseKeys.userName: name])
     }
+    
     if let user = Auth.auth().currentUser {
       let changeRequest = user.createProfileChangeRequest()
       changeRequest.displayName = name
@@ -561,11 +571,11 @@ class FirebaseUtility: NSObject {
   
   func saveUserPicture(image: UIImage) {
     if let userId = user?.uid, let imageData = UIImageJPEGRepresentation(image, 1.0) {
-      let storageRef = storage.reference().child("profilePictures").child(userId)
+      let storageRef = storage.reference().child(FirebaseKeys.profilePicture).child(userId)
       storageRef.putData(imageData, metadata: nil, completion: { (storageMetaData, error) in
         if let profilePictureLink = storageMetaData?.downloadURL()?.absoluteString {
-          let userProfileRef = self.ref.child("users").child(userId)
-          userProfileRef.updateChildValues(["profilePicture" : profilePictureLink])
+          let userProfileRef = self.ref.child(FirebaseKeys.users).child(userId)
+          userProfileRef.updateChildValues([FirebaseKeys.profilePicture : profilePictureLink])
         }
       })
     }
@@ -573,8 +583,8 @@ class FirebaseUtility: NSObject {
   
   func deleteAccount(completion: (_ success: Bool, _ error: Error?) -> Void) {
     user?.delete(completion: { (error) in
-      Analytics.logEvent("User_Deleted", parameters: ["success" : true])
-      Answers.logCustomEvent(withName: "User Deleted",
+      Analytics.logEvent(AnalyticsKeys.userDeleted, parameters: [AnalyticsKeys.success : true])
+      Answers.logCustomEvent(withName: AnalyticsKeys.userDeleted,
                              customAttributes: nil)
     })
   }
