@@ -310,7 +310,7 @@ extension ServiceListViewController: UITableViewDelegate, UITableViewDataSource 
       if let fxed = service.serviceFixed {
         if fxed == true {
           
-          if let dueDate = ServicePayRateManager.shared.getNextPaymentDateFor(service: service) {
+          if let dueDate = ServicePayRateManagerUtility.shared.getNextPaymentDateFor(service: service) {
             let date = dueDate
             let formatter = DateFormatter()
             formatter.dateFormat = "MMM dd, yyyy"

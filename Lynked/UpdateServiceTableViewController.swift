@@ -151,7 +151,7 @@ class UpdateServiceTableViewController: UITableViewController {
       paymentIncrimentTextField.text = theRate
     }
     if let theService = service {
-      if let theScheduled = ServicePayRateManager.shared.getNextPaymentDateFor(service: theService) {
+      if let theScheduled = ServicePayRateManagerUtility.shared.getNextPaymentDateFor(service: theService) {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM dd, yyyy"
         paymentDateTextField.text = formatter.string(from: theScheduled)
@@ -177,35 +177,13 @@ class UpdateServiceTableViewController: UITableViewController {
   
   func updateServiceToFirebase() {
     if servFixed {
-      FirebaseUtility.shared.update(service: service,
-                                    name: nameTextField?.text,
-                                    url: urlTextField?.text,
-                                    amount: amountTextField?.text,
-                                    isFixed: true,
-                                    state: serviceCurrentSwitch.isOn,
-                                    rate: paymentIncrimentTextField?.text,
-                                    scheduled: servScheduled,
-                                    categ: categoryTextField?.text,
-                                    paymentDate: datePicker.date,
-                                    completion: { (updatedService, errMessage) in
-                                      FirebaseUtility.shared.getAllServices { (services, error) in }
-                                      self.navigationController?.popViewController(animated: true)
+      FirebaseUtility.shared.update(service: service, name: nameTextField?.text, url: urlTextField?.text, amount: amountTextField?.text, isFixed: true, state: serviceCurrentSwitch.isOn, rate: paymentIncrimentTextField?.text, scheduled: servScheduled, categ: categoryTextField?.text, paymentDate: datePicker.date, completion: { (updatedService, errMessage) in
+        FirebaseUtility.shared.getAllServices { (services, error) in }
+        self.navigationController?.popViewController(animated: true)
       })
-      
     } else {
-      
-      FirebaseUtility.shared.update(service: service,
-                                    name: nameTextField?.text,
-                                    url: urlTextField?.text,
-                                    amount: nil,
-                                    isFixed: false,
-                                    state: serviceCurrentSwitch.isOn,
-                                    rate: nil,
-                                    scheduled: nil,
-                                    categ: categoryTextField?.text,
-                                    paymentDate: nil,
-                                    completion: { (updatedService, errMessage) in
-                                      self.navigationController?.popViewController(animated: true)
+      FirebaseUtility.shared.update(service: service, name: nameTextField?.text, url: urlTextField?.text, amount: nil, isFixed: false, state: serviceCurrentSwitch.isOn, rate: nil, scheduled: nil, categ: categoryTextField?.text, paymentDate: nil, completion: { (updatedService, errMessage) in
+        self.navigationController?.popViewController(animated: true)
       })
     }
   }
@@ -307,7 +285,7 @@ class UpdateServiceTableViewController: UITableViewController {
     deleteThisService()
   }
   
-
+  
 }
 
 
@@ -324,7 +302,7 @@ extension UpdateServiceTableViewController: UIPickerViewDelegate, UIPickerViewDa
       return CategoryManager.shared.categories.count
       
     }
-    return ServicePayRateManager.shared.payRates.count
+    return ServicePayRateManagerUtility.shared.payRates.count
     
   }
   
@@ -334,7 +312,7 @@ extension UpdateServiceTableViewController: UIPickerViewDelegate, UIPickerViewDa
       return CategoryManager.shared.categories[row]
       
     }
-    return ServicePayRateManager.shared.payRates[row]
+    return ServicePayRateManagerUtility.shared.payRates[row]
   }
   
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -342,8 +320,8 @@ extension UpdateServiceTableViewController: UIPickerViewDelegate, UIPickerViewDa
       categoryTextField?.text = CategoryManager.shared.categories[row]
       service?.category = CategoryManager.shared.categories[row]
     } else {
-      paymentIncrimentTextField?.text = ServicePayRateManager.shared.payRates[row]
-      service?.paymentRate = ServicePayRateManager.shared.payRates[row]
+      paymentIncrimentTextField?.text = ServicePayRateManagerUtility.shared.payRates[row]
+      service?.paymentRate = ServicePayRateManagerUtility.shared.payRates[row]
     }
   }
 }

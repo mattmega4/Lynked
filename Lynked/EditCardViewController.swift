@@ -63,9 +63,7 @@ class EditCardViewController: UIViewController {
     
     self.nicknameTextField.delegate = self
     self.digitsTextField.delegate = self
-    
-    
-    
+
     lyLogo.createRoundView()
     
     title = "Edit Card"
@@ -164,10 +162,12 @@ class EditCardViewController: UIViewController {
       return
     }
     
-    FirebaseUtility.shared.update(card: theCard, nickName: nicknameTextField.text, last4: digitsTextField.text, color: segControl.selectedSegmentIndex) { (updatedCard, error) in
-      MBProgressHUD.showAdded(to: self.view, animated: true)
+    let color: Int = segControl.selectedSegmentIndex
+    print(color)
+    print("fo")
+    
+    FirebaseUtility.shared.update(card: theCard, nickName: nicknameTextField.text, last4: digitsTextField.text, color: color) { (updatedCard, error) in
       NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
-      MBProgressHUD.hide(for: self.view, animated: true)
       self.navigationController?.popViewController(animated: true)
     }
   }

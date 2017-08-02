@@ -92,9 +92,8 @@ class AddCardViewController: UIViewController {
     FirebaseUtility.shared.addCard(name: finalNickname?.capitalized, type: finalType, color: color, last4: last4) { (card, errorMessage) in
       MBProgressHUD.showAdded(to: self.view, animated: true)
       MBProgressHUD.hide(for: self.view, animated: true)
-      
-      self.dismiss(animated: true, completion: nil)
-      
+
+      self.navigationController?.popViewController(animated: true)
     }
   }
   

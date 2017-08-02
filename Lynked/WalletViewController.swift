@@ -9,7 +9,7 @@
 import UIKit
 import StoreKit
 import MBProgressHUD
-import FirebaseAuth
+import Firebase
 //import SCPinViewController
 
 class WalletViewController: UIViewController {
@@ -22,6 +22,7 @@ class WalletViewController: UIViewController {
   var card4ToTransfer: String?
   var cardtypeToTransfer: String?
   var cardArray: [Card] = []
+  var ref: DatabaseReference!
   
   var delegate: WalletViewControllerDelegate?
   
@@ -42,36 +43,46 @@ class WalletViewController: UIViewController {
     tableView.estimatedRowHeight = 500
     self.splitViewController?.preferredDisplayMode = .allVisible
     self.navigationItem.setHidesBackButton(true, animated: true)
+    ref = Database.database().reference()
     
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
+    NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
   }
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
     FirebaseUtility.shared.getAllServices { (services, error) in }
+    checkAuthAndPull()
+  }
+  
+  override func viewDidDisappear(_ animated: Bool) {
+    super.viewDidDisappear(animated)
     
-    NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
-    
+    ref.child("newCards").removeAllObservers()
+  }
+  
+  
+  // MARK: - Firebase
+  
+  func checkAuthAndPull() {
+    self.cardArray.removeAll()
+    self.tableView.reloadData()
     if Auth.auth().currentUser == nil {
-      MBProgressHUD.showAdded(to: self.view, animated: true)
-      
       cardArray.removeAll()
       self.tableView.reloadData()
       if let loginVc = storyboard?.instantiateViewController(withIdentifier: ENTRY_STORYBOARD_IDENTIFIER) as? EntryViewController {
         let loginNavigation = UINavigationController(rootViewController: loginVc)
         self.splitViewController?.present(loginNavigation, animated: true, completion: nil)
       }
-      MBProgressHUD.hide(for: self.view, animated: true)
     } else {
       pullAllUsersCards()
     }
   }
-  
   
   func pullAllUsersCards() {
     
@@ -86,11 +97,8 @@ class WalletViewController: UIViewController {
           MBProgressHUD.showAdded(to: self.view, animated: true)
           self.cardArray = theCards
           self.tableView.reloadData()
-          
           MBProgressHUD.hide(for: self.view, animated: true)
         }
-      } else {
-        //
       }
     }
   }
@@ -154,7 +162,8 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
       
       if InAppPurchaseUtility.shared.isPurchased {
         if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: ADD_CARD_STORYBOARD_IDENTIFIER) as? AddCardViewController {
-          self.navigationController?.pushViewController(addCardVC, animated: true)
+          //          self.navigationController?.pushViewController(addCardVC, animated: true)
+          self.navigationController?.present(addCardVC, animated: true, completion: nil)
         }
       } else {
         let actionSheet = UIAlertController(title: nil, message: "You will need to purchase this to add more than 1 card", preferredStyle: .actionSheet)
@@ -207,17 +216,14 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
     let row = indexPath.row - 1
     
     
-    if cell.isSelected {
-      cell.cardBorderView.backgroundColor = .orange
-      cell.cardBackgroundView.backgroundColor = cardArray[row].color
-    } else {
-      cell.cardBorderView.backgroundColor = .darkGray
-      cell.cardBackgroundView.backgroundColor = cardArray[row].color
-    }
+    print(cardArray)
+    
     
     if let img = cardArray[row].image {
       cell.cardBackgroundImage.image = img
     }
+    
+    
     
     cell.cardNicknameLabel.text = cardArray[row].nickname
     cell.cardNicknameLabel.font = cell.cardNicknameLabel.font.withSize((UIDevice.current.userInterfaceIdiom == .pad ? 38 : 16))
@@ -243,34 +249,7 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
   
 }
 
-//extension WalletViewController: SCPinViewControllerDataSource, SCPinViewControllerValidateDelegate {
-//
-//
-//  func code(for pinViewController: SCPinViewController!) -> String! {
-//    if let pin = UserDefaults.standard.object(forKey: "pin") as? String {
-//      return pin
-//    }
-//    return "1234"
-//  }
-//
-//  func pinViewControllerDidSetWrongPin(_ pinViewController: SCPinViewController!) {
-//    print("wrong pin")
-//  }
-//
-//  func pinViewControllerDidSetСorrectPin(_ pinViewController: SCPinViewController!) {
-//    UserDefaults.standard.set(true, forKey: "unlocked")
-//    pinViewController.dismiss(animated: true, completion: nil)
-//  }
-//
-//  func showTouchIDVerificationImmediately() -> Bool {
-//    return true
-//  }
-//
-//  func hideTouchIDButtonIfFingersAreNotEnrolled() -> Bool {
-//    return true
-//  }
-//
-//}
+
 
 extension WalletViewController: UISplitViewControllerDelegate {
   
