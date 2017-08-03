@@ -93,11 +93,16 @@ class FeedbackViewController: UIViewController {
     guard let dic = NSDictionary(contentsOfFile: path) as? [String : String] else {
       return
     }
+    
     guard let mailKey = dic["ActiveApiKey"] else {
       return
     }
     
-    let mailGun = Mailgun.client(withDomain: "sandboxb521e090cff14308ac6c086329ad958c.mailgun.org", apiKey: mailKey)
+    guard let mGun = dic["mailGun"] else {
+      return
+    }
+    
+    let mailGun = Mailgun.client(withDomain: mGun, apiKey: mailKey)
     
     guard let theTopic = topicTextField.text else {
       return
