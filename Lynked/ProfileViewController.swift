@@ -77,9 +77,9 @@ class ProfileViewController: UITableViewController {
   
   func pullUserData() {
     FirebaseUtility.shared.pullUserData { (userInfo, errorMessage) in
-      if let profilePictureLink = userInfo?["profilePicture"] {
+      if let profilePictureLink = userInfo?[FirebaseKeys.profilePicture] {
         if let profilePictureURL = URL(string: profilePictureLink) {
-          self.profileImageView.kf.setImage(with: profilePictureURL, placeholder: #imageLiteral(resourceName: "E"), options: nil, progressBlock: nil, completionHandler: nil)
+          self.profileImageView.kf.setImage(with: profilePictureURL, placeholder: #imageLiteral(resourceName: "camera"), options: nil, progressBlock: nil, completionHandler: nil)
         }
       }
       if let profileName = userInfo?["userName"] {

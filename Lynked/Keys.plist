@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>mailGun</key>
+	<string>sandboxb521e090cff14308ac6c086329ad958c.mailgun.org</string>
 	<key>ActiveApiKey</key>
 	<string>key-8dd3d68a5ab4d94eb0015fd530c44d96</string>
 	<key>EmailValidationKey</key>
