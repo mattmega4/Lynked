@@ -90,8 +90,14 @@ class WalletViewController: UIViewController {
       if let theCards = cards {
         if theCards.count < 1 {
           if let addVC = self.storyboard?.instantiateViewController(withIdentifier: ADD_CARD_STORYBOARD_IDENTIFIER) as? AddCardViewController {
+            
             let addNavigation = UINavigationController(rootViewController: addVC)
-            self.splitViewController?.present(addNavigation, animated: true, completion: nil)
+            if UIDevice.current.userInterfaceIdiom == .pad {
+              self.splitViewController?.present(addNavigation, animated: true, completion: nil)
+            }
+            else {
+              self.present(addNavigation, animated: true, completion: nil)
+            }
           }
         } else {
           MBProgressHUD.showAdded(to: self.view, animated: true)
@@ -119,7 +125,11 @@ class WalletViewController: UIViewController {
   
   
   @IBAction func rightBarButtonTapped(_ sender: UIBarButtonItem) {
+    
+    
+    
     if let prefVC = self.storyboard?.instantiateViewController(withIdentifier: PROFILE_STORYBOARD_IDENTIFIER) as? ProfileViewController {
+      
       let prefNavigation = UINavigationController(rootViewController: prefVC)
       self.splitViewController?.present(prefNavigation, animated: true, completion: nil)
     }
