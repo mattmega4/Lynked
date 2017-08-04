@@ -19,7 +19,6 @@ struct FirebaseKeys {
   static let type = "type"
   static let newCards = "newCards"
   static let newServices = "newServices"
-  
   static let serviceName = "serviceName"
   static let serviceURL = "serviceURL"
   static let serviceStatus = "serviceStatus"

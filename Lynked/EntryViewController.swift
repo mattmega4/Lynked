@@ -356,13 +356,7 @@ class EntryViewController: UIViewController {
         }
         alertController.addAction(OKAction)
       } else {
-        //                if let pinVC = SCPinViewController(scope: .create) {
-        //                    pinVC.createDelegate = self
-        //                    self.present(pinVC, animated: true, completion: nil)
-        //
-        //                } else {
         self.dismiss(animated: true, completion: nil)
-        //                }
       }
     }
   }
@@ -559,26 +553,6 @@ extension EntryViewController: UITextFieldDelegate {
   
   
 }
-
-// MARK: - SCPinViewControllerDelegate
-
-//extension EntryViewController: SCPinViewControllerCreateDelegate {
-//
-//  func pinViewController(_ pinViewController: SCPinViewController!, didSetNewPin pin: String!) {
-//    UserDefaults.standard.set(pin, forKey: "pin")
-//    UserDefaults.standard.set(true, forKey: "unlocked")
-//    pinViewController.dismiss(animated: true) {
-//      self.dismiss(animated: true, completion: nil)
-//    }
-//
-//  }
-//
-//  func lengthForPin() -> Int {
-//    return 4
-//  }
-//
-//}
-
 
 
 

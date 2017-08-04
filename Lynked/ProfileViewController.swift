@@ -60,10 +60,20 @@ class ProfileViewController: UITableViewController {
     nameTextField.placeHolderTextColor = .white
   }
   
+  var whetherCameraJustDismissed = false
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+
+    if !whetherCameraJustDismissed {
+      pullUserData()
+      whetherCameraJustDismissed = false
+    }
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
     
-    pullUserData()
+    
   }
   
   override func viewDidLayoutSubviews() {
@@ -82,7 +92,10 @@ class ProfileViewController: UITableViewController {
           self.profileImageView.kf.setImage(with: profilePictureURL, placeholder: #imageLiteral(resourceName: "camera"), options: nil, progressBlock: nil, completionHandler: nil)
         }
       }
-      if let profileName = userInfo?["userName"] {
+      else {
+        self.profileImageView.image = #imageLiteral(resourceName: "camera")
+      }
+      if let profileName = userInfo?[FirebaseKeys.userName] {
         self.nameLabel.text = profileName
         self.editNameButton.isHidden = false
         self.nameLabel.isHidden = false
@@ -107,7 +120,7 @@ class ProfileViewController: UITableViewController {
       FirebaseUtility.shared.saveUserName(name: userName)
     }
   }
-  
+
   
   // Mark: - Use Camera Roll
   
@@ -236,25 +249,7 @@ class ProfileViewController: UITableViewController {
     alertController.addAction(okAction)
     self.present(alertController, animated: true, completion: nil)
   }
-  
-  // MARK: - Keyboard Methods
-  
-  //    func keyboardWillShow(notification:NSNotification) {
-  //        var userInfo = notification.userInfo!
-  //        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-  //        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
-  //        var contentInset: UIEdgeInsets = self.scrollView.contentInset
-  //        contentInset.bottom = keyboardFrame.size.height
-  //        self.scrollView.contentInset = contentInset
-  //    }
-  //
-  //
-  //    func keyboardWillHide(notification:NSNotification) {
-  //        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
-  //        self.scrollView.contentInset = contentInset
-  //    }
-  
-  
+
 }
 
 
@@ -277,15 +272,26 @@ extension ProfileViewController: UITextFieldDelegate {
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+
     dismiss(animated: true, completion: nil)
   }
   
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-    if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
-      self.profileImageView.image = editedImage
-      FirebaseUtility.shared.saveUserPicture(image: editedImage)
+    
+    guard let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage else {
+      return
     }
+    self.profileImageView.image = editedImage
+    whetherCameraJustDismissed = true
+    FirebaseUtility.shared.saveUserPicture(image: editedImage)
+    
+    //    if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+    //      self.profileImageView.image = editedImage
+    //      FirebaseUtility.shared.saveUserPicture(image: editedImage)
+    //
+    //    } 
     dismiss(animated: true, completion: nil)
+
   }
   
   
