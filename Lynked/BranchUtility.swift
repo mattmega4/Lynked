@@ -16,14 +16,14 @@ class BranchUtility: NSObject {
   
   func generateBranchLinkFor(promoCode: String, completion: @escaping (_ link: String?) -> Void) {
     
-    let branchUniversalObject: BranchUniversalObject = BranchUniversalObject(canonicalIdentifier: "promoCode/1")
-    branchUniversalObject.title = "Promo Code"
-    branchUniversalObject.contentDescription = "Use this code to get something"
-    branchUniversalObject.addMetadataKey("code", value: promoCode)
+    let branchUniversalObject: BranchUniversalObject = BranchUniversalObject(canonicalIdentifier: BranchKeys.promoCodeSlashOne)
+    branchUniversalObject.title = BranchKeys.promoCode
+    branchUniversalObject.contentDescription = BranchKeys.downloadLynked
+    branchUniversalObject.addMetadataKey(BranchKeys.code, value: promoCode)
     //branchUniversalObject.addMetadataKey("property2", value: "red")
     
     let linkProperties: BranchLinkProperties = BranchLinkProperties()
-    linkProperties.feature = "code"
+    linkProperties.feature = BranchKeys.code
     
     branchUniversalObject.getShortUrl(with: linkProperties) { (url, error) in
       completion(url)

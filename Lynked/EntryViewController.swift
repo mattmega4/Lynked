@@ -12,7 +12,7 @@ import FirebaseAuth
 import Fabric
 import Crashlytics
 import LocalAuthentication
-//import SCPinViewController
+
 
 class EntryViewController: UIViewController {
   
@@ -70,6 +70,7 @@ class EntryViewController: UIViewController {
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
   }
+  
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)

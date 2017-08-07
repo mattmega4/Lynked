@@ -90,7 +90,6 @@ class WalletViewController: UIViewController {
       if let theCards = cards {
         if theCards.count < 1 {
           if let addVC = self.storyboard?.instantiateViewController(withIdentifier: ADD_CARD_STORYBOARD_IDENTIFIER) as? AddCardViewController {
-            
             let addNavigation = UINavigationController(rootViewController: addVC)
             if UIDevice.current.userInterfaceIdiom == .pad {
               self.splitViewController?.present(addNavigation, animated: true, completion: nil)
@@ -153,6 +152,7 @@ class WalletViewController: UIViewController {
       if success {
         if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: ADD_CARD_STORYBOARD_IDENTIFIER) as? AddCardViewController {
           self.navigationController?.pushViewController(addCardVC, animated: true)
+          
         }
       } else  {
         self.showAlertWith(title: "Purchase Failed!", message: error?.localizedDescription)

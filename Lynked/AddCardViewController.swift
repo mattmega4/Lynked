@@ -44,6 +44,8 @@ class AddCardViewController: UIViewController {
   var finalType: String?
   
   
+  
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -93,12 +95,6 @@ class AddCardViewController: UIViewController {
       MBProgressHUD.showAdded(to: self.view, animated: true)
       MBProgressHUD.hide(for: self.view, animated: true)
 
-//      if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: WALLET_STORYBOARD_IDENTIFIER) as? WalletViewController {
-//        self.navigationController?.pushViewController(walletVC, animated: true)
-//      }
-
-    
-      //self.navigationController?.popViewController(animated: true)
       self.dismiss(animated: true, completion: nil)
 
     }

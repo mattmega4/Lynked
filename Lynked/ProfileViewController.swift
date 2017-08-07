@@ -48,6 +48,8 @@ class ProfileViewController: UITableViewController {
   let user = Auth.auth().currentUser
   let storage = Storage.storage()
   
+  var whetherCameraJustDismissed = false
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -60,7 +62,7 @@ class ProfileViewController: UITableViewController {
     nameTextField.placeHolderTextColor = .white
   }
   
-  var whetherCameraJustDismissed = false
+  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 

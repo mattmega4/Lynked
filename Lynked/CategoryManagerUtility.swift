@@ -22,16 +22,16 @@ class CategoryManager: NSObject {
   static let shared = CategoryManager()
   
   
-  let categories = ["Miscellaneous",
-                    "Entertainment",
-                    "Utilities",
-                    "Food",
-                    "Professional",
-                    "Charity",
-                    "Shopping",
-                    "Education",
-                    "Travel",
-                    "Medical"]
+  let categories = [CategoryKeys.miscellaneous,
+                    CategoryKeys.entertainment,
+                    CategoryKeys.utilities,
+                    CategoryKeys.food,
+                    CategoryKeys.professional,
+                    CategoryKeys.charity,
+                    CategoryKeys.shopping,
+                    CategoryKeys.education,
+                    CategoryKeys.travel,
+                    CategoryKeys.medical]
   
 }
 
