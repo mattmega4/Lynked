@@ -22,11 +22,11 @@ class InAppPurchaseUtility: NSObject, SKProductsRequestDelegate, SKPaymentTransa
   
   override init() {
     super.init()
-    let identifiers = Set(["com.Lynked.card"])
+    let identifiers = Set([PurchaseKeys.comLynkedCard])
     productRequest = SKProductsRequest(productIdentifiers: identifiers)
     productRequest.delegate = self
     productRequest.start()
-    isPurchased = UserDefaults.standard.bool(forKey: "com.Lynked.card")
+    isPurchased = UserDefaults.standard.bool(forKey: PurchaseKeys.comLynkedCard)
   }
   
   // MARK: - SKProductRequest Delegate
@@ -39,20 +39,20 @@ class InAppPurchaseUtility: NSObject, SKProductsRequestDelegate, SKPaymentTransa
     if let transaction = transactions.first {
       
       if transaction.transactionState == .purchased {
-        UserDefaults.standard.set(true, forKey: "com.Lynked.card")
+        UserDefaults.standard.set(true, forKey: PurchaseKeys.comLynkedCard)
         self.isPurchased = true
         purchaseCompletion?(true, nil)
         
         // MARK: - Track the user action that is important for you.
         
-        Analytics.logEvent("Add_Card_Purchase", parameters: ["success" : true])
+        Analytics.logEvent(AnalyticsKeys.addCardPurchase, parameters: [AnalyticsKeys.success : true])
         
-        Answers.logPurchase(withPrice: 00.99,
-                            currency: "USD",
+        Answers.logPurchase(withPrice: PurchaseKeys.price,
+                            currency: PurchaseKeys.currency,
                             success: true,
-                            itemName: "Add Card",
-                            itemType: "Card",
-                            itemId: "sku-1",
+                            itemName: PurchaseKeys.itemName,
+                            itemType: PurchaseKeys.itemType,
+                            itemId: PurchaseKeys.itemId,
                             customAttributes: nil)
         
         

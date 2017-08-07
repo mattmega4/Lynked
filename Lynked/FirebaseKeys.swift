@@ -1,8 +1,8 @@
 //
-//  FirebaseStrings.swift
+//  FirebaseKeys.swift
 //  Lynked
 //
-//  Created by Matthew Howes Singleton on 8/2/17.
+//  Created by Matthew Howes Singleton on 8/7/17.
 //  Copyright © 2017 Matthew Singleton. All rights reserved.
 //
 
@@ -30,5 +30,5 @@ struct FirebaseKeys {
   static let paymentRate = "paymentRate"
   static let miscellaneous = "Miscellaneous"
   static let groupLynked = "group.Lynked"
-
+  
 }

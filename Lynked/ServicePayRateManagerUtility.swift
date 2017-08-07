@@ -12,11 +12,7 @@ class ServicePayRateManagerUtility: NSObject {
 
   static let shared = ServicePayRateManagerUtility()
   
-  let payRates = [/*"Weekly",*/
-    //                    "Biweekly",
-    "Monthly",
-    //                    "Quarterly",
-    "Annually"]
+  let payRates = [PayRateKeys.monthly, PayRateKeys.annually]
   
   func getNextPaymentDateFor(service: Service) -> Date? {
     if let theDate = service.nextPaymentDate {
@@ -31,7 +27,7 @@ class ServicePayRateManagerUtility: NSObject {
       components.day = day
       
       let today = cal.component(.day, from: Date())
-      if service.paymentRate == "Monthly" {
+      if service.paymentRate == PayRateKeys.monthly {
         if today > day {
           components.month = cal.component(.month, from: Date()) + 1
           if components.month == 2 {
@@ -57,7 +53,7 @@ class ServicePayRateManagerUtility: NSObject {
         if let theDate = cal.date(from: components) {
           return theDate
         }
-      } else if service.paymentRate == "Annually" {
+      } else if service.paymentRate == PayRateKeys.annually {
         let thisMonth = cal.component(.month, from: Date())
         if thisMonth < month {
           components.month = month

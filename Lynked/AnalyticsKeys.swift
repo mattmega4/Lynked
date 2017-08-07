@@ -1,8 +1,8 @@
 //
-//  AnalyticsStrings.swift
+//  AnalyticsKeys.swift
 //  Lynked
 //
-//  Created by Matthew Howes Singleton on 8/2/17.
+//  Created by Matthew Howes Singleton on 8/7/17.
 //  Copyright © 2017 Matthew Singleton. All rights reserved.
 //
 
@@ -19,5 +19,6 @@ struct AnalyticsKeys {
   static let emailLogin = "Email_Login"
   static let emailRegister = "Email_Register"
   static let userDeleted = "User_Deleted"
+  static let addCardPurchase = "Add_Card_Purchase"
   static let success = "success"
 }

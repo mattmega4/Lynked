@@ -32,6 +32,20 @@
 		297BE9FC1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 297BE9FB1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist */; };
 		297BE9FE1EF707EA0035D4DA /* AcknowledgementsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297BE9FD1EF707EA0035D4DA /* AcknowledgementsViewModel.swift */; };
 		297BEA001EF708640035D4DA /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297BE9FF1EF708640035D4DA /* Library.swift */; };
+		297C02311F392041009DEF23 /* PurchaseKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297C02301F392041009DEF23 /* PurchaseKeys.swift */; };
+		297C02331F392063009DEF23 /* AnalyticsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297C02321F392063009DEF23 /* AnalyticsKeys.swift */; };
+		297C02341F392069009DEF23 /* PurchaseKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297C02301F392041009DEF23 /* PurchaseKeys.swift */; };
+		297C02351F39206C009DEF23 /* AnalyticsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297C02321F392063009DEF23 /* AnalyticsKeys.swift */; };
+		297C02371F392085009DEF23 /* FirebaseKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297C02361F392085009DEF23 /* FirebaseKeys.swift */; };
+		297C02381F392085009DEF23 /* FirebaseKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297C02361F392085009DEF23 /* FirebaseKeys.swift */; };
+		297C023A1F3920A2009DEF23 /* BranchKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297C02391F3920A2009DEF23 /* BranchKeys.swift */; };
+		297C023B1F3920A2009DEF23 /* BranchKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297C02391F3920A2009DEF23 /* BranchKeys.swift */; };
+		297C023D1F392217009DEF23 /* PayRateKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297C023C1F392217009DEF23 /* PayRateKeys.swift */; };
+		297C023E1F392217009DEF23 /* PayRateKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297C023C1F392217009DEF23 /* PayRateKeys.swift */; };
+		297C02401F392246009DEF23 /* SegmentKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297C023F1F392246009DEF23 /* SegmentKeys.swift */; };
+		297C02411F392246009DEF23 /* SegmentKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297C023F1F392246009DEF23 /* SegmentKeys.swift */; };
+		297C02431F392392009DEF23 /* CategoryKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297C02421F392392009DEF23 /* CategoryKeys.swift */; };
+		297C02441F392392009DEF23 /* CategoryKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297C02421F392392009DEF23 /* CategoryKeys.swift */; };
 		298E7D511EFEF10100A83CA8 /* ServiceDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298E7D501EFEF10100A83CA8 /* ServiceDetailTableViewCell.swift */; };
 		298FA4E41EF78EA4009B5A36 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FA4E31EF78EA4009B5A36 /* UIViewController+Extensions.swift */; };
 		298FA4E61EF78EDB009B5A36 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FA4E51EF78EDB009B5A36 /* String+Extensions.swift */; };
@@ -69,10 +83,6 @@
 		29FD5E711F327916009C6C6B /* ServicePayRateManagerUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FD5E6F1F327908009C6C6B /* ServicePayRateManagerUtility.swift */; };
 		29FD5E731F327968009C6C6B /* CategoryManagerUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FD5E721F327968009C6C6B /* CategoryManagerUtility.swift */; };
 		29FD5E741F3279A6009C6C6B /* CategoryManagerUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FD5E721F327968009C6C6B /* CategoryManagerUtility.swift */; };
-		29FD5E761F327A1F009C6C6B /* FirebaseStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FD5E751F327A1F009C6C6B /* FirebaseStrings.swift */; };
-		29FD5E771F327A1F009C6C6B /* FirebaseStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FD5E751F327A1F009C6C6B /* FirebaseStrings.swift */; };
-		29FD5E7A1F327BBB009C6C6B /* AnalyticsStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FD5E791F327BBB009C6C6B /* AnalyticsStrings.swift */; };
-		29FD5E7B1F327BBB009C6C6B /* AnalyticsStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FD5E791F327BBB009C6C6B /* AnalyticsStrings.swift */; };
 		E86C3EB7EE5754E5BF9A1F85 /* Pods_Lynked_Widget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA6F3E9D57672DC96FCD6C6 /* Pods_Lynked_Widget.framework */; };
 		FE255734139BB8197894689C /* Pods_Lynked.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 267A4AE157A5C3F5E4C71A91 /* Pods_Lynked.framework */; };
 /* End PBXBuildFile section */
@@ -138,6 +148,13 @@
 		297BE9FB1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Pods-Lynked-acknowledgements.plist"; path = "../Pods/Target Support Files/Pods-Lynked/Pods-Lynked-acknowledgements.plist"; sourceTree = "<group>"; };
 		297BE9FD1EF707EA0035D4DA /* AcknowledgementsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AcknowledgementsViewModel.swift; path = ../AcknowledgementsViewModel.swift; sourceTree = "<group>"; };
 		297BE9FF1EF708640035D4DA /* Library.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
+		297C02301F392041009DEF23 /* PurchaseKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseKeys.swift; sourceTree = "<group>"; };
+		297C02321F392063009DEF23 /* AnalyticsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsKeys.swift; sourceTree = "<group>"; };
+		297C02361F392085009DEF23 /* FirebaseKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseKeys.swift; sourceTree = "<group>"; };
+		297C02391F3920A2009DEF23 /* BranchKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BranchKeys.swift; sourceTree = "<group>"; };
+		297C023C1F392217009DEF23 /* PayRateKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayRateKeys.swift; sourceTree = "<group>"; };
+		297C023F1F392246009DEF23 /* SegmentKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentKeys.swift; sourceTree = "<group>"; };
+		297C02421F392392009DEF23 /* CategoryKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryKeys.swift; sourceTree = "<group>"; };
 		298E7D501EFEF10100A83CA8 /* ServiceDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDetailTableViewCell.swift; sourceTree = "<group>"; };
 		298FA4E31EF78EA4009B5A36 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		298FA4E51EF78EDB009B5A36 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
@@ -171,8 +188,6 @@
 		29F778D71EEE291300B6AA6E /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		29FD5E6F1F327908009C6C6B /* ServicePayRateManagerUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicePayRateManagerUtility.swift; sourceTree = "<group>"; };
 		29FD5E721F327968009C6C6B /* CategoryManagerUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryManagerUtility.swift; sourceTree = "<group>"; };
-		29FD5E751F327A1F009C6C6B /* FirebaseStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseStrings.swift; sourceTree = "<group>"; };
-		29FD5E791F327BBB009C6C6B /* AnalyticsStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsStrings.swift; sourceTree = "<group>"; };
 		332153A02078D17E6D55BF0C /* Pods-Lynked.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lynked.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lynked/Pods-Lynked.release.xcconfig"; sourceTree = "<group>"; };
 		61C5BAFDC0F62D6BA28B7B7A /* Pods-Lynked.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lynked.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lynked/Pods-Lynked.debug.xcconfig"; sourceTree = "<group>"; };
 		777E17BCF265AA7F0F2BABBF /* Pods-Lynked Widget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lynked Widget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lynked Widget/Pods-Lynked Widget.debug.xcconfig"; sourceTree = "<group>"; };
@@ -271,6 +286,7 @@
 		1DC0D8C21DFE518F0039B8F6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				29FD5E781F327A35009C6C6B /* Structs */,
 				29FD5E6D1F3278CB009C6C6B /* Utility */,
 				29FD5E6E1F3278DB009C6C6B /* Classes */,
 				29D5906A1EF5AE5600CA66D6 /* RequestReview.swift */,
@@ -391,7 +407,6 @@
 		29FD5E6D1F3278CB009C6C6B /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				29FD5E781F327A35009C6C6B /* Structs */,
 				2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */,
 				29CA61711F09C6E200391199 /* BranchUtility.swift */,
 				29AA67E11EE7B4BA000EDE42 /* InAppPurchaseUtility.swift */,
@@ -414,8 +429,13 @@
 		29FD5E781F327A35009C6C6B /* Structs */ = {
 			isa = PBXGroup;
 			children = (
-				29FD5E751F327A1F009C6C6B /* FirebaseStrings.swift */,
-				29FD5E791F327BBB009C6C6B /* AnalyticsStrings.swift */,
+				297C02361F392085009DEF23 /* FirebaseKeys.swift */,
+				297C02391F3920A2009DEF23 /* BranchKeys.swift */,
+				297C02301F392041009DEF23 /* PurchaseKeys.swift */,
+				297C023F1F392246009DEF23 /* SegmentKeys.swift */,
+				297C023C1F392217009DEF23 /* PayRateKeys.swift */,
+				297C02421F392392009DEF23 /* CategoryKeys.swift */,
+				297C02321F392063009DEF23 /* AnalyticsKeys.swift */,
 			);
 			name = Structs;
 			sourceTree = "<group>";
@@ -742,27 +762,29 @@
 				290AC7C51F2C667500EE2783 /* Card.swift in Sources */,
 				297BE9FE1EF707EA0035D4DA /* AcknowledgementsViewModel.swift in Sources */,
 				29CB33141EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift in Sources */,
+				297C02371F392085009DEF23 /* FirebaseKeys.swift in Sources */,
 				29929B541F08F6EA00369314 /* ProfileViewController.swift in Sources */,
 				29D5906B1EF5AE5600CA66D6 /* RequestReview.swift in Sources */,
 				29773CDD1EC3B6730023F277 /* EntryViewController.swift in Sources */,
 				2943B48B1EF624D600A0E8DD /* FirebaseUtility.swift in Sources */,
 				298FA4E61EF78EDB009B5A36 /* String+Extensions.swift in Sources */,
-				29FD5E7A1F327BBB009C6C6B /* AnalyticsStrings.swift in Sources */,
 				292764951EDFC8350096AE1E /* CardTableViewCell.swift in Sources */,
 				29FD5E731F327968009C6C6B /* CategoryManagerUtility.swift in Sources */,
 				2924F9BE1EF22F090014C284 /* SegmentColorManager.swift in Sources */,
 				29E713D41F0AEDA0004B5715 /* ServiceListViewController.swift in Sources */,
 				29E39CB81F0B168300E23949 /* CategoryTableViewCell.swift in Sources */,
 				296898DB1F248D6100071021 /* LegalViewController.swift in Sources */,
-				29FD5E761F327A1F009C6C6B /* FirebaseStrings.swift in Sources */,
 				29E39CBC1F0B226600E23949 /* UpdateServiceTableViewController.swift in Sources */,
+				297C02311F392041009DEF23 /* PurchaseKeys.swift in Sources */,
 				298FA4EA1EF78F40009B5A36 /* NSObject+Extensions.swift in Sources */,
 				29CA61741F09E56C00391199 /* UITextField+Extensions.swift in Sources */,
 				1DC0D8DF1DFE5F910039B8F6 /* EditCardViewController.swift in Sources */,
+				297C02401F392246009DEF23 /* SegmentKeys.swift in Sources */,
 				298FA4E81EF78F26009B5A36 /* UIView+Extensions.swift in Sources */,
 				298E7D511EFEF10100A83CA8 /* ServiceDetailTableViewCell.swift in Sources */,
 				1DC0D8B31DFE516A0039B8F6 /* Lynked.xcdatamodeld in Sources */,
 				29CF61E61F2D7AE4006659FE /* InitialImageFactory.swift in Sources */,
+				297C023D1F392217009DEF23 /* PayRateKeys.swift in Sources */,
 				29CA61721F09C6E200391199 /* BranchUtility.swift in Sources */,
 				29AA96CD1F074EA900194670 /* Identifiers.swift in Sources */,
 				29CB33121EF65EFA009CEE3B /* AcknowledgementsViewController.swift in Sources */,
@@ -771,7 +793,10 @@
 				294D0E321EF9E9F7000E4BC6 /* CategoryViewController.swift in Sources */,
 				292764931EDFA3160096AE1E /* WalletViewController.swift in Sources */,
 				298FA4E41EF78EA4009B5A36 /* UIViewController+Extensions.swift in Sources */,
+				297C023A1F3920A2009DEF23 /* BranchKeys.swift in Sources */,
+				297C02331F392063009DEF23 /* AnalyticsKeys.swift in Sources */,
 				297BEA001EF708640035D4DA /* Library.swift in Sources */,
+				297C02431F392392009DEF23 /* CategoryKeys.swift in Sources */,
 				29D412B81F00D43A0081CF79 /* NewCardTableViewCell.swift in Sources */,
 				29E713D61F0AEE0E004B5715 /* ServiceTableViewCell.swift in Sources */,
 				29FD5E701F327908009C6C6B /* ServicePayRateManagerUtility.swift in Sources */,
@@ -793,17 +818,22 @@
 			files = (
 				292DEB061F01D486008247EC /* GoogleService-Info.plist in Sources */,
 				29FD5E711F327916009C6C6B /* ServicePayRateManagerUtility.swift in Sources */,
+				297C023B1F3920A2009DEF23 /* BranchKeys.swift in Sources */,
 				29D412B41F00B68F0081CF79 /* SegmentColorManager.swift in Sources */,
+				297C02351F39206C009DEF23 /* AnalyticsKeys.swift in Sources */,
 				29D412B31F00B67E0081CF79 /* String+Extensions.swift in Sources */,
-				29FD5E7B1F327BBB009C6C6B /* AnalyticsStrings.swift in Sources */,
 				29D412B11F00B18C0081CF79 /* FirebaseUtility.swift in Sources */,
+				297C02341F392069009DEF23 /* PurchaseKeys.swift in Sources */,
 				290AC7C91F2C66AE00EE2783 /* Card.swift in Sources */,
 				290AC7D01F2C695500EE2783 /* Service.swift in Sources */,
 				29EFAB281EFE46A1007F384E /* TodayViewController.swift in Sources */,
 				29D412AF1F00AF0C0081CF79 /* WidgetTableViewCell.swift in Sources */,
 				29FD5E741F3279A6009C6C6B /* CategoryManagerUtility.swift in Sources */,
+				297C02441F392392009DEF23 /* CategoryKeys.swift in Sources */,
+				297C02381F392085009DEF23 /* FirebaseKeys.swift in Sources */,
+				297C02411F392246009DEF23 /* SegmentKeys.swift in Sources */,
+				297C023E1F392217009DEF23 /* PayRateKeys.swift in Sources */,
 				29CF61E71F2D7C0C006659FE /* InitialImageFactory.swift in Sources */,
-				29FD5E771F327A1F009C6C6B /* FirebaseStrings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
