@@ -109,6 +109,42 @@ class WalletViewController: UIViewController {
   }
   
   
+  // MARK: - In App Purchase
+  
+  func navigateAfterPurchaseOrRestore() {
+    if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: ADD_CARD_STORYBOARD_IDENTIFIER) as? AddCardViewController {
+      
+      let addNavigation = UINavigationController(rootViewController: addCardVC)
+      
+      if UIDevice.current.userInterfaceIdiom == .pad {
+        self.splitViewController?.present(addNavigation, animated: true, completion: nil)
+      } else {
+        self.navigationController?.present(addNavigation, animated: true, completion: nil)
+      }
+    }
+    
+  }
+  
+  func purchaseProduct() {
+    InAppPurchaseUtility.shared.purchaseProduct { (success, error) in
+      if success {
+        self.navigateAfterPurchaseOrRestore()
+      } else  {
+        self.showAlertWith(title: "Purchase Failed!", message: error?.localizedDescription)
+      }
+    }
+  }
+  
+  func restorePurchase() {
+    InAppPurchaseUtility.shared.restorePurchase { (success, error) in
+      if success {
+        self.navigateAfterPurchaseOrRestore()
+      } else  {
+        self.showAlertWith(title: "Purchase Failed!", message: error?.localizedDescription)
+      }
+    }
+  }
+  
   // MARK: - Notification Center
   
   func loadList(){
@@ -124,41 +160,14 @@ class WalletViewController: UIViewController {
   
   
   @IBAction func rightBarButtonTapped(_ sender: UIBarButtonItem) {
-    
-    
-    
     if let prefVC = self.storyboard?.instantiateViewController(withIdentifier: PROFILE_STORYBOARD_IDENTIFIER) as? ProfileViewController {
-      
       let prefNavigation = UINavigationController(rootViewController: prefVC)
       self.splitViewController?.present(prefNavigation, animated: true, completion: nil)
     }
     
   }
   
-  func purchaseProduct() {
-    InAppPurchaseUtility.shared.purchaseProduct { (success, error) in
-      if success {
-        if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: ADD_CARD_STORYBOARD_IDENTIFIER) as? AddCardViewController {
-          self.navigationController?.pushViewController(addCardVC, animated: true)
-        }
-      } else  {
-        self.showAlertWith(title: "Purchase Failed!", message: error?.localizedDescription)
-      }
-    }
-  }
-  
-  func restorePurchase() {
-    InAppPurchaseUtility.shared.restorePurchase { (success, error) in
-      if success {
-        if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: ADD_CARD_STORYBOARD_IDENTIFIER) as? AddCardViewController {
-          self.navigationController?.pushViewController(addCardVC, animated: true)
-          
-        }
-      } else  {
-        self.showAlertWith(title: "Purchase Failed!", message: error?.localizedDescription)
-      }
-    }
-  }
+
 }
 
 
