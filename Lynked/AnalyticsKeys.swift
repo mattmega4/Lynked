@@ -9,16 +9,16 @@
 import Foundation
 
 struct AnalyticsKeys {
-  static let newCardAdded = "New_Card_Added"
-  static let cardDeleted = "Card_Deleted"
-  static let updateCard = "Update_Card"
-  static let newServiceAdded = "New_Service_Added"
-  static let cardAltered = "Card_Altered"
-  static let serviceDetailsUpdated = "Service_Details_Updated"
-  static let serviceDeleted = "Service_Deleted"
-  static let emailLogin = "Email_Login"
-  static let emailRegister = "Email_Register"
-  static let userDeleted = "User_Deleted"
-  static let addCardPurchase = "Add_Card_Purchase"
+  static let newCardAdded = "Lynked_New_Card_Added"
+  static let cardDeleted = "Lynked_Card_Deleted"
+  static let updateCard = "Lynked_Update_Card"
+  static let newServiceAdded = "Lynked_New_Service_Added"
+  static let cardAltered = "Lynked_Card_Altered"
+  static let serviceDetailsUpdated = "Lynked_Service_Details_Updated"
+  static let serviceDeleted = "Lynked_Service_Deleted"
+  static let emailLogin = "Lynked_Email_Login"
+  static let emailRegister = "Lynked_Email_Register"
+  static let userDeleted = "Lynked_User_Deleted"
+  static let addCardPurchase = "Lynked_Add_Card_Purchase"
   static let success = "success"
 }

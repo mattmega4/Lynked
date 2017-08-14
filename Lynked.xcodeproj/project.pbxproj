@@ -54,10 +54,13 @@
 		298FA4EC1EF78F5C009B5A36 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FA4EB1EF78F5C009B5A36 /* Array+Extensions.swift */; };
 		29929B521F08927900369314 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29929B511F08927900369314 /* LocalAuthentication.framework */; };
 		29929B541F08F6EA00369314 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29929B531F08F6EA00369314 /* ProfileViewController.swift */; };
+		299A90EB1F3CFBD800EF5E20 /* StoryboardKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299A90EA1F3CFBD800EF5E20 /* StoryboardKeys.swift */; };
+		299A90EC1F3CFBD800EF5E20 /* StoryboardKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299A90EA1F3CFBD800EF5E20 /* StoryboardKeys.swift */; };
+		299A90F01F3CFDAE00EF5E20 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299A90EF1F3CFDAE00EF5E20 /* UserDefaultsKeys.swift */; };
+		299A90F11F3CFDAE00EF5E20 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299A90EF1F3CFDAE00EF5E20 /* UserDefaultsKeys.swift */; };
 		299F6FC01F018AD300935054 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DC0D8B41DFE516A0039B8F6 /* Assets.xcassets */; };
 		299F85221EE78DB1001A819D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299F85211EE78DB1001A819D /* StoreKit.framework */; };
 		29AA67E21EE7B4BA000EDE42 /* InAppPurchaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA67E11EE7B4BA000EDE42 /* InAppPurchaseUtility.swift */; };
-		29AA96CD1F074EA900194670 /* Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA96CC1F074EA900194670 /* Identifiers.swift */; };
 		29CA61701F09B9BB00391199 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 29CA616F1F09B9BB00391199 /* Keys.plist */; };
 		29CA61721F09C6E200391199 /* BranchUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA61711F09C6E200391199 /* BranchUtility.swift */; };
 		29CA61741F09E56C00391199 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA61731F09E56C00391199 /* UITextField+Extensions.swift */; };
@@ -163,10 +166,11 @@
 		298FA4EB1EF78F5C009B5A36 /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		29929B511F08927900369314 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		29929B531F08F6EA00369314 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		299A90EA1F3CFBD800EF5E20 /* StoryboardKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardKeys.swift; sourceTree = "<group>"; };
+		299A90EF1F3CFDAE00EF5E20 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		299F6FC11F018CB500935054 /* Lynked Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Lynked Widget.entitlements"; sourceTree = "<group>"; };
 		299F85211EE78DB1001A819D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		29AA67E11EE7B4BA000EDE42 /* InAppPurchaseUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseUtility.swift; sourceTree = "<group>"; };
-		29AA96CC1F074EA900194670 /* Identifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiers.swift; sourceTree = "<group>"; };
 		29CA616F1F09B9BB00391199 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		29CA61711F09C6E200391199 /* BranchUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BranchUtility.swift; sourceTree = "<group>"; };
 		29CA61731F09E56C00391199 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
@@ -286,7 +290,6 @@
 		1DC0D8C21DFE518F0039B8F6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				29FD5E781F327A35009C6C6B /* Structs */,
 				29FD5E6D1F3278CB009C6C6B /* Utility */,
 				29FD5E6E1F3278DB009C6C6B /* Classes */,
 				29D5906A1EF5AE5600CA66D6 /* RequestReview.swift */,
@@ -357,7 +360,7 @@
 		29929B551F08F74100369314 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				29AA96CC1F074EA900194670 /* Identifiers.swift */,
+				29FD5E781F327A35009C6C6B /* Structs */,
 			);
 			name = Constants;
 			sourceTree = "<group>";
@@ -436,6 +439,8 @@
 				297C023C1F392217009DEF23 /* PayRateKeys.swift */,
 				297C02421F392392009DEF23 /* CategoryKeys.swift */,
 				297C02321F392063009DEF23 /* AnalyticsKeys.swift */,
+				299A90EA1F3CFBD800EF5E20 /* StoryboardKeys.swift */,
+				299A90EF1F3CFDAE00EF5E20 /* UserDefaultsKeys.swift */,
 			);
 			name = Structs;
 			sourceTree = "<group>";
@@ -766,6 +771,7 @@
 				29929B541F08F6EA00369314 /* ProfileViewController.swift in Sources */,
 				29D5906B1EF5AE5600CA66D6 /* RequestReview.swift in Sources */,
 				29773CDD1EC3B6730023F277 /* EntryViewController.swift in Sources */,
+				299A90F01F3CFDAE00EF5E20 /* UserDefaultsKeys.swift in Sources */,
 				2943B48B1EF624D600A0E8DD /* FirebaseUtility.swift in Sources */,
 				298FA4E61EF78EDB009B5A36 /* String+Extensions.swift in Sources */,
 				292764951EDFC8350096AE1E /* CardTableViewCell.swift in Sources */,
@@ -786,7 +792,6 @@
 				29CF61E61F2D7AE4006659FE /* InitialImageFactory.swift in Sources */,
 				297C023D1F392217009DEF23 /* PayRateKeys.swift in Sources */,
 				29CA61721F09C6E200391199 /* BranchUtility.swift in Sources */,
-				29AA96CD1F074EA900194670 /* Identifiers.swift in Sources */,
 				29CB33121EF65EFA009CEE3B /* AcknowledgementsViewController.swift in Sources */,
 				290AC7CF1F2C695500EE2783 /* Service.swift in Sources */,
 				1DC0D8AB1DFE516A0039B8F6 /* AppDelegate.swift in Sources */,
@@ -800,6 +805,7 @@
 				29D412B81F00D43A0081CF79 /* NewCardTableViewCell.swift in Sources */,
 				29E713D61F0AEE0E004B5715 /* ServiceTableViewCell.swift in Sources */,
 				29FD5E701F327908009C6C6B /* ServicePayRateManagerUtility.swift in Sources */,
+				299A90EB1F3CFBD800EF5E20 /* StoryboardKeys.swift in Sources */,
 				29AA67E21EE7B4BA000EDE42 /* InAppPurchaseUtility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -826,7 +832,9 @@
 				297C02341F392069009DEF23 /* PurchaseKeys.swift in Sources */,
 				290AC7C91F2C66AE00EE2783 /* Card.swift in Sources */,
 				290AC7D01F2C695500EE2783 /* Service.swift in Sources */,
+				299A90EC1F3CFBD800EF5E20 /* StoryboardKeys.swift in Sources */,
 				29EFAB281EFE46A1007F384E /* TodayViewController.swift in Sources */,
+				299A90F11F3CFDAE00EF5E20 /* UserDefaultsKeys.swift in Sources */,
 				29D412AF1F00AF0C0081CF79 /* WidgetTableViewCell.swift in Sources */,
 				29FD5E741F3279A6009C6C6B /* CategoryManagerUtility.swift in Sources */,
 				297C02441F392392009DEF23 /* CategoryKeys.swift in Sources */,

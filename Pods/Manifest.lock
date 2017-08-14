@@ -1,12 +1,8 @@
 PODS:
   - AFNetworking (1.1.0)
-  - Branch (0.16.2):
-    - Branch/Core (= 0.16.2)
-    - Branch/without-IDFA (= 0.16.2)
-    - Branch/without-Safari (= 0.16.2)
-  - Branch/Core (0.16.2)
-  - Branch/without-IDFA (0.16.2)
-  - Branch/without-Safari (0.16.2)
+  - Branch (0.17.6):
+    - Branch/Core (= 0.17.6)
+  - Branch/Core (0.17.6)
   - Crashlytics (3.8.5):
     - Fabric (~> 1.6.3)
   - DZNEmptyDataSet (1.8.1)
@@ -104,7 +100,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: e6427e782b25a2289d909960df8ef41358b3277c
-  Branch: 41b7ee6b45f914cf58c10a9d555ac802142bc91c
+  Branch: 73f4eedbe43ccff514090b1adf423026a4603ca9
   Crashlytics: dfbae35ef22ca189240d230ad501feea4ee85d2d
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Fabric: f050464eac45a2ce5a8e6e6a07e977c0df32fe28
