@@ -139,7 +139,7 @@ class EditCardViewController: UIViewController {
           
           //                    self.navigationController?.popToRootViewController(animated: true)
           
-          if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: WALLET_STORYBOARD_IDENTIFIER) as? WalletViewController {
+          if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: StoryboardKeys.walletViewControllerStoryboardID) as? WalletViewController {
             self.navigationController?.pushViewController(walletVC, animated: true)
           }
           
@@ -177,7 +177,7 @@ class EditCardViewController: UIViewController {
   
   @IBAction func leftBarButtonTapped(_ sender: UIBarButtonItem) {
     leftNavBarButton.isEnabled = false
-    if let detailVC = storyboard?.instantiateViewController(withIdentifier: SERVICES_STORYBOARD_IDENTIFIER) as? ServiceListViewController {
+    if let detailVC = storyboard?.instantiateViewController(withIdentifier: StoryboardKeys.servicesViewControllerStoryboardID) as? ServiceListViewController {
       detailVC.card = card
       navigationController?.popViewController(animated: true)
     }

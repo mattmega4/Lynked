@@ -219,7 +219,7 @@ class UpdateServiceTableViewController: UITableViewController {
             
           }
           if !didGoBack {
-            if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: WALLET_STORYBOARD_IDENTIFIER) as? WalletViewController {
+            if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: StoryboardKeys.walletViewControllerStoryboardID) as? WalletViewController {
               self.navigationController?.pushViewController(walletVC, animated: true)
             }
           }

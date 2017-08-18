@@ -75,7 +75,7 @@ class WalletViewController: UIViewController {
     if Auth.auth().currentUser == nil {
       cardArray.removeAll()
       self.tableView.reloadData()
-      if let loginVc = storyboard?.instantiateViewController(withIdentifier: ENTRY_STORYBOARD_IDENTIFIER) as? EntryViewController {
+      if let loginVc = storyboard?.instantiateViewController(withIdentifier: StoryboardKeys.entryViewControllerStoryboardID) as? EntryViewController {
         let loginNavigation = UINavigationController(rootViewController: loginVc)
         self.splitViewController?.present(loginNavigation, animated: true, completion: nil)
       }
@@ -89,7 +89,7 @@ class WalletViewController: UIViewController {
     FirebaseUtility.shared.getCards { (cards, errMessage) in
       if let theCards = cards {
         if theCards.count < 1 {
-          if let addVC = self.storyboard?.instantiateViewController(withIdentifier: ADD_CARD_STORYBOARD_IDENTIFIER) as? AddCardViewController {
+          if let addVC = self.storyboard?.instantiateViewController(withIdentifier: StoryboardKeys.addCardViewControllerStoryboardID) as? AddCardViewController {
             let addNavigation = UINavigationController(rootViewController: addVC)
             if UIDevice.current.userInterfaceIdiom == .pad {
               self.splitViewController?.present(addNavigation, animated: true, completion: nil)
@@ -112,7 +112,7 @@ class WalletViewController: UIViewController {
   // MARK: - In App Purchase
   
   func navigateAfterPurchaseOrRestore() {
-    if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: ADD_CARD_STORYBOARD_IDENTIFIER) as? AddCardViewController {
+    if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: StoryboardKeys.addCardViewControllerStoryboardID) as? AddCardViewController {
       
       let addNavigation = UINavigationController(rootViewController: addCardVC)
       
@@ -160,7 +160,7 @@ class WalletViewController: UIViewController {
   
   
   @IBAction func rightBarButtonTapped(_ sender: UIBarButtonItem) {
-    if let prefVC = self.storyboard?.instantiateViewController(withIdentifier: PROFILE_STORYBOARD_IDENTIFIER) as? ProfileViewController {
+    if let prefVC = self.storyboard?.instantiateViewController(withIdentifier: StoryboardKeys.profileViewControllerStoryboardID) as? ProfileViewController {
       let prefNavigation = UINavigationController(rootViewController: prefVC)
       self.splitViewController?.present(prefNavigation, animated: true, completion: nil)
     }
@@ -180,7 +180,7 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
     if indexPath.row == 0 {
       
       if InAppPurchaseUtility.shared.isPurchased {
-        if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: ADD_CARD_STORYBOARD_IDENTIFIER) as? AddCardViewController {
+        if let addCardVC = self.storyboard?.instantiateViewController(withIdentifier: StoryboardKeys.addCardViewControllerStoryboardID) as? AddCardViewController {
           //          self.navigationController?.pushViewController(addCardVC, animated: true)
           self.navigationController?.present(addCardVC, animated: true, completion: nil)
         }
@@ -206,7 +206,7 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
       let row = indexPath.row - 1
       self.selectedCard = self.cardArray[row].cardID
       if self.selectedCard != "" {
-        if let cardDVC = self.storyboard?.instantiateViewController(withIdentifier: SERVICES_STORYBOARD_IDENTIFIER) as? ServiceListViewController {
+        if let cardDVC = self.storyboard?.instantiateViewController(withIdentifier: StoryboardKeys.servicesViewControllerStoryboardID) as? ServiceListViewController {
           
           if let cell = tableView.cellForRow(at: indexPath) as? CardTableViewCell {
             cell.cardBorderView.backgroundColor = .orange

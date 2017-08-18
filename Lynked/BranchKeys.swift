@@ -13,6 +13,7 @@ struct BranchKeys {
   static let promoCode = "Promo Code"
   static let downloadLynked = "Download Lynked"
   static let code = "code"
+  static let promo = "AX9I3410"
 }
 
 
