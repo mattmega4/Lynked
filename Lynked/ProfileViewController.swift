@@ -65,7 +65,7 @@ class ProfileViewController: UITableViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-
+    
     if !whetherCameraJustDismissed {
       pullUserData()
       whetherCameraJustDismissed = false
@@ -74,7 +74,6 @@ class ProfileViewController: UITableViewController {
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    
     
   }
   
@@ -88,27 +87,29 @@ class ProfileViewController: UITableViewController {
   // Mark: - Firebase Methods
   
   func pullUserData() {
+    
     FirebaseUtility.shared.pullUserData { (userInfo, errorMessage) in
-      if let profilePictureLink = userInfo?[FirebaseKeys.profilePicture] {
-        if let profilePictureURL = URL(string: profilePictureLink) {
-          self.profileImageView.kf.setImage(with: profilePictureURL, placeholder: #imageLiteral(resourceName: "camera"), options: nil, progressBlock: nil, completionHandler: nil)
+      
+      
+        if let profilePictureLink = userInfo?[FirebaseKeys.profilePicture] as? String {
+          if let profilePictureURL = URL(string: profilePictureLink) {
+            self.profileImageView.kf.setImage(with: profilePictureURL, placeholder: #imageLiteral(resourceName: "camera"), options: nil, progressBlock: nil, completionHandler: nil)
+          }
+        } else {
+          self.profileImageView.image = #imageLiteral(resourceName: "camera")
+        }
+        if let profileName = userInfo?[FirebaseKeys.userName] as? String {
+          self.nameLabel.text = profileName
+          self.editNameButton.isHidden = false
+          self.nameLabel.isHidden = false
+          self.nameTextField.isHidden = true
+        } else {
+          self.editNameButton.isHidden = true
+          self.nameLabel.isHidden = true
+          self.nameTextField.isHidden = false
+          self.nameTextField.placeholder = "Enter Your Name Here!"
         }
       }
-      else {
-        self.profileImageView.image = #imageLiteral(resourceName: "camera")
-      }
-      if let profileName = userInfo?[FirebaseKeys.userName] {
-        self.nameLabel.text = profileName
-        self.editNameButton.isHidden = false
-        self.nameLabel.isHidden = false
-        self.nameTextField.isHidden = true
-      } else {
-        self.editNameButton.isHidden = true
-        self.nameLabel.isHidden = true
-        self.nameTextField.isHidden = false
-        self.nameTextField.placeholder = "Enter Your Name Here!"
-      }
-    }
   }
   
   func saveNameToFirebase() {
@@ -122,7 +123,7 @@ class ProfileViewController: UITableViewController {
       FirebaseUtility.shared.saveUserName(name: userName)
     }
   }
-
+  
   
   // Mark: - Use Camera Roll
   
@@ -185,7 +186,7 @@ class ProfileViewController: UITableViewController {
   
   @IBAction func feedbackButtonTapped(_ sender: UIButton) {
     
-    if let feedbackVC = self.storyboard?.instantiateViewController(withIdentifier: FEEDBACK_STORYBOARD_IDENTIFIER) as? FeedbackViewController {
+    if let feedbackVC = self.storyboard?.instantiateViewController(withIdentifier: StoryboardKeys.feedbackViewControllerStoryboardID) as? FeedbackViewController {
       self.navigationController?.pushViewController(feedbackVC, animated: true)
     }
     
@@ -194,7 +195,7 @@ class ProfileViewController: UITableViewController {
   @IBAction func tellFriendButtonTapped(_ sender: UIButton) {
     
     MBProgressHUD.showAdded(to: view, animated: true)
-    BranchUtility.shared.generateBranchLinkFor(promoCode: "AX9I3410") { (link) in
+    BranchUtility.shared.generateBranchLinkFor(promoCode: BranchKeys.promo) { (link) in
       if let theLink = link {
         let activityController = UIActivityViewController(activityItems: [theLink], applicationActivities: nil)
         activityController.popoverPresentationController?.sourceView = sender
@@ -206,14 +207,14 @@ class ProfileViewController: UITableViewController {
   
   
   @IBAction func acknowledgementsButtonTapped(_ sender: UIButton) {
-    if let ackVC = self.storyboard?.instantiateViewController(withIdentifier: ACKNOWLEDGEMENTS_STORYBOARD_IDENTIFIER) as? AcknowledgementsViewController {
+    if let ackVC = self.storyboard?.instantiateViewController(withIdentifier: StoryboardKeys.acknowledgementsViewControllerStoryboardID) as? AcknowledgementsViewController {
       self.navigationController?.pushViewController(ackVC, animated: true)
     }
   }
   
   
   @IBAction func legalButtonTapped(_ sender: UIButton) {
-    if let legalVC = self.storyboard?.instantiateViewController(withIdentifier: LEGAL_STORYBOARD_IDENTIFIER) as? LegalViewController {
+    if let legalVC = self.storyboard?.instantiateViewController(withIdentifier: StoryboardKeys.legalViewControllerStoryboardID) as? LegalViewController {
       self.navigationController?.pushViewController(legalVC, animated: true)
     }
   }
@@ -222,10 +223,11 @@ class ProfileViewController: UITableViewController {
     do {
       try Auth.auth().signOut()
       
-      if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: ENTRY_STORYBOARD_IDENTIFIER) as? EntryViewController {
-        //self.navigationController?.pushViewController(loginVC, animated: true)
-        dismiss(animated: true, completion: nil)
-      }
+      //      if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: StoryboardKeys.entryViewControllerStoryboardID) as? EntryViewController {
+      //        //self.navigationController?.pushViewController(loginVC, animated: true)
+      //
+      //      }
+      dismiss(animated: true, completion: nil)
     }
     catch {
       debugPrint(error)
@@ -240,7 +242,7 @@ class ProfileViewController: UITableViewController {
         if let error = error {
           debugPrint(error)
         } else {
-          if let walletvc = self.storyboard?.instantiateViewController(withIdentifier: WALLET_STORYBOARD_IDENTIFIER) as? WalletViewController {
+          if let walletvc = self.storyboard?.instantiateViewController(withIdentifier: StoryboardKeys.walletViewControllerStoryboardID) as? WalletViewController {
             self.navigationController?.pushViewController(walletvc, animated: true)
           }
         }
@@ -251,7 +253,7 @@ class ProfileViewController: UITableViewController {
     alertController.addAction(okAction)
     self.present(alertController, animated: true, completion: nil)
   }
-
+  
 }
 
 
@@ -274,7 +276,7 @@ extension ProfileViewController: UITextFieldDelegate {
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-
+    
     dismiss(animated: true, completion: nil)
   }
   
@@ -291,9 +293,9 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     //      self.profileImageView.image = editedImage
     //      FirebaseUtility.shared.saveUserPicture(image: editedImage)
     //
-    //    } 
+    //    }
     dismiss(animated: true, completion: nil)
-
+    
   }
   
   

@@ -538,17 +538,17 @@ class FirebaseUtility: NSObject {
   
   // MARK: - User Information
   
-  func pullUserData(completion: @escaping (_ userInfo: [String : String]?, _ errorMessage: String?) -> Void) {
+  func pullUserData(completion: @escaping (_ userInfo: [String : Any]?, _ errorMessage: String?) -> Void) {
     
     if let userID = user?.uid {
-      let userRef = ref.child(FirebaseKeys.users).child(userID)
+      let userRef = ref.child(FirebaseKeys.users).child(userID) //.child(FirebaseKeys.profilePicture)
       
       userRef.observeSingleEvent(of: .value, with: { (snapshot) in
         
-        if let info = snapshot.value as? [String: String] {
+        if let info = snapshot.value as? [String: Any] {
           completion(info, nil)
         } else {
-          completion(nil, "We could not get userinfo from firebase")
+          completion(nil, "We could not get user info from firebase")
         }
       })
     } else {

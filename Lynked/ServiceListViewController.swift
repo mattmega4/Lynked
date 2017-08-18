@@ -173,14 +173,14 @@ class ServiceListViewController: UIViewController {
   // MARK: - IBActions
   
   @IBAction func rightNavBarButtonTapped(_ sender: UIBarButtonItem) {
-    if let prefVC = self.storyboard?.instantiateViewController(withIdentifier: PROFILE_STORYBOARD_IDENTIFIER) as? ProfileViewController {
+    if let prefVC = self.storyboard?.instantiateViewController(withIdentifier: StoryboardKeys.profileViewControllerStoryboardID) as? ProfileViewController {
       let prefNavigation = UINavigationController(rootViewController: prefVC)
       self.splitViewController?.present(prefNavigation, animated: true, completion: nil)
     }
   }
   
   @IBAction func editCardButtonTapped(_ sender: UIButton) {
-    if let editCardVC = storyboard?.instantiateViewController(withIdentifier: EDIT_CARD_STORYBOARD_IDENTIFIER) as? EditCardViewController {
+    if let editCardVC = storyboard?.instantiateViewController(withIdentifier: StoryboardKeys.editCardViewControllerStoryboardID) as? EditCardViewController {
       if let theId = card?.cardID {
         editCardVC.thisCardIDTransfered = theId
       }
@@ -383,7 +383,7 @@ extension ServiceListViewController: UITableViewDelegate, UITableViewDataSource 
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if !isDisplayingCategories {
-      if let serviceDetailVC = storyboard?.instantiateViewController(withIdentifier: SERVICE_DETAIL_STORYBOARD_IDENTIFIER) as? UpdateServiceTableViewController {
+      if let serviceDetailVC = storyboard?.instantiateViewController(withIdentifier: StoryboardKeys.serviceDetailViewControllerStoryboardID) as? UpdateServiceTableViewController {
         serviceDetailVC.service = self.serviceArray[indexPath.row]
         navigationController?.pushViewController(serviceDetailVC, animated: true)
       }

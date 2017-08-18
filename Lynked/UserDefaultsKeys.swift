@@ -10,6 +10,6 @@ import Foundation
 
 struct UserDefaultsKeys {
   
-  static let USER_DEFAULTS_PIN_STRING = "locked"
+  static let userDefaultsPinString = "locked"
   
 }
