@@ -26,13 +26,13 @@ extension UIViewController {
                                                                alpha: 0.9)
     
     UINavigationBar.appearance().tintColor = .white
-    UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-    navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white,
-                                                               NSFontAttributeName: UIFont(name: "GillSans-Bold",
+    UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+    navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white,
+                                                               NSAttributedStringKey.font: UIFont(name: "GillSans-Bold",
                                                                                            size: 18)!]
   }
   
-  func dismissKeyboard() {
+ @objc func dismissKeyboard() {
     view.endEditing(true)
   }
 }

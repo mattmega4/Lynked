@@ -105,14 +105,14 @@ class UpdateServiceTableViewController: UITableViewController {
   
   // MARK: - UISwitch Target
   
-  func currentSwitchTarget(aSwitch: UISwitch) {
+  @objc func currentSwitchTarget(aSwitch: UISwitch) {
     if aSwitch == serviceCurrentSwitch {
       servState = serviceCurrentSwitch.isOn
     }
   }
   
   
-  func fixedSwitchTarget(aSwitch: UISwitch) {
+  @objc func fixedSwitchTarget(aSwitch: UISwitch) {
     if aSwitch == fixedSwitch {
       servFixed = fixedSwitch.isOn
       print(servFixed)
@@ -163,7 +163,7 @@ class UpdateServiceTableViewController: UITableViewController {
   
   // MARK: - Date Picker Target
   
-  func datePickerValueChanged(_ sender: UIDatePicker) {
+  @objc func datePickerValueChanged(_ sender: UIDatePicker) {
     let date = sender.date
     servScheduled = date.timeIntervalSinceReferenceDate
     let formatter = DateFormatter()

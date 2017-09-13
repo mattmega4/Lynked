@@ -147,7 +147,7 @@ class WalletViewController: UIViewController {
   
   // MARK: - Notification Center
   
-  func loadList(){
+  @objc func loadList(){
     pullAllUsersCards()
   }
   

@@ -202,7 +202,7 @@ class ServiceListViewController: UIViewController {
   
   // MARK: - Keyboard Methods
   
-  func keyboardWillShow(notification:NSNotification) {
+  @objc func keyboardWillShow(notification:NSNotification) {
     var userInfo = notification.userInfo!
     var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
     keyboardFrame = self.view.convert(keyboardFrame, from: nil)
@@ -211,7 +211,7 @@ class ServiceListViewController: UIViewController {
     self.tableView.contentInset = contentInset
   }
   
-  func keyboardWillHide(notification:NSNotification) {
+  @objc func keyboardWillHide(notification:NSNotification) {
     let contentInset:UIEdgeInsets = UIEdgeInsets.zero
     self.tableView.contentInset = contentInset
   }
@@ -269,7 +269,7 @@ extension ServiceListViewController: UITextFieldDelegate {
     return true
   }
   
-  func enableAddButton(textField: UITextField) {
+  @objc func enableAddButton(textField: UITextField) {
     if (textField.text?.isEmpty)! {
       addButton.isEnabled = false
       addButton.alpha = 0.4
