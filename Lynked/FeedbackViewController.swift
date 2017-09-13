@@ -41,7 +41,7 @@ class FeedbackViewController: UIViewController {
     
     addToTopicArray()
     bodyTextView.placeholder = "Write your feedback here..."
-    
+
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -201,7 +201,7 @@ extension FeedbackViewController: UIPickerViewDelegate, UIPickerViewDataSource {
   
   func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
     let titleData = topics[row]
-    let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont(name: "GillSans", size: 15.0)!,NSForegroundColorAttributeName:UIColor.darkGray])
+    let myTitle = NSAttributedString(string: titleData, attributes: [NSAttributedStringKey.font:UIFont(name: "GillSans", size: 15.0)!,NSAttributedStringKey.foregroundColor:UIColor.darkGray])
     return myTitle
   }
   

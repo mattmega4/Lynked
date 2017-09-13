@@ -65,8 +65,10 @@ class EntryViewController: UIViewController {
     bottomTextFieldDelegateAndAutoCorrectAndPlaceholderColorSetup()
     textFieldOne.addTarget(self, action: #selector(checkIfTopTextFIeldIsSatisfied(textField:)), for: .editingChanged)
     textFieldTwo.addTarget(self, action: #selector(checkIfBottomTextFieldIsSatisfied(textField:)), for: .editingChanged)
+    
+    
     let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EntryViewController.dismissKeyboard))
-    view.addGestureRecognizer(tap)
+     view.addGestureRecognizer(tap)
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
   }
@@ -413,7 +415,7 @@ class EntryViewController: UIViewController {
   
   // MARK: - Keyboard Methods
   
-  func keyboardWillShow(notification:NSNotification) {
+  @objc func keyboardWillShow(notification:NSNotification) {
     var userInfo = notification.userInfo!
     var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
     keyboardFrame = self.view.convert(keyboardFrame, from: nil)
@@ -428,7 +430,7 @@ class EntryViewController: UIViewController {
   }
   
   
-  func keyboardWillHide(notification:NSNotification) {
+  @objc func keyboardWillHide(notification:NSNotification) {
     let contentInset:UIEdgeInsets = UIEdgeInsets.zero
     self.scrollView.contentInset = contentInset
     
@@ -488,14 +490,14 @@ extension EntryViewController: UITextFieldDelegate {
     for fields in bottomTextFields {
       fields.autocorrectionType = .no
       fields.delegate = self
-      fields.attributedPlaceholder = NSAttributedString(string: fields.placeholder!, attributes: [NSForegroundColorAttributeName : placeHolderLightColor])
+      fields.attributedPlaceholder = NSAttributedString(string: fields.placeholder!, attributes: [NSAttributedStringKey.foregroundColor : placeHolderLightColor])
     }
   }
   
   
   // MARK: - Text Field Targets
   
-  func checkIfTopTextFIeldIsSatisfied(textField: UITextField) {
+  @objc func checkIfTopTextFIeldIsSatisfied(textField: UITextField) {
     if textField == self.textFieldOne {
       if self.leftOn == true && self.rightOn == false {
         if textField.text?.validateEmail() == true {
@@ -532,7 +534,7 @@ extension EntryViewController: UITextFieldDelegate {
   }
   
   
-  func checkIfBottomTextFieldIsSatisfied(textField: UITextField) {
+  @objc func checkIfBottomTextFieldIsSatisfied(textField: UITextField) {
     if textField == self.textFieldTwo {
       if self.leftOn == true && self.rightOn == false {
         if textField.text?.isEmpty == true {

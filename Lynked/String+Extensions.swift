@@ -22,7 +22,7 @@ extension String {
   subscript (r: Range<Int>) -> String {
     let start = index(startIndex, offsetBy: r.lowerBound)
     let end = index(startIndex, offsetBy: r.upperBound - r.lowerBound)
-    return self[Range(start ..< end)]
+    return String(self[Range(start ..< end)])
   }
   
   func validateEmail() -> Bool {

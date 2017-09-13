@@ -146,7 +146,7 @@ class AddCardViewController: UIViewController {
   
   // MARK: - Keyboard Methods
   
-  func keyboardWillShow(notification:NSNotification) {
+  @objc func keyboardWillShow(notification:NSNotification) {
     var userInfo = notification.userInfo!
     var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
     keyboardFrame = self.view.convert(keyboardFrame, from: nil)
@@ -156,7 +156,7 @@ class AddCardViewController: UIViewController {
   }
   
   
-  func keyboardWillHide(notification:NSNotification) {
+  @objc func keyboardWillHide(notification:NSNotification) {
     let contentInset:UIEdgeInsets = UIEdgeInsets.zero
     self.scrollView.contentInset = contentInset
   }
@@ -189,7 +189,7 @@ extension AddCardViewController: UITextFieldDelegate {
   
   
   
-  func checkNicknameTextField(textField: UITextField) {
+  @objc func checkNicknameTextField(textField: UITextField) {
     if textField == firstContainerTextField {
       if textField.text?.isEmpty == true {
         nickNameTextFieldIsEmpty = true
@@ -201,7 +201,7 @@ extension AddCardViewController: UITextFieldDelegate {
   }
   
   
-  func checkTypeTextField(textField: UITextField) {
+  @objc func checkTypeTextField(textField: UITextField) {
     if textField == secondContainerTextField {
       if textField.text?.isEmpty == true {
         cardTypeTextFieldIsEmpty = true
@@ -254,7 +254,7 @@ extension AddCardViewController: UIPickerViewDelegate, UIPickerViewDataSource {
   
   func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
     let titleData = allCardTypes[row]
-    let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont(name: "GillSans", size: 15.0)!,NSForegroundColorAttributeName:UIColor.white])
+    let myTitle = NSAttributedString(string: titleData, attributes: [NSAttributedStringKey.font:UIFont(name: "GillSans", size: 15.0)!,NSAttributedStringKey.foregroundColor:UIColor.white])
     return myTitle
   }
 }
