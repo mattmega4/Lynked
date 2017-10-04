@@ -65,6 +65,7 @@ fastlane/screenshots
 fastlane/test_output
 
 
+Lynked/GoogleService-Info.plist
 Lynked/Info.plist
 Lynked/Keys.plist
 Lynked/String_Encryption.swift
