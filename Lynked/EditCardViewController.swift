@@ -241,7 +241,7 @@ extension EditCardViewController: UITextFieldDelegate {
       let allowedCharacters = CharacterSet.decimalDigits
       let characterSet = CharacterSet(charactersIn: string)
       
-      let newLength = text.characters.count + string.characters.count - range.length
+      let newLength = text.count + string.count - range.length
       return  allowedCharacters.isSuperset(of: characterSet) && newLength <= 4 // Bool
     }
     

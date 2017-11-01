@@ -19,7 +19,7 @@ class InitialImageFactory: NSObject {
     nameLabel.font = UIFont.boldSystemFont(ofSize: 20)
     var initials = ""
     
-    if let letter = name?.characters.first {
+    if let letter = name?.first {
       initials += String(letter).capitalized
     } else {
       return nil

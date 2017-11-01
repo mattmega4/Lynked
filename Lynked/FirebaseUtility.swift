@@ -306,7 +306,7 @@ class FirebaseUtility: NSObject {
     if isFixed, let theRate = rate, let theAmount = amount, let paymentDate = paymentDate?.timeIntervalSince1970 {
       var serviceAmount: Double = 0
       var amountWhiteSpacesRemoved = theAmount.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-      if amountWhiteSpacesRemoved.hasPrefix("$") && amountWhiteSpacesRemoved.characters.count > 1 {
+      if amountWhiteSpacesRemoved.hasPrefix("$") && amountWhiteSpacesRemoved.count > 1 {
         amountWhiteSpacesRemoved.remove(at: amountWhiteSpacesRemoved.startIndex)
       }
       serviceAmount = Double(amountWhiteSpacesRemoved) ?? 0.0
