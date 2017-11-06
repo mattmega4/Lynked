@@ -10,8 +10,8 @@ target 'Lynked' do
 
 
   pod 'Fabric'
+  pod 'Crashlytics', '~>  3.9'
   pod 'Branch'
-  pod 'Crashlytics'
   pod 'Firebase/Core'
   pod 'Firebase/Storage'
   pod 'Firebase/Messaging'
