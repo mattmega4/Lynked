@@ -48,6 +48,12 @@
 				<key>KitName</key>
 				<string>Branch</string>
 			</dict>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
 		</array>
 	</dict>
 	<key>LSApplicationCategoryType</key>
