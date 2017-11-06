@@ -8,6 +8,9 @@
 
 import UIKit
 import SafariServices
+import FirebaseAnalytics
+import Fabric
+import Crashlytics
 
 class UpdateServiceTableViewController: UITableViewController {
   
@@ -176,9 +179,16 @@ class UpdateServiceTableViewController: UITableViewController {
   // MARK: - Update Service
   
   func updateServiceToFirebase() {
+    
+    Analytics.logEvent(AnalyticsKeys.serviceDetailsUpdated, parameters: [AnalyticsKeys.success : true])
+    
+    Answers.logCustomEvent(withName: AnalyticsKeys.serviceDetailsUpdated,
+                           customAttributes: nil)
+    
     if servFixed {
       FirebaseUtility.shared.update(service: service, name: nameTextField?.text, url: urlTextField?.text, amount: amountTextField?.text, isFixed: true, state: serviceCurrentSwitch.isOn, rate: paymentIncrimentTextField?.text, scheduled: servScheduled, categ: categoryTextField?.text, paymentDate: datePicker.date, completion: { (updatedService, errMessage) in
         FirebaseUtility.shared.getAllServices { (services, error) in }
+      
         self.navigationController?.popViewController(animated: true)
       })
     } else {
@@ -207,6 +217,10 @@ class UpdateServiceTableViewController: UITableViewController {
         if let errorMessage = error {
           print(errorMessage)
         } else if success {
+          
+          Analytics.logEvent(AnalyticsKeys.serviceDeleted, parameters: [AnalyticsKeys.success : true])
+          Answers.logCustomEvent(withName: AnalyticsKeys.serviceDeleted, customAttributes: nil)
+          
           var didGoBack = false
           if let viewControllers = self.navigationController?.viewControllers {
             for aController in viewControllers {

@@ -78,9 +78,6 @@ class FirebaseUtility: NSObject {
           completion(nil, errorMessage)
           
         } else {
-          Analytics.logEvent(AnalyticsKeys.newCardAdded, parameters: [AnalyticsKeys.success : true])
-          Answers.logCustomEvent(withName: AnalyticsKeys.newCardAdded,
-                                 customAttributes: nil)
           
           let card = Card(id: ref.key, cardDict: cardDict)
           completion(card, nil)
@@ -108,9 +105,6 @@ class FirebaseUtility: NSObject {
         let serviceRef = self.ref.child(FirebaseKeys.newServices).child(card.cardID)
         serviceRef.removeValue()
         
-        Analytics.logEvent(AnalyticsKeys.cardDeleted, parameters: [AnalyticsKeys.success : true])
-        Answers.logCustomEvent(withName: AnalyticsKeys.cardDeleted,
-                               customAttributes: nil)
         
         completion(true, nil)
       }
@@ -145,12 +139,10 @@ class FirebaseUtility: NSObject {
         let errorMessage = theError
         completion(nil, errorMessage)
       } else {
-        Analytics.logEvent(AnalyticsKeys.updateCard, parameters: [AnalyticsKeys.success : true])
-        
-        Answers.logCustomEvent(withName: AnalyticsKeys.updateCard, customAttributes: nil)
-        
+      
         let card = Card(id: ref.key, cardDict: cardDict)
         completion(card, nil)
+        
       }
     })
   }
@@ -212,9 +204,6 @@ class FirebaseUtility: NSObject {
         completion(nil, errorMessage)
         
       } else {
-        Analytics.logEvent(AnalyticsKeys.newServiceAdded, parameters: [AnalyticsKeys.success : true])
-        Answers.logCustomEvent(withName: AnalyticsKeys.newServiceAdded,
-                               customAttributes: nil)
         
         let service = Service(id: ref.key, cardId: theCard.cardID, serviceDict: serviceDict)
         completion(service, nil)
@@ -248,24 +237,12 @@ class FirebaseUtility: NSObject {
               self.resetServices(services: services, updatedServices: theServices, index: index + 1, completion: completion)
       })
     } else {
-      Analytics.logEvent(AnalyticsKeys.cardAltered, parameters: [AnalyticsKeys.success : true])
-      Answers.logCustomEvent(withName: AnalyticsKeys.cardAltered,
-                             customAttributes: nil)
+
       completion(theServices)
     }
   }
   
-  func update(service: Service?,
-              name: String?,
-              url: String?,
-              amount: String?,
-              isFixed: Bool,
-              state: Bool,
-              rate: String?,
-              scheduled: Double?,
-              categ: String?,
-              paymentDate: Date?,
-              completion: @escaping (_ service: Service?, _ errMessage: String?) -> Void) {
+  func update(service: Service?, name: String?, url: String?, amount: String?, isFixed: Bool, state: Bool, rate: String?, scheduled: Double?, categ: String?, paymentDate: Date?, completion: @escaping (_ service: Service?, _ errMessage: String?) -> Void) {
     
     guard let service = service else {
       let errorMessage = "Something went wrong"
@@ -290,8 +267,7 @@ class FirebaseUtility: NSObject {
       completion(nil, errorMessage)
       return
     }
-    
-    
+
     let attention: Int = state ? 0 : 1
     
     let serviceRef = ref.child(FirebaseKeys.newServices).child(service.cardID).child(service.serviceID)
@@ -329,11 +305,6 @@ class FirebaseUtility: NSObject {
         completion(nil, errorMessage)
       } else {
         
-        Analytics.logEvent(AnalyticsKeys.serviceDetailsUpdated, parameters: [AnalyticsKeys.success : true])
-        Answers.logCustomEvent(withName: AnalyticsKeys.serviceDetailsUpdated,
-                               customAttributes: nil)
-        
-        
         let service = Service(id: ref.key, cardId: service.cardID, serviceDict: serviceDict)
         completion(service, nil)
       }
@@ -360,8 +331,8 @@ class FirebaseUtility: NSObject {
         
         let serviceRef = self.ref.child(FirebaseKeys.newServices).child(service.cardID).child(service.serviceID)
         serviceRef.removeValue()
-        Analytics.logEvent(AnalyticsKeys.serviceDeleted, parameters: [AnalyticsKeys.success : true])
-        Answers.logCustomEvent(withName: AnalyticsKeys.serviceDeleted, customAttributes: nil)
+        
+        
         
         completion(true, nil)
       }
@@ -473,13 +444,7 @@ class FirebaseUtility: NSObject {
         }
         completion(nil, errMessage)
       } else {
-        
-        Analytics.logEvent(AnalyticsKeys.emailLogin, parameters: [AnalyticsKeys.success : true])
-        
-        Answers.logLogin(withMethod: AnalyticsKeys.emailLogin,
-                         success: true,
-                         customAttributes: [:])
-        
+
         self.user = user
         completion(user, nil)
       }
@@ -525,10 +490,7 @@ class FirebaseUtility: NSObject {
         }
         completion(nil, errMessage)
       } else {
-        Analytics.logEvent(AnalyticsKeys.emailRegister, parameters: [AnalyticsKeys.success : true])
-        Answers.logSignUp(withMethod: AnalyticsKeys.emailRegister,
-                          success: true,
-                          customAttributes: [:])
+        
         self.user = user
         completion(user, nil)
       }
@@ -583,9 +545,7 @@ class FirebaseUtility: NSObject {
   
   func deleteAccount(completion: (_ success: Bool, _ error: Error?) -> Void) {
     user?.delete(completion: { (error) in
-      Analytics.logEvent(AnalyticsKeys.userDeleted, parameters: [AnalyticsKeys.success : true])
-      Answers.logCustomEvent(withName: AnalyticsKeys.userDeleted,
-                             customAttributes: nil)
+
     })
   }
 }

@@ -12,6 +12,8 @@ import FirebaseAuth
 import Fabric
 import Crashlytics
 import LocalAuthentication
+import FirebaseAnalytics
+
 
 
 class EntryViewController: UIViewController {
@@ -340,6 +342,13 @@ class EntryViewController: UIViewController {
         }
         alertController.addAction(OKAction)
       } else {
+        
+        Analytics.logEvent(AnalyticsKeys.emailLogin, parameters: [AnalyticsKeys.success : true])
+        
+        Answers.logLogin(withMethod: AnalyticsKeys.emailLogin,
+                         success: true,
+                         customAttributes: [:])
+        
         self.dismiss(animated: true, completion: nil)
       }
     }
@@ -359,6 +368,12 @@ class EntryViewController: UIViewController {
         }
         alertController.addAction(OKAction)
       } else {
+        
+        Analytics.logEvent(AnalyticsKeys.emailRegister, parameters: [AnalyticsKeys.success : true])
+        Answers.logSignUp(withMethod: AnalyticsKeys.emailRegister,
+                          success: true,
+                          customAttributes: [:])
+        
         self.dismiss(animated: true, completion: nil)
       }
     }

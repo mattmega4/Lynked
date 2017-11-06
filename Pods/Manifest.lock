@@ -119,7 +119,7 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   GTMSessionFetcher: ebaa1f79a5366922c1735f1566901f50beba23b7
   Kingfisher: 9ee7e788d8ba07c3f21ce0d43f33cec310a4f781
-  leveldb-library: 9e29a1d913f922444127a7d0f28b025a0e2ba053
+  leveldb-library: 44ef425bfde64f5b41daef86b38db2d13edbbee1
   mailgun: 17290deea4db24050dd03ca59cd7385d508904b3
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3

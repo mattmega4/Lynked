@@ -12,6 +12,8 @@ import FirebaseDatabase
 import Fabric
 import Crashlytics
 import MBProgressHUD
+import FirebaseAnalytics
+
 
 class EditCardViewController: UIViewController {
   
@@ -106,6 +108,12 @@ class EditCardViewController: UIViewController {
     
     let okAction = UIAlertAction(title: "I Understand!", style: UIAlertActionStyle.default) { (result: UIAlertAction) in
       FirebaseUtility.shared.resetServices(services: self.serviceArray) { (services) in
+        
+        Analytics.logEvent(AnalyticsKeys.cardAltered, parameters: [AnalyticsKeys.success : true])
+        
+        Answers.logCustomEvent(withName: AnalyticsKeys.cardAltered,
+                               customAttributes: nil)
+        
         self.navigationController?.popViewController(animated: true)
       }
     }
@@ -136,13 +144,15 @@ class EditCardViewController: UIViewController {
           print(errorMessage)
         } else if success {
           NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+
+          Analytics.logEvent(AnalyticsKeys.cardDeleted, parameters: [AnalyticsKeys.success : true])
           
-          //                    self.navigationController?.popToRootViewController(animated: true)
+          Answers.logCustomEvent(withName: AnalyticsKeys.cardDeleted,
+                                 customAttributes: nil)
           
           if let walletVC = self.storyboard?.instantiateViewController(withIdentifier: StoryboardKeys.walletViewControllerStoryboardID) as? WalletViewController {
             self.navigationController?.pushViewController(walletVC, animated: true)
           }
-          
         }
       })
     }
@@ -168,6 +178,13 @@ class EditCardViewController: UIViewController {
     
     FirebaseUtility.shared.update(card: theCard, nickName: nicknameTextField.text, last4: digitsTextField.text, color: color) { (updatedCard, error) in
       NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+      
+      Analytics.logEvent(AnalyticsKeys.updateCard, parameters: [AnalyticsKeys.success : true])
+      
+      Answers.logCustomEvent(withName: AnalyticsKeys.updateCard, customAttributes: nil)
+      
+      
+      
       self.navigationController?.popViewController(animated: true)
     }
   }

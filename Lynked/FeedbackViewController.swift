@@ -9,6 +9,9 @@
 import UIKit
 import mailgun
 import UITextView_Placeholder
+import FirebaseAnalytics
+import Fabric
+import Crashlytics
 
 
 class FeedbackViewController: UIViewController {
@@ -72,17 +75,7 @@ class FeedbackViewController: UIViewController {
   }
   
   
-  // MARK: - Thank you Alert
-  
-  func thankYouAlert() {
-    let alert = UIAlertController(title: "Thank you", message: "We will review feedback ASAP", preferredStyle: .alert)
-    let action = UIAlertAction(title: "OK", style: .cancel) { (action) in
-      self.navigationController?.popViewController(animated: true)
-      
-    }
-    alert.addAction(action)
-    self.present(alert, animated: true, completion: nil)
-  }
+
   
   // MARK: - IBActions
   
@@ -124,6 +117,24 @@ class FeedbackViewController: UIViewController {
     
   }
   
+  
+  // MARK: - Thank you Alert
+  
+  func thankYouAlert() {
+    let alert = UIAlertController(title: "Thank you", message: "We will review feedback ASAP", preferredStyle: .alert)
+    let action = UIAlertAction(title: "OK", style: .cancel) { (action) in
+      self.navigationController?.popViewController(animated: true)
+      
+    }
+    alert.addAction(action)
+
+    Analytics.logEvent(AnalyticsKeys.feedbackSent, parameters: [AnalyticsKeys.success : true])
+    
+    Answers.logCustomEvent(withName: AnalyticsKeys.feedbackSent,
+                           customAttributes: nil)
+    
+    self.present(alert, animated: true, completion: nil)
+  }
   
   // MARK: - Keyboard Methods
   

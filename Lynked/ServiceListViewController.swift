@@ -10,6 +10,9 @@ import UIKit
 import Kingfisher
 import MBProgressHUD
 import DZNEmptyDataSet
+import FirebaseAnalytics
+import Fabric
+import Crashlytics
 
 
 class ServiceListViewController: UIViewController {
@@ -137,9 +140,15 @@ class ServiceListViewController: UIViewController {
     MBProgressHUD.showAdded(to: self.view, animated: true)
     FirebaseUtility.shared.addService(name: addServiceTextField.text?.capitalized, forCard: card, withCategory: categoryTextField.text) { (service, errMessage) in
       MBProgressHUD.hide(for: self.view, animated: true)
+      
+      Analytics.logEvent(AnalyticsKeys.newServiceAdded, parameters: [AnalyticsKeys.success : true])
+      
+      Answers.logCustomEvent(withName: AnalyticsKeys.newServiceAdded,
+                             customAttributes: nil)
+      
       if let theService = service {
         self.addService(service: theService)
-        
+
         self.addServiceTextField.text = nil
         self.categoryTextField.text = nil
         self.addButton.alpha = 0.4

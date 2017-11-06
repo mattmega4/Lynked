@@ -10,6 +10,9 @@ import UIKit
 import StoreKit
 import MBProgressHUD
 import Firebase
+import FirebaseAnalytics
+import Fabric
+import Crashlytics
 //import SCPinViewController
 
 class WalletViewController: UIViewController {
