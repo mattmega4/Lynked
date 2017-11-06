@@ -87,10 +87,9 @@ PODS:
 
 DEPENDENCIES:
   - Branch
-  - Crashlytics
-  - Crashlytics (~> 3.9)
+  - Crashlytics (~> 3.9.3)
   - DZNEmptyDataSet
-  - Fabric
+  - Fabric (~> 1.7.2)
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -127,6 +126,6 @@ SPEC CHECKSUMS:
   Protobuf: 03eef2ee0b674770735cf79d9c4d3659cf6908e8
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
 
-PODFILE CHECKSUM: dfd4fb5e6bed4f75551ff4e96d9aa71038051e13
+PODFILE CHECKSUM: cfb4b925dc6600a957067feb19f20a9a36dbd7b1
 
 COCOAPODS: 1.3.1

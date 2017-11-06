@@ -435,7 +435,7 @@ class EntryViewController: UIViewController {
     var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
     keyboardFrame = self.view.convert(keyboardFrame, from: nil)
     var contentInset: UIEdgeInsets = self.scrollView.contentInset
-    contentInset.bottom = keyboardFrame.size.height + 60
+    contentInset.bottom = keyboardFrame.size.height + 100
     self.scrollView.contentInset = contentInset
     
     hideLeftContainerViewContents()
