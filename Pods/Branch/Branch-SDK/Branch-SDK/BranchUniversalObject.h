@@ -83,6 +83,7 @@ FOUNDATION_EXPORT BranchCondition _Nonnull BranchConditionRefurbished;
 @property (nonatomic, assign)           double          ratingAverage;
 @property (nonatomic, assign)           NSInteger       ratingCount;
 @property (nonatomic, assign)           double          ratingMax;
+@property (nonatomic, assign)           double          rating;
 @property (nonatomic, strong, nullable) NSString        *addressStreet;
 @property (nonatomic, strong, nullable) NSString        *addressCity;
 @property (nonatomic, strong, nullable) NSString        *addressRegion;
@@ -148,7 +149,7 @@ FOUNDATION_EXPORT BranchCondition _Nonnull BranchConditionRefurbished;
     NSString *currency;
 
 @property (nonatomic, assign)
-    __attribute__((deprecated(("Use `BranchUniversalObject.contentMetadata.locallyIndex` instead."))))
+    __attribute__((deprecated(("Use `BranchUniversalObject.locallyIndex` instead."))))
     BOOL automaticallyListOnSpotlight;
 
 
@@ -184,7 +185,11 @@ FOUNDATION_EXPORT BranchCondition _Nonnull BranchConditionRefurbished;
                           andCallback:(void (^_Nullable)(NSString * _Nullable url, NSError * _Nullable error))callback;
 
 /// Returns a Branch long URL to the content item
-- (nullable NSString *)getLongUrlWithChannel:(nullable NSString *)channel andTags:(nullable NSArray *)tags andFeature:(nullable NSString *)feature andStage:(nullable NSString *)stage andAlias:(nullable NSString *)alia;
+- (nullable NSString *)getLongUrlWithChannel:(nullable NSString *)channel
+                                     andTags:(nullable NSArray *)tags
+                                  andFeature:(nullable NSString *)feature
+                                    andStage:(nullable NSString *)stage
+                                    andAlias:(nullable NSString *)alias;
 
 /// @name Share Sheet Handling
 
@@ -239,14 +244,11 @@ FOUNDATION_EXPORT BranchCondition _Nonnull BranchConditionRefurbished;
 
 - (void)removeFromSpotlightWithCallback:(void (^_Nullable)(NSError * _Nullable error))completion;
 
-/// Convenience method for initSession methods that return BranchUniversalObject, but can be used safely by anyone.
-+ (nonnull BranchUniversalObject *)getBranchUniversalObjectFromDictionary:(nonnull NSDictionary *)dictionary;
-
-- (NSDictionary*_Nonnull)getParamsForServerRequest;
 - (NSDictionary*_Nonnull)getDictionaryWithCompleteLinkProperties:(BranchLinkProperties*_Nonnull)linkProperties;
 - (NSDictionary*_Nonnull)getParamsForServerRequestWithAddedLinkProperties:(BranchLinkProperties*_Nonnull)linkProperties;
 
-- (NSDictionary*_Nonnull) dictionary;
+/// Convenience method for initSession methods that return BranchUniversalObject, but can be used safely by anyone.
+- (NSMutableDictionary*_Nonnull) dictionary;
 + (BranchUniversalObject*_Nonnull) objectWithDictionary:(NSDictionary*_Null_unspecified)dictionary;
 
 - (NSString*_Nonnull) description;

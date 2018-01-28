@@ -40,7 +40,6 @@ class WalletViewController: UIViewController {
     
     title = "Wallet"
     setNavBar()
-    //        FirebaseUtility.shared.getAllServices { (services, error) in }
     
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 500
@@ -59,6 +58,7 @@ class WalletViewController: UIViewController {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
+    // Maybe remove all values here?
     FirebaseUtility.shared.getAllServices { (services, error) in }
     checkAuthAndPull()
   }

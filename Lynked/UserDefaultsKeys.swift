@@ -11,5 +11,7 @@ import Foundation
 struct UserDefaultsKeys {
   
   static let userDefaultsPinString = "locked"
+    static let userDefeaultsGroupString = "group.Lynked"
+    static let groupDefaultsKey = "services"
   
 }

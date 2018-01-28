@@ -139,7 +139,7 @@ class FirebaseUtility: NSObject {
         let errorMessage = theError
         completion(nil, errorMessage)
       } else {
-      
+        
         let card = Card(id: ref.key, cardDict: cardDict)
         completion(card, nil)
         
@@ -237,7 +237,7 @@ class FirebaseUtility: NSObject {
               self.resetServices(services: services, updatedServices: theServices, index: index + 1, completion: completion)
       })
     } else {
-
+      
       completion(theServices)
     }
   }
@@ -267,7 +267,7 @@ class FirebaseUtility: NSObject {
       completion(nil, errorMessage)
       return
     }
-
+    
     let attention: Int = state ? 0 : 1
     
     let serviceRef = ref.child(FirebaseKeys.newServices).child(service.cardID).child(service.serviceID)
@@ -346,10 +346,10 @@ class FirebaseUtility: NSObject {
       if let theCards = cards {
         self.getServices(cards: theCards, index: 0, services: [], completion: { (services, error) in
           completion(services, error)
-          let groupDefaults = UserDefaults(suiteName: FirebaseKeys.groupLynked)
+          let groupDefaults = UserDefaults(suiteName: UserDefaultsKeys.groupDefaultsKey)
           if let theServices = services {
             let simpleArray = self.getSimpleArrayFrom(services: theServices)
-            groupDefaults?.set(simpleArray, forKey: FirebaseKeys.services)
+            groupDefaults?.set(simpleArray, forKey: UserDefaultsKeys.groupDefaultsKey)
           }
         })
       } else {
@@ -359,9 +359,15 @@ class FirebaseUtility: NSObject {
   }
   
   private func getSimpleArrayFrom(services: [Service]) -> [[String : String]] {
+    
     var simpleArray = [[String : String]]()
     
+//    let relevantSortedServices = services.filter({ $0.timeIntervalSinceNow > 0 }) .sorted ()
+    
     let sortedServices = services.sorted { (service1, service2) -> Bool in
+      
+      
+      
       guard let service1Date = service1.nextPaymentDate else {
         return false
       }
@@ -371,7 +377,9 @@ class FirebaseUtility: NSObject {
       return service1Date.compare(service2Date) == .orderedAscending
     }
     
+    
     for i in 0..<sortedServices.count {
+      
       let aService = sortedServices[i]
       if let name = aService.serviceName, let url = aService.serviceUrl, let nextPaymentDate = aService.nextPaymentDate, aService.serviceFixed == true {
         let formatter = DateFormatter()
@@ -381,7 +389,10 @@ class FirebaseUtility: NSObject {
         simpleArray.append(object)
       }
     }
+    
+    
     return simpleArray
+    
   }
   
   
@@ -444,7 +455,7 @@ class FirebaseUtility: NSObject {
         }
         completion(nil, errMessage)
       } else {
-
+        
         self.user = user
         completion(user, nil)
       }
@@ -545,7 +556,7 @@ class FirebaseUtility: NSObject {
   
   func deleteAccount(completion: (_ success: Bool, _ error: Error?) -> Void) {
     user?.delete(completion: { (error) in
-
+      
     })
   }
 }
