@@ -88,7 +88,7 @@ class WalletViewController: UIViewController {
   }
   
   func pullAllUsersCards() {
-    
+    // 1 Start Here?
     FirebaseUtility.shared.getCards { (cards, errMessage) in
       if let theCards = cards {
         if theCards.count < 1 {
@@ -96,12 +96,12 @@ class WalletViewController: UIViewController {
             let addNavigation = UINavigationController(rootViewController: addVC)
             if UIDevice.current.userInterfaceIdiom == .pad {
               self.splitViewController?.present(addNavigation, animated: true, completion: nil)
-            }
-            else {
+            } else {
               self.present(addNavigation, animated: true, completion: nil)
             }
           }
         } else {
+          // 2 Start Here?
           MBProgressHUD.showAdded(to: self.view, animated: true)
           self.cardArray = theCards
           self.tableView.reloadData()

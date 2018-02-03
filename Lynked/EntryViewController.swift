@@ -13,6 +13,7 @@ import Fabric
 import Crashlytics
 import LocalAuthentication
 import FirebaseAnalytics
+import FirebasePerformance
 
 
 
@@ -344,11 +345,9 @@ class EntryViewController: UIViewController {
       } else {
         
         Analytics.logEvent(AnalyticsKeys.emailLogin, parameters: [AnalyticsKeys.success : true])
-        
         Answers.logLogin(withMethod: AnalyticsKeys.emailLogin,
                          success: true,
                          customAttributes: [:])
-        
         self.dismiss(animated: true, completion: nil)
       }
     }

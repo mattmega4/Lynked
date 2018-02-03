@@ -7,8 +7,8 @@ target 'Lynked' do
 
   # Pods for Lynked
 
-  pod 'Fabric', '~> 1.7.2'
-  pod 'Crashlytics', '~> 3.9.3'
+  pod 'Fabric'
+  pod 'Crashlytics'
   pod 'Branch'
   pod 'Firebase/Core'
   pod 'Firebase/Storage'
@@ -30,8 +30,8 @@ end
 target 'Lynked Widget' do
 use_frameworks!
 
-  pod 'Fabric', '~> 1.7.2'
-  pod 'Crashlytics', '~> 3.9.3'
+  pod 'Fabric'
+  pod 'Crashlytics'
   pod 'Firebase/Performance'
   pod 'Kingfisher'
   pod 'Firebase/Core'
