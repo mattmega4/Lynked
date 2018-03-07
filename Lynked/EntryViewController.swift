@@ -27,11 +27,13 @@ class EntryViewController: UIViewController {
   
   @IBOutlet weak var leftContainerView: UIView!
   @IBOutlet weak var leftContainerButton: UIButton!
+  @IBOutlet weak var leftImageView: UIImageView!
   @IBOutlet weak var leftContainerLabel: UILabel!
   @IBOutlet weak var leftContainerIndicatorImageView: UIImageView!
   
   @IBOutlet weak var rightContainerView: UIView!
   @IBOutlet weak var rightContainerButton: UIButton!
+  @IBOutlet weak var rightImageView: UIImageView!
   @IBOutlet weak var rightContainerLabel: UILabel!
   @IBOutlet weak var rightContainerIndicatorImageView: UIImageView!
   
@@ -112,15 +114,16 @@ class EntryViewController: UIViewController {
   func hideLeftContainerViewContents() {
     leftContainerButton.alpha = 0.3
     leftContainerButton.isEnabled = false
-    leftContainerLabel.alpha = 0.3
+    leftImageView.alpha = 0.5
+    leftContainerLabel.alpha = 0.5
     leftContainerIndicatorImageView.image = #imageLiteral(resourceName: "indicatorTriangle")
-    //        leftContainerIndicatorImageView.image = UIImage.init(named: "indicatorTriangle.png")
   }
   
   
   func showLeftContainerViewContents() {
     leftContainerButton.alpha = 1.0
     leftContainerButton.isEnabled = true
+    leftImageView.alpha = 1.0
     leftContainerLabel.alpha = 1.0
     leftContainerIndicatorImageView.image = nil
   }
@@ -129,7 +132,8 @@ class EntryViewController: UIViewController {
   func hideRightContainerViewContents() {
     rightContainerButton.alpha = 0.3
     rightContainerButton.isEnabled = false
-    rightContainerLabel.alpha = 0.3
+    rightImageView.alpha = 0.5
+    rightContainerLabel.alpha = 0.5
     rightContainerIndicatorImageView.image = UIImage.init(named: "indicatorTriangle.png")
     rightContainerIndicatorImageView.image = #imageLiteral(resourceName: "indicatorTriangle")
   }
@@ -138,6 +142,7 @@ class EntryViewController: UIViewController {
   func showRightContainerViewContents() {
     rightContainerButton.alpha = 1.0
     rightContainerButton.isEnabled = true
+    rightImageView.alpha = 1.0
     rightContainerLabel.alpha = 1.0
     rightContainerIndicatorImageView.image = nil
   }
@@ -251,7 +256,7 @@ class EntryViewController: UIViewController {
     showLeftContainerViewContents()
     hideRightContainerViewContents()
     resetRegisterRequirementsForStageOne()
-    checkIfBothRegisterRequirementsAreMet() // ?
+    checkIfBothRegisterRequirementsAreMet()
     setupRegisterTextFieldsForStageOne()
     signInOrUpButton.setTitle("CONTINUE", for: UIControlState())
   }

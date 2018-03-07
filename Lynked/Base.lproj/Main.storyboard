@@ -1,29 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1el-ye-wps">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14105" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1el-ye-wps">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Futura.ttc">
-            <string>Futura-Bold</string>
-            <string>Futura-Medium</string>
-        </array>
-        <array key="GillSans.ttc">
-            <string>GillSans</string>
-            <string>GillSans-Bold</string>
-            <string>GillSans-BoldItalic</string>
-            <string>GillSans-SemiBold</string>
-            <string>GillSans-UltraBold</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Edit Card View Controller-->
         <scene sceneID="tyL-yx-c4O">
@@ -372,7 +359,7 @@
                                     <color key="onTintColor" red="0.36078431370000003" green="0.62745098040000002" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </switch>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service Up To Date?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="387-i6-zMd">
-                                    <rect key="frame" x="115.5" y="67" width="144" height="35"/>
+                                    <rect key="frame" x="116" y="67" width="143.5" height="35"/>
                                     <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="14"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -2198,13 +2185,15 @@ If you have any questions about these Terms, please contact us.</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OG3-dE-GW3">
                                                 <rect key="frame" x="0.0" y="256.5" width="187.5" height="130"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RAr-GZ-l5X">
-                                                        <rect key="frame" x="69" y="15" width="50" height="50"/>
-                                                        <state key="normal" image="Lock"/>
-                                                        <connections>
-                                                            <action selector="leftContainerButtonTapped:" destination="bd4-Vx-Rjw" eventType="touchUpInside" id="eo9-Qh-ZzQ"/>
-                                                        </connections>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HQk-BE-08w">
+                                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="130"/>
                                                     </button>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lock" translatesAutoresizingMaskIntoConstraints="NO" id="UYe-3h-yHF">
+                                                        <rect key="frame" x="68" y="14.5" width="50" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="UYe-3h-yHF" secondAttribute="height" multiplier="1:1" id="qNy-Ii-p97"/>
+                                                        </constraints>
+                                                    </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIGN IN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WPp-bd-phR">
                                                         <rect key="frame" x="25" y="70" width="137.5" height="35"/>
                                                         <constraints>
@@ -2252,17 +2241,20 @@ If you have any questions about these Terms, please contact us.</string>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.34901960784313724" green="0.51764705882352935" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
-                                                    <constraint firstItem="RAr-GZ-l5X" firstAttribute="centerX" secondItem="OG3-dE-GW3" secondAttribute="centerX" id="85w-IU-taB"/>
+                                                    <constraint firstItem="WPp-bd-phR" firstAttribute="top" secondItem="UYe-3h-yHF" secondAttribute="bottom" constant="5" id="4yt-TQ-WwX"/>
+                                                    <constraint firstAttribute="trailing" secondItem="HQk-BE-08w" secondAttribute="trailing" id="75q-ju-bGa"/>
                                                     <constraint firstAttribute="bottom" secondItem="bBS-gp-EKh" secondAttribute="bottom" id="HHa-FW-Tz3"/>
-                                                    <constraint firstItem="WPp-bd-phR" firstAttribute="top" secondItem="RAr-GZ-l5X" secondAttribute="bottom" constant="5" id="O2y-qe-ih4"/>
+                                                    <constraint firstItem="HQk-BE-08w" firstAttribute="leading" secondItem="OG3-dE-GW3" secondAttribute="leading" id="Lv7-P4-myy"/>
                                                     <constraint firstAttribute="height" constant="225" id="XIW-a9-ymP"/>
+                                                    <constraint firstAttribute="bottom" secondItem="HQk-BE-08w" secondAttribute="bottom" id="bhX-At-lS4"/>
                                                     <constraint firstItem="bBS-gp-EKh" firstAttribute="centerX" secondItem="OG3-dE-GW3" secondAttribute="centerX" id="dTM-Yp-tAj"/>
                                                     <constraint firstAttribute="height" constant="130" id="h9R-pU-p6y"/>
                                                     <constraint firstItem="bBS-gp-EKh" firstAttribute="top" secondItem="WPp-bd-phR" secondAttribute="bottom" constant="5" id="hGg-bT-eLg"/>
                                                     <constraint firstItem="WPp-bd-phR" firstAttribute="leading" secondItem="OG3-dE-GW3" secondAttribute="leading" constant="25" id="iK9-4v-OLs"/>
-                                                    <constraint firstItem="RAr-GZ-l5X" firstAttribute="width" secondItem="RAr-GZ-l5X" secondAttribute="height" multiplier="1:1" id="l4c-I5-pir"/>
-                                                    <constraint firstItem="RAr-GZ-l5X" firstAttribute="top" secondItem="OG3-dE-GW3" secondAttribute="top" constant="15" id="nXz-Ep-nZl"/>
+                                                    <constraint firstItem="HQk-BE-08w" firstAttribute="top" secondItem="OG3-dE-GW3" secondAttribute="top" id="muO-Ky-0Ms"/>
+                                                    <constraint firstItem="UYe-3h-yHF" firstAttribute="top" secondItem="OG3-dE-GW3" secondAttribute="top" constant="15" id="qfZ-xk-ura"/>
                                                     <constraint firstAttribute="trailing" secondItem="WPp-bd-phR" secondAttribute="trailing" constant="25" id="u88-s0-IIE"/>
+                                                    <constraint firstItem="UYe-3h-yHF" firstAttribute="centerX" secondItem="OG3-dE-GW3" secondAttribute="centerX" id="xuS-FC-Slz"/>
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="constraints">
@@ -2284,16 +2276,15 @@ If you have any questions about these Terms, please contact us.</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zsg-Ov-kbB">
                                                 <rect key="frame" x="187.5" y="256.5" width="187.5" height="130"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Pp-H6-38s">
-                                                        <rect key="frame" x="69" y="15" width="50" height="50"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" secondItem="4Pp-H6-38s" secondAttribute="height" multiplier="1:1" id="phi-YN-UoN"/>
-                                                        </constraints>
-                                                        <state key="normal" image="Plus"/>
-                                                        <connections>
-                                                            <action selector="rightContainerButtonTapped:" destination="bd4-Vx-Rjw" eventType="touchUpInside" id="fj6-ox-7dF"/>
-                                                        </connections>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HMn-Qc-kgI">
+                                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="130"/>
                                                     </button>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Plus" translatesAutoresizingMaskIntoConstraints="NO" id="S6W-Pc-hKq">
+                                                        <rect key="frame" x="68.5" y="14.5" width="50" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="S6W-Pc-hKq" secondAttribute="height" multiplier="1:1" id="iKX-x6-35Q"/>
+                                                        </constraints>
+                                                    </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CREATE ACCOUNT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gLB-cK-HUI">
                                                         <rect key="frame" x="25" y="70" width="137.5" height="35"/>
                                                         <constraints>
@@ -2341,13 +2332,17 @@ If you have any questions about these Terms, please contact us.</string>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.49741187689999999" green="0.59082520009999995" blue="0.66672968860000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
+                                                    <constraint firstItem="S6W-Pc-hKq" firstAttribute="top" secondItem="zsg-Ov-kbB" secondAttribute="top" constant="15" id="28K-ck-YDu"/>
+                                                    <constraint firstItem="HMn-Qc-kgI" firstAttribute="top" secondItem="zsg-Ov-kbB" secondAttribute="top" id="4mJ-Fr-KfL"/>
+                                                    <constraint firstAttribute="trailing" secondItem="HMn-Qc-kgI" secondAttribute="trailing" id="4wq-iF-Adu"/>
+                                                    <constraint firstItem="S6W-Pc-hKq" firstAttribute="centerX" secondItem="zsg-Ov-kbB" secondAttribute="centerX" id="9AD-AK-GcB"/>
+                                                    <constraint firstItem="gLB-cK-HUI" firstAttribute="top" secondItem="S6W-Pc-hKq" secondAttribute="bottom" constant="5" id="L3q-iH-JIM"/>
                                                     <constraint firstAttribute="trailing" secondItem="gLB-cK-HUI" secondAttribute="trailing" constant="25" id="Lr1-fY-dc9"/>
-                                                    <constraint firstItem="gLB-cK-HUI" firstAttribute="top" secondItem="4Pp-H6-38s" secondAttribute="bottom" constant="5" id="PH8-RN-7Ai"/>
-                                                    <constraint firstItem="4Pp-H6-38s" firstAttribute="top" secondItem="zsg-Ov-kbB" secondAttribute="top" constant="15" id="Pt0-hl-3mJ"/>
+                                                    <constraint firstAttribute="bottom" secondItem="HMn-Qc-kgI" secondAttribute="bottom" id="R3e-To-cie"/>
                                                     <constraint firstAttribute="bottom" secondItem="uGA-TV-Ksf" secondAttribute="bottom" id="T1I-KT-1KE"/>
                                                     <constraint firstItem="uGA-TV-Ksf" firstAttribute="top" secondItem="gLB-cK-HUI" secondAttribute="bottom" constant="5" id="WZY-eg-z4W"/>
+                                                    <constraint firstItem="HMn-Qc-kgI" firstAttribute="leading" secondItem="zsg-Ov-kbB" secondAttribute="leading" id="aGz-4n-kcU"/>
                                                     <constraint firstItem="gLB-cK-HUI" firstAttribute="leading" secondItem="zsg-Ov-kbB" secondAttribute="leading" constant="25" id="dgt-oG-ykF"/>
-                                                    <constraint firstItem="4Pp-H6-38s" firstAttribute="centerX" secondItem="zsg-Ov-kbB" secondAttribute="centerX" id="rgF-FZ-ghD"/>
                                                     <constraint firstItem="uGA-TV-Ksf" firstAttribute="centerX" secondItem="zsg-Ov-kbB" secondAttribute="centerX" id="uvo-ch-Nmp"/>
                                                 </constraints>
                                             </view>
@@ -2489,16 +2484,18 @@ If you have any questions about these Terms, please contact us.</string>
                     <connections>
                         <outlet property="bottomContainerView" destination="8bL-wv-Pl7" id="qD7-kS-iz4"/>
                         <outlet property="contentView" destination="Xhp-fJ-cJY" id="a5Z-Cd-CUG"/>
-                        <outlet property="leftContainerButton" destination="RAr-GZ-l5X" id="5sh-9f-0zR"/>
+                        <outlet property="leftContainerButton" destination="HQk-BE-08w" id="Or7-1P-rh5"/>
                         <outlet property="leftContainerIndicatorImageView" destination="bBS-gp-EKh" id="fgM-Jf-9Xx"/>
                         <outlet property="leftContainerLabel" destination="WPp-bd-phR" id="M7O-0I-16S"/>
                         <outlet property="leftContainerView" destination="OG3-dE-GW3" id="HuF-dl-qHj"/>
+                        <outlet property="leftImageView" destination="UYe-3h-yHF" id="0kp-35-n7e"/>
                         <outlet property="mainLogoImageView" destination="1YO-Wo-8oR" id="brG-Dc-NfZ"/>
                         <outlet property="resetPasswordButton" destination="4Qu-bd-h2j" id="qAT-vu-qOk"/>
-                        <outlet property="rightContainerButton" destination="4Pp-H6-38s" id="DzI-qQ-5aQ"/>
+                        <outlet property="rightContainerButton" destination="HMn-Qc-kgI" id="nA9-fm-g5y"/>
                         <outlet property="rightContainerIndicatorImageView" destination="uGA-TV-Ksf" id="5gV-e5-41V"/>
                         <outlet property="rightContainerLabel" destination="gLB-cK-HUI" id="4M2-gN-ggO"/>
                         <outlet property="rightContainerView" destination="zsg-Ov-kbB" id="cWe-Gh-RT2"/>
+                        <outlet property="rightImageView" destination="S6W-Pc-hKq" id="zCA-q3-LCF"/>
                         <outlet property="scrollView" destination="Xqw-3l-lWA" id="0r7-Mu-6hZ"/>
                         <outlet property="signInOrUpButton" destination="E5O-Xd-w7e" id="PGN-ae-iXF"/>
                         <outlet property="signInOrUpButtonContainerView" destination="Ikf-kF-4b6" id="neK-hS-BWx"/>
@@ -2509,7 +2506,7 @@ If you have any questions about these Terms, please contact us.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YCc-6P-K7a" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5197.5" y="-1277.5"/>
+            <point key="canvasLocation" x="5196" y="-1277.8110944527737"/>
         </scene>
         <!--Add Card View Controller-->
         <scene sceneID="JLE-Iv-qsb">

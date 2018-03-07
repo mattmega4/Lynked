@@ -26,7 +26,7 @@ class FirebaseUtility: NSObject {
   // MARK: - Cards
   
   func getCards(completion: @escaping (_ cards: [Card]?, _ errorMessage: String?) -> Void) {
-    
+//    let testTrace = Performance.startTrace(name: "Test")
     guard let userID = user?.uid else {
       let error = "Unknown error occured! User is not logged in."
       completion(nil, error)
@@ -46,6 +46,7 @@ class FirebaseUtility: NSObject {
       }
       completion(cards, nil)
     })
+//    testTrace?.stop()
   }
   
   func addCard(name: String?, type: String?, color: Int, last4: String?, completion: @escaping (_ card: Card?, _ errMessage: String?) -> Void) {
