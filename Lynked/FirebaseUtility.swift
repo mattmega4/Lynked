@@ -26,7 +26,7 @@ class FirebaseUtility: NSObject {
   // MARK: - Cards
   
   func getCards(completion: @escaping (_ cards: [Card]?, _ errorMessage: String?) -> Void) {
-//    let testTrace = Performance.startTrace(name: "Test")
+   
     guard let userID = user?.uid else {
       let error = "Unknown error occured! User is not logged in."
       completion(nil, error)
@@ -34,7 +34,7 @@ class FirebaseUtility: NSObject {
     }
     
     let userCardRef = ref.child(FirebaseKeys.newCards).child(userID)
-    userCardRef.observe(.value, with: { (snapshot) in // changed from Single Event
+    userCardRef.observeSingleEvent(of: .value, with: { (snapshot) in // changed from Single Event...?
       let enumerator = snapshot.children
       var cards = [Card]()
       
@@ -46,7 +46,6 @@ class FirebaseUtility: NSObject {
       }
       completion(cards, nil)
     })
-//    testTrace?.stop()
   }
   
   func addCard(name: String?, type: String?, color: Int, last4: String?, completion: @escaping (_ card: Card?, _ errMessage: String?) -> Void) {
@@ -151,9 +150,29 @@ class FirebaseUtility: NSObject {
   
   // MARK: - Services
   
-  func getServicesFor(card: Card, completion: @escaping (_ services: [Service]?, _ error: Error?) -> Void) {
+  func getServicesFor(card: Card, completion: @escaping (_ services: [Service]?, _ error: Error?, _ reference: DatabaseReference) -> Void) {
     let servicesRef = ref.child(FirebaseKeys.newServices).child(card.cardID)
-    servicesRef.observeSingleEvent(of: .value, with: { (snapshot) in
+    
+    servicesRef.observe(.value, with: { (snapshot) in
+//        servicesRef.observeSingleEvent(of: .value, with: { (snapshot) in // was screwing up on ipad
+      
+      let enumerator = snapshot.children
+      var serviceArray = [Service]()
+      while let serviceSnapshot = enumerator.nextObject() as? DataSnapshot {
+
+        if let serviceDict = serviceSnapshot.value as? [String : Any] {
+          let service = Service(id:serviceSnapshot.key, cardId: card.cardID, serviceDict: serviceDict)
+          serviceArray.append(service)
+        }
+      }
+      completion(serviceArray, nil, snapshot.ref)
+    })
+  }
+  
+  func getWidgetServicesFor(card: Card, completion: @escaping (_ services: [Service]?, _ error: Error?) -> Void) {
+    let servicesRef = ref.child(FirebaseKeys.newServices).child(card.cardID)
+    servicesRef.observeSingleEvent(of: .value, with: { (snapshot) in // was screwing up on ipad
+      
       let enumerator = snapshot.children
       var serviceArray = [Service]()
       while let serviceSnapshot = enumerator.nextObject() as? DataSnapshot {
@@ -166,6 +185,8 @@ class FirebaseUtility: NSObject {
       completion(serviceArray, nil)
     })
   }
+  
+  
   
   
   func addService(name: String?, forCard card: Card?, withCategory category: String?, completion: @escaping (_ service: Service?, _ errMessage: String?) -> Void) {
@@ -400,7 +421,7 @@ class FirebaseUtility: NSObject {
   private func getServices(cards: [Card], index: Int, services: [Service], completion: @escaping (_ services: [Service]?, _ errorMessage: String?) -> Void) {
     if index < cards.count {
       let card = cards[index]
-      getServicesFor(card: card, completion: { (serviceArray, error) in
+      getWidgetServicesFor(card: card, completion: { (serviceArray, error) in
         if let theServices = serviceArray {
           self.getServices(cards: cards, index: index + 1, services: services + theServices, completion: completion)
         } else {

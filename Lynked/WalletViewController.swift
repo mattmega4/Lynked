@@ -57,16 +57,15 @@ class WalletViewController: UIViewController {
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
+
     
-    // Maybe remove all values here?
     FirebaseUtility.shared.getAllServices { (services, error) in }
     checkAuthAndPull()
   }
   
   override func viewDidDisappear(_ animated: Bool) {
     super.viewDidDisappear(animated)
-    
-    ref.child("newCards").removeAllObservers()
+    ref.child(FirebaseKeys.newCards).removeAllObservers()
   }
   
   
@@ -88,8 +87,9 @@ class WalletViewController: UIViewController {
   }
   
   func pullAllUsersCards() {
-    // 1 Start Here?
+     let getCardTrace = Performance.startTrace(name: "getCard")
     FirebaseUtility.shared.getCards { (cards, errMessage) in
+  getCardTrace?.stop()
       if let theCards = cards {
         if theCards.count < 1 {
           if let addVC = self.storyboard?.instantiateViewController(withIdentifier: StoryboardKeys.addCardViewControllerStoryboardID) as? AddCardViewController {
@@ -101,7 +101,6 @@ class WalletViewController: UIViewController {
             }
           }
         } else {
-          // 2 Start Here?
           MBProgressHUD.showAdded(to: self.view, animated: true)
           self.cardArray = theCards
           self.tableView.reloadData()
