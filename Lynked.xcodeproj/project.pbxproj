@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D01B2701E03A27500098A9A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1D01B26F1E03A27500098A9A /* GoogleService-Info.plist */; };
 		1DC0D8AB1DFE516A0039B8F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC0D8AA1DFE516A0039B8F6 /* AppDelegate.swift */; };
 		1DC0D8B01DFE516A0039B8F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DC0D8AE1DFE516A0039B8F6 /* Main.storyboard */; };
 		1DC0D8B31DFE516A0039B8F6 /* Lynked.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1DC0D8B11DFE516A0039B8F6 /* Lynked.xcdatamodeld */; };
@@ -23,7 +22,6 @@
 		2924F9BE1EF22F090014C284 /* SegmentColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F9BD1EF22F090014C284 /* SegmentColorManager.swift */; };
 		292764931EDFA3160096AE1E /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292764921EDFA3160096AE1E /* WalletViewController.swift */; };
 		292764951EDFC8350096AE1E /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292764941EDFC8350096AE1E /* CardTableViewCell.swift */; };
-		292DEB061F01D486008247EC /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 1D01B26F1E03A27500098A9A /* GoogleService-Info.plist */; };
 		2943B48B1EF624D600A0E8DD /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */; };
 		294D0E321EF9E9F7000E4BC6 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294D0E311EF9E9F7000E4BC6 /* CategoryViewController.swift */; };
 		295E02291F0CB4E30006AAC0 /* LynkedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295E02281F0CB4E30006AAC0 /* LynkedTests.swift */; };
@@ -68,6 +66,8 @@
 		29CB33141EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CB33131EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift */; };
 		29CF61E61F2D7AE4006659FE /* InitialImageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CF61E51F2D7AE4006659FE /* InitialImageFactory.swift */; };
 		29CF61E71F2D7C0C006659FE /* InitialImageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CF61E51F2D7AE4006659FE /* InitialImageFactory.swift */; };
+		29D0407620574A9000C82FA9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 29D0407520574A9000C82FA9 /* GoogleService-Info.plist */; };
+		29D0407720574A9000C82FA9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 29D0407520574A9000C82FA9 /* GoogleService-Info.plist */; };
 		29D412AF1F00AF0C0081CF79 /* WidgetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D412AE1F00AF0C0081CF79 /* WidgetTableViewCell.swift */; };
 		29D412B11F00B18C0081CF79 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2943B48A1EF624D600A0E8DD /* FirebaseUtility.swift */; };
 		29D412B31F00B67E0081CF79 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FA4E51EF78EDB009B5A36 /* String+Extensions.swift */; };
@@ -122,7 +122,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1D01B26F1E03A27500098A9A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1DC0D8A71DFE516A0039B8F6 /* Lynked.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lynked.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DC0D8AA1DFE516A0039B8F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1DC0D8AF1DFE516A0039B8F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -177,6 +176,7 @@
 		29CB33111EF65EFA009CEE3B /* AcknowledgementsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcknowledgementsViewController.swift; sourceTree = "<group>"; };
 		29CB33131EF661C1009CEE3B /* AcknowledgementsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcknowledgementsTableViewCell.swift; sourceTree = "<group>"; };
 		29CF61E51F2D7AE4006659FE /* InitialImageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialImageFactory.swift; sourceTree = "<group>"; };
+		29D0407520574A9000C82FA9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		29D412AE1F00AF0C0081CF79 /* WidgetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidgetTableViewCell.swift; sourceTree = "<group>"; };
 		29D412B71F00D43A0081CF79 /* NewCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCardTableViewCell.swift; sourceTree = "<group>"; };
 		29D5906A1EF5AE5600CA66D6 /* RequestReview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestReview.swift; sourceTree = "<group>"; };
@@ -272,7 +272,7 @@
 				1DC0D8B41DFE516A0039B8F6 /* Assets.xcassets */,
 				1DC0D8B61DFE516A0039B8F6 /* LaunchScreen.storyboard */,
 				1DC0D8B91DFE516A0039B8F6 /* Info.plist */,
-				1D01B26F1E03A27500098A9A /* GoogleService-Info.plist */,
+				29D0407520574A9000C82FA9 /* GoogleService-Info.plist */,
 				297BE9FB1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist */,
 				29CA616F1F09B9BB00391199 /* Keys.plist */,
 			);
@@ -611,9 +611,9 @@
 				29CA61701F09B9BB00391199 /* Keys.plist in Resources */,
 				297BE9FC1EF707530035D4DA /* Pods-Lynked-acknowledgements.plist in Resources */,
 				1DC0D8B81DFE516A0039B8F6 /* LaunchScreen.storyboard in Resources */,
-				1D01B2701E03A27500098A9A /* GoogleService-Info.plist in Resources */,
 				1DC0D8B51DFE516A0039B8F6 /* Assets.xcassets in Resources */,
 				1DC0D8B01DFE516A0039B8F6 /* Main.storyboard in Resources */,
+				29D0407620574A9000C82FA9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,6 +630,7 @@
 			files = (
 				299F6FC01F018AD300935054 /* Assets.xcassets in Resources */,
 				29EFAB2B1EFE46A1007F384E /* MainInterface.storyboard in Resources */,
+				29D0407720574A9000C82FA9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -644,6 +645,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Lynked/Pods-Lynked-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/Branch/Branch.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
@@ -658,6 +660,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Branch.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
@@ -824,7 +827,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				292DEB061F01D486008247EC /* GoogleService-Info.plist in Sources */,
 				29FD5E711F327916009C6C6B /* ServicePayRateManagerUtility.swift in Sources */,
 				297C023B1F3920A2009DEF23 /* BranchKeys.swift in Sources */,
 				29D412B41F00B68F0081CF79 /* SegmentColorManager.swift in Sources */,
