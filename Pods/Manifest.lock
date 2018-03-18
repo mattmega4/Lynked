@@ -1,8 +1,8 @@
 PODS:
   - AFNetworking (1.1.0)
-  - Branch (0.23.2):
-    - Branch/Core (= 0.23.2)
-  - Branch/Core (0.23.2)
+  - Branch (0.23.4):
+    - Branch/Core (= 0.23.4)
+  - Branch/Core (0.23.4)
   - Crashlytics (3.10.1):
     - Fabric (~> 1.7.5)
   - DZNEmptyDataSet (1.8.1)
@@ -105,7 +105,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: e6427e782b25a2289d909960df8ef41358b3277c
-  Branch: 085821e2f2ff386e780cf48a0f7a622e7fcf9593
+  Branch: e1d239276ff9b30910f3bf4374d9e3e77f7fc7e9
   Crashlytics: aee1a064cbbf99b32efa3f056a5f458d846bc8ff
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Fabric: ae7146a5f505ea370a1e44820b4b1dc8890e2890
