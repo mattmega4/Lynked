@@ -1,21 +1,14 @@
+/**
+ @file          BNCLog.h
+ @package       Branch-SDK
+ @brief         Simple logging functions.
 
+ @author        Edward Smith
+ @date          October 2016
+ @copyright     Copyright © 2016 Branch. All rights reserved.
+*/
 
-//--------------------------------------------------------------------------------------------------
-//
-//                                                                                          BNCLog.h
-//                                                                                  Branch.framework
-//
-//                                                                          Simple logging functions
-//                                                                        Edward Smith, October 2016
-//
-//                                             -©- Copyright © 2016 Branch, all rights reserved. -©-
-//
-//--------------------------------------------------------------------------------------------------
-
-
-@import Foundation;
 #import "BNCDebug.h"
-
 
 #ifdef __cplusplus
 extern "C" {

@@ -11,6 +11,7 @@
 #import "BNCLog.h"
 #import "BNCDebug.h"
 #import "BNCError.h"
+#import "BNCConfig.h"
 
 #pragma mark BNCNetworkOperation
 
@@ -74,7 +75,7 @@
 
 @implementation BNCNetworkService
 
-+ (id<BNCNetworkServiceProtocol>) new {
++ (instancetype) new {
     return [[self alloc] init];
 }
 
@@ -172,7 +173,7 @@
 #pragma mark - Operations
 
 - (BNCNetworkOperation*) networkOperationWithURLRequest:(NSMutableURLRequest*)request
-                completion:(void (^)(BNCNetworkOperation*operation))completion {
+                completion:(void (^)(id<BNCNetworkOperationProtocol>operation))completion {
 
     BNCNetworkOperation *operation = [BNCNetworkOperation new];
     if (![request isKindOfClass:[NSMutableURLRequest class]]) {
@@ -273,6 +274,11 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
             trusted = YES;
             goto exit;
         }
+    }
+
+    if (!BNC_API_PINNED) {
+        trusted = YES;
+        goto exit;
     }
 
 exit:

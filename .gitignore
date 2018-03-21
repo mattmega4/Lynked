@@ -65,8 +65,13 @@ fastlane/screenshots
 fastlane/test_output
 
 
+Lynked/SupportingFiles/GoogleService-Info.plist
+Lynked/SupportingFiles/Info.plist
+Lynked/SupportingFiles/Keys.plist
+
 Lynked/GoogleService-Info.plist
 Lynked/Info.plist
 Lynked/Keys.plist
 Lynked/String_Encryption.swift
-CrashReportingKey/ServiceAccount.json
+CrashReportingKey/ServiceAccount.jsonGoogleService-Info.plist
+/Users/matthewhsingleton/Developer/Lynked/Lynked/Keys.plist 

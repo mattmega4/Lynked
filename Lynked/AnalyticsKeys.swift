@@ -20,5 +20,9 @@ struct AnalyticsKeys {
   static let emailRegister = "Lynked_Email_Register"
   static let userDeleted = "Lynked_User_Deleted"
   static let addCardPurchase = "Lynked_Add_Card_Purchase"
+  static let tellFriend = "Lynked_Tell_Friend"
+  static let feedbackSent = "Lynked_Feedback_Sent"
+  static let pictureSet = "Lynked_Picture_Set"
+  static let nameSet = "Lynked_Name_Set"
   static let success = "success"
 }

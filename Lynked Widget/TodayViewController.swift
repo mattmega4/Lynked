@@ -44,8 +44,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // If an error is encountered, use NCUpdateResult.Failed
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
-        let groupDefaults = UserDefaults(suiteName: "group.Lynked")
-        if let services = groupDefaults?.object(forKey: "services") as? [[String : String]] {
+        
+        let groupDefaults = UserDefaults(suiteName: UserDefaultsKeys.userDefeaultsGroupString)
+        if let services = groupDefaults?.object(forKey: UserDefaultsKeys.groupDefaultsKey) as? [[String : String]] {
             serviceArray = services
             print(services)
             self.tableView.reloadData()
@@ -82,7 +83,6 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
             cell.serviceNameLabel.text = serviceName.capitalized
             cell.serviceDateLabel.text = service["date"]?.capitalized
             
-//            let placeholderImage = UIImage.init(named: "\(TempLetterImagePickerUtility.shared.getLetterOrNumberAndChooseImage(text: serviceName))")
           let placeholderImage = InitialImageFactory.imageWith(name: serviceName)
             if serviceURL.isEmpty == false {
                 let myURLString: String = "https://logo.clearbit.com/\(serviceURL)"

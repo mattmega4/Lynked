@@ -9,6 +9,10 @@
 import UIKit
 import MBProgressHUD
 import UserNotifications
+import FirebaseAnalytics
+import Fabric
+import Crashlytics
+
 
 class AddCardViewController: UIViewController {
   
@@ -92,6 +96,11 @@ class AddCardViewController: UIViewController {
     let color: Int = segControl.selectedSegmentIndex
     
     FirebaseUtility.shared.addCard(name: finalNickname?.capitalized, type: finalType, color: color, last4: last4) { (card, errorMessage) in
+      
+      Analytics.logEvent(AnalyticsKeys.newCardAdded, parameters: [AnalyticsKeys.success : true])
+      Answers.logCustomEvent(withName: AnalyticsKeys.newCardAdded,
+                             customAttributes: nil)
+      
       MBProgressHUD.showAdded(to: self.view, animated: true)
       MBProgressHUD.hide(for: self.view, animated: true)
 
@@ -221,7 +230,7 @@ extension AddCardViewController: UITextFieldDelegate {
       let allowedCharacters = CharacterSet.decimalDigits
       let characterSet = CharacterSet(charactersIn: string)
       
-      let newLength = text.characters.count + string.characters.count - range.length
+      let newLength = text.count + string.count - range.length
       return allowedCharacters.isSuperset(of: characterSet) && newLength <= 4 // Bool
     }
     

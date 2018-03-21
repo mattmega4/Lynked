@@ -34,7 +34,7 @@ iOS 9.0 +
 
 ### Installing
 
-After downloading from Apple Store for free. Tap on Register Account and enter you email and password.
+After downloading from Apple Store for free, tap on Register Account and enter you email and password.
 
 
 ## Adding Card
@@ -66,24 +66,29 @@ MasterCard
 ## Built With
 
 * [Firebase](https://firebase.google.com) - Google MBaaS Tracks crashes and performance & hosts data
+
 * [Fabric](https://fabric.io) - Twitter/Google Tracks crashes & events 
-<<<<<<< HEAD
+
 * [SDWebImage](https://github.com/rs/SDWebImage) - Asynchronous image downloader with cache support as a UIImageView category
-=======
+
 * [SCPinViewController](https://github.com/SugarAndCandy/SCPinViewController) - Super customization Pin controller.
+
 * [mailgun](https://github.com/rackerlabs/objc-mailgun) - Objective-C SDK for Mailgun.
+
 * [UITextView+Placeholder](https://github.com/devxoul/UITextView-Placeholder) - A missing placeholder for UITextView
+
 * [DZNEmptyDataSet](https://github.com/dzenbot/DZNEmptyDataSet) - A drop-in UITableView/UICollectionView superclass category for showing empty datasets whenever the view has no content to display
+
 * [Kingfisher](https://github.com/onevcat/Kingfisher) - A lightweight, pure-Swift library for downloading and caching images from the web
->>>>>>> v2.5.1
+
 
 
 ## Authors
 
-<<<<<<< HEAD
+
 * **Matthew H Singleton** - *Developer* - [Portfolio](www.matthewhsingleton.com)
-=======
-* **Matthew H Singleton** - *Developer* - [Portfolio](http://www.matthewhsingleton.com)
->>>>>>> v2.5.1
+
+
+
 
 

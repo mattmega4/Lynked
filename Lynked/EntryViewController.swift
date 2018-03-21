@@ -12,6 +12,9 @@ import FirebaseAuth
 import Fabric
 import Crashlytics
 import LocalAuthentication
+import FirebaseAnalytics
+import FirebasePerformance
+
 
 
 class EntryViewController: UIViewController {
@@ -24,11 +27,13 @@ class EntryViewController: UIViewController {
   
   @IBOutlet weak var leftContainerView: UIView!
   @IBOutlet weak var leftContainerButton: UIButton!
+  @IBOutlet weak var leftImageView: UIImageView!
   @IBOutlet weak var leftContainerLabel: UILabel!
   @IBOutlet weak var leftContainerIndicatorImageView: UIImageView!
   
   @IBOutlet weak var rightContainerView: UIView!
   @IBOutlet weak var rightContainerButton: UIButton!
+  @IBOutlet weak var rightImageView: UIImageView!
   @IBOutlet weak var rightContainerLabel: UILabel!
   @IBOutlet weak var rightContainerIndicatorImageView: UIImageView!
   
@@ -66,6 +71,7 @@ class EntryViewController: UIViewController {
     textFieldOne.addTarget(self, action: #selector(checkIfTopTextFIeldIsSatisfied(textField:)), for: .editingChanged)
     textFieldTwo.addTarget(self, action: #selector(checkIfBottomTextFieldIsSatisfied(textField:)), for: .editingChanged)
     
+    // testing 123
     
     let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EntryViewController.dismissKeyboard))
      view.addGestureRecognizer(tap)
@@ -109,15 +115,16 @@ class EntryViewController: UIViewController {
   func hideLeftContainerViewContents() {
     leftContainerButton.alpha = 0.3
     leftContainerButton.isEnabled = false
-    leftContainerLabel.alpha = 0.3
+    leftImageView.alpha = 0.5
+    leftContainerLabel.alpha = 0.5
     leftContainerIndicatorImageView.image = #imageLiteral(resourceName: "indicatorTriangle")
-    //        leftContainerIndicatorImageView.image = UIImage.init(named: "indicatorTriangle.png")
   }
   
   
   func showLeftContainerViewContents() {
     leftContainerButton.alpha = 1.0
     leftContainerButton.isEnabled = true
+    leftImageView.alpha = 1.0
     leftContainerLabel.alpha = 1.0
     leftContainerIndicatorImageView.image = nil
   }
@@ -126,7 +133,8 @@ class EntryViewController: UIViewController {
   func hideRightContainerViewContents() {
     rightContainerButton.alpha = 0.3
     rightContainerButton.isEnabled = false
-    rightContainerLabel.alpha = 0.3
+    rightImageView.alpha = 0.5
+    rightContainerLabel.alpha = 0.5
     rightContainerIndicatorImageView.image = UIImage.init(named: "indicatorTriangle.png")
     rightContainerIndicatorImageView.image = #imageLiteral(resourceName: "indicatorTriangle")
   }
@@ -135,6 +143,7 @@ class EntryViewController: UIViewController {
   func showRightContainerViewContents() {
     rightContainerButton.alpha = 1.0
     rightContainerButton.isEnabled = true
+    rightImageView.alpha = 1.0
     rightContainerLabel.alpha = 1.0
     rightContainerIndicatorImageView.image = nil
   }
@@ -248,7 +257,7 @@ class EntryViewController: UIViewController {
     showLeftContainerViewContents()
     hideRightContainerViewContents()
     resetRegisterRequirementsForStageOne()
-    checkIfBothRegisterRequirementsAreMet() // ?
+    checkIfBothRegisterRequirementsAreMet()
     setupRegisterTextFieldsForStageOne()
     signInOrUpButton.setTitle("CONTINUE", for: UIControlState())
   }
@@ -340,6 +349,11 @@ class EntryViewController: UIViewController {
         }
         alertController.addAction(OKAction)
       } else {
+        
+        Analytics.logEvent(AnalyticsKeys.emailLogin, parameters: [AnalyticsKeys.success : true])
+        Answers.logLogin(withMethod: AnalyticsKeys.emailLogin,
+                         success: true,
+                         customAttributes: [:])
         self.dismiss(animated: true, completion: nil)
       }
     }
@@ -359,6 +373,12 @@ class EntryViewController: UIViewController {
         }
         alertController.addAction(OKAction)
       } else {
+        
+        Analytics.logEvent(AnalyticsKeys.emailRegister, parameters: [AnalyticsKeys.success : true])
+        Answers.logSignUp(withMethod: AnalyticsKeys.emailRegister,
+                          success: true,
+                          customAttributes: [:])
+        
         self.dismiss(animated: true, completion: nil)
       }
     }
@@ -420,7 +440,7 @@ class EntryViewController: UIViewController {
     var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
     keyboardFrame = self.view.convert(keyboardFrame, from: nil)
     var contentInset: UIEdgeInsets = self.scrollView.contentInset
-    contentInset.bottom = keyboardFrame.size.height + 60
+    contentInset.bottom = keyboardFrame.size.height + 100
     self.scrollView.contentInset = contentInset
     
     hideLeftContainerViewContents()

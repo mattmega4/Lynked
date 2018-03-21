@@ -10,6 +10,9 @@ import UIKit
 import StoreKit
 import MBProgressHUD
 import Firebase
+import FirebaseAnalytics
+import Fabric
+import Crashlytics
 //import SCPinViewController
 
 class WalletViewController: UIViewController {
@@ -37,7 +40,6 @@ class WalletViewController: UIViewController {
     
     title = "Wallet"
     setNavBar()
-    //        FirebaseUtility.shared.getAllServices { (services, error) in }
     
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 500
@@ -55,6 +57,7 @@ class WalletViewController: UIViewController {
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
+
     
     FirebaseUtility.shared.getAllServices { (services, error) in }
     checkAuthAndPull()
@@ -62,8 +65,7 @@ class WalletViewController: UIViewController {
   
   override func viewDidDisappear(_ animated: Bool) {
     super.viewDidDisappear(animated)
-    
-    ref.child("newCards").removeAllObservers()
+    ref.child(FirebaseKeys.newCards).removeAllObservers()
   }
   
   
@@ -85,16 +87,16 @@ class WalletViewController: UIViewController {
   }
   
   func pullAllUsersCards() {
-    
+     let getCardTrace = Performance.startTrace(name: "getCard")
     FirebaseUtility.shared.getCards { (cards, errMessage) in
+  getCardTrace?.stop()
       if let theCards = cards {
         if theCards.count < 1 {
           if let addVC = self.storyboard?.instantiateViewController(withIdentifier: StoryboardKeys.addCardViewControllerStoryboardID) as? AddCardViewController {
             let addNavigation = UINavigationController(rootViewController: addVC)
             if UIDevice.current.userInterfaceIdiom == .pad {
               self.splitViewController?.present(addNavigation, animated: true, completion: nil)
-            }
-            else {
+            } else {
               self.present(addNavigation, animated: true, completion: nil)
             }
           }

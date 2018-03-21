@@ -2,16 +2,14 @@
 platform :ios, '9.0'
 
 target 'Lynked' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+
   use_frameworks!
 
   # Pods for Lynked
 
-
-
   pod 'Fabric'
-  pod 'Branch'
   pod 'Crashlytics'
+  pod 'Branch'
   pod 'Firebase/Core'
   pod 'Firebase/Storage'
   pod 'Firebase/Messaging'
@@ -33,8 +31,8 @@ target 'Lynked Widget' do
 use_frameworks!
 
   pod 'Fabric'
-  pod 'Firebase/Performance'
   pod 'Crashlytics'
+  pod 'Firebase/Performance'
   pod 'Kingfisher'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'

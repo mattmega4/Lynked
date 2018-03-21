@@ -29,6 +29,5 @@ struct FirebaseKeys {
   static let nextPaymentDate = "nextPaymentDate"
   static let paymentRate = "paymentRate"
   static let miscellaneous = "Miscellaneous"
-  static let groupLynked = "group.Lynked"
   
 }

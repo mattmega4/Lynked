@@ -10,6 +10,10 @@ import UIKit
 import Kingfisher
 import MBProgressHUD
 import DZNEmptyDataSet
+import Firebase
+import FirebaseAnalytics
+import Fabric
+import Crashlytics
 
 
 class ServiceListViewController: UIViewController {
@@ -30,6 +34,7 @@ class ServiceListViewController: UIViewController {
   var categories = [String]()
   var isDisplayingCategories = false
   var card: Card?
+  var references = [DatabaseReference]()
   
   let SERVICE_CELL_IDENTIFIER = "servCell"
   let CATEGORY_CELL_IDENTIFIER = "categoryCell"
@@ -54,25 +59,37 @@ class ServiceListViewController: UIViewController {
       navigationItem.leftBarButtonItem = nil
       navigationItem.rightBarButtonItem = nil
     }
+    print("ddfdfjadlfjaljf;lasjfajsf;lsj;jks")
     
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
+    
     addButton.alpha = 0.4
     addButton.isEnabled = false
+    serviceArray.removeAll()
+    tableView.reloadData()
     getServices()
+    sortArray()
+    showReview()
     
   }
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
-    sortArray()
-    showReview()
   }
   
+  override func viewDidDisappear(_ animated: Bool) {
+    for ref in references {
+      ref.removeAllObservers()
+    }
+    serviceArray.removeAll()
+    tableView.reloadData()
+    
+  }
   
   // MARK: - Sort Array
   
@@ -90,21 +107,27 @@ class ServiceListViewController: UIViewController {
   
   func getServices() {
     if let theCard = card {
-      FirebaseUtility.shared.getServicesFor(card: theCard, completion: { (services, error) in
+       let getServiceTrace = Performance.startTrace(name: "getServices")
+      FirebaseUtility.shared.getServicesFor(card: theCard) { (services, error, ref) in
+        getServiceTrace?.stop()
+        self.references.append(ref)
         if let theServices = services {
           
+          self.serviceArray.removeAll()
           self.serviceArray = theServices
           self.getCategories()
           self.sortArray()
           
           self.tableView.reloadData()
+          
+          
         } else {
           if let theError = error?.localizedDescription {
             let errorMessage = theError
             print(errorMessage)
           }
         }
-      })
+      }
     } else {
       navigationController?.popViewController(animated: true)
     }
@@ -137,6 +160,12 @@ class ServiceListViewController: UIViewController {
     MBProgressHUD.showAdded(to: self.view, animated: true)
     FirebaseUtility.shared.addService(name: addServiceTextField.text?.capitalized, forCard: card, withCategory: categoryTextField.text) { (service, errMessage) in
       MBProgressHUD.hide(for: self.view, animated: true)
+      
+      Analytics.logEvent(AnalyticsKeys.newServiceAdded, parameters: [AnalyticsKeys.success : true])
+      
+      Answers.logCustomEvent(withName: AnalyticsKeys.newServiceAdded,
+                             customAttributes: nil)
+      
       if let theService = service {
         self.addService(service: theService)
         

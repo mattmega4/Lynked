@@ -10,8 +10,8 @@ import UIKit
 import CoreData
 import Firebase
 import Fabric
-import Branch
 import Crashlytics
+import Branch
 
 
 @UIApplicationMain
@@ -28,7 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // MARK: - Firebase/Fabric
         FirebaseApp.configure()
         Database.database().isPersistenceEnabled = true
-        Fabric.with([Crashlytics.self, Branch.self])
+      
+        Fabric.with([Branch.self, Crashlytics.self])
+
         Branch.getInstance().initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: { params, error in
             guard error == nil else { return }
             guard let userDidClick = params?["+clicked_branch_link"] as? Bool else { return }

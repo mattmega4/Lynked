@@ -3,41 +3,45 @@ This application makes use of the following third party libraries:
 
 ## Crashlytics
 
-Fabric: Copyright 2017 Google, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Fabric Software and Services Agreement located at https://fabric.io/terms. Crashlytics Kit: Copyright 2017 Crashlytics, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Crashlytics Terms of Service located at http://try.crashlytics.com/terms/terms-of-service.pdf and the Crashlytics Privacy Policy located at http://try.crashlytics.com/terms/privacy-policy.pdf. OSS: http://get.fabric.io/terms/opensource.txt
+Fabric: Copyright 2018 Google, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Fabric Software and Services Agreement located at https://fabric.io/terms. Crashlytics Kit: Copyright 2018 Crashlytics, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Crashlytics Terms of Service located at http://try.crashlytics.com/terms/terms-of-service.pdf and the Crashlytics Privacy Policy located at http://try.crashlytics.com/terms/privacy-policy.pdf. OSS: http://get.fabric.io/terms/opensource.txt
 
 ## Fabric
 
-Fabric: Copyright 2017 Google, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Fabric Software and Services Agreement located at https://fabric.io/terms. OSS: http://get.fabric.io/terms/opensource.txt
+Fabric: Copyright 2018 Google, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Fabric Software and Services Agreement located at https://fabric.io/terms. OSS: http://get.fabric.io/terms/opensource.txt
 
 ## Firebase
 
-Copyright 2017 Google
+Copyright 2018 Google
 
 ## FirebaseAnalytics
 
-Copyright 2017 Google
+Copyright 2018 Google
 
 ## FirebaseAuth
 
-Copyright 2017 Google
+Copyright 2018 Google
 
 ## FirebaseCore
 
-Copyright 2017 Google
+Copyright 2018 Google
 
 ## FirebaseDatabase
 
-Copyright 2017 Google
+Copyright 2018 Google
 
 ## FirebaseInstanceID
 
-Copyright 2017 Google
+Copyright 2018 Google
 
 ## FirebasePerformance
 
-Copyright 2017 Google
+Copyright 2018 Google
 
 ## FirebaseStorage
+
+Copyright 2018 Google
+
+## FirebaseSwizzlingUtilities
 
 Copyright 2017 Google
 
@@ -457,7 +461,7 @@ Copyright 2017 Google
 
 The MIT License (MIT)
 
-Copyright (c) 2017 Wei Wang
+Copyright (c) 2018 Wei Wang
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

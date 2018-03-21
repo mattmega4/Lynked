@@ -11,6 +11,9 @@ import Firebase
 import FirebaseStorage
 import MBProgressHUD
 import Kingfisher
+import FirebaseAnalytics
+import Fabric
+import Crashlytics
 
 
 class ProfileViewController: UITableViewController {
@@ -121,6 +124,12 @@ class ProfileViewController: UITableViewController {
       self.nameLabel.isHidden = false
       self.nameTextField.isHidden = true
       FirebaseUtility.shared.saveUserName(name: userName)
+      
+      Analytics.logEvent(AnalyticsKeys.nameSet, parameters: [AnalyticsKeys.success : true])
+      
+      Answers.logCustomEvent(withName: AnalyticsKeys.nameSet,
+                             customAttributes: nil)
+      
     }
   }
   
@@ -170,6 +179,12 @@ class ProfileViewController: UITableViewController {
     actionSheet.addAction(takePictureAction)
     actionSheet.addAction(cancelAction)
     actionSheet.popoverPresentationController?.sourceView = sender
+    
+    Analytics.logEvent(AnalyticsKeys.pictureSet, parameters: [AnalyticsKeys.success : true])
+    
+    Answers.logCustomEvent(withName: AnalyticsKeys.pictureSet,
+                           customAttributes: nil)
+    
     self.present(actionSheet, animated: true, completion: nil)
   }
   
@@ -195,13 +210,18 @@ class ProfileViewController: UITableViewController {
   @IBAction func tellFriendButtonTapped(_ sender: UIButton) {
     
     MBProgressHUD.showAdded(to: view, animated: true)
+    MBProgressHUD.hide(for: self.view, animated: true)
     BranchUtility.shared.generateBranchLinkFor(promoCode: BranchKeys.promo) { (link) in
       if let theLink = link {
         let activityController = UIActivityViewController(activityItems: [theLink], applicationActivities: nil)
         activityController.popoverPresentationController?.sourceView = sender
         self.present(activityController, animated: true, completion: nil)
       }
-      MBProgressHUD.hide(for: self.view, animated: true)
+
+      Analytics.logEvent(AnalyticsKeys.tellFriend, parameters: [AnalyticsKeys.success : true])
+      
+      Answers.logCustomEvent(withName: AnalyticsKeys.tellFriend,
+                             customAttributes: nil)
     }
   }
   
@@ -242,6 +262,11 @@ class ProfileViewController: UITableViewController {
         if let error = error {
           debugPrint(error)
         } else {
+          
+          Analytics.logEvent(AnalyticsKeys.userDeleted, parameters: [AnalyticsKeys.success : true])
+          Answers.logCustomEvent(withName: AnalyticsKeys.userDeleted,
+                                 customAttributes: nil)
+          
           if let walletvc = self.storyboard?.instantiateViewController(withIdentifier: StoryboardKeys.walletViewControllerStoryboardID) as? WalletViewController {
             self.navigationController?.pushViewController(walletvc, animated: true)
           }
