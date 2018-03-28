@@ -19,6 +19,7 @@ struct CategoryKeys {
   static let education = "Education"
   static let travel = "Travel"
   static let medical = "Medical"
+  static let financial = "Financial"
 }
 
 

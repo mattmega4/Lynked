@@ -31,7 +31,8 @@ class CategoryManager: NSObject {
                     CategoryKeys.shopping,
                     CategoryKeys.education,
                     CategoryKeys.travel,
-                    CategoryKeys.medical]
+                    CategoryKeys.medical,
+                    CategoryKeys.financial]
   
 }
 

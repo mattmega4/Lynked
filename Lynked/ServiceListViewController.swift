@@ -154,6 +154,7 @@ class ServiceListViewController: UIViewController {
   func addService(service: Service) {
     serviceArray.append(service)
     sortArray()
+    self.tableView.reloadData()
   }
   
   
