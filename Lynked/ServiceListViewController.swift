@@ -82,7 +82,8 @@ class ServiceListViewController: UIViewController {
     
   }
   
-  override func viewDidDisappear(_ animated: Bool) {
+//  override func viewDidDisappear(_ animated: Bool) {
+  override func viewWillDisappear(_ animated: Bool) {
     for ref in references {
       ref.removeAllObservers()
     }
