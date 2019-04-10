@@ -27,7 +27,7 @@ class AcknowledgementsViewController: UIViewController {
     self.tableView.dataSource = self
     pods = viewModel.getAcknowlwdgements()
     versionLabel.text = viewModel.getVersionInfo()
-    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.rowHeight = UITableView.automaticDimension
     tableView.estimatedRowHeight = 500
     setNavBar()
     title = "Acknowledgements"

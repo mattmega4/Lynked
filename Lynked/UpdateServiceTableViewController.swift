@@ -203,10 +203,10 @@ class UpdateServiceTableViewController: UITableViewController {
   
   func deleteThisService() {
     
-    let alertController = UIAlertController(title: "Wait!", message: "This will completely remove this service from your card. It will also be reflected in your total fixed monthly expenses if it was a fixed expense.", preferredStyle: UIAlertControllerStyle.alert)
-    let cancelAction = UIAlertAction(title: "Never Mind!", style: UIAlertActionStyle.cancel, handler: nil)
+    let alertController = UIAlertController(title: "Wait!", message: "This will completely remove this service from your card. It will also be reflected in your total fixed monthly expenses if it was a fixed expense.", preferredStyle: UIAlertController.Style.alert)
+    let cancelAction = UIAlertAction(title: "Never Mind!", style: UIAlertAction.Style.cancel, handler: nil)
     
-    let okAction = UIAlertAction(title: "I Understand!", style: UIAlertActionStyle.default) { (result: UIAlertAction) in
+    let okAction = UIAlertAction(title: "I Understand!", style: UIAlertAction.Style.default) { (result: UIAlertAction) in
       
       guard let theService = self.service else {
         return

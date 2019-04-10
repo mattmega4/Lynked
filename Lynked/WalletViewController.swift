@@ -41,7 +41,7 @@ class WalletViewController: UIViewController {
     title = "Wallet"
     setNavBar()
     
-    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.rowHeight = UITableView.automaticDimension
     tableView.estimatedRowHeight = 500
     self.splitViewController?.preferredDisplayMode = .allVisible
     self.navigationItem.setHidesBackButton(true, animated: true)

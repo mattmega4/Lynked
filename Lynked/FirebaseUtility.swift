@@ -79,7 +79,7 @@ class FirebaseUtility: NSObject {
           
         } else {
           
-          let card = Card(id: ref.key, cardDict: cardDict)
+          let card = Card(id: ref.key ?? "", cardDict: cardDict)
           completion(card, nil)
         }
       })
@@ -140,7 +140,7 @@ class FirebaseUtility: NSObject {
         completion(nil, errorMessage)
       } else {
         
-        let card = Card(id: ref.key, cardDict: cardDict)
+        let card = Card(id: ref.key ?? "", cardDict: cardDict)
         completion(card, nil)
         
       }
@@ -227,7 +227,7 @@ class FirebaseUtility: NSObject {
         
       } else {
         
-        let service = Service(id: ref.key, cardId: theCard.cardID, serviceDict: serviceDict)
+        let service = Service(id: ref.key ?? "", cardId: theCard.cardID, serviceDict: serviceDict)
         completion(service, nil)
       }
     })
@@ -327,7 +327,7 @@ class FirebaseUtility: NSObject {
         completion(nil, errorMessage)
       } else {
         
-        let service = Service(id: ref.key, cardId: service.cardID, serviceDict: serviceDict)
+        let service = Service(id: ref.key ?? "", cardId: service.cardID, serviceDict: serviceDict)
         completion(service, nil)
       }
     })
@@ -457,14 +457,15 @@ class FirebaseUtility: NSObject {
       return
     }
     
-    
-    Auth.auth().signIn(withEmail: theEmail, password: thePassword, completion: { (user, error) in
+
+    Auth.auth().signIn(withEmail: theEmail, password: thePassword) { [weak self] user, error in
+      guard let strongSelf = self else { return }
       if let theError = error {
-        
+
         var errMessage = "An unknown error occured."
         if let errCode = AuthErrorCode(rawValue: (theError._code)) {
           switch errCode {
-            
+
           case .invalidEmail:
             errMessage = "The entered email does not meet requirements."
           case .weakPassword:
@@ -477,13 +478,66 @@ class FirebaseUtility: NSObject {
         }
         completion(nil, errMessage)
       } else {
-        
-        self.user = user
-        completion(user, nil)
+
+        if let res = user?.user {
+          self?.user = res
+        }
+        guard let res = user?.user else {
+          return
+        }
+        completion(res, nil)
+
+        //        if let res = user?.user {
+        //          self.user = res
+        //          completion(res, nil)
+        //        }
+        //        self.user = user
+        //        completion(user, nil)
       }
-    })
+    }
+
+
+//    Auth.auth().signIn(withEmail: theEmail, password: thePassword, completion: { (user, error) in
+////      if let theError = error {
+////
+////        var errMessage = "An unknown error occured."
+////        if let errCode = AuthErrorCode(rawValue: (theError._code)) {
+////          switch errCode {
+////
+////          case .invalidEmail:
+////            errMessage = "The entered email does not meet requirements."
+////          case .weakPassword:
+////            errMessage = "The entered password does not meet minimum requirements."
+////          case .wrongPassword:
+////            errMessage = "The entered password is not correct."
+////          default:
+////            errMessage = "Please try again."
+////          }
+////        }
+////        completion(nil, errMessage)
+////      } else {
+////
+////        if let res = user?.user {
+////          self.user = res
+////        }
+////        guard let res = AuthDataResult?.user else {
+////          return
+////        }
+////        completion(res, nil)
+////
+//////        if let res = user?.user {
+//////          self.user = res
+//////          completion(res, nil)
+//////        }
+//////        self.user = user
+//////        completion(user, nil)
+////      }
+//    })
   }
-  
+
+
+
+
   func registerUserWith(email: String?, password: String?, confirmPassword: String?, completion: @escaping (_ user: User?, _ errorMessage: String?) -> Void) {
     
     guard let theEmail = email else {
@@ -503,14 +557,14 @@ class FirebaseUtility: NSObject {
       completion(nil, errMessage)
       return
     }
-    
-    Auth.auth().createUser(withEmail: theEmail, password: thePassword, completion: { (user, error) in
+
+    Auth.auth().createUser(withEmail: theEmail , password: thePassword ) { authResult, error in
       if let theError = error {
-        
+
         var errMessage = "An unknown error occured."
         if let errCode = AuthErrorCode(rawValue: (theError._code)) {
           switch errCode {
-            
+
           case .invalidEmail:
             errMessage = "The entered email does not meet requirements."
           case .emailAlreadyInUse:
@@ -523,11 +577,55 @@ class FirebaseUtility: NSObject {
         }
         completion(nil, errMessage)
       } else {
-        
-        self.user = user
-        completion(user, nil)
+        if let res = authResult?.user {
+          self.user = res
+        }
+        guard let res = authResult?.user else {
+          return
+        }
+        completion(res, nil)
+
+        //        if let res = user?.user {
+        //          self.user = res
+        //          completion(res, nil)
+        //        }
+        //        self.user = user
+        //        completion(user, nil)
       }
-    })
+
+    }
+
+//    Auth.auth().createUser(withEmail: theEmail, password: thePassword, completion: { (user, error) in
+//      if let theError = error {
+//
+//        var errMessage = "An unknown error occured."
+//        if let errCode = AuthErrorCode(rawValue: (theError._code)) {
+//          switch errCode {
+//
+//          case .invalidEmail:
+//            errMessage = "The entered email does not meet requirements."
+//          case .emailAlreadyInUse:
+//            errMessage = "The entered email has already been registered."
+//          case .weakPassword:
+//            errMessage = "The entered password does not meet minimum requirements."
+//          default:
+//            errMessage = "Please try again."
+//          }
+//        }
+//        completion(nil, errMessage)
+//      } else {
+//        if let res = user?.user {
+//          self.user = res
+//        }
+//
+//        //        if let res = user?.user {
+//        //          self.user = res
+//        //          completion(res, nil)
+//        //        }
+//        //        self.user = user
+//        //        completion(user, nil)
+//      }
+//    })
   }
   
   
@@ -563,19 +661,30 @@ class FirebaseUtility: NSObject {
       changeRequest.commitChanges(completion: nil)
     }
   }
-  
+
+  // might not work
   func saveUserPicture(image: UIImage) {
-    if let userId = user?.uid, let imageData = UIImageJPEGRepresentation(image, 1.0) {
+
+    if let userId = user?.uid, let imageData = image.jpegData(compressionQuality: 1.0) {
       let storageRef = storage.reference().child(FirebaseKeys.profilePicture).child(userId)
       storageRef.putData(imageData, metadata: nil, completion: { (storageMetaData, error) in
-        if let profilePictureLink = storageMetaData?.downloadURL()?.absoluteString {
-          let userProfileRef = self.ref.child(FirebaseKeys.users).child(userId)
-          userProfileRef.updateChildValues([FirebaseKeys.profilePicture : profilePictureLink])
+        if error == nil {
+          storageRef.downloadURL(completion: { (url, error) in
+            if error != nil {
+              print("Failed to download url:", error!)
+              return
+            } else {
+              if let profilePictureLink = url {
+                let userProfileRef = self.ref.child(FirebaseKeys.users).child(userId)
+                userProfileRef.updateChildValues([FirebaseKeys.profilePicture : profilePictureLink])
+              }
+            }
+          })
         }
       })
     }
   }
-  
+
   func deleteAccount(completion: (_ success: Bool, _ error: Error?) -> Void) {
     user?.delete(completion: { (error) in
       

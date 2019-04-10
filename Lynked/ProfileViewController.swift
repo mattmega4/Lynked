@@ -96,7 +96,8 @@ class ProfileViewController: UITableViewController {
       
         if let profilePictureLink = userInfo?[FirebaseKeys.profilePicture] as? String {
           if let profilePictureURL = URL(string: profilePictureLink) {
-            self.profileImageView.kf.setImage(with: profilePictureURL, placeholder: #imageLiteral(resourceName: "camera"), options: nil, progressBlock: nil, completionHandler: nil)
+//            self.profileImageView.kf.setImage(with: profilePictureURL, placeholder: #imageLiteral(resourceName: "camera"), options: nil, progressBlock: nil, completionHandler: nil)
+            self.profileImageView.kf.setImage(with: profilePictureURL, placeholder: #imageLiteral(resourceName: "camera"))
           }
         } else {
           self.profileImageView.image = #imageLiteral(resourceName: "camera")
@@ -148,7 +149,7 @@ class ProfileViewController: UITableViewController {
   // Mark: - Use Camera
   
   func useCamera() {
-    if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
+    if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
       let picker = UIImagePickerController()
       picker.delegate = self
       picker.allowsEditing = true
@@ -255,9 +256,9 @@ class ProfileViewController: UITableViewController {
   }
   
   @IBAction func deleteButtonTapped(_ sender: UIButton) {
-    let alertController = UIAlertController(title: "Wait!", message: "This deletes everying tied to your account! All your cards, service, and total fixed monthly expenses You will need to register a new free account!", preferredStyle: UIAlertControllerStyle.alert)
-    let cancelAction = UIAlertAction(title: "Never Mind!", style: UIAlertActionStyle.cancel, handler: nil)
-    let okAction = UIAlertAction(title: "I Understand!", style: UIAlertActionStyle.default) { (result: UIAlertAction) in
+    let alertController = UIAlertController(title: "Wait!", message: "This deletes everying tied to your account! All your cards, service, and total fixed monthly expenses You will need to register a new free account!", preferredStyle: UIAlertController.Style.alert)
+    let cancelAction = UIAlertAction(title: "Never Mind!", style: UIAlertAction.Style.cancel, handler: nil)
+    let okAction = UIAlertAction(title: "I Understand!", style: UIAlertAction.Style.default) { (result: UIAlertAction) in
       self.user?.delete { error in
         if let error = error {
           debugPrint(error)
@@ -266,10 +267,8 @@ class ProfileViewController: UITableViewController {
           Analytics.logEvent(AnalyticsKeys.userDeleted, parameters: [AnalyticsKeys.success : true])
           Answers.logCustomEvent(withName: AnalyticsKeys.userDeleted,
                                  customAttributes: nil)
-          
-          if let walletvc = self.storyboard?.instantiateViewController(withIdentifier: StoryboardKeys.walletViewControllerStoryboardID) as? WalletViewController {
-            self.navigationController?.pushViewController(walletvc, animated: true)
-          }
+          self.dismiss(animated: true, completion: nil)
+
         }
       }
     }
@@ -305,9 +304,12 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     dismiss(animated: true, completion: nil)
   }
   
-  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
     
-    guard let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage else {
+    guard let editedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as? UIImage else {
       return
     }
     self.profileImageView.image = editedImage
@@ -324,4 +326,14 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
   }
   
   
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

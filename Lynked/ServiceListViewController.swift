@@ -50,8 +50,8 @@ class ServiceListViewController: UIViewController {
     let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ServiceListViewController.dismissKeyboard))
     view.addGestureRecognizer(tap)
     tap.cancelsTouchesInView = false
-    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
-    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
     
     title = card?.nickname
     
@@ -139,7 +139,7 @@ class ServiceListViewController: UIViewController {
   
   func getCategories() {
     
-    let allCategories = serviceArray.flatMap({ (service) -> String? in
+    let allCategories = serviceArray.compactMap({ (service) -> String? in
       return service.category
     })
     
@@ -178,7 +178,7 @@ class ServiceListViewController: UIViewController {
         self.getCategories()
         self.tableView.reloadData()
         
-        if let index = self.serviceArray.index(where: {$0.serviceName == theService.serviceName}) {
+        if let index = self.serviceArray.firstIndex(where: {$0.serviceName == theService.serviceName}) {
           let indexPath = IndexPath(row: index, section: 0)
           self.tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
         }
@@ -235,7 +235,7 @@ class ServiceListViewController: UIViewController {
   
   @objc func keyboardWillShow(notification:NSNotification) {
     var userInfo = notification.userInfo!
-    var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+    var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
     keyboardFrame = self.view.convert(keyboardFrame, from: nil)
     var contentInset: UIEdgeInsets = self.tableView.contentInset
     contentInset.bottom = keyboardFrame.size.height

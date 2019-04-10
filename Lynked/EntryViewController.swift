@@ -75,8 +75,8 @@ class EntryViewController: UIViewController {
     
     let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EntryViewController.dismissKeyboard))
      view.addGestureRecognizer(tap)
-    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
-    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
   }
   
   
@@ -106,6 +106,7 @@ class EntryViewController: UIViewController {
       continueTappedAfterStageOneRegisterAccountActive()
     } else if userStateIsOnSignIn == false && createUserStepOneFinished == true {
       registerNewUser()
+      print("created at line 109")
     }
   }
   
@@ -246,7 +247,7 @@ class EntryViewController: UIViewController {
     resetTextFieldText()
     resetLoginRequirements()
     setupLoginTextFields()
-    signInOrUpButton.setTitle("SIGN IN", for: UIControlState())
+    signInOrUpButton.setTitle("SIGN IN", for: UIControl.State())
   }
   
   
@@ -259,7 +260,7 @@ class EntryViewController: UIViewController {
     resetRegisterRequirementsForStageOne()
     checkIfBothRegisterRequirementsAreMet()
     setupRegisterTextFieldsForStageOne()
-    signInOrUpButton.setTitle("CONTINUE", for: UIControlState())
+    signInOrUpButton.setTitle("CONTINUE", for: UIControl.State())
   }
   
   
@@ -269,7 +270,7 @@ class EntryViewController: UIViewController {
     resetRegisterRequirementsForStageTwo()
     checkIfBothRegisterRequirementsAreMet()
     setupRegisterTextFieldsForStageTwo()
-    signInOrUpButton.setTitle("CREATE ACCOUNT", for: UIControlState())
+    signInOrUpButton.setTitle("CREATE ACCOUNT", for: UIControl.State())
   }
   
   
@@ -363,22 +364,25 @@ class EntryViewController: UIViewController {
   // MARK: - Register User
   
   func registerNewUser() {
+
     FirebaseUtility.shared.registerUserWith(email: newUserEmail, password: textFieldOne.text, confirmPassword: textFieldTwo.text) { (user, errMessage) in
-      
-      if let errorMessage = errMessage {
-        let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errorMessage)", preferredStyle: .alert)
-        self.present(alertController, animated: true, completion:nil)
-        let OKAction = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction) in
-          self.rightButtonWasTapped()
+      if errMessage != nil {
+        print("was err")
+        if let errorMessage = errMessage {
+          let alertController = UIAlertController(title: "Sorry, Something went wrong!", message: "\(errorMessage)", preferredStyle: .alert)
+          self.present(alertController, animated: true, completion:nil)
+          let OKAction = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction) in
+            self.rightButtonWasTapped()
+          }
+          alertController.addAction(OKAction)
         }
-        alertController.addAction(OKAction)
       } else {
         
         Analytics.logEvent(AnalyticsKeys.emailRegister, parameters: [AnalyticsKeys.success : true])
         Answers.logSignUp(withMethod: AnalyticsKeys.emailRegister,
                           success: true,
                           customAttributes: [:])
-        
+        print("hello")
         self.dismiss(animated: true, completion: nil)
       }
     }
@@ -388,7 +392,7 @@ class EntryViewController: UIViewController {
   
   func resetPassword() {
     
-    let alertController = UIAlertController(title: "Reset Password?", message: "An email will be sent to the entered email address with a link to reset password", preferredStyle: UIAlertControllerStyle.alert)
+    let alertController = UIAlertController(title: "Reset Password?", message: "An email will be sent to the entered email address with a link to reset password", preferredStyle: UIAlertController.Style.alert)
     
     alertController.addTextField { (textField) in
       textField.placeholder = "Email"
@@ -397,9 +401,9 @@ class EntryViewController: UIViewController {
     }
     
     
-    let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+    let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
     
-    let okAction = UIAlertAction(title: "Reset", style: UIAlertActionStyle.destructive) { (result: UIAlertAction) in
+    let okAction = UIAlertAction(title: "Reset", style: UIAlertAction.Style.destructive) { (result: UIAlertAction) in
       
       if let txt = alertController.textFields?.first?.text {
         FirebaseUtility.shared.resetPasswordWith(email: txt, completion: { (result) in
@@ -437,7 +441,7 @@ class EntryViewController: UIViewController {
   
   @objc func keyboardWillShow(notification:NSNotification) {
     var userInfo = notification.userInfo!
-    var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+    var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
     keyboardFrame = self.view.convert(keyboardFrame, from: nil)
     var contentInset: UIEdgeInsets = self.scrollView.contentInset
     contentInset.bottom = keyboardFrame.size.height + 100
@@ -510,7 +514,7 @@ extension EntryViewController: UITextFieldDelegate {
     for fields in bottomTextFields {
       fields.autocorrectionType = .no
       fields.delegate = self
-      fields.attributedPlaceholder = NSAttributedString(string: fields.placeholder!, attributes: [NSAttributedStringKey.foregroundColor : placeHolderLightColor])
+      fields.attributedPlaceholder = NSAttributedString(string: fields.placeholder!, attributes: [NSAttributedString.Key.foregroundColor : placeHolderLightColor])
     }
   }
   

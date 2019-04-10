@@ -1,5 +1,5 @@
 
-platform :ios, '9.0'
+platform :ios, '12.1'
 
 target 'Lynked' do
 
@@ -10,12 +10,15 @@ target 'Lynked' do
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'Branch'
+
   pod 'Firebase/Core'
   pod 'Firebase/Storage'
   pod 'Firebase/Messaging'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Performance'
+
+
   pod 'Kingfisher'
   #pod 'SCPinViewController'
   pod 'mailgun'

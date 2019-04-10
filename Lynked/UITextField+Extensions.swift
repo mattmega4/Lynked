@@ -13,7 +13,7 @@ extension UITextField{
   @IBInspectable var placeHolderTextColor: UIColor? {
     set {
       let placeholderText = self.placeholder != nil ? self.placeholder! : ""
-      attributedPlaceholder = NSAttributedString(string:placeholderText, attributes:[NSAttributedStringKey.foregroundColor: newValue!])
+      attributedPlaceholder = NSAttributedString(string:placeholderText, attributes:[NSAttributedString.Key.foregroundColor: newValue!])
     }
     get{
       return self.placeHolderTextColor

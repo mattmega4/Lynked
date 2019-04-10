@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         // MARK: - NavBar Light Color
@@ -50,15 +50,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     // Respond to URI scheme links
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         // For Branch to detect when a URI scheme is clicked
-        Branch.getInstance().handleDeepLink(url as URL!)
+        Branch.getInstance().handleDeepLink(url as URL?)
         // do other deep link routing for the Facebook SDK, Pinterest SDK, etc
         return true
     }
     
     // Respond to Universal Links
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         // For Branch to detect when a Universal Link is clicked
         Branch.getInstance().continue(userActivity)
         return true

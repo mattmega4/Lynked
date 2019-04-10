@@ -73,8 +73,8 @@ class EditCardViewController: UIViewController {
     
     let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EditCardViewController.dismissKeyboard))
     view.addGestureRecognizer(tap)
-    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
-    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
     
   }
   
@@ -100,13 +100,13 @@ class EditCardViewController: UIViewController {
   
   func changeStatusOfCardAndServices() { // reset all services to needs attention
     
-    let alertController = UIAlertController(title: "Wait!", message: "This will mark all linked services as 'needs attention.' You will have to update each service one at a time!", preferredStyle: UIAlertControllerStyle.alert)
+    let alertController = UIAlertController(title: "Wait!", message: "This will mark all linked services as 'needs attention.' You will have to update each service one at a time!", preferredStyle: UIAlertController.Style.alert)
     
     
     
-    let cancelAction = UIAlertAction(title: "Never Mind!", style: UIAlertActionStyle.cancel, handler: nil)
+    let cancelAction = UIAlertAction(title: "Never Mind!", style: UIAlertAction.Style.cancel, handler: nil)
     
-    let okAction = UIAlertAction(title: "I Understand!", style: UIAlertActionStyle.default) { (result: UIAlertAction) in
+    let okAction = UIAlertAction(title: "I Understand!", style: UIAlertAction.Style.default) { (result: UIAlertAction) in
       FirebaseUtility.shared.resetServices(services: self.serviceArray) { (services) in
         
         Analytics.logEvent(AnalyticsKeys.cardAltered, parameters: [AnalyticsKeys.success : true])
@@ -129,7 +129,7 @@ class EditCardViewController: UIViewController {
   
   func deleteCard() {
     
-    let alertController = UIAlertController(title: "Wait!", message: "This will completely remove this card from your account. All the services linked to this card will be removed. Your total fixed monthly expenses will also be erased!", preferredStyle: UIAlertControllerStyle.alert)
+    let alertController = UIAlertController(title: "Wait!", message: "This will completely remove this card from your account. All the services linked to this card will be removed. Your total fixed monthly expenses will also be erased!", preferredStyle: UIAlertController.Style.alert)
     
     let cancelAction = UIAlertAction(title: "Never Mind!", style: .cancel, handler: nil)
     
@@ -218,7 +218,7 @@ class EditCardViewController: UIViewController {
   
   @objc func keyboardWillShow(notification:NSNotification) {
     var userInfo = notification.userInfo!
-    var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+    var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
     keyboardFrame = self.view.convert(keyboardFrame, from: nil)
     var contentInset: UIEdgeInsets = self.scrollView.contentInset
     contentInset.bottom = keyboardFrame.size.height + 30

@@ -23,6 +23,10 @@ FOUNDATION_EXPORT BranchStandardEvent _Nonnull BranchStandardEventInitiatePurcha
 FOUNDATION_EXPORT BranchStandardEvent _Nonnull BranchStandardEventAddPaymentInfo;
 FOUNDATION_EXPORT BranchStandardEvent _Nonnull BranchStandardEventPurchase;
 FOUNDATION_EXPORT BranchStandardEvent _Nonnull BranchStandardEventSpendCredits;
+FOUNDATION_EXPORT BranchStandardEvent _Nonnull BranchStandardEventSubscribe;
+FOUNDATION_EXPORT BranchStandardEvent _Nonnull BranchStandardEventStartTrial;
+FOUNDATION_EXPORT BranchStandardEvent _Nonnull BranchStandardEventClickAd;
+FOUNDATION_EXPORT BranchStandardEvent _Nonnull BranchStandardEventViewAd;
 
 ///@name Content Events
 
@@ -38,6 +42,17 @@ FOUNDATION_EXPORT BranchStandardEvent _Nonnull BranchStandardEventCompleteRegist
 FOUNDATION_EXPORT BranchStandardEvent _Nonnull BranchStandardEventCompleteTutorial;
 FOUNDATION_EXPORT BranchStandardEvent _Nonnull BranchStandardEventAchieveLevel;
 FOUNDATION_EXPORT BranchStandardEvent _Nonnull BranchStandardEventUnlockAchievement;
+FOUNDATION_EXPORT BranchStandardEvent _Nonnull BranchStandardEventInvite;
+FOUNDATION_EXPORT BranchStandardEvent _Nonnull BranchStandardEventLogin;
+FOUNDATION_EXPORT BranchStandardEvent _Nonnull BranchStandardEventReserve;
+
+typedef NS_ENUM(NSInteger, BranchEventAdType) {
+    BranchEventAdTypeNone,
+    BranchEventAdTypeBanner,
+    BranchEventAdTypeInterstitial,
+    BranchEventAdTypeRewardedVideo,
+    BranchEventAdTypeNative
+};
 
 #pragma mark - BranchEvent
 
@@ -65,10 +80,27 @@ FOUNDATION_EXPORT BranchStandardEvent _Nonnull BranchStandardEventUnlockAchievem
 @property (nonatomic, strong) NSString*_Nullable                affiliation;
 @property (nonatomic, strong) NSString*_Nullable                eventDescription;
 @property (nonatomic, strong) NSString*_Nullable                searchQuery;
+
+@property (nonatomic, assign) BranchEventAdType                 adType;
+
+
 @property (nonatomic, copy) NSMutableArray<BranchUniversalObject*>*_Nonnull       contentItems;
 @property (nonatomic, copy) NSMutableDictionary<NSString*, NSString*> *_Nonnull   customData;
 
 - (void) logEvent;                      //!< Logs the event on the Branch server.
 - (NSDictionary*_Nonnull) dictionary;   //!< Returns a dictionary representation of the event.
 - (NSString* _Nonnull) description;     //!< Returns a string description of the event.
+@end
+
+#pragma mark - BranchEventRequest
+
+@interface BranchEventRequest : BNCServerRequest <NSSecureCoding>
+
+- (instancetype _Nonnull) initWithServerURL:(NSURL*_Nonnull)serverURL
+                   eventDictionary:(NSDictionary*_Nullable)eventDictionary
+                        completion:(void (^_Nullable)(NSDictionary*_Nullable response, NSError*_Nullable error))completion;
+
+@property (strong) NSDictionary*_Nullable eventDictionary;
+@property (strong) NSURL*_Nullable serverURL;
+@property (copy)   void (^_Nullable completion)(NSDictionary*_Nullable response, NSError*_Nullable error);
 @end

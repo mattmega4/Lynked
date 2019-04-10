@@ -50,29 +50,41 @@
     return self;
 }
 
-- (void)makeRequest:(BNCServerInterface *)serverInterface key:(NSString *)key callback:(BNCServerCallback)callback {
+- (void)makeRequest:(BNCServerInterface *)serverInterface
+                key:(NSString *)key
+           callback:(BNCServerCallback)callback {
     NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithDictionary:self.linkData.data];
 
     BNCPreferenceHelper *preferenceHelper = [BNCPreferenceHelper preferenceHelper];
-    params[BRANCH_REQUEST_KEY_DEVICE_FINGERPRINT_ID] = preferenceHelper.deviceFingerprintID;
-    
-    if (!_isSpotlightRequest) {
-        params[BRANCH_REQUEST_KEY_BRANCH_IDENTITY] = preferenceHelper.identityID;
+    if (!preferenceHelper.trackingDisabled) {
+        params[BRANCH_REQUEST_KEY_DEVICE_FINGERPRINT_ID] = preferenceHelper.deviceFingerprintID;
+        if (!_isSpotlightRequest)
+            params[BRANCH_REQUEST_KEY_BRANCH_IDENTITY] = preferenceHelper.identityID;
+        params[BRANCH_REQUEST_KEY_SESSION_ID] = preferenceHelper.sessionID;
     }
-    params[BRANCH_REQUEST_KEY_SESSION_ID] = preferenceHelper.sessionID;
-    
-    [serverInterface postRequest:params url:[preferenceHelper getAPIURL:BRANCH_REQUEST_ENDPOINT_GET_SHORT_URL] key:key callback:callback];
+
+    [serverInterface postRequest:params
+        url:[preferenceHelper getAPIURL:BRANCH_REQUEST_ENDPOINT_GET_SHORT_URL]
+        key:key
+        callback:callback];
 }
 
 - (void)processResponse:(BNCServerResponse *)response error:(NSError *)error {
     if (error) {
         if (self.callback) {
-            NSString *failedUrl = nil;
-            NSString *userUrl = [BNCPreferenceHelper preferenceHelper].userUrl;
-            if (userUrl) {
-                failedUrl = [self createLongUrlForUserUrl:userUrl];
+            BNCPreferenceHelper *preferenceHelper = [BNCPreferenceHelper preferenceHelper];
+            NSString *baseUrl = preferenceHelper.userUrl;
+            if (baseUrl.length)
+                baseUrl = [preferenceHelper sanitizedMutableBaseURL:baseUrl];
+            else
+            if (Branch.branchKeyIsSet) {
+                baseUrl = [[NSMutableString alloc] initWithFormat:@"%@/a/%@?",
+                    BNC_LINK_URL,
+                    Branch.branchKey];
             }
-            self.callback(failedUrl, error);
+            if (baseUrl)
+                baseUrl = [self createLongUrlForUserUrl:baseUrl];
+            self.callback(baseUrl, error);
         }
         return;
     }
@@ -89,8 +101,7 @@
 }
 
 - (NSString *)createLongUrlForUserUrl:(NSString *)userUrl {
-    NSMutableString *longUrl = [[NSMutableString alloc] initWithFormat:@"%@?", userUrl];
-    
+    NSMutableString *longUrl = [[BNCPreferenceHelper preferenceHelper] sanitizedMutableBaseURL:userUrl];
     for (NSString *tag in self.tags) {
         [longUrl appendFormat:@"tags=%@&", [BNCEncodingUtils stringByPercentEncodingStringForQuery:tag]];
     }
@@ -128,15 +139,16 @@
 
 - (id)initWithCoder:(NSCoder *)decoder {
     if ((self = [super initWithCoder:decoder])) {
-        _tags = [decoder decodeObjectForKey:@"tags"];
-        _alias = [decoder decodeObjectForKey:@"alias"];
+        _tags = [decoder decodeObjectOfClass:NSArray.class forKey:@"tags"];
+        _alias = [decoder decodeObjectOfClass:NSString.class forKey:@"alias"];
         _type = [decoder decodeIntegerForKey:@"type"];
         _matchDuration = [decoder decodeIntegerForKey:@"duration"];
-        _channel = [decoder decodeObjectForKey:@"channel"];
-        _feature = [decoder decodeObjectForKey:@"feature"];
-        _stage = [decoder decodeObjectForKey:@"stage"];
-        _campaign = [decoder decodeObjectForKey:@"campaign"];
-        _params = [BNCEncodingUtils decodeJsonStringToDictionary:[decoder decodeObjectForKey:@"params"]];
+        _channel = [decoder decodeObjectOfClass:NSString.class forKey:@"channel"];
+        _feature = [decoder decodeObjectOfClass:NSString.class forKey:@"feature"];
+        _stage = [decoder decodeObjectOfClass:NSString.class forKey:@"stage"];
+        _campaign = [decoder decodeObjectOfClass:NSString.class forKey:@"campaign"];
+        _params = [BNCEncodingUtils decodeJsonStringToDictionary:
+                    [decoder decodeObjectOfClass:NSString.class forKey:@"params"]];
         
         // Set up link data
         self.linkData = [[BNCLinkData alloc] init];

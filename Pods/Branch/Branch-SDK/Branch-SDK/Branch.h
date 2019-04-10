@@ -27,6 +27,7 @@
 #import "BNCAvailability.h"
 #import "BranchActivityItemProvider.h"
 #import "BranchConstants.h"
+#import "BranchCSSearchableItemAttributeSet.h"
 #import "BranchDeepLinkingController.h"
 #import "BranchEvent.h"
 #import "BranchLinkProperties.h"
@@ -66,7 +67,7 @@
  Indicates this link is being used to trigger a deal, like a discounted rate.
 
  `BRANCH_FEATURE_TAG_GIFT`
- Indicates this link is being used to sned a gift to another user.
+ Indicates this link is being used to send a gift to another user.
  */
 extern NSString * const BRANCH_FEATURE_TAG_SHARE;
 extern NSString * const BRANCH_FEATURE_TAG_REFERRAL;
@@ -224,11 +225,28 @@ typedef NS_ENUM(NSUInteger, BranchCreditHistoryOrder) {
  You can only set the Branch key once per app run.
 
  @param branchKey The Branch key to use.
+ @param error NSError will be set if Branch encounters a key error.
 */
++ (void) setBranchKey:(NSString*)branchKey error:(NSError **)error;
+
+/**
+ Directly sets the Branch key to be used.  Branch usually reads the Branch key from your app's
+ Info.plist file which is recommended and more convenient.  But the Branch key can also be set
+ with this method. See the documentation at
+ https://dev.branch.io/getting-started/sdk-integration-guide/guide/ios/#configure-xcode-project
+ for information about configuring your app with Branch keys.
+ 
+ You can only set the Branch key once per app run.  Any errors are logged.
+ 
+ @param branchKey The Branch key to use.
+ */
 + (void) setBranchKey:(NSString*)branchKey;
+
 
 /// @return Returns the current Branch key.
 + (NSString*) branchKey;
+
++ (BOOL) branchKeyIsSet;
 
 /**
  * By default, the Branch SDK will include the device fingerprint ID as metadata in Crashlytics
@@ -459,7 +477,11 @@ typedef NS_ENUM(NSUInteger, BranchCreditHistoryOrder) {
 
 /**
  Call this method from inside your app delegate's `application:openURL:sourceApplication:annotation:`
- method with the so that Branch can open the passed URL.
+ method so that Branch can open the passed URL. This method is for pre-iOS 9 compatibility: If you don't need
+ pre-iOS 9 compatibility, override your app delegate's `application:openURL:options:` method instead and use
+ the Branch `application:openURL:options:` to open the URL.
+
+ @warning Pre-iOS 9 compatibility only.
 
  @param application         The application that was passed to your app delegate.
  @param url                 The URL that was passed to your app delegate.
@@ -473,12 +495,10 @@ typedef NS_ENUM(NSUInteger, BranchCreditHistoryOrder) {
          annotation:(id)annotation;
 
 /**
- Call this method from inside your app delegate's `application:openURL:options:`
- method with the so that Branch can open the passed URL.
+ Call this method from inside your app delegate's `application:openURL:options:` method so that Branch can
+ open the passed URL.
 
- This method is functionally the same as calling the Branch method
- `application:openURL:sourceApplication:annotation:`. This method matches the new Apple appDelegate
- method for convenience.
+ This is the preferred Branch method to call inside your `application:openURL:options:` method.
 
  @param application         The application that was passed to your app delegate.
  @param url                 The URL that was passed to your app delegate.
@@ -678,6 +698,29 @@ typedef NS_ENUM(NSUInteger, BranchCreditHistoryOrder) {
 
 - (void)setInstallRequestDelay:(NSInteger)installRequestDelay;
 
+/**
+ Disables the Branch SDK from tracking the user. This is useful for GDPR privacy compliance.
+
+ When tracking is disabled, the Branch SDK will clear the Branch defaults of user identifying
+ information and prevent Branch from making any Branch network calls that will track the user.
+
+ Note that:
+
+ * Opening Branch deep links with an explicit URL will work.
+ * Deferred deep linking will not work.
+ * Generating short links will not work and will return long links instead.
+ * Sending user tracking events such as `userCompletedAction`, `BranchCommerceEvents`, and
+   `BranchEvents` will fail.
+ * User rewards and credits will not work.
+ * Setting a user identity and logging a user identity out will not work.
+
+ @param disabled    If set to `true` then tracking will be disabled.
+ @warning This will prevent most of the Branch SDK functionality.
+*/
++ (void) setTrackingDisabled:(BOOL)disabled;
+
+///Returns the current tracking state.
++ (BOOL) trackingDisabled;
 
 #pragma mark - Session Item methods
 
@@ -1606,7 +1649,23 @@ typedef NS_ENUM(NSUInteger, BranchCreditHistoryOrder) {
 - (void) sendServerRequest:(BNCServerRequest*)request;
 - (void) sendServerRequestWithoutSession:(BNCServerRequest*)request;
 
+/**
+ This is the block that is called each time a new Branch session is started. It is automatically set
+ when Branch is initialized with `initSessionWithLaunchOptions:andRegisterDeepLinkHandler`.
+ */
+@property (copy,   nonatomic) void(^ sessionInitWithParamsCallback) (NSDictionary * params, NSError * error);
+
+/**
+ This is the block that is called each time a new Branch session is started. It is automatically set
+ when Branch is initialized with `initSessionWithLaunchOptions:andRegisterDeepLinkHandlerUsingBranchUniversalObject`.
+
+ The difference with this callback from `sessionInitWithParamsCallback` is that it is called with a
+ BranchUniversalObject.
+ */
+@property (copy,   nonatomic) void (^ sessionInitWithBranchUniversalObjectCallback)
+        (BranchUniversalObject * universalObject, BranchLinkProperties * linkProperties, NSError * error);
+
 // Read-only property exposed for unit testing.
-@property (strong, readonly) BNCServerInterface *serverInterface;
+@property (strong, readonly) BNCServerInterface* serverInterface;
 - (void) clearNetworkQueue;
 @end

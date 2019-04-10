@@ -27,9 +27,12 @@ extern CFStringRef SecCopyErrorMessageString(OSStatus status, void *reserved)
 
 #else
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wpartial-availability"
 CFStringRef SecCopyErrorMessageString(OSStatus status, void *reserved) {
     return CFSTR("Sec OSStatus error.");
 }
+#pragma clang diagnostic pop
 
 #endif
 
@@ -46,6 +49,7 @@ CFStringRef SecCopyErrorMessageString(OSStatus status, void *reserved) {
 
     #pragma clang diagnostic push
     #pragma clang diagnostic ignored "-Wtautological-compare"
+    #pragma clang diagnostic ignored "-Wpartial-availability"
     if (SecCopyErrorMessageString != NULL)
         reason = (__bridge_transfer NSString*) SecCopyErrorMessageString(status, NULL);
     #pragma clang diagnostic pop
@@ -120,7 +124,7 @@ CFStringRef SecCopyErrorMessageString(OSStatus status, void *reserved) {
     };
     CFDataRef valueData = NULL;
     OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)dictionary, (CFTypeRef *)&valueData);
-    if (status) {
+    if (status != errSecSuccess) {
         NSError *localError = [self errorWithKey:key OSStatus:status];
         BNCLogDebugSDK(@"Can't retrieve key: %@.", localError);
         if (error) *error = localError;
@@ -176,7 +180,7 @@ CFStringRef SecCopyErrorMessageString(OSStatus status, void *reserved) {
 
     dictionary[(__bridge id)kSecValueData] = valueData;
     dictionary[(__bridge id)kSecAttrIsInvisible] = (__bridge id)kCFBooleanTrue;
-    dictionary[(__bridge id)kSecAttrAccessible] = (__bridge id)kSecAttrAccessibleAfterFirstUnlock;
+    dictionary[(__bridge id)kSecAttrAccessible] = (__bridge id)kSecAttrAccessibleWhenUnlockedThisDeviceOnly;
 
     if (accessGroup.length) {
         dictionary[(__bridge id)kSecAttrAccessGroup] = accessGroup;
@@ -209,6 +213,38 @@ CFStringRef SecCopyErrorMessageString(OSStatus status, void *reserved) {
         return error;
     }
     return nil;
+}
+
++ (NSString*_Nullable) securityAccessGroup {
+    // https://stackoverflow.com/questions/11726672/access-app-identifier-prefix-programmatically
+    @synchronized(self) {
+        static NSString*_securityAccessGroup = nil;
+        if (_securityAccessGroup) return _securityAccessGroup;
+
+        // First store a value:
+        NSError*error = [self storeValue:@"Value" forService:@"BranchKeychainService" key:@"Temp" cloudAccessGroup:nil];
+        if (error) BNCLogDebugSDK(@"Error storing temp value: %@.", error);
+        
+        NSDictionary* dictionary = @{
+            (__bridge id)kSecClass:                 (__bridge id)kSecClassGenericPassword,
+            (__bridge id)kSecReturnAttributes:      (__bridge id)kCFBooleanTrue,
+            (__bridge id)kSecAttrSynchronizable:    (__bridge id)kSecAttrSynchronizableAny,
+            (__bridge id)kSecMatchLimit:            (__bridge id)kSecMatchLimitOne
+        };
+        CFDictionaryRef resultDictionary = NULL;
+        OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)dictionary, (CFTypeRef*)&resultDictionary);
+        if (status == errSecItemNotFound) return nil;
+        if (status != errSecSuccess) {
+            BNCLogDebugSDK(@"Get securityAccessGroup returned(%ld): %@.",
+                (long) status, [self errorWithKey:nil OSStatus:status]);
+            return nil;
+        }
+        NSString*group =
+            [(__bridge NSDictionary *)resultDictionary objectForKey:(__bridge NSString *)kSecAttrAccessGroup];
+        if (group.length > 0) _securityAccessGroup = [group copy];
+        CFRelease(resultDictionary);
+        return _securityAccessGroup;
+    }
 }
 
 @end
