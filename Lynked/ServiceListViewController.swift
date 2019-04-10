@@ -101,6 +101,7 @@ class ServiceListViewController: UIViewController {
       }
       return $0.serviceAttention > $1.serviceAttention
     }
+    tableView.reloadData()
   }
   
   
@@ -152,7 +153,7 @@ class ServiceListViewController: UIViewController {
   // MARK: - Add Service
   
   func addService(service: Service) {
-    serviceArray.append(service)
+//    serviceArray.append(service)
     sortArray()
     self.tableView.reloadData()
   }
