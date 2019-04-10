@@ -23,8 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // MARK: - NavBar Light Color
-        UIApplication.shared.statusBarStyle = .lightContent
-        
+//        UIApplication.shared.statusBarStyle = .lightContent
+
         // MARK: - Firebase/Fabric
         FirebaseApp.configure()
         Database.database().isPersistenceEnabled = true

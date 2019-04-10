@@ -31,6 +31,10 @@ extension UIViewController {
                                                                NSAttributedString.Key.font: UIFont(name: "GillSans-Bold",
                                                                                            size: 18)!]
   }
+
+  var preferredStatusBarStyle : UIStatusBarStyle {
+    return .lightContent
+  }
   
  @objc func dismissKeyboard() {
     view.endEditing(true)
