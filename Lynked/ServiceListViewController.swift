@@ -235,7 +235,7 @@ class ServiceListViewController: UIViewController {
   // MARK: - Keyboard Methods
   
   @objc func keyboardWillShow(notification:NSNotification) {
-    var userInfo = notification.userInfo!
+    let userInfo = notification.userInfo!
     var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
     keyboardFrame = self.view.convert(keyboardFrame, from: nil)
     var contentInset: UIEdgeInsets = self.tableView.contentInset

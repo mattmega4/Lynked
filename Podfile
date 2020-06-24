@@ -17,6 +17,8 @@ target 'Lynked' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Performance'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Database'
 
 
   pod 'Kingfisher'
@@ -24,7 +26,6 @@ target 'Lynked' do
   pod 'mailgun'
   pod 'UITextView+Placeholder'
   pod 'DZNEmptyDataSet'
-  #pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
   pod 'MBProgressHUD'
 
 
@@ -45,3 +46,10 @@ use_frameworks!
 
 end
 
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['CLANG_WARN_DOCUMENTATION_COMMENTS'] = 'NO'
+    end
+  end
+end
